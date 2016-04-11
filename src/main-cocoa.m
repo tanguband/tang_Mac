@@ -70,7 +70,7 @@ enum
 - (void)setRestorable:(BOOL)flag;
 @end
 
-#define ANGBAND_TERM_MAX 5
+#define ANGBAND_TERM_MAX 8
 #define KEY_BUF_SIZE 1024
 
 /* Whether or not to start new game */

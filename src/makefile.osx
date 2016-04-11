@@ -14,7 +14,7 @@ NAME = Tanguband
 APPNAME = $(NAME).app
 EXE = Tanguband
 VERSION = $(shell ../scripts/version.sh)
-#COPYRIGHT = 2012 Hengband Dev Team.
+COPYRIGHT = 2016 Tanguband
 
 # For now, buggy in 64bit
 #ARCH = -arch i386 -arch x86_64
@@ -29,7 +29,7 @@ ENCODINGS = -DJP -DEUC
 CFLAGS = -g -I. $(WARNINGS) $(OPT) -DMACH_O_CARBON -DHAVE_MKSTEMP $(ENCODINGS) -DCHUUKEI \
 	-fno-stack-protector $(ARCH)
 LIBS = -framework Cocoa -liconv
-DEPLOYMENT_TARGET = MACOSX_DEPLOYMENT_TARGET=10.9
+DEPLOYMENT_TARGET = MACOSX_DEPLOYMENT_TARGET=10.6
 
 # Import user prefs
 # If you don't want to edit this file, put your module redefinitions
