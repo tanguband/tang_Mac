@@ -70,7 +70,7 @@ enum
 - (void)setRestorable:(BOOL)flag;
 @end
 
-#define ANGBAND_TERM_MAX 8
+#define ANGBAND_TERM_MAX 5
 #define KEY_BUF_SIZE 1024
 
 /* Whether or not to start new game */
@@ -513,7 +513,7 @@ static bool initialized = FALSE;
         
         if (timeUntilNextRefresh > 0)
         {
-            usleep((unsigned long)(timeUntilNextRefresh * 1000000.));
+            usleep((unsigned long)(timeUntilNextRefresh * 10.));
         }
     }
     lastRefreshTime = CFAbsoluteTimeGetCurrent();
@@ -1329,7 +1329,7 @@ static void Term_init_cocoa(term *t)
     {
         if (angband_term[termIdx] == t)
         {
-            autosaveName = [NSString stringWithFormat:@"AngbandTerm-%d", termIdx];
+            autosaveName = [NSString stringWithFormat:@"TangubandTerm-%d", termIdx];
             break;
         }
     }
@@ -1645,7 +1645,7 @@ static errr Term_xtra_cocoa(int n, int v)
             if (v > 0)
             {
                 
-                double seconds = v / 1000.;
+                double seconds = v / 100000000.;
                 NSDate* date = [NSDate dateWithTimeIntervalSinceNow:seconds];
                 do
                 {
@@ -2267,7 +2267,7 @@ static NSString *get_data_directory(void)
     else
         documentsDirectory = [@"~/Documents/" stringByExpandingTildeInPath];
 
-    return [documentsDirectory stringByAppendingPathComponent:@"/Hengband/"];
+    return [documentsDirectory stringByAppendingPathComponent:@"/Tanguband/"];
 }
 
 
@@ -2601,7 +2601,7 @@ static void initialize_file_paths(void)
 
     if (! success)
     {
-        NSRunAlertPanel(@"Unable to create directory", @"Unable to create directory in %@ (error was %@).  Hengband has to quit.", @"Nuts", nil, nil, angbandBase, error);
+        NSRunAlertPanel(@"Unable to create directory", @"Unable to create directory in %@ (error was %@).  Tanguband has to quit.", @"Nuts", nil, nil, angbandBase, error);
         [[NSApplication sharedApplication] presentError:error];
         exit(0);
     }

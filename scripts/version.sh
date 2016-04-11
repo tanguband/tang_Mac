@@ -29,7 +29,7 @@ if head=$(git rev-parse --verify --short HEAD 2>/dev/null); then
 	# Check for uncommitted changes
 	if git diff-index --name-only HEAD \
 	    | read dummy; then
-		printf '%s' -dirty
+		printf _Ver16.04.12
 	fi
 
 	# All done with git
