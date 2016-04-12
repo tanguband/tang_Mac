@@ -28,7 +28,7 @@ OBJ_CFLAGS = -std=c99 -x objective-c -mmacosx-version-min=10.6
 ENCODINGS = -DJP -DEUC
 CFLAGS = -g -I. $(WARNINGS) $(OPT) -DMACH_O_CARBON -DHAVE_MKSTEMP $(ENCODINGS) -DCHUUKEI \
 	-fno-stack-protector $(ARCH)
-LIBS = -framework Cocoa -liconv
+LIBS = -framework Cocoa -liconv -framework CoreFoundation -framework QuickTime -framework Carbon
 DEPLOYMENT_TARGET = MACOSX_DEPLOYMENT_TARGET=10.6
 
 # Import user prefs

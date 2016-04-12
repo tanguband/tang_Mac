@@ -15,11 +15,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>-g3960139_Ver16.04.12</string>
+	<string>-gb8662f2_Ver16.04.12</string>
 	<key>CFBundleLongVersionString</key>
-	<string>-g3960139_Ver16.04.12, Copyright </string>
+	<string>-gb8662f2_Ver16.04.12, Copyright 2016 Tanguband</string>
 	<key>CFBundleGetInfoString</key>
-	<string>-g3960139_Ver16.04.12, © </string>
+	<string>-gb8662f2_Ver16.04.12, © 2016 Tanguband</string>
 	<key>CFBundleSignature</key>
 	<string>Tangu</string>
 	<key>CFBundleVersion</key>

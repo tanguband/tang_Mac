@@ -2374,6 +2374,7 @@ static BOOL send_event(NSEvent *event)
                     special = '\b'; break;
                 case kVK_ForwardDelete:
                     special = '\x7F'; break;
+                    
             }
 
             /* Special keys without modifier */
@@ -2383,7 +2384,7 @@ static BOOL send_event(NSEvent *event)
 				Term_keypress(special);
             }
 			/* Normal key without Option, Command, CTRL-Shift -> simple keypress */
-            else if (!special && code < 64 && !mo && !mx && (
+            else if (!special && code < 95 && !(64 < code && code < 93 ) && !mo && !mx && (
                         !mc || (!ms && mc && !(' ' <= c && c <= '~'))))
 			{
 				/* Enqueue the keypress */
