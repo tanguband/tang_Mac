@@ -1,6 +1,6 @@
-# File: Makefile.osx
+# File: Makefile.carbon
 
-# This is a Makefile for the Mac OS X Cocoa port of Hengband.
+# This is a Makefile for the Mac OS X carbon port of Tanguband.
 
 # default target
 all: install
@@ -28,7 +28,7 @@ OBJ_CFLAGS = -std=c99 -x objective-c -mmacosx-version-min=10.6
 ENCODINGS = -DJP -DEUC
 CFLAGS = -g -I. $(WARNINGS) $(OPT) -DMACH_O_CARBON -DHAVE_MKSTEMP $(ENCODINGS) -DCHUUKEI \
 	-fno-stack-protector $(ARCH)
-LIBS = -framework Cocoa -liconv  -framework coredata  -framework Carbon 
+LIBS =  -liconv  -framework coredata  -framework Carbon 
 DEPLOYMENT_TARGET = MACOSX_DEPLOYMENT_TARGET=10.6
 
 # Import user prefs
@@ -49,9 +49,9 @@ OBJS = \
 	spells2.o spells3.o store.o streams.o tables.o util.o \
 	variable.o wild.o wizard1.o wizard2.o xtra1.o xtra2.o \
 	z-form.o z-rand.o z-term.o z-util.o z-virt.o \
-	chuukei.o
+	chuukei.o main.o
 #	main-cap.o main-gcu.o main-xaw.o main-x11.o
-OSX_OBJS = main-cocoa.o
+#OSX_OBJS = main.o
 
 
 #
@@ -69,8 +69,8 @@ $(EXE).o: $(OBJS)
 	$(LD) -r -arch i386 -o $@.i386 $(OBJS)
 	lipo -arch i386 $@.i386 -create -output $(EXE).o
 
-$(EXE): $(EXE).o $(OSX_OBJS)
-	$(DEPLOYMENT_TARGET) $(CC) $(CFLAGS) $(LDFLAGS) -o $(EXE) $(EXE).o $(OSX_OBJS) $(LIBS) 
+#$(EXE): $(EXE).o $(OSX_OBJS)
+#	$(DEPLOYMENT_TARGET) $(CC) $(CFLAGS) $(LDFLAGS) -o $(EXE) $(EXE).o $(OSX_OBJS) $(LIBS) 
 
 
 #
@@ -85,9 +85,9 @@ clean:
 # Basic build rules and dependencies
 #
 
-main-cocoa.o : main-cocoa.m
-	@printf "%10s %-20s (objective-c)\n" CC $<
-	$(CC) $(CFLAGS) $(OBJ_CFLAGS) -c -o $@ $<
+#main.o : main.m
+#	@printf "%10s %-20s (objective-c)\n" CC $<
+#	$(CC) $(CFLAGS) $(OBJ_CFLAGS) -c -o $@ $<
 %.o : %.c
 	@printf "%10s %-20s\n" CC $<
 	$(CC) $(JUST_C) $(CFLAGS) -c -o $@ $<

@@ -1,6 +1,6 @@
-# File: Makefile.osx
+# File: Makefile.cocoa
 
-# This is a Makefile for the Mac OS X Cocoa port of Hengband.
+# This is a Makefile for the Mac OS X Cocoa port of Tanguband.
 
 # default target
 all: install
@@ -28,7 +28,7 @@ OBJ_CFLAGS = -std=c99 -x objective-c -mmacosx-version-min=10.6
 ENCODINGS = -DJP -DEUC
 CFLAGS = -g -I. $(WARNINGS) $(OPT) -DMACH_O_CARBON -DHAVE_MKSTEMP $(ENCODINGS) -DCHUUKEI \
 	-fno-stack-protector $(ARCH)
-LIBS = -framework Cocoa -liconv  -framework coredata  -framework Carbon 
+LIBS = -framework Cocoa -liconv  -framework Carbon 
 DEPLOYMENT_TARGET = MACOSX_DEPLOYMENT_TARGET=10.6
 
 # Import user prefs
@@ -55,7 +55,7 @@ OSX_OBJS = main-cocoa.o
 
 
 #
-# Build the "Hengband" program
+# Build the "Tanguband" program
 #
 
 # disable 64-bit build

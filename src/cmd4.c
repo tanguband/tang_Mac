@@ -42,7 +42,6 @@
 #include "angband.h"
 
 
-
 /*
  */
 
