@@ -21,7 +21,7 @@
 
 /* Default creator signature */
 #ifndef ANGBAND_CREATOR
-# define ANGBAND_CREATOR 'Tangu'
+# define ANGBAND_CREATOR 'Tang'
 #endif
 
 #ifdef JP
