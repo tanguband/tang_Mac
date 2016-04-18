@@ -394,8 +394,8 @@ static bool initialized = FALSE;
     
     // Record the tile size. Note that these are typically fractional values - which seems sketchy, but we end up scaling the heck out of our view anyways, so it seems to not matter.
     /* Hack -- add padding width  */
-    tileSize.width = advance + 2 * TILE_GLYPH_PADDING;
-    tileSize.height = [screenFont ascender] - fontDescender + 2 * TILE_GLYPH_PADDING;
+    tileSize.width = advance  * TILE_GLYPH_PADDING;
+    tileSize.height = [screenFont ascender] - fontDescender  * TILE_GLYPH_PADDING;
 
     /* Hack -- round up tile size */
     tileSize.width = ceil(tileSize.width);
@@ -513,7 +513,7 @@ static bool initialized = FALSE;
         
         if (timeUntilNextRefresh > 0)
         {
-            usleep((unsigned long)(timeUntilNextRefresh * 10.));
+            usleep((unsigned long)(timeUntilNextRefresh * 1.));
         }
     }
     lastRefreshTime = CFAbsoluteTimeGetCurrent();
@@ -1645,7 +1645,7 @@ static errr Term_xtra_cocoa(int n, int v)
             if (v > 0)
             {
                 
-                double seconds = v / 100000000.;
+                double seconds = v / 10000000000.;
                 NSDate* date = [NSDate dateWithTimeIntervalSinceNow:seconds];
                 do
                 {
@@ -2374,6 +2374,9 @@ static BOOL send_event(NSEvent *event)
                     special = '\b'; break;
                 case kVK_ForwardDelete:
                     special = '\x7F'; break;
+                case 93:
+                    special = '\\'; break;
+
                     
             }
 
@@ -2384,12 +2387,20 @@ static BOOL send_event(NSEvent *event)
 				Term_keypress(special);
             }
 			/* Normal key without Option, Command, CTRL-Shift -> simple keypress */
-            else if (!special && code < 95 && !(64 < code && code < 93 ) && !mo && !mx && (
+            else if (!special && code < 96 && !(64 < code && code < 93 ) && !mo && !mx && (
                         !mc || (!ms && mc && !(' ' <= c && c <= '~'))))
 			{
 				/* Enqueue the keypress */
 				Term_keypress(c);
 			}
+			/* Normal key without Option, Command, CTRL-Shift -> simple keypress */
+            else if (!special && code == 93 && !mo && !mx && (
+                        !mc || (!ms && mc && !(' ' <= c && c <= '~'))))
+			{
+				/* Enqueue the keypress */
+				Term_keypress('\\');
+			}
+
             /* Other special keys or with modifier */
             else
             {

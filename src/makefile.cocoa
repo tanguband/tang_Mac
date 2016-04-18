@@ -19,7 +19,6 @@ COPYRIGHT = 2016 Tanguband
 # For now, buggy in 64bit
 #ARCH = -arch i386 -arch x86_64
 ARCH = -arch i386
-#ARCH = -arch x86_64
 
 WARNINGS = -W -Wall -Wno-unused-parameter -Wno-missing-field-initializers
 JUST_C = -std=c99 -Wdeclaration-after-statement
@@ -50,7 +49,6 @@ OBJS = \
 	variable.o wild.o wizard1.o wizard2.o xtra1.o xtra2.o \
 	z-form.o z-rand.o z-term.o z-util.o z-virt.o \
 	chuukei.o
-#	main-cap.o main-gcu.o main-xaw.o main-x11.o
 OSX_OBJS = main-cocoa.o
 
 
