@@ -2393,12 +2393,11 @@ static BOOL send_event(NSEvent *event)
 				/* Enqueue the keypress */
 				Term_keypress(c);
 			}
-			/* Normal key without Option, Command, CTRL-Shift -> simple keypress */
-            else if (!special && code == 93 && !mo && !mx && (
-                        !mc || (!ms && mc && !(' ' <= c && c <= '~'))))
+
+            else if (ms && code == 93 )
 			{
 				/* Enqueue the keypress */
-				Term_keypress('\\');
+				Term_keypress('|');
 			}
 
             /* Other special keys or with modifier */
