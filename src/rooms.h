@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file rooms.h
- * @brief éƒ¨å±‹ç”Ÿæˆå‡¦ç†ã®å®šç¾©ãƒ˜ãƒƒãƒ€ãƒ¼ / Header file for rooms.c, used only in generate.c
+ * @brief Éô²°À¸À®½èÍı¤ÎÄêµÁ¥Ø¥Ã¥À¡¼ / Header file for rooms.c, used only in generate.c
  * @date 2014/09/07
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke<br>
@@ -9,38 +9,38 @@
  * are included in all such copies.  Other copyrights may also apply.<br
  */
 
-#define DUN_ROOMS_MAX	40 /*!< éƒ¨å±‹ç”Ÿæˆå‡¦ç†ã®æœ€å¤§è©¦è¡Œæ•° / Number of rooms to attempt (was 50) */
+#define DUN_ROOMS_MAX	40 /*!< Éô²°À¸À®½èÍı¤ÎºÇÂç»î¹Ô¿ô / Number of rooms to attempt (was 50) */
 
 
-/* æ± å‹åœ°å½¢ã®ç”ŸæˆID / Room types for generate_lake() */
-#define LAKE_T_LAVA        1 /*!< æ± å‹åœ°å½¢ID: æº¶å²© */
-#define LAKE_T_WATER       2 /*!< æ± å‹åœ°å½¢ID: æ±  */
-#define LAKE_T_CAVE        3 /*!< æ± å‹åœ°å½¢ID: ç©ºæ´ */
-#define LAKE_T_EARTH_VAULT 4 /*!< æ± å‹åœ°å½¢ID: åœ°å±æ€§VAULT */
-#define LAKE_T_AIR_VAULT   5 /*!< æ± å‹åœ°å½¢ID: é¢¨å±æ€§VAULT */
-#define LAKE_T_WATER_VAULT 6 /*!< æ± å‹åœ°å½¢ID: æ°´å±æ€§VAULT */
-#define LAKE_T_FIRE_VAULT  7 /*!< æ± å‹åœ°å½¢ID: ç«å±æ€§VAULT */
+/* ÃÓ·¿ÃÏ·Á¤ÎÀ¸À®ID / Room types for generate_lake() */
+#define LAKE_T_LAVA        1 /*!< ÃÓ·¿ÃÏ·ÁID: ÍÏ´ä */
+#define LAKE_T_WATER       2 /*!< ÃÓ·¿ÃÏ·ÁID: ÃÓ */
+#define LAKE_T_CAVE        3 /*!< ÃÓ·¿ÃÏ·ÁID: ¶õÆ¶ */
+#define LAKE_T_EARTH_VAULT 4 /*!< ÃÓ·¿ÃÏ·ÁID: ÃÏÂ°À­VAULT */
+#define LAKE_T_AIR_VAULT   5 /*!< ÃÓ·¿ÃÏ·ÁID: É÷Â°À­VAULT */
+#define LAKE_T_WATER_VAULT 6 /*!< ÃÓ·¿ÃÏ·ÁID: ¿åÂ°À­VAULT */
+#define LAKE_T_FIRE_VAULT  7 /*!< ÃÓ·¿ÃÏ·ÁID: ²ĞÂ°À­VAULT */
 
 
-/* éƒ¨å±‹å‹ID / Room types for room_build() */
-#define ROOM_T_NORMAL         0	 /*!<éƒ¨å±‹å‹ID:åŸºæœ¬é•·æ–¹å½¢ / Simple (33x11) */
-#define ROOM_T_OVERLAP        1	 /*!<éƒ¨å±‹å‹ID:é•·æ–¹å½¢äºŒã¤é‡ã­ / Overlapping (33x11) */
-#define ROOM_T_CROSS          2	 /*!<éƒ¨å±‹å‹ID:åå­— / Crossed (33x11) */
-#define ROOM_T_INNER_FEAT     3	 /*!<éƒ¨å±‹å‹ID:äºŒé‡å£ / Large (33x11) */
-#define ROOM_T_NEST           4	 /*!<éƒ¨å±‹å‹ID:ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼NEST / Monster nest (33x11) */
-#define ROOM_T_PIT            5	 /*!<éƒ¨å±‹å‹ID:ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼PIT / Monster pit (33x11) */
-#define ROOM_T_LESSER_VAULT   6	 /*!<éƒ¨å±‹å‹ID:å°å‹VAULT / Lesser vault (33x22) */
-#define ROOM_T_GREATER_VAULT  7	 /*!<éƒ¨å±‹å‹ID:å¤§å‹VAULT / Greater vault (66x44) */
-#define ROOM_T_FRACAVE        8	 /*!<éƒ¨å±‹å‹ID:ãƒ•ãƒ©ã‚¯ã‚¿ãƒ«åœ°å½¢ / Fractal cave (42x24) */
-#define ROOM_T_RANDOM_VAULT   9	 /*!<éƒ¨å±‹å‹ID:ãƒ©ãƒ³ãƒ€ãƒ VAULT / Random vault (44x22) */
-#define ROOM_T_OVAL          10	 /*!<éƒ¨å±‹å‹ID:å††å½¢éƒ¨å±‹ / Circular rooms (22x22) */
-#define ROOM_T_CRYPT         11	 /*!<éƒ¨å±‹å‹ID:è–å ‚ / Crypts (22x22) */
-#define ROOM_T_TRAP_PIT      12	 /*!<éƒ¨å±‹å‹ID:ãƒˆãƒ©ãƒƒãƒ—ã¤ããƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼PIT / Trapped monster pit */
-#define ROOM_T_TRAP          13	 /*!<éƒ¨å±‹å‹ID:ãƒˆãƒ©ãƒƒãƒ—éƒ¨å±‹ / Piranha/Armageddon trap room */
-#define ROOM_T_GLASS         14	 /*!<éƒ¨å±‹å‹ID:ã‚¬ãƒ©ã‚¹éƒ¨å±‹ / Glass room */
-#define ROOM_T_ARCADE        15  /*!<éƒ¨å±‹å‹ID:å•†åº— / Arcade */
+/* Éô²°·¿ID / Room types for room_build() */
+#define ROOM_T_NORMAL         0	 /*!<Éô²°·¿ID:´ğËÜÄ¹Êı·Á / Simple (33x11) */
+#define ROOM_T_OVERLAP        1	 /*!<Éô²°·¿ID:Ä¹Êı·ÁÆó¤Ä½Å¤Í / Overlapping (33x11) */
+#define ROOM_T_CROSS          2	 /*!<Éô²°·¿ID:½½»ú / Crossed (33x11) */
+#define ROOM_T_INNER_FEAT     3	 /*!<Éô²°·¿ID:Æó½ÅÊÉ / Large (33x11) */
+#define ROOM_T_NEST           4	 /*!<Éô²°·¿ID:¥â¥ó¥¹¥¿¡¼NEST / Monster nest (33x11) */
+#define ROOM_T_PIT            5	 /*!<Éô²°·¿ID:¥â¥ó¥¹¥¿¡¼PIT / Monster pit (33x11) */
+#define ROOM_T_LESSER_VAULT   6	 /*!<Éô²°·¿ID:¾®·¿VAULT / Lesser vault (33x22) */
+#define ROOM_T_GREATER_VAULT  7	 /*!<Éô²°·¿ID:Âç·¿VAULT / Greater vault (66x44) */
+#define ROOM_T_FRACAVE        8	 /*!<Éô²°·¿ID:¥Õ¥é¥¯¥¿¥ëÃÏ·Á / Fractal cave (42x24) */
+#define ROOM_T_RANDOM_VAULT   9	 /*!<Éô²°·¿ID:¥é¥ó¥À¥àVAULT / Random vault (44x22) */
+#define ROOM_T_OVAL          10	 /*!<Éô²°·¿ID:±ß·ÁÉô²° / Circular rooms (22x22) */
+#define ROOM_T_CRYPT         11	 /*!<Éô²°·¿ID:À»Æ² / Crypts (22x22) */
+#define ROOM_T_TRAP_PIT      12	 /*!<Éô²°·¿ID:¥È¥é¥Ã¥×¤Ä¤­¥â¥ó¥¹¥¿¡¼PIT / Trapped monster pit */
+#define ROOM_T_TRAP          13	 /*!<Éô²°·¿ID:¥È¥é¥Ã¥×Éô²° / Piranha/Armageddon trap room */
+#define ROOM_T_GLASS         14	 /*!<Éô²°·¿ID:¥¬¥é¥¹Éô²° / Glass room */
+#define ROOM_T_ARCADE        15  /*!<Éô²°·¿ID:¾¦Å¹ / Arcade */
 
-#define ROOM_T_MAX 16 /*!<éƒ¨å±‹å‹IDæœ€å¤§æ•° */
+#define ROOM_T_MAX 16 /*!<Éô²°·¿IDºÇÂç¿ô */
 
 
 /*

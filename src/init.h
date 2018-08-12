@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file init.h
- * @brief ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–å‡¦ç†ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ * @brief ¥²¡¼¥à¥Ç¡¼¥¿½é´ü²½½èÍı¤Î¥Ø¥Ã¥À¥Õ¥¡¥¤¥ë
  * @date 2015/01/02
  * @author
  * Copyright (c) 2000 Robert Ruehlmann
@@ -45,7 +45,7 @@ typedef errr (*parse_info_txt_func)(char *buf, header *head);
 
 /*!
  * @struct header
- * @brief å„åˆæœŸãƒ‡ãƒ¼ã‚¿ç”¨ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ / Template file header information (see "init.c").  16 bytes.
+ * @brief ³Æ½é´ü¥Ç¡¼¥¿ÍÑ¥Ø¥Ã¥À¹½Â¤ÂÎ / Template file header information (see "init.c").  16 bytes.
  * @details
  * Note that the sizes of many of the "arrays" are between 32768 and
  * 65535, and so we must use "unsigned" values to hold the "sizes" of

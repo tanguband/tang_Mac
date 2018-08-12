@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file init1.c
- * @brief ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–1 / Initialization (part 1) -BEN-
+ * @brief ¥²¡¼¥à¥Ç¡¼¥¿½é´ü²½1 / Initialization (part 1) -BEN-
  * @date 2014/01/28
  * @author
  * <pre>
@@ -32,14 +32,14 @@
  * "*.raw" files in "lib/data", and then quit, and recompile without
  * defining ALLOW_TEMPLATES, which will both save 20K and prevent people
  * from changing the ascii template files in potentially dangerous ways.
- * ãƒãƒ¼ãƒˆã¨ã—ã¦è¨˜éŒ²ï¼šALLOW_TEMPLATESãŒå®šç¾©ã•ã‚Œã¦ã„ãªã„å ´åˆã€
- * ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ¼ãƒ‰ã®å¤šãã¯ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å‡ºåŠ›ã•ã‚Œã€æœ¬ã‚²ãƒ¼ãƒ ã¯
- * æ­£è¦ã®ã€Œãƒã‚¤ãƒŠãƒªãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã€ãŒlib/dataãƒ•ã‚¡ã‚¤ãƒ«å†…ã«
- * å­˜åœ¨ã—ãªã„é™ã‚Šèµ·å‹•ã—ãªããªã‚‹ã€‚ä¸€æ–¹ALLOW_TEMPLATESãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹
- * ãªã‚‰ã°ï¼‘åº¦ã‚²ãƒ¼ãƒ ãŒèµ·å‹•ã™ã‚‹ã”ã¨ã«*.rawãƒ•ã‚¡ã‚¤ãƒ«ç¾¤ãŒä½œæˆã•ã‚Œã€çµ‚äº†æ™‚ã«ã¯
- * ALLOW_TEMPLATEã®å®šç¾©ã«é–¢ä¿‚ãªããƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚Œã‚‹ã€‚ã“ã‚Œã«ã‚ˆã‚Š20K(ãƒã‚¤ãƒˆï¼Ÿ)
- * ã®ãƒ‡ãƒ¼ã‚¿ãŒä¿å­˜ã•ã‚Œã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ½œåœ¨çš„ã«å±é™ºãªæ–¹æ³•ã§asciiæ–‡å­—ã®
- * ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ã‚’å¦¨ã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
+ * ¥Î¡¼¥È¤È¤·¤Æµ­Ï¿¡§ALLOW_TEMPLATES¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤Ê¤¤¾ì¹ç¡¢
+ * ¤³¤Î¥Õ¥¡¥¤¥ë¤Î¥³¡¼¥É¤ÎÂ¿¤¯¤Ï¥³¥ó¥Ñ¥¤¥ë½ĞÎÏ¤µ¤ì¡¢ËÜ¥²¡¼¥à¤Ï
+ * Àµµ¬¤Î¡Ö¥Ğ¥¤¥Ê¥ê¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë¡×¤¬lib/data¥Õ¥¡¥¤¥ëÆâ¤Ë
+ * Â¸ºß¤·¤Ê¤¤¸Â¤êµ¯Æ°¤·¤Ê¤¯¤Ê¤ë¡£°ìÊıALLOW_TEMPLATES¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤ë
+ * ¤Ê¤é¤Ğ£±ÅÙ¥²¡¼¥à¤¬µ¯Æ°¤¹¤ë¤´¤È¤Ë*.raw¥Õ¥¡¥¤¥ë·²¤¬ºîÀ®¤µ¤ì¡¢½ªÎ»»ş¤Ë¤Ï
+ * ALLOW_TEMPLATE¤ÎÄêµÁ¤Ë´Ø·¸¤Ê¤¯¥ê¥³¥ó¥Ñ¥¤¥ë¤µ¤ì¤ë¡£¤³¤ì¤Ë¤è¤ê20K(¥Ğ¥¤¥È¡©)
+ * ¤Î¥Ç¡¼¥¿¤¬ÊİÂ¸¤µ¤ì¡¢¥×¥ì¥¤¥ä¡¼¤¬ÀøºßÅª¤Ë´í¸±¤ÊÊıË¡¤ÇasciiÊ¸»ú¤Î
+ * ¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë¤òÊÑ¹¹¤¹¤ë¤³¤È¤òË¸¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£
  * The code could actually be removed and placed into a "stand-alone"
  * program, but that feels a little silly, especially considering some
  * of the platforms that we currently support.
@@ -58,7 +58,7 @@
 /*** Helper arrays for parsing ascii template files ***/
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒæ‰‹æ®µãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
+ * ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·â¼êÃÊ¥È¡¼¥¯¥ó¤ÎÄêµÁ /
  * Monster Blow Methods
  */
 static cptr r_info_blow_method[] =
@@ -94,7 +94,7 @@ static cptr r_info_blow_method[] =
 
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒå±æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
+ * ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·âÂ°À­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
  * Monster Blow Effects
  */
 static cptr r_info_blow_effect[] =
@@ -139,7 +139,7 @@ static cptr r_info_blow_effect[] =
 };
 
 /*!
- * åœ°å½¢å±æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
+ * ÃÏ·ÁÂ°À­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
  * Feature info flags
  */
 static cptr f_info_flags[] =
@@ -264,7 +264,7 @@ static cptr f_info_flags[] =
 
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©1 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ1 /
  * Monster race flags
  */
 static cptr r_info_flags1[] =
@@ -304,7 +304,7 @@ static cptr r_info_flags1[] =
 };
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©2 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ2 /
  * Monster race flags
  */
 static cptr r_info_flags2[] =
@@ -344,7 +344,7 @@ static cptr r_info_flags2[] =
 };
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©3 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ3 /
  * Monster race flags
  */
 static cptr r_info_flags3[] =
@@ -384,7 +384,7 @@ static cptr r_info_flags3[] =
 };
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©4 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ4 /
  * Monster race flags
  */
 static cptr r_info_flags4[] =
@@ -424,7 +424,7 @@ static cptr r_info_flags4[] =
 };
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›1) /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó(È¯Æ°·¿Ç½ÎÏ1) /
  * Monster race flags
  */
 static cptr r_a_ability_flags1[] =
@@ -464,7 +464,7 @@ static cptr r_a_ability_flags1[] =
 };
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›2) /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó(È¯Æ°·¿Ç½ÎÏ2) /
  * Monster race flags
  */
 static cptr r_a_ability_flags2[] =
@@ -505,7 +505,7 @@ static cptr r_a_ability_flags2[] =
 
 #if 0
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›3) /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó(È¯Æ°·¿Ç½ÎÏ3) /
  * Monster race flags
  */
 static cptr r_a_ability_flags3[] =
@@ -547,7 +547,7 @@ static cptr r_a_ability_flags3[] =
 
 #if 0
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›4) /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó(È¯Æ°·¿Ç½ÎÏ4) /
  * Monster race flags
  */
 static cptr r_a_ability_flags4[] =
@@ -589,7 +589,7 @@ static cptr r_a_ability_flags4[] =
 
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©7 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ7 /
  * Monster race flags
  */
 static cptr r_info_flags7[] =
@@ -629,7 +629,7 @@ static cptr r_info_flags7[] =
 };
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©8 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ8 /
  * Monster race flags
  */
 static cptr r_info_flags8[] =
@@ -670,7 +670,7 @@ static cptr r_info_flags8[] =
 
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©9 /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ9 /
  * Monster race flags
  */
 static cptr r_info_flags9[] =
@@ -712,7 +712,7 @@ static cptr r_info_flags9[] =
 
 
 /*!
- * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©R(è€æ€§) /
+ * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁR(ÂÑÀ­) /
  * Monster race flags
  */
 static cptr r_info_flagsr[] =
@@ -753,7 +753,7 @@ static cptr r_info_flagsr[] =
 
 
 /*!
- * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŸºæœ¬ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
+ * ¥ª¥Ö¥¸¥§¥¯¥È´ğËÜÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
  * Object flags
  */
 static cptr k_info_flags[] =
@@ -904,7 +904,7 @@ static cptr k_info_flags[] =
 };
 
 /*!
- * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
+ * ¥ª¥Ö¥¸¥§¥¯¥ÈÀ¸À®ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
  * Object flags
  */
 static cptr k_info_gen_flags[] =
@@ -944,7 +944,7 @@ static cptr k_info_gen_flags[] =
 };
 
 /*!
- * ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
+ * ¥À¥ó¥¸¥ç¥óÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
  * Dungeon flags
  */
 static cptr d_info_flags1[] =
@@ -985,14 +985,14 @@ static cptr d_info_flags1[] =
 
 
 /*!
- * @brief ãƒ‡ãƒ¼ã‚¿ã®å¯å¤‰æ–‡å­—åˆ—æƒ…å ±ã‚’ãƒ†ã‚­ã‚¹ãƒˆã¨ã—ã¦ä¿ç®¡ã™ã‚‹ /
+ * @brief ¥Ç¡¼¥¿¤Î²ÄÊÑÊ¸»úÎó¾ğÊó¤ò¥Æ¥­¥¹¥È¤È¤·¤ÆÊİ´É¤¹¤ë /
  * Add a text to the text-storage and store offset to it.
- * @param offset æ–‡å­—åˆ—ä¿ç®¡ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
- * @param head ãƒ†ã‚­ã‚¹ãƒˆä¿ç®¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param buf ä¿ç®¡æ–‡å­—åˆ—
- * @param normal_text ãƒ†ã‚­ã‚¹ãƒˆã®æ­£è¦åŒ–ã‚’è¡Œã†
+ * @param offset Ê¸»úÎóÊİ´É¥İ¥¤¥ó¥¿¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È
+ * @param head ¥Æ¥­¥¹¥ÈÊİ´É¥Ø¥Ã¥À¾ğÊó¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param buf Êİ´ÉÊ¸»úÎó
+ * @param normal_text ¥Æ¥­¥¹¥È¤ÎÀµµ¬²½¤ò¹Ô¤¦
  * @return
- * ç„¡äº‹ä¿ç®¡ãŒã§ããŸã‚‰TRUEã‚’è¿”ã™ã€‚
+ * Ìµ»öÊİ´É¤¬¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹¡£
  * Returns FALSE when there isn't enough space available to store
  * the text.
  */
@@ -1048,13 +1048,13 @@ static bool add_text(u32b *offset, header *head, cptr buf, bool normal_text)
 
 
 /*!
- * @brief ãƒ‡ãƒ¼ã‚¿ã®å¯å¤‰æ–‡å­—åˆ—æƒ…å ±ã‚’åå‰ã¨ã—ã¦ä¿ç®¡ã™ã‚‹ /
+ * @brief ¥Ç¡¼¥¿¤Î²ÄÊÑÊ¸»úÎó¾ğÊó¤òÌ¾Á°¤È¤·¤ÆÊİ´É¤¹¤ë /
  * Add a name to the name-storage and return an offset to it.
- * @param offset æ–‡å­—åˆ—ä¿ç®¡ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
- * @param head ãƒ†ã‚­ã‚¹ãƒˆä¿ç®¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param buf ä¿ç®¡æ–‡å­—åˆ—
+ * @param offset Ê¸»úÎóÊİ´É¥İ¥¤¥ó¥¿¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È
+ * @param head ¥Æ¥­¥¹¥ÈÊİ´É¥Ø¥Ã¥À¾ğÊó¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param buf Êİ´ÉÊ¸»úÎó
  * @return
- * ç„¡äº‹ä¿ç®¡ãŒã§ããŸã‚‰TRUEã‚’è¿”ã™ã€‚
+ * Ìµ»öÊİ´É¤¬¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹¡£
  * Returns FALSE when there isn't enough space available to store
  * the text.
  */
@@ -1083,13 +1083,13 @@ static bool add_name(u32b *offset, header *head, cptr buf)
 
 
 /*!
- * @brief ãƒ‡ãƒ¼ã‚¿ã®å¯å¤‰æ–‡å­—åˆ—æƒ…å ±ã‚’ã‚¿ã‚°ã¨ã—ã¦ä¿ç®¡ã™ã‚‹ /
+ * @brief ¥Ç¡¼¥¿¤Î²ÄÊÑÊ¸»úÎó¾ğÊó¤ò¥¿¥°¤È¤·¤ÆÊİ´É¤¹¤ë /
  * Add a tag to the tag-storage and return an offset to it.
- * @param offset æ–‡å­—åˆ—ä¿ç®¡ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
- * @param head ãƒ†ã‚­ã‚¹ãƒˆä¿ç®¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param buf ä¿ç®¡æ–‡å­—åˆ—
+ * @param offset Ê¸»úÎóÊİ´É¥İ¥¤¥ó¥¿¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È
+ * @param head ¥Æ¥­¥¹¥ÈÊİ´É¥Ø¥Ã¥À¾ğÊó¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param buf Êİ´ÉÊ¸»úÎó
  * @return
- * ç„¡äº‹ä¿ç®¡ãŒã§ããŸã‚‰TRUEã‚’è¿”ã™ã€‚
+ * Ìµ»öÊİ´É¤¬¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹¡£
  * Returns FALSE when there isn't enough space available to store
  * the text.
  */
@@ -1130,11 +1130,11 @@ static bool add_tag(STR_OFFSET *offset, header *head, cptr buf)
 
 
 /*!
- * @brief ã‚·ãƒ³ãƒœãƒ«1æ–‡å­—ã‚’ã‚«ãƒ©ãƒ¼IDã«å¤‰æ›´ã™ã‚‹ /
+ * @brief ¥·¥ó¥Ü¥ë1Ê¸»ú¤ò¥«¥é¡¼ID¤ËÊÑ¹¹¤¹¤ë /
  * Convert a "color letter" into an "actual" color
  * The colors are: dwsorgbuDWvyRGBU, as shown below
- * @param c ã‚·ãƒ³ãƒœãƒ«æ–‡å­—
- * @return ã‚«ãƒ©ãƒ¼ID
+ * @param c ¥·¥ó¥Ü¥ëÊ¸»ú
+ * @return ¥«¥é¡¼ID
  */
 byte color_char_to_attr(char c)
 {
@@ -1168,13 +1168,13 @@ byte color_char_to_attr(char c)
 
 
 /*!
- * @brief ãƒ‘ãƒ¼ã‚¹é–¢æ•°ã«åŸºã¥ã„ã¦ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å–ã‚‹ /
+ * @brief ¥Ñ¡¼¥¹´Ø¿ô¤Ë´ğ¤Å¤¤¤Æ¥Ç¡¼¥¿¥Õ¥¡¥¤¥ë¤«¤é¥Ç¡¼¥¿¤òÆÉ¤ß¼è¤ë /
  * Initialize an "*_info" array, by parsing an ascii "template" file
- * @param fp èª­ã¿å–ã‚Šã«ä½¿ã†ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
- * @param buf èª­ã¿å–ã‚Šã«ä½¿ã†ãƒãƒƒãƒ•ã‚¡é ˜åŸŸ
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @param parse_info_txt_line ãƒ‘ãƒ¼ã‚¹é–¢æ•°
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param fp ÆÉ¤ß¼è¤ê¤Ë»È¤¦¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿
+ * @param buf ÆÉ¤ß¼è¤ê¤Ë»È¤¦¥Ğ¥Ã¥Õ¥¡ÎÎ°è
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @param parse_info_txt_line ¥Ñ¡¼¥¹´Ø¿ô
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr init_info_txt(FILE *fp, char *buf, header *head,
 		   parse_info_txt_func parse_info_txt_line)
@@ -1240,11 +1240,11 @@ errr init_info_txt(FILE *fp, char *buf, header *head,
 
 
 /*!
- * @brief Vaultæƒ…å ±(v_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief Vault¾ğÊó(v_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "v_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_v_info(char *buf, header *head)
 {
@@ -1326,11 +1326,11 @@ errr parse_v_info(char *buf, header *head)
 
 
 /*!
- * @brief è·æ¥­æŠ€èƒ½æƒ…å ±(s_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¿¦¶Èµ»Ç½¾ğÊó(s_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "s_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_s_info(char *buf, header *head)
 {
@@ -1411,11 +1411,11 @@ errr parse_s_info(char *buf, header *head)
 
 
 /*!
- * @brief è·æ¥­é­”æ³•æƒ…å ±(m_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¿¦¶ÈËâË¡¾ğÊó(m_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "m_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_m_info(char *buf, header *head)
 {
@@ -1543,12 +1543,12 @@ errr parse_m_info(char *buf, header *head)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(æ±ç”¨) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(ÈÆÍÑ) /
  * Grab one flag from a textual string
- * @param flags ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’è¿½åŠ ã™ã‚‹å…ˆã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param names ãƒˆãƒ¼ã‚¯ãƒ³å®šç¾©é…åˆ—
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param flags ¥Ó¥Ã¥È¥Õ¥é¥°¤òÄÉ²Ã¤¹¤ëÀè¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param names ¥È¡¼¥¯¥óÄêµÁÇÛÎó
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_flag(u32b *flags, cptr names[], cptr what)
 {
@@ -1569,11 +1569,11 @@ static errr grab_one_flag(u32b *flags, cptr names[], cptr what)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹ï¼ˆåœ°å½¢æƒ…å ±å‘ã‘ï¼‰ /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë¡ÊÃÏ·Á¾ğÊó¸ş¤±¡Ë /
  * Grab one flag in an feature_type from a textual string
- * @param f_ptr åœ°å½¢æƒ…å ±ã‚’ä¿ç®¡ã™ã‚‹å…ˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param f_ptr ÃÏ·Á¾ğÊó¤òÊİ´É¤¹¤ëÀè¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
 {
@@ -1590,7 +1590,7 @@ static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
 	}
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®åœ°å½¢ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown feature flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤ÎÃÏ·Á¥Õ¥é¥° '%s'¡£", "Unknown feature flag '%s'."), what);
 
 	/* Error */
 	return PARSE_ERROR_GENERIC;
@@ -1598,12 +1598,12 @@ static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°(ã‚¹ãƒ†ãƒ¼ãƒˆ)ã‚’ä¸€ã¤å¾—ã‚‹ï¼ˆåœ°å½¢æƒ…å ±å‘ã‘2ï¼‰ /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°(¥¹¥Æ¡¼¥È)¤ò°ì¤ÄÆÀ¤ë¡ÊÃÏ·Á¾ğÊó¸ş¤±2¡Ë /
  * Grab an action in an feature_type from a textual string
- * @param f_ptr åœ°å½¢æƒ…å ±ã‚’ä¿ç®¡ã™ã‚‹å…ˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @param count ã‚¹ãƒ†ãƒ¼ãƒˆã®ä¿å­˜å…ˆID
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param f_ptr ÃÏ·Á¾ğÊó¤òÊİ´É¤¹¤ëÀè¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @param count ¥¹¥Æ¡¼¥È¤ÎÊİÂ¸ÀèID
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
 {
@@ -1620,7 +1620,7 @@ static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
 	}
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®åœ°å½¢ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ '%s'ã€‚", "Unknown feature action '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤ÎÃÏ·Á¥¢¥¯¥·¥ç¥ó '%s'¡£", "Unknown feature action '%s'."), what);
 
 	/* Error */
 	return PARSE_ERROR_GENERIC;
@@ -1628,11 +1628,11 @@ static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
 
 
 /*!
- * @brief åœ°å½¢æƒ…å ±(f_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ÃÏ·Á¾ğÊó(f_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "f_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_f_info(char *buf, header *head)
 {
@@ -1916,10 +1916,10 @@ errr parse_f_info(char *buf, header *head)
 
 
 /*!
- * @brief åœ°å½¢ã‚¿ã‚°ã‹ã‚‰IDã‚’å¾—ã‚‹ /
+ * @brief ÃÏ·Á¥¿¥°¤«¤éID¤òÆÀ¤ë /
  * Convert a fake tag to a real feat index
- * @param str ã‚¿ã‚°æ–‡å­—åˆ—
- * @return åœ°å½¢ID
+ * @param str ¥¿¥°Ê¸»úÎó
+ * @return ÃÏ·ÁID
  */
 s16b f_tag_to_index(cptr str)
 {
@@ -1941,10 +1941,10 @@ s16b f_tag_to_index(cptr str)
 
 
 /*!
- * @brief åœ°å½¢ã‚¿ã‚°ã‹ã‚‰IDã‚’å¾—ã‚‹ /
+ * @brief ÃÏ·Á¥¿¥°¤«¤éID¤òÆÀ¤ë /
  * Search for real index corresponding to this fake tag
- * @param feat ã‚¿ã‚°æ–‡å­—åˆ—ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
- * @return åœ°å½¢IDã€‚è©²å½“ãŒãªã„ãªã‚‰-1
+ * @param feat ¥¿¥°Ê¸»úÎó¤Î¥ª¥Õ¥»¥Ã¥È
+ * @return ÃÏ·ÁID¡£³ºÅö¤¬¤Ê¤¤¤Ê¤é-1
  */
 static FEAT_IDX search_real_feat(STR_OFFSET feat)
 {
@@ -1967,16 +1967,16 @@ static FEAT_IDX search_real_feat(STR_OFFSET feat)
 	}
 
 	/* Undefined tag */
-	msg_format(_("æœªå®šç¾©ã®ã‚¿ã‚° '%s'ã€‚", "%s is undefined."), f_tag + feat);
+	msg_format(_("Ì¤ÄêµÁ¤Î¥¿¥° '%s'¡£", "%s is undefined."), f_tag + feat);
 	return -1;
 }
 
 
 /*!
- * @brief åœ°å½¢æƒ…å ±ã®å„ç¨®ã‚¿ã‚°ã‹ã‚‰IDã¸å¤‰æ›ã—ã¦çµæœã‚’åã‚ã‚‹ /
+ * @brief ÃÏ·Á¾ğÊó¤Î³Æ¼ï¥¿¥°¤«¤éID¤ØÊÑ´¹¤·¤Æ·ë²Ì¤ò¼ı¤á¤ë /
  * Retouch fake tags of f_info
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ãªã—
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¤Ê¤·
  */
 void retouch_f_info(header *head)
 {
@@ -2002,11 +2002,11 @@ void retouch_f_info(header *head)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ç”¨) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÍÑ) /
  * Grab one flag in an object_kind from a textual string
- * @param k_ptr ä¿ç®¡å…ˆã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param k_ptr Êİ´ÉÀè¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
 {
@@ -2026,17 +2026,17 @@ static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown object flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤Î¥¢¥¤¥Æ¥à¡¦¥Õ¥é¥° '%s'¡£", "Unknown object flag '%s'."), what);
 
 	/* Error */
 	return (1);
 }
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ç™ºå‹•èƒ½åŠ›ç”¨) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(È¯Æ°Ç½ÎÏÍÑ) /
  * Grab one activation index flag
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ç™ºå‹•èƒ½åŠ›ID
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return È¯Æ°Ç½ÎÏID
  */
 static byte grab_one_activation_flag(cptr what)
 {
@@ -2059,7 +2059,7 @@ static byte grab_one_activation_flag(cptr what)
 	 }
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ç™ºå‹•ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown activation flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤ÎÈ¯Æ°¡¦¥Õ¥é¥° '%s'¡£", "Unknown activation flag '%s'."), what);
 
 	/* Error */
 	return (0);
@@ -2067,11 +2067,11 @@ static byte grab_one_activation_flag(cptr what)
 
 
 /*!
- * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ (k_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à(k_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "k_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_k_info(char *buf, header *head)
 {
@@ -2141,8 +2141,8 @@ errr parse_k_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
-	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªåã¨ã—ã¦ã„ã‚‹ */
+	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
+	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾¤È¤·¤Æ¤¤¤ë */
 	else if (buf[0] == 'E')
 	{
 		/* nothing to do */
@@ -2344,11 +2344,11 @@ errr parse_k_info(char *buf, header *head)
 }
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆç”¨) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÍÑ) /
  * Grab one activation index flag
- * @param a_ptr ä¿ç®¡å…ˆã®ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ1ã€ã‚¨ãƒ©ãƒ¼ãŒãªã„å ´åˆ0ã‚’è¿”ã™
+ * @param a_ptr Êİ´ÉÀè¤Î¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¤¬¤¢¤Ã¤¿¾ì¹ç1¡¢¥¨¥é¡¼¤¬¤Ê¤¤¾ì¹ç0¤òÊÖ¤¹
  */
 static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
 {
@@ -2368,7 +2368,7 @@ static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown artifact flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤ÎÅÁÀâ¤Î¥¢¥¤¥Æ¥à¡¦¥Õ¥é¥° '%s'¡£", "Unknown artifact flag '%s'."), what);
 
 	/* Error */
 	return (1);
@@ -2376,11 +2376,11 @@ static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
 
 
 /*!
- * @brief å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±(a_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó(a_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "a_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_a_info(char *buf, header *head)
 {
@@ -2438,8 +2438,8 @@ errr parse_a_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
-	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªåã¨ã—ã¦ã„ã‚‹ */
+	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
+	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾¤È¤·¤Æ¤¤¤ë */
 	else if (buf[0] == 'E')
 	{
 		/* nothing to do */
@@ -2574,11 +2574,11 @@ errr parse_a_info(char *buf, header *head)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆç”¨) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÍÑ) /
  * Grab one flag in a ego-item_type from a textual string
- * @param e_ptr ä¿ç®¡å…ˆã®ã‚¨ã‚´æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ1ã€ã‚¨ãƒ©ãƒ¼ãŒãªã„å ´åˆ0ã‚’è¿”ã™
+ * @param e_ptr Êİ´ÉÀè¤Î¥¨¥´¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¤¬¤¢¤Ã¤¿¾ì¹ç1¡¢¥¨¥é¡¼¤¬¤Ê¤¤¾ì¹ç0¤òÊÖ¤¹
  */
 static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 {
@@ -2598,7 +2598,7 @@ static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®åã®ã‚ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown ego-item flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤ÎÌ¾¤Î¤¢¤ë¥¢¥¤¥Æ¥à¡¦¥Õ¥é¥° '%s'¡£", "Unknown ego-item flag '%s'."), what);
 
 	/* Error */
 	return (1);
@@ -2606,11 +2606,11 @@ static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚¨ã‚´æƒ…å ±(e_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¥¢¥¤¥Æ¥à¥¨¥´¾ğÊó(e_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "e_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_e_info(char *buf, header *head)
 {
@@ -2669,8 +2669,8 @@ errr parse_e_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
-	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªå */
+	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
+	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾ */
 	else if (buf[0] == 'E')
 	{
 		/* nothing to do */
@@ -2793,11 +2793,11 @@ errr parse_e_info(char *buf, header *head)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”¨1) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼ÍÑ1) /
  * Grab one (basic) flag in a monster_race from a textual string
- * @param r_ptr ä¿ç®¡å…ˆã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param r_ptr Êİ´ÉÀè¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
 {
@@ -2823,7 +2823,7 @@ static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
 
 	/* Failure */
 	return (1);
@@ -2831,11 +2831,11 @@ static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”¨2) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼ÍÑ2) /
  * Grab one (spell) flag in a monster_race from a textual string
- * @param r_ptr ä¿ç®¡å…ˆã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param r_ptr Êİ´ÉÀè¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_spell_flag(monster_race *r_ptr, cptr what)
 {
@@ -2849,7 +2849,7 @@ static errr grab_one_spell_flag(monster_race *r_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
 
 	/* Failure */
 	return (1);
@@ -2857,11 +2857,11 @@ static errr grab_one_spell_flag(monster_race *r_ptr, cptr what)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æƒ…å ±(r_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¥â¥ó¥¹¥¿¡¼¼ïÂ²¾ğÊó(r_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "r_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_r_info(char *buf, header *head)
 {
@@ -2913,8 +2913,8 @@ errr parse_r_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
-	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªå */
+	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
+	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾ */
 	else if (buf[0] == 'E')
 	{
 		/* Acquire the Text */
@@ -3188,11 +3188,11 @@ errr parse_r_info(char *buf, header *head)
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”¨) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥À¥ó¥¸¥ç¥óÍÑ) /
  * Grab one flag for a dungeon type from a textual string
- * @param d_ptr ä¿ç®¡å…ˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param d_ptr Êİ´ÉÀè¤Î¥À¥ó¥¸¥ç¥ó¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_dungeon_flag(dungeon_info_type *d_ptr, cptr what)
 {
@@ -3200,18 +3200,18 @@ static errr grab_one_dungeon_flag(dungeon_info_type *d_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown dungeon type flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤Î¥À¥ó¥¸¥ç¥ó¡¦¥Õ¥é¥° '%s'¡£", "Unknown dungeon type flag '%s'."), what);
 
 	/* Failure */
 	return (1);
 }
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºç¾æ¡ä»¶ç”¨1) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼¤Î¥À¥ó¥¸¥ç¥ó½Ğ¸½¾ò·ïÍÑ1) /
  * Grab one (basic) flag in a monster_race from a textual string
- * @param d_ptr ä¿ç®¡å…ˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param d_ptr Êİ´ÉÀè¤Î¥À¥ó¥¸¥ç¥ó¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_basic_monster_flag(dungeon_info_type *d_ptr, cptr what)
 {
@@ -3237,18 +3237,18 @@ static errr grab_one_basic_monster_flag(dungeon_info_type *d_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
 	/* Failure */
 	return (1);
 }
 
 
 /*!
- * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºç¾æ¡ä»¶ç”¨2) /
+ * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼¤Î¥À¥ó¥¸¥ç¥ó½Ğ¸½¾ò·ïÍÑ2) /
  * Grab one (spell) flag in a monster_race from a textual string
- * @param d_ptr ä¿ç®¡å…ˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param d_ptr Êİ´ÉÀè¤Î¥À¥ó¥¸¥ç¥ó¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr grab_one_spell_monster_flag(dungeon_info_type *d_ptr, cptr what)
 {
@@ -3262,18 +3262,18 @@ static errr grab_one_spell_monster_flag(dungeon_info_type *d_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
+	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
 
 	/* Failure */
 	return (1);
 }
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æƒ…å ±(d_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
+ * @brief ¥À¥ó¥¸¥ç¥ó¾ğÊó(d_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
  * Initialize the "d_info" array, by parsing an ascii "template" file
- * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
- * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ¥Æ¥­¥¹¥ÈÎó
+ * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr parse_d_info(char *buf, header *head)
 {
@@ -3639,10 +3639,10 @@ static dungeon_grid letter[255];
 
 
 /*!
- * @brief åœ°å½¢æƒ…å ±ã®ã€ŒF:ã€æƒ…å ±ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
+ * @brief ÃÏ·Á¾ğÊó¤Î¡ÖF:¡×¾ğÊó¤ò¥Ñ¡¼¥¹¤¹¤ë
  * Process "F:<letter>:<terrain>:<cave_info>:<monster>:<object>:<ego>:<artifact>:<trap>:<special>" -- info for dungeon grid
- * @param buf è§£ææ–‡å­—åˆ—
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ²òÀÏÊ¸»úÎó
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr parse_line_feature(char *buf)
 {
@@ -3788,10 +3788,10 @@ static errr parse_line_feature(char *buf)
 
 
 /*!
- * @brief åœ°å½¢æƒ…å ±ã®ã€ŒB:ã€æƒ…å ±ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
+ * @brief ÃÏ·Á¾ğÊó¤Î¡ÖB:¡×¾ğÊó¤ò¥Ñ¡¼¥¹¤¹¤ë
  * Process "B:<Index>:<Command>:..." -- Building definition
- * @param buf è§£ææ–‡å­—åˆ—
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf ²òÀÏÊ¸»úÎó
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr parse_line_building(char *buf)
 {
@@ -3944,12 +3944,12 @@ static errr parse_line_building(char *buf)
 
 
 /*!
- * @brief ãƒ•ãƒ­ã‚¢ã®æ‰€å®šã®ãƒã‚¹ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…ç½®ã™ã‚‹
+ * @brief ¥Õ¥í¥¢¤Î½êÄê¤Î¥Ş¥¹¤Ë¥ª¥Ö¥¸¥§¥¯¥È¤òÇÛÃÖ¤¹¤ë
  * Place the object j_ptr to a grid
- * @param j_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param y é…ç½®å…ˆYåº§æ¨™
- * @param x é…ç½®å…ˆXåº§æ¨™
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param j_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param y ÇÛÃÖÀèYºÂÉ¸
+ * @param x ÇÛÃÖÀèXºÂÉ¸
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static void drop_here(object_type *j_ptr, int y, int x)
 {
@@ -3982,16 +3982,16 @@ static void drop_here(object_type *j_ptr, int y, int x)
 
 
 /*!
- * @brief ã‚¯ã‚¨ã‚¹ãƒˆç”¨å›ºå®šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚’ãƒ•ãƒ­ã‚¢ã«ç”Ÿæˆã™ã‚‹
+ * @brief ¥¯¥¨¥¹¥ÈÍÑ¸ÇÄê¥À¥ó¥¸¥ç¥ó¤ò¥Õ¥í¥¢¤ËÀ¸À®¤¹¤ë
  * Parse a sub-file of the "extra info"
- * @param buf æ–‡å­—åˆ—
- * @param ymin è©³ç´°ä¸æ˜
- * @param xmin è©³ç´°ä¸æ˜
- * @param ymax è©³ç´°ä¸æ˜
- * @param xmax è©³ç´°ä¸æ˜
- * @param y è©³ç´°ä¸æ˜
- * @param x è©³ç´°ä¸æ˜
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param buf Ê¸»úÎó
+ * @param ymin ¾ÜºÙÉÔÌÀ
+ * @param xmin ¾ÜºÙÉÔÌÀ
+ * @param ymax ¾ÜºÙÉÔÌÀ
+ * @param xmax ¾ÜºÙÉÔÌÀ
+ * @param y ¾ÜºÙÉÔÌÀ
+ * @param x ¾ÜºÙÉÔÌÀ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, int xmax, int *y, int *x)
 {
@@ -4474,11 +4474,11 @@ static cptr variant = "ZANGBAND";
 
 
 /*!
- * @brief ã‚¯ã‚¨ã‚¹ãƒˆç”¨å›ºå®šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆæ™‚ã®åˆ†å²å‡¦ç†
+ * @brief ¥¯¥¨¥¹¥ÈÍÑ¸ÇÄê¥À¥ó¥¸¥ç¥óÀ¸À®»ş¤ÎÊ¬´ô½èÍı
  * Helper function for "process_dungeon_file()"
  * @param sp
  * @param fp
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static cptr process_dungeon_file_expr(char **sp, char *fp)
 {
@@ -4795,14 +4795,14 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
 
 
 /*!
- * @brief ã‚¯ã‚¨ã‚¹ãƒˆç”¨å›ºå®šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆæ™‚ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
+ * @brief ¥¯¥¨¥¹¥ÈÍÑ¸ÇÄê¥À¥ó¥¸¥ç¥óÀ¸À®»ş¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
  * Helper function for "process_dungeon_file()"
- * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
- * @param ymin è©³ç´°ä¸æ˜
- * @param xmin è©³ç´°ä¸æ˜
- * @param ymax è©³ç´°ä¸æ˜
- * @param xmax è©³ç´°ä¸æ˜
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @param name ¥Õ¥¡¥¤¥ëÌ¾
+ * @param ymin ¾ÜºÙÉÔÌÀ
+ * @param xmin ¾ÜºÙÉÔÌÀ
+ * @param ymax ¾ÜºÙÉÔÌÀ
+ * @param xmax ¾ÜºÙÉÔÌÀ
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr process_dungeon_file(cptr name, int ymin, int xmin, int ymax, int xmax)
 {
@@ -4886,7 +4886,7 @@ errr process_dungeon_file(cptr name, int ymin, int xmin, int ymax, int xmax)
 
 		/* Oops */
 		msg_format("Error %d (%s) at line %d of '%s'.", err, oops, num, name);
-		msg_format(_("'%s'ã‚’è§£æä¸­ã€‚", "Parsing '%s'."), buf);
+		msg_format(_("'%s'¤ò²òÀÏÃæ¡£", "Parsing '%s'."), buf);
 
 		msg_print(NULL);
 	}

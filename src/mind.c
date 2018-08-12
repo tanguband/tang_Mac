@@ -1,6 +1,6 @@
-﻿/*!
+/*!
  * @file mind.c
- * @brief 各職業の特殊技能実装 / Special magics
+ * @brief �ƿ��Ȥ��ü쵻ǽ���� / Special magics
  * @date 2014/01/15
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -10,35 +10,35 @@
  * 2005 henkma \n
  * 2014 Deskull rearranged comment for Doxygen.\n
  * @details
- * mind.cとあるが実際には超能力者、練気術師、狂戦士、鏡使い、忍者までの
- * 特殊技能を揃えて実装している。
+ * mind.c�Ȥ��뤬�ºݤˤ�Ķǽ�ϼԡ������ѻա�����Ρ����Ȥ���Ǧ�ԤޤǤ�
+ * �ü쵻ǽ��·���Ƽ������Ƥ��롣
  */
 
 
 
 #include "angband.h"
 
-/*! 特殊技能の一覧テーブル */
+/*! �ü쵻ǽ�ΰ����ơ��֥� */
 mind_power const mind_powers[5] =
 {
   {
     {
       /* Level gained,  cost,  %fail,  name */
 #ifdef JP
-      { 1,   1,  15, "霊視"},
-      { 2,   1,  20, "神経攻撃"},
-      { 3,   2,  25, "次元の瞬き"},
-      { 7,   6,  35, "虚空の幻影"},
-      { 9,   7,  50, "精神支配"},
-      { 11,  7,  30, "念動衝撃弾"},
-      { 13, 12,  50, "鎧化"},
-      { 15, 12,  60, "サイコメトリー"},
-      { 18, 10,  45, "精神波動"},
-      { 23, 15,  50, "アドレナリン・ドーピング"},
-      { 26, 28,  60, "テレキネシス"},
-      { 28, 10,  40, "サイキック・ドレイン"},
-      { 35, 35,  75, "光の剣"},
-      { 45,150,  85, "完全な世界"},
+      { 1,   1,  15, "���"},
+      { 2,   1,  20, "���й���"},
+      { 3,   2,  25, "�����ν֤�"},
+      { 7,   6,  35, "�����θ���"},
+      { 9,   7,  50, "��������"},
+      { 11,  7,  30, "ǰư�׷���"},
+      { 13, 12,  50, "����"},
+      { 15, 12,  60, "��������ȥ꡼"},
+      { 18, 10,  45, "������ư"},
+      { 23, 15,  50, "���ɥ�ʥ�󡦥ɡ��ԥ�"},
+      { 26, 28,  60, "�ƥ쥭�ͥ���"},
+      { 28, 10,  40, "�������å����ɥ쥤��"},
+      { 35, 35,  75, "���η�"},
+      { 45,150,  85, "����������"},
       { 99,  0,   0, ""},
       { 99,  0,   0, ""},
       { 99,  0,   0, ""},
@@ -77,20 +77,20 @@ mind_power const mind_powers[5] =
     {
       /* Level gained,  cost,  %fail,  name */
 #ifdef JP
-      { 1,   1,  15, "小龍"},
-      { 3,   3,  30, "閃光"},
-      { 5,   6,  35, "舞空術"},
-      { 8,   5,  40, "カメハメ波"},
-      { 10,  7,  45, "対魔法防御"},
-      { 13,  5,  60, "練気"},
-      { 17, 17,  50, "纏闘気"},
-      { 20, 20,  50, "衝波"},
-      { 23, 18,  55, "彗龍"},
-      { 25, 30,  70, "いてつく波動"},
-      { 28, 26,  50, "幻霊召喚"},
-      { 32, 35,  65, "煉獄火炎"},
-      { 38, 42,  75, "超カメハメ波"},
-      { 44, 50,  80, "光速移動"},
+      { 1,   1,  15, "��ζ"},
+      { 3,   3,  30, "����"},
+      { 5,   6,  35, "�����"},
+      { 8,   5,  40, "����ϥ���"},
+      { 10,  7,  45, "����ˡ�ɸ�"},
+      { 13,  5,  60, "����"},
+      { 17, 17,  50, "ŻƮ��"},
+      { 20, 20,  50, "����"},
+      { 23, 18,  55, "��ζ"},
+      { 25, 30,  70, "���ƤĤ���ư"},
+      { 28, 26,  50, "�����"},
+      { 32, 35,  65, "�����б�"},
+      { 38, 42,  75, "Ķ����ϥ���"},
+      { 44, 50,  80, "��®��ư"},
       { 99,  0,   0, ""},
       { 99,  0,   0, ""},
       { 99,  0,   0, ""},
@@ -129,11 +129,11 @@ mind_power const mind_powers[5] =
     {
       /* Level gained,  cost,  %fail,  name */
 #ifdef JP
-      {  8,  5,  40, "殺気感知"},
-      { 15, 20,   0, "突撃"},
-      { 20, 15,   0, "トラップ粉砕"},
-      { 25, 20,  60, "地震"},
-      { 30, 80,  75, "皆殺し"},
+      {  8,  5,  40, "��������"},
+      { 15, 20,   0, "�ͷ�"},
+      { 20, 15,   0, "�ȥ�å�ʴ��"},
+      { 25, 20,  60, "�Ͽ�"},
+      { 30, 80,  75, "������"},
       { 99,  0,   0, ""},
       { 99,  0,   0, ""},
       { 99,  0,   0, ""},
@@ -181,30 +181,30 @@ mind_power const mind_powers[5] =
     {
       /* Level gained,  cost,  %fail,  name */
 #ifdef JP
-      { 1,   1,  15, "真見の鏡"},
-      { 1,   2,  40, "鏡生成"},
-      { 2,   2,  20, "光のしずく"},
-      { 3,   2,  20, "歪んだ鏡"},
-      { 5,   3,  35, "閃光鏡"},
-      { 6,   5,  35, "彷える鏡"},
+      { 1,   1,  15, "�����ζ�"},
+      { 1,   2,  40, "������"},
+      { 2,   2,  20, "���Τ�����"},
+      { 3,   2,  20, "�Ĥ����"},
+      { 5,   3,  35, "������"},
+      { 6,   5,  35, "�Ǥ����"},
 
-      { 10,  5,  30, "微塵隠れ"},
-      { 12, 12,  30, "追放の鏡"},
-      { 15, 15,  30, "鏡砕き"},
-      { 19, 13,  30, "催眠鏡"},
-      { 23, 18,  50, "シーカーレイ"},
+      { 10,  5,  30, "���б���"},
+      { 12, 12,  30, "�����ζ�"},
+      { 15, 15,  30, "���դ�"},
+      { 19, 13,  30, "��̲��"},
+      { 23, 18,  50, "���������쥤"},
 
-      { 25, 20,  40, "鏡の封印"},
-      { 27, 30,  60, "水鏡の盾"},
-      { 29, 30,  60, "スーパーレイ"},
-      { 31, 35,  60, "幻惑の光"},
-      { 33, 50,  80, "鏡の国"},
+      { 25, 20,  40, "��������"},
+      { 27, 30,  60, "����ν�"},
+      { 29, 30,  60, "�����ѡ��쥤"},
+      { 31, 35,  60, "���Ǥθ�"},
+      { 33, 50,  80, "���ι�"},
 
-      { 36, 30,  80, "鏡抜け"},
-      { 38, 40,  70, "帰還の鏡"},
-      { 40, 50,  55, "影分身"},
-      { 43, 55,  70, "封魔結界"},
-      { 46, 70,  75, "ラフノールの鏡"},
+      { 36, 30,  80, "��ȴ��"},
+      { 38, 40,  70, "���Ԥζ�"},
+      { 40, 50,  55, "��ʬ��"},
+      { 43, 55,  70, "����볦"},
+      { 46, 70,  75, "��եΡ���ζ�"},
 #else
       { 1,   1,  15, "Mirror of Seeing"},
       { 1,   2,  40, "Making a Mirror"},
@@ -239,26 +239,26 @@ mind_power const mind_powers[5] =
     {
       /* Level gained,  cost,  %fail,  name */
 #ifdef JP
-      {  1,  1,  20, "暗闇生成"},
-      {  2,  2,  25, "周辺調査"},
-      {  3,  3,  25, "葉隠れ"},
-      {  5,  3,  30, "変わり身"},
-      {  7,  8,  35, "高飛び"},
-      {  8, 10,  35, "一撃離脱"},
-      { 10, 10,  40, "金縛り"},
-      { 12, 12,  70, "古の口伝"},
-      { 15, 10,  50, "浮雲"},
-      { 17, 12,  45, "火遁"},
-      { 18, 20,  40, "入身"},
-      { 20,  5,  50, "八方手裏剣"},
-      { 22, 15,  55, "鎖鎌"},
-      { 25, 32,  60, "煙玉"},
-      { 28, 32,  60, "転身"},
-      { 30, 30,  70, "爆発の紋章"},
-      { 32, 40,  40, "土遁"},
-      { 34, 35,  50, "霧隠れ"},
-      { 38, 40,  60, "煉獄火炎"},
-      { 41, 50,  55, "分身"},
+      {  1,  1,  20, "�Ű�����"},
+      {  2,  2,  25, "����Ĵ��"},
+      {  3,  3,  25, "�ձ���"},
+      {  5,  3,  30, "�Ѥ���"},
+      {  7,  8,  35, "������"},
+      {  8, 10,  35, "���Υæ"},
+      { 10, 10,  40, "������"},
+      { 12, 12,  70, "�Ťθ���"},
+      { 15, 10,  50, "���"},
+      { 17, 12,  45, "����"},
+      { 18, 20,  40, "����"},
+      { 20,  5,  50, "Ȭ����΢��"},
+      { 22, 15,  55, "����"},
+      { 25, 32,  60, "���"},
+      { 28, 32,  60, "ž��"},
+      { 30, 30,  70, "��ȯ�����"},
+      { 32, 40,  40, "����"},
+      { 34, 35,  50, "̸����"},
+      { 38, 40,  60, "�����б�"},
+      { 41, 50,  55, "ʬ��"},
       { 99,  0,   0, ""},
 #else
       {  1,  1,  20, "Create Darkness"},
@@ -288,25 +288,25 @@ mind_power const mind_powers[5] =
   },
 };
 
-/*! 特殊能力の解説文字列 */
+/*! �ü�ǽ�Ϥβ���ʸ���� */
 static cptr const mind_tips[5][MAX_MIND_POWERS] =
 {
 #ifdef JP
 {
-	"近くの全ての見えるモンスターを感知する。レベル5で罠/扉、15で透明なモンスター、30で財宝とアイテムを感知できるようになる。レベル20で周辺の地形を感知し、45でその階全体を永久に照らし、ダンジョン内のすべてのアイテムを感知する。レベル25で一定時間テレパシーを得る。",
-	"精神攻撃のビームまたは球を放つ。",
-	"近距離のテレポートをする。",
-	"遠距離のテレポートをする。",
-	"レベル30未満で、モンスターを朦朧か混乱か恐怖させる球を放つ。レベル30以上で視界内の全てのモンスターを魅了する。抵抗されると無効。",
-	"テレキネシスの球を放つ。",
-	"一定時間、ACを上昇させる。レベルが上がると、酸、炎、冷気、電撃、毒の耐性も得られる。",
-	"レベル25未満で、アイテムの雰囲気を知る。レベル25以上で、アイテムを鑑定する。",
-	"レベル25未満で、自分を中心とした精神攻撃の球を発生させる。レベル25以上で、視界内の全てのモンスターに対して精神攻撃を行う。",
-	"恐怖と朦朧から回復し、ヒーロー気分かつ加速状態でなければHPが少し回復する。さらに、一定時間ヒーロー気分になり、加速する。",
-	"アイテムを自分の足元へ移動させる。",
-	"精神攻撃の球を放つ。モンスターに命中すると、0～1.5ターン消費する。抵抗されなければ、MPが回復する。",
-	"無傷球をも切り裂く純粋なエネルギーのビームを放つ。",
-	"時を止める。全MPを消費し、消費したMPに応じて長く時を止めていられる。",
+	"�᤯�����Ƥθ������󥹥������Τ��롣��٥�5���/�⡢15��Ʃ���ʥ�󥹥�����30�Ǻ����ȥ����ƥ���ΤǤ���褦�ˤʤ롣��٥�20�Ǽ��դ��Ϸ����Τ���45�Ǥ��γ����Τ�ʵפ˾Ȥ餷�����󥸥����Τ��٤ƤΥ����ƥ���Τ��롣��٥�25�ǰ�����֥ƥ�ѥ��������롣",
+	"��������Υӡ���ޤ��ϵ�����ġ�",
+	"���Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"���Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"��٥�30̤���ǡ���󥹥�����ۯ۰�����𤫶��ݤ����������ġ���٥�30�ʾ�ǻ볦������ƤΥ�󥹥�����̥λ���롣�񹳤�����̵����",
+	"�ƥ쥭�ͥ����ε�����ġ�",
+	"������֡�AC��徺�����롣��٥뤬�夬��ȡ������ꡢ�䵤���ŷ⡢�Ǥ������������롣",
+	"��٥�25̤���ǡ������ƥ��ʷ�ϵ����Τ롣��٥�25�ʾ�ǡ������ƥ����ꤹ�롣",
+	"��٥�25̤���ǡ���ʬ���濴�Ȥ�����������ε��ȯ�������롣��٥�25�ʾ�ǡ��볦������ƤΥ�󥹥������Ф������������Ԥ���",
+	"���ݤ�ۯ۰������������ҡ�������ʬ���Ĳ�®���֤Ǥʤ����HP�������������롣����ˡ�������֥ҡ�������ʬ�ˤʤꡢ��®���롣",
+	"�����ƥ��ʬ��­���ذ�ư�����롣",
+	"��������ε�����ġ���󥹥�����̿�椹��ȡ�0��1.5��������񤹤롣�񹳤���ʤ���С�MP���������롣",
+	"̵�������ڤ��������ʥ��ͥ륮���Υӡ�������ġ�",
+	"����ߤ�롣��MP����񤷡����񤷤�MP�˱�����Ĺ������ߤ�Ƥ����롣",
 	"",
 	"",
 	"",
@@ -316,20 +316,20 @@ static cptr const mind_tips[5][MAX_MIND_POWERS] =
 	"",
 },
 {
-	"ごく小さい気の球を放つ。",
-	"光源が照らしている範囲か部屋全体を永久に明るくする。",
-	"一定時間、空中に浮けるようになる。",
-	"射程の短い気のビームを放つ。",
-	"一定時間、魔法防御能力を上昇させる。",
-	"気を練る。気を練ると術の威力は上がり、持続時間は長くなる。練った気は時間とともに拡散する。練りすぎると暴走する危険がある。",
-	"一定時間、攻撃してきた全てのモンスターを傷つけるオーラを纏う。",
-	"隣りのモンスターに対して気をぶつけ、吹きとばす。",
-	"大きな気の球を放つ。",
-	"モンスター1体にかかった魔法を解除する。",
-	"1体の幽霊を召喚する。",
-	"自分を中心とした超巨大な炎の球を発生させる。",
-	"射程の長い、強力な気のビームを放つ。",
-	"しばらくの間、非常に速く動くことができる。",
+	"�������������ε�����ġ�",
+	"�������Ȥ餷�Ƥ����ϰϤ��������Τ�ʵפ����뤯���롣",
+	"������֡�������⤱��褦�ˤʤ롣",
+	"������û�����Υӡ�������ġ�",
+	"������֡���ˡ�ɸ�ǽ�Ϥ�徺�����롣",
+	"�������롣��������ȽѤΰ��ϤϾ夬�ꡢ��³���֤�Ĺ���ʤ롣���ä����ϻ��֤ȤȤ�˳Ȼ����롣���ꤹ�����˽��������������롣",
+	"������֡����⤷�Ƥ������ƤΥ�󥹥�������Ĥ��륪�����Ż����",
+	"�٤�Υ�󥹥������Ф��Ƶ���֤Ĥ����᤭�ȤФ���",
+	"�礭�ʵ��ε�����ġ�",
+	"��󥹥���1�Τˤ����ä���ˡ�������롣",
+	"1�Τ�ͩ��򾤴����롣",
+	"��ʬ���濴�Ȥ���Ķ����ʱ�ε��ȯ�������롣",
+	"������Ĺ�������Ϥʵ��Υӡ�������ġ�",
+	"���Ф餯�δ֡�����®��ư�����Ȥ��Ǥ��롣",
 	"",
 	"",
 	"",
@@ -339,11 +339,11 @@ static cptr const mind_tips[5][MAX_MIND_POWERS] =
 	"",
 },
 {
-	"近くの思考することができるモンスターを感知する。",
-	"攻撃した後、反対側に抜ける。",
-	"トラップにかかるが、そのトラップを破壊する。",
-	"周囲のダンジョンを揺らし、壁と床をランダムに入れ変える。",
-	"全方向に向かって攻撃する。",
+	"�᤯�λ׹ͤ��뤳�Ȥ��Ǥ����󥹥������Τ��롣",
+	"���⤷���塢ȿ��¦��ȴ���롣",
+	"�ȥ�åפˤ����뤬�����Υȥ�åפ��˲����롣",
+	"���ϤΥ��󥸥����ɤ餷���ɤȾ��������������Ѥ��롣",
+	"�������˸����äƹ��⤹�롣",
 	"",
 	"",
 	"",
@@ -362,49 +362,49 @@ static cptr const mind_tips[5][MAX_MIND_POWERS] =
 	"",
 },
 {
-	"近くの全てのモンスターを感知する。レベル15で透明なモンスターを感知する。レベル25で一定時間テレパシーを得る。レベル35で周辺の地形を感知する。全ての効果は、鏡の上でないとレベル4だけ余計に必要になる。",
-	"自分のいる床の上に鏡を生成する。",
-	"閃光の矢を放つ。レベル10以上では鏡の上で使うとビームになる。",
-	"近距離のテレポートをする。",
-	"自分の周囲や、 自分のいる部屋全体を明るくする。",
-	"遠距離のテレポートをする。",
-	"一定時間、鏡のオーラが付く。攻撃を受けると破片のダメージで反撃し、さらに鏡の上にいた場合近距離のテレポートをする。",
-	"モンスターをテレポートさせるビームを放つ。抵抗されると無効。",
-	"破片の球を放つ。",
-	"全ての鏡の周りに眠りの球を発生させる。",
-	"ターゲットに向かって魔力のビームを放つ。鏡に命中すると、その鏡を破壊し、別の鏡に向かって反射する。",
-	"鏡の上のモンスターを消し去る。",
-	"一定時間、ACを上昇させる。レベル32で反射が付く。レベル40で魔法防御が上がる。",
-	"ターゲットに向かって強力な魔力のビームを放つ。鏡に命中すると、その鏡を破壊し、8方向に魔力のビームを発生させる。",
-	"視界内のモンスターを減速させ、朦朧とさせ、混乱させ、恐怖させ、麻痺させる。鏡の上で使うと威力が高い。",
-	"フロアを作り変える。鏡の上でしか使えない。",
-	"短距離内の指定した場所にテレポートする。",
-	"地上にいるときはダンジョンの最深階へ、ダンジョンにいるときは地上へと移動する。",
-	"全ての攻撃が、1/2の確率で無効になる。",
-	"視界内の2つの鏡とプレイヤーを頂点とする三角形の領域に、魔力の結界を発生させる。",
-	"一定時間、ダメージを受けなくなるバリアを張る。切れた瞬間に少しターンを消費するので注意。",
+	"�᤯�����ƤΥ�󥹥������Τ��롣��٥�15��Ʃ���ʥ�󥹥������Τ��롣��٥�25�ǰ�����֥ƥ�ѥ��������롣��٥�35�Ǽ��դ��Ϸ����Τ��롣���Ƥθ��̤ϡ����ξ�Ǥʤ��ȥ�٥�4����;�פ�ɬ�פˤʤ롣",
+	"��ʬ�Τ��뾲�ξ�˶����������롣",
+	"������������ġ���٥�10�ʾ�Ǥ϶��ξ�ǻȤ��ȥӡ���ˤʤ롣",
+	"���Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"��ʬ�μ��Ϥ䡢 ��ʬ�Τ����������Τ����뤯���롣",
+	"���Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"������֡����Υ����餬�դ�����������������ҤΥ��᡼����ȿ�⤷������˶��ξ�ˤ��������Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"��󥹥�����ƥ�ݡ��Ȥ�����ӡ�������ġ��񹳤�����̵����",
+	"���Ҥε�����ġ�",
+	"���Ƥζ��μ����̲��ε��ȯ�������롣",
+	"�������åȤ˸����ä����ϤΥӡ�������ġ�����̿�椹��ȡ����ζ����˲������̤ζ��˸����ä�ȿ�ͤ��롣",
+	"���ξ�Υ�󥹥�����ä���롣",
+	"������֡�AC��徺�����롣��٥�32��ȿ�ͤ��դ�����٥�40����ˡ�ɸ椬�夬�롣",
+	"�������åȤ˸����äƶ��Ϥ����ϤΥӡ�������ġ�����̿�椹��ȡ����ζ����˲�����8���������ϤΥӡ����ȯ�������롣",
+	"�볦��Υ�󥹥�����®������ۯ۰�Ȥ��������𤵤������ݤ��������㤵���롣���ξ�ǻȤ��Ȱ��Ϥ��⤤��",
+	"�ե��������Ѥ��롣���ξ�Ǥ����Ȥ��ʤ���",
+	"û��Υ��λ��ꤷ�����˥ƥ�ݡ��Ȥ��롣",
+	"�Ͼ�ˤ���Ȥ��ϥ��󥸥��κǿ����ء����󥸥��ˤ���Ȥ����Ͼ�ؤȰ�ư���롣",
+	"���Ƥι��⤬��1/2�γ�Ψ��̵���ˤʤ롣",
+	"�볦���2�Ĥζ��ȥץ쥤�䡼��ĺ���Ȥ��뻰�ѷ����ΰ�ˡ����Ϥη볦��ȯ�������롣",
+	"������֡����᡼��������ʤ��ʤ�Хꥢ��ĥ�롣�ڤ줿�ִ֤˾������������񤹤�Τ����ա�",
 },
 {
-	"半径3以内かその部屋を暗くする。",
-	"近くの全ての見えるモンスターを感知する。レベル5で罠/扉/階段、レベル15でアイテムを感知できるようになる。レベル45でその階全体の地形と全てのアイテムを感知する。",
-	"近距離のテレポートをする。",
-	"攻撃を受けた瞬間にテレポートをするようになる。失敗するとその攻撃のダメージを受ける。テレポートに失敗することもある。",
-	"遠距離のテレポートをする。",
-	"攻撃してすぐにテレポートする。",
-	"敵1体の動きを封じる。ユニークモンスター相手の場合又は抵抗された場合には無効。",
-	"アイテムを識別する。",
-	"一定時間、浮遊能力を得る。",
-	"自分を中心とした火の球を発生させ、テレポートする。さらに、一定時間炎に対する耐性を得る。装備による耐性に累積する。",
-	"素早く相手に近寄り攻撃する。",
-	"ランダムな方向に8回くさびを投げる。",
-	"敵を1体自分の近くに引き寄せる。",
-	"ダメージのない混乱の球を放つ。",
-	"1体のモンスターと位置を交換する。",
-	"自分のいる床の上に、モンスターが通ると爆発してダメージを与えるルーンを描く。",
-	"一定時間、半物質化し壁を通り抜けられるようになる。さらに、一定時間酸への耐性を得る。装備による耐性に累積する。",
-	"自分を中心とした超巨大な毒、衰弱、混乱の球を発生させ、テレポートする。",
-	"ランダムな方向に何回か炎か地獄かプラズマのビームを放つ。",
-	"全ての攻撃が、1/2の確率で無効になる。",
+	"Ⱦ��3���⤫����������Ť����롣",
+	"�᤯�����Ƥθ������󥹥������Τ��롣��٥�5���/��/���ʡ���٥�15�ǥ����ƥ���ΤǤ���褦�ˤʤ롣��٥�45�Ǥ��γ����Τ��Ϸ������ƤΥ����ƥ���Τ��롣",
+	"���Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"�����������ִ֤˥ƥ�ݡ��Ȥ򤹤�褦�ˤʤ롣���Ԥ���Ȥ��ι���Υ��᡼��������롣�ƥ�ݡ��Ȥ˼��Ԥ��뤳�Ȥ⤢�롣",
+	"���Υ�Υƥ�ݡ��Ȥ򤹤롣",
+	"���⤷�Ƥ����˥ƥ�ݡ��Ȥ��롣",
+	"Ũ1�Τ�ư���������롣��ˡ�����󥹥������ξ�������񹳤��줿���ˤ�̵����",
+	"�����ƥ���̤��롣",
+	"������֡���ͷǽ�Ϥ����롣",
+	"��ʬ���濴�Ȥ����Фε��ȯ���������ƥ�ݡ��Ȥ��롣����ˡ�������ֱ���Ф������������롣�����ˤ�����������Ѥ��롣",
+	"���᤯���˶��깶�⤹�롣",
+	"�������������8�󤯤��Ӥ��ꤲ�롣",
+	"Ũ��1�μ�ʬ�ζ᤯�˰����󤻤롣",
+	"���᡼���Τʤ�����ε�����ġ�",
+	"1�ΤΥ�󥹥����Ȱ��֤�򴹤��롣",
+	"��ʬ�Τ��뾲�ξ�ˡ���󥹥������̤����ȯ���ƥ��᡼����Ϳ����롼���������",
+	"������֡�Ⱦʪ�������ɤ��̤�ȴ������褦�ˤʤ롣����ˡ�������ֻ��ؤ����������롣�����ˤ�����������Ѥ��롣",
+	"��ʬ���濴�Ȥ���Ķ������ǡ���塢����ε��ȯ���������ƥ�ݡ��Ȥ��롣",
+	"������������˲��󤫱꤫�Ϲ����ץ饺�ޤΥӡ�������ġ�",
+	"���Ƥι��⤬��1/2�γ�Ψ��̵���ˤʤ롣",
 	"",
 },
 #else
@@ -528,18 +528,18 @@ static cptr const mind_tips[5][MAX_MIND_POWERS] =
 };
 
 /*!
- * @brief 特殊技能の効果情報をまとめたフォーマットを返す
- * @param p 情報を返す文字列参照ポインタ
- * @param use_mind 職業毎の特殊技能ID
- * @param power モンスター魔法のID
- * @return なし
+ * @brief �ü쵻ǽ�θ��̾����ޤȤ᤿�ե����ޥåȤ��֤�
+ * @param p ������֤�ʸ���󻲾ȥݥ���
+ * @param use_mind ��������ü쵻ǽID
+ * @param power ��󥹥�����ˡ��ID
+ * @return �ʤ�
  */
 void mindcraft_info(char *p, int use_mind, int power)
 {
 #ifdef JP
-	cptr s_dam = "損傷:";
-	cptr s_dur = "期間:";
-	cptr s_range = "範囲:";
+	cptr s_dam = "»��:";
+	cptr s_dur = "����:";
+	cptr s_range = "�ϰ�:";
 #else
 	cptr s_dam = "dam ";
 	cptr s_dur = "dur ";
@@ -565,13 +565,13 @@ void mindcraft_info(char *p, int use_mind, int power)
 		case 8:  sprintf(p, (plev < 25 ? " %s%d" : " %sd%d"), s_dam, (plev < 25 ? plev * 3 / 2 : plev * ((plev - 5) / 10 + 1))); break;
 		case 9:  sprintf(p, " %s10+d%d", s_dur, plev * 3 / 2);  break;
 #ifdef JP
-		case 10: sprintf(p, " 最大重量:%d.%dkg", lbtokg1(plev * 15),lbtokg2(plev * 15));  break;
+		case 10: sprintf(p, " �������:%d.%dkg", lbtokg1(plev * 15),lbtokg2(plev * 15));  break;
 #else
 		case 10: sprintf(p, " max wgt %d", plev * 15);  break;
 #endif
 		case 11: sprintf(p, " %s%dd6", s_dam, plev / 2);  break;
 		case 12: sprintf(p, " %sd%d+%d", s_dam, plev * 3, plev * 3); break;
-		case 13: sprintf(p, _(" 行動:%ld回", " %ld acts."), (long int)(p_ptr->csp + 100-p_ptr->energy_need - 50)/100); break;
+		case 13: sprintf(p, _(" ��ư:%ld��", " %ld acts."), (long int)(p_ptr->csp + 100-p_ptr->energy_need - 50)/100); break;
 		}
 		break;
 	case MIND_KI:
@@ -592,10 +592,10 @@ void mindcraft_info(char *p, int use_mind, int power)
 		case 7:  sprintf(p, " %s%dd8", s_dam, 8 + ((plev - 5) / 4) + boost / 12); break;
 		case 8:  sprintf(p, " %s10d6+%d", s_dam, plev * 3 / 2 + boost * 3 / 5); break;
 		case 9:  break;
-		case 10: sprintf(p, _(" 最大%d体", " max %d"), 1+boost/100); break;
+		case 10: sprintf(p, _(" ����%d��", " max %d"), 1+boost/100); break;
 		case 11: sprintf(p, " %s%d", s_dam, 100 + plev + boost); break;
 		case 12: sprintf(p, " %s%dd15", s_dam, 10 + plev / 2 + boost * 3 / 10); break;
-		case 13: sprintf(p, _(" 行動:%d+d16回", " %d+d16 acts"), 16+boost/20); break;
+		case 13: sprintf(p, _(" ��ư:%d+d16��", " %d+d16 acts"), 16+boost/20); break;
 		}
 		break;
 	}
@@ -658,11 +658,11 @@ void mindcraft_info(char *p, int use_mind, int power)
 }
 
 /*!
- * @brief 使用可能な特殊技能を選択する /
+ * @brief ���Ѳ�ǽ���ü쵻ǽ�����򤹤� /
  * Allow user to choose a mindcrafter power.
- * @param sn 選択した特殊技能ID、キャンセルの場合-1、不正な選択の場合-2を返す
- * @param only_browse 一覧を見るだけの場合TRUEを返す
- * @return 発動可能な魔法を選択した場合TRUE、キャンセル処理か不正な選択が行われた場合FALSEを返す。
+ * @param sn ���򤷤��ü쵻ǽID������󥻥�ξ��-1������������ξ��-2���֤�
+ * @param only_browse �����򸫤�����ξ��TRUE���֤�
+ * @return ȯư��ǽ����ˡ�����򤷤����TRUE������󥻥���������������򤬹Ԥ�줿���FALSE���֤���
  * @details
  * If a valid spell is chosen, saves it in '*sn' and returns TRUE\n
  * If the user hits escape, returns FALSE, and set '*sn' to -1\n
@@ -701,37 +701,37 @@ static bool_hack get_mind_power(SPELL_IDX *sn, bool only_browse)
 	case CLASS_MINDCRAFTER:
 	{
 		use_mind = MIND_MINDCRAFTER;
-		p = _("超能力", "mindcraft");
+		p = _("Ķǽ��", "mindcraft");
 		break;
 	}
 	case CLASS_FORCETRAINER:
 	{
 		use_mind = MIND_KI;
-		p = _("練気術", "Force");
+		p = _("������", "Force");
 		break;
 	}
 	case CLASS_BERSERKER:
 	{
 		use_mind = MIND_BERSERKER;
-		p = _("技", "brutal power");
+		p = _("��", "brutal power");
 		break;
 	}
 	case CLASS_MIRROR_MASTER:
 	{
 		use_mind = MIND_MIRROR_MASTER;
-		p = _("鏡魔法", "magic");
+		p = _("����ˡ", "magic");
 		break;
 	}
 	case CLASS_NINJA:
 	{
 		use_mind = MIND_NINJUTSU;
-		p = _("忍術", "ninjutsu");
+		p = _("Ǧ��", "ninjutsu");
 		break;
 	}
 	default:
 	{
 		use_mind = 0;
-		p = _("超能力", "mindcraft");
+		p = _("Ķǽ��", "mindcraft");
 		break;
 	}
 	}
@@ -779,13 +779,13 @@ static bool_hack get_mind_power(SPELL_IDX *sn, bool only_browse)
     if (only_browse)
 	{
 		(void) strnfmt(out_val, 78, 
-					_("(%^s %c-%c, '*'で一覧, ESC) どの%sについて知りますか？", "(%^ss %c-%c, *=List, ESC=exit) Use which %s? "),
+					_("(%^s %c-%c, '*'�ǰ���, ESC) �ɤ�%s�ˤĤ����Τ�ޤ�����", "(%^ss %c-%c, *=List, ESC=exit) Use which %s? "),
 				       p, I2A(0), I2A(num - 1), p);
 	}
 	else
 	{
 		(void) strnfmt(out_val, 78, 
-					_("(%^s %c-%c, '*'で一覧, ESC) どの%sを使いますか？", "(%^ss %c-%c, *=List, ESC=exit) Use which %s? "),
+					_("(%^s %c-%c, '*'�ǰ���, ESC) �ɤ�%s��Ȥ��ޤ�����", "(%^ss %c-%c, *=List, ESC=exit) Use which %s? "),
 						p, I2A(0), I2A(num - 1), p);
 	}
 
@@ -853,10 +853,10 @@ static bool_hack get_mind_power(SPELL_IDX *sn, bool only_browse)
 
 				/* Display a list of spells */
 				prt("", y, x);
-				put_str(_("名前", "Name"), y, x + 5);
+				put_str(_("̾��", "Name"), y, x + 5);
 
 #ifdef JP
-put_str(format("Lv   %s   失率 効果", ((use_mind == MIND_BERSERKER) || (use_mind == MIND_NINJUTSU)) ? "HP" : "MP"), y, x + 35);
+put_str(format("Lv   %s   ��Ψ ����", ((use_mind == MIND_BERSERKER) || (use_mind == MIND_NINJUTSU)) ? "HP" : "MP"), y, x + 35);
 #else
 put_str(format("Lv   %s   Fail Info", ((use_mind == MIND_BERSERKER) || (use_mind == MIND_NINJUTSU)) ? "HP" : "MP"), y, x + 35);
 #endif
@@ -933,7 +933,7 @@ put_str(format("Lv   %s   Fail Info", ((use_mind == MIND_BERSERKER) || (use_mind
 
 					if (use_menu)
 					{
-						if (i == (menu_line-1)) strcpy(psi_desc, _("  》 ", "  >  "));
+						if (i == (menu_line-1)) strcpy(psi_desc, _("  �� ", "  >  "));
 						else strcpy(psi_desc, "     ");
 					}
 					else
@@ -943,7 +943,7 @@ put_str(format("Lv   %s   Fail Info", ((use_mind == MIND_BERSERKER) || (use_mind
 					       format("%-30s%2d %4d%s %3d%%%s",
 						      spell.name, spell.min_lev, mana_cost,
 #ifdef JP
-						      (((use_mind == MIND_MINDCRAFTER) && (i == 13)) ? "～" : "  "), 
+						      (((use_mind == MIND_MINDCRAFTER) && (i == 13)) ? "��" : "  "), 
 #else
 						      (((use_mind == MIND_MINDCRAFTER) && (i == 13)) ? "~ " : "  "), 
 #endif
@@ -997,7 +997,7 @@ put_str(format("Lv   %s   Fail Info", ((use_mind == MIND_BERSERKER) || (use_mind
 			char tmp_val[160];
 
 			/* Prompt */
-			(void) strnfmt(tmp_val, 78, _("%sを使いますか？", "Use %s? "), spell.name);
+			(void) strnfmt(tmp_val, 78, _("%s��Ȥ��ޤ�����", "Use %s? "), spell.name);
 
 			/* Belay that order */
 			if (!get_check(tmp_val)) continue;
@@ -1033,10 +1033,10 @@ put_str(format("Lv   %s   Fail Info", ((use_mind == MIND_BERSERKER) || (use_mind
 }
 
 /*!
- * @brief 超能力の発動 /
+ * @brief Ķǽ�Ϥ�ȯư /
  * do_cmd_cast calls this function if the player's class is 'mindcrafter'.
- * @param spell 発動する特殊技能のID
- * @return 処理を実行したらTRUE、キャンセルした場合FALSEを返す。
+ * @param spell ȯư�����ü쵻ǽ��ID
+ * @return ������¹Ԥ�����TRUE������󥻥뤷�����FALSE���֤���
  */
 static bool cast_mindcrafter_spell(int spell)
 {
@@ -1075,7 +1075,7 @@ static bool cast_mindcrafter_spell(int spell)
 		if ((plev > 24) && (plev < 40))
 			set_tim_esp((TIME_EFFECT)plev, FALSE);
 
-		if (!b) msg_print(_("安全な気がする。", "You feel safe."));
+		if (!b) msg_print(_("�����ʵ������롣", "You feel safe."));
 
 		break;
 	case 1:
@@ -1132,7 +1132,7 @@ static bool cast_mindcrafter_spell(int spell)
 			return ident_spell(FALSE);
 	case 8:
 		/* Mindwave */
-		msg_print(_("精神を捻じ曲げる波動を発生させた！", "Mind-warping forces emanate from your brain!"));
+		msg_print(_("������Ǳ���ʤ�����ư��ȯ����������", "Mind-warping forces emanate from your brain!"));
 
 		if (plev < 25)
 			project(0, 2 + plev / 10, p_ptr->y, p_ptr->x,
@@ -1186,11 +1186,11 @@ static bool cast_mindcrafter_spell(int spell)
 	{
 		if (world_player)
 		{
-			msg_print(_("既に時は止まっている。", "Time is already stopped."));
+			msg_print(_("���˻��ϻߤޤäƤ��롣", "Time is already stopped."));
 			return (FALSE);
 		}
 		world_player = TRUE;
-		msg_print(_("「時よ！」", "You yell 'Time!'"));
+		msg_print(_("�ֻ��衪��", "You yell 'Time!'"));
 		msg_print(NULL);
 
 		/* Hack */
@@ -1209,17 +1209,17 @@ static bool cast_mindcrafter_spell(int spell)
 		break;
 	}
 	default:
-		msg_print(_("なに？", "Zap?"));
+		msg_print(_("�ʤˡ�", "Zap?"));
 	}
 
 	return TRUE;
 }
 
 /*!
- * @brief 練気術の発動 /
+ * @brief �����Ѥ�ȯư /
  * do_cmd_cast calls this function if the player's class is 'ForceTrainer'.
- * @param spell 発動する特殊技能のID
- * @return 処理を実行したらTRUE、キャンセルした場合FALSEを返す。
+ * @param spell ȯư�����ü쵻ǽ��ID
+ * @return ������¹Ԥ�����TRUE������󥻥뤷�����FALSE���֤���
  */
 static bool cast_force_spell(int spell)
 {
@@ -1252,14 +1252,14 @@ static bool cast_force_spell(int spell)
 		set_resist_magic(randint1(20) + 20 + boost / 5, FALSE);
 		break;
 	case 5:
-		msg_print(_("気を練った。", "You improved the Force."));
+		msg_print(_("�������ä���", "You improved the Force."));
 		P_PTR_KI += (70 + plev);
 		p_ptr->update |= (PU_BONUS);
 		if (randint1(P_PTR_KI) > (plev * 4 + 120))
 		{
-			msg_print(_("気が暴走した！", "The Force exploded!"));
+			msg_print(_("����˽��������", "The Force exploded!"));
 			fire_ball(GF_MANA, 0, P_PTR_KI / 2, 10);
-			take_hit(DAMAGE_LOSELIFE, p_ptr->magic_num1[0] / 2, _("気の暴走", "Explosion of the Force"), -1);
+			take_hit(DAMAGE_LOSELIFE, p_ptr->magic_num1[0] / 2, _("����˽��", "Explosion of the Force"), -1);
 		}
 		else return TRUE;
 		break;
@@ -1290,7 +1290,7 @@ static bool cast_force_spell(int spell)
 
 			if (randint1(r_ptr->level * 3 / 2) > randint0(dam / 2) + dam/2)
 			{
-				msg_format(_("%sは飛ばされなかった。", "%^s was not blown away."), m_name);
+				msg_format(_("%s�����Ф���ʤ��ä���", "%^s was not blown away."), m_name);
 			}
 			else
 			{
@@ -1307,7 +1307,7 @@ static bool cast_force_spell(int spell)
 				}
 				if ((ty != oy) || (tx != ox))
 				{
-					msg_format(_("%sを吹き飛ばした！", "You blow %s away!"), m_name);
+					msg_format(_("%s��᤭���Ф�����", "You blow %s away!"), m_name);
 					cave[oy][ox].m_idx = 0;
 					cave[ty][tx].m_idx = (s16b)m_idx;
 					m_ptr->fy = (byte_hack)ty;
@@ -1350,11 +1350,11 @@ static bool cast_force_spell(int spell)
 				success = TRUE;
 		if (success)
 		{
-			msg_print(_("御用でございますが、御主人様？", "'Your wish, master?'"));
+			msg_print(_("���ѤǤ������ޤ����������͡�", "'Your wish, master?'"));
 		}
 		else
 		{
-			msg_print(_("何も現れなかった。", "Nothing happen."));
+			msg_print(_("���⸽��ʤ��ä���", "Nothing happen."));
 		}
 		break;
 	}
@@ -1370,7 +1370,7 @@ static bool cast_force_spell(int spell)
 		set_lightspeed(randint1(16) + 16 + boost / 20, FALSE);
 		break;
 	default:
-		msg_print(_("なに？", "Zap?"));
+		msg_print(_("�ʤˡ�", "Zap?"));
 	}
 	P_PTR_KI = 0;
 	p_ptr->update |= (PU_BONUS);
@@ -1380,8 +1380,8 @@ static bool cast_force_spell(int spell)
 
 
 /*!
- * @brief 現在フロアに存在している鏡の数を数える / calculate mirrors
- * @return 鏡の枚数
+ * @brief ���ߥե�����¸�ߤ��Ƥ�����ο�������� / calculate mirrors
+ * @return �������
  */
 static int number_of_mirrors( void )
 {
@@ -1396,10 +1396,10 @@ static int number_of_mirrors( void )
 }
 
 /*!
- * @brief 鏡魔法の発動 /
+ * @brief ����ˡ��ȯư /
  * do_cmd_cast calls this function if the player's class is 'Mirror magic'.
- * @param spell 発動する特殊技能のID
- * @return 処理を実行したらTRUE、キャンセルした場合FALSEを返す。
+ * @param spell ȯư�����ü쵻ǽ��ID
+ * @return ������¹Ԥ�����TRUE������󥻥뤷�����FALSE���֤���
  */
 static bool cast_mirror_spell(int spell)
 {
@@ -1420,7 +1420,7 @@ static bool cast_mirror_spell(int spell)
 		if (plev + tmp > 28)set_tim_esp((TIME_EFFECT)plev, FALSE);
 		if (plev + tmp > 38)map_area(DETECT_RAD_MAP);
 		if (tmp == 0 && plev < 5) {
-			msg_print(_("鏡がなくて集中できなかった！", "You need a mirror to concentrate!"));
+			msg_print(_("�����ʤ��ƽ���Ǥ��ʤ��ä���", "You need a mirror to concentrate!"));
 		}
 		break;
 		/* drip of light */
@@ -1429,7 +1429,7 @@ static bool cast_mirror_spell(int spell)
 			place_mirror();
 		}
 		else {
-			msg_format(_("これ以上鏡は制御できない！", "There are too many mirrors to control!"));
+			msg_format(_("����ʾ��������Ǥ��ʤ���", "There are too many mirrors to control!"));
 		}
 		break;
 	case 2:
@@ -1512,14 +1512,14 @@ static bool cast_mirror_spell(int spell)
 		/* mirror shift */
 	case 15:
 		if (!is_mirror_grid(&cave[p_ptr->y][p_ptr->x])) {
-			msg_print(_("鏡の国の場所がわからない！", "You cannot find out where is the world of mirror!"));
+			msg_print(_("���ι�ξ�꤬�狼��ʤ���", "You cannot find out where is the world of mirror!"));
 			break;
 		}
 		alter_reality();
 		break;
 		/* mirror tunnel */
 	case 16:
-		msg_print(_("鏡の世界を通り抜け…  ", "Go through the world of mirror..."));
+		msg_print(_("�����������̤�ȴ����  ", "Go through the world of mirror..."));
 		return mirror_tunnel();
 
 		/* mirror of recall */
@@ -1531,14 +1531,14 @@ static bool cast_mirror_spell(int spell)
 		break;
 		/* binding field */
 	case 19:
-		if (!binding_field(plev * 11 + 5))msg_print(_("適当な鏡を選べなかった！", "You were not able to choose suitable mirrors!"));
+		if (!binding_field(plev * 11 + 5))msg_print(_("Ŭ���ʶ������٤ʤ��ä���", "You were not able to choose suitable mirrors!"));
 		break;
 		/* mirror of Ruffnor */
 	case 20:
 		(void)set_invuln(randint1(4) + 4, FALSE);
 		break;
 	default:
-		msg_print(_("なに？", "Zap?"));
+		msg_print(_("�ʤˡ�", "Zap?"));
 
 	}
 	p_ptr->magic_num1[0] = 0;
@@ -1547,10 +1547,10 @@ static bool cast_mirror_spell(int spell)
 }
 
 /*!
- * @brief 怒りの発動 /
+ * @brief �ܤ��ȯư /
  * do_cmd_cast calls this function if the player's class is 'berserker'.
- * @param spell 発動する特殊技能のID
- * @return 処理を実行したらTRUE、キャンセルした場合FALSEを返す。
+ * @param spell ȯư�����ü쵻ǽ��ID
+ * @return ������¹Ԥ�����TRUE������󥻥뤷�����FALSE���֤���
  */
 static bool cast_berserk_spell(int spell)
 {
@@ -1567,7 +1567,7 @@ static bool cast_berserk_spell(int spell)
 	{
 		if (p_ptr->riding)
 		{
-			msg_print(_("乗馬中には無理だ。", "You cannot do it when riding."));
+			msg_print(_("������ˤ�̵������", "You cannot do it when riding."));
 			return FALSE;
 		}
 
@@ -1579,7 +1579,7 @@ static bool cast_berserk_spell(int spell)
 
 		if (!cave[y][x].m_idx)
 		{
-			msg_print(_("その方向にはモンスターはいません。", "There is no monster."));
+			msg_print(_("���������ˤϥ�󥹥����Ϥ��ޤ���", "There is no monster."));
 			return FALSE;
 		}
 
@@ -1615,17 +1615,17 @@ static bool cast_berserk_spell(int spell)
 		massacre();
 		break;
 	default:
-		msg_print(_("なに？", "Zap?"));
+		msg_print(_("�ʤˡ�", "Zap?"));
 
 	}
 	return TRUE;
 }
 
 /*!
- * @brief 忍術の発動 /
+ * @brief Ǧ�Ѥ�ȯư /
  * do_cmd_cast calls this function if the player's class is 'ninja'.
- * @param spell 発動する特殊技能のID
- * @return 処理を実行したらTRUE、キャンセルした場合FALSEを返す。
+ * @param spell ȯư�����ü쵻ǽ��ID
+ * @return ������¹Ԥ�����TRUE������󥻥뤷�����FALSE���֤���
  */
 static bool cast_ninja_spell(int spell)
 {
@@ -1665,7 +1665,7 @@ static bool cast_ninja_spell(int spell)
 	{
 		if (!(p_ptr->special_defense & NINJA_KAWARIMI))
 		{
-			msg_print(_("敵の攻撃に対して敏感になった。", "You are now prepare to evade any attacks."));
+			msg_print(_("Ũ�ι�����Ф����Ҵ��ˤʤä���", "You are now prepare to evade any attacks."));
 			p_ptr->special_defense |= NINJA_KAWARIMI;
 			p_ptr->redraw |= (PR_STATUS);
 		}
@@ -1685,13 +1685,13 @@ static bool cast_ninja_spell(int spell)
 		{
 			py_attack(y, x, 0);
 			if (randint0(p_ptr->skill_dis) < 7)
-				msg_print(_("うまく逃げられなかった。", "You failed to run away."));
+				msg_print(_("���ޤ�ƨ�����ʤ��ä���", "You failed to run away."));
 			else
 				teleport_player(30, 0L);
 		}
 		else
 		{
-			msg_print(_("その方向にはモンスターはいません。", "You don't see any monster in this direction"));
+			msg_print(_("���������ˤϥ�󥹥����Ϥ��ޤ���", "You don't see any monster in this direction"));
 			msg_print(NULL);
 		}
 		break;
@@ -1728,8 +1728,8 @@ static bool cast_ninja_spell(int spell)
 			if (slot == INVEN_PACK)
 			{
 #ifdef JP
-				if (!i) msg_print("くさびを持っていない。");
-				else msg_print("くさびがなくなった。");
+				if (!i) msg_print("�����Ӥ���äƤ��ʤ���");
+				else msg_print("�����Ӥ��ʤ��ʤä���");
 #else
 				if (!i) msg_print("You have no Iron Spikes.");
 				else msg_print("You have no more Iron Spikes.");
@@ -1762,7 +1762,7 @@ static bool cast_ninja_spell(int spell)
 		if (!projectable(p_ptr->y, p_ptr->x, target_row, target_col)) break;
 		m_ptr = &m_list[m_idx];
 		monster_desc(m_name, m_ptr, 0);
-		msg_format(_("%sを引き戻した。", "You pull back %s."), m_name);
+		msg_format(_("%s������ᤷ����", "You pull back %s."), m_name);
 		path_n = project_path(path_g, MAX_RANGE, target_row, target_col, p_ptr->y, p_ptr->x, 0);
 		ty = target_row, tx = target_col;
 		for (i = 1; i < path_n; i++)
@@ -1868,15 +1868,15 @@ static bool cast_ninja_spell(int spell)
 		set_multishadow(6+randint1(6), FALSE);
 		break;
 	default:
-		msg_print(_("なに？", "Zap?"));
+		msg_print(_("�ʤˡ�", "Zap?"));
 
 	}
 	return TRUE;
 }
 
 /*!
- * @brief 特殊技能コマンドのメインルーチン /
- * @return なし
+ * @brief �ü쵻ǽ���ޥ�ɤΥᥤ��롼���� /
+ * @return �ʤ�
  */
 void do_cmd_mind(void)
 {
@@ -1895,7 +1895,7 @@ void do_cmd_mind(void)
 	/* not if confused */
 	if (p_ptr->confused)
 	{
-		msg_print(_("混乱していて集中できない！", "You are too confused!"));
+		msg_print(_("���𤷤Ƥ��ƽ���Ǥ��ʤ���", "You are too confused!"));
 		return;
 	}
 
@@ -1905,12 +1905,12 @@ void do_cmd_mind(void)
 #ifdef JP
 	switch(p_ptr->pclass)
 	{
-		case CLASS_MINDCRAFTER: use_mind = MIND_MINDCRAFTER;p = "精神";break;
-		case CLASS_FORCETRAINER:          use_mind = MIND_KI;p = "気";break;
-		case CLASS_BERSERKER:   use_mind = MIND_BERSERKER;p = "怒り";break;
-		case CLASS_MIRROR_MASTER:   use_mind = MIND_MIRROR_MASTER;p = "鏡魔法";break;
-		case CLASS_NINJA:       use_mind = MIND_NINJUTSU;p = "精神";break;
-		default:                use_mind = 0;p = "超能力";break;
+		case CLASS_MINDCRAFTER: use_mind = MIND_MINDCRAFTER;p = "����";break;
+		case CLASS_FORCETRAINER:          use_mind = MIND_KI;p = "��";break;
+		case CLASS_BERSERKER:   use_mind = MIND_BERSERKER;p = "�ܤ�";break;
+		case CLASS_MIRROR_MASTER:   use_mind = MIND_MIRROR_MASTER;p = "����ˡ";break;
+		case CLASS_NINJA:       use_mind = MIND_NINJUTSU;p = "����";break;
+		default:                use_mind = 0;p = "Ķǽ��";break;
 	}
 #else
 	switch(p_ptr->pclass)
@@ -1949,19 +1949,19 @@ void do_cmd_mind(void)
 	{
 		if (mana_cost > p_ptr->chp)
 		{
-			msg_print(_("ＨＰが足りません。", "You do not have enough hp to use this power."));
+			msg_print(_("�ȣФ�­��ޤ���", "You do not have enough hp to use this power."));
 			return;
 		}
 	}
 	else if (mana_cost > p_ptr->csp)
 	{
 		/* Warning */
-		msg_print(_("ＭＰが足りません。", "You do not have enough mana to use this power."));
+		msg_print(_("�ͣФ�­��ޤ���", "You do not have enough mana to use this power."));
 
 		if (!over_exert) return;
 
 		/* Verify */
-		if (!get_check(_("それでも挑戦しますか? ", "Attempt it anyway? "))) return;
+		if (!get_check(_("����Ǥ�ĩ�路�ޤ���? ", "Attempt it anyway? "))) return;
 
 	}
 
@@ -2006,7 +2006,7 @@ void do_cmd_mind(void)
 	if (randint0(100) < chance)
 	{
 		if (flush_failure) flush();
-		msg_format(_("%sの集中に失敗した！", "You failed to concentrate hard enough!"), p);
+		msg_format(_("%s�ν���˼��Ԥ�����", "You failed to concentrate hard enough!"), p);
 
 		sound(SOUND_FAIL);
 
@@ -2014,7 +2014,7 @@ void do_cmd_mind(void)
 		{
 			if ((use_mind == MIND_KI) && (n != 5) && P_PTR_KI)
 			{
-				msg_print(_("気が散ってしまった．．．", "Your improved Force has gone away..."));
+				msg_print(_("�������äƤ��ޤä�������", "Your improved Force has gone away..."));
 				P_PTR_KI = 0;
 			}
 
@@ -2026,17 +2026,17 @@ void do_cmd_mind(void)
 			  if( use_mind == MIND_MINDCRAFTER ){
 				if (b < 5)
 				{
-					msg_print(_("なんてこった！頭の中が真っ白になった！", "Oh, no! Your mind has gone blank!"));
+					msg_print(_("�ʤ�Ƥ��ä���Ƭ���椬������ˤʤä���", "Oh, no! Your mind has gone blank!"));
 					lose_all_info();
 				}
 				else if (b < 15)
 				{
-					msg_print(_("奇妙な光景が目の前で踊っている...", "Weird visions seem to dance before your eyes..."));
+					msg_print(_("��̯�ʸ��ʤ��ܤ������٤äƤ���...", "Weird visions seem to dance before your eyes..."));
 					set_image(p_ptr->image + 5 + randint1(10));
 				}
 				else if (b < 45)
 				{
-					msg_print(_("あなたの頭は混乱した！", "Your brain is addled!"));
+					msg_print(_("���ʤ���Ƭ�Ϻ��𤷤���", "Your brain is addled!"));
 					set_confused(p_ptr->confused + randint1(8));
 				}
 				else if (b < 90)
@@ -2046,7 +2046,7 @@ void do_cmd_mind(void)
 				else
 				{
 					/* Mana storm */
-					msg_format(_("%sの力が制御できない氾流となって解放された！", "Your mind unleashes its power in an uncontrollable storm!"), p);
+					msg_format(_("%s���Ϥ�����Ǥ��ʤ���ή�ȤʤäƲ������줿��", "Your mind unleashes its power in an uncontrollable storm!"), p);
 
 					project(PROJECT_WHO_UNCTRL_POWER, 2 + plev / 10, p_ptr->y, p_ptr->x, plev * 2,
 						GF_MANA, PROJECT_JUMP | PROJECT_KILL | PROJECT_GRID | PROJECT_ITEM, -1);
@@ -2060,18 +2060,18 @@ void do_cmd_mind(void)
 				}
 				else if (b < 81)
 				{
-					msg_print(_("鏡の世界の干渉を受けた！", "Weird visions seem to dance before your eyes..."));
+					msg_print(_("���������δ��Ĥ��������", "Weird visions seem to dance before your eyes..."));
 					teleport_player(10, TELEPORT_PASSIVE);
 				}
 				else if (b < 96)
 				{
-					msg_print(_("まわりのものがキラキラ輝いている！", "Your brain is addled!"));
+					msg_print(_("�ޤ��Τ�Τ����饭�鵱���Ƥ��롪", "Your brain is addled!"));
 					set_image(p_ptr->image + 5 + randint1(10));
 				}
 				else
 				{
 					/* Mana storm */
-					msg_format(_("%sの力が制御できない氾流となって解放された！", "Your mind unleashes its power in an uncontrollable storm!"), p);
+					msg_format(_("%s���Ϥ�����Ǥ��ʤ���ή�ȤʤäƲ������줿��", "Your mind unleashes its power in an uncontrollable storm!"), p);
 
 					project(PROJECT_WHO_UNCTRL_POWER, 2 + plev / 10, p_ptr->y, p_ptr->x, plev * 2,
 						GF_MANA, PROJECT_JUMP | PROJECT_KILL | PROJECT_GRID | PROJECT_ITEM, -1);
@@ -2109,7 +2109,7 @@ void do_cmd_mind(void)
 			cast = cast_ninja_spell(n);
 			break;
 		default:
-			msg_format(_("謎の能力:%d, %d", "Mystery power:%d, %d"),use_mind, n);
+			msg_format(_("���ǽ��:%d, %d", "Mystery power:%d, %d"),use_mind, n);
 			return;
 		}
 
@@ -2127,7 +2127,7 @@ void do_cmd_mind(void)
 
 	if ((use_mind == MIND_BERSERKER) || (use_mind == MIND_NINJUTSU))
 	{
-		take_hit(DAMAGE_USELIFE, mana_cost, _("過度の集中", "concentrating too hard"), -1);
+		take_hit(DAMAGE_USELIFE, mana_cost, _("���٤ν���", "concentrating too hard"), -1);
 		/* Redraw hp */
 		p_ptr->redraw |= (PR_HP);
 	}
@@ -2159,7 +2159,7 @@ void do_cmd_mind(void)
 		p_ptr->csp = MAX(0, p_ptr->csp - mana_cost);
 
 		/* Message */
-		msg_format(_("%sを集中しすぎて気を失ってしまった！", "You faint from the effort!"),p);
+		msg_format(_("%s���椷�����Ƶ��򼺤äƤ��ޤä���", "You faint from the effort!"),p);
 
 		/* Hack -- Bypass free action */
 		(void)set_paralyzed(p_ptr->paralyzed + randint1(5 * oops + 1));
@@ -2170,7 +2170,7 @@ void do_cmd_mind(void)
 			bool perm = (randint0(100) < 25);
 
 			/* Message */
-			msg_print(_("自分の精神を攻撃してしまった！", "You have damaged your mind!"));
+			msg_print(_("��ʬ�������򹶷⤷�Ƥ��ޤä���", "You have damaged your mind!"));
 
 			/* Reduce constitution */
 			(void)dec_stat(A_WIS, 15 + randint1(10), perm);
@@ -2187,8 +2187,8 @@ void do_cmd_mind(void)
 
 
 /*!
- * @brief 現在プレイヤーが使用可能な特殊技能の一覧表示 /
- * @return なし
+ * @brief ���ߥץ쥤�䡼�����Ѳ�ǽ���ü쵻ǽ�ΰ���ɽ�� /
+ * @return �ʤ�
  */
 void do_cmd_mind_browse(void)
 {
@@ -2233,7 +2233,7 @@ void do_cmd_mind_browse(void)
 		{
 		case MIND_MIRROR_MASTER:
 		case MIND_NINJUTSU:
-		  prt(_("何かキーを押して下さい。", "Hit any key."),0,0);
+		  prt(_("���������򲡤��Ʋ�������", "Hit any key."),0,0);
 		  (void)inkey();
 		}
 	}

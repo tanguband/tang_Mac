@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file readdib.h
- * @brief ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿å–ã‚Šå‡¦ç†ã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«
+ * @brief ¥Ó¥Ã¥È¥Ş¥Ã¥×¥Õ¥¡¥¤¥ëÆÉ¤ß¼è¤ê½èÍı¤Î¥Ø¥Ã¥À¥Õ¥¡¥¤¥ë
  * This package provides a routine to read a DIB file and set up the device dependent version of the image.
  * @date 2014/08/08
  * @author
@@ -11,7 +11,7 @@
 
 /*!
  * @struct DIBINIT
- * @brief ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±æ§‹é€ ä½“ / Information about a bitmap
+ * @brief ¥Ó¥Ã¥È¥Ş¥Ã¥×¥Õ¥¡¥¤¥ë¾ğÊó¹½Â¤ÂÎ / Information about a bitmap
  */
 typedef struct {
 	HANDLE hDIB;

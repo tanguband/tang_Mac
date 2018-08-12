@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file grid.h
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ç”Ÿæˆå‡¦ç†ã®åŸºå¹¹éƒ¨åˆ†ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
+ * @brief ¥À¥ó¥¸¥ç¥ó¤ÎÀ¸À®½èÍı¤Î´ğ´´ÉôÊ¬¥Ø¥Ã¥À¡¼¥Õ¥¡¥¤¥ë
  * @date 2014/08/15
  * @details
  * Purpose: header file for grid.c, used only in dungeon generation
@@ -21,34 +21,34 @@
 /*#define set_cave_info(Y,X,I)    (cave[(Y)][(X)].info = (I)) */
 
 /*!
- * @brief æŒ‡å®šåº§æ¨™ãŒç“¦ç¤«ã‹ã©ã†ã‹ã‚’è¿”ã™
- * @param Y æŒ‡å®šYåº§æ¨™
- * @param X æŒ‡å®šXåº§æ¨™
- * @return ç“¦ç¤«ãªã‚‰ã°TRUE
+ * @brief »ØÄêºÂÉ¸¤¬´¤ãª¤«¤É¤¦¤«¤òÊÖ¤¹
+ * @param Y »ØÄêYºÂÉ¸
+ * @param X »ØÄêXºÂÉ¸
+ * @return ´¤ãª¤Ê¤é¤ĞTRUE
  */
 #define place_rubble(Y,X)       set_cave_feat(Y,X,feat_rubble)
 
 /*!
- * @brief æŒ‡å®šåº§æ¨™ãŒä¸Šã‚Šéšæ®µã‹ã©ã†ã‹ã‚’è¿”ã™
- * @param Y æŒ‡å®šYåº§æ¨™
- * @param X æŒ‡å®šXåº§æ¨™
- * @return ä¸Šã‚Šéšæ®µãªã‚‰ã°TRUE
+ * @brief »ØÄêºÂÉ¸¤¬¾å¤ê³¬ÃÊ¤«¤É¤¦¤«¤òÊÖ¤¹
+ * @param Y »ØÄêYºÂÉ¸
+ * @param X »ØÄêXºÂÉ¸
+ * @return ¾å¤ê³¬ÃÊ¤Ê¤é¤ĞTRUE
  */
 #define place_up_stairs(Y,X)    set_cave_feat(Y,X,feat_up_stair)
 
 /*!
- * @brief æŒ‡å®šåº§æ¨™ãŒä¸‹ã‚Šéšæ®µã‹ã©ã†ã‹ã‚’è¿”ã™
- * @param Y æŒ‡å®šYåº§æ¨™
- * @param X æŒ‡å®šXåº§æ¨™
- * @return ä¸‹ã‚Šéšæ®µãªã‚‰ã°TRUE
+ * @brief »ØÄêºÂÉ¸¤¬²¼¤ê³¬ÃÊ¤«¤É¤¦¤«¤òÊÖ¤¹
+ * @param Y »ØÄêYºÂÉ¸
+ * @param X »ØÄêXºÂÉ¸
+ * @return ²¼¤ê³¬ÃÊ¤Ê¤é¤ĞTRUE
  */
 #define place_down_stairs(Y,X)  set_cave_feat(Y,X,feat_down_stair)
 
 /*!
- * @brief æŒ‡å®šåº§æ¨™ãŒFLOORå±æ€§ã‚’æŒã£ãŸãƒã‚¹ã‹ã©ã†ã‹ã‚’è¿”ã™
- * @param Y æŒ‡å®šYåº§æ¨™
- * @param X æŒ‡å®šXåº§æ¨™
- * @return FLOORå±æ€§ã‚’æŒã£ã¦ã„ã‚‹ãªã‚‰ã°TRUE
+ * @brief »ØÄêºÂÉ¸¤¬FLOORÂ°À­¤ò»ı¤Ã¤¿¥Ş¥¹¤«¤É¤¦¤«¤òÊÖ¤¹
+ * @param Y »ØÄêYºÂÉ¸
+ * @param X »ØÄêXºÂÉ¸
+ * @return FLOORÂ°À­¤ò»ı¤Ã¤Æ¤¤¤ë¤Ê¤é¤ĞTRUE
  */
 #define is_floor_bold(Y,X) (cave[Y][X].info & CAVE_FLOOR)
 #define is_extra_bold(Y,X) (cave[Y][X].info & CAVE_EXTRA)

@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file types.h
- * @brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªæ§‹é€ ä½“ã®å®šç¾© / global type declarations
+ * @brief ¥°¥í¡¼¥Ğ¥ë¤Ê¹½Â¤ÂÎ¤ÎÄêµÁ / global type declarations
  * @date 2014/08/10
  * @author
  * <pre>
@@ -11,7 +11,7 @@
  * </pre>
  * @details
  * <pre>
- * ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯angband.hã§ã®ã¿ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ã™ã‚‹ã“ã¨ã€‚
+ * ¤³¤Î¥Õ¥¡¥¤¥ë¤Ïangband.h¤Ç¤Î¤ß¥¤¥ó¥¯¥ë¡¼¥É¤¹¤ë¤³¤È¡£
  * This file should ONLY be included by "angband.h"
  *
  * Note that "char" may or may not be signed, and that "signed char"
@@ -46,59 +46,59 @@
 
 /*!
  * @struct feature_state
- * @brief åœ°å½¢çŠ¶æ…‹å¤‰åŒ–æŒ‡å®šæ§‹é€ ä½“ / Feature state structure
+ * @brief ÃÏ·Á¾õÂÖÊÑ²½»ØÄê¹½Â¤ÂÎ / Feature state structure
  */
 typedef struct feature_state feature_state;
 
 struct feature_state
 {
-	FF_FLAGS_IDX action; /*!< å¤‰åŒ–æ¡ä»¶ã‚’FF_*ã®IDã§æŒ‡å®š / Action (FF_*) */
-	STR_OFFSET result_tag; /*!< å¤‰åŒ–å…ˆID / Result (f_info ID) */
-	FEAT_IDX result; /*!< å¤‰åŒ–å…ˆID / Result (f_info ID) */
+	FF_FLAGS_IDX action; /*!< ÊÑ²½¾ò·ï¤òFF_*¤ÎID¤Ç»ØÄê / Action (FF_*) */
+	STR_OFFSET result_tag; /*!< ÊÑ²½ÀèID / Result (f_info ID) */
+	FEAT_IDX result; /*!< ÊÑ²½ÀèID / Result (f_info ID) */
 };
 
 
 /*!
  * @struct feature_type
- * @brief åœ°å½¢æƒ…å ±ã®æ§‹é€ ä½“ / Information about terrain "features"
+ * @brief ÃÏ·Á¾ğÊó¤Î¹½Â¤ÂÎ / Information about terrain "features"
  */
 
 typedef struct feature_type feature_type;
 
 struct feature_type
 {
-	STR_OFFSET name;                /*!< åœ°å½¢åå‚ç…§ã®ãŸã‚ã®ãƒãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ / Name (offset) */
-	STR_OFFSET text;                /*!< åœ°å½¢èª¬æ˜å‚ç…§ã®ãŸã‚ã®ãƒãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ /  Text (offset) */
-	STR_OFFSET tag;                 /*!< åœ°å½¢ç‰¹æ€§ã‚¿ã‚°å‚ç…§ã®ãŸã‚ã®ãƒãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ /  Tag (offset) */
+	STR_OFFSET name;                /*!< ÃÏ·ÁÌ¾»²¾È¤Î¤¿¤á¤Î¥Í¡¼¥à¥Ğ¥Ã¥Õ¥¡¥ª¥Õ¥»¥Ã¥ÈÃÍ / Name (offset) */
+	STR_OFFSET text;                /*!< ÃÏ·ÁÀâÌÀ»²¾È¤Î¤¿¤á¤Î¥Í¡¼¥à¥Ğ¥Ã¥Õ¥¡¥ª¥Õ¥»¥Ã¥ÈÃÍ /  Text (offset) */
+	STR_OFFSET tag;                 /*!< ÃÏ·ÁÆÃÀ­¥¿¥°»²¾È¤Î¤¿¤á¤Î¥Í¡¼¥à¥Ğ¥Ã¥Õ¥¡¥ª¥Õ¥»¥Ã¥ÈÃÍ /  Tag (offset) */
 
 	STR_OFFSET mimic_tag;
 	STR_OFFSET destroyed_tag;
 
-	FEAT_IDX mimic;               /*!< æœªç¢ºå®šæ™‚ã®å¤–å½¢åœ°å½¢ID / Feature to mimic */
-	FEAT_IDX destroyed;           /*!< *ç ´å£Š*ã«å·»ãè¾¼ã¾ã‚ŒãŸæ™‚ã®åœ°å½¢ç§»è¡Œå…ˆ(æœªå®Ÿè£…ï¼Ÿ) / Default destroyed state */
+	FEAT_IDX mimic;               /*!< Ì¤³ÎÄê»ş¤Î³°·ÁÃÏ·ÁID / Feature to mimic */
+	FEAT_IDX destroyed;           /*!< *ÇË²õ*¤Ë´¬¤­¹ş¤Ş¤ì¤¿»ş¤ÎÃÏ·Á°Ü¹ÔÀè(Ì¤¼ÂÁõ¡©) / Default destroyed state */
 
-	BIT_FLAGS flags[FF_FLAG_SIZE]; /*!< åœ°å½¢ã®åŸºæœ¬ç‰¹æ€§ãƒ“ãƒƒãƒˆé…åˆ— / Flags */
+	BIT_FLAGS flags[FF_FLAG_SIZE]; /*!< ÃÏ·Á¤Î´ğËÜÆÃÀ­¥Ó¥Ã¥ÈÇÛÎó / Flags */
 
-	FEAT_PRIORITY priority;            /*!< ç¸®å°è¡¨ç¤ºã§çœç•¥ã™ã‚‹éš›ã®è¡¨ç¤ºå„ªå…ˆåº¦ / Map priority */
+	FEAT_PRIORITY priority;            /*!< ½Ì¾®É½¼¨¤Ç¾ÊÎ¬¤¹¤ëºİ¤ÎÉ½¼¨Í¥ÀèÅÙ / Map priority */
 
-	feature_state state[MAX_FEAT_STATES]; /*!< feature_state ãƒ†ãƒ¼ãƒ–ãƒ« */
+	feature_state state[MAX_FEAT_STATES]; /*!< feature_state ¥Æ¡¼¥Ö¥ë */
 
-	FEAT_SUBTYPE subtype;  /*!< å‰¯ç‰¹æ€§å€¤ */
-	FEAT_POWER power;    /*!< åœ°å½¢å¼·åº¦ */
+	FEAT_SUBTYPE subtype;  /*!< ÉûÆÃÀ­ÃÍ */
+	FEAT_POWER power;    /*!< ÃÏ·Á¶¯ÅÙ */
 
-	SYMBOL_COLOR d_attr[F_LIT_MAX];   /*!< ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åœ°å½¢ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ / Default feature attribute */
-	SYMBOL_CODE d_char[F_LIT_MAX];   /*!< ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®åœ°å½¢ã‚·ãƒ³ãƒœãƒ«ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆ / Default feature character */
+	SYMBOL_COLOR d_attr[F_LIT_MAX];   /*!< ¥Ç¥Õ¥©¥ë¥È¤ÎÃÏ·Á¥·¥ó¥Ü¥ë¥«¥é¡¼ / Default feature attribute */
+	SYMBOL_CODE d_char[F_LIT_MAX];   /*!< ¥Ç¥Õ¥©¥ë¥È¤ÎÃÏ·Á¥·¥ó¥Ü¥ë¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È / Default feature character */
 
-	SYMBOL_COLOR x_attr[F_LIT_MAX];   /*!< è¨­å®šå¤‰æ›´å¾Œã®åœ°å½¢ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ / Desired feature attribute */
-	SYMBOL_CODE x_char[F_LIT_MAX];   /*!< è¨­å®šå¤‰æ›´å¾Œã®åœ°å½¢ã‚·ãƒ³ãƒœãƒ«ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆ / Desired feature character */
+	SYMBOL_COLOR x_attr[F_LIT_MAX];   /*!< ÀßÄêÊÑ¹¹¸å¤ÎÃÏ·Á¥·¥ó¥Ü¥ë¥«¥é¡¼ / Desired feature attribute */
+	SYMBOL_CODE x_char[F_LIT_MAX];   /*!< ÀßÄêÊÑ¹¹¸å¤ÎÃÏ·Á¥·¥ó¥Ü¥ë¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È / Desired feature character */
 };
 
 
 /*!
  * @struct object_kind
- * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã®æ§‹é€ ä½“ / Information about object "kinds", including player knowledge.
+ * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¾ğÊó¤Î¹½Â¤ÂÎ / Information about object "kinds", including player knowledge.
  * @details
- * ã‚²ãƒ¼ãƒ é€²è¡Œç”¨ã®ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã§ã¯ aware ã¨ tried ã®ã¿ä¿å­˜å¯¾è±¡ã¨ã™ã‚‹ã“ã¨ã€‚ã¨è‹±æ–‡ã§ã¯ã‚ã‚‹ãŒå®Ÿéš›ã¯ã‚‚ã£ã¨ã‚ã‚‹æ§˜å­ã§ã‚ã‚‹ã€‚ /
+ * ¥²¡¼¥à¿Ê¹ÔÍÑ¤Î¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¾å¤Ç¤Ï aware ¤È tried ¤Î¤ßÊİÂ¸ÂĞ¾İ¤È¤¹¤ë¤³¤È¡£¤È±ÑÊ¸¤Ç¤Ï¤¢¤ë¤¬¼Âºİ¤Ï¤â¤Ã¤È¤¢¤ëÍÍ»Ò¤Ç¤¢¤ë¡£ /
  * Only "aware" and "tried" are saved in the savefile
  */
 
@@ -106,53 +106,53 @@ typedef struct object_kind object_kind;
 
 struct object_kind
 {
-	STR_OFFSET name;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ åå‚ç…§ã®ãŸã‚ã®ãƒãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ / Name (offset) */
-	STR_OFFSET text;			/*!< è§£èª¬ãƒ†ã‚­ã‚¹ãƒˆå‚ç…§ã®ãŸã‚ã®ãƒãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ / Text (offset) */
-	STR_OFFSET flavor_name;	/*!< æœªç¢ºå®šåå‚ç…§ã®ãŸã‚ã®ãƒãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ / Flavor name (offset) */
+	STR_OFFSET name;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÌ¾»²¾È¤Î¤¿¤á¤Î¥Í¡¼¥à¥Ğ¥Ã¥Õ¥¡¥ª¥Õ¥»¥Ã¥ÈÃÍ / Name (offset) */
+	STR_OFFSET text;			/*!< ²òÀâ¥Æ¥­¥¹¥È»²¾È¤Î¤¿¤á¤Î¥Í¡¼¥à¥Ğ¥Ã¥Õ¥¡¥ª¥Õ¥»¥Ã¥ÈÃÍ / Text (offset) */
+	STR_OFFSET flavor_name;	/*!< Ì¤³ÎÄêÌ¾»²¾È¤Î¤¿¤á¤Î¥Í¡¼¥à¥Ğ¥Ã¥Õ¥¡¥ª¥Õ¥»¥Ã¥ÈÃÍ / Flavor name (offset) */
 
-	OBJECT_TYPE_VALUE tval;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ç¨®åˆ¥ã®å¤§é …ç›®å€¤ Object type */
-	OBJECT_SUBTYPE_VALUE sval;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ç¨®åˆ¥ã®å°é …ç›®å€¤ Object sub type */
+	OBJECT_TYPE_VALUE tval;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¼ïÊÌ¤ÎÂç¹àÌÜÃÍ Object type */
+	OBJECT_SUBTYPE_VALUE sval;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¼ïÊÌ¤Î¾®¹àÌÜÃÍ Object sub type */
 
-	PARAMETER_VALUE pval;	/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®pvalï¼ˆèƒ½åŠ›ä¿®æ­£å…±é€šå€¤ï¼‰ Object extra info */
+	PARAMETER_VALUE pval;	/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Îpval¡ÊÇ½ÎÏ½¤Àµ¶¦ÄÌÃÍ¡Ë Object extra info */
 
-	HIT_PROB to_h;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å‘½ä¸­ä¿®æ­£å€¤ / Bonus to hit */
-	HIT_POINT to_d;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ä¿®æ­£å€¤ / Bonus to damage */
-	ARMOUR_CLASS to_a;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ACä¿®æ­£å€¤ / Bonus to armor */
+	HIT_PROB to_h;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÌ¿Ãæ½¤ÀµÃÍ / Bonus to hit */
+	HIT_POINT to_d;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î¥À¥á¡¼¥¸½¤ÀµÃÍ / Bonus to damage */
+	ARMOUR_CLASS to_a;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎAC½¤ÀµÃÍ / Bonus to armor */
 
-	ARMOUR_CLASS ac;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ACåŸºæœ¬å€¤ /  Base armor */
+	ARMOUR_CLASS ac;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎAC´ğËÜÃÍ /  Base armor */
 
 	DICE_NUMBER dd;
-	DICE_SID ds;		/*!< ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ€ã‚¤ã‚¹ã®æ•°ã¨å¤§ãã• / Damage dice/sides */
+	DICE_SID ds;		/*!< ¥À¥á¡¼¥¸¥À¥¤¥¹¤Î¿ô¤ÈÂç¤­¤µ / Damage dice/sides */
 
-	WEIGHT weight;		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®é‡é‡ / Weight */
+	WEIGHT weight;		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î½ÅÎÌ / Weight */
 
-	PRICE cost;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®åŸºæœ¬ä¾¡å€¤ / Object "base cost" */
+	PRICE cost;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î´ğËÜ²ÁÃÍ / Object "base cost" */
 
-	BIT_FLAGS flags[TR_FLAG_SIZE];	/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®åŸºæœ¬ç‰¹æ€§ãƒ“ãƒƒãƒˆé…åˆ— / Flags */
+	BIT_FLAGS flags[TR_FLAG_SIZE];	/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î´ğËÜÆÃÀ­¥Ó¥Ã¥ÈÇÛÎó / Flags */
 
-	BIT_FLAGS gen_flags;		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆç‰¹æ€§ãƒ“ãƒƒãƒˆé…åˆ— / flags for generate */
+	BIT_FLAGS gen_flags;		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÀ¸À®ÆÃÀ­¥Ó¥Ã¥ÈÇÛÎó / flags for generate */
 
-	DEPTH locale[4];		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆéšãƒ†ãƒ¼ãƒ–ãƒ« / Allocation level(s) */
-	PROB chance[4];		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆç¢ºç‡ãƒ†ãƒ¼ãƒ–ãƒ« / Allocation chance(s) */
+	DEPTH locale[4];		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÀ¸À®³¬¥Æ¡¼¥Ö¥ë / Allocation level(s) */
+	PROB chance[4];		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÀ¸À®³ÎÎ¨¥Æ¡¼¥Ö¥ë / Allocation chance(s) */
 
-	DEPTH level;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®åŸºæœ¬ç”Ÿæˆéš / Level */
-	BIT_FLAGS8 extra;			/*!< ãã®ä»–è‰²ã€…ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°é…åˆ— / Something */
+	DEPTH level;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î´ğËÜÀ¸À®³¬ / Level */
+	BIT_FLAGS8 extra;			/*!< ¤½¤ÎÂ¾¿§¡¹¤Î¥Ó¥Ã¥È¥Õ¥é¥°ÇÛÎó / Something */
 
-	SYMBOL_COLOR d_attr;		/*!< ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ / Default object attribute */
-	SYMBOL_CODE d_char;		/*!< ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ³ãƒœãƒ«ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆ / Default object character */
+	SYMBOL_COLOR d_attr;		/*!< ¥Ç¥Õ¥©¥ë¥È¤Î¥¢¥¤¥Æ¥à¥·¥ó¥Ü¥ë¥«¥é¡¼ / Default object attribute */
+	SYMBOL_CODE d_char;		/*!< ¥Ç¥Õ¥©¥ë¥È¤Î¥¢¥¤¥Æ¥à¥·¥ó¥Ü¥ë¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È / Default object character */
 
-	SYMBOL_COLOR x_attr;		/*!< è¨­å®šå¤‰æ›´å¾Œã®ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ /  Desired object attribute */
-	SYMBOL_CODE x_char;		/*!< è¨­å®šå¤‰æ›´å¾Œã®ã‚¢ã‚¤ãƒ†ãƒ ã‚·ãƒ³ãƒœãƒ«ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆ /  Desired object character */
+	SYMBOL_COLOR x_attr;		/*!< ÀßÄêÊÑ¹¹¸å¤Î¥¢¥¤¥Æ¥à¥·¥ó¥Ü¥ë¥«¥é¡¼ /  Desired object attribute */
+	SYMBOL_CODE x_char;		/*!< ÀßÄêÊÑ¹¹¸å¤Î¥¢¥¤¥Æ¥à¥·¥ó¥Ü¥ë¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È /  Desired object character */
 
-	IDX flavor;		/*!< èª¿æŸ»ä¸­(TODO) / Special object flavor (or zero) */
+	IDX flavor;		/*!< Ä´ººÃæ(TODO) / Special object flavor (or zero) */
 
-	bool easy_know;		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ãŒåˆæœŸã‹ã‚‰ãƒ™ãƒ¼ã‚¹åã‚’åˆ¤æ–­å¯èƒ½ã‹ã©ã†ã‹ / This object is always known (if aware) */
+	bool easy_know;		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤¬½é´ü¤«¤é¥Ù¡¼¥¹Ì¾¤òÈ½ÃÇ²ÄÇ½¤«¤É¤¦¤« / This object is always known (if aware) */
 
-	bool aware;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ãŒé‘‘å®šæ¸ˆã‹ã©ã†ã‹ /  The player is "aware" of the item's effects */
+	bool aware;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤¬´ÕÄêºÑ¤«¤É¤¦¤« /  The player is "aware" of the item's effects */
 
-	bool tried;			/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã‚’æœªé‘‘å®šã®ã¾ã¾è©¦ã—ãŸã“ã¨ãŒã‚ã‚‹ã‹ /  The player has "tried" one of the items */
+	bool tried;			/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤òÌ¤´ÕÄê¤Î¤Ş¤Ş»î¤·¤¿¤³¤È¤¬¤¢¤ë¤« /  The player has "tried" one of the items */
 
-	ACTIVATION_IDX act_idx;		/*!< ç™ºå‹•èƒ½åŠ›ã®ID /  Activative ability index */
+	ACTIVATION_IDX act_idx;		/*!< È¯Æ°Ç½ÎÏ¤ÎID /  Activative ability index */
 };
 
 
@@ -161,7 +161,7 @@ typedef struct artifact_type artifact_type;
 
 /*!
  * @struct artifact_type
- * @brief å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±ã®æ§‹é€ ä½“ / Artifact structure.
+ * @brief ¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó¤Î¹½Â¤ÂÎ / Artifact structure.
  * @details
  * @note
  * the save-file only writes "cur_num" to the savefile.
@@ -169,40 +169,40 @@ typedef struct artifact_type artifact_type;
  */
 struct artifact_type
 {
-	STR_OFFSET name;			/*!< ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆå(headerã‚ªãƒ•ã‚»ãƒƒãƒˆå‚ç…§) / Name (offset) */
-	STR_OFFSET text;			/*!< ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆè§£èª¬(headerã‚ªãƒ•ã‚»ãƒƒãƒˆå‚ç…§) / Text (offset) */
+	STR_OFFSET name;			/*!< ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÌ¾(header¥ª¥Õ¥»¥Ã¥È»²¾È) / Name (offset) */
+	STR_OFFSET text;			/*!< ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È²òÀâ(header¥ª¥Õ¥»¥Ã¥È»²¾È) / Text (offset) */
 
-	OBJECT_TYPE_VALUE tval;		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ å¤§é …ç›®ID / Artifact type */
-	OBJECT_SUBTYPE_VALUE sval;	/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ å°é …ç›®ID / Artifact sub type */
+	OBJECT_TYPE_VALUE tval;		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÂç¹àÌÜID / Artifact type */
+	OBJECT_SUBTYPE_VALUE sval;	/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¾®¹àÌÜID / Artifact sub type */
 
-	PARAMETER_VALUE pval;	/*!< pvalä¿®æ­£å€¤ / Artifact extra info */
+	PARAMETER_VALUE pval;	/*!< pval½¤ÀµÃÍ / Artifact extra info */
 
-	HIT_PROB to_h;			/*!< å‘½ä¸­ãƒœãƒ¼ãƒŠã‚¹å€¤ /  Bonus to hit */
-	HIT_POINT to_d;		/*!< ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒœãƒ¼ãƒŠã‚¹å€¤ / Bonus to damage */
-	ARMOUR_CLASS to_a;			/*!< ACãƒœãƒ¼ãƒŠã‚¹å€¤ / Bonus to armor */
+	HIT_PROB to_h;			/*!< Ì¿Ãæ¥Ü¡¼¥Ê¥¹ÃÍ /  Bonus to hit */
+	HIT_POINT to_d;		/*!< ¥À¥á¡¼¥¸¥Ü¡¼¥Ê¥¹ÃÍ / Bonus to damage */
+	ARMOUR_CLASS to_a;			/*!< AC¥Ü¡¼¥Ê¥¹ÃÍ / Bonus to armor */
 
-	ARMOUR_CLASS ac;			/*!< ä¸Šæ›¸ããƒ™ãƒ¼ã‚¹ACå€¤ / Base armor */
+	ARMOUR_CLASS ac;			/*!< ¾å½ñ¤­¥Ù¡¼¥¹ACÃÍ / Base armor */
 
 	DICE_NUMBER dd;
-	DICE_SID ds;	/*!< ãƒ€ã‚¤ã‚¹å€¤ / Damage when hits */
+	DICE_SID ds;	/*!< ¥À¥¤¥¹ÃÍ / Damage when hits */
 
-	WEIGHT weight;		/*!< é‡é‡ / Weight */
+	WEIGHT weight;		/*!< ½ÅÎÌ / Weight */
 
-	PRICE cost;			/*!< åŸºæœ¬ä¾¡æ ¼ / Artifact "cost" */
+	PRICE cost;			/*!< ´ğËÜ²Á³Ê / Artifact "cost" */
 
-	BIT_FLAGS flags[TR_FLAG_SIZE];       /*! ã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚° / Artifact Flags */
+	BIT_FLAGS flags[TR_FLAG_SIZE];       /*! ¥¢¥¤¥Æ¥à¥Õ¥é¥° / Artifact Flags */
 
-	BIT_FLAGS gen_flags;		/*! ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆãƒ•ãƒ©ã‚° / flags for generate */
+	BIT_FLAGS gen_flags;		/*! ¥¢¥¤¥Æ¥àÀ¸À®¥Õ¥é¥° / flags for generate */
 
-	DEPTH level;		/*! åŸºæœ¬ç”Ÿæˆéš / Artifact level */
-	RARITY rarity;		/*! ãƒ¬ã‚¢ãƒªãƒ†ã‚£ / Artifact rarity */
+	DEPTH level;		/*! ´ğËÜÀ¸À®³¬ / Artifact level */
+	RARITY rarity;		/*! ¥ì¥¢¥ê¥Æ¥£ / Artifact rarity */
 
-	byte cur_num;		/*! ç¾åœ¨ã®ç”Ÿæˆæ•° / Number created (0 or 1) */
-	byte max_num;		/*! (æœªä½¿ç”¨)æœ€å¤§ç”Ÿæˆæ•° / Unused (should be "1") */
+	byte cur_num;		/*! ¸½ºß¤ÎÀ¸À®¿ô / Number created (0 or 1) */
+	byte max_num;		/*! (Ì¤»ÈÍÑ)ºÇÂçÀ¸À®¿ô / Unused (should be "1") */
 
-	s16b floor_id;      /*! ã‚¢ã‚¤ãƒ†ãƒ ã‚’è½ã¨ã—ãŸãƒ•ãƒ­ã‚¢ã®ID / Leaved on this location last time */
+	s16b floor_id;      /*! ¥¢¥¤¥Æ¥à¤òÍî¤È¤·¤¿¥Õ¥í¥¢¤ÎID / Leaved on this location last time */
 
-	byte act_idx;		/*! ç™ºå‹•èƒ½åŠ›ID / Activative ability index */
+	byte act_idx;		/*! È¯Æ°Ç½ÎÏID / Activative ability index */
 };
 
 
@@ -217,8 +217,8 @@ struct ego_item_type
 	STR_OFFSET name;			/* Name (offset) */
 	STR_OFFSET text;			/* Text (offset) */
 
-	INVENTORY_IDX slot;		/*!< è£…å‚™éƒ¨ä½ / Standard slot value */
-	PRICE rating;		/*!< ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚‰ã®ä¾¡å€¤åŠ é€Ÿ / Rating boost */
+	INVENTORY_IDX slot;		/*!< ÁõÈ÷Éô°Ì / Standard slot value */
+	PRICE rating;		/*!< ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤«¤é¤Î²ÁÃÍ²ÃÂ® / Rating boost */
 
 	DEPTH level;			/* Minimum level */
 	RARITY rarity;		/* Object rarity */
@@ -294,26 +294,26 @@ typedef struct monster_race monster_race;
 
 struct monster_race
 {
-	STR_OFFSET name;	/*!< åå‰ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ(æ—¥æœ¬èª) /  Name offset(Japanese) */
+	STR_OFFSET name;	/*!< Ì¾Á°¥Ç¡¼¥¿¤Î¥ª¥Õ¥»¥Ã¥È(ÆüËÜ¸ì) /  Name offset(Japanese) */
 #ifdef JP
-	STR_OFFSET E_name;		/*!< åå‰ãƒ‡ãƒ¼ã‚¿ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ(è‹±èª) /  Name offset(English) */
+	STR_OFFSET E_name;		/*!< Ì¾Á°¥Ç¡¼¥¿¤Î¥ª¥Õ¥»¥Ã¥È(±Ñ¸ì) /  Name offset(English) */
 #endif
-	STR_OFFSET text;		/*!< æ€ã„å‡ºãƒ†ã‚­ã‚¹ãƒˆã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ / Lore text offset */
+	STR_OFFSET text;		/*!< »×¤¤½Ğ¥Æ¥­¥¹¥È¤Î¥ª¥Õ¥»¥Ã¥È / Lore text offset */
 
-	DICE_NUMBER hdice;		/*!< HPã®ãƒ€ã‚¤ã‚¹æ•° / Creatures hit dice count */
-	DICE_SID hside;			/*!< HPã®ãƒ€ã‚¤ã‚¹é¢æ•° / Creatures hit dice sides */
+	DICE_NUMBER hdice;		/*!< HP¤Î¥À¥¤¥¹¿ô / Creatures hit dice count */
+	DICE_SID hside;			/*!< HP¤Î¥À¥¤¥¹ÌÌ¿ô / Creatures hit dice sides */
 
-	ARMOUR_CLASS ac;		/*!< ã‚¢ãƒ¼ãƒãƒ¼ã‚¯ãƒ©ã‚¹ / Armour Class */
+	ARMOUR_CLASS ac;		/*!< ¥¢¡¼¥Ş¡¼¥¯¥é¥¹ / Armour Class */
 
-	SLEEP_DEGREE sleep;				/*!< ç¡çœ å€¤ / Inactive counter (base) */
-	POSITION aaf;				/*!< æ„ŸçŸ¥ç¯„å›²(1-100ã‚¹ã‚¯ã‚¨ã‚¢) / Area affect radius (1-100) */
-	SPEED speed;				/*!< åŠ é€Ÿ(110ã§+0) / Speed (normally 110) */
+	SLEEP_DEGREE sleep;				/*!< ¿çÌ²ÃÍ / Inactive counter (base) */
+	POSITION aaf;				/*!< ´¶ÃÎÈÏ°Ï(1-100¥¹¥¯¥¨¥¢) / Area affect radius (1-100) */
+	SPEED speed;				/*!< ²ÃÂ®(110¤Ç+0) / Speed (normally 110) */
 
-	EXP mexp;				/*!< æ®ºå®³æ™‚åŸºæœ¬çµŒé¨“å€¤ / Exp value for kill */
+	EXP mexp;				/*!< »¦³²»ş´ğËÜ·Ğ¸³ÃÍ / Exp value for kill */
 
-	BIT_FLAGS16 extra;				/*!< æœªä½¿ç”¨ /  Unused (for now) */
+	BIT_FLAGS16 extra;				/*!< Ì¤»ÈÍÑ /  Unused (for now) */
 
-	RARITY freq_spell;		/*!< é­”æ³•ï¼†ç‰¹æ®Šèƒ½åŠ›ä»•æ§˜é »åº¦(1/n) /  Spell frequency */
+	RARITY freq_spell;		/*!< ËâË¡¡õÆÃ¼ìÇ½ÎÏ»ÅÍÍÉÑÅÙ(1/n) /  Spell frequency */
 
 	BIT_FLAGS flags1;			/* Flags 1 (general) */
 	BIT_FLAGS flags2;			/* Flags 2 (abilities) */
@@ -334,11 +334,11 @@ struct monster_race
 	DICE_NUMBER reinforce_dd[6];
 	DICE_SID reinforce_ds[6];
 
-	ARTIFACT_IDX artifact_id[4];	/* ç‰¹å®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒ‰ãƒ­ãƒƒãƒ—ID */
-	RARITY artifact_rarity[4];	/* ç‰¹å®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒ¬ã‚¢åº¦ */
-	PERCENTAGE artifact_percent[4]; /* ç‰¹å®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒ‰ãƒ­ãƒƒãƒ—ç‡ */
+	ARTIFACT_IDX artifact_id[4];	/* ÆÃÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥É¥í¥Ã¥×ID */
+	RARITY artifact_rarity[4];	/* ÆÃÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥ì¥¢ÅÙ */
+	PERCENTAGE artifact_percent[4]; /* ÆÃÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥É¥í¥Ã¥×Î¨ */
 
-	PERCENTAGE arena_ratio;		/* ã‚¢ãƒªãƒ¼ãƒŠã®è©•ä¾¡ä¿®æ­£å€¤(%åŸºæº– / 0=100%) / Arena */
+	PERCENTAGE arena_ratio;		/* ¥¢¥ê¡¼¥Ê¤ÎÉ¾²Á½¤ÀµÃÍ(%´ğ½à / 0=100%) / Arena */
 
 	MONRACE_IDX next_r_idx;
 	EXP next_exp;
@@ -374,8 +374,8 @@ struct monster_race
 	byte r_xtra1;			/* Something (unused) */
 	byte r_xtra2;			/* Something (unused) */
 
-	ITEM_NUMBER r_drop_gold;	/*!< ã“ã‚Œã¾ã§ã«æ’ƒç ´æ™‚ã«è½ã¨ã—ãŸè²¡å®ã®æ•° / Max number of gold dropped at once */
-	ITEM_NUMBER r_drop_item;	/*!< ã“ã‚Œã¾ã§ã«æ’ƒç ´æ™‚ã«è½ã¨ã—ãŸã‚¢ã‚¤ãƒ†ãƒ ã®æ•° / Max number of item dropped at once */
+	ITEM_NUMBER r_drop_gold;	/*!< ¤³¤ì¤Ş¤Ç¤Ë·âÇË»ş¤ËÍî¤È¤·¤¿ºâÊõ¤Î¿ô / Max number of gold dropped at once */
+	ITEM_NUMBER r_drop_item;	/*!< ¤³¤ì¤Ş¤Ç¤Ë·âÇË»ş¤ËÍî¤È¤·¤¿¥¢¥¤¥Æ¥à¤Î¿ô / Max number of item dropped at once */
 
 	byte r_cast_spell;		/* Max number of other spells seen */
 
@@ -462,9 +462,9 @@ struct cave_type
 	OBJECT_IDX o_idx;		/* Object in this grid */
 	MONSTER_IDX m_idx;		/* Monster in this grid */
 
-	/*! åœ°å½¢ã®ç‰¹åˆ¥ãªæƒ…å ±ã‚’ä¿å­˜ã™ã‚‹ / Special cave info
-	 * å…·ä½“çš„ãªä½¿ç”¨ä¸€è¦§ã¯ã‚¯ã‚¨ã‚¹ãƒˆè¡Œãéšæ®µã®ç§»è¡Œå…ˆã‚¯ã‚¨ã‚¹ãƒˆIDã€
-	 * å„ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å…¥å£ã®ç§»è¡Œå…ˆãƒ€ãƒ³ã‚¸ãƒ§ãƒ³IDã€
+	/*! ÃÏ·Á¤ÎÆÃÊÌ¤Ê¾ğÊó¤òÊİÂ¸¤¹¤ë / Special cave info
+	 * ¶ñÂÎÅª¤Ê»ÈÍÑ°ìÍ÷¤Ï¥¯¥¨¥¹¥È¹Ô¤­³¬ÃÊ¤Î°Ü¹ÔÀè¥¯¥¨¥¹¥ÈID¡¢
+	 * ³Æ¥À¥ó¥¸¥ç¥óÆş¸ı¤Î°Ü¹ÔÀè¥À¥ó¥¸¥ç¥óID¡¢
 	 * 
 	 */
 	s16b special;
@@ -545,8 +545,8 @@ struct object_type
 	XTRA8 xtra1;			/* Extra info type (now unused) */
 	XTRA8 xtra2;			/* Extra info activation index */
 	XTRA8 xtra3;			/* Extra info for weaponsmith */
-	XTRA16 xtra4;			/*!< å…‰æºã®æ®‹ã‚Šå¯¿å‘½ã€ã‚ã‚‹ã„ã¯æ•ã‚‰ãˆãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¾HP / Extra info fuel or captured monster's current HP */
-	XTRA16 xtra5;			/*!< æ•ã‚‰ãˆãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æœ€å¤§HP / Extra info captured monster's max HP */
+	XTRA16 xtra4;			/*!< ¸÷¸»¤Î»Ä¤ê¼÷Ì¿¡¢¤¢¤ë¤¤¤ÏÊá¤é¤¨¤¿¥â¥ó¥¹¥¿¡¼¤Î¸½HP / Extra info fuel or captured monster's current HP */
+	XTRA16 xtra5;			/*!< Êá¤é¤¨¤¿¥â¥ó¥¹¥¿¡¼¤ÎºÇÂçHP / Extra info captured monster's max HP */
 
 	HIT_PROB to_h;			/* Plusses to hit */
 	HIT_POINT to_d;			/* Plusses to damage */
@@ -574,7 +574,7 @@ struct object_type
 	IDX next_o_idx;	/* Next object in stack (if any) */
 	IDX held_m_idx;	/* Monster holding us (if any) */
 
-	ARTIFACT_BIAS_IDX artifact_bias; /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆç”Ÿæˆæ™‚ã®ãƒã‚¤ã‚¢ã‚¹ID */
+	ARTIFACT_BIAS_IDX artifact_bias; /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÀ¸À®»ş¤Î¥Ğ¥¤¥¢¥¹ID */
 };
 
 
@@ -695,29 +695,29 @@ typedef struct quest_type quest_type;
 
 /*!
  * @struct quest_type
- * @brief ã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±ã®æ§‹é€ ä½“ / Structure for the "quests".
+ * @brief ¥¯¥¨¥¹¥È¾ğÊó¤Î¹½Â¤ÂÎ / Structure for the "quests".
  */
 
 struct quest_type
 {
-	QUEST_STATUS status;          /*!< ã‚¯ã‚¨ã‚¹ãƒˆã®é€²è¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ / Is the quest taken, completed, finished? */
-	QUEST_TYPE type;              /*!< ã‚¯ã‚¨ã‚¹ãƒˆã®ç¨®åˆ¥ / The quest type */
+	QUEST_STATUS status;          /*!< ¥¯¥¨¥¹¥È¤Î¿Ê¹Ô¥¹¥Æ¡¼¥¿¥¹ / Is the quest taken, completed, finished? */
+	QUEST_TYPE type;              /*!< ¥¯¥¨¥¹¥È¤Î¼ïÊÌ / The quest type */
 
-	char name[60];          /*!< ã‚¯ã‚¨ã‚¹ãƒˆå / Quest name */
-	DEPTH level;            /*!< å‡¦ç†éšå±¤ / Dungeon level */
-	MONRACE_IDX r_idx;      /*!< ã‚¯ã‚¨ã‚¹ãƒˆå¯¾è±¡ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID / Monster race */
+	char name[60];          /*!< ¥¯¥¨¥¹¥ÈÌ¾ / Quest name */
+	DEPTH level;            /*!< ½èÍı³¬ÁØ / Dungeon level */
+	MONRACE_IDX r_idx;      /*!< ¥¯¥¨¥¹¥ÈÂĞ¾İ¤Î¥â¥ó¥¹¥¿¡¼ID / Monster race */
 
-	MONSTER_NUMBER cur_num; /*!< æ’ƒç ´ã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•° / Number killed */
-	MONSTER_NUMBER max_num; /*!< æ±‚ã‚ã‚‰ã‚Œã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ’ƒç ´æ•° / Number required */
+	MONSTER_NUMBER cur_num; /*!< ·âÇË¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô / Number killed */
+	MONSTER_NUMBER max_num; /*!< µá¤á¤é¤ì¤ë¥â¥ó¥¹¥¿¡¼¤Î·âÇË¿ô / Number required */
 
-	KIND_OBJECT_IDX k_idx;              /*!< ã‚¯ã‚¨ã‚¹ãƒˆå¯¾è±¡ã®ã‚¢ã‚¤ãƒ†ãƒ ID / object index */
-	MONSTER_NUMBER num_mon; /*!< QUEST_TYPE_KILL_NUMBERæ™‚ã®ç›®æ¨™æ’ƒç ´æ•° number of monsters on level */
+	KIND_OBJECT_IDX k_idx;              /*!< ¥¯¥¨¥¹¥ÈÂĞ¾İ¤Î¥¢¥¤¥Æ¥àID / object index */
+	MONSTER_NUMBER num_mon; /*!< QUEST_TYPE_KILL_NUMBER»ş¤ÎÌÜÉ¸·âÇË¿ô number of monsters on level */
 
-	BIT_FLAGS flags;             /*!< ã‚¯ã‚¨ã‚¹ãƒˆã«é–¢ã™ã‚‹ãƒ•ãƒ©ã‚°ãƒ“ãƒƒãƒˆ / quest flags */
-	DUNGEON_IDX dungeon;           /*!< ã‚¯ã‚¨ã‚¹ãƒˆå¯¾è±¡ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ID / quest dungeon */
+	BIT_FLAGS flags;             /*!< ¥¯¥¨¥¹¥È¤Ë´Ø¤¹¤ë¥Õ¥é¥°¥Ó¥Ã¥È / quest flags */
+	DUNGEON_IDX dungeon;           /*!< ¥¯¥¨¥¹¥ÈÂĞ¾İ¤Î¥À¥ó¥¸¥ç¥óID / quest dungeon */
 
-	PLAYER_LEVEL complev;           /*!< ã‚¯ãƒªã‚¢æ™‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ« / player level (complete) */
-	REAL_TIME comptime;          /*!< ã‚¯ãƒªã‚¢æ™‚ã‚²ãƒ¼ãƒ æ™‚é–“ /  quest clear time*/
+	PLAYER_LEVEL complev;           /*!< ¥¯¥ê¥¢»ş¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë / player level (complete) */
+	REAL_TIME comptime;          /*!< ¥¯¥ê¥¢»ş¥²¡¼¥à»ş´Ö /  quest clear time*/
 };
 
 
@@ -827,8 +827,8 @@ struct player_sex
 	cptr title;			/* Type of sex */
 	cptr winner;		/* Name of winner */
 #ifdef JP
-	cptr E_title;		/* è‹±èªæ€§åˆ¥ */
-	cptr E_winner;		/* è‹±èªæ€§åˆ¥ */
+	cptr E_title;		/* ±Ñ¸ìÀ­ÊÌ */
+	cptr E_winner;		/* ±Ñ¸ìÀ­ÊÌ */
 #endif
 };
 
@@ -844,7 +844,7 @@ struct player_race
 	cptr title;			/* Type of race */
 
 #ifdef JP
-	cptr E_title;		/* è‹±èªç¨®æ— */
+	cptr E_title;		/* ±Ñ¸ì¼ïÂ² */
 #endif
 	s16b r_adj[6];		/* Racial stat bonuses */
 
@@ -891,7 +891,7 @@ struct player_class
 	cptr title;			/* Type of class */
 
 #ifdef JP
-	cptr E_title;		/* è‹±èªè·æ¥­ */
+	cptr E_title;		/* ±Ñ¸ì¿¦¶È */
 #endif
 	s16b c_adj[6];		/* Class stat modifier */
 
@@ -926,7 +926,7 @@ struct player_seikaku
 	cptr title;			/* Type of seikaku */
 
 #ifdef JP
-	cptr E_title;		/* è‹±èªæ€§æ ¼ */
+	cptr E_title;		/* ±Ñ¸ìÀ­³Ê */
 #endif
 
 	s16b a_adj[6];		/* seikaku stat bonuses */
@@ -942,7 +942,7 @@ struct player_seikaku
 
 	s16b a_mhp;			/* Race hit-dice modifier */
 
-	byte no;			/* ã® */
+	byte no;			/* ¤Î */
 	byte sex;			/* seibetu seigen */
 };
 
@@ -1115,7 +1115,7 @@ struct player_type
 	SUB_EXP skill_exp[GINOU_MAX]; /* Proficiency of misc. skill */
 
 	MAGIC_NUM1 magic_num1[108];     /*!< Array for non-spellbook type magic */
-	MAGIC_NUM2 magic_num2[108];     /*!< é­”é“å…·è¡“å¸«ã®å–ã‚Šè¾¼ã¿æ¸ˆé­”é“å…·ä½¿ç”¨å›æ•° / Flags for non-spellbook type magics */
+	MAGIC_NUM2 magic_num2[108];     /*!< ËâÆ»¶ñ½Ñ»Õ¤Î¼è¤ê¹ş¤ßºÑËâÆ»¶ñ»ÈÍÑ²ó¿ô / Flags for non-spellbook type magics */
 
 	SPELL_IDX mane_spell[MAX_MANE];
 	HIT_POINT mane_dam[MAX_MANE];
@@ -1224,7 +1224,7 @@ struct player_type
 
 	/*** Extracted fields ***/
 
-	WEIGHT total_weight;	/*!< æ‰€æŒå“ã¨è£…å‚™å“ã®è¨ˆç®—ç·é‡é‡ / Total weight being carried */
+	WEIGHT total_weight;	/*!< ½ê»ıÉÊ¤ÈÁõÈ÷ÉÊ¤Î·×»»Áí½ÅÎÌ / Total weight being carried */
 
 	s16b stat_add[6];	/* Modifiers to stat values */
 	s16b stat_ind[6];	/* Indexes into stat tables */
@@ -1308,11 +1308,11 @@ struct player_type
 	DICE_NUMBER to_dd[2]; /* Extra dice/sides */
 	DICE_SID to_ds[2];
 
-	HIT_PROB dis_to_h[2];	/*!< åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾åœ¨ã®è¡¨è¨˜ä¸Šã®è¿‘æ¥æ­¦å™¨å‘½ä¸­ä¿®æ­£å€¤ /  Known bonus to hit (wield) */
-	HIT_PROB dis_to_h_b;	/*!< åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾åœ¨ã®è¡¨è¨˜ä¸Šã®å°„æ’ƒæ­¦å™¨å‘½ä¸­ä¿®æ­£å€¤ / Known bonus to hit (bow) */
-	HIT_POINT dis_to_d[2];	/*!< åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾åœ¨ã®è¡¨è¨˜ä¸Šã®è¿‘æ¥æ­¦å™¨ãƒ€ãƒ¡ãƒ¼ã‚¸ä¿®æ­£å€¤ / Known bonus to dam (wield) */
-	ARMOUR_CLASS dis_to_a;	/*!< åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾åœ¨ã®è¡¨è¨˜ä¸Šã®è£…å‚™ACä¿®æ­£å€¤ / Known bonus to ac */
-	ARMOUR_CLASS dis_ac;	/*!< åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾åœ¨ã®è¡¨è¨˜ä¸Šã®è£…å‚™ACåŸºç¤å€¤ / Known base ac */
+	HIT_PROB dis_to_h[2];	/*!< È½ÌÀ¤·¤Æ¤¤¤ë¸½ºß¤ÎÉ½µ­¾å¤Î¶áÀÜÉğ´ïÌ¿Ãæ½¤ÀµÃÍ /  Known bonus to hit (wield) */
+	HIT_PROB dis_to_h_b;	/*!< È½ÌÀ¤·¤Æ¤¤¤ë¸½ºß¤ÎÉ½µ­¾å¤Î¼Í·âÉğ´ïÌ¿Ãæ½¤ÀµÃÍ / Known bonus to hit (bow) */
+	HIT_POINT dis_to_d[2];	/*!< È½ÌÀ¤·¤Æ¤¤¤ë¸½ºß¤ÎÉ½µ­¾å¤Î¶áÀÜÉğ´ï¥À¥á¡¼¥¸½¤ÀµÃÍ / Known bonus to dam (wield) */
+	ARMOUR_CLASS dis_to_a;	/*!< È½ÌÀ¤·¤Æ¤¤¤ë¸½ºß¤ÎÉ½µ­¾å¤ÎÁõÈ÷AC½¤ÀµÃÍ / Known bonus to ac */
+	ARMOUR_CLASS dis_ac;	/*!< È½ÌÀ¤·¤Æ¤¤¤ë¸½ºß¤ÎÉ½µ­¾å¤ÎÁõÈ÷AC´ğÁÃÃÍ / Known base ac */
 
 	s16b to_h[2];		/* Bonus to hit (wield) */
 	s16b to_h_b;		/* Bonus to hit (bow) */
@@ -1328,28 +1328,28 @@ struct player_type
 	bool hidarite;
 	bool no_flowed;
 
-	ARMOUR_CLASS ac;	/*!< è£…å‚™ç„¡ã—ã®åŸºæœ¬AC / Base ac */
+	ARMOUR_CLASS ac;	/*!< ÁõÈ÷Ìµ¤·¤Î´ğËÜAC / Base ac */
 
-	ACTION_SKILL_POWER see_infra;	/*!< èµ¤å¤–ç·šè¦–èƒ½åŠ›ã®å¼·ã• /Infravision range */
-	ACTION_SKILL_POWER skill_dis;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:è§£é™¤èƒ½åŠ› / Skill: Disarming */
-	ACTION_SKILL_POWER skill_dev;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:é­”é“å…·ä½¿ç”¨ / Skill: Magic Devices */
-	ACTION_SKILL_POWER skill_sav;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:é­”æ³•é˜²å¾¡ / Skill: Saving throw */
-	ACTION_SKILL_POWER skill_stl;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:éš å¯† / Skill: Stealth factor */
+	ACTION_SKILL_POWER see_infra;	/*!< ÀÖ³°Àş»ëÇ½ÎÏ¤Î¶¯¤µ /Infravision range */
+	ACTION_SKILL_POWER skill_dis;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:²ò½üÇ½ÎÏ / Skill: Disarming */
+	ACTION_SKILL_POWER skill_dev;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:ËâÆ»¶ñ»ÈÍÑ / Skill: Magic Devices */
+	ACTION_SKILL_POWER skill_sav;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:ËâË¡ËÉ¸æ / Skill: Saving throw */
+	ACTION_SKILL_POWER skill_stl;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:±£Ì© / Skill: Stealth factor */
 
 	/*! 
-	 * è¡Œå‹•æŠ€èƒ½å€¤:çŸ¥è¦š / Skill: Searching ability
-	 * ã“ã®å€¤ã¯search()ã«ã‚ˆã‚‹åœ°å½¢ã®éš ã—è¦ç´ ç™ºè¦‹å‡¦ç†ãªã©ã§æ··ä¹±ã€ç›²ç›®ã€å¹»è¦šã€ç„¡å…‰æºãªã©ã®
-	 * çŠ¶æ…‹ç•°å¸¸ãŒãªã„é™ã‚Šã€é›£æ˜“åº¦ä¿®æ­£ãªã©ãŒãªã„ã¾ã¾ãã®ã¾ã¾ãƒ‘ãƒ¼ã‚»ãƒ³ãƒ†ãƒ¼ã‚¸å€¤ã¨ã—ã¦ä½¿ã‚ã‚Œã‚‹ã€‚
-	 * 100ä»¥ä¸Šãªã‚‰ã°å¿…ãšå…¨ã¦ã®ãƒˆãƒ©ãƒƒãƒ—ãªã©ã‚’è¦‹ã¤ã‘ã‚‹ã“ã¨ãŒå‡ºæ¥ã‚‹ã€‚
+	 * ¹ÔÆ°µ»Ç½ÃÍ:ÃÎ³Ğ / Skill: Searching ability
+	 * ¤³¤ÎÃÍ¤Ïsearch()¤Ë¤è¤ëÃÏ·Á¤Î±£¤·Í×ÁÇÈ¯¸«½èÍı¤Ê¤É¤Çº®Íğ¡¢ÌÕÌÜ¡¢¸¸³Ğ¡¢Ìµ¸÷¸»¤Ê¤É¤Î
+	 * ¾õÂÖ°Û¾ï¤¬¤Ê¤¤¸Â¤ê¡¢Æñ°×ÅÙ½¤Àµ¤Ê¤É¤¬¤Ê¤¤¤Ş¤Ş¤½¤Î¤Ş¤Ş¥Ñ¡¼¥»¥ó¥Æ¡¼¥¸ÃÍ¤È¤·¤Æ»È¤ï¤ì¤ë¡£
+	 * 100°Ê¾å¤Ê¤é¤ĞÉ¬¤ºÁ´¤Æ¤Î¥È¥é¥Ã¥×¤Ê¤É¤ò¸«¤Ä¤±¤ë¤³¤È¤¬½ĞÍè¤ë¡£
 	 */
 	ACTION_SKILL_POWER skill_srh;
 
 
-	ACTION_SKILL_POWER skill_fos;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:æ¢ç´¢ / Skill: Searching frequency */
-	ACTION_SKILL_POWER skill_thn;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:æ‰“æ’ƒå‘½ä¸­èƒ½åŠ› / Skill: To hit (normal) */
-	ACTION_SKILL_POWER skill_thb;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:å°„æ’ƒå‘½ä¸­èƒ½åŠ› / Skill: To hit (shooting) */
-	ACTION_SKILL_POWER skill_tht;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:æŠ•å°„å‘½ä¸­èƒ½åŠ› / Skill: To hit (throwing) */
-	ACTION_SKILL_POWER skill_dig;	/*!< è¡Œå‹•æŠ€èƒ½å€¤:æ˜å‰Š / Skill: Digging */
+	ACTION_SKILL_POWER skill_fos;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:Ãµº÷ / Skill: Searching frequency */
+	ACTION_SKILL_POWER skill_thn;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:ÂÇ·âÌ¿ÃæÇ½ÎÏ / Skill: To hit (normal) */
+	ACTION_SKILL_POWER skill_thb;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:¼Í·âÌ¿ÃæÇ½ÎÏ / Skill: To hit (shooting) */
+	ACTION_SKILL_POWER skill_tht;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:Åê¼ÍÌ¿ÃæÇ½ÎÏ / Skill: To hit (throwing) */
+	ACTION_SKILL_POWER skill_dig;	/*!< ¹ÔÆ°µ»Ç½ÃÍ:·¡ºï / Skill: Digging */
 
 	s16b num_blow[2];	/* Number of blows */
 	s16b num_fire;		/* Number of shots */
@@ -1363,7 +1363,7 @@ struct player_type
 
 	POSITION y;	/* Player location in dungeon */
 	POSITION x;	/* Player location in dungeon */
-	char name[32]; /*!< ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å / Current player's character name */
+	char name[32]; /*!< ¸½ºß¤Î¥×¥ì¥¤¥ä¡¼Ì¾ / Current player's character name */
 };
 
 
@@ -1386,7 +1386,7 @@ struct birther
 	s16b wt;
 	s16b sc;
 
-	PRICE au; /*!< åˆæœŸã®æ‰€æŒé‡‘ */
+	PRICE au; /*!< ½é´ü¤Î½ê»ı¶â */
 
 	BASE_STATUS stat_max[6];	/* Current "maximal" stat values */
 	BASE_STATUS stat_max_max[6];	/* Maximal "maximal" stat values */
@@ -1662,15 +1662,15 @@ struct dungeon_info_type {
 
 /*!
  * @struct autopick_type
- * @brief è‡ªå‹•æ‹¾ã„/ç ´å£Šè¨­å®šãƒ‡ãƒ¼ã‚¿ã®æ§‹é€ ä½“ / A structure type for entry of auto-picker/destroyer
+ * @brief ¼«Æ°½¦¤¤/ÇË²õÀßÄê¥Ç¡¼¥¿¤Î¹½Â¤ÂÎ / A structure type for entry of auto-picker/destroyer
  */
 typedef struct {
-	cptr name;          /*!< è‡ªå‹•æ‹¾ã„/ç ´å£Šå®šç¾©ã®åç§°ä¸€è‡´åŸºæº– / Items which have 'name' as part of its name match */
-	cptr insc;          /*!< å¯¾è±¡ã¨ãªã£ãŸã‚¢ã‚¤ãƒ†ãƒ ã«è‡ªå‹•ã§åˆ»ã‚€å†…å®¹ / Items will be auto-inscribed as 'insc' */
-	u32b flag[2];       /*!< ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ã«é–¢ã™ã‚‹æ±ç”¨çš„ãªæ¡ä»¶ãƒ•ãƒ©ã‚° / Misc. keyword to be matched */
-	byte action;        /*!< å¯¾è±¡ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‹¾ã†/ç ´å£Š/æ”¾ç½®ã™ã‚‹ã‹ã®æŒ‡å®šãƒ•ãƒ©ã‚° / Auto-pickup or Destroy or Leave items */
-	byte dice;          /*!< æ­¦å™¨ã®ãƒ€ã‚¤ã‚¹å€¤åŸºæº–å€¤ / Weapons which have more than 'dice' dice match */
-	byte bonus;         /*!< ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒœãƒ¼ãƒŠã‚¹åŸºæº–å€¤ / Items which have more than 'bonus' magical bonus match */
+	cptr name;          /*!< ¼«Æ°½¦¤¤/ÇË²õÄêµÁ¤ÎÌ¾¾Î°ìÃ×´ğ½à / Items which have 'name' as part of its name match */
+	cptr insc;          /*!< ÂĞ¾İ¤È¤Ê¤Ã¤¿¥¢¥¤¥Æ¥à¤Ë¼«Æ°¤Ç¹ï¤àÆâÍÆ / Items will be auto-inscribed as 'insc' */
+	u32b flag[2];       /*!< ¥­¡¼¥ï¡¼¥É¤Ë´Ø¤¹¤ëÈÆÍÑÅª¤Ê¾ò·ï¥Õ¥é¥° / Misc. keyword to be matched */
+	byte action;        /*!< ÂĞ¾İ¤Î¥¢¥¤¥Æ¥à¤ò½¦¤¦/ÇË²õ/ÊüÃÖ¤¹¤ë¤«¤Î»ØÄê¥Õ¥é¥° / Auto-pickup or Destroy or Leave items */
+	byte dice;          /*!< Éğ´ï¤Î¥À¥¤¥¹ÃÍ´ğ½àÃÍ / Weapons which have more than 'dice' dice match */
+	byte bonus;         /*!< ¥¢¥¤¥Æ¥à¤Î¥Ü¡¼¥Ê¥¹´ğ½àÃÍ / Items which have more than 'bonus' magical bonus match */
 } autopick_type;
 
 
@@ -1704,13 +1704,13 @@ typedef struct
 
 /*!
  * @struct arena_type
- * @brief é—˜æŠ€å ´ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚¨ãƒ³ãƒˆãƒªãƒ¼æ§‹é€ ä½“ / A structure type for arena entry
+ * @brief Æ®µ»¾ì¤Î¥â¥ó¥¹¥¿¡¼¥¨¥ó¥È¥ê¡¼¹½Â¤ÂÎ / A structure type for arena entry
  */
 typedef struct
 {
-	s16b r_idx; /*!< é—˜æŠ€å ´ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID(0ãªã‚‰ã°è¡¨å½°å¼) / Monster (0 means victory prizing) */
-	byte tval;  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰“å€’å¾Œã«å¾—ã‚‰ã‚Œã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®å¤§ã‚«ãƒ†ã‚´ãƒªID / tval of prize (0 means no prize) */
-	byte sval;  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰“å€’å¾Œã«å¾—ã‚‰ã‚Œã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®å°ã‚«ãƒ†ã‚´ãƒªID / sval of prize */
+	s16b r_idx; /*!< Æ®µ»¾ì¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²ID(0¤Ê¤é¤ĞÉ½¾´¼°) / Monster (0 means victory prizing) */
+	byte tval;  /*!< ¥â¥ó¥¹¥¿¡¼ÂÇÅİ¸å¤ËÆÀ¤é¤ì¤ë¥¢¥¤¥Æ¥à¤ÎÂç¥«¥Æ¥´¥êID / tval of prize (0 means no prize) */
+	byte sval;  /*!< ¥â¥ó¥¹¥¿¡¼ÂÇÅİ¸å¤ËÆÀ¤é¤ì¤ë¥¢¥¤¥Æ¥à¤Î¾®¥«¥Æ¥´¥êID / sval of prize */
 } arena_type;
 
 

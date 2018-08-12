@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file wizard2.c
- * @brief ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®å‡¦ç†(ç‰¹åˆ¥å‡¦ç†ä¸­å¿ƒ) / Wizard commands
+ * @brief ¥¦¥£¥¶¡¼¥É¥â¡¼¥É¤Î½èÍı(ÆÃÊÌ½èÍıÃæ¿´) / Wizard commands
  * @date 2014/09/07
  * @author
  * Copyright (c) 1997 Ben Harrison, and others<br>
@@ -14,8 +14,8 @@
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ’ãƒƒãƒˆãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã‚Šç›´ã™ / Roll the hitdie -- aux of do_cmd_rerate()
- * @return ãªã—
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥Ò¥Ã¥È¥À¥¤¥¹¤ò¿¶¤êÄ¾¤¹ / Roll the hitdie -- aux of do_cmd_rerate()
+ * @return ¤Ê¤·
  */
 void do_cmd_rerate_aux(void)
 {
@@ -52,9 +52,9 @@ void do_cmd_rerate_aux(void)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ’ãƒƒãƒˆãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã‚Šç›´ã—ãŸå¾Œæ˜ç¤ºã‚’è¡Œã† / Hack -- Rerate Hitpoints
- * @param display TRUEãªã‚‰ã°ä½“åŠ›ãƒ©ãƒ³ã‚¯ã‚’æ˜ç¤ºã™ã‚‹
- * @return ãªã—
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥Ò¥Ã¥È¥À¥¤¥¹¤ò¿¶¤êÄ¾¤·¤¿¸åÌÀ¼¨¤ò¹Ô¤¦ / Hack -- Rerate Hitpoints
+ * @param display TRUE¤Ê¤é¤ĞÂÎÎÏ¥é¥ó¥¯¤òÌÀ¼¨¤¹¤ë
+ * @return ¤Ê¤·
  */
 void do_cmd_rerate(bool display)
 {
@@ -81,12 +81,12 @@ void do_cmd_rerate(bool display)
 	/* Message */
 	if (display)
 	{
-		msg_format(_("ç¾åœ¨ã®ä½“åŠ›ãƒ©ãƒ³ã‚¯ã¯ %d/100 ã§ã™ã€‚", "Your life rate is %d/100 now."), percent);
+		msg_format(_("¸½ºß¤ÎÂÎÎÏ¥é¥ó¥¯¤Ï %d/100 ¤Ç¤¹¡£", "Your life rate is %d/100 now."), percent);
 		p_ptr->knowledge |= KNOW_HPRATE;
 	}
 	else
 	{
-		msg_print(_("ä½“åŠ›ãƒ©ãƒ³ã‚¯ãŒå¤‰ã‚ã£ãŸã€‚", "Life rate is changed."));
+		msg_print(_("ÂÎÎÏ¥é¥ó¥¯¤¬ÊÑ¤ï¤Ã¤¿¡£", "Life rate is changed."));
 		p_ptr->knowledge &= ~(KNOW_HPRATE);
 	}
 }
@@ -95,8 +95,8 @@ void do_cmd_rerate(bool display)
 #ifdef ALLOW_WIZARD
 
 /*!
- * @brief å¿…ãšæˆåŠŸã™ã‚‹ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ç”¨æ¬¡å…ƒã®æ‰‰å‡¦ç† / Wizard Dimension Door
- * @return å®Ÿéš›ã«ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚’è¡Œã£ãŸã‚‰TRUEã‚’è¿”ã™
+ * @brief É¬¤ºÀ®¸ù¤¹¤ë¥¦¥£¥¶¡¼¥É¥â¡¼¥ÉÍÑ¼¡¸µ¤ÎÈâ½èÍı / Wizard Dimension Door
+ * @return ¼Âºİ¤Ë¥Æ¥ì¥İ¡¼¥È¤ò¹Ô¤Ã¤¿¤éTRUE¤òÊÖ¤¹
  */
 static bool wiz_dimension_door(void)
 {
@@ -108,8 +108,8 @@ static bool wiz_dimension_door(void)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤æ—¥æ•°ã‚’å¤‰æ›´ã™ã‚‹ / Set gametime.
- * @return å®Ÿéš›ã«å¤‰æ›´ã‚’è¡Œã£ãŸã‚‰TRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤Æü¿ô¤òÊÑ¹¹¤¹¤ë / Set gametime.
+ * @return ¼Âºİ¤ËÊÑ¹¹¤ò¹Ô¤Ã¤¿¤éTRUE¤òÊÖ¤¹
  */
 static bool set_gametime(void)
 {
@@ -138,8 +138,8 @@ static bool set_gametime(void)
 
 
 /*!
- * @brief æŒ‡å®šã•ã‚ŒãŸIDã®å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹ / Create the artifact of the specified number
- * @return ãªã—
+ * @brief »ØÄê¤µ¤ì¤¿ID¤Î¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤òÀ¸À®¤¹¤ë / Create the artifact of the specified number
+ * @return ¤Ê¤·
  */
 static void wiz_create_named_art(void)
 {
@@ -163,8 +163,8 @@ static void wiz_create_named_art(void)
 
 
 /*!
- * @brief ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ç”¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èª¿æŸ» / Hack -- quick debugging hook
- * @return ãªã—
+ * @brief ¥¦¥£¥¶¡¼¥É¥â¡¼¥ÉÍÑ¥â¥ó¥¹¥¿¡¼Ä´ºº / Hack -- quick debugging hook
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_hack_ben(void)
 {
@@ -177,8 +177,8 @@ static void do_cmd_wiz_hack_ben(void)
 #ifdef MONSTER_HORDES
 
 /*!
- * @brief ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ç”¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¾¤ã‚Œç”Ÿæˆ / Summon a horde of monsters
- * @return ãªã—
+ * @brief ¥¦¥£¥¶¡¼¥É¥â¡¼¥ÉÍÑ¥â¥ó¥¹¥¿¡¼¤Î·²¤ìÀ¸À® / Summon a horde of monsters
+ * @return ¤Ê¤·
  */
 static void do_cmd_summon_horde(void)
 {
@@ -197,8 +197,8 @@ static void do_cmd_summon_horde(void)
 #endif /* MONSTER_HORDES */
 
 /*!
- * @brief 32ãƒ“ãƒƒãƒˆå¤‰æ•°ã®ãƒ“ãƒƒãƒˆé…åˆ—ã‚’ä¸¦ã¹ã¦æç”»ã™ã‚‹ / Output a long int in binary format.
- * @return ãªã—
+ * @brief 32¥Ó¥Ã¥ÈÊÑ¿ô¤Î¥Ó¥Ã¥ÈÇÛÎó¤òÊÂ¤Ù¤ÆÉÁ²è¤¹¤ë / Output a long int in binary format.
+ * @return ¤Ê¤·
  */
 static void prt_binary(u32b flags, int row, int col)
 {
@@ -223,15 +223,15 @@ static void prt_binary(u32b flags, int row, int col)
 }
 
 
-#define K_MAX_DEPTH 110 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã®éšå±¤æ¯ç”Ÿæˆç‡ã‚’è¡¨ç¤ºã™ã‚‹æœ€å¤§éš */
+#define K_MAX_DEPTH 110 /*!< ¥¢¥¤¥Æ¥à¤Î³¬ÁØËèÀ¸À®Î¨¤òÉ½¼¨¤¹¤ëºÇÂç³¬ */
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®éšå±¤æ¯ç”Ÿæˆç‡ã‚’è¡¨ç¤ºã™ã‚‹ / Output a rarity graph for a type of object.
- * @param tval ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å¤§é …ç›®ID
- * @param sval ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å°é …ç›®ID
- * @param row è¡¨ç¤ºåˆ—
- * @param col è¡¨ç¤ºè¡Œ
- * @return ãªã—
+ * @brief ¥¢¥¤¥Æ¥à¤Î³¬ÁØËèÀ¸À®Î¨¤òÉ½¼¨¤¹¤ë / Output a rarity graph for a type of object.
+ * @param tval ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÂç¹àÌÜID
+ * @param sval ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î¾®¹àÌÜID
+ * @param row É½¼¨Îó
+ * @param col É½¼¨¹Ô
+ * @return ¤Ê¤·
  */
 static void prt_alloc(OBJECT_TYPE_VALUE tval, OBJECT_SUBTYPE_VALUE sval, TERM_POSITION row, TERM_POSITION col)
 {
@@ -320,9 +320,9 @@ static void prt_alloc(OBJECT_TYPE_VALUE tval, OBJECT_SUBTYPE_VALUE sval, TERM_PO
 }
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è·æ¥­ã‚’å¤‰æ›´ã™ã‚‹
- * @return ãªã—
- * @todo é­”æ³•é ˜åŸŸã®å†é¸æŠãªã©ãŒã¾ã ä¸å®Œå…¨ã€è¦å®Ÿè£…ã€‚
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î¿¦¶È¤òÊÑ¹¹¤¹¤ë
+ * @return ¤Ê¤·
+ * @todo ËâË¡ÎÎ°è¤ÎºÆÁªÂò¤Ê¤É¤¬¤Ş¤ÀÉÔ´°Á´¡¢Í×¼ÂÁõ¡£
  */
 static void do_cmd_wiz_reset_class(void)
 {
@@ -359,8 +359,8 @@ static void do_cmd_wiz_reset_class(void)
 
 
 /*!
- * @brief ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ç”¨å‡¦ç†ã¨ã—ã¦ã‚¿ãƒ¼ã‚²ãƒƒãƒˆä¸­ã®ç›¸æ‰‹ã‚’ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒãƒƒã‚¯ã™ã‚‹ / Hack -- Teleport to the target
- * @return ãªã—
+ * @brief ¥¦¥£¥¶¡¼¥É¥â¡¼¥ÉÍÑ½èÍı¤È¤·¤Æ¥¿¡¼¥²¥Ã¥ÈÃæ¤ÎÁê¼ê¤ò¥Æ¥ì¥İ¡¼¥È¥Ğ¥Ã¥¯¤¹¤ë / Hack -- Teleport to the target
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_bamf(void)
 {
@@ -373,9 +373,9 @@ static void do_cmd_wiz_bamf(void)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾èƒ½åŠ›å€¤ã‚’èª¿æ•´ã™ã‚‹
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î¸½Ç½ÎÏÃÍ¤òÄ´À°¤¹¤ë
  * Aux function for "do_cmd_wiz_change()".	-RAK-
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_change_aux(void)
 {
@@ -415,7 +415,7 @@ static void do_cmd_wiz_change_aux(void)
 	sprintf(tmp_val, "%d", WEAPON_EXP_MASTER);
 
 	/* Query */
-	if (!get_string(_("ç†Ÿç·´åº¦: ", "Proficiency: "), tmp_val, 9)) return;
+	if (!get_string(_("½ÏÎıÅÙ: ", "Proficiency: "), tmp_val, 9)) return;
 
 	/* Extract */
 	tmp_s16b = (s16b)atoi(tmp_val);
@@ -485,9 +485,9 @@ static void do_cmd_wiz_change_aux(void)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾èƒ½åŠ›å€¤ã‚’èª¿æ•´ã™ã‚‹(ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³)
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î¸½Ç½ÎÏÃÍ¤òÄ´À°¤¹¤ë(¥á¥¤¥ó¥ë¡¼¥Á¥ó)
  * Change various "permanent" player variables.
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_change(void)
 {
@@ -500,10 +500,10 @@ static void do_cmd_wiz_change(void)
 
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®è©³ç´°ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’è¡¨ç¤ºã™ã‚‹ / 
+ * @brief ¥¢¥¤¥Æ¥à¤Î¾ÜºÙ¥¹¥Æ¡¼¥¿¥¹¤òÉ½¼¨¤¹¤ë / 
  * Change various "permanent" player variables.
- * @param o_ptr è©³ç´°ã‚’è¡¨ç¤ºã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @param o_ptr ¾ÜºÙ¤òÉ½¼¨¤¹¤ë¥¢¥¤¥Æ¥à¾ğÊó¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  * @details
  * Wizard routines for creating objects		-RAK-
  * And for manipulating them!                   -Bernd-
@@ -636,16 +636,16 @@ static void wiz_display_item(object_type *o_ptr)
 
 
 /*!
- * ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å¤§é …ç›®IDã®ç¨®åˆ¥åã‚’ã¾ã¨ã‚ã‚‹æ§‹é€ ä½“ / A structure to hold a tval and its description
+ * ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÂç¹àÌÜID¤Î¼ïÊÌÌ¾¤ò¤Ş¤È¤á¤ë¹½Â¤ÂÎ / A structure to hold a tval and its description
  */
 typedef struct tval_desc
 {
-	int        tval; /*!< å¤§é …ç›®ã®ID */
-	cptr       desc; /*!< å¤§é …ç›®å */
+	int        tval; /*!< Âç¹àÌÜ¤ÎID */
+	cptr       desc; /*!< Âç¹àÌÜÌ¾ */
 } tval_desc;
 
 /*!
- * ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å¤§é …ç›®IDã®ç¨®åˆ¥åå®šç¾© / A list of tvals and their textual names
+ * ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÂç¹àÌÜID¤Î¼ïÊÌÌ¾ÄêµÁ / A list of tvals and their textual names
  */
 static tval_desc tvals[] =
 {
@@ -705,10 +705,10 @@ static tval_desc tvals[] =
 
 
 /*!
- * @brief nameãƒãƒƒãƒ•ã‚¡å†…ã‹ã‚‰ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ åã‚’è¿”ã™ / Strip an "object name" into a buffer
- * @param buf ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æ ¼ç´å…ˆã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param k_idx ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ID
- * @return ãªã—
+ * @brief name¥Ğ¥Ã¥Õ¥¡Æâ¤«¤é¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÌ¾¤òÊÖ¤¹ / Strip an "object name" into a buffer
+ * @param buf ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à³ÊÇ¼Àè¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param k_idx ¥Ù¡¼¥¹¥¢¥¤¥Æ¥àID
+ * @return ¤Ê¤·
  */
 void strip_name(char *buf, KIND_OBJECT_IDX k_idx)
 {
@@ -737,9 +737,9 @@ void strip_name(char *buf, KIND_OBJECT_IDX k_idx)
 
 
 /*!
- * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ç”Ÿæˆã®ãŸã‚ã«å¤§é …ç›®IDã¨å°é …ç›®IDã‚’å–å¾—ã™ã‚‹ /
+ * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î¥¦¥£¥¶¡¼¥ÉÀ¸À®¤Î¤¿¤á¤ËÂç¹àÌÜID¤È¾®¹àÌÜID¤ò¼èÆÀ¤¹¤ë /
  * Specify tval and sval (type and subtype of object) originally
- * @return ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ID
+ * @return ¥Ù¡¼¥¹¥¢¥¤¥Æ¥àID
  * @details
  * by RAK, heavily modified by -Bernd-
  * This function returns the k_idx of an object type, or zero if failed
@@ -843,9 +843,9 @@ static KIND_OBJECT_IDX wiz_create_itemtype(void)
 
 
 /*!
- * @briefã‚¢ã‚¤ãƒ†ãƒ ã®åŸºç¤èƒ½åŠ›å€¤ã‚’èª¿æ•´ã™ã‚‹ / Tweak an item
- * @param o_ptr èª¿æ•´ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief¥¢¥¤¥Æ¥à¤Î´ğÁÃÇ½ÎÏÃÍ¤òÄ´À°¤¹¤ë / Tweak an item
+ * @param o_ptr Ä´À°¤¹¤ë¥¢¥¤¥Æ¥à¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wiz_tweak_item(object_type *o_ptr)
 {
@@ -882,10 +882,10 @@ static void wiz_tweak_item(object_type *o_ptr)
 
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®è³ªã‚’é¸æŠã—ã¦å†ç”Ÿæˆã™ã‚‹ /
+ * @brief ¥¢¥¤¥Æ¥à¤Î¼Á¤òÁªÂò¤·¤ÆºÆÀ¸À®¤¹¤ë /
  * Apply magic to an item or turn it into an artifact. -Bernd-
- * @param o_ptr å†ç”Ÿæˆã®å¯¾è±¡ã¨ãªã‚‹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @param o_ptr ºÆÀ¸À®¤ÎÂĞ¾İ¤È¤Ê¤ë¥¢¥¤¥Æ¥à¾ğÊó¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wiz_reroll_item(object_type *o_ptr)
 {
@@ -1017,10 +1017,10 @@ static void wiz_reroll_item(object_type *o_ptr)
 
 
 /*!
- * @brief æ¤œæŸ»å¯¾è±¡ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŸºæº–ã¨ã—ãŸç”Ÿæˆãƒ†ã‚¹ãƒˆã‚’è¡Œã† /
+ * @brief ¸¡ººÂĞ¾İ¤Î¥¢¥¤¥Æ¥à¤ò´ğ½à¤È¤·¤¿À¸À®¥Æ¥¹¥È¤ò¹Ô¤¦ /
  * Try to create an item again. Output some statistics.    -Bernd-
- * @param o_ptr ç”Ÿæˆãƒ†ã‚¹ãƒˆã®åŸºæº–ã¨ãªã‚‹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @param o_ptr À¸À®¥Æ¥¹¥È¤Î´ğ½à¤È¤Ê¤ë¥¢¥¤¥Æ¥à¾ğÊó¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  * The statistics are correct now.  We acquire a clean grid, and then
  * repeatedly place an object in this grid, copying it into an item
  * holder, and then deleting the object.  We fiddle with the artifact
@@ -1187,10 +1187,10 @@ static void wiz_statistics(object_type *o_ptr)
 
 
 /*!
- * @brief æ¤œæŸ»å¯¾è±¡ã®ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°ã‚’å¤‰æ›´ã™ã‚‹ /
+ * @brief ¸¡ººÂĞ¾İ¤Î¥¢¥¤¥Æ¥à¤Î¿ô¤òÊÑ¹¹¤¹¤ë /
  * Change the quantity of a the item
- * @param o_ptr å¤‰æ›´ã™ã‚‹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @param o_ptr ÊÑ¹¹¤¹¤ë¥¢¥¤¥Æ¥à¾ğÊó¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wiz_quantity_item(object_type *o_ptr)
 {
@@ -1229,9 +1229,9 @@ static void wiz_quantity_item(object_type *o_ptr)
 }
 
 /*!
- * @brief é’é­”å°å¸«ã®é­”æ³•ã‚’å…¨ã¦ç¿’å¾—æ¸ˆã¿ã«ã™ã‚‹ /
+ * @brief ÀÄËâÆ³»Õ¤ÎËâË¡¤òÁ´¤Æ½¬ÆÀºÑ¤ß¤Ë¤¹¤ë /
  * debug command for blue mage
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_blue_mage(void)
 {
@@ -1262,9 +1262,9 @@ static void do_cmd_wiz_blue_mage(void)
 
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ æ¤œæŸ»ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥¢¥¤¥Æ¥à¸¡ºº¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
  * Play with an item. Options include:
- * @return ãªã—
+ * @return ¤Ê¤·
  * @details 
  *   - Output statistics (via wiz_roll_item)<br>
  *   - Reroll item (via wiz_reroll_item)<br>
@@ -1400,9 +1400,9 @@ static void do_cmd_wiz_play(void)
 
 
 /*!
- * @brief ä»»æ„ã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief Ç¤°Õ¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÀ¸À®¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
  * Wizard routine for creating objects		-RAK-
- * @return ãªã—
+ * @return ¤Ê¤·
  * @details
  * Heavily modified to allow magification and artifactification  -Bernd-
  *
@@ -1471,9 +1471,9 @@ static void wiz_create_item(void)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å®Œå…¨å›å¾©ã™ã‚‹ /
+ * @brief ¥×¥ì¥¤¥ä¡¼¤ò´°Á´²óÉü¤¹¤ë /
  * Cure everything instantly
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_cure_all(void)
 {
@@ -1529,9 +1529,9 @@ static void do_cmd_wiz_cure_all(void)
 
 
 /*!
- * @brief ä»»æ„ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åŠã³éšå±¤ã«é£›ã¶ /
+ * @brief Ç¤°Õ¤Î¥À¥ó¥¸¥ç¥óµÚ¤Ó³¬ÁØ¤ËÈô¤Ö /
  * Go to any level
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_jump(void)
 {
@@ -1612,9 +1612,9 @@ static void do_cmd_wiz_jump(void)
 
 
 /*!
- * @brief å…¨ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã‚’é‘‘å®šæ¸ˆã¿ã«ã™ã‚‹ /
+ * @brief Á´¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ò´ÕÄêºÑ¤ß¤Ë¤¹¤ë /
  * Become aware of a lot of objects
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_learn(void)
 {
@@ -1645,10 +1645,10 @@ static void do_cmd_wiz_learn(void)
 
 
 /*!
- * @brief ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã«åˆã£ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«å¬å–šã™ã‚‹ /
+ * @brief ¸½ºß¤Î¥Õ¥í¥¢¤Ë¹ç¤Ã¤¿¥â¥ó¥¹¥¿¡¼¤ò¥é¥ó¥À¥à¤Ë¾¤´­¤¹¤ë /
  * Summon some creatures
- * @param num ç”Ÿæˆå‡¦ç†å›æ•°
- * @return ãªã—
+ * @param num À¸À®½èÍı²ó¿ô
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_summon(int num)
 {
@@ -1663,10 +1663,10 @@ static void do_cmd_wiz_summon(int num)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ç¨®æ—IDã‚’æŒ‡å®šã—ã¦æ•µå¯¾çš„ã«å¬å–šã™ã‚‹ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤ò¼ïÂ²ID¤ò»ØÄê¤·¤ÆÅ¨ÂĞÅª¤Ë¾¤´­¤¹¤ë /
  * Summon a creature of the specified type
- * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ãªã—
+ * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return ¤Ê¤·
  * @details
  * XXX XXX XXX This function is rather dangerous
  */
@@ -1677,10 +1677,10 @@ static void do_cmd_wiz_named(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ç¨®æ—IDã‚’æŒ‡å®šã—ã¦ãƒšãƒƒãƒˆå¬å–šã™ã‚‹ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤ò¼ïÂ²ID¤ò»ØÄê¤·¤Æ¥Ú¥Ã¥È¾¤´­¤¹¤ë /
  * Summon a creature of the specified type
- * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ãªã—
+ * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return ¤Ê¤·
  * @details
  * XXX XXX XXX This function is rather dangerous
  */
@@ -1692,9 +1692,9 @@ static void do_cmd_wiz_named_friendly(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¿‘è¾ºã®å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ¶ˆå»ã™ã‚‹ /
+ * @brief ¥×¥ì¥¤¥ä¡¼¶áÊÕ¤ÎÁ´¥â¥ó¥¹¥¿¡¼¤ò¾Ãµî¤¹¤ë /
  * Hack -- Delete all nearby monsters
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_zap(void)
 {
@@ -1730,9 +1730,9 @@ static void do_cmd_wiz_zap(void)
 
 
 /*!
- * @brief ãƒ•ãƒ­ã‚¢ã«å­˜åœ¨ã™ã‚‹å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ¶ˆå»ã™ã‚‹ /
+ * @brief ¥Õ¥í¥¢¤ËÂ¸ºß¤¹¤ëÁ´¥â¥ó¥¹¥¿¡¼¤ò¾Ãµî¤¹¤ë /
  * Hack -- Delete all monsters
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_zap_all(void)
 {
@@ -1764,9 +1764,9 @@ static void do_cmd_wiz_zap_all(void)
 
 
 /*!
- * @brief æŒ‡å®šã•ã‚ŒãŸåœ°ç‚¹ã®åœ°å½¢IDã‚’å¤‰æ›´ã™ã‚‹ /
+ * @brief »ØÄê¤µ¤ì¤¿ÃÏÅÀ¤ÎÃÏ·ÁID¤òÊÑ¹¹¤¹¤ë /
  * Create desired feature
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_wiz_create_feature(void)
 {
@@ -1786,7 +1786,7 @@ static void do_cmd_wiz_create_feature(void)
 	sprintf(tmp_val, "%d", prev_feat);
 
 	/* Query */
-	if (!get_string(_("åœ°å½¢: ", "Feature: "), tmp_val, 3)) return;
+	if (!get_string(_("ÃÏ·Á: ", "Feature: "), tmp_val, 3)) return;
 
 	/* Extract */
 	tmp_feat = (IDX)atoi(tmp_val);
@@ -1797,7 +1797,7 @@ static void do_cmd_wiz_create_feature(void)
 	sprintf(tmp_val, "%d", prev_mimic);
 
 	/* Query */
-	if (!get_string(_("åœ°å½¢ (mimic): ", "Feature (mimic): "), tmp_val, 3)) return;
+	if (!get_string(_("ÃÏ·Á (mimic): ", "Feature (mimic): "), tmp_val, 3)) return;
 
 	/* Extract */
 	tmp_mimic = (IDX)atoi(tmp_val);
@@ -1833,9 +1833,9 @@ static void do_cmd_wiz_create_feature(void)
 #define NUM_O_BIT 32
 
 /*!
- * @brief ç¾åœ¨ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šã‚’ãƒ€ãƒ³ãƒ—å‡ºåŠ›ã™ã‚‹ /
+ * @brief ¸½ºß¤Î¥ª¥×¥·¥ç¥óÀßÄê¤ò¥À¥ó¥×½ĞÎÏ¤¹¤ë /
  * Hack -- Dump option bits usage
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static void do_cmd_dump_options(void)
 {
@@ -1856,7 +1856,7 @@ static void do_cmd_dump_options(void)
 	/* Oops */
 	if (!fff)
 	{
-		msg_format(_("ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to open file %s."), buf);
+		msg_format(_("¥Õ¥¡¥¤¥ë %s ¤ò³«¤±¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to open file %s."), buf);
 		msg_print(NULL);
 		return;
 	}
@@ -1904,7 +1904,7 @@ static void do_cmd_dump_options(void)
 	/* Close it */
 	my_fclose(fff);
 
-	msg_format(_("ã‚ªãƒ—ã‚·ãƒ§ãƒ³bitä½¿ç”¨çŠ¶æ³ã‚’ãƒ•ã‚¡ã‚¤ãƒ« %s ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Option bits usage dump saved to file %s."), buf);
+	msg_format(_("¥ª¥×¥·¥ç¥óbit»ÈÍÑ¾õ¶·¤ò¥Õ¥¡¥¤¥ë %s ¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Option bits usage dump saved to file %s."), buf);
 }
 
 
@@ -1927,10 +1927,10 @@ extern void do_cmd_debug(void);
 
 
 /*!
- * @brief ãƒ‡ãƒãƒƒã‚°ã‚³ãƒãƒ³ãƒ‰ã‚’é¸æŠã™ã‚‹å‡¦ç†ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥Ç¥Ğ¥Ã¥°¥³¥Ş¥ó¥É¤òÁªÂò¤¹¤ë½èÍı¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
  * Ask for and parse a "debug command"
  * The "command_arg" may have been set.
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 void do_cmd_debug(void)
 {

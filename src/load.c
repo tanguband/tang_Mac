@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file load.c
- * @brief ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å‡¦ç† / Purpose: support for loading savefiles -BEN-
+ * @brief ¥»¡¼¥Ö¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß½èÍı / Purpose: support for loading savefiles -BEN-
  * @date 2014/07/07
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
@@ -79,12 +79,12 @@ static u32b	x_check = 0L;
 static byte kanji_code = 0;
 
 /*!
- * @brief å¤‰æ„šè›®æ€’ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ¯”è¼ƒå‡¦ç† / This function determines if the version of the savefile currently being read is older than version "major.minor.patch.extra".
- * @param major ãƒ¡ã‚¸ãƒ£ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @param minor ãƒã‚¤ãƒŠãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @param patch ãƒ‘ãƒƒãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @param extra ã‚¨ã‚¯ã‚¹ãƒˆãƒ©ãƒ‘ãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @return ç¾åœ¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šå€¤ãŒå¤ã„ãªã‚‰true
+ * @brief ÊÑ¶òÈÚÅÜ¤Î¥Ğ¡¼¥¸¥ç¥óÈæ³Ó½èÍı / This function determines if the version of the savefile currently being read is older than version "major.minor.patch.extra".
+ * @param major ¥á¥¸¥ã¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
+ * @param minor ¥Ş¥¤¥Ê¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
+ * @param patch ¥Ñ¥Ã¥Á¥Ğ¡¼¥¸¥ç¥óÃÍ
+ * @param extra ¥¨¥¯¥¹¥È¥é¥Ñ¡¼¥¸¥ç¥óÃÍ
+ * @return ¸½ºß¤Î¥Ğ¡¼¥¸¥ç¥ó¤è¤êÃÍ¤¬¸Å¤¤¤Ê¤étrue
  */
 static bool h_older_than(byte major, byte minor, byte patch, byte extra)
 {
@@ -110,11 +110,11 @@ static bool h_older_than(byte major, byte minor, byte patch, byte extra)
 
 
 /*!
- * @brief Zangbandã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ¯”è¼ƒå‡¦ç† / The above function, adapted for Zangband
- * @param x ãƒ¡ã‚¸ãƒ£ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @param y ãƒã‚¤ãƒŠãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @param z ãƒ‘ãƒƒãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
- * @return ç¾åœ¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šå€¤ãŒå¤ã„ãªã‚‰true
+ * @brief Zangband¤Î¥Ğ¡¼¥¸¥ç¥óÈæ³Ó½èÍı / The above function, adapted for Zangband
+ * @param x ¥á¥¸¥ã¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
+ * @param y ¥Ş¥¤¥Ê¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
+ * @param z ¥Ñ¥Ã¥Á¥Ğ¡¼¥¸¥ç¥óÃÍ
+ * @return ¸½ºß¤Î¥Ğ¡¼¥¸¥ç¥ó¤è¤êÃÍ¤¬¸Å¤¤¤Ê¤étrue
  */
 static bool z_older_than(byte x, byte y, byte z)
 {
@@ -136,9 +136,9 @@ static bool z_older_than(byte x, byte y, byte z)
 
 
 /*!
- * @brief ã‚²ãƒ¼ãƒ ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ / Hack -- Show information on the screen, one line at a time.
- * @param msg è¡¨ç¤ºæ–‡å­—åˆ—
- * @return ãªã—
+ * @brief ¥²¡¼¥à¥¹¥¯¥ê¡¼¥ó¤Ë¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë / Hack -- Show information on the screen, one line at a time.
+ * @param msg É½¼¨Ê¸»úÎó
+ * @return ¤Ê¤·
  * @details
  * Avoid the top two lines, to avoid interference with "msg_print()".
  */
@@ -158,8 +158,8 @@ static void note(cptr msg)
 
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰1ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚€
- * @return èª­ã¿è¾¼ã‚“ã ãƒã‚¤ãƒˆå€¤
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤é1¥Ğ¥¤¥È¤òÆÉ¤ß¹ş¤à
+ * @return ÆÉ¤ß¹ş¤ó¤À¥Ğ¥¤¥ÈÃÍ
  * @details
  * The following functions are used to load the basic building blocks
  * of savefiles.  They also maintain the "checksum" info for 2.7.0+
@@ -182,9 +182,9 @@ static byte sf_get(void)
 }
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰1ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
- * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤é1¥Ğ¥¤¥È¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
+ * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_byte(byte *ip)
 {
@@ -192,9 +192,9 @@ static void rd_byte(byte *ip)
 }
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ãªã—16bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
- * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ê¤·16bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
+ * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_u16b(u16b *ip)
 {
@@ -203,9 +203,9 @@ static void rd_u16b(u16b *ip)
 }
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ã¤ã16bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
- * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ä¤­16bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
+ * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_s16b(s16b *ip)
 {
@@ -213,9 +213,9 @@ static void rd_s16b(s16b *ip)
 }
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ãªã—32bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
- * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ê¤·32bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
+ * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_u32b(u32b *ip)
 {
@@ -226,9 +226,9 @@ static void rd_u32b(u32b *ip)
 }
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ã¤ã32bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
- * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ä¤­32bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
+ * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_s32b(s32b *ip)
 {
@@ -237,10 +237,10 @@ static void rd_s32b(s32b *ip)
 
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™ / Hack -- read a string
- * @param str èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
- * @param max æœ€å¤§èª­ã¿å–ã‚Šãƒã‚¤ãƒˆæ•°
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÊ¸»úÎó¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹ / Hack -- read a string
+ * @param str ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
+ * @param max ºÇÂçÆÉ¤ß¼è¤ê¥Ğ¥¤¥È¿ô
+ * @return ¤Ê¤·
  */
 static void rd_string(char *str, int max)
 {
@@ -285,10 +285,10 @@ static void rd_string(char *str, int max)
 
 	case 0:
 	{
-		/* ä¸æ˜ã®æ¼¢å­—ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ ã®æ¼¢å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ› */
+		/* ÉÔÌÀ¤Î´Á»ú¥³¡¼¥É¤«¤é¥·¥¹¥Æ¥à¤Î´Á»ú¥³¡¼¥É¤ËÊÑ´¹ */
 		byte code = codeconv(str);
 
-		/* æ¼¢å­—ã‚³ãƒ¼ãƒ‰ãŒåˆ¤æ˜ã—ãŸã‚‰ã€ãã‚Œã‚’è¨˜éŒ² */
+		/* ´Á»ú¥³¡¼¥É¤¬È½ÌÀ¤·¤¿¤é¡¢¤½¤ì¤òµ­Ï¿ */
 		if (code) kanji_code = code;
 
 		break;
@@ -302,9 +302,9 @@ static void rd_string(char *str, int max)
 
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡å®šãƒã‚¤ãƒˆåˆ†é£›ã°ã—ã¦é€²ã‚ã‚‹ / Hack -- strip some bytes
- * @param n ã‚¹ã‚­ãƒƒãƒ—ãƒã‚¤ãƒˆæ•°
- * @return ãªã—
+ * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤ò»ØÄê¥Ğ¥¤¥ÈÊ¬Èô¤Ğ¤·¤Æ¿Ê¤á¤ë / Hack -- strip some bytes
+ * @param n ¥¹¥­¥Ã¥×¥Ğ¥¤¥È¿ô
+ * @return ¤Ê¤·
  */
 static void strip_bytes(int n)
 {
@@ -317,9 +317,9 @@ static void strip_bytes(int n)
 #define OLD_MAX_MANE 22
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘ä»¶ã‚’èª­ã¿è¾¼ã‚€(å¤‰æ„šver1.5.0ä»¥å‰) / Read an object (Old method)
- * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆèª­ã¿å–ã‚Šå…ˆãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È£±·ï¤òÆÉ¤ß¹ş¤à(ÊÑ¶òver1.5.0°ÊÁ°) / Read an object (Old method)
+ * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥ÈÆÉ¤ß¼è¤êÀè¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  * @details
  * This function attempts to "repair" old savefiles, and to extract
  * the most up to date values for various object fields.
@@ -601,9 +601,9 @@ static void rd_item_old(object_type *o_ptr)
 
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€(ç¾ç‰ˆ) / Read an object (New method)
- * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¿å­˜å…ˆãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤òÆÉ¤ß¹ş¤à(¸½ÈÇ) / Read an object (New method)
+ * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥ÈÊİÂ¸Àè¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_item(object_type *o_ptr)
 {
@@ -811,9 +811,9 @@ static void rd_item(object_type *o_ptr)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’èª­ã¿è¾¼ã‚€(å¤‰æ„šver1.5.0ä»¥å‰) / Read a monster (Old method)
- * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä¿å­˜å…ˆãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥â¥ó¥¹¥¿¡¼¤òÆÉ¤ß¹ş¤à(ÊÑ¶òver1.5.0°ÊÁ°) / Read a monster (Old method)
+ * @param m_ptr ¥â¥ó¥¹¥¿¡¼ÊİÂ¸Àè¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_monster_old(monster_type *m_ptr)
 {
@@ -967,9 +967,9 @@ static void rd_monster_old(monster_type *m_ptr)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’èª­ã¿è¾¼ã‚€(ç¾ç‰ˆ) / Read a monster (New method)
- * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä¿å­˜å…ˆãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥â¥ó¥¹¥¿¡¼¤òÆÉ¤ß¹ş¤à(¸½ÈÇ) / Read a monster (New method)
+ * @param m_ptr ¥â¥ó¥¹¥¿¡¼ÊİÂ¸Àè¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void rd_monster(monster_type *m_ptr)
 {
@@ -1152,9 +1152,9 @@ static void rd_monster(monster_type *m_ptr)
 #define RF4_BR_WALL         0x04000000  /* Breathe Force */
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’èª­ã¿è¾¼ã‚€ / Read the monster lore
- * @param r_idx èª­ã¿è¾¼ã¿å…ˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @return ãªã—
+ * @brief ¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤òÆÉ¤ß¹ş¤à / Read the monster lore
+ * @param r_idx ÆÉ¤ß¹ş¤ßÀè¥â¥ó¥¹¥¿¡¼ID
+ * @return ¤Ê¤·
  */
 static void rd_lore(MONRACE_IDX r_idx)
 {
@@ -1275,10 +1275,10 @@ static void rd_lore(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief åº—ç½®ãã®ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€ / Add the item "o_ptr" to the inventory of the "Home"
- * @param st_ptr åº—èˆ—ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief Å¹ÃÖ¤­¤Î¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤òÆÉ¤ß¹ş¤à / Add the item "o_ptr" to the inventory of the "Home"
+ * @param st_ptr Å¹ÊŞ¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  * @details
  * In all cases, return the slot (or -1) where the object was placed
  *
@@ -1345,10 +1345,10 @@ static void home_carry(store_type *st_ptr, object_type *o_ptr)
 }
 
 /*!
- * @brief åº—èˆ—æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Read a store
- * @param town_number è¡—ID 
- * @param store_number åº—èˆ—ID
- * @return ã‚¨ãƒ©ãƒ¼ID
+ * @brief Å¹ÊŞ¾ğÊó¤òÆÉ¤ß¹ş¤à / Read a store
+ * @param town_number ³¹ID 
+ * @param store_number Å¹ÊŞID
+ * @return ¥¨¥é¡¼ID
  */
 static errr rd_store(int town_number, int store_number)
 {
@@ -1433,8 +1433,8 @@ static errr rd_store(int town_number, int store_number)
 
 
 /*!
- * @brief ä¹±æ•°çŠ¶æ…‹ã‚’èª­ã¿è¾¼ã‚€ / Read RNG state (added in 2.8.0)
- * @return ãªã—
+ * @brief Íğ¿ô¾õÂÖ¤òÆÉ¤ß¹ş¤à / Read RNG state (added in 2.8.0)
+ * @return ¤Ê¤·
  */
 static void rd_randomizer(void)
 {
@@ -1458,8 +1458,8 @@ static void rd_randomizer(void)
 
 
 /*!
- * @brief ã‚²ãƒ¼ãƒ ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã‚€ / Read options (ignore most pre-2.8.0 options)
- * @return ãªã—
+ * @brief ¥²¡¼¥à¥ª¥×¥·¥ç¥ó¤òÆÉ¤ß¹ş¤à / Read options (ignore most pre-2.8.0 options)
+ * @return ¤Ê¤·
  * @details
  * Note that the normal options are now stored as a set of 256 bit flags,
  * plus a set of 256 bit masks to indicate which bit flags were defined
@@ -1637,8 +1637,8 @@ static void rd_options(void)
 
 
 /*!
- * @brief ãƒ€ãƒŸãƒ¼æƒ…å ±ã‚¹ã‚­ãƒƒãƒ— / Hack -- strip the "ghost" info
- * @return ãªã—
+ * @brief ¥À¥ß¡¼¾ğÊó¥¹¥­¥Ã¥× / Hack -- strip the "ghost" info
+ * @return ¤Ê¤·
  * @details
  * XXX XXX XXX This is such a nasty hack it hurts.
  */
@@ -1655,8 +1655,8 @@ static void rd_ghost(void)
 
 
 /*!
- * @brief ã‚¯ã‚¤ãƒƒã‚¯ã‚¹ã‚¿ãƒ¼ãƒˆæƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Load quick start data
- * @return ãªã—
+ * @brief ¥¯¥¤¥Ã¥¯¥¹¥¿¡¼¥È¾ğÊó¤òÆÉ¤ß¹ş¤à / Load quick start data
+ * @return ¤Ê¤·
  */
 static void load_quick_start(void)
 {
@@ -1708,8 +1708,8 @@ static void load_quick_start(void)
 }
 
 /*!
- * @brief ãã®ä»–ã®æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Read the "extra" information
- * @return ãªã—
+ * @brief ¤½¤ÎÂ¾¤Î¾ğÊó¤òÆÉ¤ß¹ş¤à / Read the "extra" information
+ * @return ¤Ê¤·
  */
 static void rd_extra(void)
 {
@@ -2371,8 +2371,8 @@ static void rd_extra(void)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰€æŒå“æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Read the player inventory
- * @return ãªã—
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î½ê»ıÉÊ¾ğÊó¤òÆÉ¤ß¹ş¤à / Read the player inventory
+ * @return ¤Ê¤·
  * @details
  * Note that the inventory changed in Angband 2.7.4.  Two extra
  * pack slots were added and the equipment was rearranged.  Note
@@ -2439,7 +2439,7 @@ static errr rd_inventory(void)
 		else if (inven_cnt == INVEN_PACK)
 		{
 			/* Oops */
-			note(_("æŒã¡ç‰©ã®ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ãŒå¤šã™ãã‚‹ï¼", "Too many items in the inventory!"));
+			note(_("»ı¤ÁÊª¤ÎÃæ¤Î¥¢¥¤¥Æ¥à¤¬Â¿¤¹¤®¤ë¡ª", "Too many items in the inventory!"));
 
 			/* Fail */
 			return (54);
@@ -2471,8 +2471,8 @@ static errr rd_inventory(void)
 
 
 /*!
- * @brief ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ­ã‚°ã‚’èª­ã¿è¾¼ã‚€ / Read the saved messages
- * @return ãªã—
+ * @brief ¥á¥Ã¥»¡¼¥¸¥í¥°¤òÆÉ¤ß¹ş¤à / Read the saved messages
+ * @return ¤Ê¤·
  */
 static void rd_messages(void)
 {
@@ -2540,8 +2540,8 @@ static void rd_messages(void)
 #define QUEST_ROYAL_CRYPT 28
 
 /*!
- * @brief ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ­ã‚°ã‚’èª­ã¿è¾¼ã‚€ / Read the dungeon (old method)
- * @return ãªã—
+ * @brief ¥á¥Ã¥»¡¼¥¸¥í¥°¤òÆÉ¤ß¹ş¤à / Read the dungeon (old method)
+ * @return ¤Ê¤·
  * @details
  * The monsters/objects must be loaded in the same order
  * that they were stored, since the actual indexes matter.
@@ -2589,7 +2589,7 @@ static errr rd_dungeon_old(void)
 	rd_s16b(&tmp16s); /* max_panel_cols */
 
 #if 0
-	if (!p_ptr->y || !p_ptr->x) {p_ptr->y = 10;p_ptr->x = 10;}/* ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆã«å¤±æ•—ã—ã¦ã‚»ã‚°ãƒ¡ãƒ³ãƒ†ã£ãŸã¨ãã®å¾©æ—§ç”¨ */
+	if (!p_ptr->y || !p_ptr->x) {p_ptr->y = 10;p_ptr->x = 10;}/* ¥À¥ó¥¸¥ç¥óÀ¸À®¤Ë¼ºÇÔ¤·¤Æ¥»¥°¥á¥ó¥Æ¤Ã¤¿¤È¤­¤ÎÉüµìÍÑ */
 #endif
 
 	/* Maximal size */
@@ -2840,7 +2840,7 @@ static errr rd_dungeon_old(void)
 	/* Verify maximum */
 	if (limit > max_o_idx)
 	{
-		note(format(_("ã‚¢ã‚¤ãƒ†ãƒ ã®é…åˆ—ãŒå¤§ãã™ãã‚‹(%d)ï¼", "Too many (%d) object entries!"), limit));
+		note(format(_("¥¢¥¤¥Æ¥à¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë(%d)¡ª", "Too many (%d) object entries!"), limit));
 		return (151);
 	}
 
@@ -2858,7 +2858,7 @@ static errr rd_dungeon_old(void)
 		/* Oops */
 		if (i != o_idx)
 		{
-			note(format(_("ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ã‚¨ãƒ©ãƒ¼ (%d <> %d)", "Object allocation error (%d <> %d)"), i, o_idx));
+			note(format(_("¥¢¥¤¥Æ¥àÇÛÃÖ¥¨¥é¡¼ (%d <> %d)", "Object allocation error (%d <> %d)"), i, o_idx));
 			return (152);
 		}
 
@@ -2910,7 +2910,7 @@ static errr rd_dungeon_old(void)
 	/* Hack -- verify */
 	if (limit > max_m_idx)
 	{
-		note(format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®é…åˆ—ãŒå¤§ãã™ãã‚‹(%d)ï¼", "Too many (%d) monster entries!"), limit));
+		note(format(_("¥â¥ó¥¹¥¿¡¼¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë(%d)¡ª", "Too many (%d) monster entries!"), limit));
 		return (161);
 	}
 
@@ -2926,7 +2926,7 @@ static errr rd_dungeon_old(void)
 		/* Oops */
 		if (i != m_idx)
 		{
-			note(format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…ç½®ã‚¨ãƒ©ãƒ¼ (%d <> %d)", "Monster allocation error (%d <> %d)"), i, m_idx));
+			note(format(_("¥â¥ó¥¹¥¿¡¼ÇÛÃÖ¥¨¥é¡¼ (%d <> %d)", "Monster allocation error (%d <> %d)"), i, m_idx));
 			return (162);
 		}
 
@@ -2962,14 +2962,14 @@ static errr rd_dungeon_old(void)
 
 
 /*!
- * @brief ä¿å­˜ã•ã‚ŒãŸãƒ•ãƒ­ã‚¢ã‚’èª­ã¿è¾¼ã‚€ / Read the saved floor
- * @return infoèª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @brief ÊİÂ¸¤µ¤ì¤¿¥Õ¥í¥¢¤òÆÉ¤ß¹ş¤à / Read the saved floor
+ * @return infoÆÉ¤ß¹ş¤ß¥¨¥é¡¼¥³¡¼¥É
  * @details
- * ã“ã®é–¢æ•°ã¯ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®äº’æ›æ€§ã‚’ä¿ã¤ãŸã‚ã«å¤šãã®ãƒ‡ãƒ¼ã‚¿æ”¹å¤‰å‡¦ç†ã‚’å‚™ãˆã¦ã„ã‚‹ã€‚
- * ç¾åœ¨ç¢ºèªã—ã¦ã„ã‚‹å‡¦ç†ã¯ä»¥ä¸‹ã®é€šã‚Šã€
+ * ¤³¤Î´Ø¿ô¤Ï¡¢¥»¡¼¥Ö¥Ç¡¼¥¿¤Î¸ß´¹À­¤òÊİ¤Ä¤¿¤á¤ËÂ¿¤¯¤Î¥Ç¡¼¥¿²şÊÑ½èÍı¤òÈ÷¤¨¤Æ¤¤¤ë¡£
+ * ¸½ºß³ÎÇ§¤·¤Æ¤¤¤ë½èÍı¤Ï°Ê²¼¤ÎÄÌ¤ê¡¢
  * <ul>
- * <li>1.7.0.2ã§8bitã ã£ãŸcave_typeã®feat,mimicã®IDå€¤ã‚’16bitã«æ‹¡å¼µã™ã‚‹å‡¦ç†ã€‚</li>
- * <li>1.7.0.8ã¾ã§ã«å»ƒæ­¢ã€IDãªã©ã‚’å·®ã—æ›¿ãˆãŸã‚¯ã‚¨ã‚¹ãƒˆç•ªå·ã‚’ç½®æ›ã™ã‚‹å‡¦ç†ã€‚</li>
+ * <li>1.7.0.2¤Ç8bit¤À¤Ã¤¿cave_type¤Îfeat,mimic¤ÎIDÃÍ¤ò16bit¤Ë³ÈÄ¥¤¹¤ë½èÍı¡£</li>
+ * <li>1.7.0.8¤Ş¤Ç¤ËÇÑ»ß¡¢ID¤Ê¤É¤òº¹¤·ÂØ¤¨¤¿¥¯¥¨¥¹¥ÈÈÖ¹æ¤òÃÖ´¹¤¹¤ë½èÍı¡£</li>
  * </ul>
  * The monsters/objects must be loaded in the same order
  * that they were stored, since the actual indexes matter.
@@ -3266,8 +3266,8 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief ä¿å­˜ã•ã‚ŒãŸãƒ•ãƒ­ã‚¢ã‚’èª­ã¿è¾¼ã‚€(ç¾ç‰ˆ) / Read the dungeon (new method)
- * @return ãªã—
+ * @brief ÊİÂ¸¤µ¤ì¤¿¥Õ¥í¥¢¤òÆÉ¤ß¹ş¤à(¸½ÈÇ) / Read the dungeon (new method)
+ * @return ¤Ê¤·
  * @details
  * The monsters/objects must be loaded in the same order
  * that they were stored, since the actual indexes matter.
@@ -3378,27 +3378,27 @@ static errr rd_dungeon(void)
 	switch (err)
 	{
 	case 151:
-		note(_("ã‚¢ã‚¤ãƒ†ãƒ ã®é…åˆ—ãŒå¤§ãã™ãã‚‹ï¼", "Too many object entries!"));
+		note(_("¥¢¥¤¥Æ¥à¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë¡ª", "Too many object entries!"));
 		break;
 
 	case 152:
-		note(_("ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ã‚¨ãƒ©ãƒ¼", "Object allocation error"));
+		note(_("¥¢¥¤¥Æ¥àÇÛÃÖ¥¨¥é¡¼", "Object allocation error"));
 		break;
 
 	case 161:
-		note(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®é…åˆ—ãŒå¤§ãã™ãã‚‹ï¼", "Too many monster entries!"));
+		note(_("¥â¥ó¥¹¥¿¡¼¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë¡ª", "Too many monster entries!"));
 		break;
 
 	case 162:
-		note(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…ç½®ã‚¨ãƒ©ãƒ¼", "Monster allocation error"));
+		note(_("¥â¥ó¥¹¥¿¡¼ÇÛÃÖ¥¨¥é¡¼", "Monster allocation error"));
 		break;
 
 	case 171:
-		note(_("ä¿å­˜ã•ã‚ŒãŸãƒ•ãƒ­ã‚¢ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã¾ã™ï¼", "Dungeon data of saved floors are broken!"));
+		note(_("ÊİÂ¸¤µ¤ì¤¿¥Õ¥í¥¢¤Î¥À¥ó¥¸¥ç¥ó¥Ç¡¼¥¿¤¬²õ¤ì¤Æ¤¤¤Ş¤¹¡ª", "Dungeon data of saved floors are broken!"));
 		break;
 
 	case 182:
-		note(_("ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã§ãã¾ã›ã‚“ï¼", "Failed to make temporal files!"));
+		note(_("¥Æ¥ó¥İ¥é¥ê¡¦¥Õ¥¡¥¤¥ë¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¡ª", "Failed to make temporal files!"));
 		break;
 
 	case 183:
@@ -3415,8 +3415,8 @@ static errr rd_dungeon(void)
 
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰å‡¦ç†å…¨ä½“ã®ã‚µãƒ–é–¢æ•° / Actually read the savefile
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @brief ¥í¡¼¥É½èÍıÁ´ÂÎ¤Î¥µ¥Ö´Ø¿ô / Actually read the savefile
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr rd_savefile_new_aux(void)
 {
@@ -3457,7 +3457,7 @@ static errr rd_savefile_new_aux(void)
 
 	/* Mention the savefile version */
 	note(format(
-		_("ãƒãƒ¼ã‚¸ãƒ§ãƒ³ %d.%d.%d.%d ã®ã‚»ãƒ¼ãƒ–ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ä¸­...", "Loading a %d.%d.%d.%d savefile..."),
+		_("¥Ğ¡¼¥¸¥ç¥ó %d.%d.%d.%d ¤Î¥»¡¼¥Ö¡¦¥Õ¥¡¥¤¥ë¤ò¥í¡¼¥ÉÃæ...", "Loading a %d.%d.%d.%d savefile..."),
 		(h_ver_major > 9) ? h_ver_major - 10 : h_ver_major, h_ver_minor, h_ver_patch, h_ver_extra));
 
 
@@ -3488,15 +3488,15 @@ static errr rd_savefile_new_aux(void)
 
 	/* Read RNG state */
 	rd_randomizer();
-	if (arg_fiddle) note(_("ä¹±æ•°æƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Randomizer Info"));
+	if (arg_fiddle) note(_("Íğ¿ô¾ğÊó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Randomizer Info"));
 
 	/* Then the options */
 	rd_options();
-	if (arg_fiddle) note(_("ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Option Flags"));
+	if (arg_fiddle) note(_("¥ª¥×¥·¥ç¥ó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Option Flags"));
 
 	/* Then the "messages" */
 	rd_messages();
-	if (arg_fiddle) note(_("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Messages"));
+	if (arg_fiddle) note(_("¥á¥Ã¥»¡¼¥¸¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Messages"));
 
 	for (i = 0; i < max_r_idx; i++)
 	{
@@ -3518,7 +3518,7 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > max_r_idx)
 	{
-		note(format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¨®æ—ãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) monster races!"), tmp16u));
+		note(format(_("¥â¥ó¥¹¥¿¡¼¤Î¼ïÂ²¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) monster races!"), tmp16u));
 		return (21);
 	}
 
@@ -3529,7 +3529,7 @@ static errr rd_savefile_new_aux(void)
 		rd_lore((MONRACE_IDX)i);
 	}
 
-	if (arg_fiddle) note(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Monster Memory"));
+	if (arg_fiddle) note(_("¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Monster Memory"));
 
 	/* Object Memory */
 	rd_u16b(&tmp16u);
@@ -3537,7 +3537,7 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > max_k_idx)
 	{
-		note(format(_("ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡ãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) object kinds!"), tmp16u));
+		note(format(_("¥¢¥¤¥Æ¥à¤Î¼ïÎà¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) object kinds!"), tmp16u));
 		return (22);
 	}
 
@@ -3551,7 +3551,7 @@ static errr rd_savefile_new_aux(void)
 		k_ptr->aware = (tmp8u & 0x01) ? TRUE: FALSE;
 		k_ptr->tried = (tmp8u & 0x02) ? TRUE: FALSE;
 	}
-	if (arg_fiddle) note(_("ã‚¢ã‚¤ãƒ†ãƒ ã®è¨˜éŒ²ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Object Memory"));
+	if (arg_fiddle) note(_("¥¢¥¤¥Æ¥à¤Îµ­Ï¿¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Object Memory"));
 
 	/* 2.1.3 or newer version */
 	{
@@ -3566,7 +3566,7 @@ static errr rd_savefile_new_aux(void)
 		/* Incompatible save files */
 		if (max_towns_load > max_towns)
 		{
-			note(format(_("ç”ºãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) towns!"), max_towns_load));
+			note(format(_("Ä®¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) towns!"), max_towns_load));
 			return (23);
 		}
 
@@ -3585,7 +3585,7 @@ static errr rd_savefile_new_aux(void)
 		/* Incompatible save files */
 		if (max_quests_load > max_q_idx)
 		{
-			note(format(_("ã‚¯ã‚¨ã‚¹ãƒˆãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) quests!"), max_quests_load));
+			note(format(_("¥¯¥¨¥¹¥È¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) quests!"), max_quests_load));
 			return (23);
 		}
 
@@ -3715,7 +3715,7 @@ static errr rd_savefile_new_aux(void)
 		/* Incompatible save files */
 		if ((wild_x_size > max_wild_x) || (wild_y_size > max_wild_y))
 		{
-			note(format(_("è’é‡ãŒå¤§ãã™ãã‚‹(%u/%u)ï¼", "Wilderness is too big (%u/%u)!"), wild_x_size, wild_y_size));
+			note(format(_("¹ÓÌî¤¬Âç¤­¤¹¤®¤ë(%u/%u)¡ª", "Wilderness is too big (%u/%u)!"), wild_x_size, wild_y_size));
 			return (23);
 		}
 
@@ -3729,7 +3729,7 @@ static errr rd_savefile_new_aux(void)
 		}
 	}
 
-	if (arg_fiddle) note(_("ã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Quests"));
+	if (arg_fiddle) note(_("¥¯¥¨¥¹¥È¾ğÊó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Quests"));
 
 	/* Load the Artifacts */
 	rd_u16b(&tmp16u);
@@ -3737,7 +3737,7 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > max_a_idx)
 	{
-		note(format(_("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) artifacts!"), tmp16u));
+		note(format(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) artifacts!"), tmp16u));
 		return (24);
 	}
 
@@ -3762,13 +3762,13 @@ static errr rd_savefile_new_aux(void)
 			rd_s16b(&a_ptr->floor_id);
 		}
 	}
-	if (arg_fiddle) note(_("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Artifacts"));
+	if (arg_fiddle) note(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Artifacts"));
 
 	/* Read the extra stuff */
 	rd_extra();
 	if (p_ptr->energy_need < -999) world_player = TRUE;
 
-	if (arg_fiddle) note(_("ç‰¹åˆ¥æƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded extra information"));
+	if (arg_fiddle) note(_("ÆÃÊÌ¾ğÊó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded extra information"));
 
 
 	/* Read the player_hp array */
@@ -3777,7 +3777,7 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > PY_MAX_LEVEL)
 	{
-		note(format(_("ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆé…åˆ—ãŒå¤§ãã™ãã‚‹(%u)ï¼", "Too many (%u) hitpoint entries!"), tmp16u));
+		note(format(_("¥Ò¥Ã¥È¥İ¥¤¥ó¥ÈÇÛÎó¤¬Âç¤­¤¹¤®¤ë(%u)¡ª", "Too many (%u) hitpoint entries!"), tmp16u));
 		return (25);
 	}
 
@@ -3862,7 +3862,7 @@ static errr rd_savefile_new_aux(void)
 	/* Read the inventory */
 	if (rd_inventory())
 	{
-		note(_("æŒã¡ç‰©æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ã“ã¨ãŒã§ãã¾ã›ã‚“", "Unable to read inventory"));
+		note(_("»ı¤ÁÊª¾ğÊó¤òÆÉ¤ß¹ş¤à¤³¤È¤¬¤Ç¤­¤Ş¤»¤ó", "Unable to read inventory"));
 		return (21);
 	}
 
@@ -3941,11 +3941,11 @@ static errr rd_savefile_new_aux(void)
 	if (!p_ptr->is_dead)
 	{
 		/* Dead players have no dungeon */
-		note(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¾©å…ƒä¸­...", "Restoring Dungeon..."));
+		note(_("¥À¥ó¥¸¥ç¥óÉü¸µÃæ...", "Restoring Dungeon..."));
 
 		if (rd_dungeon())
 		{
-			note(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å¤±æ•—", "Error reading dungeon data"));
+			note(_("¥À¥ó¥¸¥ç¥ó¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¼ºÇÔ", "Error reading dungeon data"));
 			return (34);
 		}
 
@@ -3983,7 +3983,7 @@ static errr rd_savefile_new_aux(void)
 	/* Verify */
 	if (o_v_check != n_v_check)
 	{
-		note(_("ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãŒãŠã‹ã—ã„", "Invalid checksum"));
+		note(_("¥Á¥§¥Ã¥¯¥µ¥à¤¬¤ª¤«¤·¤¤", "Invalid checksum"));
 		return (11);
 	}
 
@@ -3998,7 +3998,7 @@ static errr rd_savefile_new_aux(void)
 	/* Verify */
 	if (o_x_check != n_x_check)
 	{
-		note(_("ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸãƒã‚§ãƒƒã‚¯ã‚µãƒ ãŒãŠã‹ã—ã„", "Invalid encoded checksum"));
+		note(_("¥¨¥ó¥³¡¼¥É¤µ¤ì¤¿¥Á¥§¥Ã¥¯¥µ¥à¤¬¤ª¤«¤·¤¤", "Invalid encoded checksum"));
 		return (11);
 	}
 
@@ -4009,8 +4009,8 @@ static errr rd_savefile_new_aux(void)
 }
 
 /*!
- * @brief ãƒ­ãƒ¼ãƒ‰å‡¦ç†å…¨ä½“ã®ãƒ¡ã‚¤ãƒ³é–¢æ•° / Actually read the savefile
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @brief ¥í¡¼¥É½èÍıÁ´ÂÎ¤Î¥á¥¤¥ó´Ø¿ô / Actually read the savefile
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr rd_savefile_new(void)
 {
@@ -4043,9 +4043,9 @@ errr rd_savefile_new(void)
 
 
 /*!
- * @brief ä¿å­˜ãƒ•ãƒ­ã‚¢èª­ã¿è¾¼ã¿ã®ã‚µãƒ–é–¢æ•° / Actually load and verify a floor save data
- * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢èª­ã¿è¾¼ã¿å…ˆ
- * @return æˆåŠŸã—ãŸã‚‰true
+ * @brief ÊİÂ¸¥Õ¥í¥¢ÆÉ¤ß¹ş¤ß¤Î¥µ¥Ö´Ø¿ô / Actually load and verify a floor save data
+ * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢ÆÉ¤ß¹ş¤ßÀè
+ * @return À®¸ù¤·¤¿¤étrue
  */
 static bool load_floor_aux(saved_floor_type *sf_ptr)
 {
@@ -4106,10 +4106,10 @@ static bool load_floor_aux(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief ä¸€æ™‚ä¿å­˜ãƒ•ãƒ­ã‚¢æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Attempt to load the temporally saved-floor data
- * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢èª­ã¿è¾¼ã¿å…ˆ
- * @param mode ã‚ªãƒ—ã‚·ãƒ§ãƒ³
- * @return æˆåŠŸã—ãŸã‚‰true
+ * @brief °ì»şÊİÂ¸¥Õ¥í¥¢¾ğÊó¤òÆÉ¤ß¹ş¤à / Attempt to load the temporally saved-floor data
+ * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢ÆÉ¤ß¹ş¤ßÀè
+ * @param mode ¥ª¥×¥·¥ç¥ó
+ * @return À®¸ù¤·¤¿¤étrue
  */
 bool load_floor(saved_floor_type *sf_ptr, BIT_FLAGS mode)
 {

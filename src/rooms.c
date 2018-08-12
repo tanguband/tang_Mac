@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file rooms.c
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ•ãƒ­ã‚¢ã®éƒ¨å±‹ç”Ÿæˆå‡¦ç† / make rooms. Used by generate.c when creating dungeons.
+ * @brief ¥À¥ó¥¸¥ç¥ó¥Õ¥í¥¢¤ÎÉô²°À¸À®½èÍı / make rooms. Used by generate.c when creating dungeons.
  * @date 2014/01/06
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -43,7 +43,7 @@
 
 
 /*!
- * å„éƒ¨å±‹ã‚¿ã‚¤ãƒ—ã®ç”Ÿæˆæ¯”å®šç¾©
+ * ³ÆÉô²°¥¿¥¤¥×¤ÎÀ¸À®ÈæÄêµÁ
  *[from SAngband (originally from OAngband)]\n
  *\n
  * Table of values that control how many times each type of room will\n
@@ -82,7 +82,7 @@ static room_info_type room_info_normal[ROOM_T_MAX] =
 };
 
 
-/*! éƒ¨å±‹ã®ç”Ÿæˆå‡¦ç†é † / Build rooms in descending order of difficulty. */
+/*! Éô²°¤ÎÀ¸À®½èÍı½ç / Build rooms in descending order of difficulty. */
 static byte room_build_order[ROOM_T_MAX] = {
 	ROOM_T_GREATER_VAULT,
 	ROOM_T_ARCADE,
@@ -103,10 +103,10 @@ static byte room_build_order[ROOM_T_MAX] = {
 };
 
 /*!
- * @brief éµã®ã‹ã‹ã£ãŸãƒ‰ã‚¢ã‚’é…ç½®ã™ã‚‹
- * @param y é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
- * @param x é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
- * @return ãªã—
+ * @brief ¸°¤Î¤«¤«¤Ã¤¿¥É¥¢¤òÇÛÃÖ¤¹¤ë
+ * @param y ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
+ * @param x ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
+ * @return ¤Ê¤·
  */
 static void place_locked_door(int y, int x)
 {
@@ -123,11 +123,11 @@ static void place_locked_door(int y, int x)
 }
 
 /*!
- * @brief éš ã—ãƒ‰ã‚¢ã‚’é…ç½®ã™ã‚‹
- * @param y é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
- * @param x é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
- * @param type #DOOR_DEFAULT / #DOOR_DOOR / #DOOR_GLASS_DOOR / #DOOR_CURTAIN ã®ã„ãšã‚Œã‹
- * @return ãªã—
+ * @brief ±£¤·¥É¥¢¤òÇÛÃÖ¤¹¤ë
+ * @param y ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
+ * @param x ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
+ * @param type #DOOR_DEFAULT / #DOOR_DOOR / #DOOR_GLASS_DOOR / #DOOR_CURTAIN ¤Î¤¤¤º¤ì¤«
+ * @return ¤Ê¤·
  */
 static void place_secret_door(int y, int x, int type)
 {
@@ -171,9 +171,9 @@ static void place_secret_door(int y, int x, int type)
 }
 
 /*!
- * @brief 1ãƒã‚¹ã ã‘ã®éƒ¨å±‹ã‚’ä½œæˆã—ã€ä¸Šä¸‹å·¦å³ã„ãšã‚Œã‹ä¸€ã¤ã«éš ã—ãƒ‰ã‚¢ã‚’é…ç½®ã™ã‚‹ã€‚
- * @param y0 é…ç½®ã—ãŸã„ä¸­å¿ƒã®Yåº§æ¨™
- * @param x0 é…ç½®ã—ãŸã„ä¸­å¿ƒã®Xåº§æ¨™
+ * @brief 1¥Ş¥¹¤À¤±¤ÎÉô²°¤òºîÀ®¤·¡¢¾å²¼º¸±¦¤¤¤º¤ì¤«°ì¤Ä¤Ë±£¤·¥É¥¢¤òÇÛÃÖ¤¹¤ë¡£
+ * @param y0 ÇÛÃÖ¤·¤¿¤¤Ãæ¿´¤ÎYºÂÉ¸
+ * @param x0 ÇÛÃÖ¤·¤¿¤¤Ãæ¿´¤ÎXºÂÉ¸
  * @details
  * This funtion makes a very small room centred at (x0, y0)
  * This is used in crypts, and random elemental vaults.
@@ -215,13 +215,13 @@ static void build_small_room(int x0, int y0)
 
 /*!
  * @brief
- * æŒ‡å®šç¯„å›²ã«é€šè·¯ãŒé€šã£ã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ãŸä¸Šã§åºŠã§åŸ‹ã‚ã‚‹
+ * »ØÄêÈÏ°Ï¤ËÄÌÏ©¤¬ÄÌ¤Ã¤Æ¤¤¤ë¤³¤È¤ò³ÎÇ§¤·¤¿¾å¤Ç¾²¤ÇËä¤á¤ë
  * This function tunnels around a room if it will cut off part of a cave system.
- * @param x1 ç¯„å›²ã®å·¦ç«¯
- * @param y1 ç¯„å›²ã®ä¸Šç«¯
- * @param x2 ç¯„å›²ã®å³ç«¯
- * @param y2 ç¯„å›²ã®ä¸‹ç«¯
- * @return ãªã—
+ * @param x1 ÈÏ°Ï¤Îº¸Ã¼
+ * @param y1 ÈÏ°Ï¤Î¾åÃ¼
+ * @param x2 ÈÏ°Ï¤Î±¦Ã¼
+ * @param y2 ÈÏ°Ï¤Î²¼Ã¼
+ * @return ¤Ê¤·
  */
 static void check_room_boundary(int x1, int y1, int x2, int y2)
 {
@@ -301,13 +301,13 @@ static void check_room_boundary(int x1, int y1, int x2, int y2)
 
 /*!
  * @brief
- * find_space()ã®äºˆå‚™å‡¦ç†ã¨ã—ã¦éƒ¨å±‹ã®ç”ŸæˆãŒå¯èƒ½ã‹ã‚’åˆ¤å®šã™ã‚‹ /
+ * find_space()¤ÎÍ½È÷½èÍı¤È¤·¤ÆÉô²°¤ÎÀ¸À®¤¬²ÄÇ½¤«¤òÈ½Äê¤¹¤ë /
  * Helper function for find_space(). Is this a good location?
- * @param blocks_high ç¯„å›²ã®é«˜ã•
- * @param blocks_wide ç¯„å›²ã®å¹…
- * @param block_y ç¯„å›²ã®ä¸Šç«¯
- * @param block_x ç¯„å›²ã®å·¦ç«¯
- * @return ãªã—
+ * @param blocks_high ÈÏ°Ï¤Î¹â¤µ
+ * @param blocks_wide ÈÏ°Ï¤ÎÉı
+ * @param block_y ÈÏ°Ï¤Î¾åÃ¼
+ * @param block_x ÈÏ°Ï¤Îº¸Ã¼
+ * @return ¤Ê¤·
  */
 static bool find_space_aux(int blocks_high, int blocks_wide, int block_y, int block_x)
 {
@@ -381,12 +381,12 @@ static bool find_space_aux(int blocks_high, int blocks_wide, int block_y, int bl
 
 
 /*!
- * @brief éƒ¨å±‹ç”ŸæˆãŒå¯èƒ½ãªã‚¹ãƒšãƒ¼ã‚¹ã‚’ç¢ºä¿ã™ã‚‹ / Find a good spot for the next room.  -LM-
- * @param y éƒ¨å±‹ã®ç”ŸæˆãŒå¯èƒ½ãªä¸­å¿ƒYåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param x éƒ¨å±‹ã®ç”ŸæˆãŒå¯èƒ½ãªä¸­å¿ƒXåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param height ç¢ºä¿ã—ãŸã„é ˜åŸŸã®é«˜ã•
- * @param width ç¢ºä¿ã—ãŸã„é ˜åŸŸã®å¹…
- * @return æ‰€å®šã®ç¯„å›²ãŒç¢ºä¿ã§ããŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief Éô²°À¸À®¤¬²ÄÇ½¤Ê¥¹¥Ú¡¼¥¹¤ò³ÎÊİ¤¹¤ë / Find a good spot for the next room.  -LM-
+ * @param y Éô²°¤ÎÀ¸À®¤¬²ÄÇ½¤ÊÃæ¿´YºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
+ * @param x Éô²°¤ÎÀ¸À®¤¬²ÄÇ½¤ÊÃæ¿´XºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
+ * @param height ³ÎÊİ¤·¤¿¤¤ÎÎ°è¤Î¹â¤µ
+ * @param width ³ÎÊİ¤·¤¿¤¤ÎÎ°è¤ÎÉı
+ * @return ½êÄê¤ÎÈÏ°Ï¤¬³ÎÊİ¤Ç¤­¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * Find and allocate a free space in the dungeon large enough to hold\n
  * the room calling this function.\n
@@ -516,8 +516,8 @@ static bool find_space(POSITION *y, POSITION *x, POSITION height, POSITION width
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—1ã®éƒ¨å±‹â€¦é€šå¸¸å¯å¤‰é•·æ–¹å½¢ã®éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹ / Type 1 -- normal rectangular rooms
- * @return ãªã—
+ * @brief ¥¿¥¤¥×1¤ÎÉô²°¡ÄÄÌ¾ï²ÄÊÑÄ¹Êı·Á¤ÎÉô²°¤òÀ¸À®¤¹¤ë / Type 1 -- normal rectangular rooms
+ * @return ¤Ê¤·
  */
 static bool build_type1(void)
 {
@@ -711,8 +711,8 @@ static bool build_type1(void)
 }
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—2ã®éƒ¨å±‹â€¦äºŒé‡é•·æ–¹å½¢ã®éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹ / Type 2 -- Overlapping rectangular rooms
- * @return ãªã—
+ * @brief ¥¿¥¤¥×2¤ÎÉô²°¡ÄÆó½ÅÄ¹Êı·Á¤ÎÉô²°¤òÀ¸À®¤¹¤ë / Type 2 -- Overlapping rectangular rooms
+ * @return ¤Ê¤·
  */
 static bool build_type2(void)
 {
@@ -826,8 +826,8 @@ static bool build_type2(void)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—2ã®éƒ¨å±‹â€¦åå­—å‹ã®éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹ / Type 3 -- Cross shaped rooms
- * @return ãªã—
+ * @brief ¥¿¥¤¥×2¤ÎÉô²°¡Ä½½»ú·¿¤ÎÉô²°¤òÀ¸À®¤¹¤ë / Type 3 -- Cross shaped rooms
+ * @return ¤Ê¤·
  * @details
  * Builds a room at a row, column coordinate\n
  *\n
@@ -1086,8 +1086,8 @@ static bool build_type3(void)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—4ã®éƒ¨å±‹â€¦å›ºå®šã‚µã‚¤ã‚ºã®äºŒé‡æ§‹é€ éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹ / Type 4 -- Large room with inner features
- * @return ãªã—
+ * @brief ¥¿¥¤¥×4¤ÎÉô²°¡Ä¸ÇÄê¥µ¥¤¥º¤ÎÆó½Å¹½Â¤Éô²°¤òÀ¸À®¤¹¤ë / Type 4 -- Large room with inner features
+ * @return ¤Ê¤·
  * @details
  * Possible sub-types:\n
  *	1 - Just an inner room with one door\n
@@ -1416,7 +1416,7 @@ static bool build_type4(void)
 
 
 /*!
- * vaultã«é…ç½®å¯èƒ½ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ¡ä»¶ã‚’æŒ‡å®šã™ã‚‹ãƒã‚¯ãƒ­ / Monster validation macro
+ * vault¤ËÇÛÃÖ²ÄÇ½¤Ê¥â¥ó¥¹¥¿¡¼¤Î¾ò·ï¤ò»ØÄê¤¹¤ë¥Ş¥¯¥í / Monster validation macro
  *
  * Line 1 -- forbid town monsters
  * Line 2 -- forbid uniques
@@ -1430,21 +1430,21 @@ static bool build_type4(void)
 	 !(r_info[I].flags7 & RF7_AQUATIC))
 
 
-/*! é€šå¸¸pitç”Ÿæˆæ™‚ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ§‹æˆæ¡ä»¶ID / Race index for "monster pit (clone)" */
+/*! ÄÌ¾ïpitÀ¸À®»ş¤Î¥â¥ó¥¹¥¿¡¼¤Î¹½À®¾ò·ïID / Race index for "monster pit (clone)" */
 static int vault_aux_race;
 
-/*! å˜ä¸€ã‚·ãƒ³ãƒœãƒ«pitç”Ÿæˆæ™‚ã®æŒ‡å®šã‚·ãƒ³ãƒœãƒ« / Race index for "monster pit (symbol clone)" */
+/*! Ã±°ì¥·¥ó¥Ü¥ëpitÀ¸À®»ş¤Î»ØÄê¥·¥ó¥Ü¥ë / Race index for "monster pit (symbol clone)" */
 static char vault_aux_char;
 
-/*! ãƒ–ãƒ¬ã‚¹å±æ€§ã«åŸºã¥ããƒ‰ãƒ©ã‚´ãƒ³pitç”Ÿæˆæ™‚æ¡ä»¶ãƒã‚¹ã‚¯ / Breath mask for "monster pit (dragon)" */
+/*! ¥Ö¥ì¥¹Â°À­¤Ë´ğ¤Å¤¯¥É¥é¥´¥ópitÀ¸À®»ş¾ò·ï¥Ş¥¹¥¯ / Breath mask for "monster pit (dragon)" */
 static u32b vault_aux_dragon_mask4;
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒVaultç”Ÿæˆã®æœ€ä½å¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬VaultÀ¸À®¤ÎºÇÄãÉ¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper monster selection function
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return Vaultç”Ÿæˆã®æœ€ä½å¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return VaultÀ¸À®¤ÎºÇÄãÉ¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_simple(MONRACE_IDX r_idx)
 {
@@ -1454,10 +1454,10 @@ static bool vault_aux_simple(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒã‚¼ãƒªãƒ¼nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥¼¥ê¡¼nest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (jelly)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_jelly(MONRACE_IDX r_idx)
 {
@@ -1479,10 +1479,10 @@ static bool vault_aux_jelly(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå‹•ç‰©nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬Æ°Êªnest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (animal)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_animal(MONRACE_IDX r_idx)
 {
@@ -1500,10 +1500,10 @@ static bool vault_aux_animal(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥¢¥ó¥Ç¥Ã¥Énest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (undead)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_undead(MONRACE_IDX r_idx)
 {
@@ -1520,10 +1520,10 @@ static bool vault_aux_undead(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒè–å ‚nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬À»Æ²nest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (chapel)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_chapel_g(MONRACE_IDX r_idx)
 {
@@ -1554,10 +1554,10 @@ static bool vault_aux_chapel_g(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒçŠ¬å°å±‹nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¸¤¾®²°nest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (kennel)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_kennel(MONRACE_IDX r_idx)
 {
@@ -1574,10 +1574,10 @@ static bool vault_aux_kennel(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒŸãƒŸãƒƒã‚¯nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥ß¥ß¥Ã¥¯nest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (mimic)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_mimic(MONRACE_IDX r_idx)
 {
@@ -1594,10 +1594,10 @@ static bool vault_aux_mimic(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå˜ä¸€ã‚¯ãƒ­ãƒ¼ãƒ³nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬Ã±°ì¥¯¥í¡¼¥ónest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (clone)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_clone(MONRACE_IDX r_idx)
 {
@@ -1609,10 +1609,10 @@ static bool vault_aux_clone(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒé‚ªæ‚ªå±æ€§ã‚·ãƒ³ãƒœãƒ«ã‚¯ãƒ­ãƒ¼ãƒ³nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¼Ù°­Â°À­¥·¥ó¥Ü¥ë¥¯¥í¡¼¥ónest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (symbol clone)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_symbol_e(MONRACE_IDX r_idx)
 {
@@ -1634,10 +1634,10 @@ static bool vault_aux_symbol_e(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå–„è‰¯å±æ€§ã‚·ãƒ³ãƒœãƒ«ã‚¯ãƒ­ãƒ¼ãƒ³nestã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬Á±ÎÉÂ°À­¥·¥ó¥Ü¥ë¥¯¥í¡¼¥ónest¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster nest (symbol clone)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_symbol_g(MONRACE_IDX r_idx)
 {
@@ -1659,10 +1659,10 @@ static bool vault_aux_symbol_g(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒã‚ªãƒ¼ã‚¯pitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥ª¡¼¥¯pit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (orc)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_orc(MONRACE_IDX r_idx)
 {
@@ -1683,10 +1683,10 @@ static bool vault_aux_orc(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒˆãƒ­ãƒ«pitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥È¥í¥ëpit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (troll)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_troll(MONRACE_IDX r_idx)
 {
@@ -1707,10 +1707,10 @@ static bool vault_aux_troll(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå·¨äººpitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬µğ¿Ípit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (giant)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_giant(MONRACE_IDX r_idx)
 {
@@ -1733,10 +1733,10 @@ static bool vault_aux_giant(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ‰ãƒ©ã‚´ãƒ³pitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥É¥é¥´¥ópit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (dragon)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_dragon(MONRACE_IDX r_idx)
 {
@@ -1760,10 +1760,10 @@ static bool vault_aux_dragon(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ‚ªé­”pitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬°­Ëâpit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (demon)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_demon(MONRACE_IDX r_idx)
 {
@@ -1783,10 +1783,10 @@ static bool vault_aux_demon(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒç‹‚æ°—pitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¶¸µ¤pit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (lovecraftian)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_cthulhu(MONRACE_IDX r_idx)
 {
@@ -1806,8 +1806,8 @@ static bool vault_aux_cthulhu(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief pit/nestã®åŸºæº–ã¨ãªã‚‹å˜ç¨®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ±ºã‚ã‚‹ /
- * @return ãªã—
+ * @brief pit/nest¤Î´ğ½à¤È¤Ê¤ëÃ±¼ï¥â¥ó¥¹¥¿¡¼¤ò·è¤á¤ë /
+ * @return ¤Ê¤·
  */
 static void vault_prep_clone(void)
 {
@@ -1823,8 +1823,8 @@ static void vault_prep_clone(void)
 
 
 /*!
- * @brief pit/nestã®åŸºæº–ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚·ãƒ³ãƒœãƒ«ã‚’æ±ºã‚ã‚‹ /
- * @return ãªã—
+ * @brief pit/nest¤Î´ğ½à¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¥·¥ó¥Ü¥ë¤ò·è¤á¤ë /
+ * @return ¤Ê¤·
  */
 static void vault_prep_symbol(void)
 {
@@ -1844,8 +1844,8 @@ static void vault_prep_symbol(void)
 }
 
 /*!
- * @brief pit/nestã®åŸºæº–ã¨ãªã‚‹ãƒ‰ãƒ©ã‚´ãƒ³ã®ç¨®é¡ã‚’æ±ºã‚ã‚‹ /
- * @return ãªã—
+ * @brief pit/nest¤Î´ğ½à¤È¤Ê¤ë¥É¥é¥´¥ó¤Î¼ïÎà¤ò·è¤á¤ë /
+ * @return ¤Ê¤·
  */
 static void vault_prep_dragon(void)
 {
@@ -1918,10 +1918,10 @@ static void vault_prep_dragon(void)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ€ãƒ¼ã‚¯ã‚¨ãƒ«ãƒ•pitã®ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ã‚’è¿”ã™ /
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥À¡¼¥¯¥¨¥ë¥Õpit¤ÎÀ¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤«¤òÊÖ¤¹ /
  * Helper function for "monster pit (dark elf)"
- * @param r_idx ç¢ºèªã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ç”Ÿæˆå¿…è¦æ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™ã€‚
+ * @param r_idx ³ÎÇ§¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return À¸À®É¬Í×¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹¡£
  */
 static bool vault_aux_dark_elf(MONRACE_IDX r_idx)
 {
@@ -1944,10 +1944,10 @@ static bool vault_aux_dark_elf(MONRACE_IDX r_idx)
 	return FALSE;
 }
 
-/*! pit/nestå‹æƒ…å ±ã®typedef */
+/*! pit/nest·¿¾ğÊó¤Îtypedef */
 typedef struct vault_aux_type vault_aux_type;
 
-/*! pit/nestå‹æƒ…å ±ã®æ§‹é€ ä½“å®šç¾© */
+/*! pit/nest·¿¾ğÊó¤Î¹½Â¤ÂÎÄêµÁ */
 struct vault_aux_type
 {
 	cptr name;
@@ -1958,10 +1958,10 @@ struct vault_aux_type
 };
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ¯ã«æŒ‡å®šã•ã‚ŒãŸãƒ”ãƒƒãƒˆé…åˆ—ã‚’åŸºæº–ã«ãƒ©ãƒ³ãƒ€ãƒ ãªpit/nestã‚¿ã‚¤ãƒ—ã‚’æ±ºã‚ã‚‹
- * @param l_ptr é¸æŠã•ã‚ŒãŸpit/nestæƒ…å ±ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param allow_flag_mask ç”ŸæˆãŒè¨±ã•ã‚Œã‚‹pit/nestã®ãƒ“ãƒƒãƒˆé…åˆ—
- * @return é¸æŠã•ã‚ŒãŸpit/nestã®IDã€é¸æŠå¤±æ•—ã—ãŸå ´åˆ-1ã‚’è¿”ã™ã€‚
+ * @brief ¥À¥ó¥¸¥ç¥óËè¤Ë»ØÄê¤µ¤ì¤¿¥Ô¥Ã¥ÈÇÛÎó¤ò´ğ½à¤Ë¥é¥ó¥À¥à¤Êpit/nest¥¿¥¤¥×¤ò·è¤á¤ë
+ * @param l_ptr ÁªÂò¤µ¤ì¤¿pit/nest¾ğÊó¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
+ * @param allow_flag_mask À¸À®¤¬µö¤µ¤ì¤ëpit/nest¤Î¥Ó¥Ã¥ÈÇÛÎó
+ * @return ÁªÂò¤µ¤ì¤¿pit/nest¤ÎID¡¢ÁªÂò¼ºÇÔ¤·¤¿¾ì¹ç-1¤òÊÖ¤¹¡£
  */
 static int pick_vault_type(vault_aux_type *l_ptr, s16b allow_flag_mask)
 {
@@ -2010,20 +2010,20 @@ static int pick_vault_type(vault_aux_type *l_ptr, s16b allow_flag_mask)
 	return n_ptr->name ? count : -1;
 }
 
-/*!nestæƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«*/
+/*!nest¾ğÊó¥Æ¡¼¥Ö¥ë*/
 static vault_aux_type nest_types[] =
 {
 #ifdef JP
-	{"ã‚¯ãƒ­ãƒ¼ãƒ³",     vault_aux_clone,    vault_prep_clone,   5, 3},
-	{"ã‚¼ãƒªãƒ¼",       vault_aux_jelly,    NULL,               5, 6},
-	{"ã‚·ãƒ³ãƒœãƒ«(å–„)", vault_aux_symbol_g, vault_prep_symbol, 25, 2},
-	{"ã‚·ãƒ³ãƒœãƒ«(æ‚ª)", vault_aux_symbol_e, vault_prep_symbol, 25, 2},
-	{"ãƒŸãƒŸãƒƒã‚¯",     vault_aux_mimic,    NULL,              30, 4},
-	{"ç‹‚æ°—",         vault_aux_cthulhu,  NULL,              70, 2},
-	{"çŠ¬å°å±‹",       vault_aux_kennel,   NULL,              45, 4},
-	{"å‹•ç‰©åœ’",       vault_aux_animal,   NULL,              35, 5},
-	{"æ•™ä¼š",         vault_aux_chapel_g, NULL,              75, 4},
-	{"ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰",   vault_aux_undead,   NULL,              75, 5},
+	{"¥¯¥í¡¼¥ó",     vault_aux_clone,    vault_prep_clone,   5, 3},
+	{"¥¼¥ê¡¼",       vault_aux_jelly,    NULL,               5, 6},
+	{"¥·¥ó¥Ü¥ë(Á±)", vault_aux_symbol_g, vault_prep_symbol, 25, 2},
+	{"¥·¥ó¥Ü¥ë(°­)", vault_aux_symbol_e, vault_prep_symbol, 25, 2},
+	{"¥ß¥ß¥Ã¥¯",     vault_aux_mimic,    NULL,              30, 4},
+	{"¶¸µ¤",         vault_aux_cthulhu,  NULL,              70, 2},
+	{"¸¤¾®²°",       vault_aux_kennel,   NULL,              45, 4},
+	{"Æ°Êª±à",       vault_aux_animal,   NULL,              35, 5},
+	{"¶µ²ñ",         vault_aux_chapel_g, NULL,              75, 4},
+	{"¥¢¥ó¥Ç¥Ã¥É",   vault_aux_undead,   NULL,              75, 5},
 	{NULL,           NULL,               NULL,               0, 0},
 #else
 	{"clone",        vault_aux_clone,    vault_prep_clone,   5, 3},
@@ -2040,20 +2040,20 @@ static vault_aux_type nest_types[] =
 #endif
 };
 
-/*!pitæƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«*/
+/*!pit¾ğÊó¥Æ¡¼¥Ö¥ë*/
 static vault_aux_type pit_types[] =
 {
 #ifdef JP
-	{"ã‚ªãƒ¼ã‚¯",       vault_aux_orc,      NULL,               5, 6},
-	{"ãƒˆãƒ­ãƒ«",       vault_aux_troll,    NULL,              20, 6},
-	{"ã‚¸ãƒ£ã‚¤ã‚¢ãƒ³ãƒˆ", vault_aux_giant,    NULL,              50, 6},
-	{"ç‹‚æ°—",         vault_aux_cthulhu,  NULL,              80, 2},
-	{"ã‚·ãƒ³ãƒœãƒ«(å–„)", vault_aux_symbol_g, vault_prep_symbol, 70, 1},
-	{"ã‚·ãƒ³ãƒœãƒ«(æ‚ª)", vault_aux_symbol_e, vault_prep_symbol, 70, 1},
-	{"æ•™ä¼š",         vault_aux_chapel_g, NULL,              65, 2},
-	{"ãƒ‰ãƒ©ã‚´ãƒ³",     vault_aux_dragon,   vault_prep_dragon, 70, 6},
-	{"ãƒ‡ãƒ¼ãƒ¢ãƒ³",     vault_aux_demon,    NULL,              80, 6},
-	{"ãƒ€ãƒ¼ã‚¯ã‚¨ãƒ«ãƒ•", vault_aux_dark_elf, NULL,              45, 4},
+	{"¥ª¡¼¥¯",       vault_aux_orc,      NULL,               5, 6},
+	{"¥È¥í¥ë",       vault_aux_troll,    NULL,              20, 6},
+	{"¥¸¥ã¥¤¥¢¥ó¥È", vault_aux_giant,    NULL,              50, 6},
+	{"¶¸µ¤",         vault_aux_cthulhu,  NULL,              80, 2},
+	{"¥·¥ó¥Ü¥ë(Á±)", vault_aux_symbol_g, vault_prep_symbol, 70, 1},
+	{"¥·¥ó¥Ü¥ë(°­)", vault_aux_symbol_e, vault_prep_symbol, 70, 1},
+	{"¶µ²ñ",         vault_aux_chapel_g, NULL,              65, 2},
+	{"¥É¥é¥´¥ó",     vault_aux_dragon,   vault_prep_dragon, 70, 6},
+	{"¥Ç¡¼¥â¥ó",     vault_aux_demon,    NULL,              80, 6},
+	{"¥À¡¼¥¯¥¨¥ë¥Õ", vault_aux_dark_elf, NULL,              45, 4},
 	{NULL,           NULL,               NULL,               0, 0},
 #else
 	{"orc",          vault_aux_orc,      NULL,               5, 6},
@@ -2071,7 +2071,7 @@ static vault_aux_type pit_types[] =
 };
 
 
-/*! nestã®IDå®šç¾© /  Nest types code */
+/*! nest¤ÎIDÄêµÁ /  Nest types code */
 #define NEST_TYPE_CLONE        0
 #define NEST_TYPE_JELLY        1
 #define NEST_TYPE_SYMBOL_GOOD  2
@@ -2083,7 +2083,7 @@ static vault_aux_type pit_types[] =
 #define NEST_TYPE_CHAPEL       8
 #define NEST_TYPE_UNDEAD       9
 
-/*! pitã®IDå®šç¾© / Pit types code */
+/*! pit¤ÎIDÄêµÁ / Pit types code */
 #define PIT_TYPE_ORC           0
 #define PIT_TYPE_TROLL         1
 #define PIT_TYPE_GIANT         2
@@ -2097,10 +2097,10 @@ static vault_aux_type pit_types[] =
 
 
 /*!
- * @brief ãƒ‡ãƒãƒƒã‚°æ™‚ã«ç”Ÿæˆã•ã‚ŒãŸpit/nestã®å‹ã‚’å‡ºåŠ›ã™ã‚‹å‡¦ç†
- * @param type pit/nestã®å‹ID
- * @param nest TRUEãªã‚‰ã°nestã€FALSEãªã‚‰ã°pit
- * @return ãƒ‡ãƒãƒƒã‚°è¡¨ç¤ºæ–‡å­—åˆ—ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @brief ¥Ç¥Ğ¥Ã¥°»ş¤ËÀ¸À®¤µ¤ì¤¿pit/nest¤Î·¿¤ò½ĞÎÏ¤¹¤ë½èÍı
+ * @param type pit/nest¤Î·¿ID
+ * @param nest TRUE¤Ê¤é¤Ğnest¡¢FALSE¤Ê¤é¤Ğpit
+ * @return ¥Ç¥Ğ¥Ã¥°É½¼¨Ê¸»úÎó¤Î»²¾È¥İ¥¤¥ó¥¿
  * @details
  * Hack -- Get the string describing subtype of pit/nest
  * Determined in prepare function (some pit/nest only)
@@ -2136,14 +2136,14 @@ static cptr pit_subtype_string(int type, bool nest)
 			switch (vault_aux_dragon_mask4)
 			{
 #ifdef JP
-			case RF4_BR_ACID: strcpy(inner_buf, "(é…¸)");   break;
-			case RF4_BR_ELEC: strcpy(inner_buf, "(ç¨²å¦»)"); break;
-			case RF4_BR_FIRE: strcpy(inner_buf, "(ç«ç‚)"); break;
-			case RF4_BR_COLD: strcpy(inner_buf, "(å†·æ°—)"); break;
-			case RF4_BR_POIS: strcpy(inner_buf, "(æ¯’)");   break;
+			case RF4_BR_ACID: strcpy(inner_buf, "(»À)");   break;
+			case RF4_BR_ELEC: strcpy(inner_buf, "(°ğºÊ)"); break;
+			case RF4_BR_FIRE: strcpy(inner_buf, "(²Ğ±ê)"); break;
+			case RF4_BR_COLD: strcpy(inner_buf, "(Îäµ¤)"); break;
+			case RF4_BR_POIS: strcpy(inner_buf, "(ÆÇ)");   break;
 			case (RF4_BR_ACID | RF4_BR_ELEC | RF4_BR_FIRE | RF4_BR_COLD | RF4_BR_POIS):
-				strcpy(inner_buf, "(ä¸‡è‰²)"); break;
-			default: strcpy(inner_buf, "(æœªå®šç¾©)"); break;
+				strcpy(inner_buf, "(Ëü¿§)"); break;
+			default: strcpy(inner_buf, "(Ì¤ÄêµÁ)"); break;
 #else
 			case RF4_BR_ACID: strcpy(inner_buf, "(acid)");      break;
 			case RF4_BR_ELEC: strcpy(inner_buf, "(lightning)"); break;
@@ -2163,7 +2163,7 @@ static cptr pit_subtype_string(int type, bool nest)
 }
 
 
-/*! ãƒ‡ãƒãƒƒã‚°æ™‚ã«nestã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã‚’ç¢ºèªã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“ / A struct for nest monster information with cheat_hear */
+/*! ¥Ç¥Ğ¥Ã¥°»ş¤Ënest¤Î¥â¥ó¥¹¥¿¡¼¾ğÊó¤ò³ÎÇ§¤¹¤ë¤¿¤á¤Î¹½Â¤ÂÎ / A struct for nest monster information with cheat_hear */
 typedef struct
 {
 	s16b r_idx;
@@ -2173,12 +2173,12 @@ nest_mon_info_type;
 
 
 /*
- *! @brief nestã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒªã‚¹ãƒˆã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹ãŸã‚ã®é–¢æ•° /
+ *! @brief nest¤Î¥â¥ó¥¹¥¿¡¼¥ê¥¹¥È¤ò¥½¡¼¥È¤¹¤ë¤¿¤á¤Î´Ø¿ô /
  *  Comp function for sorting nest monster information
- *  @param u ã‚½ãƒ¼ãƒˆå‡¦ç†å¯¾è±¡é…åˆ—ãƒã‚¤ãƒ³ã‚¿
- *  @param v æœªä½¿ç”¨
- *  @param a æ¯”è¼ƒå¯¾è±¡å‚ç…§ID1
- *  @param b æ¯”è¼ƒå¯¾è±¡å‚ç…§ID2
+ *  @param u ¥½¡¼¥È½èÍıÂĞ¾İÇÛÎó¥İ¥¤¥ó¥¿
+ *  @param v Ì¤»ÈÍÑ
+ *  @param a Èæ³ÓÂĞ¾İ»²¾ÈID1
+ *  @param b Èæ³ÓÂĞ¾İ»²¾ÈID2
  */
 static bool ang_sort_comp_nest_mon_info(vptr u, vptr v, int a, int b)
 {
@@ -2213,12 +2213,12 @@ static bool ang_sort_comp_nest_mon_info(vptr u, vptr v, int a, int b)
 }
 
 /*!
- * @brief nestã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒªã‚¹ãƒˆã‚’ã‚¹ãƒ¯ãƒƒãƒ—ã™ã‚‹ãŸã‚ã®é–¢æ•° /
+ * @brief nest¤Î¥â¥ó¥¹¥¿¡¼¥ê¥¹¥È¤ò¥¹¥ï¥Ã¥×¤¹¤ë¤¿¤á¤Î´Ø¿ô /
  * Swap function for sorting nest monster information
- * @param u ã‚¹ãƒ¯ãƒƒãƒ—å‡¦ç†å¯¾è±¡é…åˆ—ãƒã‚¤ãƒ³ã‚¿
- * @param v æœªä½¿ç”¨
- * @param a ã‚¹ãƒ¯ãƒƒãƒ—å¯¾è±¡å‚ç…§ID1
- * @param b ã‚¹ãƒ¯ãƒƒãƒ—å¯¾è±¡å‚ç…§ID2
+ * @param u ¥¹¥ï¥Ã¥×½èÍıÂĞ¾İÇÛÎó¥İ¥¤¥ó¥¿
+ * @param v Ì¤»ÈÍÑ
+ * @param a ¥¹¥ï¥Ã¥×ÂĞ¾İ»²¾ÈID1
+ * @param b ¥¹¥ï¥Ã¥×ÂĞ¾İ»²¾ÈID2
  */
 static void ang_sort_swap_nest_mon_info(vptr u, vptr v, int a, int b)
 {
@@ -2235,12 +2235,12 @@ static void ang_sort_swap_nest_mon_info(vptr u, vptr v, int a, int b)
 }
 
 
-#define NUM_NEST_MON_TYPE 64 /*!<nestã®ç¨®åˆ¥æ•° */
+#define NUM_NEST_MON_TYPE 64 /*!<nest¤Î¼ïÊÌ¿ô */
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—5ã®éƒ¨å±‹â€¦nestã‚’ç”Ÿæˆã™ã‚‹ / Type 5 -- Monster nests
- * @return ãªã—
+ * @brief ¥¿¥¤¥×5¤ÎÉô²°¡Änest¤òÀ¸À®¤¹¤ë / Type 5 -- Monster nests
+ * @return ¤Ê¤·
  * @details
  * A monster nest is a "big" room, with an "inner" room, containing\n
  * a "collection" of monsters of a given type strewn about the room.\n
@@ -2391,7 +2391,7 @@ static bool build_type5(void)
 		case 4: place_secret_door(yval, x2 + 1, DOOR_DEFAULT); break;
 	}
 
-	msg_format_wizard(CHEAT_DUNGEON, _("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼éƒ¨å±‹(nest)(%s%s)ã‚’ç”Ÿæˆã—ã¾ã™ã€‚", "Monster nest (%s%s)"), n_ptr->name, pit_subtype_string(cur_nest_type, TRUE));
+	msg_format_wizard(CHEAT_DUNGEON, _("¥â¥ó¥¹¥¿¡¼Éô²°(nest)(%s%s)¤òÀ¸À®¤·¤Ş¤¹¡£", "Monster nest (%s%s)"), n_ptr->name, pit_subtype_string(cur_nest_type, TRUE));
 
 	/* Place some monsters */
 	for (y = yval - 2; y <= yval + 2; y++)
@@ -2425,7 +2425,7 @@ static bool build_type5(void)
 				if (nest_mon_info[i].r_idx != nest_mon_info[i + 1].r_idx) break;
 				if (!nest_mon_info[i + 1].used) break;
 			}
-			msg_format_wizard(CHEAT_DUNGEON, "Nestæ§‹æˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼No.%d:%s", i, r_name + r_info[nest_mon_info[i].r_idx].name);
+			msg_format_wizard(CHEAT_DUNGEON, "Nest¹½À®¥â¥ó¥¹¥¿¡¼No.%d:%s", i, r_name + r_info[nest_mon_info[i].r_idx].name);
 		}
 	}
 
@@ -2434,8 +2434,8 @@ static bool build_type5(void)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—6ã®éƒ¨å±‹â€¦pitã‚’ç”Ÿæˆã™ã‚‹ / Type 6 -- Monster pits
- * @return ãªã—
+ * @brief ¥¿¥¤¥×6¤ÎÉô²°¡Äpit¤òÀ¸À®¤¹¤ë / Type 6 -- Monster pits
+ * @return ¤Ê¤·
  * @details
  * A monster pit is a "big" room, with an "inner" room, containing\n
  * a "collection" of monsters of a given type organized in the room.\n
@@ -2623,14 +2623,14 @@ static bool build_type6(void)
 		}
 	}
 
-	msg_format_wizard(CHEAT_DUNGEON, _("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼éƒ¨å±‹(pit)(%s%s)ã‚’ç”Ÿæˆã—ã¾ã™ã€‚", "Monster pit (%s%s)"), n_ptr->name, pit_subtype_string(cur_pit_type, FALSE));
+	msg_format_wizard(CHEAT_DUNGEON, _("¥â¥ó¥¹¥¿¡¼Éô²°(pit)(%s%s)¤òÀ¸À®¤·¤Ş¤¹¡£", "Monster pit (%s%s)"), n_ptr->name, pit_subtype_string(cur_pit_type, FALSE));
 
 	/* Select the entries */
 	for (i = 0; i < 8; i++)
 	{
 		/* Every other entry */
 		what[i] = what[i * 2];
-		msg_format_wizard(CHEAT_DUNGEON, _("Nestæ§‹æˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é¸æŠNo.%d:%s", "Nest Monster Select No.%d:%s"), i, r_name + r_info[what[i]].name);
+		msg_format_wizard(CHEAT_DUNGEON, _("Nest¹½À®¥â¥ó¥¹¥¿¡¼ÁªÂòNo.%d:%s", "Nest Monster Select No.%d:%s"), i, r_name + r_info[what[i]].name);
 	}
 
 	/* Top and bottom rows */
@@ -2687,13 +2687,13 @@ static bool build_type6(void)
 
 
 /*!
- * @brief Vaultåœ°å½¢ã‚’å›è»¢ã€ä¸Šä¸‹å·¦å³åè»¢ã™ã‚‹ãŸã‚ã®åº§æ¨™å¤‰æ›ã‚’è¿”ã™ / coordinate translation code
- * @param x å¤‰æ›ã—ãŸã„ç‚¹ã®Xåº§æ¨™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param y å¤‰æ›ã—ãŸã„ç‚¹ã®Yåº§æ¨™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param xoffset Vaultç”Ÿæˆæ™‚ã®åŸºæº–Xåº§æ¨™
- * @param yoffset Vaultç”Ÿæˆæ™‚ã®åŸºæº–Yåº§æ¨™
- * @param transno å‡¦ç†ID
- * @return ãªã—
+ * @brief VaultÃÏ·Á¤ò²óÅ¾¡¢¾å²¼º¸±¦È¿Å¾¤¹¤ë¤¿¤á¤ÎºÂÉ¸ÊÑ´¹¤òÊÖ¤¹ / coordinate translation code
+ * @param x ÊÑ´¹¤·¤¿¤¤ÅÀ¤ÎXºÂÉ¸»²¾È¥İ¥¤¥ó¥¿
+ * @param y ÊÑ´¹¤·¤¿¤¤ÅÀ¤ÎYºÂÉ¸»²¾È¥İ¥¤¥ó¥¿
+ * @param xoffset VaultÀ¸À®»ş¤Î´ğ½àXºÂÉ¸
+ * @param yoffset VaultÀ¸À®»ş¤Î´ğ½àYºÂÉ¸
+ * @param transno ½èÍıID
+ * @return ¤Ê¤·
  */
 static void coord_trans(POSITION *x, POSITION *y, POSITION xoffset, POSITION yoffset, int transno)
 {
@@ -2729,16 +2729,16 @@ static void coord_trans(POSITION *x, POSITION *y, POSITION xoffset, POSITION yof
 }
 
 /*!
- * @brief Vaultã‚’ãƒ•ãƒ­ã‚¢ã«é…ç½®ã™ã‚‹ / Hack -- fill in "vault" rooms
- * @param yval ç”ŸæˆåŸºæº–Yåº§æ¨™
- * @param xval ç”ŸæˆåŸºæº–Xåº§æ¨™
- * @param ymax Vaultã®Yã‚µã‚¤ã‚º
- * @param xmax Vaultã®Xã‚µã‚¤ã‚º
- * @param data Vaultã®ãƒ‡ãƒ¼ã‚¿æ–‡å­—åˆ—
- * @param xoffset å¤‰æ›åŸºæº–Xåº§æ¨™
- * @param yoffset å¤‰æ›åŸºæº–Yåº§æ¨™
- * @param transno å¤‰æ›ID
- * @return ãªã—
+ * @brief Vault¤ò¥Õ¥í¥¢¤ËÇÛÃÖ¤¹¤ë / Hack -- fill in "vault" rooms
+ * @param yval À¸À®´ğ½àYºÂÉ¸
+ * @param xval À¸À®´ğ½àXºÂÉ¸
+ * @param ymax Vault¤ÎY¥µ¥¤¥º
+ * @param xmax Vault¤ÎX¥µ¥¤¥º
+ * @param data Vault¤Î¥Ç¡¼¥¿Ê¸»úÎó
+ * @param xoffset ÊÑ´¹´ğ½àXºÂÉ¸
+ * @param yoffset ÊÑ´¹´ğ½àYºÂÉ¸
+ * @param transno ÊÑ´¹ID
+ * @return ¤Ê¤·
  */
 static void build_vault(POSITION yval, POSITION xval, POSITION ymax, POSITION xmax, cptr data,
 		POSITION xoffset, POSITION yoffset, int transno)
@@ -2996,8 +2996,8 @@ static void build_vault(POSITION yval, POSITION xval, POSITION ymax, POSITION xm
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—7ã®éƒ¨å±‹â€¦v_info.txtã‚ˆã‚Šå°å‹vaultã‚’ç”Ÿæˆã™ã‚‹ / Type 7 -- simple vaults (see "v_info.txt")
- * @return ãªã—
+ * @brief ¥¿¥¤¥×7¤ÎÉô²°¡Äv_info.txt¤è¤ê¾®·¿vault¤òÀ¸À®¤¹¤ë / Type 7 -- simple vaults (see "v_info.txt")
+ * @return ¤Ê¤·
  */
 static bool build_type7(void)
 {
@@ -3021,7 +3021,7 @@ static bool build_type7(void)
 	/* No lesser vault found */
 	if (dummy >= SAFE_MAX_ATTEMPTS)
 	{
-		msg_print_wizard(CHEAT_DUNGEON, _("å°å‹å›ºå®šVaultã‚’é…ç½®ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Could not place lesser vault."));
+		msg_print_wizard(CHEAT_DUNGEON, _("¾®·¿¸ÇÄêVault¤òÇÛÃÖ¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Could not place lesser vault."));
 		return FALSE;
 	}
 
@@ -3067,7 +3067,7 @@ static bool build_type7(void)
 #endif
 
 	/* Message */
-	msg_format_wizard(CHEAT_DUNGEON, _("å°å‹Vault(%s)ã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Lesser vault (%s)."), v_name + v_ptr->name);
+	msg_format_wizard(CHEAT_DUNGEON, _("¾®·¿Vault(%s)¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Lesser vault (%s)."), v_name + v_ptr->name);
 
 	/* Hack -- Build the vault */
 	build_vault(yval, xval, v_ptr->hgt, v_ptr->wid,
@@ -3077,8 +3077,8 @@ static bool build_type7(void)
 }
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—8ã®éƒ¨å±‹â€¦v_info.txtã‚ˆã‚Šå¤§å‹vaultã‚’ç”Ÿæˆã™ã‚‹ / Type 8 -- greater vaults (see "v_info.txt")
- * @return ãªã—
+ * @brief ¥¿¥¤¥×8¤ÎÉô²°¡Äv_info.txt¤è¤êÂç·¿vault¤òÀ¸À®¤¹¤ë / Type 8 -- greater vaults (see "v_info.txt")
+ * @return ¤Ê¤·
  */
 static bool build_type8(void)
 {
@@ -3102,7 +3102,7 @@ static bool build_type8(void)
 	/* No greater vault found */
 	if (dummy >= SAFE_MAX_ATTEMPTS)
 	{
-		msg_print_wizard(CHEAT_DUNGEON, _("å¤§å‹å›ºå®šVaultã‚’é…ç½®ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Could not place greater vault."));
+		msg_print_wizard(CHEAT_DUNGEON, _("Âç·¿¸ÇÄêVault¤òÇÛÃÖ¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Could not place greater vault."));
 		return FALSE;
 	}
 
@@ -3153,7 +3153,7 @@ static bool build_type8(void)
 	v_ptr = &v_info[76 + randint1(3)];
 #endif
 
-	msg_format_wizard(CHEAT_DUNGEON, _("å¤§å‹å›ºå®šVault(%s)ã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Greater vault (%s)."), v_name + v_ptr->name);
+	msg_format_wizard(CHEAT_DUNGEON, _("Âç·¿¸ÇÄêVault(%s)¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Greater vault (%s)."), v_name + v_ptr->name);
 
 	/* Hack -- Build the vault */
 	build_vault(yval, xval, v_ptr->hgt, v_ptr->wid,
@@ -3808,8 +3808,8 @@ static bool generate_fracave(int y0, int x0, int xsize, int ysize, int cutoff, b
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—9ã®éƒ¨å±‹â€¦ãƒ•ãƒ©ã‚¯ã‚¿ãƒ«ã‚«ãƒ¼ãƒ–ã«ã‚ˆã‚‹æ´çªŸç”Ÿæˆ / Type 9 -- Driver routine to create fractal cave system
- * @return ãªã—
+ * @brief ¥¿¥¤¥×9¤ÎÉô²°¡Ä¥Õ¥é¥¯¥¿¥ë¥«¡¼¥Ö¤Ë¤è¤ëÆ¶·¢À¸À® / Type 9 -- Driver routine to create fractal cave system
+ * @return ¤Ê¤·
  */
 static bool build_type9(void)
 {
@@ -4323,7 +4323,7 @@ static void build_bubble_vault(int x0, int y0, int xsize, int ysize)
 	int xhsize = xsize / 2;
 	int yhsize = ysize / 2;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("æ³¡å‹ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Room Vault."));
+	msg_print_wizard(CHEAT_DUNGEON, _("Ë¢·¿¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Room Vault."));
 
 	/* Allocate center of bubbles */
 	center[0].x = (byte)randint1(xsize - 3) + 1;
@@ -4524,7 +4524,7 @@ static void build_room_vault(int x0, int y0, int xsize, int ysize)
 	xhsize = xsize / 2;
 	yhsize = ysize / 2;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("éƒ¨å±‹å‹ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Room Vault."));
+	msg_print_wizard(CHEAT_DUNGEON, _("Éô²°·¿¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Room Vault."));
 
 	/* fill area so don't get problems with arena levels */
 	for (x1 = 0; x1 < xsize; x1++)
@@ -4575,7 +4575,7 @@ static void build_cave_vault(int x0, int y0, int xsiz, int ysiz)
 	xsize = xhsize * 2;
 	ysize = yhsize * 2;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("æ´ç©´ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Cave Vault."));
+	msg_print_wizard(CHEAT_DUNGEON, _("Æ¶·ê¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Cave Vault."));
 
 	light = done = FALSE;
 	room = TRUE;
@@ -4723,7 +4723,7 @@ void build_maze_vault(int x0, int y0, int xsize, int ysize, bool is_vault)
 	bool light;
 	cave_type *c_ptr;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("è¿·è·¯ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Maze Vault."));
+	msg_print_wizard(CHEAT_DUNGEON, _("ÌÂÏ©¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Maze Vault."));
 
 	/* Choose lite or dark */
 	light = ((dun_level <= randint1(25)) && is_vault && !(d_info[dungeon_type].flags1 & DF1_DARKNESS));
@@ -4793,7 +4793,7 @@ static void build_mini_c_vault(int x0, int y0, int xsize, int ysize)
 	int m, n, num_vertices;
 	int *visited;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("å°å‹ãƒã‚§ãƒƒã‚«ãƒ¼ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Mini Checker Board Vault."));
+	msg_print_wizard(CHEAT_DUNGEON, _("¾®·¿¥Á¥§¥Ã¥«¡¼¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Mini Checker Board Vault."));
 
 	/* Pick a random room size */
 	dy = ysize / 2 - 1;
@@ -5132,7 +5132,7 @@ static void build_castle_vault(int x0, int y0, int xsize, int ysize)
 	y2 = y0 + dy;
 	x2 = x0 + dx;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("åŸå‹ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Castle Vault"));
+	msg_print_wizard(CHEAT_DUNGEON, _("¾ë·¿¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Castle Vault"));
 
 	/* generate the room */
 	for (y = y1 - 1; y <= y2 + 1; y++)
@@ -5249,7 +5249,7 @@ static void build_target_vault(int x0, int y0, int xsize, int ysize)
 	h3 = randint1(32);
 	h4 = randint1(32) - 16;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("å¯¾ç§°å½¢ãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Elemental Vault"));
+	msg_print_wizard(CHEAT_DUNGEON, _("ÂĞ¾Î·Á¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Elemental Vault"));
 
 	/* work out outer radius */
 	if (xsize > ysize)
@@ -5370,7 +5370,7 @@ static void build_elemental_vault(int x0, int y0, int xsiz, int ysiz)
 	int xsize, ysize, xhsize, yhsize, x, y, i;
 	int type;
 
-	msg_print_wizard(CHEAT_DUNGEON, _("ç²¾éœŠç•Œãƒ©ãƒ³ãƒ€ãƒ Vaultã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Elemental Vault"));
+	msg_print_wizard(CHEAT_DUNGEON, _("ÀºÎî³¦¥é¥ó¥À¥àVault¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Elemental Vault"));
 
 	/* round to make sizes even */
 	xhsize = xsiz / 2;
@@ -5448,8 +5448,8 @@ static void build_elemental_vault(int x0, int y0, int xsiz, int ysiz)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—10ã®éƒ¨å±‹â€¦ãƒ©ãƒ³ãƒ€ãƒ ç”Ÿæˆvault / Type 10 -- Random vaults
- * @return ãªã—
+ * @brief ¥¿¥¤¥×10¤ÎÉô²°¡Ä¥é¥ó¥À¥àÀ¸À®vault / Type 10 -- Random vaults
+ * @return ¤Ê¤·
  */
 static bool build_type10(void)
 {
@@ -5504,8 +5504,8 @@ static bool build_type10(void)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—11ã®éƒ¨å±‹â€¦å††å½¢éƒ¨å±‹ã®ç”Ÿæˆ / Type 11 -- Build an vertical oval room.
- * @return ãªã—
+ * @brief ¥¿¥¤¥×11¤ÎÉô²°¡Ä±ß·ÁÉô²°¤ÎÀ¸À® / Type 11 -- Build an vertical oval room.
+ * @return ¤Ê¤·
  * @details
  * For every grid in the possible square, check the distance.\n
  * If it's less than the radius, make it a room square.\n
@@ -5551,8 +5551,8 @@ static bool build_type11(void)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—12ã®éƒ¨å±‹â€¦ãƒ‰ãƒ¼ãƒ å‹éƒ¨å±‹ã®ç”Ÿæˆ / Type 12 -- Build crypt room.
- * @return ãªã—
+ * @brief ¥¿¥¤¥×12¤ÎÉô²°¡Ä¥É¡¼¥à·¿Éô²°¤ÎÀ¸À® / Type 12 -- Build crypt room.
+ * @return ¤Ê¤·
  * @details
  * For every grid in the possible square, check the (fake) distance.\n
  * If it's less than the radius, make it a room square.\n
@@ -5667,8 +5667,8 @@ static bool vault_aux_trapped_pit(MONRACE_IDX r_idx)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—13ã®éƒ¨å±‹â€¦ãƒˆãƒ©ãƒƒãƒ—pitã®ç”Ÿæˆ / Type 13 -- Trapped monster pits
- * @return ãªã—
+ * @brief ¥¿¥¤¥×13¤ÎÉô²°¡Ä¥È¥é¥Ã¥×pit¤ÎÀ¸À® / Type 13 -- Trapped monster pits
+ * @return ¤Ê¤·
  * @details
  * A trapped monster pit is a "big" room with a straight corridor in\n
  * which wall opening traps are placed, and with two "inner" rooms\n
@@ -5925,7 +5925,7 @@ static bool build_type13(void)
 		}
 	}
 
-	msg_format_wizard(CHEAT_DUNGEON, _("%s%sã®ç½ ãƒ”ãƒƒãƒˆãŒç”Ÿæˆã•ã‚Œã¾ã—ãŸã€‚", "Trapped monster pit (%s%s)"),
+	msg_format_wizard(CHEAT_DUNGEON, _("%s%s¤Îæ«¥Ô¥Ã¥È¤¬À¸À®¤µ¤ì¤Ş¤·¤¿¡£", "Trapped monster pit (%s%s)"),
 		n_ptr->name, pit_subtype_string(cur_pit_type, FALSE));
 
 	/* Select the entries */
@@ -5953,8 +5953,8 @@ static bool build_type13(void)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—14ã®éƒ¨å±‹â€¦ç‰¹æ®Šãƒˆãƒ©ãƒƒãƒ—éƒ¨å±‹ã®ç”Ÿæˆ / Type 14 -- trapped rooms
- * @return ãªã—
+ * @brief ¥¿¥¤¥×14¤ÎÉô²°¡ÄÆÃ¼ì¥È¥é¥Ã¥×Éô²°¤ÎÀ¸À® / Type 14 -- trapped rooms
+ * @return ¤Ê¤·
  * @details
  * A special trap is placed at center of the room
  */
@@ -6029,7 +6029,7 @@ static bool build_type14(void)
 	c_ptr->mimic = c_ptr->feat;
 	c_ptr->feat = trap;
 
-	msg_format_wizard(CHEAT_DUNGEON, _("%sã®éƒ¨å±‹ãŒç”Ÿæˆã•ã‚Œã¾ã—ãŸã€‚", "Room of %s was generated."), f_name + f_info[trap].name);
+	msg_format_wizard(CHEAT_DUNGEON, _("%s¤ÎÉô²°¤¬À¸À®¤µ¤ì¤Ş¤·¤¿¡£", "Room of %s was generated."), f_name + f_info[trap].name);
 
 	return TRUE;
 }
@@ -6082,8 +6082,8 @@ static bool kind_is_potion(KIND_OBJECT_IDX k_idx)
 }
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—15ã®éƒ¨å±‹â€¦ã‚¬ãƒ©ã‚¹éƒ¨å±‹ã®ç”Ÿæˆ / Type 15 -- glass rooms
- * @return ãªã—
+ * @brief ¥¿¥¤¥×15¤ÎÉô²°¡Ä¥¬¥é¥¹Éô²°¤ÎÀ¸À® / Type 15 -- glass rooms
+ * @return ¤Ê¤·
  */
 static bool build_type15(void)
 {
@@ -6316,7 +6316,7 @@ static bool build_type15(void)
 		break;
 	}
 
-	msg_print_wizard(CHEAT_DUNGEON, _("ã‚¬ãƒ©ã‚¹ã®éƒ¨å±‹ãŒç”Ÿæˆã•ã‚Œã¾ã—ãŸã€‚", "Glass room was generated."));
+	msg_print_wizard(CHEAT_DUNGEON, _("¥¬¥é¥¹¤ÎÉô²°¤¬À¸À®¤µ¤ì¤Ş¤·¤¿¡£", "Glass room was generated."));
 
 	return TRUE;
 }
@@ -6453,12 +6453,12 @@ static bool precalc_ugarcade(int town_hgt, int town_wid, int n)
 }
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—16ã®éƒ¨å±‹â€¦åœ°ä¸‹éƒ½å¸‚ç”Ÿæˆã®ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ / Actually create buildings
- * @return ãªã—
- * @param ltcy ç”ŸæˆåŸºæº–Yåº§æ¨™
- * @param ltcx ç”ŸæˆåŸºæº–Xåº§æ¨™
- * @param stotes[] ç”Ÿæˆã™ã‚‹åº—èˆ—ã®ãƒªã‚¹ãƒˆ
- * @param n ç”Ÿæˆã™ã‚‹åº—èˆ—ã®æ•°
+ * @brief ¥¿¥¤¥×16¤ÎÉô²°¡ÄÃÏ²¼ÅÔ»ÔÀ¸À®¤Î¥µ¥Ö¥ë¡¼¥Á¥ó / Actually create buildings
+ * @return ¤Ê¤·
+ * @param ltcy À¸À®´ğ½àYºÂÉ¸
+ * @param ltcx À¸À®´ğ½àXºÂÉ¸
+ * @param stotes[] À¸À®¤¹¤ëÅ¹ÊŞ¤Î¥ê¥¹¥È
+ * @param n À¸À®¤¹¤ëÅ¹ÊŞ¤Î¿ô
  * @note
  * Note: ltcy and ltcx indicate "left top corner".
  */
@@ -6537,8 +6537,8 @@ static void build_stores(int ltcy, int ltcx, int stores[], int n)
 
 
 /*!
- * @brief ã‚¿ã‚¤ãƒ—16ã®éƒ¨å±‹â€¦åœ°ä¸‹éƒ½å¸‚ã®ç”Ÿæˆ / Type 16 -- Underground Arcade
- * @return ãªã—
+ * @brief ¥¿¥¤¥×16¤ÎÉô²°¡ÄÃÏ²¼ÅÔ»Ô¤ÎÀ¸À® / Type 16 -- Underground Arcade
+ * @return ¤Ê¤·
  * @details
  * Town logic flow for generation of new town\n
  * Originally from Vanilla 3.0.3\n
@@ -6612,7 +6612,7 @@ static bool build_type16(void)
 	/* Build stores */
 	build_stores(y1, x1, stores, n);
 
-	msg_print_wizard(CHEAT_DUNGEON, _("åœ°ä¸‹è¡—ã‚’ç”Ÿæˆã—ã¾ã—ãŸ", "Underground arcade was generated."));
+	msg_print_wizard(CHEAT_DUNGEON, _("ÃÏ²¼³¹¤òÀ¸À®¤·¤Ş¤·¤¿", "Underground arcade was generated."));
 
 	/* Free buildings array */
 	C_KILL(ugbldg, n, ugbldg_type);
@@ -6622,10 +6622,10 @@ static bool build_type16(void)
 
 
 /*!
- * @brief ä¸ãˆã‚‰ã‚ŒãŸéƒ¨å±‹å‹IDã«å¿œã˜ã¦éƒ¨å±‹ã®ç”Ÿæˆå‡¦ç†åˆ†å²ã‚’è¡Œã„çµæœã‚’è¿”ã™ / Attempt to build a room of the given type at the given block
- * @param type éƒ¨å±‹å‹ID
+ * @brief Í¿¤¨¤é¤ì¤¿Éô²°·¿ID¤Ë±ş¤¸¤ÆÉô²°¤ÎÀ¸À®½èÍıÊ¬´ô¤ò¹Ô¤¤·ë²Ì¤òÊÖ¤¹ / Attempt to build a room of the given type at the given block
+ * @param type Éô²°·¿ID
  * @note that we restrict the number of "crowded" rooms to reduce the chance of overflowing the monster list during level creation.
- * @return éƒ¨å±‹ã®ç²¾è£½ã«æˆåŠŸã—ãŸå ´åˆ TRUE ã‚’è¿”ã™ã€‚
+ * @return Éô²°¤ÎÀºÀ½¤ËÀ®¸ù¤·¤¿¾ì¹ç TRUE ¤òÊÖ¤¹¡£
  */
 static bool room_build(int typ)
 {
@@ -6656,15 +6656,15 @@ static bool room_build(int typ)
 }
 
 /*!
- * @brief æŒ‡å®šã—ãŸéƒ¨å±‹ã®ç”Ÿæˆç¢ºç‡ã‚’åˆ¥ã®éƒ¨å±‹ã«åŠ ç®—ã—ã€æŒ‡å®šã—ãŸéƒ¨å±‹ã®ç”Ÿæˆç‡ã‚’0ã«ã™ã‚‹
- * @param dst ç¢ºç‡ã‚’ç§»ã™å…ˆã®éƒ¨å±‹ç¨®ID
- * @param src ç¢ºç‡ã‚’ä¸ãˆã‚‹å…ƒã®éƒ¨å±‹ç¨®ID
+ * @brief »ØÄê¤·¤¿Éô²°¤ÎÀ¸À®³ÎÎ¨¤òÊÌ¤ÎÉô²°¤Ë²Ã»»¤·¡¢»ØÄê¤·¤¿Éô²°¤ÎÀ¸À®Î¨¤ò0¤Ë¤¹¤ë
+ * @param dst ³ÎÎ¨¤ò°Ü¤¹Àè¤ÎÉô²°¼ïID
+ * @param src ³ÎÎ¨¤òÍ¿¤¨¤ë¸µ¤ÎÉô²°¼ïID
  */
 #define MOVE_PLIST(dst, src) (prob_list[dst] += prob_list[src], prob_list[src] = 0) 
 
 /*!
- * @brief éƒ¨å±‹ç”Ÿæˆå‡¦ç†ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³(Sangbandã‚’çµŒç”±ã—ã¦Oangbandã‹ã‚‰ã®å®Ÿè£…ã‚’å¼•ç”¨) / Generate rooms in dungeon.  Build bigger rooms at first.ã€€[from SAngband (originally from OAngband)]
- * @return éƒ¨å±‹ç”Ÿæˆã«æˆåŠŸã—ãŸå ´åˆ TRUE ã‚’è¿”ã™ã€‚
+ * @brief Éô²°À¸À®½èÍı¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó(Sangband¤ò·ĞÍ³¤·¤ÆOangband¤«¤é¤Î¼ÂÁõ¤ò°úÍÑ) / Generate rooms in dungeon.  Build bigger rooms at first.¡¡[from SAngband (originally from OAngband)]
+ * @return Éô²°À¸À®¤ËÀ®¸ù¤·¤¿¾ì¹ç TRUE ¤òÊÖ¤¹¡£
  */
 bool generate_rooms(void)
 {
@@ -6706,7 +6706,7 @@ bool generate_rooms(void)
 	 * XXX -- Various dungeon types and options.
 	 */
 
-	/*! @details ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«BEGINNERã€CHAMELEONã€SMALLESTã„ãšã‚Œã®ãƒ•ãƒ©ã‚°ã‚‚ãªãã€ã‹ã¤ã€Œå¸¸ã«é€šå¸¸ã§ãªã„éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹ã€ãƒ•ãƒ©ã‚°ãŒONãªã‚‰ã°ã€GRATER_VAULTã®ã¿ã‚’ç”Ÿæˆå¯¾è±¡ã¨ã™ã‚‹ã€‚ / Ironman sees only Greater Vaults */
+	/*! @details ¥À¥ó¥¸¥ç¥ó¤ËBEGINNER¡¢CHAMELEON¡¢SMALLEST¤¤¤º¤ì¤Î¥Õ¥é¥°¤â¤Ê¤¯¡¢¤«¤Ä¡Ö¾ï¤ËÄÌ¾ï¤Ç¤Ê¤¤Éô²°¤òÀ¸À®¤¹¤ë¡×¥Õ¥é¥°¤¬ON¤Ê¤é¤Ğ¡¢GRATER_VAULT¤Î¤ß¤òÀ¸À®ÂĞ¾İ¤È¤¹¤ë¡£ / Ironman sees only Greater Vaults */
 	if (ironman_rooms && !((d_info[dungeon_type].flags1 & (DF1_BEGINNER | DF1_CHAMELEON | DF1_SMALLEST))))
 	{
 		for (i = 0; i < ROOM_T_MAX; i++)
@@ -6716,7 +6716,7 @@ bool generate_rooms(void)
 		}
 	}
 
-	/*! @details ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«NO_VAULTãƒ•ãƒ©ã‚°ãŒã‚ã‚‹ãªã‚‰ã°ã€LESSER_VAULT / GREATER_VAULT/ RANDOM_VAULTã‚’é™¤å¤– / Forbidden vaults */
+	/*! @details ¥À¥ó¥¸¥ç¥ó¤ËNO_VAULT¥Õ¥é¥°¤¬¤¢¤ë¤Ê¤é¤Ğ¡¢LESSER_VAULT / GREATER_VAULT/ RANDOM_VAULT¤ò½ü³° / Forbidden vaults */
 	else if (d_info[dungeon_type].flags1 & DF1_NO_VAULT)
 	{
 		prob_list[ROOM_T_LESSER_VAULT] = 0;
@@ -6724,7 +6724,7 @@ bool generate_rooms(void)
 		prob_list[ROOM_T_RANDOM_VAULT] = 0;
 	}
 
-	/*! @details ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«NO_CAVEãƒ•ãƒ©ã‚°ãŒã‚ã‚‹å ´åˆã€FRACAVEã®ç”Ÿæˆæ ãŒNORMALã«ä¸ãˆã‚‰ã‚Œã‚‹ã€‚CRIPTã€OVALã®ç”Ÿæˆæ ãŒINNER_Fã«ä¸ãˆã‚‰ã‚Œã‚‹ã€‚/ NO_CAVE dungeon (Castle)*/
+	/*! @details ¥À¥ó¥¸¥ç¥ó¤ËNO_CAVE¥Õ¥é¥°¤¬¤¢¤ë¾ì¹ç¡¢FRACAVE¤ÎÀ¸À®ÏÈ¤¬NORMAL¤ËÍ¿¤¨¤é¤ì¤ë¡£CRIPT¡¢OVAL¤ÎÀ¸À®ÏÈ¤¬INNER_F¤ËÍ¿¤¨¤é¤ì¤ë¡£/ NO_CAVE dungeon (Castle)*/
 	if (d_info[dungeon_type].flags1 & DF1_NO_CAVE)
 	{
 		MOVE_PLIST(ROOM_T_NORMAL, ROOM_T_FRACAVE);
@@ -6732,25 +6732,25 @@ bool generate_rooms(void)
 		MOVE_PLIST(ROOM_T_INNER_FEAT, ROOM_T_OVAL);
 	}
 
-	/*! @details ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«CAVEãƒ•ãƒ©ã‚°ãŒã‚ã‚‹å ´åˆã€NORMALã®ç”Ÿæˆæ ãŒFRACAVEã«ä¸ãˆã‚‰ã‚Œã‚‹ã€‚/ CAVE dungeon (Orc cave etc.) */
+	/*! @details ¥À¥ó¥¸¥ç¥ó¤ËCAVE¥Õ¥é¥°¤¬¤¢¤ë¾ì¹ç¡¢NORMAL¤ÎÀ¸À®ÏÈ¤¬FRACAVE¤ËÍ¿¤¨¤é¤ì¤ë¡£/ CAVE dungeon (Orc cave etc.) */
 	else if (d_info[dungeon_type].flags1 & DF1_CAVE)
 	{
 		MOVE_PLIST(ROOM_T_FRACAVE, ROOM_T_NORMAL);
 	}
 
-	/*! @details ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®åŸºæœ¬åœ°å½¢ãŒæœ€åˆã‹ã‚‰æ¸“è°·ã‹ã‚¢ãƒªãƒ¼ãƒŠå‹ã®å ´åˆ FRACAVE ã¯ç”Ÿæˆã‹ã‚‰é™¤å¤–ã€‚ /  No caves when a (random) cavern exists: they look bad */
+	/*! @details ¥À¥ó¥¸¥ç¥ó¤Î´ğËÜÃÏ·Á¤¬ºÇ½é¤«¤é·ÌÃ«¤«¥¢¥ê¡¼¥Ê·¿¤Î¾ì¹ç FRACAVE ¤ÏÀ¸À®¤«¤é½ü³°¡£ /  No caves when a (random) cavern exists: they look bad */
 	else if (dun->cavern || dun->empty_level)
 	{
 		prob_list[ROOM_T_FRACAVE] = 0;
 	}
 
-	/*! @details ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«æœ€åˆã‹ã‚‰GLASS_ROOMãƒ•ãƒ©ã‚°ãŒã‚ã‚‹å ´åˆã€GLASS ã‚’ç”Ÿæˆã‹ã‚‰é™¤å¤–ã€‚/ Forbidden glass rooms */
+	/*! @details ¥À¥ó¥¸¥ç¥ó¤ËºÇ½é¤«¤éGLASS_ROOM¥Õ¥é¥°¤¬¤¢¤ë¾ì¹ç¡¢GLASS ¤òÀ¸À®¤«¤é½ü³°¡£/ Forbidden glass rooms */
 	if (!(d_info[dungeon_type].flags1 & DF1_GLASS_ROOM))
 	{
 		prob_list[ROOM_T_GLASS] = 0;
 	}
 
-	/*! @details ARCADEã¯åŒãƒ•ãƒ©ã‚°ãŒãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«ãªã„ã¨ç”Ÿæˆã•ã‚Œãªã„ã€‚ / Forbidden glass rooms */
+	/*! @details ARCADE¤ÏÆ±¥Õ¥é¥°¤¬¥À¥ó¥¸¥ç¥ó¤Ë¤Ê¤¤¤ÈÀ¸À®¤µ¤ì¤Ê¤¤¡£ / Forbidden glass rooms */
 	if (!(d_info[dungeon_type].flags1 & DF1_ARCADE))
 	{
 		prob_list[ROOM_T_ARCADE] = 0;
@@ -6867,14 +6867,14 @@ bool generate_rooms(void)
 		if (!remain) break;
 	}
 
-	/*! @details éƒ¨å±‹ç”Ÿæˆæ•°ãŒ2æœªæº€ã®å ´åˆç”Ÿæˆå¤±æ•—ã‚’è¿”ã™ */
+	/*! @details Éô²°À¸À®¿ô¤¬2Ì¤Ëş¤Î¾ì¹çÀ¸À®¼ºÇÔ¤òÊÖ¤¹ */
 	if (rooms_built < 2)
 	{
-		msg_format_wizard(CHEAT_DUNGEON, _("éƒ¨å±‹æ•°ãŒ2æœªæº€ã§ã—ãŸã€‚ç”Ÿæˆã‚’å†è©¦è¡Œã—ã¾ã™ã€‚", "Number of rooms was under 2. Retry."), rooms_built);
+		msg_format_wizard(CHEAT_DUNGEON, _("Éô²°¿ô¤¬2Ì¤Ëş¤Ç¤·¤¿¡£À¸À®¤òºÆ»î¹Ô¤·¤Ş¤¹¡£", "Number of rooms was under 2. Retry."), rooms_built);
 		return FALSE;
 	}
 
-	msg_format_wizard(CHEAT_DUNGEON, _("ã“ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®éƒ¨å±‹æ•°ã¯ %d ã§ã™ã€‚", "Number of Rooms: %d"), rooms_built);
+	msg_format_wizard(CHEAT_DUNGEON, _("¤³¤Î¥À¥ó¥¸¥ç¥ó¤ÎÉô²°¿ô¤Ï %d ¤Ç¤¹¡£", "Number of Rooms: %d"), rooms_built);
 
 	return TRUE;
 }

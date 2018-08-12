@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  *  @file defines.h
- *  @brief ä¸»è¦ãªãƒã‚¯ãƒ­å®šç¾©ãƒ˜ãƒƒãƒ€ / Purpose: global constants and macro definitions
+ *  @brief ¼çÍ×¤Ê¥Ş¥¯¥íÄêµÁ¥Ø¥Ã¥À / Purpose: global constants and macro definitions
  *  @date 2014/01/02
  *  @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -36,12 +36,12 @@
  * You have been warned.\n
  */
 
-#define VERSION_NAME "Hengband" /*!< ãƒãƒªã‚¢ãƒ³ãƒˆåç§° / Name of the version/variant */
+#define VERSION_NAME "Hengband" /*!< ¥Ğ¥ê¥¢¥ó¥ÈÌ¾¾Î / Name of the version/variant */
 
 /*!
- * @brief ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·å®šç¾© / "Program Version Number" of the game
+ * @brief ¥²¡¼¥à¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æÄêµÁ / "Program Version Number" of the game
  * @details
- * æœ¬FAKE_VERSIONãã®ã‚‚ã®ã¯æœªä½¿ç”¨ã§ã‚ã‚‹ã€‚Zangã¨æ•´åˆæ€§ã‚’åˆã‚ã›ã‚‹ãŸã‚ã®ç–‘ä¼¼çš„å‡¦ç†ã®ãŸã‚FAKE_VER_MAJORã¯å®Ÿå€¤-10ãŒè©²å½“ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·ã¨ãªã‚‹ã€‚
+ * ËÜFAKE_VERSION¤½¤Î¤â¤Î¤ÏÌ¤»ÈÍÑ¤Ç¤¢¤ë¡£Zang¤ÈÀ°¹çÀ­¤ò¹ç¤ï¤»¤ë¤¿¤á¤Îµ¿»÷Åª½èÍı¤Î¤¿¤áFAKE_VER_MAJOR¤Ï¼ÂÃÍ-10¤¬³ºÅö¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æ¤È¤Ê¤ë¡£
  * <pre>
  * FAKE_VER_MAJOR=1,2 were reserved for ZAngband version 1.x.x/2.x.x .
  * Program Version of Hengband version is
@@ -50,21 +50,21 @@
  */
 #define FAKE_VERSION 0
 
-#define FAKE_VER_MAJOR 12 /*!< ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·å®šç¾©(ãƒ¡ã‚¸ãƒ£ãƒ¼ç•ªå· + 10) */
-#define FAKE_VER_MINOR 2 /*!< ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·å®šç¾©(ãƒã‚¤ãƒŠãƒ¼ç•ªå·) */
-#define FAKE_VER_PATCH 1 /*!< ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·å®šç¾©(ãƒ‘ãƒƒãƒç•ªå·) */
-#define FAKE_VER_EXTRA 5 /*!< ã‚²ãƒ¼ãƒ ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·å®šç¾©(ã‚¨ã‚¯ã‚¹ãƒˆãƒ©ç•ªå·) */
+#define FAKE_VER_MAJOR 12 /*!< ¥²¡¼¥à¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æÄêµÁ(¥á¥¸¥ã¡¼ÈÖ¹æ + 10) */
+#define FAKE_VER_MINOR 2 /*!< ¥²¡¼¥à¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æÄêµÁ(¥Ş¥¤¥Ê¡¼ÈÖ¹æ) */
+#define FAKE_VER_PATCH 1 /*!< ¥²¡¼¥à¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æÄêµÁ(¥Ñ¥Ã¥ÁÈÖ¹æ) */
+#define FAKE_VER_EXTRA 5 /*!< ¥²¡¼¥à¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æÄêµÁ(¥¨¥¯¥¹¥È¥éÈÖ¹æ) */
 
 
  /*!
-  * @brief ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãŒé–‹ç™ºç‰ˆãŒå®‰å®šç‰ˆã‹ã‚’è¿”ã™
+  * @brief ¥Ğ¡¼¥¸¥ç¥ó¤¬³«È¯ÈÇ¤¬°ÂÄêÈÇ¤«¤òÊÖ¤¹
   */
 #define	IS_STABLE_VERSION (FAKE_VER_MINOR % 2 == 0 && FAKE_VER_EXTRA == 0)
 
 /*!
- * @brief ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©(ãƒ¡ã‚¸ãƒ£ãƒ¼ç•ªå·) / "Savefile Version Number" for Hengband 1.1.1 and later
+ * @brief ¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¾å¤Î¥Ğ¡¼¥¸¥ç¥óÄêµÁ(¥á¥¸¥ã¡¼ÈÖ¹æ) / "Savefile Version Number" for Hengband 1.1.1 and later
  * @details
- * å½“é¢FAKE_VER_*ã‚’å‚ç…§ã—ã¦ãŠãã€‚
+ * ÅöÌÌFAKE_VER_*¤ò»²¾È¤·¤Æ¤ª¤¯¡£
  * <pre>
  * First three digits may be same as the Program Version.  But not
  * always same.  It means that newer version may preserves lower
@@ -75,58 +75,58 @@
  * Upper compatibility is always guaranteed.
  * </pre>
  */
-#define H_VER_MAJOR (FAKE_VER_MAJOR-10) /*!< ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©(ãƒ¡ã‚¸ãƒ£ãƒ¼ç•ªå·) */
-#define H_VER_MINOR FAKE_VER_MINOR /*!< ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©(ãƒã‚¤ãƒŠãƒ¼ç•ªå·) */
-#define H_VER_PATCH FAKE_VER_PATCH /*!< ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©(ãƒ‘ãƒƒãƒç•ªå·) */
-#define H_VER_EXTRA FAKE_VER_EXTRA /*!< ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ä¸Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å®šç¾©(ã‚¨ã‚¯ã‚¹ãƒˆãƒ©ç•ªå·) */
+#define H_VER_MAJOR (FAKE_VER_MAJOR-10) /*!< ¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¾å¤Î¥Ğ¡¼¥¸¥ç¥óÄêµÁ(¥á¥¸¥ã¡¼ÈÖ¹æ) */
+#define H_VER_MINOR FAKE_VER_MINOR /*!< ¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¾å¤Î¥Ğ¡¼¥¸¥ç¥óÄêµÁ(¥Ş¥¤¥Ê¡¼ÈÖ¹æ) */
+#define H_VER_PATCH FAKE_VER_PATCH /*!< ¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¾å¤Î¥Ğ¡¼¥¸¥ç¥óÄêµÁ(¥Ñ¥Ã¥ÁÈÖ¹æ) */
+#define H_VER_EXTRA FAKE_VER_EXTRA /*!< ¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¾å¤Î¥Ğ¡¼¥¸¥ç¥óÄêµÁ(¥¨¥¯¥¹¥È¥éÈÖ¹æ) */
 
-#define ANGBAND_2_8_1 /*!< Angband 2.8.1ä»¥é™ã‹ã‚‰æœ‰åŠ¹ãªå‡¦ç†åˆ†å²ã‚’å®šç¾© */
-#define ZANGBAND /*!< Zangband ä»¥é™ã‹ã‚‰æœ‰åŠ¹ãªå‡¦ç†åˆ†å²ã‚’å®šç¾© */
+#define ANGBAND_2_8_1 /*!< Angband 2.8.1°Ê¹ß¤«¤éÍ­¸ú¤Ê½èÍıÊ¬´ô¤òÄêµÁ */
+#define ZANGBAND /*!< Zangband °Ê¹ß¤«¤éÍ­¸ú¤Ê½èÍıÊ¬´ô¤òÄêµÁ */
 
 /*!
- * @brief generate.cã§ç”¨ã„ã‚‰ã‚Œã‚‹åŸºæœ¬çš„ãªãƒ–ãƒ­ãƒƒã‚¯æ•°å˜ä½(å‚ç›´æ–¹å‘)
+ * @brief generate.c¤ÇÍÑ¤¤¤é¤ì¤ë´ğËÜÅª¤Ê¥Ö¥í¥Ã¥¯¿ôÃ±°Ì(¿âÄ¾Êı¸ş)
  * Number of grids in each block (vertically) Probably hard-coded to 11, see "generate.c"
  */
 #define BLOCK_HGT 11
 
 /*!
- * @brief generate.cã§ç”¨ã„ã‚‰ã‚Œã‚‹åŸºæœ¬çš„ãªãƒ–ãƒ­ãƒƒã‚¯æ•°å˜ä½(æ°´å¹³æ–¹å‘)
+ * @brief generate.c¤ÇÍÑ¤¤¤é¤ì¤ë´ğËÜÅª¤Ê¥Ö¥í¥Ã¥¯¿ôÃ±°Ì(¿åÊ¿Êı¸ş)
  * Number of grids in each block (horizontally) Probably hard-coded to 11, see "generate.c"
  */
 #define BLOCK_WID 11
 
 /*!
- * @brief è¡¨ç¤ºä¸Šã®åŸºæœ¬çš„ãªãƒ‘ãƒãƒ«å˜ä½(å‚ç›´æ–¹å‘ã€BLOCK_HGTã®å€æ•°ã§è¨­å®šã™ã‚‹ã“ã¨)
+ * @brief É½¼¨¾å¤Î´ğËÜÅª¤Ê¥Ñ¥Í¥ëÃ±°Ì(¿âÄ¾Êı¸ş¡¢BLOCK_HGT¤ÎÇÜ¿ô¤ÇÀßÄê¤¹¤ë¤³¤È)
  * Number of grids in each panel (vertically) Must be a multiple of BLOCK_HGT
  */
 #define PANEL_HGT 11
 
 /*!
- * @brief è¡¨ç¤ºä¸Šã®åŸºæœ¬çš„ãªãƒ‘ãƒãƒ«å˜ä½(æ°´å¹³æ–¹å‘ã€BLOCK_WIDã®å€æ•°ã§è¨­å®šã™ã‚‹ã“ã¨)
+ * @brief É½¼¨¾å¤Î´ğËÜÅª¤Ê¥Ñ¥Í¥ëÃ±°Ì(¿åÊ¿Êı¸ş¡¢BLOCK_WID¤ÎÇÜ¿ô¤ÇÀßÄê¤¹¤ë¤³¤È)
  * Number of grids in each panel (horizontally) Must be a multiple of BLOCK_WID
  */
 #define PANEL_WID 33
 
 /*!
- * @brief è¡¨ç¤ºä¸Šã®åŸºæœ¬çš„ãªãƒ–ãƒ­ãƒƒã‚¯å˜ä½(å‚ç›´æ–¹å‘ã€PANEL_HGTã®å€æ•°ã§è¨­å®šã™ã‚‹ã“ã¨)
+ * @brief É½¼¨¾å¤Î´ğËÜÅª¤Ê¥Ö¥í¥Ã¥¯Ã±°Ì(¿âÄ¾Êı¸ş¡¢PANEL_HGT¤ÎÇÜ¿ô¤ÇÀßÄê¤¹¤ë¤³¤È)
  * Number of grids used to display the dungeon (vertically). Must be a multiple of 11, probably hard-coded to 22.
  */
 #define SCREEN_HGT 22
 
 /*!
- * @brief è¡¨ç¤ºä¸Šã®åŸºæœ¬çš„ãªãƒ–ãƒ­ãƒƒã‚¯å˜ä½(æ°´å¹³æ–¹å‘ã€PANEL_WIDã®å€æ•°ã§è¨­å®šã™ã‚‹ã“ã¨)
+ * @brief É½¼¨¾å¤Î´ğËÜÅª¤Ê¥Ö¥í¥Ã¥¯Ã±°Ì(¿åÊ¿Êı¸ş¡¢PANEL_WID¤ÎÇÜ¿ô¤ÇÀßÄê¤¹¤ë¤³¤È)
  * Number of grids used to display the dungeon (horizontally). Must be a multiple of 33, probably hard-coded to 66.
  */
 #define SCREEN_WID 66
 
 /*!
- * @brief è¡¨ç¤ºä¸Šã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®æœ€å¤§å‚ç›´ã‚µã‚¤ã‚º(SCREEN_HGTã®3å€ãŒæœ›ã¾ã—ã„)
+ * @brief É½¼¨¾å¤Î¥À¥ó¥¸¥ç¥ó¤ÎºÇÂç¿âÄ¾¥µ¥¤¥º(SCREEN_HGT¤Î3ÇÜ¤¬Ë¾¤Ş¤·¤¤)
  * Maximum dungeon height in grids, must be a multiple of SCREEN_HGT, probably hard-coded to SCREEN_HGT * 3.
  */
 #define MAX_HGT 66
 
 /*!
- * @brief è¡¨ç¤ºä¸Šã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®æœ€å¤§æ°´å¹³ã‚µã‚¤ã‚º(SCREEN_WIDã®3å€ãŒæœ›ã¾ã—ã„)
+ * @brief É½¼¨¾å¤Î¥À¥ó¥¸¥ç¥ó¤ÎºÇÂç¿åÊ¿¥µ¥¤¥º(SCREEN_WID¤Î3ÇÜ¤¬Ë¾¤Ş¤·¤¤)
  * Maximum dungeon width in grids, must be a multiple of SCREEN_WID, probably hard-coded to SCREEN_WID * 3.
  */
 #define MAX_WID 198
@@ -134,239 +134,239 @@
 /*
  * Quest constants
  */
-#define MIN_RANDOM_QUEST 40 /*<! ãƒ©ãƒ³ãƒ€ãƒ ã‚¯ã‚¨ã‚¹ãƒˆã‚’å‰²ã‚Šå½“ã¦ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆIDã®é–‹å§‹å€¤ */
-#define MAX_RANDOM_QUEST 49 /*<! ãƒ©ãƒ³ãƒ€ãƒ ã‚¯ã‚¨ã‚¹ãƒˆã‚’å‰²ã‚Šå½“ã¦ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆIDã®çµ‚äº†å€¤ */
+#define MIN_RANDOM_QUEST 40 /*<! ¥é¥ó¥À¥à¥¯¥¨¥¹¥È¤ò³ä¤êÅö¤Æ¤ë¥¯¥¨¥¹¥ÈID¤Î³«»ÏÃÍ */
+#define MAX_RANDOM_QUEST 49 /*<! ¥é¥ó¥À¥à¥¯¥¨¥¹¥È¤ò³ä¤êÅö¤Æ¤ë¥¯¥¨¥¹¥ÈID¤Î½ªÎ»ÃÍ */
 
 /*!
- * @brief è©²å½“IDãŒå›ºå®šã‚¯ã‚¨ã‚¹ãƒˆã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹ / Check is the quest index is "fixed"
- * @param Q_IDX ã‚¯ã‚¨ã‚¹ãƒˆID
- * @return å›ºå®šã‚¯ã‚¨ã‚¹ãƒˆãªã‚‰ã°TRUEã‚’è¿”ã™
+ * @brief ³ºÅöID¤¬¸ÇÄê¥¯¥¨¥¹¥È¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë / Check is the quest index is "fixed"
+ * @param Q_IDX ¥¯¥¨¥¹¥ÈID
+ * @return ¸ÇÄê¥¯¥¨¥¹¥È¤Ê¤é¤ĞTRUE¤òÊÖ¤¹
  */
 #define is_fixed_quest_idx(Q_IDX) (((Q_IDX) < MIN_RANDOM_QUEST) || ((Q_IDX) > MAX_RANDOM_QUEST))
 
-#define QUEST_TOWER1 5 /*<! å¡”ã‚¯ã‚¨ã‚¹ãƒˆ(ç¬¬1éšå±¤)ã«å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆID */
-#define QUEST_TOWER2 6 /*<! å¡”ã‚¯ã‚¨ã‚¹ãƒˆ(ç¬¬2éšå±¤)ã«å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆID */
-#define QUEST_TOWER3 7 /*<! å¡”ã‚¯ã‚¨ã‚¹ãƒˆ(ç¬¬3éšå±¤)ã«å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆID */
-#define QUEST_OBERON 8 /*<! ã‚ªãƒ™ãƒ­ãƒ³æ‰“å€’ã‚¯ã‚¨ã‚¹ãƒˆã«å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆID */
-#define QUEST_SERPENT 9 /*<! ã‚µãƒ¼ãƒšãƒ³ãƒˆæ‰“å€’ã‚¯ã‚¨ã‚¹ãƒˆã«å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ã‚¨ã‚¹ãƒˆID */
+#define QUEST_TOWER1 5 /*<! Åã¥¯¥¨¥¹¥È(Âè1³¬ÁØ)¤Ë³ä¤ê¿¶¤ë¥¯¥¨¥¹¥ÈID */
+#define QUEST_TOWER2 6 /*<! Åã¥¯¥¨¥¹¥È(Âè2³¬ÁØ)¤Ë³ä¤ê¿¶¤ë¥¯¥¨¥¹¥ÈID */
+#define QUEST_TOWER3 7 /*<! Åã¥¯¥¨¥¹¥È(Âè3³¬ÁØ)¤Ë³ä¤ê¿¶¤ë¥¯¥¨¥¹¥ÈID */
+#define QUEST_OBERON 8 /*<! ¥ª¥Ù¥í¥óÂÇÅİ¥¯¥¨¥¹¥È¤Ë³ä¤ê¿¶¤ë¥¯¥¨¥¹¥ÈID */
+#define QUEST_SERPENT 9 /*<! ¥µ¡¼¥Ú¥ó¥ÈÂÇÅİ¥¯¥¨¥¹¥È¤Ë³ä¤ê¿¶¤ë¥¯¥¨¥¹¥ÈID */
 
 /*
  * Arena constants
  */
-#define MAX_ARENA_MONS 41 /*<! é—˜æŠ€å ´ã®ã‚¤ãƒ™ãƒ³ãƒˆä»¶æ•° -KMW- */
-#define ARENA_DEFEATED_OLD_VER (-(MAX_SHORT)) /*<! æ—§ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã®é—˜æŠ€å ´æ•—åŒ—å®šç¾© */
+#define MAX_ARENA_MONS 41 /*<! Æ®µ»¾ì¤Î¥¤¥Ù¥ó¥È·ï¿ô -KMW- */
+#define ARENA_DEFEATED_OLD_VER (-(MAX_SHORT)) /*<! µì¥Ğ¡¼¥¸¥ç¥ó¤ÎÆ®µ»¾ìÇÔËÌÄêµÁ */
 
 
-#define MAX_STORES 10 /*!< store.cç”¨ã®åº—èˆ—ã®ç¨®é¡æœ€å¤§æ•° / Total number of stores (see "store.c", etc) */
-#define MAX_BLDG 32 /*!< æ–½è¨­ã®ç¨®é¡æœ€å¤§æ•° / Number of buildings */
+#define MAX_STORES 10 /*!< store.cÍÑ¤ÎÅ¹ÊŞ¤Î¼ïÎàºÇÂç¿ô / Total number of stores (see "store.c", etc) */
+#define MAX_BLDG 32 /*!< »ÜÀß¤Î¼ïÎàºÇÂç¿ô / Number of buildings */
 
 /*
  * Store types
  */
-#define STORE_GENERAL   0 /*!< åº—èˆ—ã®ç¨®é¡: é›‘è²¨å±‹ */
-#define STORE_ARMOURY   1 /*!< åº—èˆ—ã®ç¨®é¡: é˜²å…·å±‹ */
-#define STORE_WEAPON    2 /*!< åº—èˆ—ã®ç¨®é¡: æ­¦å™¨å±‹ */
-#define STORE_TEMPLE    3 /*!< åº—èˆ—ã®ç¨®é¡: å¯ºé™¢ */
-#define STORE_ALCHEMIST 4 /*!< åº—èˆ—ã®ç¨®é¡: éŒ¬é‡‘è¡“ã®åº— */
-#define STORE_MAGIC     5 /*!< åº—èˆ—ã®ç¨®é¡: é­”é“å…·å±‹ */
-#define STORE_BLACK     6 /*!< åº—èˆ—ã®ç¨®é¡: ãƒ–ãƒ©ãƒƒã‚¯ãƒ»ãƒãƒ¼ã‚±ãƒƒãƒˆ */
-#define STORE_HOME      7 /*!< åº—èˆ—ã®ç¨®é¡: æˆ‘ãŒå®¶ */
-#define STORE_BOOK      8 /*!< åº—èˆ—ã®ç¨®é¡: æ›¸åº— */
-#define STORE_MUSEUM    9 /*!< åº—èˆ—ã®ç¨®é¡: åšç‰©é¤¨ */
+#define STORE_GENERAL   0 /*!< Å¹ÊŞ¤Î¼ïÎà: »¨²ß²° */
+#define STORE_ARMOURY   1 /*!< Å¹ÊŞ¤Î¼ïÎà: ËÉ¶ñ²° */
+#define STORE_WEAPON    2 /*!< Å¹ÊŞ¤Î¼ïÎà: Éğ´ï²° */
+#define STORE_TEMPLE    3 /*!< Å¹ÊŞ¤Î¼ïÎà: »û±¡ */
+#define STORE_ALCHEMIST 4 /*!< Å¹ÊŞ¤Î¼ïÎà: Ï£¶â½Ñ¤ÎÅ¹ */
+#define STORE_MAGIC     5 /*!< Å¹ÊŞ¤Î¼ïÎà: ËâÆ»¶ñ²° */
+#define STORE_BLACK     6 /*!< Å¹ÊŞ¤Î¼ïÎà: ¥Ö¥é¥Ã¥¯¡¦¥Ş¡¼¥±¥Ã¥È */
+#define STORE_HOME      7 /*!< Å¹ÊŞ¤Î¼ïÎà: ²æ¤¬²È */
+#define STORE_BOOK      8 /*!< Å¹ÊŞ¤Î¼ïÎà: ½ñÅ¹ */
+#define STORE_MUSEUM    9 /*!< Å¹ÊŞ¤Î¼ïÎà: ÇîÊª´Û */
 
-#define BUILDING_NON_MEMBER 0 /*!< ä¸æ˜(ç¾åœ¨æœªä½¿ç”¨) */
-#define BUILDING_MEMBER     1 /*!< ä¸æ˜(ç¾åœ¨æœªä½¿ç”¨) */
-#define BUILDING_OWNER      2 /*!< æ–½è¨­ã®ç¨®æ—/è·æ¥­æ¡ä»¶ãŒä¸€è‡´ã—ã¦ã„ã‚‹çŠ¶æ…‹å€¤ */
+#define BUILDING_NON_MEMBER 0 /*!< ÉÔÌÀ(¸½ºßÌ¤»ÈÍÑ) */
+#define BUILDING_MEMBER     1 /*!< ÉÔÌÀ(¸½ºßÌ¤»ÈÍÑ) */
+#define BUILDING_OWNER      2 /*!< »ÜÀß¤Î¼ïÂ²/¿¦¶È¾ò·ï¤¬°ìÃ×¤·¤Æ¤¤¤ë¾õÂÖÃÍ */
 
-#define MAX_OWNERS      32 /*!< å„åº—èˆ—æ¯ã®åº—ä¸»å®šç¾©æœ€å¤§æ•° / Total number of owners per store (see "store.c", etc) */
-#define MAX_SEXES        2 /*!< æ€§åˆ¥ã®å®šç¾©æœ€å¤§æ•° / Maximum number of player "sex" types (see "table.c", etc) */
-#define MAX_CLASS       28 /*!< è·æ¥­ã®æœ€å¤§å®šç¾©æ•° Maximum number of player "class" types (see "table.c", etc) */
-#define MAX_SEIKAKU     12 /*!< æ€§æ ¼ã®æœ€å¤§å®šç¾©æ•° */
-#define MAX_PATRON      16 /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã®æœ€å¤§å®šç¾©æ•° / The number of "patrons" available (for Chaos Warriors) */
+#define MAX_OWNERS      32 /*!< ³ÆÅ¹ÊŞËè¤ÎÅ¹¼çÄêµÁºÇÂç¿ô / Total number of owners per store (see "store.c", etc) */
+#define MAX_SEXES        2 /*!< À­ÊÌ¤ÎÄêµÁºÇÂç¿ô / Maximum number of player "sex" types (see "table.c", etc) */
+#define MAX_CLASS       28 /*!< ¿¦¶È¤ÎºÇÂçÄêµÁ¿ô Maximum number of player "class" types (see "table.c", etc) */
+#define MAX_SEIKAKU     12 /*!< À­³Ê¤ÎºÇÂçÄêµÁ¿ô */
+#define MAX_PATRON      16 /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤ÎºÇÂçÄêµÁ¿ô / The number of "patrons" available (for Chaos Warriors) */
 
-/* ELDRITCH_HORRORã«ã‚ˆã‚‹sanity blastå‡¦ç†ã«é–¢ã™ã‚‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®æœ€å¤§æ•° / Number of entries in the sanity-blast descriptions */
-#define MAX_SAN_HORROR 20 /*!< æã‚ã—ã„å¯¾è±¡ã®å½¢å®¹æ•°(æ­£å¸¸æ™‚) */
-#define MAX_SAN_FUNNY 22  /*!< æã‚ã—ã„å¯¾è±¡ã®å½¢å®¹æ•°(å¹»è¦šæ™‚) */
-#define MAX_SAN_COMMENT 5 /*!< æã‚ã—ã„å¯¾è±¡ã‚’è¦‹ãŸã¨ãã®çµ¶å«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ•°(å¹»è¦šæ™‚) */
+/* ELDRITCH_HORROR¤Ë¤è¤ësanity blast½èÍı¤Ë´Ø¤¹¤ë¥á¥Ã¥»¡¼¥¸¤ÎºÇÂç¿ô / Number of entries in the sanity-blast descriptions */
+#define MAX_SAN_HORROR 20 /*!< ¶²¤í¤·¤¤ÂĞ¾İ¤Î·ÁÍÆ¿ô(Àµ¾ï»ş) */
+#define MAX_SAN_FUNNY 22  /*!< ¶²¤í¤·¤¤ÂĞ¾İ¤Î·ÁÍÆ¿ô(¸¸³Ğ»ş) */
+#define MAX_SAN_COMMENT 5 /*!< ¶²¤í¤·¤¤ÂĞ¾İ¤ò¸«¤¿¤È¤­¤ÎÀä¶«¥á¥Ã¥»¡¼¥¸¿ô(¸¸³Ğ»ş) */
 
-/* ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬ç¨®åˆ¥å®šç¾© / Chaos Warrior: Reward types: */
-#define REW_POLY_SLF    1   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: è‡ªå·±å¤‰å®¹ */
-#define REW_GAIN_EXP    2   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: çµŒé¨“å€¤å¢—åŠ  */
-#define REW_LOSE_EXP    3   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: çµŒé¨“å€¤æ¸›å°‘ */
-#define REW_GOOD_OBJ    4   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: GOODãªã‚¢ã‚¤ãƒ†ãƒ å˜ä½“ã®ä¸‹è³œ */
-#define REW_GREA_OBJ    5   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: GREATãªã‚¢ã‚¤ãƒ†ãƒ å˜ä½“ã®ä¸‹è³œ */
-#define REW_CHAOS_WP    6   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ··æ²Œæ­¦å™¨ã®ä¸‹è³œ */
-#define REW_GOOD_OBS    7   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: GOODãªã‚¢ã‚¤ãƒ†ãƒ è¤‡æ•°ã®ä¸‹è³œ */
-#define REW_GREA_OBS    8   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: GREATãªã‚¢ã‚¤ãƒ†ãƒ è¤‡æ•°ã®ä¸‹è³œ */
-#define REW_TY_CURSE    9   /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: å¤ªå¤ã®æ€¨å¿µ */
-#define REW_SUMMON_M    10  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ•µå¯¾çš„ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å¬å–š(é€šå¸¸) */
-#define REW_H_SUMMON    11  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ•µå¯¾çš„ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å¬å–š(hi-summon) */
-#define REW_DO_HAVOC    12  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ··æ²Œæ‹›æ¥ */
-#define REW_GAIN_ABL    13  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: å¢—å¼· */
-#define REW_LOSE_ABL    14  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: 1èƒ½åŠ›ä½ä¸‹ */
-#define REW_RUIN_ABL    15  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: å…¨èƒ½åŠ›ä½ä¸‹ */
-#define REW_AUGM_ABL    16  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: 1èƒ½åŠ›ä¸Šæ˜‡ */
-#define REW_POLY_WND    17  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: å‚·ã®å¤‰åŒ– */
-#define REW_HEAL_FUL    18  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: å®Œå…¨å›å¾© */
-#define REW_HURT_LOT    19  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: åˆ†è§£ã®çƒã«ã‚ˆã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸ */
-#define REW_CURSE_WP    20  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ­¦å™¨å‘ªç¸› */
-#define REW_CURSE_AR    21  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: é˜²å…·å‘ªç¸› */
-#define REW_PISS_OFF    22  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: è‹›ç«‹ã¡ */
-#define REW_WRATH       23  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ€’ã‚Š */
-#define REW_DESTRUCT    24  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: *ç ´å£Š* */
-#define REW_GENOCIDE    25  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: ã‚·ãƒ³ãƒœãƒ«æŠ¹æ®º */
-#define REW_MASS_GEN    26  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: å‘¨è¾ºæŠ¹æ®º */
-#define REW_DISPEL_C    27  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é€€æ•£ */
-#define REW_UNUSED_1    28  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æœªä½¿ç”¨ */
-#define REW_UNUSED_2    29  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æœªä½¿ç”¨ */
-#define REW_UNUSED_3    30  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æœªä½¿ç”¨ */
-#define REW_UNUSED_4    31  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æœªä½¿ç”¨ */
-#define REW_UNUSED_5    32  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æœªä½¿ç”¨ */
-#define REW_IGNORE      33  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: ç„¡è¦– */
-#define REW_SER_UNDE    34  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã®ä¸‹åƒ•ä¸‹è³œ */
-#define REW_SER_DEMO    35  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: æ‚ªé­”ã®ä¸‹åƒ•ä¸‹è³œ */
-#define REW_SER_MONS    36  /*!< ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ã‹ã‚‰ã®å ±é…¬: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä¸‹åƒ•ä¸‹è³œ */
+/* ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·¼ïÊÌÄêµÁ / Chaos Warrior: Reward types: */
+#define REW_POLY_SLF    1   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ¼«¸ÊÊÑÍÆ */
+#define REW_GAIN_EXP    2   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ·Ğ¸³ÃÍÁı²Ã */
+#define REW_LOSE_EXP    3   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ·Ğ¸³ÃÍ¸º¾¯ */
+#define REW_GOOD_OBJ    4   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: GOOD¤Ê¥¢¥¤¥Æ¥àÃ±ÂÎ¤Î²¼»ò */
+#define REW_GREA_OBJ    5   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: GREAT¤Ê¥¢¥¤¥Æ¥àÃ±ÂÎ¤Î²¼»ò */
+#define REW_CHAOS_WP    6   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: º®ÆÙÉğ´ï¤Î²¼»ò */
+#define REW_GOOD_OBS    7   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: GOOD¤Ê¥¢¥¤¥Æ¥àÊ£¿ô¤Î²¼»ò */
+#define REW_GREA_OBS    8   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: GREAT¤Ê¥¢¥¤¥Æ¥àÊ£¿ô¤Î²¼»ò */
+#define REW_TY_CURSE    9   /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ÂÀ¸Å¤Î±åÇ° */
+#define REW_SUMMON_M    10  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Å¨ÂĞÅª¤Ê¥â¥ó¥¹¥¿¡¼¤Î¾¤´­(ÄÌ¾ï) */
+#define REW_H_SUMMON    11  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Å¨ÂĞÅª¤Ê¥â¥ó¥¹¥¿¡¼¤Î¾¤´­(hi-summon) */
+#define REW_DO_HAVOC    12  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: º®ÆÙ¾·Íè */
+#define REW_GAIN_ABL    13  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Áı¶¯ */
+#define REW_LOSE_ABL    14  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: 1Ç½ÎÏÄã²¼ */
+#define REW_RUIN_ABL    15  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Á´Ç½ÎÏÄã²¼ */
+#define REW_AUGM_ABL    16  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: 1Ç½ÎÏ¾å¾º */
+#define REW_POLY_WND    17  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ½ı¤ÎÊÑ²½ */
+#define REW_HEAL_FUL    18  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ´°Á´²óÉü */
+#define REW_HURT_LOT    19  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ê¬²ò¤Îµå¤Ë¤è¤ë¥À¥á¡¼¥¸ */
+#define REW_CURSE_WP    20  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Éğ´ï¼öÇû */
+#define REW_CURSE_AR    21  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ËÉ¶ñ¼öÇû */
+#define REW_PISS_OFF    22  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ²×Î©¤Á */
+#define REW_WRATH       23  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ÅÜ¤ê */
+#define REW_DESTRUCT    24  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: *ÇË²õ* */
+#define REW_GENOCIDE    25  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ¥·¥ó¥Ü¥ëËõ»¦ */
+#define REW_MASS_GEN    26  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ¼şÊÕËõ»¦ */
+#define REW_DISPEL_C    27  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ¥â¥ó¥¹¥¿¡¼Âà»¶ */
+#define REW_UNUSED_1    28  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ì¤»ÈÍÑ */
+#define REW_UNUSED_2    29  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ì¤»ÈÍÑ */
+#define REW_UNUSED_3    30  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ì¤»ÈÍÑ */
+#define REW_UNUSED_4    31  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ì¤»ÈÍÑ */
+#define REW_UNUSED_5    32  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ì¤»ÈÍÑ */
+#define REW_IGNORE      33  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: Ìµ»ë */
+#define REW_SER_UNDE    34  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ¥¢¥ó¥Ç¥Ã¥É¤Î²¼ËÍ²¼»ò */
+#define REW_SER_DEMO    35  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: °­Ëâ¤Î²¼ËÍ²¼»ò */
+#define REW_SER_MONS    36  /*!< ¥«¥ª¥¹¥Ñ¥È¥í¥ó¤«¤é¤ÎÊó½·: ¥â¥ó¥¹¥¿¡¼¤Î²¼ËÍ²¼»ò */
 
-/* ã‚«ã‚ªã‚¹ã®å¤‰ç•° / Chaos mutations */
+/* ¥«¥ª¥¹¤ÎÊÑ°Û / Chaos mutations */
 
-/* ãƒ¬ã‚¤ã‚·ãƒ£ãƒ«å‹ã®å¤‰ç•° / "Activatable" mutations must be in MUT1_* */
-#define MUT1_SPIT_ACID                  0x00000001L /*!< çªç„¶å¤‰ç•°: é…¸ã®å”¾ */
-#define MUT1_BR_FIRE                    0x00000002L /*!< çªç„¶å¤‰ç•°: ç‚ã®ãƒ–ãƒ¬ã‚¹ */
-#define MUT1_HYPN_GAZE                  0x00000004L /*!< çªç„¶å¤‰ç•°: å‚¬çœ ç¨ã¿ */
-#define MUT1_TELEKINES                  0x00000008L /*!< çªç„¶å¤‰ç•°: å¿µå‹•åŠ› */
-#define MUT1_VTELEPORT                  0x00000010L /*!< çªç„¶å¤‰ç•°: ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ / Voluntary teleport */
-#define MUT1_MIND_BLST                  0x00000020L /*!< çªç„¶å¤‰ç•°: ç²¾ç¥æ”»æ’ƒ */
-#define MUT1_RADIATION                  0x00000040L /*!< çªç„¶å¤‰ç•°: æ”¾å°„èƒ½ */
-#define MUT1_VAMPIRISM                  0x00000080L /*!< çªç„¶å¤‰ç•°: å¸è¡€ */
-#define MUT1_SMELL_MET                  0x00000100L /*!< çªç„¶å¤‰ç•°: é‡‘å±å—…è¦š */
-#define MUT1_SMELL_MON                  0x00000200L /*!< çªç„¶å¤‰ç•°: æ•µè‡­å—…è¦š */
-#define MUT1_BLINK                      0x00000400L /*!< çªç„¶å¤‰ç•°: ã‚·ãƒ§ãƒ¼ãƒˆãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ */
-#define MUT1_EAT_ROCK                   0x00000800L /*!< çªç„¶å¤‰ç•°: å²©å–°ã„ */
-#define MUT1_SWAP_POS                   0x00001000L /*!< çªç„¶å¤‰ç•°: ä½ç½®äº¤æ› */
-#define MUT1_SHRIEK                     0x00002000L /*!< çªç„¶å¤‰ç•°: å«ã³ */
-#define MUT1_ILLUMINE                   0x00004000L /*!< çªç„¶å¤‰ç•°: ç…§æ˜ */
-#define MUT1_DET_CURSE                  0x00008000L /*!< çªç„¶å¤‰ç•°: å‘ªã„æ„ŸçŸ¥ */
-#define MUT1_BERSERK                    0x00010000L /*!< çªç„¶å¤‰ç•°: ç‹‚æˆ¦å£«åŒ– */
-#define MUT1_POLYMORPH                  0x00020000L /*!< çªç„¶å¤‰ç•°: å¤‰èº« */
-#define MUT1_MIDAS_TCH                  0x00040000L /*!< çªç„¶å¤‰ç•°: ãƒŸãƒ€ã‚¹ã®æ‰‹ */
-#define MUT1_GROW_MOLD                  0x00080000L /*!< çªç„¶å¤‰ç•°: ã‚«ãƒ“ç™ºç”Ÿ */
-#define MUT1_RESIST                     0x00100000L /*!< çªç„¶å¤‰ç•°: ã‚¨ãƒ¬ãƒ¡ãƒ³ãƒˆè€æ€§ */
-#define MUT1_EARTHQUAKE                 0x00200000L /*!< çªç„¶å¤‰ç•°: åœ°éœ‡ */
-#define MUT1_EAT_MAGIC                  0x00400000L /*!< çªç„¶å¤‰ç•°: é­”åŠ›å–°ã„ */
-#define MUT1_WEIGH_MAG                  0x00800000L /*!< çªç„¶å¤‰ç•°: é­”åŠ›æ„ŸçŸ¥ */
-#define MUT1_STERILITY                  0x01000000L /*!< çªç„¶å¤‰ç•°: å¢—æ®–é˜»æ­¢ */
-#define MUT1_PANIC_HIT                  0x02000000L /*!< çªç„¶å¤‰ç•°: ãƒ’ãƒƒãƒˆã‚¢ãƒ³ãƒ‰ã‚¢ã‚¦ã‚§ã‚¤ */
-#define MUT1_DAZZLE                     0x04000000L /*!< çªç„¶å¤‰ç•°: çœ©æƒ‘ */
-#define MUT1_LASER_EYE                  0x08000000L /*!< çªç„¶å¤‰ç•°: ãƒ¬ãƒ¼ã‚¶ãƒ¼ãƒ»ã‚¢ã‚¤ */
-#define MUT1_RECALL                     0x10000000L /*!< çªç„¶å¤‰ç•°: å¸°é‚„ */
-#define MUT1_BANISH                     0x20000000L /*!< çªç„¶å¤‰ç•°: é‚ªæ‚ªæ¶ˆæ»… */
-#define MUT1_COLD_TOUCH                 0x40000000L /*!< çªç„¶å¤‰ç•°: å‡çµã®æ‰‹ */
-#define MUT1_LAUNCHER                   0x80000000L /*!< çªç„¶å¤‰ç•°: ã‚¢ã‚¤ãƒ†ãƒ æŠ•ã’ */
+/* ¥ì¥¤¥·¥ã¥ë·¿¤ÎÊÑ°Û / "Activatable" mutations must be in MUT1_* */
+#define MUT1_SPIT_ACID                  0x00000001L /*!< ÆÍÁ³ÊÑ°Û: »À¤ÎÂÃ */
+#define MUT1_BR_FIRE                    0x00000002L /*!< ÆÍÁ³ÊÑ°Û: ±ê¤Î¥Ö¥ì¥¹ */
+#define MUT1_HYPN_GAZE                  0x00000004L /*!< ÆÍÁ³ÊÑ°Û: ºÅÌ²âË¤ß */
+#define MUT1_TELEKINES                  0x00000008L /*!< ÆÍÁ³ÊÑ°Û: Ç°Æ°ÎÏ */
+#define MUT1_VTELEPORT                  0x00000010L /*!< ÆÍÁ³ÊÑ°Û: ¥Æ¥ì¥İ¡¼¥È / Voluntary teleport */
+#define MUT1_MIND_BLST                  0x00000020L /*!< ÆÍÁ³ÊÑ°Û: Àº¿À¹¶·â */
+#define MUT1_RADIATION                  0x00000040L /*!< ÆÍÁ³ÊÑ°Û: Êü¼ÍÇ½ */
+#define MUT1_VAMPIRISM                  0x00000080L /*!< ÆÍÁ³ÊÑ°Û: µÛ·ì */
+#define MUT1_SMELL_MET                  0x00000100L /*!< ÆÍÁ³ÊÑ°Û: ¶âÂ°ÓÌ³Ğ */
+#define MUT1_SMELL_MON                  0x00000200L /*!< ÆÍÁ³ÊÑ°Û: Å¨½­ÓÌ³Ğ */
+#define MUT1_BLINK                      0x00000400L /*!< ÆÍÁ³ÊÑ°Û: ¥·¥ç¡¼¥È¡¦¥Æ¥ì¥İ¡¼¥È */
+#define MUT1_EAT_ROCK                   0x00000800L /*!< ÆÍÁ³ÊÑ°Û: ´ä¶ô¤¤ */
+#define MUT1_SWAP_POS                   0x00001000L /*!< ÆÍÁ³ÊÑ°Û: °ÌÃÖ¸ò´¹ */
+#define MUT1_SHRIEK                     0x00002000L /*!< ÆÍÁ³ÊÑ°Û: ¶«¤Ó */
+#define MUT1_ILLUMINE                   0x00004000L /*!< ÆÍÁ³ÊÑ°Û: ¾ÈÌÀ */
+#define MUT1_DET_CURSE                  0x00008000L /*!< ÆÍÁ³ÊÑ°Û: ¼ö¤¤´¶ÃÎ */
+#define MUT1_BERSERK                    0x00010000L /*!< ÆÍÁ³ÊÑ°Û: ¶¸Àï»Î²½ */
+#define MUT1_POLYMORPH                  0x00020000L /*!< ÆÍÁ³ÊÑ°Û: ÊÑ¿È */
+#define MUT1_MIDAS_TCH                  0x00040000L /*!< ÆÍÁ³ÊÑ°Û: ¥ß¥À¥¹¤Î¼ê */
+#define MUT1_GROW_MOLD                  0x00080000L /*!< ÆÍÁ³ÊÑ°Û: ¥«¥ÓÈ¯À¸ */
+#define MUT1_RESIST                     0x00100000L /*!< ÆÍÁ³ÊÑ°Û: ¥¨¥ì¥á¥ó¥ÈÂÑÀ­ */
+#define MUT1_EARTHQUAKE                 0x00200000L /*!< ÆÍÁ³ÊÑ°Û: ÃÏ¿Ì */
+#define MUT1_EAT_MAGIC                  0x00400000L /*!< ÆÍÁ³ÊÑ°Û: ËâÎÏ¶ô¤¤ */
+#define MUT1_WEIGH_MAG                  0x00800000L /*!< ÆÍÁ³ÊÑ°Û: ËâÎÏ´¶ÃÎ */
+#define MUT1_STERILITY                  0x01000000L /*!< ÆÍÁ³ÊÑ°Û: Áı¿£ÁË»ß */
+#define MUT1_PANIC_HIT                  0x02000000L /*!< ÆÍÁ³ÊÑ°Û: ¥Ò¥Ã¥È¥¢¥ó¥É¥¢¥¦¥§¥¤ */
+#define MUT1_DAZZLE                     0x04000000L /*!< ÆÍÁ³ÊÑ°Û: âÁÏÇ */
+#define MUT1_LASER_EYE                  0x08000000L /*!< ÆÍÁ³ÊÑ°Û: ¥ì¡¼¥¶¡¼¡¦¥¢¥¤ */
+#define MUT1_RECALL                     0x10000000L /*!< ÆÍÁ³ÊÑ°Û: µ¢´Ô */
+#define MUT1_BANISH                     0x20000000L /*!< ÆÍÁ³ÊÑ°Û: ¼Ù°­¾ÃÌÇ */
+#define MUT1_COLD_TOUCH                 0x40000000L /*!< ÆÍÁ³ÊÑ°Û: Åà·ë¤Î¼ê */
+#define MUT1_LAUNCHER                   0x80000000L /*!< ÆÍÁ³ÊÑ°Û: ¥¢¥¤¥Æ¥àÅê¤² */
 
-/* å¸¸æ™‚åŠ¹æœã¤ãã®å¤‰ç•°1 / Randomly activating mutations must be MUT2_* */
-#define MUT2_BERS_RAGE                  0x00000001L /*!< çªç„¶å¤‰ç•°: ç‹‚æˆ¦å£«åŒ–ã®ç™ºä½œ */
-#define MUT2_COWARDICE                  0x00000002L /*!< çªç„¶å¤‰ç•°: è‡†ç—… */
-#define MUT2_RTELEPORT                  0x00000004L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ / Random teleport, instability */
-#define MUT2_ALCOHOL                    0x00000008L /*!< çªç„¶å¤‰ç•°: ã‚¢ãƒ«ã‚³ãƒ¼ãƒ«åˆ†æ³Œ */
-#define MUT2_HALLU                      0x00000010L /*!< çªç„¶å¤‰ç•°: å¹»è¦šã‚’å¼•ãèµ·ã“ã™ç²¾ç¥éŒ¯ä¹± */
-#define MUT2_FLATULENT                  0x00000020L /*!< çªç„¶å¤‰ç•°: çŒ›çƒˆãªå± */
-#define MUT2_SCOR_TAIL                  0x00000040L /*!< çªç„¶å¤‰ç•°: ã‚µã‚½ãƒªã®å°»å°¾ */
-#define MUT2_HORNS                      0x00000080L /*!< çªç„¶å¤‰ç•°: ãƒ„ãƒ */
-#define MUT2_BEAK                       0x00000100L /*!< çªç„¶å¤‰ç•°: ã‚¯ãƒãƒã‚· */
-#define MUT2_ATT_DEMON                  0x00000200L /*!< çªç„¶å¤‰ç•°: ãƒ‡ãƒ¼ãƒ¢ãƒ³ã‚’å¼•ãä»˜ã‘ã‚‹ */
-#define MUT2_PROD_MANA                  0x00000400L /*!< çªç„¶å¤‰ç•°: åˆ¶å¾¡ã§ããªã„é­”åŠ›ã®ã‚¨ãƒãƒ«ã‚®ãƒ¼ */
-#define MUT2_SPEED_FLUX                 0x00000800L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªåŠ æ¸›é€Ÿ */
-#define MUT2_BANISH_ALL                 0x00001000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ¶ˆæ»… */
-#define MUT2_EAT_LIGHT                  0x00002000L /*!< çªç„¶å¤‰ç•°: å…‰æºå–°ã„ */
-#define MUT2_TRUNK                      0x00004000L /*!< çªç„¶å¤‰ç•°: è±¡ã®é¼» */
-#define MUT2_ATT_ANIMAL                 0x00008000L /*!< çªç„¶å¤‰ç•°: å‹•ç‰©ã‚’å¼•ãå¯„ã›ã‚‹ */
-#define MUT2_TENTACLES                  0x00010000L /*!< çªç„¶å¤‰ç•°: é‚ªæ‚ªãªè§¦æ‰‹ */
-#define MUT2_RAW_CHAOS                  0x00020000L /*!< çªç„¶å¤‰ç•°: ç´”ã‚«ã‚ªã‚¹ */
-#define MUT2_NORMALITY                  0x00040000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªå¤‰ç•°ã®æ¶ˆæ»… */
-#define MUT2_WRAITH                     0x00080000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªå¹½ä½“åŒ– */
-#define MUT2_POLY_WOUND                 0x00100000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªå‚·ã®å¤‰åŒ– */
-#define MUT2_WASTING                    0x00200000L /*!< çªç„¶å¤‰ç•°: è¡°å¼± */
-#define MUT2_ATT_DRAGON                 0x00400000L /*!< çªç„¶å¤‰ç•°: ãƒ‰ãƒ©ã‚´ãƒ³ã‚’å¼•ãå¯„ã›ã‚‹ */
-#define MUT2_WEIRD_MIND                 0x00800000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼ */
-#define MUT2_NAUSEA                     0x01000000L /*!< çªç„¶å¤‰ç•°: è½ã¡ç€ãã®ç„¡ã„èƒƒ */
-#define MUT2_CHAOS_GIFT                 0x02000000L /*!< çªç„¶å¤‰ç•°: ã‚«ã‚ªã‚¹ãƒ‘ãƒˆãƒ­ãƒ³ */
-#define MUT2_WALK_SHAD                  0x04000000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªç¾å®Ÿå¤‰å®¹ */
-#define MUT2_WARNING                    0x08000000L /*!< çªç„¶å¤‰ç•°: è­¦å‘Š */
-#define MUT2_INVULN                     0x10000000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªç„¡æ•µåŒ– */
-#define MUT2_SP_TO_HP                   0x20000000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªMPã‹ã‚‰HPã¸ã®å¤‰æ› */
-#define MUT2_HP_TO_SP                   0x40000000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªHPã‹ã‚‰MPã¸ã®å¤‰æ› */
-#define MUT2_DISARM                     0x80000000L /*!< çªç„¶å¤‰ç•°: ãƒ©ãƒ³ãƒ€ãƒ ãªæ­¦å™¨è½ã¨ã— */
-
-
-/* å¸¸æ™‚åŠ¹æœã¤ãã®å¤‰ç•°2 / Other mutations will be mainly in MUT3_* */
-#define MUT3_HYPER_STR                  0x00000001L /*!< çªç„¶å¤‰ç•°: è¶…äººçš„ãªåŠ› */
-#define MUT3_PUNY                       0x00000002L /*!< çªç„¶å¤‰ç•°: è™šå¼± */
-#define MUT3_HYPER_INT                  0x00000004L /*!< çªç„¶å¤‰ç•°: ç”Ÿä½“ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ */
-#define MUT3_MORONIC                    0x00000008L /*!< çªç„¶å¤‰ç•°: ç²¾ç¥è–„å¼± */
-#define MUT3_RESILIENT                  0x00000010L /*!< çªç„¶å¤‰ç•°: å¼¾åŠ›ã®ã‚ã‚‹ä½“ */
-#define MUT3_XTRA_FAT                   0x00000020L /*!< çªç„¶å¤‰ç•°: ç•°å¸¸ãªè‚¥æº€ */
-#define MUT3_ALBINO                     0x00000040L /*!< çªç„¶å¤‰ç•°: ã‚¢ãƒ«ãƒ“ãƒ */
-#define MUT3_FLESH_ROT                  0x00000080L /*!< çªç„¶å¤‰ç•°: è…æ•—ã—ãŸè‚‰ä½“ */
-#define MUT3_SILLY_VOI                  0x00000100L /*!< çªç„¶å¤‰ç•°: é–“æŠœã‘ãªã‚­ãƒ¼ã‚­ãƒ¼å£° */
-#define MUT3_BLANK_FAC                  0x00000200L /*!< çªç„¶å¤‰ç•°: ã®ã£ãºã‚‰ã¼ã† */
-#define MUT3_ILL_NORM                   0x00000400L /*!< çªç„¶å¤‰ç•°: å¹»å½±ã«è¦†ã‚ã‚ŒãŸä½“ */
-#define MUT3_XTRA_EYES                  0x00000800L /*!< çªç„¶å¤‰ç•°: ç¬¬ä¸‰ã®ç›® */
-#define MUT3_MAGIC_RES                  0x00001000L /*!< çªç„¶å¤‰ç•°: é­”æ³•é˜²å¾¡ */
-#define MUT3_XTRA_NOIS                  0x00002000L /*!< çªç„¶å¤‰ç•°: é¨’éŸ³ */
-#define MUT3_INFRAVIS                   0x00004000L /*!< çªç„¶å¤‰ç•°: èµ¤å¤–ç·šè¦–åŠ› */
-#define MUT3_XTRA_LEGS                  0x00008000L /*!< çªç„¶å¤‰ç•°: è¿½åŠ ã®è„š */
-#define MUT3_SHORT_LEG                  0x00010000L /*!< çªç„¶å¤‰ç•°: çŸ­ã„è„š */
-#define MUT3_ELEC_TOUC                  0x00020000L /*!< çªç„¶å¤‰ç•°: é›»æ’ƒã‚ªãƒ¼ãƒ© */
-#define MUT3_FIRE_BODY                  0x00040000L /*!< çªç„¶å¤‰ç•°: ç«ç‚ã‚ªãƒ¼ãƒ© */
-#define MUT3_WART_SKIN                  0x00080000L /*!< çªç„¶å¤‰ç•°: ã‚¤ãƒœè‚Œ */
-#define MUT3_SCALES                     0x00100000L /*!< çªç„¶å¤‰ç•°: é±—è‚Œ */
-#define MUT3_IRON_SKIN                  0x00200000L /*!< çªç„¶å¤‰ç•°: é‰„ã®è‚Œ */
-#define MUT3_WINGS                      0x00400000L /*!< çªç„¶å¤‰ç•°: ç¿¼ */
-#define MUT3_FEARLESS                   0x00800000L /*!< çªç„¶å¤‰ç•°: æã‚ŒçŸ¥ã‚‰ãš */
-#define MUT3_REGEN                      0x01000000L /*!< çªç„¶å¤‰ç•°: æ€¥å›å¾© */
-#define MUT3_ESP                        0x02000000L /*!< çªç„¶å¤‰ç•°: ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼ */
-#define MUT3_LIMBER                     0x04000000L /*!< çªç„¶å¤‰ç•°: ã—ãªã‚„ã‹ãªè‚‰ä½“ */
-#define MUT3_ARTHRITIS                  0x08000000L /*!< çªç„¶å¤‰ç•°: é–¢ç¯€ã®ç—›ã¿ */
-#define MUT3_BAD_LUCK                   0x10000000L /*!< çªç„¶å¤‰ç•°: é»’ã„ã‚ªãƒ¼ãƒ©(ä¸é‹) */
-#define MUT3_VULN_ELEM                  0x20000000L /*!< çªç„¶å¤‰ç•°: å…ƒç´ æ”»æ’ƒå¼±ç‚¹ */
-#define MUT3_MOTION                     0x40000000L /*!< çªç„¶å¤‰ç•°: æ­£ç¢ºã§åŠ›å¼·ã„å‹•ä½œ */
-#define MUT3_GOOD_LUCK                  0x80000000L /*!< çªç„¶å¤‰ç•°: ç™½ã„ã‚ªãƒ¼ãƒ©(å¹¸é‹) */
+/* ¾ï»ş¸ú²Ì¤Ä¤­¤ÎÊÑ°Û1 / Randomly activating mutations must be MUT2_* */
+#define MUT2_BERS_RAGE                  0x00000001L /*!< ÆÍÁ³ÊÑ°Û: ¶¸Àï»Î²½¤ÎÈ¯ºî */
+#define MUT2_COWARDICE                  0x00000002L /*!< ÆÍÁ³ÊÑ°Û: ²²ÉÂ */
+#define MUT2_RTELEPORT                  0x00000004L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¥Æ¥ì¥İ¡¼¥È / Random teleport, instability */
+#define MUT2_ALCOHOL                    0x00000008L /*!< ÆÍÁ³ÊÑ°Û: ¥¢¥ë¥³¡¼¥ëÊ¬Èç */
+#define MUT2_HALLU                      0x00000010L /*!< ÆÍÁ³ÊÑ°Û: ¸¸³Ğ¤ò°ú¤­µ¯¤³¤¹Àº¿ÀºøÍğ */
+#define MUT2_FLATULENT                  0x00000020L /*!< ÆÍÁ³ÊÑ°Û: ÌÔÎõ¤ÊÕû */
+#define MUT2_SCOR_TAIL                  0x00000040L /*!< ÆÍÁ³ÊÑ°Û: ¥µ¥½¥ê¤Î¿¬Èø */
+#define MUT2_HORNS                      0x00000080L /*!< ÆÍÁ³ÊÑ°Û: ¥Ä¥Î */
+#define MUT2_BEAK                       0x00000100L /*!< ÆÍÁ³ÊÑ°Û: ¥¯¥Á¥Ğ¥· */
+#define MUT2_ATT_DEMON                  0x00000200L /*!< ÆÍÁ³ÊÑ°Û: ¥Ç¡¼¥â¥ó¤ò°ú¤­ÉÕ¤±¤ë */
+#define MUT2_PROD_MANA                  0x00000400L /*!< ÆÍÁ³ÊÑ°Û: À©¸æ¤Ç¤­¤Ê¤¤ËâÎÏ¤Î¥¨¥Í¥ë¥®¡¼ */
+#define MUT2_SPEED_FLUX                 0x00000800L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤Ê²Ã¸ºÂ® */
+#define MUT2_BANISH_ALL                 0x00001000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤Ê¥â¥ó¥¹¥¿¡¼¾ÃÌÇ */
+#define MUT2_EAT_LIGHT                  0x00002000L /*!< ÆÍÁ³ÊÑ°Û: ¸÷¸»¶ô¤¤ */
+#define MUT2_TRUNK                      0x00004000L /*!< ÆÍÁ³ÊÑ°Û: ¾İ¤ÎÉ¡ */
+#define MUT2_ATT_ANIMAL                 0x00008000L /*!< ÆÍÁ³ÊÑ°Û: Æ°Êª¤ò°ú¤­´ó¤»¤ë */
+#define MUT2_TENTACLES                  0x00010000L /*!< ÆÍÁ³ÊÑ°Û: ¼Ù°­¤Ê¿¨¼ê */
+#define MUT2_RAW_CHAOS                  0x00020000L /*!< ÆÍÁ³ÊÑ°Û: ½ã¥«¥ª¥¹ */
+#define MUT2_NORMALITY                  0x00040000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤ÊÊÑ°Û¤Î¾ÃÌÇ */
+#define MUT2_WRAITH                     0x00080000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤ÊÍ©ÂÎ²½ */
+#define MUT2_POLY_WOUND                 0x00100000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤Ê½ı¤ÎÊÑ²½ */
+#define MUT2_WASTING                    0x00200000L /*!< ÆÍÁ³ÊÑ°Û: ¿ê¼å */
+#define MUT2_ATT_DRAGON                 0x00400000L /*!< ÆÍÁ³ÊÑ°Û: ¥É¥é¥´¥ó¤ò°ú¤­´ó¤»¤ë */
+#define MUT2_WEIRD_MIND                 0x00800000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤Ê¥Æ¥ì¥Ñ¥·¡¼ */
+#define MUT2_NAUSEA                     0x01000000L /*!< ÆÍÁ³ÊÑ°Û: Íî¤ÁÃå¤­¤ÎÌµ¤¤°ß */
+#define MUT2_CHAOS_GIFT                 0x02000000L /*!< ÆÍÁ³ÊÑ°Û: ¥«¥ª¥¹¥Ñ¥È¥í¥ó */
+#define MUT2_WALK_SHAD                  0x04000000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤Ê¸½¼ÂÊÑÍÆ */
+#define MUT2_WARNING                    0x08000000L /*!< ÆÍÁ³ÊÑ°Û: ·Ù¹ğ */
+#define MUT2_INVULN                     0x10000000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤ÊÌµÅ¨²½ */
+#define MUT2_SP_TO_HP                   0x20000000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤ÊMP¤«¤éHP¤Ø¤ÎÊÑ´¹ */
+#define MUT2_HP_TO_SP                   0x40000000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤ÊHP¤«¤éMP¤Ø¤ÎÊÑ´¹ */
+#define MUT2_DISARM                     0x80000000L /*!< ÆÍÁ³ÊÑ°Û: ¥é¥ó¥À¥à¤ÊÉğ´ïÍî¤È¤· */
 
 
+/* ¾ï»ş¸ú²Ì¤Ä¤­¤ÎÊÑ°Û2 / Other mutations will be mainly in MUT3_* */
+#define MUT3_HYPER_STR                  0x00000001L /*!< ÆÍÁ³ÊÑ°Û: Ä¶¿ÍÅª¤ÊÎÏ */
+#define MUT3_PUNY                       0x00000002L /*!< ÆÍÁ³ÊÑ°Û: µõ¼å */
+#define MUT3_HYPER_INT                  0x00000004L /*!< ÆÍÁ³ÊÑ°Û: À¸ÂÎ¥³¥ó¥Ô¥å¡¼¥¿ */
+#define MUT3_MORONIC                    0x00000008L /*!< ÆÍÁ³ÊÑ°Û: Àº¿ÀÇö¼å */
+#define MUT3_RESILIENT                  0x00000010L /*!< ÆÍÁ³ÊÑ°Û: ÃÆÎÏ¤Î¤¢¤ëÂÎ */
+#define MUT3_XTRA_FAT                   0x00000020L /*!< ÆÍÁ³ÊÑ°Û: °Û¾ï¤ÊÈîËş */
+#define MUT3_ALBINO                     0x00000040L /*!< ÆÍÁ³ÊÑ°Û: ¥¢¥ë¥Ó¥Î */
+#define MUT3_FLESH_ROT                  0x00000080L /*!< ÆÍÁ³ÊÑ°Û: ÉåÇÔ¤·¤¿ÆùÂÎ */
+#define MUT3_SILLY_VOI                  0x00000100L /*!< ÆÍÁ³ÊÑ°Û: ´ÖÈ´¤±¤Ê¥­¡¼¥­¡¼À¼ */
+#define MUT3_BLANK_FAC                  0x00000200L /*!< ÆÍÁ³ÊÑ°Û: ¤Î¤Ã¤Ú¤é¤Ü¤¦ */
+#define MUT3_ILL_NORM                   0x00000400L /*!< ÆÍÁ³ÊÑ°Û: ¸¸±Æ¤ËÊ¤¤ï¤ì¤¿ÂÎ */
+#define MUT3_XTRA_EYES                  0x00000800L /*!< ÆÍÁ³ÊÑ°Û: Âè»°¤ÎÌÜ */
+#define MUT3_MAGIC_RES                  0x00001000L /*!< ÆÍÁ³ÊÑ°Û: ËâË¡ËÉ¸æ */
+#define MUT3_XTRA_NOIS                  0x00002000L /*!< ÆÍÁ³ÊÑ°Û: Áû²» */
+#define MUT3_INFRAVIS                   0x00004000L /*!< ÆÍÁ³ÊÑ°Û: ÀÖ³°Àş»ëÎÏ */
+#define MUT3_XTRA_LEGS                  0x00008000L /*!< ÆÍÁ³ÊÑ°Û: ÄÉ²Ã¤ÎµÓ */
+#define MUT3_SHORT_LEG                  0x00010000L /*!< ÆÍÁ³ÊÑ°Û: Ã»¤¤µÓ */
+#define MUT3_ELEC_TOUC                  0x00020000L /*!< ÆÍÁ³ÊÑ°Û: ÅÅ·â¥ª¡¼¥é */
+#define MUT3_FIRE_BODY                  0x00040000L /*!< ÆÍÁ³ÊÑ°Û: ²Ğ±ê¥ª¡¼¥é */
+#define MUT3_WART_SKIN                  0x00080000L /*!< ÆÍÁ³ÊÑ°Û: ¥¤¥ÜÈ© */
+#define MUT3_SCALES                     0x00100000L /*!< ÆÍÁ³ÊÑ°Û: ÎÚÈ© */
+#define MUT3_IRON_SKIN                  0x00200000L /*!< ÆÍÁ³ÊÑ°Û: Å´¤ÎÈ© */
+#define MUT3_WINGS                      0x00400000L /*!< ÆÍÁ³ÊÑ°Û: Íã */
+#define MUT3_FEARLESS                   0x00800000L /*!< ÆÍÁ³ÊÑ°Û: ¶²¤ìÃÎ¤é¤º */
+#define MUT3_REGEN                      0x01000000L /*!< ÆÍÁ³ÊÑ°Û: µŞ²óÉü */
+#define MUT3_ESP                        0x02000000L /*!< ÆÍÁ³ÊÑ°Û: ¥Æ¥ì¥Ñ¥·¡¼ */
+#define MUT3_LIMBER                     0x04000000L /*!< ÆÍÁ³ÊÑ°Û: ¤·¤Ê¤ä¤«¤ÊÆùÂÎ */
+#define MUT3_ARTHRITIS                  0x08000000L /*!< ÆÍÁ³ÊÑ°Û: ´ØÀá¤ÎÄË¤ß */
+#define MUT3_BAD_LUCK                   0x10000000L /*!< ÆÍÁ³ÊÑ°Û: ¹õ¤¤¥ª¡¼¥é(ÉÔ±¿) */
+#define MUT3_VULN_ELEM                  0x20000000L /*!< ÆÍÁ³ÊÑ°Û: ¸µÁÇ¹¶·â¼åÅÀ */
+#define MUT3_MOTION                     0x40000000L /*!< ÆÍÁ³ÊÑ°Û: Àµ³Î¤ÇÎÏ¶¯¤¤Æ°ºî */
+#define MUT3_GOOD_LUCK                  0x80000000L /*!< ÆÍÁ³ÊÑ°Û: Çò¤¤¥ª¡¼¥é(¹¬±¿) */
 
-#define MAX_MA 17 /*!< ä¿®è¡Œåƒ§ãƒãƒ¼ã‚·ãƒ£ãƒ«ã‚¢ãƒ¼ãƒ„ã®æŠ€æ•° / Monk martial arts... */
-#define MA_KNEE 1 /*!< é‡‘çš„åŠ¹æœID */
-#define MA_SLOW 2 /*!< è†è¹´ã‚ŠåŠ¹æœID */
 
-#define MAX_MIND_POWERS  21 /*!< è¶…èƒ½åŠ›ã®æ•° / Mindcraft */
+
+#define MAX_MA 17 /*!< ½¤¹ÔÁÎ¥Ş¡¼¥·¥ã¥ë¥¢¡¼¥Ä¤Îµ»¿ô / Monk martial arts... */
+#define MA_KNEE 1 /*!< ¶âÅª¸ú²ÌID */
+#define MA_SLOW 2 /*!< É¨½³¤ê¸ú²ÌID */
+
+#define MAX_MIND_POWERS  21 /*!< Ä¶Ç½ÎÏ¤Î¿ô / Mindcraft */
 
 
 #ifdef JP
-#define MAX_SILLY_ATTACK 41 /*!< å¹»è¦šæ™‚ã®ã‚¸ãƒ§ãƒ¼ã‚¯ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æœ€å¤§æ•° */
+#define MAX_SILLY_ATTACK 41 /*!< ¸¸³Ğ»ş¤Î¥¸¥ç¡¼¥¯¥á¥Ã¥»¡¼¥¸ºÇÂç¿ô */
 #else
 #define MAX_SILLY_ATTACK 29 /*!< Hallucination stuff */
 #endif
 
-#define MIND_MINDCRAFTER    0 /*!< ç‰¹æ®Šèƒ½åŠ›: è¶…èƒ½åŠ› */
-#define MIND_KI             1 /*!< ç‰¹æ®Šèƒ½åŠ›: ç·´æ°— */
-#define MIND_BERSERKER      2 /*!< ç‰¹æ®Šèƒ½åŠ›: æ€’ã‚Š */
-#define MIND_MIRROR_MASTER  3 /*!< ç‰¹æ®Šèƒ½åŠ›: é¡é­”æ³• */
-#define MIND_NINJUTSU       4 /*!< ç‰¹æ®Šèƒ½åŠ›: å¿è¡“ */
+#define MIND_MINDCRAFTER    0 /*!< ÆÃ¼ìÇ½ÎÏ: Ä¶Ç½ÎÏ */
+#define MIND_KI             1 /*!< ÆÃ¼ìÇ½ÎÏ: Îıµ¤ */
+#define MIND_BERSERKER      2 /*!< ÆÃ¼ìÇ½ÎÏ: ÅÜ¤ê */
+#define MIND_MIRROR_MASTER  3 /*!< ÆÃ¼ìÇ½ÎÏ: ¶ÀËâË¡ */
+#define MIND_NINJUTSU       4 /*!< ÆÃ¼ìÇ½ÎÏ: Ç¦½Ñ */
 
 
 /*
  * Size of memory reserved for initialization of some arrays
  */
-#define FAKE_NAME_SIZE  40 * 1024L /*!< ã‚²ãƒ¼ãƒ æƒ…å ±ã®ç¨®åˆ¥æ¯ã«ç”¨æ„ã•ã‚Œã‚‹åå‰ç”¨ãƒãƒƒãƒ•ã‚¡ã®å®¹é‡ */
-#define FAKE_TEXT_SIZE 150 * 1024L /*!< ã‚²ãƒ¼ãƒ æƒ…å ±ã®ç¨®åˆ¥æ¯ã«ç”¨æ„ã•ã‚Œã‚‹ãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒãƒƒãƒ•ã‚¡ã®å®¹é‡ */
-#define FAKE_TAG_SIZE   10 * 1024L /*!< ã‚²ãƒ¼ãƒ æƒ…å ±ã®ç¨®åˆ¥æ¯ã«ç”¨æ„ã•ã‚Œã‚‹ã‚¿ã‚°ç”¨ãƒãƒƒãƒ•ã‚¡ã®å®¹é‡ */
+#define FAKE_NAME_SIZE  40 * 1024L /*!< ¥²¡¼¥à¾ğÊó¤Î¼ïÊÌËè¤ËÍÑ°Õ¤µ¤ì¤ëÌ¾Á°ÍÑ¥Ğ¥Ã¥Õ¥¡¤ÎÍÆÎÌ */
+#define FAKE_TEXT_SIZE 150 * 1024L /*!< ¥²¡¼¥à¾ğÊó¤Î¼ïÊÌËè¤ËÍÑ°Õ¤µ¤ì¤ë¥Æ¥­¥¹¥ÈÍÑ¥Ğ¥Ã¥Õ¥¡¤ÎÍÆÎÌ */
+#define FAKE_TAG_SIZE   10 * 1024L /*!< ¥²¡¼¥à¾ğÊó¤Î¼ïÊÌËè¤ËÍÑ°Õ¤µ¤ì¤ë¥¿¥°ÍÑ¥Ğ¥Ã¥Õ¥¡¤ÎÍÆÎÌ */
 
-#define MAX_HISCORES    999 /*!< ã‚¹ã‚³ã‚¢æƒ…å ±ä¿å­˜ã®æœ€å¤§æ•° / Maximum number of high scores in the high score file */
+#define MAX_HISCORES    999 /*!< ¥¹¥³¥¢¾ğÊóÊİÂ¸¤ÎºÇÂç¿ô / Maximum number of high scores in the high score file */
 
 
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®æœ€æ·±å±¤ / Maximum dungeon level. 
+ * @brief ¥À¥ó¥¸¥ç¥ó¤ÎºÇ¿¼ÁØ / Maximum dungeon level. 
  * @details
  * The player can never reach this level
  * in the dungeon, and this value is used for various calculations
@@ -375,17 +375,17 @@
  */
 #define MAX_DEPTH       128 
 
-#define MAX_SAVED_FLOORS       20 /*!< ä¿å­˜ãƒ•ãƒ­ã‚¢ã®æœ€å¤§æ•° / Maximum number of saved floors. */
+#define MAX_SAVED_FLOORS       20 /*!< ÊİÂ¸¥Õ¥í¥¢¤ÎºÇÂç¿ô / Maximum number of saved floors. */
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨å…‰æºå‡¦ç†é…åˆ—ã‚µã‚¤ã‚º / Maximum size of the "lite" array (see "cave.c")
+ * @brief ¥×¥ì¥¤¥ä¡¼ÍÑ¸÷¸»½èÍıÇÛÎó¥µ¥¤¥º / Maximum size of the "lite" array (see "cave.c")
  * @details Note that the "lite radius" will NEVER exceed 14, and we would
  * never require more than 581 entries in the array for circular "lite".
  */
 #define LITE_MAX 600
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”¨å…‰æºå‡¦ç†é…åˆ—ã‚µã‚¤ã‚º / Maximum size of the "mon_lite" array (see "cave.c")
+ * @brief ¥â¥ó¥¹¥¿¡¼ÍÑ¸÷¸»½èÍıÇÛÎó¥µ¥¤¥º / Maximum size of the "mon_lite" array (see "cave.c")
  * @details Note that the "view radius" will NEVER exceed 20, monster illumination
  * flags are dependent on CAVE_VIEW, and even if the "view" was octagonal,
  * we would never require more than 1520 entries in the array.
@@ -393,14 +393,14 @@
 #define MON_LITE_MAX 1536
 
 /*!
- * @brief è¦–ç•Œå‡¦ç†é…åˆ—ã‚µã‚¤ã‚º / Maximum size of the "view" array (see "cave.c")
+ * @brief »ë³¦½èÍıÇÛÎó¥µ¥¤¥º / Maximum size of the "view" array (see "cave.c")
  * @details Note that the "view radius" will NEVER exceed 20, and even if the "view"
  * was octagonal, we would never require more than 1520 entries in the array.
  */
 #define VIEW_MAX 1536
 
 /*!
- * @brief è¦–ç•ŒåŠã³å…‰æºã®éæ¸¡å‡¦ç†é…åˆ—ã‚µã‚¤ã‚º / Maximum size of the "temp" array (see "cave.c")
+ * @brief »ë³¦µÚ¤Ó¸÷¸»¤Î²áÅÏ½èÍıÇÛÎó¥µ¥¤¥º / Maximum size of the "temp" array (see "cave.c")
  * @details We must be as large as "VIEW_MAX" and "LITE_MAX" for proper functioning
  * of "update_view()" and "update_lite()".  We must also be as large as the
  * largest illuminatable room, but no room is larger than 800 grids.  We
@@ -410,29 +410,29 @@
 #define TEMP_MAX 2298
 
 /*!
- * @brief å†æç”»å‡¦ç†ç”¨é…åˆ—ã‚µã‚¤ã‚º / Maximum size of the "redraw" array (see "cave.c")
+ * @brief ºÆÉÁ²è½èÍıÍÑÇÛÎó¥µ¥¤¥º / Maximum size of the "redraw" array (see "cave.c")
  * @details We must be large for proper functioning of delayed redrawing.
  * We must also be as large as two times of the largest view area.
  * Note that maximum view grids are 1149 entries.
  */
 #define REDRAW_MAX 2298
 
-#define KEYMAP_MODE_ORIG	0 /*!< ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚­ãƒ¼é…ç½® / Mode for original keyset commands */
-#define KEYMAP_MODE_ROGUE	1 /*!< ãƒ­ãƒ¼ã‚°ãƒ©ã‚¤ã‚¯ã‚­ãƒ¼é…ç½® / Mode for roguelike keyset commands */
-#define KEYMAP_MODES		2 /*!< ã‚­ãƒ¼é…ç½®ã®æ•° / Number of keymap modes */
+#define KEYMAP_MODE_ORIG	0 /*!< ¥ª¥ê¥¸¥Ê¥ë¥­¡¼ÇÛÃÖ / Mode for original keyset commands */
+#define KEYMAP_MODE_ROGUE	1 /*!< ¥í¡¼¥°¥é¥¤¥¯¥­¡¼ÇÛÃÖ / Mode for roguelike keyset commands */
+#define KEYMAP_MODES		2 /*!< ¥­¡¼ÇÛÃÖ¤Î¿ô / Number of keymap modes */
 
 
 
 
 
 /*!
- * @brief ãƒã‚¯ãƒ­ç™»éŒ²ã®æœ€å¤§æ•° / Maximum number of macros (see "io.c")
+ * @brief ¥Ş¥¯¥íÅĞÏ¿¤ÎºÇÂç¿ô / Maximum number of macros (see "io.c")
  * @note Default: assume at most 256 macros are used
  */
 #define MACRO_MAX       256
 
 /*!
- * @brief éŠ˜æƒ…å ±ã®æœ€å¤§æ•° / Maximum number of "quarks" (see "io.c")
+ * @brief ÌÃ¾ğÊó¤ÎºÇÂç¿ô / Maximum number of "quarks" (see "io.c")
  * @note 
  * Default: assume at most 512 different inscriptions are used<br>
  * Was 512... 256 quarks added for random artifacts<br>
@@ -488,99 +488,99 @@
 #define STORE_SHUFFLE   21              /* 1/Chance (per day) of an owner changing */
 #define STORE_TICKS     1000            /* Number of ticks between turnovers */
 
-/*! @brief æ¶ˆè²»ã™ã‚‹è¡Œå‹•ã‚¨ãƒãƒ«ã‚®ãƒ¼å€¤ã‚’æ­£è¦ä¹±æ•°ã§è¿”ã™(ä¸­å¤®100/åˆ†æ•£25) / Random energy */
+/*! @brief ¾ÃÈñ¤¹¤ë¹ÔÆ°¥¨¥Í¥ë¥®¡¼ÃÍ¤òÀµµ¬Íğ¿ô¤ÇÊÖ¤¹(Ãæ±û100/Ê¬»¶25) / Random energy */
 #define ENERGY_NEED() (randnor(100, 25))
 
-/*! @brief åŠ é€Ÿå€¤ã«å¿œã˜ãŸåŸºæœ¬è¡Œå‹•ã‚¨ãƒãƒ«ã‚®ãƒ¼æ¶ˆè²»é‡ã‚’è¿”ã™ / Extract energy from speed (Assumes that SPEED is unsigned) */
+/*! @brief ²ÃÂ®ÃÍ¤Ë±ş¤¸¤¿´ğËÜ¹ÔÆ°¥¨¥Í¥ë¥®¡¼¾ÃÈñÎÌ¤òÊÖ¤¹ / Extract energy from speed (Assumes that SPEED is unsigned) */
 #define SPEED_TO_ENERGY(SPEED) (((SPEED) > 199) ? 49 : extract_energy[(SPEED)])
 
 
 /*
  * Misc constants
  */
-#define TOWN_DAWN         10000   /*!< 1æ—¥åˆ†ã®ã‚¿ãƒ¼ãƒ³ / Number of ticks from dawn to dawn XXX */
-#define TURNS_PER_TICK    10L     /*!< æ™‚é–“çµŒéå‡¦ç†ã‚’è¡Œã†ã‚¿ãƒ¼ãƒ³æ•°ã®åˆ»ã¿ / Number of energy-gain-turns per ticks */
-#define INN_DUNGEON_TURN_ADJ 10   /*!< å®¿å±‹ã§æ™‚é–“ã‚’ã¤ã¶ã—ãŸå ´åˆã«å¢—ãˆã‚‹dungeon_turnã®å€ç‡ */
-#define MAX_DAYS          20000   /*!< å†…éƒ¨å‡¦ç†ä¸­ã§ä¿æŒã•ã‚Œã‚‹æœ€å¤§æ—¥æ•° / Maximum days */
-#define BREAK_GLYPH       550     /*!< å®ˆã‚Šã®ãƒ«ãƒ¼ãƒ³ã®å¼·é­åº¦ / Rune of protection resistance */
-#define BREAK_MINOR_GLYPH 299     /*!< çˆ†ç™ºã®ãƒ«ãƒ¼ãƒ³ã®ç™ºå‹•ã—ã‚„ã™ã• / For explosive runes */
-#define BTH_PLUS_ADJ      3       /*!< æ­¦å™¨çµŒé¨“å€¤åŠã³ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰“æ’ƒ/å°„æ’ƒèƒ½åŠ›ã«å¿œã˜ãŸä¿®æ­£å€¤å€ç‡ / Adjust BTH per plus-to-hit */
-#define MON_MULT_ADJ      8       /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å¢—æ®–ã—ã«ãã•ã®åŸºæœ¬å€ç‡ / High value slows multiplication */
-#define MON_SUMMON_ADJ    2       /*!< ç¾åœ¨æœªä½¿ç”¨ Adjust level of summoned creatures */
-#define MON_DRAIN_LIFE    2       /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒã«ã‚ˆã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çµŒé¨“å€¤å¸ååŸºæœ¬å€ç‡(%) / Percent of player exp drained per hit */
-#define USE_DEVICE        3       /*!< é­”é“å…·ã®æœ€ä½å¤±æ•—åŸºæº–å€¤ x> Harder devices x< Easier devices     */
+#define TOWN_DAWN         10000   /*!< 1ÆüÊ¬¤Î¥¿¡¼¥ó / Number of ticks from dawn to dawn XXX */
+#define TURNS_PER_TICK    10L     /*!< »ş´Ö·Ğ²á½èÍı¤ò¹Ô¤¦¥¿¡¼¥ó¿ô¤Î¹ï¤ß / Number of energy-gain-turns per ticks */
+#define INN_DUNGEON_TURN_ADJ 10   /*!< ½É²°¤Ç»ş´Ö¤ò¤Ä¤Ö¤·¤¿¾ì¹ç¤ËÁı¤¨¤ëdungeon_turn¤ÎÇÜÎ¨ */
+#define MAX_DAYS          20000   /*!< ÆâÉô½èÍıÃæ¤ÇÊİ»ı¤µ¤ì¤ëºÇÂçÆü¿ô / Maximum days */
+#define BREAK_GLYPH       550     /*!< ¼é¤ê¤Î¥ë¡¼¥ó¤Î¶¯¿ÙÅÙ / Rune of protection resistance */
+#define BREAK_MINOR_GLYPH 299     /*!< ÇúÈ¯¤Î¥ë¡¼¥ó¤ÎÈ¯Æ°¤·¤ä¤¹¤µ / For explosive runes */
+#define BTH_PLUS_ADJ      3       /*!< Éğ´ï·Ğ¸³ÃÍµÚ¤Ó¥×¥ì¥¤¥ä¡¼¤ÎÂÇ·â/¼Í·âÇ½ÎÏ¤Ë±ş¤¸¤¿½¤ÀµÃÍÇÜÎ¨ / Adjust BTH per plus-to-hit */
+#define MON_MULT_ADJ      8       /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÁı¿£¤·¤Ë¤¯¤µ¤Î´ğËÜÇÜÎ¨ / High value slows multiplication */
+#define MON_SUMMON_ADJ    2       /*!< ¸½ºßÌ¤»ÈÍÑ Adjust level of summoned creatures */
+#define MON_DRAIN_LIFE    2       /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·â¤Ë¤è¤ë¥×¥ì¥¤¥ä¡¼¤Î·Ğ¸³ÃÍµÛ¼ı´ğËÜÇÜÎ¨(%) / Percent of player exp drained per hit */
+#define USE_DEVICE        3       /*!< ËâÆ»¶ñ¤ÎºÇÄã¼ºÇÔ´ğ½àÃÍ x> Harder devices x< Easier devices     */
 
 
 /* "Biases" for random artifact gen */
 
-#define BIAS_ELEC            1 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:é›»æ’ƒ */
-#define BIAS_POIS            2 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:æ¯’ */
-#define BIAS_FIRE            3 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:ç«ç‚ */
-#define BIAS_COLD            4 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:å†·æ°— */
-#define BIAS_ACID            5 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:é…¸ */
-#define BIAS_STR             6 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:è…•åŠ› */
-#define BIAS_INT             7 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:çŸ¥åŠ› */
-#define BIAS_WIS             8 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:è³¢ã• */
-#define BIAS_DEX             9 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:å™¨ç”¨ã• */
-#define BIAS_CON            10 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:è€ä¹… */
-#define BIAS_CHR            11 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:é­…åŠ› */
-#define BIAS_CHAOS          12 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:æ··æ²Œ */
-#define BIAS_PRIESTLY       13 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:ãƒ—ãƒªãƒ¼ã‚¹ãƒˆç³» */
-#define BIAS_NECROMANTIC    14 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:æ­»éœŠ */
-#define BIAS_LAW            15 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:æ³• */
-#define BIAS_ROGUE          16 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:ç›—è³Šç³» */
-#define BIAS_MAGE           17 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:ãƒ¡ã‚¤ã‚¸ç³» */
-#define BIAS_WARRIOR        18 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:æˆ¦å£«ç³» */
-#define BIAS_RANGER         19 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ç³» */
-#define MAX_BIAS            20 /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãƒã‚¤ã‚¢ã‚¹:æœ€å¤§æ•° */
+#define BIAS_ELEC            1 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ÅÅ·â */
+#define BIAS_POIS            2 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ÆÇ */
+#define BIAS_FIRE            3 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:²Ğ±ê */
+#define BIAS_COLD            4 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:Îäµ¤ */
+#define BIAS_ACID            5 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:»À */
+#define BIAS_STR             6 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ÏÓÎÏ */
+#define BIAS_INT             7 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ÃÎÎÏ */
+#define BIAS_WIS             8 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:¸­¤µ */
+#define BIAS_DEX             9 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:´ïÍÑ¤µ */
+#define BIAS_CON            10 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ÂÑµ× */
+#define BIAS_CHR            11 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:Ì¥ÎÏ */
+#define BIAS_CHAOS          12 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:º®ÆÙ */
+#define BIAS_PRIESTLY       13 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:¥×¥ê¡¼¥¹¥È·Ï */
+#define BIAS_NECROMANTIC    14 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:»àÎî */
+#define BIAS_LAW            15 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:Ë¡ */
+#define BIAS_ROGUE          16 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ÅğÂ±·Ï */
+#define BIAS_MAGE           17 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:¥á¥¤¥¸·Ï */
+#define BIAS_WARRIOR        18 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:Àï»Î·Ï */
+#define BIAS_RANGER         19 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:¥ì¥ó¥¸¥ã¡¼·Ï */
+#define MAX_BIAS            20 /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¥Ğ¥¤¥¢¥¹:ºÇÂç¿ô */
 
 /*** Pet constants ***/
 
 
 /*
- * ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ç¾¤ / Pet Commands
+ * ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É·² / Pet Commands
  */
-#define PET_DISMISS				1  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒšãƒƒãƒˆã‚’é›¢ã™ */
-#define PET_TARGET				2  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒšãƒƒãƒˆã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’æŒ‡å®š */
-#define PET_STAY_CLOSE			3  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: è¿‘ãã«ã„ã‚ */
-#define PET_FOLLOW_ME			4  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ã¤ã„ã¦æ¥ã„ */
-#define PET_SEEK_AND_DESTROY	5  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: æ•µã‚’è¦‹ã¤ã‘ã¦å€’ã› */
-#define PET_ALLOW_SPACE			6  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: å°‘ã—é›¢ã‚Œã¦ã„ã‚ */
-#define PET_STAY_AWAY			7  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: é›¢ã‚Œã¦ã„ã‚ */
-#define PET_OPEN_DOORS			8  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒ‰ã‚¢è§£æ”¾ã®è¨±å¯ */
-#define PET_TAKE_ITEMS			9  /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ã‚¢ã‚¤ãƒ†ãƒ å–å¾—ã®è¨±å¯ */
-#define PET_TELEPORT			10 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã®è¨±å¯ */
-#define PET_ATTACK_SPELL		11 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: æ”»æ’ƒé­”æ³•ã®è¨±å¯ */
-#define PET_SUMMON_SPELL		12 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: å¬å–šé­”æ³•ã®è¨±å¯ */
-#define PET_BALL_SPELL			13 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’é­”æ³•ã«å·»ãè¾¼ã‚€è¨±å¯ */
-#define PET_RIDING				14 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒšãƒƒãƒˆã«ä¹—ã‚‹ */
-#define PET_NAME				15 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: ãƒšãƒƒãƒˆã«åå‰ã‚’ã¤ã‘ã‚‹ */
-#define PET_RYOUTE				16 /*!< ãƒšãƒƒãƒˆã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰: é¨ä¹—ä¸­ã«ä¸¡æ‰‹ã§æ­¦å™¨ã‚’ä½¿ã†ã‹ã©ã†ã‹ */
+#define PET_DISMISS				1  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥Ú¥Ã¥È¤òÎ¥¤¹ */
+#define PET_TARGET				2  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥Ú¥Ã¥È¤Î¥¿¡¼¥²¥Ã¥È¤ò»ØÄê */
+#define PET_STAY_CLOSE			3  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¶á¤¯¤Ë¤¤¤í */
+#define PET_FOLLOW_ME			4  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¤Ä¤¤¤ÆÍè¤¤ */
+#define PET_SEEK_AND_DESTROY	5  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: Å¨¤ò¸«¤Ä¤±¤ÆÅİ¤» */
+#define PET_ALLOW_SPACE			6  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¾¯¤·Î¥¤ì¤Æ¤¤¤í */
+#define PET_STAY_AWAY			7  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: Î¥¤ì¤Æ¤¤¤í */
+#define PET_OPEN_DOORS			8  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥É¥¢²òÊü¤Îµö²Ä */
+#define PET_TAKE_ITEMS			9  /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥¢¥¤¥Æ¥à¼èÆÀ¤Îµö²Ä */
+#define PET_TELEPORT			10 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥Æ¥ì¥İ¡¼¥È¤Îµö²Ä */
+#define PET_ATTACK_SPELL		11 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¹¶·âËâË¡¤Îµö²Ä */
+#define PET_SUMMON_SPELL		12 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¾¤´­ËâË¡¤Îµö²Ä */
+#define PET_BALL_SPELL			13 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥×¥ì¥¤¥ä¡¼¤òËâË¡¤Ë´¬¤­¹ş¤àµö²Ä */
+#define PET_RIDING				14 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥Ú¥Ã¥È¤Ë¾è¤ë */
+#define PET_NAME				15 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: ¥Ú¥Ã¥È¤ËÌ¾Á°¤ò¤Ä¤±¤ë */
+#define PET_RYOUTE				16 /*!< ¥Ú¥Ã¥È¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É: µ³¾èÃæ¤ËÎ¾¼ê¤ÇÉğ´ï¤ò»È¤¦¤«¤É¤¦¤« */
 
 /*
  * Follow distances
  */
-#define PET_CLOSE_DIST				1		/*!<ãƒšãƒƒãƒˆã®è¡Œå‹•ç¯„å›²â€¦è¿‘ãã«ã„ã‚ */
-#define PET_FOLLOW_DIST				6		/*!<ãƒšãƒƒãƒˆã®è¡Œå‹•ç¯„å›²â€¦ã¤ã„ã¦æ¥ã„ */
-#define PET_SEEK_DIST				10		/*!<ãƒšãƒƒãƒˆã®è¡Œå‹•ç¯„å›²â€¦ç‰¹ã«ãªã—? */
-#define PET_DESTROY_DIST			255		/*!<ãƒšãƒƒãƒˆã®è¡Œå‹•ç¯„å›²â€¦æ•µã‚’è¦‹ã¤ã‘ã¦å€’ã› */
-#define PET_SPACE_DIST				(-10)	/*!<ãƒšãƒƒãƒˆã®è¡Œå‹•ç¯„å›²â€¦å°‘ã—é›¢ã‚Œã¦ã„ã‚ */
-#define PET_AWAY_DIST				(-25)	/*!<ãƒšãƒƒãƒˆã®è¡Œå‹•ç¯„å›²â€¦é›¢ã‚Œã¦ã„ã‚ */
+#define PET_CLOSE_DIST				1		/*!<¥Ú¥Ã¥È¤Î¹ÔÆ°ÈÏ°Ï¡Ä¶á¤¯¤Ë¤¤¤í */
+#define PET_FOLLOW_DIST				6		/*!<¥Ú¥Ã¥È¤Î¹ÔÆ°ÈÏ°Ï¡Ä¤Ä¤¤¤ÆÍè¤¤ */
+#define PET_SEEK_DIST				10		/*!<¥Ú¥Ã¥È¤Î¹ÔÆ°ÈÏ°Ï¡ÄÆÃ¤Ë¤Ê¤·? */
+#define PET_DESTROY_DIST			255		/*!<¥Ú¥Ã¥È¤Î¹ÔÆ°ÈÏ°Ï¡ÄÅ¨¤ò¸«¤Ä¤±¤ÆÅİ¤» */
+#define PET_SPACE_DIST				(-10)	/*!<¥Ú¥Ã¥È¤Î¹ÔÆ°ÈÏ°Ï¡Ä¾¯¤·Î¥¤ì¤Æ¤¤¤í */
+#define PET_AWAY_DIST				(-25)	/*!<¥Ú¥Ã¥È¤Î¹ÔÆ°ÈÏ°Ï¡ÄÎ¥¤ì¤Æ¤¤¤í */
 
-#define PF_OPEN_DOORS   0x0001 /*!< ãƒšãƒƒãƒˆã®è¡Œå‹•è¨±å¯â€¦ãƒ‰ã‚¢ã‚’é–‹ã‘ã¦ã‚ˆã„ */
-#define PF_PICKUP_ITEMS 0x0002 /*!< ãƒšãƒƒãƒˆã®è¡Œå‹•è¨±å¯â€¦ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‹¾ã£ã¦ã‚ˆã„ */
-#define PF_TELEPORT     0x0004 /*!< ãƒšãƒƒãƒˆã®è¡Œå‹•è¨±å¯â€¦ãƒ†ãƒ¬ãƒãƒ¼ãƒˆé­”æ³•ã‚’ä½¿ã£ã¦ã‚ˆã„ */
-#define PF_ATTACK_SPELL 0x0008 /*!< ãƒšãƒƒãƒˆã®è¡Œå‹•è¨±å¯â€¦æ”»æ’ƒé­”æ³•ã‚’ä½¿ã£ã¦ã‚ˆã„ */
-#define PF_SUMMON_SPELL 0x0010 /*!< ãƒšãƒƒãƒˆã®è¡Œå‹•è¨±å¯â€¦å¬å–šé­”æ³•ã‚’ä½¿ã£ã¦ã‚ˆã„ */
-#define PF_BALL_SPELL   0x0020 /*!< ãƒšãƒƒãƒˆã®è¡Œå‹•è¨±å¯â€¦ãƒœãƒ¼ãƒ«é­”æ³•ã§ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å·»ãè¾¼ã‚“ã§ã‚ˆã„ */
-#define PF_RYOUTE       0x0040 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é¨ä¹—ãƒ•ãƒ©ã‚°â€¦æ­¦å™¨ã‚’ç‰‡æ‰‹ã§æŒã¤ */
+#define PF_OPEN_DOORS   0x0001 /*!< ¥Ú¥Ã¥È¤Î¹ÔÆ°µö²Ä¡Ä¥É¥¢¤ò³«¤±¤Æ¤è¤¤ */
+#define PF_PICKUP_ITEMS 0x0002 /*!< ¥Ú¥Ã¥È¤Î¹ÔÆ°µö²Ä¡Ä¥¢¥¤¥Æ¥à¤ò½¦¤Ã¤Æ¤è¤¤ */
+#define PF_TELEPORT     0x0004 /*!< ¥Ú¥Ã¥È¤Î¹ÔÆ°µö²Ä¡Ä¥Æ¥ì¥İ¡¼¥ÈËâË¡¤ò»È¤Ã¤Æ¤è¤¤ */
+#define PF_ATTACK_SPELL 0x0008 /*!< ¥Ú¥Ã¥È¤Î¹ÔÆ°µö²Ä¡Ä¹¶·âËâË¡¤ò»È¤Ã¤Æ¤è¤¤ */
+#define PF_SUMMON_SPELL 0x0010 /*!< ¥Ú¥Ã¥È¤Î¹ÔÆ°µö²Ä¡Ä¾¤´­ËâË¡¤ò»È¤Ã¤Æ¤è¤¤ */
+#define PF_BALL_SPELL   0x0020 /*!< ¥Ú¥Ã¥È¤Î¹ÔÆ°µö²Ä¡Ä¥Ü¡¼¥ëËâË¡¤Ç¥×¥ì¥¤¥ä¡¼¤ò´¬¤­¹ş¤ó¤Ç¤è¤¤ */
+#define PF_RYOUTE       0x0040 /*!< ¥×¥ì¥¤¥ä¡¼¤Îµ³¾è¥Õ¥é¥°¡ÄÉğ´ï¤òÊÒ¼ê¤Ç»ı¤Ä */
 
 
 #define CAN_TWO_HANDS_WIELDING() (!p_ptr->riding || (p_ptr->pet_extra_flags & PF_RYOUTE))
 
 
 /*!
- * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆéšå±¤ãŒåŠ ç®—ã•ã‚Œã‚‹ç¢ºç‡
+ * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÀ¸À®³¬ÁØ¤¬²Ã»»¤µ¤ì¤ë³ÎÎ¨
  * @details
  * There is a 1/10 (10%) chance of inflating the requested object_level
  * during the creation of an object (see "get_obj_num()" in "object.c").
@@ -589,38 +589,38 @@
 #define GREAT_OBJ       10
 
 /*!
- * @brief æ·±å±¤ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒç”Ÿæˆã•ã‚Œã‚‹(NASTYç”Ÿæˆ)ã®åŸºæœ¬ç¢ºç‡(1/x)
+ * @brief ¿¼ÁØ¥â¥ó¥¹¥¿¡¼¤¬À¸À®¤µ¤ì¤ë(NASTYÀ¸À®)¤Î´ğËÜ³ÎÎ¨(1/x)
  * @details
  * There is a 1/25 (4%) chance of inflating the requested monster_level
  * during the creation of a monsters (see "get_mon_num()" in "monster.c").
  * Lower values yield harder monsters more often.
  */
 #define NASTY_MON_BASE     25
-#define NASTY_MON_MAX      3	/*!< æ·±å±¤ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒ1ãƒ•ãƒ­ã‚¢ã«ç”Ÿæˆã•ã‚Œã‚‹æœ€å¤§æ•°  */
-#define NASTY_MON_PLUS_MAX 25	/*!< æ·±å±¤ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®éšå±¤åŠ ç®—æœ€å¤§é‡ */
+#define NASTY_MON_MAX      3	/*!< ¿¼ÁØ¥â¥ó¥¹¥¿¡¼¤¬1¥Õ¥í¥¢¤ËÀ¸À®¤µ¤ì¤ëºÇÂç¿ô  */
+#define NASTY_MON_PLUS_MAX 25	/*!< ¿¼ÁØ¥â¥ó¥¹¥¿¡¼¤Î³¬ÁØ²Ã»»ºÇÂçÎÌ */
 
-#define PENETRATE_INVULNERABILITY 13 /*!< ç„¡æ•µåŒ–ãŒç ´ã‚‰ã‚Œã‚‹ç¢ºç‡(1/x) / 1/x chance of hurting even if invulnerable! */
+#define PENETRATE_INVULNERABILITY 13 /*!< ÌµÅ¨²½¤¬ÇË¤é¤ì¤ë³ÎÎ¨(1/x) / 1/x chance of hurting even if invulnerable! */
 
 
 
 /*
  * Refueling constants
  */
-#define FUEL_TORCH      5000    /*!< æ¾æ˜ã®åŸºæœ¬å¯¿å‘½å€¤ / Maximum amount of fuel in a torch */
-#define FUEL_LAMP       15000   /*!< ãƒ©ãƒ³ã‚¿ãƒ³ã®åŸºæœ¬å¯¿å‘½å€¤ / Maximum amount of fuel in a lantern */
+#define FUEL_TORCH      5000    /*!< ¾¾ÌÀ¤Î´ğËÜ¼÷Ì¿ÃÍ / Maximum amount of fuel in a torch */
+#define FUEL_LAMP       15000   /*!< ¥é¥ó¥¿¥ó¤Î´ğËÜ¼÷Ì¿ÃÍ / Maximum amount of fuel in a lantern */
 
 /*
  * More maximum values
  */
-#define MAX_SIGHT       20      /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ€å¤§è¦–ç•Œç¯„å›²(ãƒã‚¹) / Maximum view distance */
-#define MAX_RANGE       (p_ptr->inside_battle ? 36 : 18)      /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒå°„ç¨‹(ãƒã‚¹) / Maximum range (spells, etc) */
-#define AAF_LIMIT       100     /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®é™ç•Œæ„ŸçŸ¥ç¯„å›²(ãƒã‚¹) Limit of sensing radius */
+#define MAX_SIGHT       20      /*!< ¥×¥ì¥¤¥ä¡¼¤ÎºÇÂç»ë³¦ÈÏ°Ï(¥Ş¥¹) / Maximum view distance */
+#define MAX_RANGE       (p_ptr->inside_battle ? 36 : 18)      /*!< ¥×¥ì¥¤¥ä¡¼¤Î¹¶·â¼ÍÄø(¥Ş¥¹) / Maximum range (spells, etc) */
+#define AAF_LIMIT       100     /*!< ¥â¥ó¥¹¥¿¡¼¤Î¸Â³¦´¶ÃÎÈÏ°Ï(¥Ş¥¹) Limit of sensing radius */
 
-#define MIN_M_ALLOC_TD          4 /*!< è¡—(æ˜¼é–“)ã®æœ€ä½ä½äººé…ç½®æ•° / The town starts out with 4 residents during the day */
-#define MIN_M_ALLOC_TN          8 /*!< è¡—(å¤œé–“)ã®æœ€ä½ä½äººé…ç½®æ•° / The town starts out with 8 residents during the night */
+#define MIN_M_ALLOC_TD          4 /*!< ³¹(Ãë´Ö)¤ÎºÇÄã½»¿ÍÇÛÃÖ¿ô / The town starts out with 4 residents during the day */
+#define MIN_M_ALLOC_TN          8 /*!< ³¹(Ìë´Ö)¤ÎºÇÄã½»¿ÍÇÛÃÖ¿ô / The town starts out with 8 residents during the night */
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å¢—æ®–ã®æœ€å¤§æ•°
+ * @brief ¥â¥ó¥¹¥¿¡¼Áı¿£¤ÎºÇÂç¿ô
  * @details
  * A monster can only "multiply" (reproduce) if there are fewer than 100
  * monsters on the level capable of such spontaneous reproduction.  This
@@ -632,19 +632,19 @@
 /*
  * Player constants
  */
-#define PY_MAX_EXP      99999999L       /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼çµŒé¨“å€¤ã®æœ€å¤§å€¤ / Maximum exp */
-#define PY_MAX_GOLD     999999999L      /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ‰€æŒé‡‘ã®æœ€å¤§å€¤ / Maximum gold */
-#define PY_MAX_LEVEL    50              /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«ã®æœ€å¤§å€¤ / Maximum level */
+#define PY_MAX_EXP      99999999L       /*!< ¥×¥ì¥¤¥ä¡¼·Ğ¸³ÃÍ¤ÎºÇÂçÃÍ / Maximum exp */
+#define PY_MAX_GOLD     999999999L      /*!< ¥×¥ì¥¤¥ä¡¼½ê»ı¶â¤ÎºÇÂçÃÍ / Maximum gold */
+#define PY_MAX_LEVEL    50              /*!< ¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë¤ÎºÇÂçÃÍ / Maximum level */
 
 /*
  * Player "food" crucial values
  */
-#define PY_FOOD_MAX     15000   /*!< é£Ÿã¹éãï½æº€è…¹ã®é–¾å€¤ / Food value (Bloated) */
-#define PY_FOOD_FULL    10000   /*!< æº€è…¹ï½å¹³å¸¸ã®é–¾å€¤ / Food value (Normal) */
-#define PY_FOOD_ALERT   2000    /*!< å¹³å¸¸ï½ç©ºè…¹ã®é–¾å€¤ / Food value (Hungry) */
-#define PY_FOOD_WEAK    1000    /*!< ç©ºè…¹ï½è¡°å¼±ã®é–¾å€¤ / Food value (Weak) */
-#define PY_FOOD_FAINT   500     /*!< è¡°å¼±ï½è¡°å¼±(èµ¤è¡¨ç¤º/éº»ç—º)ã®é–¾å€¤ / Food value (Fainting) */
-#define PY_FOOD_STARVE  100     /*!< è¡°å¼±(èµ¤è¡¨ç¤º/éº»ç—º)ï½é£¢é¤“ãƒ€ãƒ¡ãƒ¼ã‚¸ã®é–¾å€¤ / Food value (Starving) */
+#define PY_FOOD_MAX     15000   /*!< ¿©¤Ù²á¤®¡ÁËşÊ¢¤ÎïçÃÍ / Food value (Bloated) */
+#define PY_FOOD_FULL    10000   /*!< ËşÊ¢¡ÁÊ¿¾ï¤ÎïçÃÍ / Food value (Normal) */
+#define PY_FOOD_ALERT   2000    /*!< Ê¿¾ï¡Á¶õÊ¢¤ÎïçÃÍ / Food value (Hungry) */
+#define PY_FOOD_WEAK    1000    /*!< ¶õÊ¢¡Á¿ê¼å¤ÎïçÃÍ / Food value (Weak) */
+#define PY_FOOD_FAINT   500     /*!< ¿ê¼å¡Á¿ê¼å(ÀÖÉ½¼¨/Ëãáã)¤ÎïçÃÍ / Food value (Fainting) */
+#define PY_FOOD_STARVE  100     /*!< ¿ê¼å(ÀÖÉ½¼¨/Ëãáã)¡Áµ²²î¥À¥á¡¼¥¸¤ÎïçÃÍ / Food value (Starving) */
 
 /*
  * Player regeneration constants
@@ -656,7 +656,7 @@
 #define PY_REGEN_MNBASE         524     /* Min amount mana regen*2^16 */
 
 /*
- * è·æ¥­ã”ã¨ã®é¸æŠå¯èƒ½ãªé­”æ³•é ˜åŸŸç¾åœ¨ã®æ‰€ bitrh.cã¨tables.cã§ã®ã¿ä½¿ç”¨ã€‚
+ * ¿¦¶È¤´¤È¤ÎÁªÂò²ÄÇ½¤ÊËâË¡ÎÎ°è¸½ºß¤Î½ê bitrh.c¤Ètables.c¤Ç¤Î¤ß»ÈÍÑ¡£
  * Possible realms that can be chosen currently used only by birth.c and tables.c
  */
 #define CH_NONE         0x00
@@ -732,23 +732,23 @@
  * Note that "INVEN_PACK" is probably hard-coded by its use in savefiles, and
  * by the fact that the screen can only show 23 items plus a one-line prompt.
  */
-#define INVEN_PACK      23 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦æ‰€æŒå“(0ï½) */
+#define INVEN_PACK      23 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Ä½ê»ıÉÊ(0¡Á) */
 
 /*
  * Indexes used for various "equipment" slots (hard-coded by savefiles, etc).
  */
-#define INVEN_RARM      24 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦å³æ‰‹ */
-#define INVEN_LARM      25 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦å·¦æ‰‹ */
-#define INVEN_BOW       26 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦å°„æ’ƒ */
-#define INVEN_RIGHT     27 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦å³æ‰‹æŒ‡ */
-#define INVEN_LEFT      28 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦å·¦æ‰‹æŒ‡ */
-#define INVEN_NECK      29 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦é¦– */
-#define INVEN_LITE      30 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦å…‰æº */
-#define INVEN_BODY      31 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦ä½“ */
-#define INVEN_OUTER     32 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦ä½“ã®ä¸Š */
-#define INVEN_HEAD      33 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦é ­éƒ¨ */
-#define INVEN_HANDS     34 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦è…•éƒ¨ */
-#define INVEN_FEET      35 /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆâ€¦è„šéƒ¨ */
+#define INVEN_RARM      24 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Ä±¦¼ê */
+#define INVEN_LARM      25 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Äº¸¼ê */
+#define INVEN_BOW       26 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Ä¼Í·â */
+#define INVEN_RIGHT     27 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Ä±¦¼ê»Ø */
+#define INVEN_LEFT      28 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Äº¸¼ê»Ø */
+#define INVEN_NECK      29 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Ä¼ó */
+#define INVEN_LITE      30 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡Ä¸÷¸» */
+#define INVEN_BODY      31 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡ÄÂÎ */
+#define INVEN_OUTER     32 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡ÄÂÎ¤Î¾å */
+#define INVEN_HEAD      33 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡ÄÆ¬Éô */
+#define INVEN_HANDS     34 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡ÄÏÓÉô */
+#define INVEN_FEET      35 /*!< ¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¡ÄµÓÉô */
 
 /*
  * used for get_random_ego()
@@ -877,7 +877,7 @@
 
 /*** Screen Locations ***/
 
-#define VER_INFO_ROW 3   //!< ã‚¿ã‚¤ãƒˆãƒ«è¡¨è¨˜(è¡Œ)
+#define VER_INFO_ROW 3   //!< ¥¿¥¤¥È¥ëÉ½µ­(¹Ô)
 
 /*
  * Some screen locations for various display routines
@@ -995,119 +995,119 @@
  * Originally from UnAngband, and modified into TR-like style in Hengband
  */
 
-#define FF_LOS           0              /*!< è¦–ç•ŒãŒé€šã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_PROJECT       1              /*!< é£›ã³é“å…·ãŒé€šéã§ãã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_MOVE          2              /*!< ç§»å‹•å¯èƒ½ãªåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_PLACE         3              /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…ç½®ã‚’ã—ã¦ã‚‚è‰¯ã„åœ°å½¢ã§ã‚ã‚‹(cave_empty_bold/cave_empty_gridã§åˆ©ç”¨) */
-#define FF_DROP          4              /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚’è½ã¨ã—ã¦ã‚ˆã„åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_SECRET        5              /*!< éš ã—æ‰‰ã‚„ãƒˆãƒ©ãƒƒãƒ—ãŒæ½œã‚“ã§ã„ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_NOTICE        6              /*!< ä½•ã‹èˆˆå‘³ã‚’å¼•ãã‚‚ã®ãŒã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹(ã‚·ãƒ•ãƒˆã‚­ãƒ¼ï¼‹æ–¹å‘ã§èµ°è¡Œä¸­ã®æ™‚ã«æ­¢ã¾ã‚‹åŸºæº–) */
-#define FF_REMEMBER      7              /*!< å¸¸ã«è¨˜æ†¶å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹(è¨˜æ†¶å–ªå¤±æ™‚ã«å¿˜ã‚ŒãŸã‚Šã—ãªããªã‚‹) */
-#define FF_OPEN          8              /*!< é–‹ã‘ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_CLOSE         9              /*!< é–‰ã˜ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_BASH          10             /*!< ä½“å½“ãŸã‚Šã‚³ãƒãƒ³ãƒ‰ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_SPIKE         11             /*!< ãã•ã³ã‚’æ‰“ã¤ã‚³ãƒãƒ³ãƒ‰ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_DISARM        12             /*!< è§£é™¤ã‚³ãƒãƒ³ãƒ‰ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_STORE         13             /*!< åº—èˆ—ã®å…¥å£ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_TUNNEL        14             /*!< é­”ç‹å¤‰åŒ–ãªã©ã§æ˜ã‚Šé€²ã‚ã‚‰ã‚Œã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_MAY_HAVE_GOLD 15             /*!< ä½•ã‹è²¡å®ã‚’éš ã—ãŸå¯èƒ½æ€§ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ï¼Ÿ(f_infoã«ä½¿ç”¨ã—ã¦ã„ã‚‹åœ°å½¢ãªã—) */
-#define FF_HAS_GOLD      16             /*!< è²¡å®ã‚’å«ã‚“ã åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_HAS_ITEM      17             /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚’å«ã‚“ã åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_DOOR          18             /*!< ãƒ‰ã‚¢ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_TRAP          19             /*!< ãƒˆãƒ©ãƒƒãƒ—ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_STAIRS        20             /*!< éšæ®µã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_GLYPH         21             /*!< å®ˆã‚Šã®ãƒ«ãƒ¼ãƒ³ãŒå¼µã‚‰ã‚ŒãŸåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_LESS          22             /*!< éšä¸Šã«é€šã˜ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_MORE          23             /*!< éšä¸‹ã«é€šã˜ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_AVOID_RUN     24             /*!< è‡ªå‹•ç§»å‹•æ©Ÿèƒ½æ™‚ã«éšœå®³ã¨ã—ã¦è¿‚å›ã™ã¹ãåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_FLOOR         25             /*!< åºŠã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_WALL          26             /*!< å£ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_PERMANENT     27             /*!< çµ¶å¯¾ã«ç ´å£Šã§ããªã„æ°¸ä¹…åœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_XXX00         28  æœªå®šç¾© */
-/* #define FF_XXX01         29  æœªå®šç¾© */
-/* #define FF_XXX02         30  æœªå®šç¾© */
-#define FF_HIT_TRAP      31             /*!< ãƒˆãƒ©ãƒƒãƒ—ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹(TRAPã¨å¸¸ã«é‡è¤‡ã—ã¦ã„ã‚‹ï¼Ÿ) */
-/* #define FF_BRIDGE        32  æœªä½¿ç”¨ */
-/* #define FF_RIVER         33  æœªä½¿ç”¨ */
-/* #define FF_LAKE          34  æœªä½¿ç”¨ */
-/* #define FF_BRIDGED       35  æœªä½¿ç”¨ */
-/* #define FF_COVERED       36  æœªä½¿ç”¨ */
-#define FF_GLOW          37             /*!< å¸¸ã«å…‰ã£ã¦ã„ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_ENSECRET      38             /*!< ä¸æ˜(f_info.txtä¸Šã§åˆ©ç”¨ã—ã¦ã„ã‚‹åœ°å½¢ãŒãªã„) */
-#define FF_WATER         39             /*!< æ°´ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_LAVA          40             /*!< æº¶å²©ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_SHALLOW       41             /*!< æµ…ã„åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_DEEP          42             /*!< æ·±ã„åœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_FILLED        43 */       /*!< æœªä½¿ç”¨ */
-#define FF_HURT_ROCK     44             /*!< å²©çŸ³æº¶è§£ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_HURT_FIRE     45 */       /*!< æœªä½¿ç”¨ */
-/* #define FF_HURT_COLD     46 */       /*!< æœªä½¿ç”¨ */
-/* #define FF_HURT_ACID     47 */       /*!< æœªä½¿ç”¨ */
-/* #define FF_ICE           48 */       /*!< æœªä½¿ç”¨ */
-/* #define FF_ACID          49 */       /*!< æœªä½¿ç”¨ */
-/* #define FF_OIL           50 */       /*!< æœªä½¿ç”¨ */
-/* #define FF_XXX04      51 */          /*!< æœªä½¿ç”¨ */
-/* #define FF_CAN_CLIMB     52 */       /*!< æœªä½¿ç”¨ */
-#define FF_CAN_FLY       53             /*!< é£›è¡Œå¯èƒ½ãªåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_CAN_SWIM      54             /*!< æ³³ãã“ã¨ãŒå¯èƒ½ãªåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_CAN_PASS      55             /*!< é€šéå¯èƒ½ãªåœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_CAN_OOZE      56 */       /*!< æœªä½¿ç”¨ */
-#define FF_CAN_DIG       57             /*!< æ˜å‰Šã‚³ãƒãƒ³ãƒ‰ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_HIDE_ITEM     58  æœªä½¿ç”¨ */
-/* #define FF_HIDE_SNEAK    59  æœªä½¿ç”¨ */
-/* #define FF_HIDE_SWIM     60  æœªä½¿ç”¨ */
-/* #define FF_HIDE_DIG      61  æœªä½¿ç”¨ */
-/* #define FF_KILL_HUGE     62  æœªä½¿ç”¨ */
-/* #define FF_KILL_MOVE     63  æœªä½¿ç”¨ */
-/* #define FF_PICK_TRAP     64  æœªä½¿ç”¨ */
-/* #define FF_PICK_DOOR     65  æœªä½¿ç”¨ */
-/* #define FF_ALLOC         66  æœªä½¿ç”¨ */
-/* #define FF_CHEST         67  æœªä½¿ç”¨ */
-/* #define FF_DROP_1D2      68  æœªä½¿ç”¨ */
-/* #define FF_DROP_2D2      69  æœªä½¿ç”¨ */
-/* #define FF_DROP_GOOD     70  æœªä½¿ç”¨ */
-/* #define FF_DROP_GREAT    71  æœªä½¿ç”¨ */
-/* #define FF_HURT_POIS     72  æœªä½¿ç”¨ */
-/* #define FF_HURT_ELEC     73  æœªä½¿ç”¨ */
-/* #define FF_HURT_WATER    74  æœªä½¿ç”¨ */
-/* #define FF_HURT_BWATER   75  æœªä½¿ç”¨ */
-/* #define FF_USE_FEAT      76  æœªä½¿ç”¨ */
-/* #define FF_GET_FEAT      77  æœªä½¿ç”¨ */
-/* #define FF_GROUND        78  æœªä½¿ç”¨ */
-/* #define FF_OUTSIDE       79  æœªä½¿ç”¨ */
-/* #define FF_EASY_HIDE     80  æœªä½¿ç”¨ */
-/* #define FF_EASY_CLIMB    81  æœªä½¿ç”¨ */
-/* #define FF_MUST_CLIMB    82  æœªä½¿ç”¨ */
-#define FF_TREE          83             /*!< æœ¨ã®ç”ŸãˆãŸåœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_NEED_TREE     84  æœªä½¿ç”¨ */
-/* #define FF_BLOOD         85  æœªä½¿ç”¨ */
-/* #define FF_DUST          86  æœªä½¿ç”¨ */
-/* #define FF_SLIME         87  æœªä½¿ç”¨ */
-#define FF_PLANT         88             /*!< æ¤ç‰©ã®ç”ŸãˆãŸåœ°å½¢ã§ã‚ã‚‹ */
-/* #define FF_XXX2          89  æœªå®šç¾© */
-/* #define FF_INSTANT       90  æœªä½¿ç”¨ */
-/* #define FF_EXPLODE       91  æœªä½¿ç”¨ */
-/* #define FF_TIMED         92  æœªä½¿ç”¨ */
-/* #define FF_ERUPT         93  æœªä½¿ç”¨ */
-/* #define FF_STRIKE        94  æœªä½¿ç”¨ */
-/* #define FF_SPREAD        95  æœªä½¿ç”¨ */
-#define FF_SPECIAL       96             /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚„ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«é–¢ã‚ã‚‹ç‰¹åˆ¥ãªåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_HURT_DISI     97             /*!< åˆ†è§£å±æ€§ã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_QUEST_ENTER   98             /*!< ã‚¯ã‚¨ã‚¹ãƒˆã®å…¥ã‚Šå£ã§ã‚ã‚‹ */
-#define FF_QUEST_EXIT    99             /*!< ã‚¯ã‚¨ã‚¹ãƒˆã®å‡ºå£ã§ã‚ã‚‹ */
-#define FF_QUEST         100            /*!< ã‚¯ã‚¨ã‚¹ãƒˆã«é–¢ã™ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_SHAFT         101            /*!< å‘é“ã§ã‚ã‚‹ã€‚(2éšå±¤ç§»å‹•ã™ã‚‹éšæ®µã§ã‚ã‚‹) */
-#define FF_MOUNTAIN      102            /*!< ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®å±±åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_BLDG          103            /*!< æ–½è¨­ã®å…¥ã‚Šå£ã§ã‚ã‚‹ */
-#define FF_MINOR_GLYPH   104            /*!< çˆ†ç™ºã®ãƒ«ãƒ¼ãƒ³ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_PATTERN       105            /*!< ãƒ‘ã‚¿ãƒ¼ãƒ³ã®ã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_TOWN          106            /*!< åºƒåŸŸãƒãƒƒãƒ—ç”¨ã®è¡—ãŒã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_ENTRANCE      107            /*!< åºƒåŸŸãƒãƒƒãƒ—ç”¨ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãŒã‚ã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_MIRROR        108            /*!< é¡ä½¿ã„ã®é¡ãŒå¼µã‚‰ã‚ŒãŸåœ°å½¢ã§ã‚ã‚‹ */
-#define FF_UNPERM        109            /*!< ç ´å£Šä¸èƒ½ãªåœ°å½¢ã§ã‚ã‚‹(K:ãƒ•ãƒ©ã‚°å‘ã‘ï¼Ÿ) */
-#define FF_TELEPORTABLE  110            /*!< ãƒ†ãƒ¬ãƒãƒ¼ãƒˆå…ˆã®å¯¾è±¡ã¨ãªã‚‹åœ°å½¢ã§ã‚ã‚‹ */
-#define FF_CONVERT       111            /*!< åœ°å½¢ç”Ÿæˆå‡¦ç†ä¸­ã®ç–‘ä¼¼ãƒ•ãƒ©ã‚° */
-#define FF_GLASS         112            /*!< ã‚¬ãƒ©ã‚¹è£½ã®åœ°å½¢ã§ã‚ã‚‹ */
+#define FF_LOS           0              /*!< »ë³¦¤¬ÄÌ¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_PROJECT       1              /*!< Èô¤ÓÆ»¶ñ¤¬ÄÌ²á¤Ç¤­¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_MOVE          2              /*!< °ÜÆ°²ÄÇ½¤ÊÃÏ·Á¤Ç¤¢¤ë */
+#define FF_PLACE         3              /*!< ¥â¥ó¥¹¥¿¡¼ÇÛÃÖ¤ò¤·¤Æ¤âÎÉ¤¤ÃÏ·Á¤Ç¤¢¤ë(cave_empty_bold/cave_empty_grid¤ÇÍøÍÑ) */
+#define FF_DROP          4              /*!< ¥¢¥¤¥Æ¥à¤òÍî¤È¤·¤Æ¤è¤¤ÃÏ·Á¤Ç¤¢¤ë */
+#define FF_SECRET        5              /*!< ±£¤·Èâ¤ä¥È¥é¥Ã¥×¤¬Àø¤ó¤Ç¤¤¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_NOTICE        6              /*!< ²¿¤«¶½Ì£¤ò°ú¤¯¤â¤Î¤¬¤¢¤ëÃÏ·Á¤Ç¤¢¤ë(¥·¥Õ¥È¥­¡¼¡ÜÊı¸ş¤ÇÁö¹ÔÃæ¤Î»ş¤Ë»ß¤Ş¤ë´ğ½à) */
+#define FF_REMEMBER      7              /*!< ¾ï¤Ëµ­²±ÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë(µ­²±ÁÓ¼º»ş¤ËËº¤ì¤¿¤ê¤·¤Ê¤¯¤Ê¤ë) */
+#define FF_OPEN          8              /*!< ³«¤±¤ë¥³¥Ş¥ó¥É¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_CLOSE         9              /*!< ÊÄ¤¸¤ë¥³¥Ş¥ó¥É¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_BASH          10             /*!< ÂÎÅö¤¿¤ê¥³¥Ş¥ó¥É¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_SPIKE         11             /*!< ¤¯¤µ¤Ó¤òÂÇ¤Ä¥³¥Ş¥ó¥É¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_DISARM        12             /*!< ²ò½ü¥³¥Ş¥ó¥É¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_STORE         13             /*!< Å¹ÊŞ¤ÎÆş¸ı¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_TUNNEL        14             /*!< Ëâ²¦ÊÑ²½¤Ê¤É¤Ç·¡¤ê¿Ê¤á¤é¤ì¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_MAY_HAVE_GOLD 15             /*!< ²¿¤«ºâÊõ¤ò±£¤·¤¿²ÄÇ½À­¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë¡©(f_info¤Ë»ÈÍÑ¤·¤Æ¤¤¤ëÃÏ·Á¤Ê¤·) */
+#define FF_HAS_GOLD      16             /*!< ºâÊõ¤ò´Ş¤ó¤ÀÃÏ·Á¤Ç¤¢¤ë */
+#define FF_HAS_ITEM      17             /*!< ¥¢¥¤¥Æ¥à¤ò´Ş¤ó¤ÀÃÏ·Á¤Ç¤¢¤ë */
+#define FF_DOOR          18             /*!< ¥É¥¢¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_TRAP          19             /*!< ¥È¥é¥Ã¥×¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_STAIRS        20             /*!< ³¬ÃÊ¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_GLYPH         21             /*!< ¼é¤ê¤Î¥ë¡¼¥ó¤¬Ä¥¤é¤ì¤¿ÃÏ·Á¤Ç¤¢¤ë */
+#define FF_LESS          22             /*!< ³¬¾å¤ËÄÌ¤¸¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_MORE          23             /*!< ³¬²¼¤ËÄÌ¤¸¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_AVOID_RUN     24             /*!< ¼«Æ°°ÜÆ°µ¡Ç½»ş¤Ë¾ã³²¤È¤·¤Æ±ª²ó¤¹¤Ù¤­ÃÏ·Á¤Ç¤¢¤ë */
+#define FF_FLOOR         25             /*!< ¾²¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_WALL          26             /*!< ÊÉ¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_PERMANENT     27             /*!< ÀäÂĞ¤ËÇË²õ¤Ç¤­¤Ê¤¤±Êµ×ÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_XXX00         28  Ì¤ÄêµÁ */
+/* #define FF_XXX01         29  Ì¤ÄêµÁ */
+/* #define FF_XXX02         30  Ì¤ÄêµÁ */
+#define FF_HIT_TRAP      31             /*!< ¥È¥é¥Ã¥×¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë(TRAP¤È¾ï¤Ë½ÅÊ£¤·¤Æ¤¤¤ë¡©) */
+/* #define FF_BRIDGE        32  Ì¤»ÈÍÑ */
+/* #define FF_RIVER         33  Ì¤»ÈÍÑ */
+/* #define FF_LAKE          34  Ì¤»ÈÍÑ */
+/* #define FF_BRIDGED       35  Ì¤»ÈÍÑ */
+/* #define FF_COVERED       36  Ì¤»ÈÍÑ */
+#define FF_GLOW          37             /*!< ¾ï¤Ë¸÷¤Ã¤Æ¤¤¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_ENSECRET      38             /*!< ÉÔÌÀ(f_info.txt¾å¤ÇÍøÍÑ¤·¤Æ¤¤¤ëÃÏ·Á¤¬¤Ê¤¤) */
+#define FF_WATER         39             /*!< ¿å¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_LAVA          40             /*!< ÍÏ´ä¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_SHALLOW       41             /*!< Àõ¤¤ÃÏ·Á¤Ç¤¢¤ë */
+#define FF_DEEP          42             /*!< ¿¼¤¤ÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_FILLED        43 */       /*!< Ì¤»ÈÍÑ */
+#define FF_HURT_ROCK     44             /*!< ´äÀĞÍÏ²ò¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_HURT_FIRE     45 */       /*!< Ì¤»ÈÍÑ */
+/* #define FF_HURT_COLD     46 */       /*!< Ì¤»ÈÍÑ */
+/* #define FF_HURT_ACID     47 */       /*!< Ì¤»ÈÍÑ */
+/* #define FF_ICE           48 */       /*!< Ì¤»ÈÍÑ */
+/* #define FF_ACID          49 */       /*!< Ì¤»ÈÍÑ */
+/* #define FF_OIL           50 */       /*!< Ì¤»ÈÍÑ */
+/* #define FF_XXX04      51 */          /*!< Ì¤»ÈÍÑ */
+/* #define FF_CAN_CLIMB     52 */       /*!< Ì¤»ÈÍÑ */
+#define FF_CAN_FLY       53             /*!< Èô¹Ô²ÄÇ½¤ÊÃÏ·Á¤Ç¤¢¤ë */
+#define FF_CAN_SWIM      54             /*!< ±Ë¤°¤³¤È¤¬²ÄÇ½¤ÊÃÏ·Á¤Ç¤¢¤ë */
+#define FF_CAN_PASS      55             /*!< ÄÌ²á²ÄÇ½¤ÊÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_CAN_OOZE      56 */       /*!< Ì¤»ÈÍÑ */
+#define FF_CAN_DIG       57             /*!< ·¡ºï¥³¥Ş¥ó¥É¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_HIDE_ITEM     58  Ì¤»ÈÍÑ */
+/* #define FF_HIDE_SNEAK    59  Ì¤»ÈÍÑ */
+/* #define FF_HIDE_SWIM     60  Ì¤»ÈÍÑ */
+/* #define FF_HIDE_DIG      61  Ì¤»ÈÍÑ */
+/* #define FF_KILL_HUGE     62  Ì¤»ÈÍÑ */
+/* #define FF_KILL_MOVE     63  Ì¤»ÈÍÑ */
+/* #define FF_PICK_TRAP     64  Ì¤»ÈÍÑ */
+/* #define FF_PICK_DOOR     65  Ì¤»ÈÍÑ */
+/* #define FF_ALLOC         66  Ì¤»ÈÍÑ */
+/* #define FF_CHEST         67  Ì¤»ÈÍÑ */
+/* #define FF_DROP_1D2      68  Ì¤»ÈÍÑ */
+/* #define FF_DROP_2D2      69  Ì¤»ÈÍÑ */
+/* #define FF_DROP_GOOD     70  Ì¤»ÈÍÑ */
+/* #define FF_DROP_GREAT    71  Ì¤»ÈÍÑ */
+/* #define FF_HURT_POIS     72  Ì¤»ÈÍÑ */
+/* #define FF_HURT_ELEC     73  Ì¤»ÈÍÑ */
+/* #define FF_HURT_WATER    74  Ì¤»ÈÍÑ */
+/* #define FF_HURT_BWATER   75  Ì¤»ÈÍÑ */
+/* #define FF_USE_FEAT      76  Ì¤»ÈÍÑ */
+/* #define FF_GET_FEAT      77  Ì¤»ÈÍÑ */
+/* #define FF_GROUND        78  Ì¤»ÈÍÑ */
+/* #define FF_OUTSIDE       79  Ì¤»ÈÍÑ */
+/* #define FF_EASY_HIDE     80  Ì¤»ÈÍÑ */
+/* #define FF_EASY_CLIMB    81  Ì¤»ÈÍÑ */
+/* #define FF_MUST_CLIMB    82  Ì¤»ÈÍÑ */
+#define FF_TREE          83             /*!< ÌÚ¤ÎÀ¸¤¨¤¿ÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_NEED_TREE     84  Ì¤»ÈÍÑ */
+/* #define FF_BLOOD         85  Ì¤»ÈÍÑ */
+/* #define FF_DUST          86  Ì¤»ÈÍÑ */
+/* #define FF_SLIME         87  Ì¤»ÈÍÑ */
+#define FF_PLANT         88             /*!< ¿¢Êª¤ÎÀ¸¤¨¤¿ÃÏ·Á¤Ç¤¢¤ë */
+/* #define FF_XXX2          89  Ì¤ÄêµÁ */
+/* #define FF_INSTANT       90  Ì¤»ÈÍÑ */
+/* #define FF_EXPLODE       91  Ì¤»ÈÍÑ */
+/* #define FF_TIMED         92  Ì¤»ÈÍÑ */
+/* #define FF_ERUPT         93  Ì¤»ÈÍÑ */
+/* #define FF_STRIKE        94  Ì¤»ÈÍÑ */
+/* #define FF_SPREAD        95  Ì¤»ÈÍÑ */
+#define FF_SPECIAL       96             /*!< ¥¯¥¨¥¹¥È¤ä¥À¥ó¥¸¥ç¥ó¤Ë´Ø¤ï¤ëÆÃÊÌ¤ÊÃÏ·Á¤Ç¤¢¤ë */
+#define FF_HURT_DISI     97             /*!< Ê¬²òÂ°À­¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_QUEST_ENTER   98             /*!< ¥¯¥¨¥¹¥È¤ÎÆş¤ê¸ı¤Ç¤¢¤ë */
+#define FF_QUEST_EXIT    99             /*!< ¥¯¥¨¥¹¥È¤Î½Ğ¸ı¤Ç¤¢¤ë */
+#define FF_QUEST         100            /*!< ¥¯¥¨¥¹¥È¤Ë´Ø¤¹¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_SHAFT         101            /*!< ¹£Æ»¤Ç¤¢¤ë¡£(2³¬ÁØ°ÜÆ°¤¹¤ë³¬ÃÊ¤Ç¤¢¤ë) */
+#define FF_MOUNTAIN      102            /*!< ¥À¥ó¥¸¥ç¥ó¤Î»³ÃÏ·Á¤Ç¤¢¤ë */
+#define FF_BLDG          103            /*!< »ÜÀß¤ÎÆş¤ê¸ı¤Ç¤¢¤ë */
+#define FF_MINOR_GLYPH   104            /*!< ÇúÈ¯¤Î¥ë¡¼¥ó¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_PATTERN       105            /*!< ¥Ñ¥¿¡¼¥ó¤Î¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_TOWN          106            /*!< ¹­°è¥Ş¥Ã¥×ÍÑ¤Î³¹¤¬¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_ENTRANCE      107            /*!< ¹­°è¥Ş¥Ã¥×ÍÑ¤Î¥À¥ó¥¸¥ç¥ó¤¬¤¢¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_MIRROR        108            /*!< ¶À»È¤¤¤Î¶À¤¬Ä¥¤é¤ì¤¿ÃÏ·Á¤Ç¤¢¤ë */
+#define FF_UNPERM        109            /*!< ÇË²õÉÔÇ½¤ÊÃÏ·Á¤Ç¤¢¤ë(K:¥Õ¥é¥°¸ş¤±¡©) */
+#define FF_TELEPORTABLE  110            /*!< ¥Æ¥ì¥İ¡¼¥ÈÀè¤ÎÂĞ¾İ¤È¤Ê¤ëÃÏ·Á¤Ç¤¢¤ë */
+#define FF_CONVERT       111            /*!< ÃÏ·ÁÀ¸À®½èÍıÃæ¤Îµ¿»÷¥Õ¥é¥° */
+#define FF_GLASS         112            /*!< ¥¬¥é¥¹À½¤ÎÃÏ·Á¤Ç¤¢¤ë */
 
 
 #define FF_FLAG_MAX      113
@@ -2542,10 +2542,10 @@
 #define SV_FOOD_PINT_OF_WINE            39
 
 
-#define SV_ROD_MIN_DIRECTION    12 /*!< ã“ã®å€¤ä»¥é™ã®å°é …ç›®IDã‚’æŒã£ãŸãƒ­ãƒƒãƒ‰ã¯ä½¿ç”¨æ™‚ã«ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’è¦æ±‚ã™ã‚‹ / Special "sval" limit -- first "aimed" rod */
+#define SV_ROD_MIN_DIRECTION    12 /*!< ¤³¤ÎÃÍ°Ê¹ß¤Î¾®¹àÌÜID¤ò»ı¤Ã¤¿¥í¥Ã¥É¤Ï»ÈÍÑ»ş¤Ë¥¿¡¼¥²¥Ã¥È¤òÍ×µá¤¹¤ë / Special "sval" limit -- first "aimed" rod */
 
-#define SV_CHEST_MIN_LARGE      4  /*!< ã“ã®å€¤ä»¥é™ã®å°é …ç›®IDã‚’æŒã£ãŸç®±ã¯å¤§å‹ã®ç®±ã¨ã—ã¦ãƒ‰ãƒ­ãƒƒãƒ—æ•°ã‚’å¢—ã‚„ã™ / Special "sval" limit -- first "large" chest */
-#define SV_CHEST_KANDUME        50 /*!< ç®±ã‚¢ã‚¤ãƒ†ãƒ ã®å°é …ç›®ID: ãŠã‚‚ã¡ã‚ƒã®ã‚«ãƒ³ãƒ…ãƒ¡ */
+#define SV_CHEST_MIN_LARGE      4  /*!< ¤³¤ÎÃÍ°Ê¹ß¤Î¾®¹àÌÜID¤ò»ı¤Ã¤¿È¢¤ÏÂç·¿¤ÎÈ¢¤È¤·¤Æ¥É¥í¥Ã¥×¿ô¤òÁı¤ä¤¹ / Special "sval" limit -- first "large" chest */
+#define SV_CHEST_KANDUME        50 /*!< È¢¥¢¥¤¥Æ¥à¤Î¾®¹àÌÜID: ¤ª¤â¤Á¤ã¤Î¥«¥ó¥Å¥á */
 
 /*
  * Special "sval" limit -- first "good" magic/prayer book
@@ -2575,7 +2575,7 @@
 #define CAVE_MNDK       0x8000    /* Darken by monster */
 
 /* Used only while cave generation */
-#define CAVE_FLOOR      0x0200	/*!< ãƒ•ãƒ­ã‚¢å±æ€§ã®ã‚ã‚‹ãƒã‚¹ */
+#define CAVE_FLOOR      0x0200	/*!< ¥Õ¥í¥¢Â°À­¤Î¤¢¤ë¥Ş¥¹ */
 #define CAVE_EXTRA      0x0400
 #define CAVE_INNER      0x0800
 #define CAVE_OUTER      0x1000
@@ -2608,17 +2608,17 @@
  *   FAST: Hide "visual" of flying bolts until blast
  */
 #define PROJECT_JUMP        0x01
-#define PROJECT_BEAM        0x02   /*!< é éš”æ”»æ’ƒç‰¹æ€§: ãƒ“ãƒ¼ãƒ ç¯„å›²ã‚’æŒã¤ / Work as a beam weapon (affect every grid passed through) */
+#define PROJECT_BEAM        0x02   /*!< ±ó³Ö¹¶·âÆÃÀ­: ¥Ó¡¼¥àÈÏ°Ï¤ò»ı¤Ä / Work as a beam weapon (affect every grid passed through) */
 #define PROJECT_THRU        0x04
 #define PROJECT_STOP        0x08
-#define PROJECT_GRID        0x10   /*!< é éš”æ”»æ’ƒç‰¹æ€§: å°„ç¨‹å†…ã®åœ°å½¢ã«å½±éŸ¿ã‚’åŠã¼ã™ / Affect each grid in the "blast area" in some way */
-#define PROJECT_ITEM        0x20   /*!< é éš”æ”»æ’ƒç‰¹æ€§: å°„ç¨‹å†…ã®ã‚¢ã‚¤ãƒ†ãƒ ã«å½±éŸ¿ã‚’åŠã¼ã™ / Affect each object in the "blast area" in some way */
-#define PROJECT_KILL        0x40   /*!< é éš”æ”»æ’ƒç‰¹æ€§: å°„ç¨‹å†…ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«å½±éŸ¿ã‚’åŠã¼ã™ / Affect each monster in the "blast area" in some way */
+#define PROJECT_GRID        0x10   /*!< ±ó³Ö¹¶·âÆÃÀ­: ¼ÍÄøÆâ¤ÎÃÏ·Á¤Ë±Æ¶Á¤òµÚ¤Ü¤¹ / Affect each grid in the "blast area" in some way */
+#define PROJECT_ITEM        0x20   /*!< ±ó³Ö¹¶·âÆÃÀ­: ¼ÍÄøÆâ¤Î¥¢¥¤¥Æ¥à¤Ë±Æ¶Á¤òµÚ¤Ü¤¹ / Affect each object in the "blast area" in some way */
+#define PROJECT_KILL        0x40   /*!< ±ó³Ö¹¶·âÆÃÀ­: ¼ÍÄøÆâ¤Î¥â¥ó¥¹¥¿¡¼¤Ë±Æ¶Á¤òµÚ¤Ü¤¹ / Affect each monster in the "blast area" in some way */
 #define PROJECT_HIDE        0x80
 #define PROJECT_DISI        0x100
 #define PROJECT_PLAYER      0x200
 #define PROJECT_AIMED       0x400
-#define PROJECT_REFLECTABLE 0x800  /*!< é éš”æ”»æ’ƒç‰¹æ€§: åå°„å¯èƒ½(ãƒœãƒ«ãƒˆç³»é­”æ³•ã«åˆ©ç”¨) / Refrectable spell attacks (used for "bolts") */
+#define PROJECT_REFLECTABLE 0x800  /*!< ±ó³Ö¹¶·âÆÃÀ­: È¿¼Í²ÄÇ½(¥Ü¥ë¥È·ÏËâË¡¤ËÍøÍÑ) / Refrectable spell attacks (used for "bolts") */
 #define PROJECT_NO_HANGEKI  0x1000
 #define PROJECT_PATH        0x2000
 #define PROJECT_FAST        0x4000
@@ -2628,17 +2628,17 @@
 /*
  * Special caster ID for project()
  */
-#define PROJECT_WHO_UNCTRL_POWER -1 /*!< é­”æ³•åŠ¹æœã®è‡ªç„¶ç™ºç”Ÿè¦å› : åçŠ¶ã—é›£ã„åŠ›ã®è§£æ”¾ */
-#define PROJECT_WHO_GLASS_SHARDS -2 /*!< é­”æ³•åŠ¹æœã®è‡ªç„¶ç™ºç”Ÿè¦å› : ç ´å£Šã•ã‚ŒãŸã‚¬ãƒ©ã‚¹åœ°å½¢ã®ç ´ç‰‡ */
+#define PROJECT_WHO_UNCTRL_POWER -1 /*!< ËâË¡¸ú²Ì¤Î¼«Á³È¯À¸Í×°ø: Ì¾¾õ¤·Æñ¤¤ÎÏ¤Î²òÊü */
+#define PROJECT_WHO_GLASS_SHARDS -2 /*!< ËâË¡¸ú²Ì¤Î¼«Á³È¯À¸Í×°ø: ÇË²õ¤µ¤ì¤¿¥¬¥é¥¹ÃÏ·Á¤ÎÇËÊÒ */
 
 
 /*
  * Bit flags for the "enchant()" function
  */
-#define ENCH_TOHIT      0x01 /*!< è£…å‚™å¼·åŒ–å‡¦ç†: å‘½ä¸­å¼·åŒ– / Enchant to hit */
-#define ENCH_TODAM      0x02 /*!< è£…å‚™å¼·åŒ–å‡¦ç†: ãƒ€ãƒ¡ãƒ¼ã‚¸å¼·åŒ– / Enchant to damage */
-#define ENCH_TOAC       0x04 /*!< è£…å‚™å¼·åŒ–å‡¦ç†: ACå¼·åŒ– / Enchant to AC */
-#define ENCH_FORCE      0x08 /*!< è£…å‚™å¼·åŒ–å‡¦ç†: ç„¡æ¡ä»¶ã«æˆåŠŸã•ã›ã‚‹ / Force enchantment */
+#define ENCH_TOHIT      0x01 /*!< ÁõÈ÷¶¯²½½èÍı: Ì¿Ãæ¶¯²½ / Enchant to hit */
+#define ENCH_TODAM      0x02 /*!< ÁõÈ÷¶¯²½½èÍı: ¥À¥á¡¼¥¸¶¯²½ / Enchant to damage */
+#define ENCH_TOAC       0x04 /*!< ÁõÈ÷¶¯²½½èÍı: AC¶¯²½ / Enchant to AC */
+#define ENCH_FORCE      0x08 /*!< ÁõÈ÷¶¯²½½èÍı: Ìµ¾ò·ï¤ËÀ®¸ù¤µ¤»¤ë / Force enchantment */
 
 /*
  * Bit flags for the "target_set" function XXX XXX XXX
@@ -2666,113 +2666,113 @@
 /*
  * Some bit-flags for the "smart" field
  */
-#define SM_RES_ACID             0x00000001 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é…¸è€æ€§ã‚ã‚Š */
-#define SM_RES_ELEC             0x00000002 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é›»æ’ƒè€æ€§ã‚ã‚Š */
-#define SM_RES_FIRE             0x00000004 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ç«ç‚è€æ€§ã‚ã‚Š */
-#define SM_RES_COLD             0x00000008 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å†·æ°—è€æ€§ã‚ã‚Š */
-#define SM_RES_POIS             0x00000010 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«æ¯’è€æ€§ã‚ã‚Š */
-#define SM_RES_NETH             0x00000020 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«åœ°ç„è€æ€§ã‚ã‚Š */
-#define SM_RES_LITE             0x00000040 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é–ƒå…‰è€æ€§ã‚ã‚Š */
-#define SM_RES_DARK             0x00000080 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«æš—é»’è€æ€§ã‚ã‚Š */
-#define SM_RES_FEAR             0x00000100 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ææ€–è€æ€§ã‚ã‚Š */
-#define SM_RES_CONF             0x00000200 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«æ··ä¹±è€æ€§ã‚ã‚Š */
-#define SM_RES_CHAOS            0x00000400 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã‚«ã‚ªã‚¹è€æ€§ã‚ã‚Š */
-#define SM_RES_DISEN            0x00000800 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«åŠ£åŒ–è€æ€§ã‚ã‚Š */
-#define SM_RES_BLIND            0x00001000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ç›²ç›®è€æ€§ã‚ã‚Š */
-#define SM_RES_NEXUS            0x00002000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å› æœæ··ä¹±è€æ€§ã‚ã‚Š */
-#define SM_RES_SOUND            0x00004000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«è½ŸéŸ³è€æ€§ã‚ã‚Š */
-#define SM_RES_SHARD            0x00008000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ç ´ç‰‡è€æ€§ã‚ã‚Š */
-#define SM_OPP_ACID             0x00010000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«äºŒé‡é…¸è€æ€§ã‚ã‚Š */
-#define SM_OPP_ELEC             0x00020000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«äºŒé‡é›»æ’ƒè€æ€§ã‚ã‚Š */
-#define SM_OPP_FIRE             0x00040000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«äºŒé‡ç«ç‚è€æ€§ã‚ã‚Š */
-#define SM_OPP_COLD             0x00080000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«äºŒé‡å†·æ°—è€æ€§ã‚ã‚Š */
-#define SM_OPP_POIS             0x00100000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«äºŒé‡æ¯’è€æ€§ã‚ã‚Š */
-#define SM_OPP_XXX1             0x00200000 /*!< æœªä½¿ç”¨ / (unused) */
-#define SM_CLONED               0x00400000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç‰¹æ®Šè€æ€§: ã‚¯ãƒ­ãƒ¼ãƒ³å…ç–« / XXX Cloned */
-#define SM_PET                  0x00800000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç‰¹æ®Šè€æ€§: ãƒšãƒƒãƒˆå…ç–« / XXX Pet */
-#define SM_IMM_ACID             0x01000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é…¸å…ç–«ã‚ã‚Š */
-#define SM_IMM_ELEC             0x02000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«é›»æ’ƒå…ç–«ã‚ã‚Š */
-#define SM_IMM_FIRE             0x04000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ç«ç‚å…ç–«ã‚ã‚Š */
-#define SM_IMM_COLD             0x08000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å†·æ°—å…ç–«ã‚ã‚Š */
-#define SM_FRIENDLY             0x10000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç‰¹æ®Šè€æ€§: å‹å¥½åŒ–å…ç–« /  XXX Friendly */
-#define SM_IMM_REFLECT          0x20000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«åå°„ã‚ã‚Š */
-#define SM_IMM_FREE             0x40000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«éº»ç—ºè€æ€§ã‚ã‚Š */
-#define SM_IMM_MANA             0x80000000 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«MPãŒãªã„ */
+#define SM_RES_ACID             0x00000001 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë»ÀÂÑÀ­¤¢¤ê */
+#define SM_RES_ELEC             0x00000002 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÅÅ·âÂÑÀ­¤¢¤ê */
+#define SM_RES_FIRE             0x00000004 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë²Ğ±êÂÑÀ­¤¢¤ê */
+#define SM_RES_COLD             0x00000008 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÎäµ¤ÂÑÀ­¤¢¤ê */
+#define SM_RES_POIS             0x00000010 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÆÇÂÑÀ­¤¢¤ê */
+#define SM_RES_NETH             0x00000020 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÃÏ¹öÂÑÀ­¤¢¤ê */
+#define SM_RES_LITE             0x00000040 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÁ®¸÷ÂÑÀ­¤¢¤ê */
+#define SM_RES_DARK             0x00000080 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë°Å¹õÂÑÀ­¤¢¤ê */
+#define SM_RES_FEAR             0x00000100 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë¶²ÉİÂÑÀ­¤¢¤ê */
+#define SM_RES_CONF             0x00000200 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ëº®ÍğÂÑÀ­¤¢¤ê */
+#define SM_RES_CHAOS            0x00000400 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë¥«¥ª¥¹ÂÑÀ­¤¢¤ê */
+#define SM_RES_DISEN            0x00000800 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÎô²½ÂÑÀ­¤¢¤ê */
+#define SM_RES_BLIND            0x00001000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÌÕÌÜÂÑÀ­¤¢¤ê */
+#define SM_RES_NEXUS            0x00002000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë°ø²Ìº®ÍğÂÑÀ­¤¢¤ê */
+#define SM_RES_SOUND            0x00004000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë¹ì²»ÂÑÀ­¤¢¤ê */
+#define SM_RES_SHARD            0x00008000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÇËÊÒÂÑÀ­¤¢¤ê */
+#define SM_OPP_ACID             0x00010000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÆó½Å»ÀÂÑÀ­¤¢¤ê */
+#define SM_OPP_ELEC             0x00020000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÆó½ÅÅÅ·âÂÑÀ­¤¢¤ê */
+#define SM_OPP_FIRE             0x00040000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÆó½Å²Ğ±êÂÑÀ­¤¢¤ê */
+#define SM_OPP_COLD             0x00080000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÆó½ÅÎäµ¤ÂÑÀ­¤¢¤ê */
+#define SM_OPP_POIS             0x00100000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÆó½ÅÆÇÂÑÀ­¤¢¤ê */
+#define SM_OPP_XXX1             0x00200000 /*!< Ì¤»ÈÍÑ / (unused) */
+#define SM_CLONED               0x00400000 /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÆÃ¼ìÂÑÀ­: ¥¯¥í¡¼¥óÌÈ±Ö / XXX Cloned */
+#define SM_PET                  0x00800000 /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÆÃ¼ìÂÑÀ­: ¥Ú¥Ã¥ÈÌÈ±Ö / XXX Pet */
+#define SM_IMM_ACID             0x01000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë»ÀÌÈ±Ö¤¢¤ê */
+#define SM_IMM_ELEC             0x02000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÅÅ·âÌÈ±Ö¤¢¤ê */
+#define SM_IMM_FIRE             0x04000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Ë²Ğ±êÌÈ±Ö¤¢¤ê */
+#define SM_IMM_COLD             0x08000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÎäµ¤ÌÈ±Ö¤¢¤ê */
+#define SM_FRIENDLY             0x10000000 /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÆÃ¼ìÂÑÀ­: Í§¹¥²½ÌÈ±Ö /  XXX Friendly */
+#define SM_IMM_REFLECT          0x20000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËÈ¿¼Í¤¢¤ê */
+#define SM_IMM_FREE             0x40000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËËãáãÂÑÀ­¤¢¤ê */
+#define SM_IMM_MANA             0x80000000 /*!< ¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ËMP¤¬¤Ê¤¤ */
 
 
 /*
- * get_item()é–¢æ•°ã§ã‚¢ã‚¤ãƒ†ãƒ ã®é¸æŠã‚’è¡Œã†ãƒ•ãƒ©ã‚° / Bit flags for the "get_item" function
+ * get_item()´Ø¿ô¤Ç¥¢¥¤¥Æ¥à¤ÎÁªÂò¤ò¹Ô¤¦¥Õ¥é¥° / Bit flags for the "get_item" function
  */
-#define USE_EQUIP	0x01	/*!< ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç¯„å›²: è£…å‚™å“ã‹ã‚‰ã®é¸æŠã‚’è¨±å¯ã™ã‚‹ / Allow equip items */
-#define USE_INVEN	0x02	/*!< ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç¯„å›²: æ‰€æŒå“ã‹ã‚‰ã®é¸æŠã‚’è¨±å¯ã™ã‚‹ /  Allow inven items */
-#define USE_FLOOR	0x04	/*!< ã‚¢ã‚¤ãƒ†ãƒ é¸æŠç¯„å›²: åºŠä¸‹ã®ã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚‰ã®é¸æŠã‚’è¨±å¯ã™ã‚‹ /  Allow floor items */
+#define USE_EQUIP	0x01	/*!< ¥¢¥¤¥Æ¥àÁªÂòÈÏ°Ï: ÁõÈ÷ÉÊ¤«¤é¤ÎÁªÂò¤òµö²Ä¤¹¤ë / Allow equip items */
+#define USE_INVEN	0x02	/*!< ¥¢¥¤¥Æ¥àÁªÂòÈÏ°Ï: ½ê»ıÉÊ¤«¤é¤ÎÁªÂò¤òµö²Ä¤¹¤ë /  Allow inven items */
+#define USE_FLOOR	0x04	/*!< ¥¢¥¤¥Æ¥àÁªÂòÈÏ°Ï: ¾²²¼¤Î¥¢¥¤¥Æ¥à¤«¤é¤ÎÁªÂò¤òµö²Ä¤¹¤ë /  Allow floor items */
 
 
 /*
- * p_ptr->noticeã«å……ã¦ã‚‹ã‚¢ã‚¤ãƒ†ãƒ æ›´æ–°å‡¦ç†è¦æ±‚ / Bit flags for the "p_ptr->notice" variable
+ * p_ptr->notice¤Ë½¼¤Æ¤ë¥¢¥¤¥Æ¥à¹¹¿·½èÍıÍ×µá / Bit flags for the "p_ptr->notice" variable
  */
-#define PN_COMBINE      0x00000001L     /*!< ã‚¢ã‚¤ãƒ†ãƒ å‡¦ç†ãƒ•ãƒ©ã‚°: ã‚¢ã‚¤ãƒ†ãƒ ã®çµåˆã‚’è¦ã™ã‚‹ / Combine the pack */
-#define PN_REORDER      0x00000002L     /*!< ã‚¢ã‚¤ãƒ†ãƒ å‡¦ç†ãƒ•ãƒ©ã‚°: ã‚¢ã‚¤ãƒ†ãƒ ã®ä¸¦ã³æ›¿ãˆã‚’è¦ã™ã‚‹ / Reorder the pack */
-#define PN_AUTODESTROY  0x00000004L     /*!< ã‚¢ã‚¤ãƒ†ãƒ å‡¦ç†ãƒ•ãƒ©ã‚°: ã‚¢ã‚¤ãƒ†ãƒ ã®è‡ªå‹•ç ´å£Šã‚’è¦ã™ã‚‹ / Auto-destroy marked item */
+#define PN_COMBINE      0x00000001L     /*!< ¥¢¥¤¥Æ¥à½èÍı¥Õ¥é¥°: ¥¢¥¤¥Æ¥à¤Î·ë¹ç¤òÍ×¤¹¤ë / Combine the pack */
+#define PN_REORDER      0x00000002L     /*!< ¥¢¥¤¥Æ¥à½èÍı¥Õ¥é¥°: ¥¢¥¤¥Æ¥à¤ÎÊÂ¤ÓÂØ¤¨¤òÍ×¤¹¤ë / Reorder the pack */
+#define PN_AUTODESTROY  0x00000004L     /*!< ¥¢¥¤¥Æ¥à½èÍı¥Õ¥é¥°: ¥¢¥¤¥Æ¥à¤Î¼«Æ°ÇË²õ¤òÍ×¤¹¤ë / Auto-destroy marked item */
 /* xxx (many) */
 
 
 /*
- * p_ptr->updateã«å……ã¦ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°å‡¦ç†è¦æ±‚ / Bit flags for the "p_ptr->update" variable
+ * p_ptr->update¤Ë½¼¤Æ¤ë¥×¥ì¥¤¥ä¡¼¥¹¥Æ¡¼¥¿¥¹¹¹¿·½èÍıÍ×µá / Bit flags for the "p_ptr->update" variable
  */
-#define PU_BONUS        0x00000001L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: èƒ½åŠ›å€¤ä¿®æ­£ / Calculate bonuses */
-#define PU_TORCH        0x00000002L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: å…‰æºåŠå¾„ / Calculate torch radius */
+#define PU_BONUS        0x00000001L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: Ç½ÎÏÃÍ½¤Àµ / Calculate bonuses */
+#define PU_TORCH        0x00000002L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ¸÷¸»È¾·Â / Calculate torch radius */
 /* xxx (many) */
-#define PU_HP           0x00000010L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: HP / Calculate chp and mhp */
-#define PU_MANA         0x00000020L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: MP / Calculate csp and msp */
-#define PU_SPELLS       0x00000040L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: é­”æ³•å­¦ç¿’æ•° / Calculate spells */
+#define PU_HP           0x00000010L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: HP / Calculate chp and mhp */
+#define PU_MANA         0x00000020L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: MP / Calculate csp and msp */
+#define PU_SPELLS       0x00000040L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ËâË¡³Ø½¬¿ô / Calculate spells */
 /* xxx (many) */
 /* xxx (many) */
-#define PU_UN_VIEW      0x00010000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: åœ°å½¢ã®è¦–ç•Œå¤–åŒ– / Forget view */
-#define PU_UN_LITE      0x00020000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: æ˜æš—ç¯„å›²ã®è¦–ç•Œå¤–åŒ– / Forget lite */
+#define PU_UN_VIEW      0x00010000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ÃÏ·Á¤Î»ë³¦³°²½ / Forget view */
+#define PU_UN_LITE      0x00020000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ÌÀ°ÅÈÏ°Ï¤Î»ë³¦³°²½ / Forget lite */
 /* xxx (many) */
-#define PU_VIEW         0x00100000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: è¦–ç•Œ / Update view */
-#define PU_LITE         0x00200000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: æ˜æš—ç¯„å›² / Update lite */
-#define PU_MON_LITE     0x00400000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å…‰æºç¯„å›² / Monster illumination */
-#define PU_DELAY_VIS    0x00800000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: è¦–ç•Œã®è¿½åŠ æ›´æ–° / Mega-Hack -- Delayed visual update */
-#define PU_MONSTERS     0x01000000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ / Update monsters */
-#define PU_DISTANCE     0x02000000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®è·é›¢ / Update distances */
+#define PU_VIEW         0x00100000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: »ë³¦ / Update view */
+#define PU_LITE         0x00200000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ÌÀ°ÅÈÏ°Ï / Update lite */
+#define PU_MON_LITE     0x00400000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ¥â¥ó¥¹¥¿¡¼¤Î¸÷¸»ÈÏ°Ï / Monster illumination */
+#define PU_DELAY_VIS    0x00800000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: »ë³¦¤ÎÄÉ²Ã¹¹¿· / Mega-Hack -- Delayed visual update */
+#define PU_MONSTERS     0x01000000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ¥â¥ó¥¹¥¿¡¼¤Î¥¹¥Æ¡¼¥¿¥¹ / Update monsters */
+#define PU_DISTANCE     0x02000000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤È¥â¥ó¥¹¥¿¡¼¤Îµ÷Î¥ / Update distances */
 /* xxx */
-#define PU_FLOW         0x10000000L     /*!< ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æ›´æ–°ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰å„ãƒã‚¹ã¸ã®åˆ°é”è·é›¢ / Update flow */
+#define PU_FLOW         0x10000000L     /*!< ¥¹¥Æ¡¼¥¿¥¹¹¹¿·¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤«¤é³Æ¥Ş¥¹¤Ø¤ÎÅşÃ£µ÷Î¥ / Update flow */
 /* xxx (many) */
 
 
 /*
  * Bit flags for the "p_ptr->redraw" variable
  */
-#define PR_MISC         0x00000001L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ç¨®æ—ã¨è·æ¥­ / Display Race/Class */
-#define PR_TITLE        0x00000002L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ç§°å· / Display Title */
-#define PR_LEV          0x00000004L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ãƒ¬ãƒ™ãƒ« / Display Level */
-#define PR_EXP          0x00000008L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: çµŒé¨“å€¤ / Display Experience */
-#define PR_STATS        0x00000010L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ /  Display Stats */
-#define PR_ARMOR        0x00000020L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: AC / Display Armor */
-#define PR_HP           0x00000040L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: HP / Display Hitpoints */
-#define PR_MANA         0x00000080L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: MP / Display Mana */
-#define PR_GOLD         0x00000100L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: æ‰€æŒé‡‘ / Display Gold */
-#define PR_DEPTH        0x00000200L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®éš / Display Depth */
-#define PR_EQUIPPY      0x00000400L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: è£…å‚™ã‚·ãƒ³ãƒœãƒ« / Display equippy chars */
-#define PR_HEALTH       0x00000800L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ / Display Health Bar */
-#define PR_CUT          0x00001000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: è² å‚·åº¦ / Display Extra (Cut) */
-#define PR_STUN         0x00002000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: æœ¦æœ§åº¦ / Display Extra (Stun) */
-#define PR_HUNGER       0x00004000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ç©ºè…¹åº¦ / Display Extra (Hunger) */
-#define PR_STATUS       0x00008000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä»˜ä¸çŠ¶æ…‹ /  Display Status Bar */
+#define PR_MISC         0x00000001L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¼ïÂ²¤È¿¦¶È / Display Race/Class */
+#define PR_TITLE        0x00000002L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¾Î¹æ / Display Title */
+#define PR_LEV          0x00000004L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥ì¥Ù¥ë / Display Level */
+#define PR_EXP          0x00000008L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ·Ğ¸³ÃÍ / Display Experience */
+#define PR_STATS        0x00000010L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥¹¥Æ¡¼¥¿¥¹ /  Display Stats */
+#define PR_ARMOR        0x00000020L     /*!< ºÆÉÁ²è¥Õ¥é¥°: AC / Display Armor */
+#define PR_HP           0x00000040L     /*!< ºÆÉÁ²è¥Õ¥é¥°: HP / Display Hitpoints */
+#define PR_MANA         0x00000080L     /*!< ºÆÉÁ²è¥Õ¥é¥°: MP / Display Mana */
+#define PR_GOLD         0x00000100L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ½ê»ı¶â / Display Gold */
+#define PR_DEPTH        0x00000200L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥À¥ó¥¸¥ç¥ó¤Î³¬ / Display Depth */
+#define PR_EQUIPPY      0x00000400L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ÁõÈ÷¥·¥ó¥Ü¥ë / Display equippy chars */
+#define PR_HEALTH       0x00000800L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥â¥ó¥¹¥¿¡¼¤Î¥¹¥Æ¡¼¥¿¥¹ / Display Health Bar */
+#define PR_CUT          0x00001000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: Éé½ıÅÙ / Display Extra (Cut) */
+#define PR_STUN         0x00002000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: Û¯Û°ÅÙ / Display Extra (Stun) */
+#define PR_HUNGER       0x00004000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¶õÊ¢ÅÙ / Display Extra (Hunger) */
+#define PR_STATUS       0x00008000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤ÎÉÕÍ¿¾õÂÖ /  Display Status Bar */
 #define PR_XXX0         0x00010000L     /*!< (unused) */
-#define PR_UHEALTH      0x00020000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ãƒšãƒƒãƒˆã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ / Display Uma Health Bar */
+#define PR_UHEALTH      0x00020000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥Ú¥Ã¥È¤Î¥¹¥Æ¡¼¥¿¥¹ / Display Uma Health Bar */
 #define PR_XXX1         0x00040000L     /*!< (unused) */
 #define PR_XXX2         0x00080000L     /*!< (unused) */
-#define PR_STATE        0x00100000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¡Œå‹•çŠ¶æ…‹ / Display Extra (State) */
-#define PR_SPEED        0x00200000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: åŠ é€Ÿ / Display Extra (Speed) */
-#define PR_STUDY        0x00400000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: å­¦ç¿’ / Display Extra (Study) */
-#define PR_IMITATION    0x00800000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ã‚‚ã®ã¾ã­ / Display Extra (Imitation) */
-#define PR_EXTRA        0x01000000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: æ‹¡å¼µã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å…¨ä½“ / Display Extra Info */
-#define PR_BASIC        0x02000000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: åŸºæœ¬ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å…¨ä½“ / Display Basic Info */
-#define PR_MAP          0x04000000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ã‚²ãƒ¼ãƒ ãƒãƒƒãƒ— / Display Map */
-#define PR_WIPE         0x08000000L     /*!< å†æç”»ãƒ•ãƒ©ã‚°: ç”»é¢æ¶ˆå» / Hack -- Total Redraw */
+#define PR_STATE        0x00100000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Î¹ÔÆ°¾õÂÖ / Display Extra (State) */
+#define PR_SPEED        0x00200000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ²ÃÂ® / Display Extra (Speed) */
+#define PR_STUDY        0x00400000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ³Ø½¬ / Display Extra (Study) */
+#define PR_IMITATION    0x00800000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¤â¤Î¤Ş¤Í / Display Extra (Imitation) */
+#define PR_EXTRA        0x01000000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ³ÈÄ¥¥¹¥Æ¡¼¥¿¥¹Á´ÂÎ / Display Extra Info */
+#define PR_BASIC        0x02000000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ´ğËÜ¥¹¥Æ¡¼¥¿¥¹Á´ÂÎ / Display Basic Info */
+#define PR_MAP          0x04000000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ¥²¡¼¥à¥Ş¥Ã¥× / Display Map */
+#define PR_WIPE         0x08000000L     /*!< ºÆÉÁ²è¥Õ¥é¥°: ²èÌÌ¾Ãµî / Hack -- Total Redraw */
 /* xxx */
 /* xxx */
 /* xxx */
@@ -2781,23 +2781,23 @@
 /*
  * Bit flags for the "p_ptr->window" variable (etc)
  */
-#define PW_INVEN        0x00000001L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: æ‰€æŒå“-è£…å‚™å“ / Display inven/equip */
-#define PW_EQUIP        0x00000002L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: è£…å‚™å“-æ‰€æŒå“ / Display equip/inven */
-#define PW_SPELL        0x00000004L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: é­”æ³•ä¸€è¦§ / Display spell list */
-#define PW_PLAYER       0x00000008L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ / Display character */
-#define PW_MONSTER_LIST 0x00000010L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: è¦–ç•Œå†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä¸€è¦§ / Display monster list */
+#define PW_INVEN        0x00000001L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ½ê»ıÉÊ-ÁõÈ÷ÉÊ / Display inven/equip */
+#define PW_EQUIP        0x00000002L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ÁõÈ÷ÉÊ-½ê»ıÉÊ / Display equip/inven */
+#define PW_SPELL        0x00000004L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ËâË¡°ìÍ÷ / Display spell list */
+#define PW_PLAYER       0x00000008L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹ / Display character */
+#define PW_MONSTER_LIST 0x00000010L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: »ë³¦Æâ¥â¥ó¥¹¥¿¡¼¤Î°ìÍ÷ / Display monster list */
 /* xxx */
 /* xxx */
-#define PW_MESSAGE      0x00000040L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ­ã‚° / Display messages */
-#define PW_OVERHEAD     0x00000080L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: å‘¨è¾ºã®å…‰æ™¯ / Display overhead view */
-#define PW_MONSTER      0x00000100L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡º / Display monster recall */
-#define PW_OBJECT       0x00000200L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ã‚¢ã‚¤ãƒ†ãƒ ã®çŸ¥è­˜ / Display object recall */
-#define PW_DUNGEON      0x00000400L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®åœ°å½¢ / Display dungeon view */
-#define PW_SNAPSHOT     0x00000800L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: è¨˜å¿µå†™çœŸ / Display snap-shot */
+#define PW_MESSAGE      0x00000040L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥á¥Ã¥»¡¼¥¸¥í¥° / Display messages */
+#define PW_OVERHEAD     0x00000080L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¼şÊÕ¤Î¸÷·Ê / Display overhead view */
+#define PW_MONSTER      0x00000100L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ / Display monster recall */
+#define PW_OBJECT       0x00000200L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥¢¥¤¥Æ¥à¤ÎÃÎ¼± / Display object recall */
+#define PW_DUNGEON      0x00000400L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥À¥ó¥¸¥ç¥ó¤ÎÃÏ·Á / Display dungeon view */
+#define PW_SNAPSHOT     0x00000800L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: µ­Ç°¼Ì¿¿ / Display snap-shot */
 /* xxx */
 /* xxx */
-#define PW_BORG_1       0x00004000L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ãƒœãƒ¼ã‚°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ / Display borg messages */
-#define PW_BORG_2       0x00008000L     /*!<ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦æç”»ãƒ•ãƒ©ã‚°: ãƒœãƒ¼ã‚°ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ / Display borg status */
+#define PW_BORG_1       0x00004000L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥Ü¡¼¥°¥á¥Ã¥»¡¼¥¸ / Display borg messages */
+#define PW_BORG_2       0x00008000L     /*!<¥µ¥Ö¥¦¥£¥ó¥É¥¦ÉÁ²è¥Õ¥é¥°: ¥Ü¡¼¥°¥¹¥Æ¡¼¥¿¥¹ / Display borg status */
 
 /*
  * Bit flags for the place_monster_???() (etc)
@@ -2842,60 +2842,60 @@
 
 
 /*
- * p_ptr->special_attackã«ã‚ˆã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ”»æ’ƒçŠ¶æ…‹ã®å®šç¾© / Bit flags for the "p_ptr->special_attack" variable. -LM-
+ * p_ptr->special_attack¤Ë¤è¤ë¥×¥ì¥¤¥ä¡¼¤Î¹¶·â¾õÂÖ¤ÎÄêµÁ / Bit flags for the "p_ptr->special_attack" variable. -LM-
  *
  * Note:  The elemental and poison attacks should be managed using the 
  * function "set_ele_attack", in spell2.c.  This provides for timeouts and
  * prevents the player from getting more than one at a time.
  */
-#define ATTACK_CONFUSE	0x00000001 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:æ··ä¹±æ‰“æ’ƒ */
-#define ATTACK_XXX1		0x00000002 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:æœªä½¿ç”¨1 */
-#define ATTACK_XXX2		0x00000004 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:æœªä½¿ç”¨2 */
-#define ATTACK_XXX3	    0x00000008 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:æœªä½¿ç”¨3 */
-#define ATTACK_ACID		0x00000010 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é­”æ³•å‰£/æº¶è§£ */
-#define ATTACK_ELEC		0x00000020 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é­”æ³•å‰£/é›»æ’ƒ */
-#define ATTACK_FIRE		0x00000040 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é­”æ³•å‰£/ç«ç‚ */
-#define ATTACK_COLD		0x00000080 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é­”æ³•å‰£/å†·å‡ */
-#define ATTACK_POIS		0x00000100 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é­”æ³•å‰£/æ¯’æ®º */
-#define ATTACK_HOLY		0x00000200 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:å¯¾é‚ª?(æœªä½¿ç”¨) */
-#define ATTACK_SUIKEN	0x00000400 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é…”æ‹³ */
+#define ATTACK_CONFUSE	0x00000001 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:º®ÍğÂÇ·â */
+#define ATTACK_XXX1		0x00000002 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:Ì¤»ÈÍÑ1 */
+#define ATTACK_XXX2		0x00000004 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:Ì¤»ÈÍÑ2 */
+#define ATTACK_XXX3	    0x00000008 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:Ì¤»ÈÍÑ3 */
+#define ATTACK_ACID		0x00000010 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ËâË¡·õ/ÍÏ²ò */
+#define ATTACK_ELEC		0x00000020 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ËâË¡·õ/ÅÅ·â */
+#define ATTACK_FIRE		0x00000040 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ËâË¡·õ/²Ğ±ê */
+#define ATTACK_COLD		0x00000080 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ËâË¡·õ/ÎäÅà */
+#define ATTACK_POIS		0x00000100 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ËâË¡·õ/ÆÇ»¦ */
+#define ATTACK_HOLY		0x00000200 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ÂĞ¼Ù?(Ì¤»ÈÍÑ) */
+#define ATTACK_SUIKEN	0x00000400 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:¿ì·ı */
 
 /*
- * p_ptr->special_defenseã«ã‚ˆã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é˜²å¾¡çŠ¶æ…‹ã®å®šç¾© / Bit flags for the "p_ptr->special_defense" variable. -LM-
+ * p_ptr->special_defense¤Ë¤è¤ë¥×¥ì¥¤¥ä¡¼¤ÎËÉ¸æ¾õÂÖ¤ÎÄêµÁ / Bit flags for the "p_ptr->special_defense" variable. -LM-
  */
-#define DEFENSE_ACID	0x00000001 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é…¸å…ç–« */
-#define DEFENSE_ELEC	0x00000002 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é›»æ’ƒå…ç–« */
-#define DEFENSE_FIRE	0x00000004 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:ç«ç‚å…ç–« */
-#define DEFENSE_COLD	0x00000008 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:å†·æ°—å…ç–« */
-#define DEFENSE_POIS	0x00000010 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:æ¯’å…ç–« */
-#define KAMAE_GENBU     0x00000020 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:ç„æ­¦ã®æ§‹ãˆ */
-#define KAMAE_BYAKKO    0x00000040 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:ç™½è™ã®æ§‹ãˆ */
-#define KAMAE_SEIRYU    0x00000080 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é’ç«œã®æ§‹ãˆ */
-#define KAMAE_SUZAKU    0x00000100 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:æœ±é›€ã®æ§‹ãˆ */
-#define KATA_IAI        0x00000200 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:å±…åˆ */
-#define KATA_FUUJIN     0x00000400 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é¢¨å¡µ */
-#define KATA_KOUKIJIN   0x00000800 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:é™é¬¼é™£ */
-#define KATA_MUSOU      0x00001000 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:ç„¡æƒ³ */
-#define NINJA_KAWARIMI  0x00002000 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:å¤‰ã‚ã‚Šèº« */
-#define NINJA_S_STEALTH 0x00004000 /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹:è¶…éš å¯† */
+#define DEFENSE_ACID	0x00000001 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:»ÀÌÈ±Ö */
+#define DEFENSE_ELEC	0x00000002 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ÅÅ·âÌÈ±Ö */
+#define DEFENSE_FIRE	0x00000004 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:²Ğ±êÌÈ±Ö */
+#define DEFENSE_COLD	0x00000008 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:Îäµ¤ÌÈ±Ö */
+#define DEFENSE_POIS	0x00000010 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ÆÇÌÈ±Ö */
+#define KAMAE_GENBU     0x00000020 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:¸¼Éğ¤Î¹½¤¨ */
+#define KAMAE_BYAKKO    0x00000040 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:Çò¸×¤Î¹½¤¨ */
+#define KAMAE_SEIRYU    0x00000080 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ÀÄÎµ¤Î¹½¤¨ */
+#define KAMAE_SUZAKU    0x00000100 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:¼ë¿ı¤Î¹½¤¨ */
+#define KATA_IAI        0x00000200 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:µï¹ç */
+#define KATA_FUUJIN     0x00000400 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:É÷¿Ğ */
+#define KATA_KOUKIJIN   0x00000800 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:¹ßµ´¿Ø */
+#define KATA_MUSOU      0x00001000 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ÌµÁÛ */
+#define NINJA_KAWARIMI  0x00002000 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:ÊÑ¤ï¤ê¿È */
+#define NINJA_S_STEALTH 0x00004000 /*!< ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹:Ä¶±£Ì© */
 
-#define MAX_KAMAE 4 /*!< ä¿®è¡Œåƒ§ã®æ§‹ãˆæœ€å¤§æ•° */
-#define KAMAE_MASK (KAMAE_GENBU | KAMAE_BYAKKO | KAMAE_SEIRYU | KAMAE_SUZAKU) /*!< ä¿®è¡Œåƒ§ã®æ§‹ãˆãƒ“ãƒƒãƒˆé…åˆ— */
+#define MAX_KAMAE 4 /*!< ½¤¹ÔÁÎ¤Î¹½¤¨ºÇÂç¿ô */
+#define KAMAE_MASK (KAMAE_GENBU | KAMAE_BYAKKO | KAMAE_SEIRYU | KAMAE_SUZAKU) /*!< ½¤¹ÔÁÎ¤Î¹½¤¨¥Ó¥Ã¥ÈÇÛÎó */
 
-#define MAX_KATA 4 /*!< ä¿®è¡Œåƒ§ã®å‹æœ€å¤§æ•° */
-#define KATA_MASK (KATA_IAI | KATA_FUUJIN | KATA_KOUKIJIN | KATA_MUSOU) /*!< ä¿®è¡Œåƒ§ã®å‹ãƒ“ãƒƒãƒˆé…åˆ— */
+#define MAX_KATA 4 /*!< ½¤¹ÔÁÎ¤Î·¿ºÇÂç¿ô */
+#define KATA_MASK (KATA_IAI | KATA_FUUJIN | KATA_KOUKIJIN | KATA_MUSOU) /*!< ½¤¹ÔÁÎ¤Î·¿¥Ó¥Ã¥ÈÇÛÎó */
 
 
-#define ACTION_NONE     0 /*!< æŒç¶šè¡Œå‹•: ãªã— */
-#define ACTION_SEARCH   1 /*!< æŒç¶šè¡Œå‹•: æ¢ç´¢ */
-#define ACTION_REST     2 /*!< æŒç¶šè¡Œå‹•: ä¼‘æ†© */
-#define ACTION_LEARN    3 /*!< æŒç¶šè¡Œå‹•: é’é­”æ³•ãƒ©ãƒ¼ãƒ‹ãƒ³ã‚° */
-#define ACTION_FISH     4 /*!< æŒç¶šè¡Œå‹•: é‡£ã‚Š */
-#define ACTION_KAMAE    5 /*!< æŒç¶šè¡Œå‹•: ä¿®è¡Œåƒ§ã®æ§‹ãˆ */
-#define ACTION_KATA     6 /*!< æŒç¶šè¡Œå‹•: å‰£è¡“å®¶ã®å‹ */
-#define ACTION_SING     7 /*!< æŒç¶šè¡Œå‹•: æ­Œ */
-#define ACTION_HAYAGAKE 8 /*!< æŒç¶šè¡Œå‹•: æ—©é§†ã‘ */
-#define ACTION_SPELL    9 /*!< æŒç¶šè¡Œå‹•: å‘ªè¡“ */
+#define ACTION_NONE     0 /*!< »ıÂ³¹ÔÆ°: ¤Ê¤· */
+#define ACTION_SEARCH   1 /*!< »ıÂ³¹ÔÆ°: Ãµº÷ */
+#define ACTION_REST     2 /*!< »ıÂ³¹ÔÆ°: µÙ·Æ */
+#define ACTION_LEARN    3 /*!< »ıÂ³¹ÔÆ°: ÀÄËâË¡¥é¡¼¥Ë¥ó¥° */
+#define ACTION_FISH     4 /*!< »ıÂ³¹ÔÆ°: Äà¤ê */
+#define ACTION_KAMAE    5 /*!< »ıÂ³¹ÔÆ°: ½¤¹ÔÁÎ¤Î¹½¤¨ */
+#define ACTION_KATA     6 /*!< »ıÂ³¹ÔÆ°: ·õ½Ñ²È¤Î·¿ */
+#define ACTION_SING     7 /*!< »ıÂ³¹ÔÆ°: ²Î */
+#define ACTION_HAYAGAKE 8 /*!< »ıÂ³¹ÔÆ°: Áá¶î¤± */
+#define ACTION_SPELL    9 /*!< »ıÂ³¹ÔÆ°: ¼ö½Ñ */
 
 
 /* Empty hand status */
@@ -2907,163 +2907,163 @@
 
 
 /*
- * summon_specificã§å–ã‚Šæ‰±ã‚ã‚Œã‚‹ã€å¬å–šã®ç¨®åˆ¥å®šç¾© / Legal restrictions for "summon_specific()"
+ * summon_specific¤Ç¼è¤ê°·¤ï¤ì¤ë¡¢¾¤´­¤Î¼ïÊÌÄêµÁ / Legal restrictions for "summon_specific()"
  */
-#define SUMMON_ANT                  11 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚¢ãƒª */
-#define SUMMON_SPIDER               12 /*!< å¬å–šã‚¿ã‚¤ãƒ—: èœ˜è›› */
-#define SUMMON_HOUND                13 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒã‚¦ãƒ³ãƒ‰ */
-#define SUMMON_HYDRA                14 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ’ãƒ‰ãƒ© */
-#define SUMMON_ANGEL                15 /*!< å¬å–šã‚¿ã‚¤ãƒ—: å¤©ä½¿ */
-#define SUMMON_DEMON                16 /*!< å¬å–šã‚¿ã‚¤ãƒ—: æ‚ªé­” */
-#define SUMMON_UNDEAD               17 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ */
-#define SUMMON_DRAGON               18 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ‰ãƒ©ã‚´ãƒ³ */
-#define SUMMON_HI_UNDEAD            21 /*!< å¬å–šã‚¿ã‚¤ãƒ—: å¼·åŠ›ãªã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ */
-#define SUMMON_HI_DRAGON            22 /*!< å¬å–šã‚¿ã‚¤ãƒ—: å¤ä»£ãƒ‰ãƒ©ã‚´ãƒ³ */
-#define SUMMON_HI_DEMON             23 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ä¸Šç´šãƒ‡ãƒ¼ãƒ¢ãƒ³ */
-#define SUMMON_AMBERITES            31 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚¢ãƒ³ãƒãƒ¼ã®ç‹æ— */
-#define SUMMON_UNIQUE               32 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ¦ãƒ‹ãƒ¼ã‚¯ */
-#define SUMMON_MOLD                 33 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚«ãƒ“ */
-#define SUMMON_BAT                  34 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚³ã‚¦ãƒ¢ãƒª */
-#define SUMMON_QUYLTHULG            35 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚¯ã‚¤ãƒ«ã‚¹ãƒ«ã‚° */
-#define SUMMON_XXX1                 36 /*!< å¬å–šã‚¿ã‚¤ãƒ—: æœªä½¿ç”¨ */
-#define SUMMON_COIN_MIMIC           37 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚¯ãƒªãƒ¼ãƒ”ãƒ³ã‚°ãƒ»ã‚³ã‚¤ãƒ³ */
-#define SUMMON_MIMIC                38 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒŸãƒŸãƒƒã‚¯ */
-#define SUMMON_CYBER                39 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚µã‚¤ãƒãƒ¼ãƒ‡ãƒ¼ãƒ¢ãƒ³ */
-#define SUMMON_KIN                  40 /*!< å¬å–šã‚¿ã‚¤ãƒ—: å¬å–šè€…ã®åŒæ— */
-#define SUMMON_DAWN                 41 /*!< å¬å–šã‚¿ã‚¤ãƒ—: æšã®æˆ¦å£« */
-#define SUMMON_ANIMAL               42 /*!< å¬å–šã‚¿ã‚¤ãƒ—: è‡ªç„¶ç•Œã®å‹•ç‰© */
-#define SUMMON_ANIMAL_RANGER        43 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼å‘ã‘è‡ªç„¶ç•Œã®å‹•ç‰© */
+#define SUMMON_ANT                  11 /*!< ¾¤´­¥¿¥¤¥×: ¥¢¥ê */
+#define SUMMON_SPIDER               12 /*!< ¾¤´­¥¿¥¤¥×: ÃØéá */
+#define SUMMON_HOUND                13 /*!< ¾¤´­¥¿¥¤¥×: ¥Ï¥¦¥ó¥É */
+#define SUMMON_HYDRA                14 /*!< ¾¤´­¥¿¥¤¥×: ¥Ò¥É¥é */
+#define SUMMON_ANGEL                15 /*!< ¾¤´­¥¿¥¤¥×: Å·»È */
+#define SUMMON_DEMON                16 /*!< ¾¤´­¥¿¥¤¥×: °­Ëâ */
+#define SUMMON_UNDEAD               17 /*!< ¾¤´­¥¿¥¤¥×: ¥¢¥ó¥Ç¥Ã¥É */
+#define SUMMON_DRAGON               18 /*!< ¾¤´­¥¿¥¤¥×: ¥É¥é¥´¥ó */
+#define SUMMON_HI_UNDEAD            21 /*!< ¾¤´­¥¿¥¤¥×: ¶¯ÎÏ¤Ê¥¢¥ó¥Ç¥Ã¥É */
+#define SUMMON_HI_DRAGON            22 /*!< ¾¤´­¥¿¥¤¥×: ¸ÅÂå¥É¥é¥´¥ó */
+#define SUMMON_HI_DEMON             23 /*!< ¾¤´­¥¿¥¤¥×: ¾åµé¥Ç¡¼¥â¥ó */
+#define SUMMON_AMBERITES            31 /*!< ¾¤´­¥¿¥¤¥×: ¥¢¥ó¥Ğ¡¼¤Î²¦Â² */
+#define SUMMON_UNIQUE               32 /*!< ¾¤´­¥¿¥¤¥×: ¥æ¥Ë¡¼¥¯ */
+#define SUMMON_MOLD                 33 /*!< ¾¤´­¥¿¥¤¥×: ¥«¥Ó */
+#define SUMMON_BAT                  34 /*!< ¾¤´­¥¿¥¤¥×: ¥³¥¦¥â¥ê */
+#define SUMMON_QUYLTHULG            35 /*!< ¾¤´­¥¿¥¤¥×: ¥¯¥¤¥ë¥¹¥ë¥° */
+#define SUMMON_XXX1                 36 /*!< ¾¤´­¥¿¥¤¥×: Ì¤»ÈÍÑ */
+#define SUMMON_COIN_MIMIC           37 /*!< ¾¤´­¥¿¥¤¥×: ¥¯¥ê¡¼¥Ô¥ó¥°¡¦¥³¥¤¥ó */
+#define SUMMON_MIMIC                38 /*!< ¾¤´­¥¿¥¤¥×: ¥ß¥ß¥Ã¥¯ */
+#define SUMMON_CYBER                39 /*!< ¾¤´­¥¿¥¤¥×: ¥µ¥¤¥Ğ¡¼¥Ç¡¼¥â¥ó */
+#define SUMMON_KIN                  40 /*!< ¾¤´­¥¿¥¤¥×: ¾¤´­¼Ô¤ÎÆ±Â² */
+#define SUMMON_DAWN                 41 /*!< ¾¤´­¥¿¥¤¥×: ¶Ç¤ÎÀï»Î */
+#define SUMMON_ANIMAL               42 /*!< ¾¤´­¥¿¥¤¥×: ¼«Á³³¦¤ÎÆ°Êª */
+#define SUMMON_ANIMAL_RANGER        43 /*!< ¾¤´­¥¿¥¤¥×: ¥ì¥ó¥¸¥ã¡¼¸ş¤±¼«Á³³¦¤ÎÆ°Êª */
 /*#define SUMMON_HI_UNDEAD_NO_UNIQUES 44*/
 /*#define SUMMON_HI_DRAGON_NO_UNIQUES 45*/
 /*#define SUMMON_NO_UNIQUES           46*/
-#define SUMMON_PHANTOM              47 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚´ãƒ¼ã‚¹ãƒˆ */
+#define SUMMON_PHANTOM              47 /*!< ¾¤´­¥¿¥¤¥×: ¥´¡¼¥¹¥È */
 /*#define SUMMON_ELEMENTAL_NO_UNIQUES 48*/
-#define SUMMON_BLUE_HORROR          49 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ–ãƒ«ãƒ¼ãƒ»ãƒ›ãƒ©ãƒ¼ */
-#define SUMMON_LIVING               50 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ç”Ÿå‘½ã®ã‚ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ */
-#define SUMMON_HI_DRAGON_LIVING     51 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ç”Ÿå‘½ã®ã‚ã‚‹å¤ä»£ãƒ‰ãƒ©ã‚´ãƒ³ */
-#define SUMMON_GOLEM                52 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚´ãƒ¼ãƒ¬ãƒ  */
-#define SUMMON_ELEMENTAL            53 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚¨ãƒ¬ãƒ¡ãƒ³ã‚¿ãƒ« */
-#define SUMMON_VORTEX               54 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒœãƒ«ãƒ†ãƒƒã‚¯ã‚¹ */
-#define SUMMON_HYBRID               55 /*!< å¬å–šã‚¿ã‚¤ãƒ—: æ··åˆç”Ÿç‰© */
-#define SUMMON_BIRD                 56 /*!< å¬å–šã‚¿ã‚¤ãƒ—: é³¥ */
+#define SUMMON_BLUE_HORROR          49 /*!< ¾¤´­¥¿¥¤¥×: ¥Ö¥ë¡¼¡¦¥Û¥é¡¼ */
+#define SUMMON_LIVING               50 /*!< ¾¤´­¥¿¥¤¥×: À¸Ì¿¤Î¤¢¤ë¥â¥ó¥¹¥¿¡¼ */
+#define SUMMON_HI_DRAGON_LIVING     51 /*!< ¾¤´­¥¿¥¤¥×: À¸Ì¿¤Î¤¢¤ë¸ÅÂå¥É¥é¥´¥ó */
+#define SUMMON_GOLEM                52 /*!< ¾¤´­¥¿¥¤¥×: ¥´¡¼¥ì¥à */
+#define SUMMON_ELEMENTAL            53 /*!< ¾¤´­¥¿¥¤¥×: ¥¨¥ì¥á¥ó¥¿¥ë */
+#define SUMMON_VORTEX               54 /*!< ¾¤´­¥¿¥¤¥×: ¥Ü¥ë¥Æ¥Ã¥¯¥¹ */
+#define SUMMON_HYBRID               55 /*!< ¾¤´­¥¿¥¤¥×: º®¹çÀ¸Êª */
+#define SUMMON_BIRD                 56 /*!< ¾¤´­¥¿¥¤¥×: Ä» */
 /*#define SUMMON_AQUATIC_NO_UNIQUES   57*/
-#define SUMMON_KAMIKAZE             58 /*!< å¬å–šã‚¿ã‚¤ãƒ—: è‡ªçˆ†ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ */
-#define SUMMON_KAMIKAZE_LIVING      59 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ç”Ÿå‘½ã®ã‚ã‚‹è‡ªçˆ†ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ */
-#define SUMMON_MANES                60 /*!< å¬å–šã‚¿ã‚¤ãƒ—: å¤ä»£ã®æ­»éœŠ */
-#define SUMMON_LOUSE                61 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ã‚·ãƒ©ãƒŸ */
-#define SUMMON_GUARDIANS            62 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ä¸» */
-#define SUMMON_KNIGHTS              63 /*!< å¬å–šã‚¿ã‚¤ãƒ—: è–æˆ¦ç”¨é¨å£«ç³»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ */
-#define SUMMON_EAGLES               64 /*!< å¬å–šã‚¿ã‚¤ãƒ—: é·²ç³»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ */
-#define SUMMON_PIRANHAS             65 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒ”ãƒ©ãƒ‹ã‚¢ãƒ»ãƒˆãƒ©ãƒƒãƒ—ç”¨ */
-#define SUMMON_ARMAGE_GOOD          66 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒãƒ«ãƒã‚²ãƒ‰ãƒ³ãƒ»ãƒˆãƒ©ãƒƒãƒ—ç”¨å¤©ä½¿é™£å–¶ */
-#define SUMMON_ARMAGE_EVIL          67 /*!< å¬å–šã‚¿ã‚¤ãƒ—: ãƒãƒ«ãƒã‚²ãƒ‰ãƒ³ãƒ»ãƒˆãƒ©ãƒƒãƒ—ç”¨æ‚ªé­”é™£å–¶ */
+#define SUMMON_KAMIKAZE             58 /*!< ¾¤´­¥¿¥¤¥×: ¼«Çú¥â¥ó¥¹¥¿¡¼ */
+#define SUMMON_KAMIKAZE_LIVING      59 /*!< ¾¤´­¥¿¥¤¥×: À¸Ì¿¤Î¤¢¤ë¼«Çú¥â¥ó¥¹¥¿¡¼ */
+#define SUMMON_MANES                60 /*!< ¾¤´­¥¿¥¤¥×: ¸ÅÂå¤Î»àÎî */
+#define SUMMON_LOUSE                61 /*!< ¾¤´­¥¿¥¤¥×: ¥·¥é¥ß */
+#define SUMMON_GUARDIANS            62 /*!< ¾¤´­¥¿¥¤¥×: ¥À¥ó¥¸¥ç¥ó¤Î¼ç */
+#define SUMMON_KNIGHTS              63 /*!< ¾¤´­¥¿¥¤¥×: À»ÀïÍÑµ³»Î·Ï¥â¥ó¥¹¥¿¡¼ */
+#define SUMMON_EAGLES               64 /*!< ¾¤´­¥¿¥¤¥×: ÏÉ·Ï¥â¥ó¥¹¥¿¡¼ */
+#define SUMMON_PIRANHAS             65 /*!< ¾¤´­¥¿¥¤¥×: ¥Ô¥é¥Ë¥¢¡¦¥È¥é¥Ã¥×ÍÑ */
+#define SUMMON_ARMAGE_GOOD          66 /*!< ¾¤´­¥¿¥¤¥×: ¥Ï¥ë¥Ş¥²¥É¥ó¡¦¥È¥é¥Ã¥×ÍÑÅ·»È¿Ø±Ä */
+#define SUMMON_ARMAGE_EVIL          67 /*!< ¾¤´­¥¿¥¤¥×: ¥Ï¥ë¥Ş¥²¥É¥ó¡¦¥È¥é¥Ã¥×ÍÑ°­Ëâ¿Ø±Ä */
 
 
 /*
  * Spell types used by project(), and related functions.
  */
-#define GF_ELEC         1			/*!< é­”æ³•åŠ¹æœ: é›»æ’ƒ*/
-#define GF_POIS         2			/*!< é­”æ³•åŠ¹æœ: æ¯’*/
-#define GF_ACID         3			/*!< é­”æ³•åŠ¹æœ: é…¸*/
-#define GF_COLD         4			/*!< é­”æ³•åŠ¹æœ: å†·æ°—*/
-#define GF_FIRE         5			/*!< é­”æ³•åŠ¹æœ: ç«ç‚*/
-#define GF_PSY_SPEAR    9			/*!< é­”æ³•åŠ¹æœ: å…‰ã®å‰£*/
-#define GF_MISSILE      10			/*!< é­”æ³•åŠ¹æœ: ãƒã‚¸ãƒƒã‚¯ãƒŸã‚µã‚¤ãƒ«*/
-#define GF_ARROW        11			/*!< é­”æ³•åŠ¹æœ: çŸ¢*/
-#define GF_PLASMA       12			/*!< é­”æ³•åŠ¹æœ: ãƒ—ãƒ©ã‚ºãƒ*/
+#define GF_ELEC         1			/*!< ËâË¡¸ú²Ì: ÅÅ·â*/
+#define GF_POIS         2			/*!< ËâË¡¸ú²Ì: ÆÇ*/
+#define GF_ACID         3			/*!< ËâË¡¸ú²Ì: »À*/
+#define GF_COLD         4			/*!< ËâË¡¸ú²Ì: Îäµ¤*/
+#define GF_FIRE         5			/*!< ËâË¡¸ú²Ì: ²Ğ±ê*/
+#define GF_PSY_SPEAR    9			/*!< ËâË¡¸ú²Ì: ¸÷¤Î·õ*/
+#define GF_MISSILE      10			/*!< ËâË¡¸ú²Ì: ¥Ş¥¸¥Ã¥¯¥ß¥µ¥¤¥ë*/
+#define GF_ARROW        11			/*!< ËâË¡¸ú²Ì: Ìğ*/
+#define GF_PLASMA       12			/*!< ËâË¡¸ú²Ì: ¥×¥é¥º¥Ş*/
 /* Replaced with GF_HOLY_FIRE and GF_HELL_FIRE */
 /* #define GF_HOLY_ORB     13 */
-#define GF_WATER        14			/*!< é­”æ³•åŠ¹æœ: æ°´æµ*/
-#define GF_LITE         15			/*!< é­”æ³•åŠ¹æœ: é–ƒå…‰*/
-#define GF_DARK         16			/*!< é­”æ³•åŠ¹æœ: æš—é»’*/
-#define GF_LITE_WEAK    17			/*!< é­”æ³•åŠ¹æœ: å¼±å…‰*/
-#define GF_DARK_WEAK    18			/*!< é­”æ³•åŠ¹æœ: å¼±æš—*/
-#define GF_SHARDS       20			/*!< é­”æ³•åŠ¹æœ: ç ´ç‰‡*/
-#define GF_SOUND        21			/*!< é­”æ³•åŠ¹æœ: è½ŸéŸ³*/
-#define GF_CONFUSION    22			/*!< é­”æ³•åŠ¹æœ: æ··ä¹±*/
-#define GF_FORCE        23			/*!< é­”æ³•åŠ¹æœ: ãƒ•ã‚©ãƒ¼ã‚¹*/
-#define GF_INERTIAL     24			/*!< é­”æ³•åŠ¹æœ: é…éˆ*/
-#define GF_MANA         26			/*!< é­”æ³•åŠ¹æœ: ç´”ç²‹é­”åŠ›*/
-#define GF_METEOR       27			/*!< é­”æ³•åŠ¹æœ: éš•çŸ³*/
-#define GF_ICE          28			/*!< é­”æ³•åŠ¹æœ: æ¥µå¯’*/
-#define GF_CHAOS        30			/*!< é­”æ³•åŠ¹æœ: ã‚«ã‚ªã‚¹*/
-#define GF_NETHER       31			/*!< é­”æ³•åŠ¹æœ: åœ°ç„*/
-#define GF_DISENCHANT   32			/*!< é­”æ³•åŠ¹æœ: åŠ£åŒ–*/
-#define GF_NEXUS        33			/*!< é­”æ³•åŠ¹æœ: å› æœæ··ä¹±*/
-#define GF_TIME         34			/*!< é­”æ³•åŠ¹æœ: æ™‚é–“é€†è»¢*/
-#define GF_GRAVITY      35			/*!< é­”æ³•åŠ¹æœ: é‡åŠ›*/
-#define GF_KILL_WALL    40			/*!< é­”æ³•åŠ¹æœ: å²©çŸ³æº¶è§£*/
-#define GF_KILL_DOOR    41			/*!< é­”æ³•åŠ¹æœ: ãƒ‰ã‚¢ç ´å£Š*/
-#define GF_KILL_TRAP    42			/*!< é­”æ³•åŠ¹æœ: ãƒˆãƒ©ãƒƒãƒ—ç ´å£Š*/
-#define GF_MAKE_WALL    45			/*!< é­”æ³•åŠ¹æœ: å£ç”Ÿæˆ*/
-#define GF_MAKE_DOOR    46			/*!< é­”æ³•åŠ¹æœ: ãƒ‰ã‚¢ç”Ÿæˆ*/
-#define GF_MAKE_TRAP    47			/*!< é­”æ³•åŠ¹æœ: ãƒˆãƒ©ãƒƒãƒ—ç”Ÿæˆ*/
-#define GF_MAKE_TREE    48			/*!< é­”æ³•åŠ¹æœ: æ£®æ—ç”Ÿæˆ*/
-#define GF_OLD_CLONE    51			/*!< é­”æ³•åŠ¹æœ: ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_OLD_POLY     52			/*!< é­”æ³•åŠ¹æœ: ãƒã‚§ãƒ³ã‚¸ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_OLD_HEAL     53			/*!< é­”æ³•åŠ¹æœ: å›å¾©ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_OLD_SPEED    54			/*!< é­”æ³•åŠ¹æœ: ã‚¹ãƒ”ãƒ¼ãƒ‰ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_OLD_SLOW     55			/*!< é­”æ³•åŠ¹æœ: ã‚¹ãƒ­ã‚¦ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_OLD_CONF     56			/*!< é­”æ³•åŠ¹æœ: ãƒ‘ãƒ‹ãƒƒã‚¯ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_OLD_SLEEP    57			/*!< é­”æ³•åŠ¹æœ: ã‚¹ãƒªãƒ¼ãƒ—ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼*/
-#define GF_HYPODYNAMIA  58			/*!< é­”æ³•åŠ¹æœ: è¡°å¼±*/
-#define GF_AWAY_UNDEAD  61			/*!< é­”æ³•åŠ¹æœ: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ãƒ»ã‚¢ã‚¦ã‚§ã‚¤*/
-#define GF_AWAY_EVIL    62			/*!< é­”æ³•åŠ¹æœ: é‚ªæ‚ªé£›ã°ã—*/
-#define GF_AWAY_ALL     63			/*!< é­”æ³•åŠ¹æœ: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ã‚¢ã‚¦ã‚§ã‚¤*/
-#define GF_TURN_UNDEAD  64			/*!< é­”æ³•åŠ¹æœ: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ææ…Œ*/
-#define GF_TURN_EVIL    65			/*!< é­”æ³•åŠ¹æœ: é‚ªæ‚ªææ…Œ*/
-#define GF_TURN_ALL     66			/*!< é­”æ³•åŠ¹æœ: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ææ…Œ*/
-#define GF_DISP_UNDEAD  67			/*!< é­”æ³•åŠ¹æœ: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰é€€æ•£*/
-#define GF_DISP_EVIL    68			/*!< é­”æ³•åŠ¹æœ: é‚ªæ‚ªé€€æ•£*/
-#define GF_DISP_ALL     69			/*!< é­”æ³•åŠ¹æœ: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é€€æ•£*/
+#define GF_WATER        14			/*!< ËâË¡¸ú²Ì: ¿åÎ®*/
+#define GF_LITE         15			/*!< ËâË¡¸ú²Ì: Á®¸÷*/
+#define GF_DARK         16			/*!< ËâË¡¸ú²Ì: °Å¹õ*/
+#define GF_LITE_WEAK    17			/*!< ËâË¡¸ú²Ì: ¼å¸÷*/
+#define GF_DARK_WEAK    18			/*!< ËâË¡¸ú²Ì: ¼å°Å*/
+#define GF_SHARDS       20			/*!< ËâË¡¸ú²Ì: ÇËÊÒ*/
+#define GF_SOUND        21			/*!< ËâË¡¸ú²Ì: ¹ì²»*/
+#define GF_CONFUSION    22			/*!< ËâË¡¸ú²Ì: º®Íğ*/
+#define GF_FORCE        23			/*!< ËâË¡¸ú²Ì: ¥Õ¥©¡¼¥¹*/
+#define GF_INERTIAL     24			/*!< ËâË¡¸ú²Ì: ÃÙÆß*/
+#define GF_MANA         26			/*!< ËâË¡¸ú²Ì: ½ã¿èËâÎÏ*/
+#define GF_METEOR       27			/*!< ËâË¡¸ú²Ì: ğ¨ÀĞ*/
+#define GF_ICE          28			/*!< ËâË¡¸ú²Ì: ¶Ë´¨*/
+#define GF_CHAOS        30			/*!< ËâË¡¸ú²Ì: ¥«¥ª¥¹*/
+#define GF_NETHER       31			/*!< ËâË¡¸ú²Ì: ÃÏ¹ö*/
+#define GF_DISENCHANT   32			/*!< ËâË¡¸ú²Ì: Îô²½*/
+#define GF_NEXUS        33			/*!< ËâË¡¸ú²Ì: °ø²Ìº®Íğ*/
+#define GF_TIME         34			/*!< ËâË¡¸ú²Ì: »ş´ÖµÕÅ¾*/
+#define GF_GRAVITY      35			/*!< ËâË¡¸ú²Ì: ½ÅÎÏ*/
+#define GF_KILL_WALL    40			/*!< ËâË¡¸ú²Ì: ´äÀĞÍÏ²ò*/
+#define GF_KILL_DOOR    41			/*!< ËâË¡¸ú²Ì: ¥É¥¢ÇË²õ*/
+#define GF_KILL_TRAP    42			/*!< ËâË¡¸ú²Ì: ¥È¥é¥Ã¥×ÇË²õ*/
+#define GF_MAKE_WALL    45			/*!< ËâË¡¸ú²Ì: ÊÉÀ¸À®*/
+#define GF_MAKE_DOOR    46			/*!< ËâË¡¸ú²Ì: ¥É¥¢À¸À®*/
+#define GF_MAKE_TRAP    47			/*!< ËâË¡¸ú²Ì: ¥È¥é¥Ã¥×À¸À®*/
+#define GF_MAKE_TREE    48			/*!< ËâË¡¸ú²Ì: ¿¹ÎÓÀ¸À®*/
+#define GF_OLD_CLONE    51			/*!< ËâË¡¸ú²Ì: ¥¯¥í¡¼¥ó¡¦¥â¥ó¥¹¥¿¡¼*/
+#define GF_OLD_POLY     52			/*!< ËâË¡¸ú²Ì: ¥Á¥§¥ó¥¸¡¦¥â¥ó¥¹¥¿¡¼*/
+#define GF_OLD_HEAL     53			/*!< ËâË¡¸ú²Ì: ²óÉü¥â¥ó¥¹¥¿¡¼*/
+#define GF_OLD_SPEED    54			/*!< ËâË¡¸ú²Ì: ¥¹¥Ô¡¼¥É¡¦¥â¥ó¥¹¥¿¡¼*/
+#define GF_OLD_SLOW     55			/*!< ËâË¡¸ú²Ì: ¥¹¥í¥¦¡¦¥â¥ó¥¹¥¿¡¼*/
+#define GF_OLD_CONF     56			/*!< ËâË¡¸ú²Ì: ¥Ñ¥Ë¥Ã¥¯¡¦¥â¥ó¥¹¥¿¡¼*/
+#define GF_OLD_SLEEP    57			/*!< ËâË¡¸ú²Ì: ¥¹¥ê¡¼¥×¡¦¥â¥ó¥¹¥¿¡¼*/
+#define GF_HYPODYNAMIA  58			/*!< ËâË¡¸ú²Ì: ¿ê¼å*/
+#define GF_AWAY_UNDEAD  61			/*!< ËâË¡¸ú²Ì: ¥¢¥ó¥Ç¥Ã¥É¡¦¥¢¥¦¥§¥¤*/
+#define GF_AWAY_EVIL    62			/*!< ËâË¡¸ú²Ì: ¼Ù°­Èô¤Ğ¤·*/
+#define GF_AWAY_ALL     63			/*!< ËâË¡¸ú²Ì: ¥â¥ó¥¹¥¿¡¼¡¦¥¢¥¦¥§¥¤*/
+#define GF_TURN_UNDEAD  64			/*!< ËâË¡¸ú²Ì: ¥¢¥ó¥Ç¥Ã¥É¶²¹²*/
+#define GF_TURN_EVIL    65			/*!< ËâË¡¸ú²Ì: ¼Ù°­¶²¹²*/
+#define GF_TURN_ALL     66			/*!< ËâË¡¸ú²Ì: ¥â¥ó¥¹¥¿¡¼¶²¹²*/
+#define GF_DISP_UNDEAD  67			/*!< ËâË¡¸ú²Ì: ¥¢¥ó¥Ç¥Ã¥ÉÂà»¶*/
+#define GF_DISP_EVIL    68			/*!< ËâË¡¸ú²Ì: ¼Ù°­Âà»¶*/
+#define GF_DISP_ALL     69			/*!< ËâË¡¸ú²Ì: ¥â¥ó¥¹¥¿¡¼Âà»¶*/
 /* New types for Zangband begin here... */
-#define GF_DISP_DEMON   70			/*!< é­”æ³•åŠ¹æœ: æ‚ªé­”é€€æ•£*/
-#define GF_DISP_LIVING  71			/*!< é­”æ³•åŠ¹æœ: ç”Ÿå‘½é€€æ•£*/
-#define GF_ROCKET       72			/*!< é­”æ³•åŠ¹æœ: ãƒ­ã‚±ãƒƒãƒˆ*/
-#define GF_NUKE         73			/*!< é­”æ³•åŠ¹æœ: æ”¾å°„æ€§å»ƒæ£„ç‰©*/
-#define GF_MAKE_GLYPH   74			/*!< é­”æ³•åŠ¹æœ: é­”æ³•ã®ãƒ«ãƒ¼ãƒ³ç”Ÿæˆ*/
-#define GF_STASIS       75			/*!< é­”æ³•åŠ¹æœ: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‹˜æŸ*/
-#define GF_STONE_WALL   76			/*!< é­”æ³•åŠ¹æœ: å£ç”Ÿæˆ*/
-#define GF_DEATH_RAY    77			/*!< é­”æ³•åŠ¹æœ: æ­»ã®å…‰ç·š*/
-#define GF_STUN         78			/*!< é­”æ³•åŠ¹æœ: æœ¦æœ§*/
-#define GF_HOLY_FIRE    79			/*!< é­”æ³•åŠ¹æœ: è–å…‰*/
-#define GF_HELL_FIRE    80			/*!< é­”æ³•åŠ¹æœ: åœ°ç„ã®åŠ«ç«*/
-#define GF_DISINTEGRATE 81			/*!< é­”æ³•åŠ¹æœ: åˆ†è§£*/
-#define GF_CHARM        82			/*!< é­”æ³•åŠ¹æœ: é­…äº†*/
-#define GF_CONTROL_UNDEAD  83		/*!< é­”æ³•åŠ¹æœ: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰æ”¯é…*/
-#define GF_CONTROL_ANIMAL  84		/*!< é­”æ³•åŠ¹æœ: å‹•ç‰©æ”¯é…*/
-#define GF_PSI          85			/*!< é­”æ³•åŠ¹æœ: ã‚µã‚¤ã‚­ãƒƒã‚¯æ”»æ’ƒ*/
-#define GF_PSI_DRAIN    86			/*!< é­”æ³•åŠ¹æœ: ç²¾ç¥å¸å*/
-#define GF_TELEKINESIS  87			/*!< é­”æ³•åŠ¹æœ: ãƒ†ãƒ¬ã‚­ã‚·ãƒã‚¹*/
-#define GF_JAM_DOOR     88			/*!< é­”æ³•åŠ¹æœ: æ–½éŒ */
-#define GF_DOMINATION   89			/*!< é­”æ³•åŠ¹æœ: ç²¾ç¥æ”¯é…*/
-#define GF_DISP_GOOD    90			/*!< é­”æ³•åŠ¹æœ: å–„è‰¯é€€æ•£*/
-#define GF_DRAIN_MANA   91			/*!< é­”æ³•åŠ¹æœ: é­”åŠ›å¸å*/
-#define GF_MIND_BLAST   92			/*!< é­”æ³•åŠ¹æœ: ç²¾ç¥æ”»æ’ƒ*/
-#define GF_BRAIN_SMASH  93			/*!< é­”æ³•åŠ¹æœ: è„³æ”»æ’ƒ*/
-#define GF_CAUSE_1      94			/*!< é­”æ³•åŠ¹æœ: è»½å‚·ã®å‘ªã„*/
-#define GF_CAUSE_2      95			/*!< é­”æ³•åŠ¹æœ: é‡å‚·ã®å‘ªã„*/
-#define GF_CAUSE_3      96			/*!< é­”æ³•åŠ¹æœ: è‡´å‘½å‚·ã®å‘ªã„*/
-#define GF_CAUSE_4      97			/*!< é­”æ³•åŠ¹æœ: ç§˜å­”ã‚’çªã*/
-#define GF_HAND_DOOM    98			/*!< é­”æ³•åŠ¹æœ: ç ´æ»…ã®æ‰‹*/
-#define GF_CAPTURE      99			/*!< é­”æ³•åŠ¹æœ: æ•ç¸›*/
-#define GF_ANIM_DEAD   100			/*!< é­”æ³•åŠ¹æœ: æ­»è€…å¾©æ´»*/
-#define GF_CONTROL_LIVING   101		/*!< é­”æ³•åŠ¹æœ: ç”Ÿå‘½æ”¯é…*/
-#define GF_IDENTIFY    102			/*!< é­”æ³•åŠ¹æœ: é‘‘å®š*/
-#define GF_ATTACK      103			/*!< é­”æ³•åŠ¹æœ: ç™½å…µ*/
-#define GF_ENGETSU     104			/*!< é­”æ³•åŠ¹æœ: å††æœˆ*/
-#define GF_GENOCIDE    105			/*!< é­”æ³•åŠ¹æœ: æŠ¹æ®º*/
-#define GF_PHOTO       106			/*!< é­”æ³•åŠ¹æœ: æ’®å½±*/
-#define GF_CONTROL_DEMON   107		/*!< é­”æ³•åŠ¹æœ: ãƒ‡ãƒ¼ãƒ¢ãƒ³æ”¯é…*/
-#define GF_LAVA_FLOW   108			/*!< é­”æ³•åŠ¹æœ: æº¶å²©å™´å‡º*/
-#define GF_BLOOD_CURSE 109			/*!< é­”æ³•åŠ¹æœ: è¡€ã®å‘ªã„*/
-#define GF_SEEKER      110			/*!< é­”æ³•åŠ¹æœ: ã‚·ãƒ¼ã‚«ãƒ¼ãƒ¬ã‚¤*/
-#define GF_SUPER_RAY   111			/*!< é­”æ³•åŠ¹æœ: ã‚¹ãƒ¼ãƒ‘ãƒ¼ãƒ¬ã‚¤*/
-#define GF_STAR_HEAL   112			/*!< é­”æ³•åŠ¹æœ: æ˜Ÿã®ç™’ã—*/
-#define GF_WATER_FLOW  113			/*!< é­”æ³•åŠ¹æœ: æµæ°´*/
-#define GF_CRUSADE     114			/*!< é­”æ³•åŠ¹æœ: è–æˆ¦*/
-#define GF_STASIS_EVIL 115			/*!< é­”æ³•åŠ¹æœ: é‚ªæ‚ªæ‹˜æŸ*/
-#define GF_WOUNDS      116			/*!< é­”æ³•åŠ¹æœ: å‰µå‚·*/
+#define GF_DISP_DEMON   70			/*!< ËâË¡¸ú²Ì: °­ËâÂà»¶*/
+#define GF_DISP_LIVING  71			/*!< ËâË¡¸ú²Ì: À¸Ì¿Âà»¶*/
+#define GF_ROCKET       72			/*!< ËâË¡¸ú²Ì: ¥í¥±¥Ã¥È*/
+#define GF_NUKE         73			/*!< ËâË¡¸ú²Ì: Êü¼ÍÀ­ÇÑ´şÊª*/
+#define GF_MAKE_GLYPH   74			/*!< ËâË¡¸ú²Ì: ËâË¡¤Î¥ë¡¼¥óÀ¸À®*/
+#define GF_STASIS       75			/*!< ËâË¡¸ú²Ì: ¥â¥ó¥¹¥¿¡¼¹´Â«*/
+#define GF_STONE_WALL   76			/*!< ËâË¡¸ú²Ì: ÊÉÀ¸À®*/
+#define GF_DEATH_RAY    77			/*!< ËâË¡¸ú²Ì: »à¤Î¸÷Àş*/
+#define GF_STUN         78			/*!< ËâË¡¸ú²Ì: Û¯Û°*/
+#define GF_HOLY_FIRE    79			/*!< ËâË¡¸ú²Ì: À»¸÷*/
+#define GF_HELL_FIRE    80			/*!< ËâË¡¸ú²Ì: ÃÏ¹ö¤Î¹å²Ğ*/
+#define GF_DISINTEGRATE 81			/*!< ËâË¡¸ú²Ì: Ê¬²ò*/
+#define GF_CHARM        82			/*!< ËâË¡¸ú²Ì: Ì¥Î»*/
+#define GF_CONTROL_UNDEAD  83		/*!< ËâË¡¸ú²Ì: ¥¢¥ó¥Ç¥Ã¥É»ÙÇÛ*/
+#define GF_CONTROL_ANIMAL  84		/*!< ËâË¡¸ú²Ì: Æ°Êª»ÙÇÛ*/
+#define GF_PSI          85			/*!< ËâË¡¸ú²Ì: ¥µ¥¤¥­¥Ã¥¯¹¶·â*/
+#define GF_PSI_DRAIN    86			/*!< ËâË¡¸ú²Ì: Àº¿ÀµÛ¼ı*/
+#define GF_TELEKINESIS  87			/*!< ËâË¡¸ú²Ì: ¥Æ¥ì¥­¥·¥Í¥¹*/
+#define GF_JAM_DOOR     88			/*!< ËâË¡¸ú²Ì: »Ü¾û*/
+#define GF_DOMINATION   89			/*!< ËâË¡¸ú²Ì: Àº¿À»ÙÇÛ*/
+#define GF_DISP_GOOD    90			/*!< ËâË¡¸ú²Ì: Á±ÎÉÂà»¶*/
+#define GF_DRAIN_MANA   91			/*!< ËâË¡¸ú²Ì: ËâÎÏµÛ¼ı*/
+#define GF_MIND_BLAST   92			/*!< ËâË¡¸ú²Ì: Àº¿À¹¶·â*/
+#define GF_BRAIN_SMASH  93			/*!< ËâË¡¸ú²Ì: Ç¾¹¶·â*/
+#define GF_CAUSE_1      94			/*!< ËâË¡¸ú²Ì: ·Ú½ı¤Î¼ö¤¤*/
+#define GF_CAUSE_2      95			/*!< ËâË¡¸ú²Ì: ½Å½ı¤Î¼ö¤¤*/
+#define GF_CAUSE_3      96			/*!< ËâË¡¸ú²Ì: Ã×Ì¿½ı¤Î¼ö¤¤*/
+#define GF_CAUSE_4      97			/*!< ËâË¡¸ú²Ì: Èë¹¦¤òÆÍ¤¯*/
+#define GF_HAND_DOOM    98			/*!< ËâË¡¸ú²Ì: ÇËÌÇ¤Î¼ê*/
+#define GF_CAPTURE      99			/*!< ËâË¡¸ú²Ì: ÊáÇû*/
+#define GF_ANIM_DEAD   100			/*!< ËâË¡¸ú²Ì: »à¼ÔÉü³è*/
+#define GF_CONTROL_LIVING   101		/*!< ËâË¡¸ú²Ì: À¸Ì¿»ÙÇÛ*/
+#define GF_IDENTIFY    102			/*!< ËâË¡¸ú²Ì: ´ÕÄê*/
+#define GF_ATTACK      103			/*!< ËâË¡¸ú²Ì: ÇòÊ¼*/
+#define GF_ENGETSU     104			/*!< ËâË¡¸ú²Ì: ±ß·î*/
+#define GF_GENOCIDE    105			/*!< ËâË¡¸ú²Ì: Ëõ»¦*/
+#define GF_PHOTO       106			/*!< ËâË¡¸ú²Ì: »£±Æ*/
+#define GF_CONTROL_DEMON   107		/*!< ËâË¡¸ú²Ì: ¥Ç¡¼¥â¥ó»ÙÇÛ*/
+#define GF_LAVA_FLOW   108			/*!< ËâË¡¸ú²Ì: ÍÏ´äÊ®½Ğ*/
+#define GF_BLOOD_CURSE 109			/*!< ËâË¡¸ú²Ì: ·ì¤Î¼ö¤¤*/
+#define GF_SEEKER      110			/*!< ËâË¡¸ú²Ì: ¥·¡¼¥«¡¼¥ì¥¤*/
+#define GF_SUPER_RAY   111			/*!< ËâË¡¸ú²Ì: ¥¹¡¼¥Ñ¡¼¥ì¥¤*/
+#define GF_STAR_HEAL   112			/*!< ËâË¡¸ú²Ì: À±¤ÎÌş¤·*/
+#define GF_WATER_FLOW  113			/*!< ËâË¡¸ú²Ì: Î®¿å*/
+#define GF_CRUSADE     114			/*!< ËâË¡¸ú²Ì: À»Àï*/
+#define GF_STASIS_EVIL 115			/*!< ËâË¡¸ú²Ì: ¼Ù°­¹´Â«*/
+#define GF_WOUNDS      116			/*!< ËâË¡¸ú²Ì: ÁÏ½ı*/
 
 #define MAX_GF         117
 
@@ -3101,48 +3101,48 @@
 
 
 /*
- * ã‚¢ã‚¤ãƒ†ãƒ ã®ç°¡æ˜“é‘‘å®šå®šç¾© / Game generated inscription indices. These are stored in the object,
+ * ¥¢¥¤¥Æ¥à¤Î´Ê°×´ÕÄêÄêµÁ / Game generated inscription indices. These are stored in the object,
  * and are used to index the string array from tables.c.
  */
-#define FEEL_NONE              0 /*!< ç°¡æ˜“é‘‘å®š: æœªé‘‘å®š */
-#define FEEL_BROKEN            1 /*!< ç°¡æ˜“é‘‘å®š: å£Šã‚Œã¦ã„ã‚‹ */
-#define FEEL_TERRIBLE          2 /*!< ç°¡æ˜“é‘‘å®š: æã‚ã—ã„ */
-#define FEEL_WORTHLESS         3 /*!< ç°¡æ˜“é‘‘å®š: ç„¡ä¾¡å€¤ */
-#define FEEL_CURSED            4 /*!< ç°¡æ˜“é‘‘å®š: å‘ªã‚ã‚Œã¦ã„ã‚‹ */
-#define FEEL_UNCURSED          5 /*!< ç°¡æ˜“é‘‘å®š: å‘ªã‚ã‚Œã¦ã„ãªã„ */
-#define FEEL_AVERAGE           6 /*!< ç°¡æ˜“é‘‘å®š: ä¸¦ */
-#define FEEL_GOOD              7 /*!< ç°¡æ˜“é‘‘å®š: ä¸Šè³ª */
-#define FEEL_EXCELLENT         8 /*!< ç°¡æ˜“é‘‘å®š: é«˜ç´š */
-#define FEEL_SPECIAL           9 /*!< ç°¡æ˜“é‘‘å®š: ç‰¹åˆ¥ */
+#define FEEL_NONE              0 /*!< ´Ê°×´ÕÄê: Ì¤´ÕÄê */
+#define FEEL_BROKEN            1 /*!< ´Ê°×´ÕÄê: ²õ¤ì¤Æ¤¤¤ë */
+#define FEEL_TERRIBLE          2 /*!< ´Ê°×´ÕÄê: ¶²¤í¤·¤¤ */
+#define FEEL_WORTHLESS         3 /*!< ´Ê°×´ÕÄê: Ìµ²ÁÃÍ */
+#define FEEL_CURSED            4 /*!< ´Ê°×´ÕÄê: ¼ö¤ï¤ì¤Æ¤¤¤ë */
+#define FEEL_UNCURSED          5 /*!< ´Ê°×´ÕÄê: ¼ö¤ï¤ì¤Æ¤¤¤Ê¤¤ */
+#define FEEL_AVERAGE           6 /*!< ´Ê°×´ÕÄê: ÊÂ */
+#define FEEL_GOOD              7 /*!< ´Ê°×´ÕÄê: ¾å¼Á */
+#define FEEL_EXCELLENT         8 /*!< ´Ê°×´ÕÄê: ¹âµé */
+#define FEEL_SPECIAL           9 /*!< ´Ê°×´ÕÄê: ÆÃÊÌ */
 
-#define FEEL_MAX               9 /*!< ç°¡æ˜“é‘‘å®šã®ç¨®åˆ¥æ•° */
+#define FEEL_MAX               9 /*!< ´Ê°×´ÕÄê¤Î¼ïÊÌ¿ô */
 
 /*
- * å¤‰æ„šver1.5.0ä»¥å‰ã«ä½¿ã‚ã‚Œã¦ã„ãŸã‚¢ã‚¤ãƒ†ãƒ ã®è¿½åŠ ç‰¹æ€§ãƒ•ãƒ©ã‚° / Hack -- special "xtra" object powers
+ * ÊÑ¶òver1.5.0°ÊÁ°¤Ë»È¤ï¤ì¤Æ¤¤¤¿¥¢¥¤¥Æ¥à¤ÎÄÉ²ÃÆÃÀ­¥Õ¥é¥° / Hack -- special "xtra" object powers
  */
-#define EGO_XTRA_SUSTAIN        1 /*!< æ—§ç‰ˆã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°(éæ¨å¥¨): è¿½åŠ ç¶­æŒèƒ½åŠ› / Sustain one stat */
-#define EGO_XTRA_POWER          2 /*!< æ—§ç‰ˆã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°(éæ¨å¥¨): è¿½åŠ ä¸Šç´šè€æ€§ / High resist */
-#define EGO_XTRA_ABILITY        3 /*!< æ—§ç‰ˆã‚¢ã‚¤ãƒ†ãƒ ãƒ•ãƒ©ã‚°(éæ¨å¥¨): è¿½åŠ èƒ½åŠ› / Special ability */
+#define EGO_XTRA_SUSTAIN        1 /*!< µìÈÇ¥¢¥¤¥Æ¥à¥Õ¥é¥°(Èó¿ä¾©): ÄÉ²Ã°İ»ıÇ½ÎÏ / Sustain one stat */
+#define EGO_XTRA_POWER          2 /*!< µìÈÇ¥¢¥¤¥Æ¥à¥Õ¥é¥°(Èó¿ä¾©): ÄÉ²Ã¾åµéÂÑÀ­ / High resist */
+#define EGO_XTRA_ABILITY        3 /*!< µìÈÇ¥¢¥¤¥Æ¥à¥Õ¥é¥°(Èó¿ä¾©): ÄÉ²ÃÇ½ÎÏ / Special ability */
 
 
 /*** Object flag values ***/
 
 
 /*!
- * ç®±ã®ãƒˆãƒ©ãƒƒãƒ—å®šç¾© Chest trap flags (see "tables.c")
+ * È¢¤Î¥È¥é¥Ã¥×ÄêµÁ Chest trap flags (see "tables.c")
  */
-#define CHEST_LOSE_STR          0x0001 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: STRæ¸›å°‘ã®æ¯’é‡ */
-#define CHEST_LOSE_CON          0x0002 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: CONæ¸›å°‘ã®æ¯’é‡ */
-#define CHEST_POISON            0x0004 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: æ¯’é‡ */
-#define CHEST_PARALYZE          0x0008 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: éº»ç—ºã‚¬ã‚¹ */
-#define CHEST_EXPLODE           0x0010 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: çˆ†ç™º */
-#define CHEST_SUMMON            0x0020 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: å¬å–šã®ãƒ«ãƒ¼ãƒ³(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼) */
-#define CHEST_SCATTER           0x0040 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: ã‚¢ã‚¤ãƒ†ãƒ æ•£ä¹± */
-#define CHEST_E_SUMMON          0x0080 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: å¬å–šã®ãƒ«ãƒ¼ãƒ³(ã‚¨ãƒ¬ãƒ¡ãƒ³ã‚¿ãƒ«) */
-#define CHEST_BIRD_STORM        0x0100 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: å¬å–šã®ãƒ«ãƒ¼ãƒ³(é³¥) */
-#define CHEST_H_SUMMON          0x0200 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: å¬å–šã®ãƒ«ãƒ¼ãƒ³(å¼·æ•µ)  */
-#define CHEST_RUNES_OF_EVIL     0x0400 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: é‚ªæ‚ªãªãƒ«ãƒ¼ãƒ³ */
-#define CHEST_ALARM             0x0800 /*!< ç®±ã®ãƒˆãƒ©ãƒƒãƒ—: è­¦å ±è£…ç½® */
+#define CHEST_LOSE_STR          0x0001 /*!< È¢¤Î¥È¥é¥Ã¥×: STR¸º¾¯¤ÎÆÇ¿Ë */
+#define CHEST_LOSE_CON          0x0002 /*!< È¢¤Î¥È¥é¥Ã¥×: CON¸º¾¯¤ÎÆÇ¿Ë */
+#define CHEST_POISON            0x0004 /*!< È¢¤Î¥È¥é¥Ã¥×: ÆÇ¿Ë */
+#define CHEST_PARALYZE          0x0008 /*!< È¢¤Î¥È¥é¥Ã¥×: Ëãáã¥¬¥¹ */
+#define CHEST_EXPLODE           0x0010 /*!< È¢¤Î¥È¥é¥Ã¥×: ÇúÈ¯ */
+#define CHEST_SUMMON            0x0020 /*!< È¢¤Î¥È¥é¥Ã¥×: ¾¤´­¤Î¥ë¡¼¥ó(¥â¥ó¥¹¥¿¡¼) */
+#define CHEST_SCATTER           0x0040 /*!< È¢¤Î¥È¥é¥Ã¥×: ¥¢¥¤¥Æ¥à»¶Íğ */
+#define CHEST_E_SUMMON          0x0080 /*!< È¢¤Î¥È¥é¥Ã¥×: ¾¤´­¤Î¥ë¡¼¥ó(¥¨¥ì¥á¥ó¥¿¥ë) */
+#define CHEST_BIRD_STORM        0x0100 /*!< È¢¤Î¥È¥é¥Ã¥×: ¾¤´­¤Î¥ë¡¼¥ó(Ä») */
+#define CHEST_H_SUMMON          0x0200 /*!< È¢¤Î¥È¥é¥Ã¥×: ¾¤´­¤Î¥ë¡¼¥ó(¶¯Å¨)  */
+#define CHEST_RUNES_OF_EVIL     0x0400 /*!< È¢¤Î¥È¥é¥Ã¥×: ¼Ù°­¤Ê¥ë¡¼¥ó */
+#define CHEST_ALARM             0x0800 /*!< È¢¤Î¥È¥é¥Ã¥×: ·ÙÊóÁõÃÖ */
 
 
 /*
@@ -3449,74 +3449,74 @@
 
 
 /*!
- * @note ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒæ–¹æ³• / New monster blow methods
- * æ‰“æ’ƒã®ç¨®åˆ¥ã«å¿œã˜ã¦å‚·ã¨æœ¦æœ§ãŒç™ºç”Ÿã™ã‚‹ã‹ãŒã‚³ãƒ¡ãƒ³ãƒˆã®é€šã‚Šã«æ±ºã¾ã‚‹
+ * @note ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·âÊıË¡ / New monster blow methods
+ * ÂÇ·â¤Î¼ïÊÌ¤Ë±ş¤¸¤Æ½ı¤ÈÛ¯Û°¤¬È¯À¸¤¹¤ë¤«¤¬¥³¥á¥ó¥È¤ÎÄÌ¤ê¤Ë·è¤Ş¤ë
  */
-#define RBM_HIT          1 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:æ®´ã‚‹(å‚·/æœ¦æœ§ãŒåŠã€…) */
-#define RBM_TOUCH        2 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:è§¦ã‚‹ */
-#define RBM_PUNCH        3 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ãƒ‘ãƒ³ãƒã™ã‚‹(æœ¦æœ§) */
-#define RBM_KICK         4 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:è¹´ã‚‹(æœ¦æœ§) */
-#define RBM_CLAW         5 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ã²ã£ã‹ã(å‚·) */
-#define RBM_BITE         6 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:å™›ã‚€(å‚·) */
-#define RBM_STING        7 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:åˆºã™ */
-#define RBM_SLASH        8 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:æ–¬ã‚‹(å‚·) */
-#define RBM_BUTT         9 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:è§’ã§çªã(æœ¦æœ§) */
-#define RBM_CRUSH       10 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ä½“å½“ãŸã‚Šã™ã‚‹(æœ¦æœ§) */
-#define RBM_ENGULF      11 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:é£²ã¿è¾¼ã‚€ */
-#define RBM_CHARGE      12 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:è«‹æ±‚æ›¸ã‚’å¯„è¶Šã™ */
-#define RBM_CRAWL       13 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ä½“ã®ä¸Šã‚’é€™ã„å›ã‚‹ */
-#define RBM_DROOL       14 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ã‚ˆã ã‚Œã‚’ãŸã‚‰ã™ */
-#define RBM_SPIT        15 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ã¤ã°ã‚’åã */
-#define RBM_EXPLODE     16 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:çˆ†ç™ºã™ã‚‹ */
-#define RBM_GAZE        17 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ã«ã‚‰ã‚€ */
-#define RBM_WAIL        18 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:æ³£ãå«ã¶ */
-#define RBM_SPORE       19 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:èƒå­ã‚’é£›ã°ã™ */
-#define RBM_XXX4        20 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:æœªå®šç¾© */
-#define RBM_BEG         21 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:é‡‘ã‚’ã›ãŒã‚€ */
-#define RBM_INSULT      22 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ä¾®è¾±ã™ã‚‹ */
-#define RBM_MOAN        23 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:ã†ã‚ã */
-#define RBM_SHOW        24 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:æ­Œã† */
-#define RBM_SHOOT       25 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒç¨®åˆ¥:å°„æ’ƒ(éæ‰“æ’ƒ) */
+#define RBM_HIT          1 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:²¥¤ë(½ı/Û¯Û°¤¬È¾¡¹) */
+#define RBM_TOUCH        2 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¿¨¤ë */
+#define RBM_PUNCH        3 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¥Ñ¥ó¥Á¤¹¤ë(Û¯Û°) */
+#define RBM_KICK         4 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:½³¤ë(Û¯Û°) */
+#define RBM_CLAW         5 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¤Ò¤Ã¤«¤¯(½ı) */
+#define RBM_BITE         6 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:³ú¤à(½ı) */
+#define RBM_STING        7 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:»É¤¹ */
+#define RBM_SLASH        8 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:»Â¤ë(½ı) */
+#define RBM_BUTT         9 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:³Ñ¤ÇÆÍ¤¯(Û¯Û°) */
+#define RBM_CRUSH       10 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:ÂÎÅö¤¿¤ê¤¹¤ë(Û¯Û°) */
+#define RBM_ENGULF      11 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:°û¤ß¹ş¤à */
+#define RBM_CHARGE      12 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:ÀÁµá½ñ¤ò´ó±Û¤¹ */
+#define RBM_CRAWL       13 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:ÂÎ¤Î¾å¤òÇç¤¤²ó¤ë */
+#define RBM_DROOL       14 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¤è¤À¤ì¤ò¤¿¤é¤¹ */
+#define RBM_SPIT        15 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¤Ä¤Ğ¤òÅÇ¤¯ */
+#define RBM_EXPLODE     16 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:ÇúÈ¯¤¹¤ë */
+#define RBM_GAZE        17 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¤Ë¤é¤à */
+#define RBM_WAIL        18 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:µã¤­¶«¤Ö */
+#define RBM_SPORE       19 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:Ë¦»Ò¤òÈô¤Ğ¤¹ */
+#define RBM_XXX4        20 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:Ì¤ÄêµÁ */
+#define RBM_BEG         21 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¶â¤ò¤»¤¬¤à */
+#define RBM_INSULT      22 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:Éî¿«¤¹¤ë */
+#define RBM_MOAN        23 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¤¦¤á¤¯ */
+#define RBM_SHOW        24 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:²Î¤¦ */
+#define RBM_SHOOT       25 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¼ïÊÌ:¼Í·â(ÈóÂÇ·â) */
 
 
 /*!
- * @note ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ / New monster blow effects
+ * @note ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì / New monster blow effects
  */
-#define RBE_HURT         1 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ”»æ’ƒã™ã‚‹*/
-#define RBE_POISON       2 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ¯’ã‚’ãã‚‰ã‚ã™*/
-#define RBE_UN_BONUS     3 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: åŠ£åŒ–ã•ã›ã‚‹*/
-#define RBE_UN_POWER     4 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: å……å¡«é­”åŠ›ã‚’å¸åã™ã‚‹*/
-#define RBE_EAT_GOLD     5 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: é‡‘ã‚’ç›—ã‚€*/
-#define RBE_EAT_ITEM     6 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç›—ã‚€*/
-#define RBE_EAT_FOOD     7 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ã‚ãªãŸã®é£Ÿç³§ã‚’é£Ÿã¹ã‚‹*/
-#define RBE_EAT_LITE     8 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ˜ã‹ã‚Šã‚’å¸åã™ã‚‹*/
-#define RBE_ACID         9 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: é…¸ã‚’é£›ã°ã™*/
-#define RBE_ELEC        10 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ„Ÿé›»ã•ã›ã‚‹*/
-#define RBE_FIRE        11 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ç‡ƒã‚„ã™*/
-#define RBE_COLD        12 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: å‡ã‚‰ã›ã‚‹*/
-#define RBE_BLIND       13 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ç›²ç›®ã«ã™ã‚‹*/
-#define RBE_CONFUSE     14 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ··ä¹±ã•ã›ã‚‹*/
-#define RBE_TERRIFY     15 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ææ€–ã•ã›ã‚‹*/
-#define RBE_PARALYZE    16 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: éº»ç—ºã•ã›ã‚‹*/
-#define RBE_LOSE_STR    17 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: è…•åŠ›ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_LOSE_INT    18 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: çŸ¥èƒ½ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_LOSE_WIS    19 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: è³¢ã•ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_LOSE_DEX    20 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: å™¨ç”¨ã•ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_LOSE_CON    21 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: è€ä¹…åŠ›ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_LOSE_CHR    22 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: é­…åŠ›ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_LOSE_ALL    23 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: å…¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ¸›å°‘ã•ã›ã‚‹*/
-#define RBE_SHATTER     24 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ç²‰ç •ã™ã‚‹*/
-#define RBE_EXP_10      25 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: çµŒé¨“å€¤ã‚’æ¸›å°‘(10d6+)ã•ã›ã‚‹*/
-#define RBE_EXP_20      26 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: çµŒé¨“å€¤ã‚’æ¸›å°‘(20d6+)ã•ã›ã‚‹*/
-#define RBE_EXP_40      27 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: çµŒé¨“å€¤ã‚’æ¸›å°‘(40d6+)ã•ã›ã‚‹*/
-#define RBE_EXP_80      28 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: çµŒé¨“å€¤ã‚’æ¸›å°‘(80d6+)ã•ã›ã‚‹*/
-#define RBE_DISEASE     29 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ç—…æ°—ã«ã™ã‚‹*/
-#define RBE_TIME        30 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ™‚é–“ã‚’é€†æˆ»ã‚Šã•ã›ã‚‹*/
-#define RBE_DR_LIFE     31 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: ç”Ÿå‘½åŠ›ã‚’å¸åã™ã‚‹*/
-#define RBE_DR_MANA     32 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: é­”åŠ›ã‚’å¥ªã†*/
-#define RBE_SUPERHURT   33 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: å¼·åŠ›ã«æ”»æ’ƒã™ã‚‹*/
-#define RBE_INERTIA     34 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æ¸›é€Ÿã•ã›ã‚‹*/
-#define RBE_STUN        35 /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ”»æ’ƒåŠ¹æœ: æœ¦æœ§ã¨ã•ã›ã‚‹*/
+#define RBE_HURT         1 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¹¶·â¤¹¤ë*/
+#define RBE_POISON       2 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÆÇ¤ò¤¯¤é¤ï¤¹*/
+#define RBE_UN_BONUS     3 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Îô²½¤µ¤»¤ë*/
+#define RBE_UN_POWER     4 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ½¼Å¶ËâÎÏ¤òµÛ¼ı¤¹¤ë*/
+#define RBE_EAT_GOLD     5 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¶â¤òÅğ¤à*/
+#define RBE_EAT_ITEM     6 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¥¢¥¤¥Æ¥à¤òÅğ¤à*/
+#define RBE_EAT_FOOD     7 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¤¢¤Ê¤¿¤Î¿©ÎÈ¤ò¿©¤Ù¤ë*/
+#define RBE_EAT_LITE     8 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÌÀ¤«¤ê¤òµÛ¼ı¤¹¤ë*/
+#define RBE_ACID         9 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: »À¤òÈô¤Ğ¤¹*/
+#define RBE_ELEC        10 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ´¶ÅÅ¤µ¤»¤ë*/
+#define RBE_FIRE        11 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Ç³¤ä¤¹*/
+#define RBE_COLD        12 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Åà¤é¤»¤ë*/
+#define RBE_BLIND       13 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÌÕÌÜ¤Ë¤¹¤ë*/
+#define RBE_CONFUSE     14 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: º®Íğ¤µ¤»¤ë*/
+#define RBE_TERRIFY     15 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¶²Éİ¤µ¤»¤ë*/
+#define RBE_PARALYZE    16 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Ëãáã¤µ¤»¤ë*/
+#define RBE_LOSE_STR    17 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÏÓÎÏ¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_LOSE_INT    18 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÃÎÇ½¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_LOSE_WIS    19 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¸­¤µ¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_LOSE_DEX    20 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ´ïÍÑ¤µ¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_LOSE_CON    21 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÂÑµ×ÎÏ¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_LOSE_CHR    22 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Ì¥ÎÏ¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_LOSE_ALL    23 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Á´¥¹¥Æ¡¼¥¿¥¹¤ò¸º¾¯¤µ¤»¤ë*/
+#define RBE_SHATTER     24 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Ê´ºÕ¤¹¤ë*/
+#define RBE_EXP_10      25 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ·Ğ¸³ÃÍ¤ò¸º¾¯(10d6+)¤µ¤»¤ë*/
+#define RBE_EXP_20      26 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ·Ğ¸³ÃÍ¤ò¸º¾¯(20d6+)¤µ¤»¤ë*/
+#define RBE_EXP_40      27 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ·Ğ¸³ÃÍ¤ò¸º¾¯(40d6+)¤µ¤»¤ë*/
+#define RBE_EXP_80      28 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ·Ğ¸³ÃÍ¤ò¸º¾¯(80d6+)¤µ¤»¤ë*/
+#define RBE_DISEASE     29 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ÉÂµ¤¤Ë¤¹¤ë*/
+#define RBE_TIME        30 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: »ş´Ö¤òµÕÌá¤ê¤µ¤»¤ë*/
+#define RBE_DR_LIFE     31 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: À¸Ì¿ÎÏ¤òµÛ¼ı¤¹¤ë*/
+#define RBE_DR_MANA     32 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ËâÎÏ¤òÃ¥¤¦*/
+#define RBE_SUPERHURT   33 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¶¯ÎÏ¤Ë¹¶·â¤¹¤ë*/
+#define RBE_INERTIA     34 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: ¸ºÂ®¤µ¤»¤ë*/
+#define RBE_STUN        35 /*!< ¥â¥ó¥¹¥¿¡¼¤Î¹¶·â¸ú²Ì: Û¯Û°¤È¤µ¤»¤ë*/
 
 
 /*** Monster flag values (hard-coded) ***/
@@ -3525,182 +3525,182 @@
 /*
  * New monster race bit flags
  */
-#define RF1_UNIQUE              0x00000001  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒ¦ãƒ‹ãƒ¼ã‚¯ / Unique Monster */
-#define RF1_QUESTOR             0x00000002  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚¯ã‚¨ã‚¹ãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ / Quest Monster */
-#define RF1_MALE                0x00000004  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç”·æ€§ / Male gender */
-#define RF1_FEMALE              0x00000008  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å¥³æ€§ / Female gender */
-#define RF1_CHAR_CLEAR          0x00000010  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚·ãƒ³ãƒœãƒ«ãŒå®Œå…¨ã«é€æ˜ / Absorbs symbol */
-#define RF1_SHAPECHANGER        0x00000020  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚·ãƒ³ãƒœãƒ«ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆãŒãƒ©ãƒ³ãƒ€ãƒ ã«ãªã‚‹ / TY: shapechanger */
-#define RF1_ATTR_CLEAR          0x00000040  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ãŒé€æ˜è‰²ã«ãªã‚‹(åœ°å½¢ã¨åŒã˜è‰²ã«ãªã‚‹) / Absorbs color */
-#define RF1_ATTR_MULTI          0x00000080  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ãŒãƒ©ãƒ³ãƒ€ãƒ ã«å¤‰åŒ–ã™ã‚‹(åŸºæœ¬7è‰²) / Changes color */
-#define RF1_FORCE_DEPTH         0x00000100  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æŒ‡å®šéšæœªæº€ã§ã¯ç”Ÿæˆã•ã‚Œãªã„ / Start at "correct" depth */
-#define RF1_FORCE_MAXHP         0x00000200  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é€šå¸¸ç”Ÿæˆæ™‚å¿…ãšHPãŒãƒ€ã‚¤ã‚¹æœ€å¤§å€¤ã«ãªã‚‹ / Start with max hitpoints */
-#define RF1_FORCE_SLEEP         0x00000400  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é€šå¸¸ç”Ÿæˆæ™‚å¿…ãšå¯ã¦ã„ã‚‹ / Start out sleeping */
-#define RF1_FORCE_EXTRA         0x00000800  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: (æœªä½¿ç”¨) / Start out something */
-#define RF1_ATTR_SEMIRAND       0x00001000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚·ãƒ³ãƒœãƒ«ã‚«ãƒ©ãƒ¼ãŒãƒ©ãƒ³ãƒ€ãƒ ã«å¤‰åŒ–ã™ã‚‹(15è‰²) / Color is determined semi-randomly */
-#define RF1_FRIENDS             0x00002000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: åŒç¨®ã®å‹è»ã‚’ç”¨æ„ã—ã¦ã„ã‚‹ / Arrive with some friends */
-#define RF1_ESCORT              0x00004000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è­·è¡›ã‚’ç”¨æ„ã—ã¦ã„ã‚‹/ Arrive with an escort */
-#define RF1_ESCORTS             0x00008000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã•ã‚‰ã«å¤§é‡ã®è­·è¡›ã‚’ç”¨æ„ã—ã¦ã„ã‚‹ / Arrive with some escorts */
-#define RF1_NEVER_BLOW          0x00010000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æ‰“æ’ƒã‚’ä¸€åˆ‡è¡Œã‚ãªã„ / Never make physical blow */
-#define RF1_NEVER_MOVE          0x00020000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç§»å‹•ã‚’ä¸€åˆ‡è¡Œã‚ãªã„ / Never make physical move */
-#define RF1_RAND_25             0x00040000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒ©ãƒ³ãƒ€ãƒ ã«ç§»å‹•ã™ã‚‹ç¢ºç‡+25%/ Moves randomly (25%) */
-#define RF1_RAND_50             0x00080000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒ©ãƒ³ãƒ€ãƒ ã«ç§»å‹•ã™ã‚‹ç¢ºç‡+50%/ Moves randomly (50%) */
-#define RF1_ONLY_GOLD           0x00100000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è²¡å®ã—ã‹è½ã¨ã•ãªã„ / Drop only gold */
-#define RF1_ONLY_ITEM           0x00200000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚¢ã‚¤ãƒ†ãƒ ã—ã‹è½ã¨ã•ãªã„ / Drop only items */
-#define RF1_DROP_60             0x00400000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è½ã¨ã™ã‚¢ã‚¤ãƒ†ãƒ æ•°60%ã§+1/ Drop an item/gold (60%) */
-#define RF1_DROP_90             0x00800000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è½ã¨ã™ã‚¢ã‚¤ãƒ†ãƒ æ•°90%ã§+1 / Drop an item/gold (90%) */
-#define RF1_DROP_1D2            0x01000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è½ã¨ã™ã‚¢ã‚¤ãƒ†ãƒ æ•°+1d2 / Drop 1d2 items/gold */
-#define RF1_DROP_2D2            0x02000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è½ã¨ã™ã‚¢ã‚¤ãƒ†ãƒ æ•°+2d2 / Drop 2d2 items/gold */
-#define RF1_DROP_3D2            0x04000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è½ã¨ã™ã‚¢ã‚¤ãƒ†ãƒ æ•°+3d2 / Drop 3d2 items/gold */
-#define RF1_DROP_4D2            0x08000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è½ã¨ã™ã‚¢ã‚¤ãƒ†ãƒ æ•°+4d2 / Drop 4d2 items/gold */
-#define RF1_DROP_GOOD           0x10000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å¿…ãšä¸Šè³ªå“ã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã™ã‚‹ / Drop good items */
-#define RF1_DROP_GREAT          0x20000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å¿…ãšé«˜ç´šå“ã‚’ãƒ‰ãƒ­ãƒƒãƒ—ã™ã‚‹ / Drop great items */
-#define RF1_XXX2                0x40000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF1_XXX3                0x80000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
+#define RF1_UNIQUE              0x00000001  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥æ¥Ë¡¼¥¯ / Unique Monster */
+#define RF1_QUESTOR             0x00000002  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥¯¥¨¥¹¥È¥â¥ó¥¹¥¿¡¼ / Quest Monster */
+#define RF1_MALE                0x00000004  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÃËÀ­ / Male gender */
+#define RF1_FEMALE              0x00000008  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ½÷À­ / Female gender */
+#define RF1_CHAR_CLEAR          0x00000010  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥·¥ó¥Ü¥ë¤¬´°Á´¤ËÆ©ÌÀ / Absorbs symbol */
+#define RF1_SHAPECHANGER        0x00000020  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥·¥ó¥Ü¥ë¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È¤¬¥é¥ó¥À¥à¤Ë¤Ê¤ë / TY: shapechanger */
+#define RF1_ATTR_CLEAR          0x00000040  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥·¥ó¥Ü¥ë¥«¥é¡¼¤¬Æ©ÌÀ¿§¤Ë¤Ê¤ë(ÃÏ·Á¤ÈÆ±¤¸¿§¤Ë¤Ê¤ë) / Absorbs color */
+#define RF1_ATTR_MULTI          0x00000080  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥·¥ó¥Ü¥ë¥«¥é¡¼¤¬¥é¥ó¥À¥à¤ËÊÑ²½¤¹¤ë(´ğËÜ7¿§) / Changes color */
+#define RF1_FORCE_DEPTH         0x00000100  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: »ØÄê³¬Ì¤Ëş¤Ç¤ÏÀ¸À®¤µ¤ì¤Ê¤¤ / Start at "correct" depth */
+#define RF1_FORCE_MAXHP         0x00000200  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÄÌ¾ïÀ¸À®»şÉ¬¤ºHP¤¬¥À¥¤¥¹ºÇÂçÃÍ¤Ë¤Ê¤ë / Start with max hitpoints */
+#define RF1_FORCE_SLEEP         0x00000400  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÄÌ¾ïÀ¸À®»şÉ¬¤º¿²¤Æ¤¤¤ë / Start out sleeping */
+#define RF1_FORCE_EXTRA         0x00000800  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: (Ì¤»ÈÍÑ) / Start out something */
+#define RF1_ATTR_SEMIRAND       0x00001000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥·¥ó¥Ü¥ë¥«¥é¡¼¤¬¥é¥ó¥À¥à¤ËÊÑ²½¤¹¤ë(15¿§) / Color is determined semi-randomly */
+#define RF1_FRIENDS             0x00002000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ±¼ï¤ÎÍ§·³¤òÍÑ°Õ¤·¤Æ¤¤¤ë / Arrive with some friends */
+#define RF1_ESCORT              0x00004000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¸î±Ò¤òÍÑ°Õ¤·¤Æ¤¤¤ë/ Arrive with an escort */
+#define RF1_ESCORTS             0x00008000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¤µ¤é¤ËÂçÎÌ¤Î¸î±Ò¤òÍÑ°Õ¤·¤Æ¤¤¤ë / Arrive with some escorts */
+#define RF1_NEVER_BLOW          0x00010000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÂÇ·â¤ò°ìÀÚ¹Ô¤ï¤Ê¤¤ / Never make physical blow */
+#define RF1_NEVER_MOVE          0x00020000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: °ÜÆ°¤ò°ìÀÚ¹Ô¤ï¤Ê¤¤ / Never make physical move */
+#define RF1_RAND_25             0x00040000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥é¥ó¥À¥à¤Ë°ÜÆ°¤¹¤ë³ÎÎ¨+25%/ Moves randomly (25%) */
+#define RF1_RAND_50             0x00080000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥é¥ó¥À¥à¤Ë°ÜÆ°¤¹¤ë³ÎÎ¨+50%/ Moves randomly (50%) */
+#define RF1_ONLY_GOLD           0x00100000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ºâÊõ¤·¤«Íî¤È¤µ¤Ê¤¤ / Drop only gold */
+#define RF1_ONLY_ITEM           0x00200000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥¢¥¤¥Æ¥à¤·¤«Íî¤È¤µ¤Ê¤¤ / Drop only items */
+#define RF1_DROP_60             0x00400000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Íî¤È¤¹¥¢¥¤¥Æ¥à¿ô60%¤Ç+1/ Drop an item/gold (60%) */
+#define RF1_DROP_90             0x00800000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Íî¤È¤¹¥¢¥¤¥Æ¥à¿ô90%¤Ç+1 / Drop an item/gold (90%) */
+#define RF1_DROP_1D2            0x01000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Íî¤È¤¹¥¢¥¤¥Æ¥à¿ô+1d2 / Drop 1d2 items/gold */
+#define RF1_DROP_2D2            0x02000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Íî¤È¤¹¥¢¥¤¥Æ¥à¿ô+2d2 / Drop 2d2 items/gold */
+#define RF1_DROP_3D2            0x04000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Íî¤È¤¹¥¢¥¤¥Æ¥à¿ô+3d2 / Drop 3d2 items/gold */
+#define RF1_DROP_4D2            0x08000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Íî¤È¤¹¥¢¥¤¥Æ¥à¿ô+4d2 / Drop 4d2 items/gold */
+#define RF1_DROP_GOOD           0x10000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: É¬¤º¾å¼ÁÉÊ¤ò¥É¥í¥Ã¥×¤¹¤ë / Drop good items */
+#define RF1_DROP_GREAT          0x20000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: É¬¤º¹âµéÉÊ¤ò¥É¥í¥Ã¥×¤¹¤ë / Drop great items */
+#define RF1_XXX2                0x40000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF1_XXX3                0x80000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
 
 /*
  * New monster race bit flags
  */
-#define RF2_STUPID          0x00000001  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æ„šã‹ãªè¡Œå‹•ã‚’å–ã‚‹ / Monster is stupid */
-#define RF2_SMART           0x00000002  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: è³¢ã„è¡Œå‹•ã‚’å–ã‚‹ / Monster is smart */
-#define RF2_CAN_SPEAK       0x00000004  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å°è©ã‚’ã—ã‚ƒã¹ã‚‹ / TY: can speak */
-#define RF2_REFLECTING      0x00000008  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: çŸ¢ã‚„ãƒœãƒ«ãƒˆé­”æ³•ã‚’åå°„ã™ã‚‹ / Reflects bolts */
-#define RF2_INVISIBLE       0x00000010  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é€æ˜è¦–åŠ›ãŒãªã„ã¨è¦‹ãˆãªã„ / Monster avoids vision */
-#define RF2_COLD_BLOOD      0x00000020  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å†·è¡€å‹•ç‰©ã§ã‚ã‚‹ / Monster avoids infra */
-#define RF2_EMPTY_MIND      0x00000040  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: çŸ¥æ€§ã‚’æŒãŸãªã„(ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼å›é¿) / Monster avoids telepathy */
-#define RF2_WEIRD_MIND      0x00000080  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç•°è³ªãªçŸ¥æ€§(ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼ã§æ„ŸçŸ¥ã¥ã‚‰ã„) / Monster avoids telepathy? */
-#define RF2_MULTIPLY        0x00000100  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å¢—æ®–ã™ã‚‹ / Monster reproduces */
-#define RF2_REGENERATE      0x00000200  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æ€¥æ¿€ã«å›å¾©ã™ã‚‹ / Monster regenerates */
-#define RF2_CHAR_MULTI      0x00000400  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / (Not implemented) */
-#define RF2_ATTR_ANY        0x00000800  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ATTR_MULTIã®è‰²æ•°ãŒå¢—ãˆã‚‹ / TY: Attr_any */
-#define RF2_POWERFUL        0x00001000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å¼·åŠ›ã«é­”æ³•ã‚’ã‚ã‚„ã¤ã‚‹ / Monster has strong breath */
-#define RF2_ELDRITCH_HORROR 0x00002000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç‹‚æ°—ã‚’å‘¼ã³èµ·ã“ã™ / Sanity-blasting horror    */
-#define RF2_AURA_FIRE       0x00004000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç«ç‚ã®ã‚ªãƒ¼ãƒ©ã‚’æŒã¤ / Burns in melee */
-#define RF2_AURA_ELEC       0x00008000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é›»æ’ƒã®ã‚ªãƒ¼ãƒ©ã‚’æŒã¤ / Shocks in melee */
-#define RF2_OPEN_DOOR       0x00010000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒ‰ã‚¢ã‚’é–‹ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ / Monster can open doors */
-#define RF2_BASH_DOOR       0x00020000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒ‰ã‚¢ã‚’ç ´å£Šã™ã‚‹ã“ã¨ãŒã§ãã‚‹ / Monster can bash doors */
-#define RF2_PASS_WALL       0x00040000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å£ã‚’æŠœã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ / Monster can pass walls */
-#define RF2_KILL_WALL       0x00080000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å£ã‚’ç ´å£Šã—ã¦é€²ã‚€ / Monster can destroy walls */
-#define RF2_MOVE_BODY       0x00100000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é“ä¸­ã®å¼±ã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æŠ¼ã—ã®ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ / Monster can move monsters */
-#define RF2_KILL_BODY       0x00200000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é“ä¸­ã®å¼±ã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ®ºã—ã¦é€²ã‚€ / Monster can kill monsters */
-#define RF2_TAKE_ITEM       0x00400000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é“ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‹¾ã† / Monster can pick up items */
-#define RF2_KILL_ITEM       0x00800000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é“ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ç ´å£Šã™ã‚‹ / Monster can crush items */
-#define RF2_XXX1            0x01000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF2_XXX2            0x02000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF2_XXX3            0x04000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF2_XXX4            0x08000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF2_XXX5            0x10000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF2_XXX6            0x20000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF2_HUMAN           0x40000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: äººé–“ / Human */
-#define RF2_QUANTUM         0x80000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é‡å­çš„ãªæŒ¯ã‚‹èˆã„ã‚’ã™ã‚‹ / Monster has quantum behavior */
+#define RF2_STUPID          0x00000001  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¶ò¤«¤Ê¹ÔÆ°¤ò¼è¤ë / Monster is stupid */
+#define RF2_SMART           0x00000002  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¸­¤¤¹ÔÆ°¤ò¼è¤ë / Monster is smart */
+#define RF2_CAN_SPEAK       0x00000004  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Âæ»ì¤ò¤·¤ã¤Ù¤ë / TY: can speak */
+#define RF2_REFLECTING      0x00000008  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ìğ¤ä¥Ü¥ë¥ÈËâË¡¤òÈ¿¼Í¤¹¤ë / Reflects bolts */
+#define RF2_INVISIBLE       0x00000010  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ©ÌÀ»ëÎÏ¤¬¤Ê¤¤¤È¸«¤¨¤Ê¤¤ / Monster avoids vision */
+#define RF2_COLD_BLOOD      0x00000020  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Îä·ìÆ°Êª¤Ç¤¢¤ë / Monster avoids infra */
+#define RF2_EMPTY_MIND      0x00000040  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÃÎÀ­¤ò»ı¤¿¤Ê¤¤(¥Æ¥ì¥Ñ¥·¡¼²óÈò) / Monster avoids telepathy */
+#define RF2_WEIRD_MIND      0x00000080  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: °Û¼Á¤ÊÃÎÀ­(¥Æ¥ì¥Ñ¥·¡¼¤Ç´¶ÃÎ¤Å¤é¤¤) / Monster avoids telepathy? */
+#define RF2_MULTIPLY        0x00000100  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Áı¿£¤¹¤ë / Monster reproduces */
+#define RF2_REGENERATE      0x00000200  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: µŞ·ã¤Ë²óÉü¤¹¤ë / Monster regenerates */
+#define RF2_CHAR_MULTI      0x00000400  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / (Not implemented) */
+#define RF2_ATTR_ANY        0x00000800  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ATTR_MULTI¤Î¿§¿ô¤¬Áı¤¨¤ë / TY: Attr_any */
+#define RF2_POWERFUL        0x00001000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¶¯ÎÏ¤ËËâË¡¤ò¤¢¤ä¤Ä¤ë / Monster has strong breath */
+#define RF2_ELDRITCH_HORROR 0x00002000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¶¸µ¤¤ò¸Æ¤Óµ¯¤³¤¹ / Sanity-blasting horror    */
+#define RF2_AURA_FIRE       0x00004000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ²Ğ±ê¤Î¥ª¡¼¥é¤ò»ı¤Ä / Burns in melee */
+#define RF2_AURA_ELEC       0x00008000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÅÅ·â¤Î¥ª¡¼¥é¤ò»ı¤Ä / Shocks in melee */
+#define RF2_OPEN_DOOR       0x00010000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥É¥¢¤ò³«¤±¤ë¤³¤È¤¬¤Ç¤­¤ë / Monster can open doors */
+#define RF2_BASH_DOOR       0x00020000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥É¥¢¤òÇË²õ¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë / Monster can bash doors */
+#define RF2_PASS_WALL       0x00040000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÊÉ¤òÈ´¤±¤ë¤³¤È¤¬¤Ç¤­¤ë / Monster can pass walls */
+#define RF2_KILL_WALL       0x00080000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÊÉ¤òÇË²õ¤·¤Æ¿Ê¤à / Monster can destroy walls */
+#define RF2_MOVE_BODY       0x00100000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ»Ãæ¤Î¼å¤¤¥â¥ó¥¹¥¿¡¼¤ò²¡¤·¤Î¤±¤ë¤³¤È¤¬¤Ç¤­¤ë / Monster can move monsters */
+#define RF2_KILL_BODY       0x00200000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ»Ãæ¤Î¼å¤¤¥â¥ó¥¹¥¿¡¼¤ò»¦¤·¤Æ¿Ê¤à / Monster can kill monsters */
+#define RF2_TAKE_ITEM       0x00400000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ»Ãæ¤Î¥¢¥¤¥Æ¥à¤ò½¦¤¦ / Monster can pick up items */
+#define RF2_KILL_ITEM       0x00800000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ»Ãæ¤Î¥¢¥¤¥Æ¥à¤òÇË²õ¤¹¤ë / Monster can crush items */
+#define RF2_XXX1            0x01000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF2_XXX2            0x02000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF2_XXX3            0x04000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF2_XXX4            0x08000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF2_XXX5            0x10000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF2_XXX6            0x20000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF2_HUMAN           0x40000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¿Í´Ö / Human */
+#define RF2_QUANTUM         0x80000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÎÌ»ÒÅª¤Ê¿¶¤ëÉñ¤¤¤ò¤¹¤ë / Monster has quantum behavior */
 
 /*
  * New monster race bit flags
  */
-#define RF3_ORC             0x00000001  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚ªãƒ¼ã‚¯ / Orc */
-#define RF3_TROLL           0x00000002  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒˆãƒ­ãƒ« / Troll */
-#define RF3_GIANT           0x00000004  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å·¨äºº / Giant */
-#define RF3_DRAGON          0x00000008  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ãƒ‰ãƒ©ã‚´ãƒ³ / Dragon */
-#define RF3_DEMON           0x00000010  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æ‚ªé­” / Demon */
-#define RF3_UNDEAD          0x00000020  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ / Undead */
-#define RF3_EVIL            0x00000040  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é‚ªæ‚ª / Evil */
-#define RF3_ANIMAL          0x00000080  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å‹•ç‰© / Animal */
-#define RF3_AMBERITE        0x00000100  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ã‚¢ãƒ³ãƒãƒ¼ã®è¡€æ— / TY: Amberite */
-#define RF3_GOOD            0x00000200  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å–„è‰¯ / Good */
-#define RF3_AURA_COLD       0x00000400  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å†·æ°—ã‚ªãƒ¼ãƒ© / Freezes in melee */
-#define RF3_NONLIVING       0x00000800  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç„¡ç”Ÿç‰© / TY: Non-Living (?) */
-#define RF3_HURT_LITE       0x00001000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: é€šå¸¸ã®å…‰(GF_WEAK_LITE)ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹ / Hurt by lite */
-#define RF3_HURT_ROCK       0x00002000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å²©çŸ³æº¶è§£(GF_KILL_WALL)ã§ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹ / Hurt by rock remover */
-#define RF3_HURT_FIRE       0x00004000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ç«ç‚ãŒå¼±ç‚¹ / Hurt badly by fire */
-#define RF3_HURT_COLD       0x00008000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: å†·æ°—ãŒå¼±ç‚¹ / Hurt badly by cold */
-#define RF3_XXX16           0x00010000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX17           0x00020000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX18           0x00040000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX19           0x00080000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX20           0x00100000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX21           0x00200000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX22           0x00400000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX23           0x00800000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX24           0x01000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX25           0x02000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX26           0x04000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_XXX27           0x08000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœªä½¿ç”¨ / XXX */
-#define RF3_NO_FEAR         0x10000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: ææ€–ã—ãªã„ / Cannot be scared */
-#define RF3_NO_STUN         0x20000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æœ¦æœ§ã¨ã—ãªã„ / Cannot be stunned */
-#define RF3_NO_CONF         0x40000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: æ··ä¹±ã—ãªã„ / Cannot be confused and resist confusion */
-#define RF3_NO_SLEEP        0x80000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§: çœ ã‚‰ãªã„ / Cannot be slept */
+#define RF3_ORC             0x00000001  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥ª¡¼¥¯ / Orc */
+#define RF3_TROLL           0x00000002  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥È¥í¥ë / Troll */
+#define RF3_GIANT           0x00000004  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: µğ¿Í / Giant */
+#define RF3_DRAGON          0x00000008  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥É¥é¥´¥ó / Dragon */
+#define RF3_DEMON           0x00000010  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: °­Ëâ / Demon */
+#define RF3_UNDEAD          0x00000020  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥¢¥ó¥Ç¥Ã¥É / Undead */
+#define RF3_EVIL            0x00000040  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¼Ù°­ / Evil */
+#define RF3_ANIMAL          0x00000080  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Æ°Êª / Animal */
+#define RF3_AMBERITE        0x00000100  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¥¢¥ó¥Ğ¡¼¤Î·ìÂ² / TY: Amberite */
+#define RF3_GOOD            0x00000200  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Á±ÎÉ / Good */
+#define RF3_AURA_COLD       0x00000400  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Îäµ¤¥ª¡¼¥é / Freezes in melee */
+#define RF3_NONLIVING       0x00000800  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÌµÀ¸Êª / TY: Non-Living (?) */
+#define RF3_HURT_LITE       0x00001000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ÄÌ¾ï¤Î¸÷(GF_WEAK_LITE)¤Ç¥À¥á¡¼¥¸¤ò¼õ¤±¤ë / Hurt by lite */
+#define RF3_HURT_ROCK       0x00002000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ´äÀĞÍÏ²ò(GF_KILL_WALL)¤Ç¥À¥á¡¼¥¸¤ò¼õ¤±¤ë / Hurt by rock remover */
+#define RF3_HURT_FIRE       0x00004000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ²Ğ±ê¤¬¼åÅÀ / Hurt badly by fire */
+#define RF3_HURT_COLD       0x00008000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Îäµ¤¤¬¼åÅÀ / Hurt badly by cold */
+#define RF3_XXX16           0x00010000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX17           0x00020000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX18           0x00040000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX19           0x00080000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX20           0x00100000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX21           0x00200000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX22           0x00400000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX23           0x00800000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX24           0x01000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX25           0x02000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX26           0x04000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_XXX27           0x08000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì¤»ÈÍÑ / XXX */
+#define RF3_NO_FEAR         0x10000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: ¶²Éİ¤·¤Ê¤¤ / Cannot be scared */
+#define RF3_NO_STUN         0x20000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Û¯Û°¤È¤·¤Ê¤¤ / Cannot be stunned */
+#define RF3_NO_CONF         0x40000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: º®Íğ¤·¤Ê¤¤ / Cannot be confused and resist confusion */
+#define RF3_NO_SLEEP        0x80000000  /*!< ¥â¥ó¥¹¥¿¡¼ÆÃÀ­: Ì²¤é¤Ê¤¤ / Cannot be slept */
 
 /*
  * New monster race bit flags
  */
-#define RF4_SHRIEK          0x00000001  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: å«ã¶ / Shriek for help */
-#define RF4_XXX1            0x00000002  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æœªä½¿ç”¨ / XXX */
-#define RF4_DISPEL          0x00000004  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é­”åŠ›æ¶ˆå» / Dispel magic */
-#define RF4_ROCKET          0x00000008  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ­ã‚±ãƒƒãƒˆ / TY: Rocket */
-#define RF4_SHOOT           0x00000010  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: å°„æ’ƒ/ Fire missiles */
-#define RF4_XXX2            0x00000020  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æœªä½¿ç”¨ / XXX */
-#define RF4_XXX3            0x00000040  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æœªä½¿ç”¨ / XXX */
-#define RF4_XXX4            0x00000080  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æœªä½¿ç”¨ / XXX */
-#define RF4_BR_ACID         0x00000100  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é…¸ã®ãƒ–ãƒ¬ã‚¹ / Breathe Acid */
-#define RF4_BR_ELEC         0x00000200  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é›»æ’ƒã®ãƒ–ãƒ¬ã‚¹ / Breathe Elec */
-#define RF4_BR_FIRE         0x00000400  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ç«ç‚ã®ãƒ–ãƒ¬ã‚¹ / Breathe Fire */
-#define RF4_BR_COLD         0x00000800  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: å†·æ°—ã®ãƒ–ãƒ¬ã‚¹ / Breathe Cold */
-#define RF4_BR_POIS         0x00001000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ¯’ã®ãƒ–ãƒ¬ã‚¹ / Breathe Poison */
-#define RF4_BR_NETH         0x00002000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: åœ°ç„ã®ãƒ–ãƒ¬ã‚¹ / Breathe Nether */
-#define RF4_BR_LITE         0x00004000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é–ƒå…‰ã®ãƒ–ãƒ¬ã‚¹ / Breathe Lite */
-#define RF4_BR_DARK         0x00008000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æš—é»’ã®ãƒ–ãƒ¬ã‚¹ / Breathe Dark */
-#define RF4_BR_CONF         0x00010000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ··ä¹±ã®ãƒ–ãƒ¬ã‚¹ / Breathe Confusion */
-#define RF4_BR_SOUN         0x00020000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: è½ŸéŸ³ã®ãƒ–ãƒ¬ã‚¹ / Breathe Sound */
-#define RF4_BR_CHAO         0x00040000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚«ã‚ªã‚¹ã®ãƒ–ãƒ¬ã‚¹ / Breathe Chaos */
-#define RF4_BR_DISE         0x00080000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: åŠ£åŒ–ã®ãƒ–ãƒ¬ã‚¹ / Breathe Disenchant */
-#define RF4_BR_NEXU         0x00100000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: å› æœæ··ä¹±ã®ãƒ–ãƒ¬ã‚¹ / Breathe Nexus */
-#define RF4_BR_TIME         0x00200000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ™‚é–“é€†è»¢ã®ãƒ–ãƒ¬ã‚¹ / Breathe Time */
-#define RF4_BR_INER         0x00400000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é…éˆã®ãƒ–ãƒ¬ã‚¹ / Breathe Inertia */
-#define RF4_BR_GRAV         0x00800000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é‡åŠ›ã®ãƒ–ãƒ¬ã‚¹ / Breathe Gravity */
-#define RF4_BR_SHAR         0x01000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ç ´ç‰‡ã®ãƒ–ãƒ¬ã‚¹ / Breathe Shards */
-#define RF4_BR_PLAS         0x02000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ—ãƒ©ã‚ºãƒã®ãƒ–ãƒ¬ã‚¹ / Breathe Plasma */
-#define RF4_BR_WALL         0x04000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ•ã‚©ãƒ¼ã‚¹ã®ãƒ–ãƒ¬ã‚¹ / Breathe Force */
-#define RF4_BR_MANA         0x08000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é­”åŠ›ã®ãƒ–ãƒ¬ã‚¹ / Breathe Mana */
-#define RF4_BA_NUKE         0x10000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ”¾å°„èƒ½çƒ / TY: Nuke Ball */
-#define RF4_BR_NUKE         0x20000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ”¾å°„æ€§å»ƒæ£„ç‰©ã®ãƒ–ãƒ¬ã‚¹ / TY: Toxic Breath */
-#define RF4_BA_CHAO         0x40000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ­ã‚°ãƒ«ã‚¹çƒ / TY: Logrus Ball */
-#define RF4_BR_DISI         0x80000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: åˆ†è§£ã®ãƒ–ãƒ¬ã‚¹ / Breathe Disintegration */
+#define RF4_SHRIEK          0x00000001  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¶«¤Ö / Shriek for help */
+#define RF4_XXX1            0x00000002  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ì¤»ÈÍÑ / XXX */
+#define RF4_DISPEL          0x00000004  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ËâÎÏ¾Ãµî / Dispel magic */
+#define RF4_ROCKET          0x00000008  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥í¥±¥Ã¥È / TY: Rocket */
+#define RF4_SHOOT           0x00000010  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¼Í·â/ Fire missiles */
+#define RF4_XXX2            0x00000020  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ì¤»ÈÍÑ / XXX */
+#define RF4_XXX3            0x00000040  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ì¤»ÈÍÑ / XXX */
+#define RF4_XXX4            0x00000080  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ì¤»ÈÍÑ / XXX */
+#define RF4_BR_ACID         0x00000100  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: »À¤Î¥Ö¥ì¥¹ / Breathe Acid */
+#define RF4_BR_ELEC         0x00000200  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÅÅ·â¤Î¥Ö¥ì¥¹ / Breathe Elec */
+#define RF4_BR_FIRE         0x00000400  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ²Ğ±ê¤Î¥Ö¥ì¥¹ / Breathe Fire */
+#define RF4_BR_COLD         0x00000800  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Îäµ¤¤Î¥Ö¥ì¥¹ / Breathe Cold */
+#define RF4_BR_POIS         0x00001000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÆÇ¤Î¥Ö¥ì¥¹ / Breathe Poison */
+#define RF4_BR_NETH         0x00002000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÃÏ¹ö¤Î¥Ö¥ì¥¹ / Breathe Nether */
+#define RF4_BR_LITE         0x00004000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Á®¸÷¤Î¥Ö¥ì¥¹ / Breathe Lite */
+#define RF4_BR_DARK         0x00008000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: °Å¹õ¤Î¥Ö¥ì¥¹ / Breathe Dark */
+#define RF4_BR_CONF         0x00010000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: º®Íğ¤Î¥Ö¥ì¥¹ / Breathe Confusion */
+#define RF4_BR_SOUN         0x00020000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¹ì²»¤Î¥Ö¥ì¥¹ / Breathe Sound */
+#define RF4_BR_CHAO         0x00040000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥«¥ª¥¹¤Î¥Ö¥ì¥¹ / Breathe Chaos */
+#define RF4_BR_DISE         0x00080000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Îô²½¤Î¥Ö¥ì¥¹ / Breathe Disenchant */
+#define RF4_BR_NEXU         0x00100000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: °ø²Ìº®Íğ¤Î¥Ö¥ì¥¹ / Breathe Nexus */
+#define RF4_BR_TIME         0x00200000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: »ş´ÖµÕÅ¾¤Î¥Ö¥ì¥¹ / Breathe Time */
+#define RF4_BR_INER         0x00400000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÃÙÆß¤Î¥Ö¥ì¥¹ / Breathe Inertia */
+#define RF4_BR_GRAV         0x00800000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ½ÅÎÏ¤Î¥Ö¥ì¥¹ / Breathe Gravity */
+#define RF4_BR_SHAR         0x01000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÇËÊÒ¤Î¥Ö¥ì¥¹ / Breathe Shards */
+#define RF4_BR_PLAS         0x02000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥×¥é¥º¥Ş¤Î¥Ö¥ì¥¹ / Breathe Plasma */
+#define RF4_BR_WALL         0x04000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥Õ¥©¡¼¥¹¤Î¥Ö¥ì¥¹ / Breathe Force */
+#define RF4_BR_MANA         0x08000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ËâÎÏ¤Î¥Ö¥ì¥¹ / Breathe Mana */
+#define RF4_BA_NUKE         0x10000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Êü¼ÍÇ½µå / TY: Nuke Ball */
+#define RF4_BR_NUKE         0x20000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Êü¼ÍÀ­ÇÑ´şÊª¤Î¥Ö¥ì¥¹ / TY: Toxic Breath */
+#define RF4_BA_CHAO         0x40000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥í¥°¥ë¥¹µå / TY: Logrus Ball */
+#define RF4_BR_DISI         0x80000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ê¬²ò¤Î¥Ö¥ì¥¹ / Breathe Disintegration */
 
 /*
  * New monster race bit flags
  */
-#define RF5_BA_ACID         0x00000001  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ¼ãƒ« / Acid Ball */
-#define RF5_BA_ELEC         0x00000002  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ¼ãƒ« / Elec Ball */
-#define RF5_BA_FIRE         0x00000004  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ¼ãƒ« / Fire Ball */
-#define RF5_BA_COLD         0x00000008  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ¼ãƒ« / Cold Ball */
-#define RF5_BA_POIS         0x00000010  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ‚ªè‡­é›² / Poison Ball */
-#define RF5_BA_NETH         0x00000020  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: åœ°ç„çƒ / Nether Ball */
-#define RF5_BA_WATE         0x00000040  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¦ã‚©ãƒ¼ã‚¿ãƒ¼ãƒ»ãƒœãƒ¼ãƒ« / Water Ball */
-#define RF5_BA_MANA         0x00000080  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é­”åŠ›ã®åµ / Mana Storm */
-#define RF5_BA_DARK         0x00000100  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æš—é»’ã®åµ / Darkness Storm */
-#define RF5_DRAIN_MANA      0x00000200  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é­”åŠ›å¸å / Drain Mana */
-#define RF5_MIND_BLAST      0x00000400  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ç²¾ç¥æ”»æ’ƒ / Blast Mind */
-#define RF5_BRAIN_SMASH     0x00000800  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: è„³æ”»æ’ƒ / Smash Brain */
-#define RF5_CAUSE_1         0x00001000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: è»½å‚·ã®å‘ªã„ / Cause Light Wound */
-#define RF5_CAUSE_2         0x00002000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é‡ç—‡ã®é ƒã„ / Cause Serious Wound */
-#define RF5_CAUSE_3         0x00004000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: è‡´å‘½å‚·ã®å‘ªã„ / Cause Critical Wound */
-#define RF5_CAUSE_4         0x00008000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ç§˜å­”ã‚’çªã / Cause Mortal Wound */
-#define RF5_BO_ACID         0x00010000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ«ãƒˆ / Acid Bolt */
-#define RF5_BO_ELEC         0x00020000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ«ãƒˆ / Elec Bolt */
-#define RF5_BO_FIRE         0x00040000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ«ãƒˆ / Fire Bolt */
-#define RF5_BO_COLD         0x00080000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ«ãƒˆ / Cold Bolt */
-#define RF5_BA_LITE         0x00100000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¹ã‚¿ãƒ¼ãƒ»ãƒãƒ¼ã‚¹ãƒˆ / StarBurst */
-#define RF5_BO_NETH         0x00200000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: åœ°ç„ã®çŸ¢ / Nether Bolt */
-#define RF5_BO_WATE         0x00400000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ã‚¦ã‚©ãƒ¼ã‚¿ãƒ¼ãƒ»ãƒœãƒ«ãƒˆ / Water Bolt */
-#define RF5_BO_MANA         0x00800000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: é­”åŠ›ã®çŸ¢ / Mana Bolt */
-#define RF5_BO_PLAS         0x01000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒ—ãƒ©ã‚ºãƒãƒ»ãƒœãƒ«ãƒˆ / Plasma Bolt */
-#define RF5_BO_ICEE         0x02000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ¥µå¯’ã®çŸ¢ / Ice Bolt */
-#define RF5_MISSILE         0x04000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ãƒã‚¸ãƒƒã‚¯ãƒ»ãƒŸã‚µã‚¤ãƒ«t / Magic Missile */
-#define RF5_SCARE           0x08000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ææ…Œ / Frighten Player */
-#define RF5_BLIND           0x10000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: ç›²ç›® / Blind Player */
-#define RF5_CONF            0x20000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ··ä¹± / Confuse Player */
-#define RF5_SLOW            0x40000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: æ¸›é€Ÿ / Slow Player */
-#define RF5_HOLD            0x80000000  /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼èƒ½åŠ›: éº»ç—º / Paralyze Player */
+#define RF5_BA_ACID         0x00000001  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¢¥·¥Ã¥É¡¦¥Ü¡¼¥ë / Acid Ball */
+#define RF5_BA_ELEC         0x00000002  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥µ¥ó¥À¡¼¡¦¥Ü¡¼¥ë / Elec Ball */
+#define RF5_BA_FIRE         0x00000004  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥Õ¥¡¥¤¥¢¡¦¥Ü¡¼¥ë / Fire Ball */
+#define RF5_BA_COLD         0x00000008  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¢¥¤¥¹¡¦¥Ü¡¼¥ë / Cold Ball */
+#define RF5_BA_POIS         0x00000010  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: °­½­±À / Poison Ball */
+#define RF5_BA_NETH         0x00000020  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÃÏ¹öµå / Nether Ball */
+#define RF5_BA_WATE         0x00000040  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¦¥©¡¼¥¿¡¼¡¦¥Ü¡¼¥ë / Water Ball */
+#define RF5_BA_MANA         0x00000080  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ËâÎÏ¤ÎÍò / Mana Storm */
+#define RF5_BA_DARK         0x00000100  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: °Å¹õ¤ÎÍò / Darkness Storm */
+#define RF5_DRAIN_MANA      0x00000200  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ËâÎÏµÛ¼ı / Drain Mana */
+#define RF5_MIND_BLAST      0x00000400  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Àº¿À¹¶·â / Blast Mind */
+#define RF5_BRAIN_SMASH     0x00000800  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ç¾¹¶·â / Smash Brain */
+#define RF5_CAUSE_1         0x00001000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ·Ú½ı¤Î¼ö¤¤ / Cause Light Wound */
+#define RF5_CAUSE_2         0x00002000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ½Å¾É¤Îº¢¤¤ / Cause Serious Wound */
+#define RF5_CAUSE_3         0x00004000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ã×Ì¿½ı¤Î¼ö¤¤ / Cause Critical Wound */
+#define RF5_CAUSE_4         0x00008000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Èë¹¦¤òÆÍ¤¯ / Cause Mortal Wound */
+#define RF5_BO_ACID         0x00010000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¢¥·¥Ã¥É¡¦¥Ü¥ë¥È / Acid Bolt */
+#define RF5_BO_ELEC         0x00020000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥µ¥ó¥À¡¼¡¦¥Ü¥ë¥È / Elec Bolt */
+#define RF5_BO_FIRE         0x00040000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥Õ¥¡¥¤¥¢¡¦¥Ü¥ë¥È / Fire Bolt */
+#define RF5_BO_COLD         0x00080000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¢¥¤¥¹¡¦¥Ü¥ë¥È / Cold Bolt */
+#define RF5_BA_LITE         0x00100000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¹¥¿¡¼¡¦¥Ğ¡¼¥¹¥È / StarBurst */
+#define RF5_BO_NETH         0x00200000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÃÏ¹ö¤ÎÌğ / Nether Bolt */
+#define RF5_BO_WATE         0x00400000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥¦¥©¡¼¥¿¡¼¡¦¥Ü¥ë¥È / Water Bolt */
+#define RF5_BO_MANA         0x00800000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ËâÎÏ¤ÎÌğ / Mana Bolt */
+#define RF5_BO_PLAS         0x01000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥×¥é¥º¥Ş¡¦¥Ü¥ë¥È / Plasma Bolt */
+#define RF5_BO_ICEE         0x02000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¶Ë´¨¤ÎÌğ / Ice Bolt */
+#define RF5_MISSILE         0x04000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¥Ş¥¸¥Ã¥¯¡¦¥ß¥µ¥¤¥ët / Magic Missile */
+#define RF5_SCARE           0x08000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¶²¹² / Frighten Player */
+#define RF5_BLIND           0x10000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ÌÕÌÜ / Blind Player */
+#define RF5_CONF            0x20000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: º®Íğ / Confuse Player */
+#define RF5_SLOW            0x40000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: ¸ºÂ® / Slow Player */
+#define RF5_HOLD            0x80000000  /*!< ¥â¥ó¥¹¥¿¡¼Ç½ÎÏ: Ëãáã / Paralyze Player */
 
 /*
  * New monster race bit flags
@@ -4418,22 +4418,22 @@ extern int PlayerUID;
  * The "(R,G,B)" codes are given in "fourths" of the "maximal" value,
  * and should "gamma corrected" on most (non-Macintosh) machines.
  */
-#define TERM_DARK                0  /*!< 'd' - é»’ 0,0,0 */
-#define TERM_WHITE               1  /*!< 'w' - ç™½ 4,4,4 */
-#define TERM_SLATE               2  /*!< 's' - ç° 2,2,2 */
-#define TERM_ORANGE              3  /*!< 'o' - æ©™ 4,2,0 */
-#define TERM_RED                 4  /*!< 'r' - èµ¤ 3,0,0 */
-#define TERM_GREEN               5  /*!< 'g' - ç·‘ 0,2,1 */
-#define TERM_BLUE                6  /*!< 'b' - é’ 0,0,4 */
-#define TERM_UMBER               7  /*!< 'u' - ç¥ç€ 2,1,0 */
-#define TERM_L_DARK              8  /*!< 'D' - æš—ã„ç° 1,1,1 */
-#define TERM_L_WHITE             9  /*!< 'W' - æ˜ã‚‹ã„ç° 3,3,3 */
-#define TERM_VIOLET             10  /*!< 'v' - ç´« 4,0,4 */
-#define TERM_YELLOW             11  /*!< 'y' - é»„ 4,4,0 */
-#define TERM_L_RED              12  /*!< 'R' - æ˜ã‚‹ã„èµ¤ 4,0,0 */
-#define TERM_L_GREEN            13  /*!< 'G' - æ˜ã‚‹ã„ç·‘ 0,4,0 */
-#define TERM_L_BLUE             14  /*!< 'B' - æ˜ã‚‹ã„é’ 0,4,4 */
-#define TERM_L_UMBER            15  /*!< 'U' - æ˜ã‚‹ã„ç¥ç€ 3,2,1 */
+#define TERM_DARK                0  /*!< 'd' - ¹õ 0,0,0 */
+#define TERM_WHITE               1  /*!< 'w' - Çò 4,4,4 */
+#define TERM_SLATE               2  /*!< 's' - ³¥ 2,2,2 */
+#define TERM_ORANGE              3  /*!< 'o' - Üô 4,2,0 */
+#define TERM_RED                 4  /*!< 'r' - ÀÖ 3,0,0 */
+#define TERM_GREEN               5  /*!< 'g' - ÎĞ 0,2,1 */
+#define TERM_BLUE                6  /*!< 'b' - ÀÄ 0,0,4 */
+#define TERM_UMBER               7  /*!< 'u' - àèàá 2,1,0 */
+#define TERM_L_DARK              8  /*!< 'D' - °Å¤¤³¥ 1,1,1 */
+#define TERM_L_WHITE             9  /*!< 'W' - ÌÀ¤ë¤¤³¥ 3,3,3 */
+#define TERM_VIOLET             10  /*!< 'v' - »ç 4,0,4 */
+#define TERM_YELLOW             11  /*!< 'y' - ²« 4,4,0 */
+#define TERM_L_RED              12  /*!< 'R' - ÌÀ¤ë¤¤ÀÖ 4,0,0 */
+#define TERM_L_GREEN            13  /*!< 'G' - ÌÀ¤ë¤¤ÎĞ 0,4,0 */
+#define TERM_L_BLUE             14  /*!< 'B' - ÌÀ¤ë¤¤ÀÄ 0,4,4 */
+#define TERM_L_UMBER            15  /*!< 'U' - ÌÀ¤ë¤¤àèàá 3,2,1 */
 
 
 /*
@@ -4464,7 +4464,7 @@ extern int PlayerUID;
 #define MUSIC_BASIC_QUEST_CLEAR 18
 #define MUSIC_BASIC_FINAL_QUEST_CLEAR 19
 #define MUSIC_BASIC_AMBUSH    20
-#define MUSIC_BASIC_MAX       21 /*!< BGMå®šç¾©ã®æœ€å¤§æ•° */
+#define MUSIC_BASIC_MAX       21 /*!< BGMÄêµÁ¤ÎºÇÂç¿ô */
 
 /*** Sound constants ***/
 
@@ -4543,9 +4543,9 @@ extern int PlayerUID;
 /*
  * Mega-Hack -- maximum known sounds
  */
-#define SOUND_MAX 67 /*!< åŠ¹æœéŸ³å®šç¾©ã®æœ€å¤§æ•° */
+#define SOUND_MAX 67 /*!< ¸ú²Ì²»ÄêµÁ¤ÎºÇÂç¿ô */
 
-#define MAX_VIRTUE 18 /*!< å¾³å®šç¾©ã®æœ€å¤§æ•° */
+#define MAX_VIRTUE 18 /*!< ÆÁÄêµÁ¤ÎºÇÂç¿ô */
 
 #define V_COMPASSION    1
 #define V_HONOUR	    2
@@ -4641,26 +4641,26 @@ extern int PlayerUID;
 /*
  * Quest status
  */
-#define QUEST_STATUS_UNTAKEN              0 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šæœªç™ºç”Ÿ*/
-#define QUEST_STATUS_TAKEN                1 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šç™ºç”Ÿä¸­*/
-#define QUEST_STATUS_COMPLETED            2 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šé”æˆ*/
-#define QUEST_STATUS_REWARDED             3 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šå ±é…¬å—ã‘å–ã‚Šå‰*/
-#define QUEST_STATUS_FINISHED             4 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šå®Œäº†*/
-#define QUEST_STATUS_FAILED               5 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šå¤±æ•—*/
-#define QUEST_STATUS_FAILED_DONE          6 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šå¤±æ•—å®Œäº†*/
-#define QUEST_STATUS_STAGE_COMPLETED      7 /*!< ã‚¯ã‚¨ã‚¹ãƒˆã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹çŠ¶æ…‹ï¼šã‚¹ãƒ†ãƒ¼ã‚¸æ¯é”æˆ*/
+#define QUEST_STATUS_UNTAKEN              0 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§Ì¤È¯À¸*/
+#define QUEST_STATUS_TAKEN                1 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§È¯À¸Ãæ*/
+#define QUEST_STATUS_COMPLETED            2 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§Ã£À®*/
+#define QUEST_STATUS_REWARDED             3 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§Êó½·¼õ¤±¼è¤êÁ°*/
+#define QUEST_STATUS_FINISHED             4 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§´°Î»*/
+#define QUEST_STATUS_FAILED               5 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§¼ºÇÔ*/
+#define QUEST_STATUS_FAILED_DONE          6 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§¼ºÇÔ´°Î»*/
+#define QUEST_STATUS_STAGE_COMPLETED      7 /*!< ¥¯¥¨¥¹¥È¥¹¥Æ¡¼¥¿¥¹¾õÂÖ¡§¥¹¥Æ¡¼¥¸ËèÃ£À®*/
 
 /*
  * Quest type
  */
-#define QUEST_TYPE_KILL_LEVEL                1 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: ç‰¹å®šã®ãƒ¦ãƒ‹ãƒ¼ã‚¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å€’ã™ */
-#define QUEST_TYPE_KILL_ANY_LEVEL            2 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: ã‚¤ãƒ™ãƒ³ãƒˆå—è¨—æ™‚ç‚¹ã§ãƒ©ãƒ³ãƒ€ãƒ ã§é¸ã°ã‚ŒãŸç‰¹å®šã®ãƒ¦ãƒ‹ãƒ¼ã‚¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å€’ã™ */
-#define QUEST_TYPE_FIND_ARTIFACT             3 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: ç‰¹å®šã®ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã‚’ç™ºè¦‹ã™ã‚‹ */
-#define QUEST_TYPE_FIND_EXIT                 4 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: è„±å‡ºã™ã‚‹ */
-#define QUEST_TYPE_KILL_NUMBER               5 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ç„¡å·®åˆ¥ã«ç‰¹å®šæ•°å€’ã™ */
-#define QUEST_TYPE_KILL_ALL                  6 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: ã‚¨ãƒªã‚¢ä¸­ã®ã™ã¹ã¦ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å…¨ã¦å€’ã™ */
-#define QUEST_TYPE_RANDOM                    7 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: ãƒ©ãƒ³ãƒ€ãƒ ã‚¯ã‚¨ã‚¹ãƒˆã¨ã—ã¦é¸ã°ã‚ŒãŸãƒ¦ãƒ‹ãƒ¼ã‚¯1ä½“ã‚’å€’ã™ */
-#define QUEST_TYPE_TOWER                     8 /*!< ã‚¯ã‚¨ã‚¹ãƒˆç›®çš„: è¤‡æ•°ã®ã‚¨ãƒªã‚¢ã®å…¨ã¦ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å€’ã™ */
+#define QUEST_TYPE_KILL_LEVEL                1 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: ÆÃÄê¤Î¥æ¥Ë¡¼¥¯¥â¥ó¥¹¥¿¡¼¤òÅİ¤¹ */
+#define QUEST_TYPE_KILL_ANY_LEVEL            2 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: ¥¤¥Ù¥ó¥È¼õÂ÷»şÅÀ¤Ç¥é¥ó¥À¥à¤ÇÁª¤Ğ¤ì¤¿ÆÃÄê¤Î¥æ¥Ë¡¼¥¯¥â¥ó¥¹¥¿¡¼¤òÅİ¤¹ */
+#define QUEST_TYPE_FIND_ARTIFACT             3 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: ÆÃÄê¤Î¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤òÈ¯¸«¤¹¤ë */
+#define QUEST_TYPE_FIND_EXIT                 4 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: Ã¦½Ğ¤¹¤ë */
+#define QUEST_TYPE_KILL_NUMBER               5 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: ¥â¥ó¥¹¥¿¡¼¤òÌµº¹ÊÌ¤ËÆÃÄê¿ôÅİ¤¹ */
+#define QUEST_TYPE_KILL_ALL                  6 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: ¥¨¥ê¥¢Ãæ¤Î¤¹¤Ù¤Æ¤Î¥â¥ó¥¹¥¿¡¼¤òÁ´¤ÆÅİ¤¹ */
+#define QUEST_TYPE_RANDOM                    7 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: ¥é¥ó¥À¥à¥¯¥¨¥¹¥È¤È¤·¤ÆÁª¤Ğ¤ì¤¿¥æ¥Ë¡¼¥¯1ÂÎ¤òÅİ¤¹ */
+#define QUEST_TYPE_TOWER                     8 /*!< ¥¯¥¨¥¹¥ÈÌÜÅª: Ê£¿ô¤Î¥¨¥ê¥¢¤ÎÁ´¤Æ¤Î¥â¥ó¥¹¥¿¡¼¤òÅİ¤¹ */
 
 /*
  * Initialization flags
@@ -4675,10 +4675,10 @@ extern int PlayerUID;
 /*
  * Quest flags
  */
-#define QUEST_FLAG_SILENT  0x01 /*!< ã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°: ã‚¯ã‚¨ã‚¹ãƒˆé€²è¡Œã«é–¢ã™ã‚‹æƒ…å ±è¡¨ç¤ºã‚’æŠ‘æ­¢ã™ã‚‹ / no messages from completion */
-#define QUEST_FLAG_PRESET  0x02 /*!< ã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°: ã‚¯ã‚¨ã‚¹ãƒˆãŒãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¤–ã§ç™ºç”Ÿã™ã‚‹ / quest is outside the main dungeon */
-#define QUEST_FLAG_ONCE    0x04 /*!< ã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°: ã‚¯ã‚¨ã‚¹ãƒˆãŒãƒ•ãƒ­ã‚¢ã‚’å‡ºãŸæ™‚ç‚¹ã§å®Œäº†ã™ã‚‹ / quest is marked finished after leaving */
-#define QUEST_FLAG_TOWER   0x08 /*!< ã‚¯ã‚¨ã‚¹ãƒˆãƒ•ãƒ©ã‚°: ã‚¯ã‚¨ã‚¹ãƒˆ:å¡”ã®å½¢å¼ã§é€²è¡Œã™ã‚‹ / Tower quest is special */
+#define QUEST_FLAG_SILENT  0x01 /*!< ¥¯¥¨¥¹¥È¥Õ¥é¥°: ¥¯¥¨¥¹¥È¿Ê¹Ô¤Ë´Ø¤¹¤ë¾ğÊóÉ½¼¨¤òÍŞ»ß¤¹¤ë / no messages from completion */
+#define QUEST_FLAG_PRESET  0x02 /*!< ¥¯¥¨¥¹¥È¥Õ¥é¥°: ¥¯¥¨¥¹¥È¤¬¥À¥ó¥¸¥ç¥ó³°¤ÇÈ¯À¸¤¹¤ë / quest is outside the main dungeon */
+#define QUEST_FLAG_ONCE    0x04 /*!< ¥¯¥¨¥¹¥È¥Õ¥é¥°: ¥¯¥¨¥¹¥È¤¬¥Õ¥í¥¢¤ò½Ğ¤¿»şÅÀ¤Ç´°Î»¤¹¤ë / quest is marked finished after leaving */
+#define QUEST_FLAG_TOWER   0x08 /*!< ¥¯¥¨¥¹¥È¥Õ¥é¥°: ¥¯¥¨¥¹¥È:Åã¤Î·Á¼°¤Ç¿Ê¹Ô¤¹¤ë / Tower quest is special */
 
 /*
  * Available graphic modes
@@ -5498,7 +5498,7 @@ extern int PlayerUID;
  * Max numbers of macro trigger names
  */
 #define MAX_MACRO_MOD 12
-#define MAX_MACRO_TRIG 200 /*!< ç™»éŒ²ã‚’è¨±ã™ãƒã‚¯ãƒ­ï¼ˆãƒˆãƒªã‚¬ãƒ¼ï¼‰ã®æœ€å¤§æ•° */
+#define MAX_MACRO_TRIG 200 /*!< ÅĞÏ¿¤òµö¤¹¥Ş¥¯¥í¡Ê¥È¥ê¥¬¡¼¡Ë¤ÎºÇÂç¿ô */
 
 /* Max size of screen dump buffer */
 #define SCREEN_BUF_MAX_SIZE (4 * 65536)
@@ -5681,5 +5681,5 @@ extern int PlayerUID;
 #define CHEAT_DUNGEON 2
 #define CHEAT_MISC 3
 
-#define COMMAND_ARG_REST_UNTIL_DONE -2   /*!<ä¼‘æ†©ã‚³ãƒãƒ³ãƒ‰å¼•æ•° â€¦ å¿…è¦ãªåˆ†ã ã‘å›å¾© */
-#define COMMAND_ARG_REST_FULL_HEALING -1 /*!<ä¼‘æ†©ã‚³ãƒãƒ³ãƒ‰å¼•æ•° â€¦ HPã¨MPãŒå…¨å›å¾©ã™ã‚‹ã¾ã§ */
+#define COMMAND_ARG_REST_UNTIL_DONE -2   /*!<µÙ·Æ¥³¥Ş¥ó¥É°ú¿ô ¡Ä É¬Í×¤ÊÊ¬¤À¤±²óÉü */
+#define COMMAND_ARG_REST_FULL_HEALING -1 /*!<µÙ·Æ¥³¥Ş¥ó¥É°ú¿ô ¡Ä HP¤ÈMP¤¬Á´²óÉü¤¹¤ë¤Ş¤Ç */

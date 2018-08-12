@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file save.c
- * @brief ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿å‡¦ç† / Purpose: interact with savefiles
+ * @brief ¥»¡¼¥Ö¥Õ¥¡¥¤¥ë½ñ¤­¹ş¤ß½èÍı / Purpose: interact with savefiles
  * @date 2014/07/12
  * @author
  * <pre>
@@ -29,9 +29,9 @@ static u32b     x_stamp = 0L;   /* A simple "checksum" on the encoded bytes */
 
 
 /*!
- * @brief 1ãƒã‚¤ãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€ / These functions place information into a savefile a byte at a time
- * @param v æ›¸ãè¾¼ã‚€ãƒã‚¤ãƒˆå€¤
- * @return ãªã—
+ * @brief 1¥Ğ¥¤¥È¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à / These functions place information into a savefile a byte at a time
+ * @param v ½ñ¤­¹ş¤à¥Ğ¥¤¥ÈÃÍ
+ * @return ¤Ê¤·
  */
 static void sf_put(byte v)
 {
@@ -45,9 +45,9 @@ static void sf_put(byte v)
 }
 
 /*!
- * @brief 1ãƒã‚¤ãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€(sf_put()ã®ç³–è¡£)
- * @param v æ›¸ãè¾¼ã‚€ãƒã‚¤ãƒˆ
- * @return ãªã—
+ * @brief 1¥Ğ¥¤¥È¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à(sf_put()¤ÎÅü°á)
+ * @param v ½ñ¤­¹ş¤à¥Ğ¥¤¥È
+ * @return ¤Ê¤·
  */
 static void wr_byte(byte v)
 {
@@ -55,9 +55,9 @@ static void wr_byte(byte v)
 }
 
 /*!
- * @brief ç¬¦å·ãªã—16ãƒ“ãƒƒãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
- * @param v æ›¸ãè¾¼ã‚€ç¬¦å·ãªã—16bitå€¤
- * @return ãªã—
+ * @brief Éä¹æ¤Ê¤·16¥Ó¥Ã¥È¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à
+ * @param v ½ñ¤­¹ş¤àÉä¹æ¤Ê¤·16bitÃÍ
+ * @return ¤Ê¤·
  */
 static void wr_u16b(u16b v)
 {
@@ -66,9 +66,9 @@ static void wr_u16b(u16b v)
 }
 
 /*!
- * @brief ç¬¦å·ã‚ã‚Š16ãƒ“ãƒƒãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
- * @param v æ›¸ãè¾¼ã‚€ç¬¦å·ã‚ã‚Š16bitå€¤
- * @return ãªã—
+ * @brief Éä¹æ¤¢¤ê16¥Ó¥Ã¥È¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à
+ * @param v ½ñ¤­¹ş¤àÉä¹æ¤¢¤ê16bitÃÍ
+ * @return ¤Ê¤·
  */
 static void wr_s16b(s16b v)
 {
@@ -76,9 +76,9 @@ static void wr_s16b(s16b v)
 }
 
 /*!
- * @brief ç¬¦å·ãªã—32ãƒ“ãƒƒãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
- * @param v æ›¸ãè¾¼ã‚€ç¬¦å·ãªã—32bitå€¤
- * @return ãªã—
+ * @brief Éä¹æ¤Ê¤·32¥Ó¥Ã¥È¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à
+ * @param v ½ñ¤­¹ş¤àÉä¹æ¤Ê¤·32bitÃÍ
+ * @return ¤Ê¤·
  */
 static void wr_u32b(u32b v)
 {
@@ -89,9 +89,9 @@ static void wr_u32b(u32b v)
 }
 
 /*!
- * @brief ç¬¦å·ã‚ã‚Š32ãƒ“ãƒƒãƒˆã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
- * @param v æ›¸ãè¾¼ã‚€ç¬¦å·ã‚ã‚Š32bitå€¤
- * @return ãªã—
+ * @brief Éä¹æ¤¢¤ê32¥Ó¥Ã¥È¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à
+ * @param v ½ñ¤­¹ş¤àÉä¹æ¤¢¤ê32bitÃÍ
+ * @return ¤Ê¤·
  */
 static void wr_s32b(s32b v)
 {
@@ -99,9 +99,9 @@ static void wr_s32b(s32b v)
 }
 
 /*!
- * @brief æ–‡å­—åˆ—ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
- * @param str æ›¸ãè¾¼ã‚€æ–‡å­—åˆ—
- * @return ãªã—
+ * @brief Ê¸»úÎó¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à
+ * @param str ½ñ¤­¹ş¤àÊ¸»úÎó
+ * @return ¤Ê¤·
  */
 static void wr_string(cptr str)
 {
@@ -120,9 +120,9 @@ static void wr_string(cptr str)
 
 
 /*!
- * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ›¸ãè¾¼ã‚€ / Write an "item" record
- * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¿å­˜å…ƒãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤ò½ñ¤­¹ş¤à / Write an "item" record
+ * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥ÈÊİÂ¸¸µ¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wr_item(object_type *o_ptr)
 {
@@ -217,9 +217,9 @@ static void wr_item(object_type *o_ptr)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Write a "monster" record
- * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ä¿å­˜å…ƒãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥â¥ó¥¹¥¿¡¼¾ğÊó¤ò½ñ¤­¹ş¤à / Write a "monster" record
+ * @param m_ptr ¥â¥ó¥¹¥¿¡¼¾ğÊóÊİÂ¸¸µ¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wr_monster(monster_type *m_ptr)
 {
@@ -306,9 +306,9 @@ static void wr_monster(monster_type *m_ptr)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’æ›¸ãè¾¼ã‚€ / Write a "lore" record
- * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
- * @return ãªã—
+ * @brief ¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤ò½ñ¤­¹ş¤à / Write a "lore" record
+ * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
+ * @return ¤Ê¤·
  */
 static void wr_lore(MONRACE_IDX r_idx)
 {
@@ -364,9 +364,9 @@ static void wr_lore(MONRACE_IDX r_idx)
 }
 
 /*!
- * @brief ãã®ä»–ã®ã‚²ãƒ¼ãƒ æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€(å®Ÿè³ªã¯ã‚¢ã‚¤ãƒ†ãƒ ã®é‘‘å®šæƒ…å ±ã®ã¿) / Write an "xtra" record
- * @param k_idx ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ID
- * @return ãªã—
+ * @brief ¤½¤ÎÂ¾¤Î¥²¡¼¥à¾ğÊó¤ò½ñ¤­¹ş¤à(¼Â¼Á¤Ï¥¢¥¤¥Æ¥à¤Î´ÕÄê¾ğÊó¤Î¤ß) / Write an "xtra" record
+ * @param k_idx ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎID
+ * @return ¤Ê¤·
  */
 static void wr_xtra(KIND_OBJECT_IDX k_idx)
 {
@@ -382,9 +382,9 @@ static void wr_xtra(KIND_OBJECT_IDX k_idx)
 
 
 /*!
- * @brief åº—èˆ—æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Write a "store" record
- * @param st_ptr åº—èˆ—æƒ…å ±ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief Å¹ÊŞ¾ğÊó¤ò½ñ¤­¹ş¤à / Write a "store" record
+ * @param st_ptr Å¹ÊŞ¾ğÊó¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wr_store(store_type *st_ptr)
 {
@@ -418,8 +418,8 @@ static void wr_store(store_type *st_ptr)
 
 
 /*!
- * @brief ä¹±æ•°æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Write RNG state
- * @return ãªã—
+ * @brief Íğ¿ô¾ğÊó¤ò½ñ¤­¹ş¤à / Write RNG state
+ * @return ¤Ê¤·
  */
 static errr wr_randomizer(void)
 {
@@ -443,8 +443,8 @@ static errr wr_randomizer(void)
 
 
 /*!
- * @brief ã‚²ãƒ¼ãƒ ã‚ªãƒ—ã‚·ãƒ§ãƒ³æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Write the "options"
- * @return ãªã—
+ * @brief ¥²¡¼¥à¥ª¥×¥·¥ç¥ó¾ğÊó¤ò½ñ¤­¹ş¤à / Write the "options"
+ * @return ¤Ê¤·
  */
 static void wr_options(void)
 {
@@ -542,15 +542,15 @@ static void wr_options(void)
 
 
 /*!
- * @brief ãƒ€ãƒŸãƒ¼æƒ…å ±ã‚¹ã‚­ãƒƒãƒ—ã‚’æ›¸ãè¾¼ã‚€ / Hack -- Write the "ghost" info
- * @return ãªã—
+ * @brief ¥À¥ß¡¼¾ğÊó¥¹¥­¥Ã¥×¤ò½ñ¤­¹ş¤à / Hack -- Write the "ghost" info
+ * @return ¤Ê¤·
  */
 static void wr_ghost(void)
 {
 	int i;
 
 	/* Name */
-	wr_string(_("ä¸æ­£ãªã‚´ãƒ¼ã‚¹ãƒˆ", "Broken Ghost"));
+	wr_string(_("ÉÔÀµ¤Ê¥´¡¼¥¹¥È", "Broken Ghost"));
 
 	/* Hack -- stupid data */
 	for (i = 0; i < 60; i++) wr_byte(0);
@@ -558,8 +558,8 @@ static void wr_ghost(void)
 
 
 /*!
- * @brief ã‚¯ã‚¤ãƒƒã‚¯ãƒ»ã‚¹ã‚¿ãƒ¼ãƒˆæƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Save quick start data
- * @return ãªã—
+ * @brief ¥¯¥¤¥Ã¥¯¡¦¥¹¥¿¡¼¥È¾ğÊó¤ò½ñ¤­¹ş¤à / Save quick start data
+ * @return ¤Ê¤·
  */
 static void save_quick_start(void)
 {
@@ -600,8 +600,8 @@ static void save_quick_start(void)
 
 
 /*!
- * @brief ãã®ä»–ã®æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Write some "extra" info
- * @return ãªã—
+ * @brief ¤½¤ÎÂ¾¤Î¾ğÊó¤ò½ñ¤­¹ş¤à / Write some "extra" info
+ * @return ¤Ê¤·
  */
 static void wr_extra(void)
 {
@@ -860,12 +860,12 @@ static void wr_extra(void)
 
 
 /*!
- * @brief ãƒ•ãƒ­ã‚¢ä¿å­˜æ™‚ã®caveæƒ…å ±ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹ãŸã‚ã®æ¯”è¼ƒå‡¦ç†
- * @param u caveãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param v æœªä½¿ç”¨
- * @param a ã‚¹ãƒ¯ãƒƒãƒ—ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID1
- * @param b ã‚¹ãƒ¯ãƒƒãƒ—ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID2
- * @return aã®æ–¹ãŒå¤§ãã‘ã‚Œã°true
+ * @brief ¥Õ¥í¥¢ÊİÂ¸»ş¤Îcave¾ğÊó¥Æ¥ó¥×¥ì¡¼¥È¤ò¥½¡¼¥È¤¹¤ë¤¿¤á¤ÎÈæ³Ó½èÍı
+ * @param u cave¥Æ¥ó¥×¥ì¡¼¥È¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param v Ì¤»ÈÍÑ
+ * @param a ¥¹¥ï¥Ã¥×¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID1
+ * @param b ¥¹¥ï¥Ã¥×¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID2
+ * @return a¤ÎÊı¤¬Âç¤­¤±¤ì¤Ğtrue
  */
 static bool ang_sort_comp_cave_temp(vptr u, vptr v, int a, int b)
 {
@@ -882,12 +882,12 @@ static bool ang_sort_comp_cave_temp(vptr u, vptr v, int a, int b)
 
 
 /*!
- * @brief ãƒ•ãƒ­ã‚¢ä¿å­˜æ™‚ã®caveæƒ…å ±ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹ãŸã‚ã®ã‚¹ãƒ¯ãƒƒãƒ—å‡¦ç† / Sorting hook -- Swap function
- * @param u caveãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param v æœªä½¿ç”¨
- * @param a ã‚¹ãƒ¯ãƒƒãƒ—ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID1
- * @param b ã‚¹ãƒ¯ãƒƒãƒ—ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID2
- * @return ãªã—
+ * @brief ¥Õ¥í¥¢ÊİÂ¸»ş¤Îcave¾ğÊó¥Æ¥ó¥×¥ì¡¼¥È¤ò¥½¡¼¥È¤¹¤ë¤¿¤á¤Î¥¹¥ï¥Ã¥×½èÍı / Sorting hook -- Swap function
+ * @param u cave¥Æ¥ó¥×¥ì¡¼¥È¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param v Ì¤»ÈÍÑ
+ * @param a ¥¹¥ï¥Ã¥×¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID1
+ * @param b ¥¹¥ï¥Ã¥×¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID2
+ * @return ¤Ê¤·
  */
 static void ang_sort_swap_cave_temp(vptr u, vptr v, int a, int b)
 {
@@ -906,9 +906,9 @@ static void ang_sort_swap_cave_temp(vptr u, vptr v, int a, int b)
 
 
 /*!
- * @brief ä¿å­˜ãƒ•ãƒ­ã‚¢ã®æ›¸ãè¾¼ã¿ / Actually write a saved floor data using effectively compressed format.
- * @param sf_ptr ä¿å­˜ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ÊİÂ¸¥Õ¥í¥¢¤Î½ñ¤­¹ş¤ß / Actually write a saved floor data using effectively compressed format.
+ * @param sf_ptr ÊİÂ¸¤·¤¿¤¤¥Õ¥í¥¢¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static void wr_saved_floor(saved_floor_type *sf_ptr)
 {
@@ -1152,9 +1152,9 @@ static void wr_saved_floor(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief ç¾åœ¨ãƒ•ãƒ­ã‚¢ã®æ›¸ãè¾¼ã¿ /
+ * @brief ¸½ºß¥Õ¥í¥¢¤Î½ñ¤­¹ş¤ß /
  * Write the current dungeon (new method)
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 static bool wr_dungeon(void)
 {
@@ -1258,9 +1258,9 @@ static bool wr_dungeon(void)
 
 
 /*!
- * @brief ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®æ›¸ãè¾¼ã¿ /
+ * @brief ¥»¡¼¥Ö¥Ç¡¼¥¿¤Î½ñ¤­¹ş¤ß /
  * Actually write a save-file
- * @return æˆåŠŸã™ã‚Œã°true
+ * @return À®¸ù¤¹¤ì¤Ğtrue
  */
 static bool wr_savefile_new(void)
 {
@@ -1561,9 +1561,9 @@ static bool wr_savefile_new(void)
 
 
 /*!
- * @brief ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ã®ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥»¡¼¥Ö¥Ç¡¼¥¿½ñ¤­¹ş¤ß¤Î¥µ¥Ö¥ë¡¼¥Á¥ó /
  * Medium level player saver
- * @return æˆåŠŸã™ã‚Œã°true
+ * @return À®¸ù¤¹¤ì¤Ğtrue
  * @details
  * XXX XXX XXX Angband 2.8.0 will use "fd" instead of "fff" if possible
  */
@@ -1644,9 +1644,9 @@ static bool save_player_aux(char *name)
 
 
 /*!
- * @brief ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥»¡¼¥Ö¥Ç¡¼¥¿½ñ¤­¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
  * Attempt to save the player in a savefile
- * @return æˆåŠŸã™ã‚Œã°true
+ * @return À®¸ù¤¹¤ì¤Ğtrue
  */
 bool save_player(void)
 {
@@ -1751,9 +1751,9 @@ bool save_player(void)
 
 
 /*!
- * @brief ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥»¡¼¥Ö¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
  * Attempt to Load a "savefile"
- * @return æˆåŠŸã™ã‚Œã°true
+ * @return À®¸ù¤¹¤ì¤Ğtrue
  * @details
  * <pre>
  * Version 2.7.0 introduced a slightly different "savefile" format from
@@ -1811,7 +1811,7 @@ bool load_player(void)
 	if (access(savefile, 0) < 0)
 	{
 		/* Give a message */
-		msg_print(_("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“ã€‚", "Savefile does not exist."));
+		msg_print(_("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤¬¤¢¤ê¤Ş¤»¤ó¡£", "Savefile does not exist."));
 
 		msg_print(NULL);
 
@@ -1845,7 +1845,7 @@ bool load_player(void)
 			my_fclose(fkk);
 
 			/* Message */
-			msg_print(_("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã¯ç¾åœ¨ä½¿ç”¨ä¸­ã§ã™ã€‚", "Savefile is currently in use."));
+			msg_print(_("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤Ï¸½ºß»ÈÍÑÃæ¤Ç¤¹¡£", "Savefile is currently in use."));
 			msg_print(NULL);
 
 			/* Oops */
@@ -1875,7 +1875,7 @@ bool load_player(void)
 		if (fd < 0) err = -1;
 
 		/* Message (below) */
-		if (err) what = _("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã€‚", "Cannot open savefile");
+		if (err) what = _("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤ò³«¤±¤Ş¤»¤ó¡£", "Cannot open savefile");
 	}
 
 	/* Process file */
@@ -1891,7 +1891,7 @@ bool load_player(void)
 		if (fd_read(fd, (char*)(vvv), 4)) err = -1;
 
 		/* What */
-		if (err) what = _("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚ã¾ã›ã‚“ã€‚", "Cannot read savefile");
+		if (err) what = _("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤òÆÉ¤á¤Ş¤»¤ó¡£", "Cannot read savefile");
 
 		/* Close the file */
 		(void)fd_close(fd);
@@ -1915,7 +1915,7 @@ bool load_player(void)
 		err = rd_savefile_new();
 
 		/* Message (below) */
-		if (err) what = _("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è§£æå‡ºæ¥ã¾ã›ã‚“ã€‚", "Cannot parse savefile");
+		if (err) what = _("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤ò²òÀÏ½ĞÍè¤Ş¤»¤ó¡£", "Cannot parse savefile");
 	}
 
 	/* Paranoia */
@@ -1925,7 +1925,7 @@ bool load_player(void)
 		if (!turn) err = -1;
 
 		/* Message (below) */
-		if (err) what = _("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ãŒå£Šã‚Œã¦ã„ã¾ã™", "Broken savefile");
+		if (err) what = _("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤¬²õ¤ì¤Æ¤¤¤Ş¤¹", "Broken savefile");
 	}
 
 #ifdef VERIFY_TIMESTAMP
@@ -1937,7 +1937,7 @@ bool load_player(void)
 		    sf_when < (statbuf.st_ctime - 100))
 		{
 			/* Message */
-			what = _("ç„¡åŠ¹ãªã‚¿ã‚¤ãƒ ãƒ»ã‚¹ã‚¿ãƒ³ãƒ—ã§ã™", "Invalid timestamp");
+			what = _("Ìµ¸ú¤Ê¥¿¥¤¥à¡¦¥¹¥¿¥ó¥×¤Ç¤¹", "Invalid timestamp");
 
 			/* Oops */
 			err = -1;
@@ -1956,13 +1956,13 @@ bool load_player(void)
 		{
 			if (z_major == 2 && z_minor == 0 && z_patch == 6)
 			{
-				msg_print(_("ãƒãƒ¼ã‚¸ãƒ§ãƒ³ 2.0.* ç”¨ã®ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›ã—ã¾ã—ãŸã€‚", "Converted a 2.0.* savefile."));
+				msg_print(_("¥Ğ¡¼¥¸¥ç¥ó 2.0.* ÍÑ¤Î¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤òÊÑ´¹¤·¤Ş¤·¤¿¡£", "Converted a 2.0.* savefile."));
 			}
 			else
 			{
 				/* Message */
 #ifdef JP
-				msg_format("ãƒãƒ¼ã‚¸ãƒ§ãƒ³ %d.%d.%d ç”¨ã®ã‚»ãƒ¼ãƒ–ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›ã—ã¾ã—ãŸã€‚",
+				msg_format("¥Ğ¡¼¥¸¥ç¥ó %d.%d.%d ÍÑ¤Î¥»¡¼¥Ö¡¦¥Õ¥¡¥¤¥ë¤òÊÑ´¹¤·¤Ş¤·¤¿¡£",
 				    (z_major > 9) ? z_major-10 : z_major , z_minor, z_patch);
 #else
 				msg_format("Converted a %d.%d.%d savefile.",
@@ -2032,7 +2032,7 @@ bool load_player(void)
 
 	/* Message */
 #ifdef JP
-	msg_format("ã‚¨ãƒ©ãƒ¼(%s)ãŒãƒãƒ¼ã‚¸ãƒ§ãƒ³%d.%d.%d ç”¨ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ä¸­ã«ç™ºç”Ÿã€‚",
+	msg_format("¥¨¥é¡¼(%s)¤¬¥Ğ¡¼¥¸¥ç¥ó%d.%d.%d ÍÑ¥»¡¼¥Ö¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ßÃæ¤ËÈ¯À¸¡£",
 		   what, (z_major>9) ? z_major - 10 : z_major, z_minor, z_patch);
 #else
 	msg_format("Error (%s) reading %d.%d.%d savefile.",
@@ -2045,8 +2045,8 @@ bool load_player(void)
 }
 
 /*!
- * @brief ãƒ•ã‚¡ã‚¤ãƒ«ãƒ­ãƒƒã‚¯å‡¦ç†
- * @return ãªã—
+ * @brief ¥Õ¥¡¥¤¥ë¥í¥Ã¥¯½èÍı
+ * @return ¤Ê¤·
  */
 void remove_loc(void)
 {
@@ -2087,9 +2087,9 @@ void remove_loc(void)
 
 
 /*!
- * @brief ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­ã®ãƒ•ãƒ­ã‚¢ä¸€æ™‚ä¿å­˜å‡ºåŠ›å‡¦ç†ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ / Actually write a temporal saved floor file
- * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief ¥²¡¼¥à¥×¥ì¥¤Ãæ¤Î¥Õ¥í¥¢°ì»şÊİÂ¸½ĞÎÏ½èÍı¥µ¥Ö¥ë¡¼¥Á¥ó / Actually write a temporal saved floor file
+ * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  */
 static bool save_floor_aux(saved_floor_type *sf_ptr)
 {
@@ -2136,10 +2136,10 @@ static bool save_floor_aux(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ä¸­ã®ãƒ•ãƒ­ã‚¢ä¸€æ™‚ä¿å­˜å‡ºåŠ›å‡¦ç†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ / Attempt to save the temporally saved-floor data
- * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @param mode ä¿å­˜ã‚ªãƒ—ã‚·ãƒ§ãƒ³
- * @return ãªã—
+ * @brief ¥²¡¼¥à¥×¥ì¥¤Ãæ¤Î¥Õ¥í¥¢°ì»şÊİÂ¸½ĞÎÏ½èÍı¥á¥¤¥ó¥ë¡¼¥Á¥ó / Attempt to save the temporally saved-floor data
+ * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢»²¾È¥İ¥¤¥ó¥¿
+ * @param mode ÊİÂ¸¥ª¥×¥·¥ç¥ó
+ * @return ¤Ê¤·
  */
 bool save_floor(saved_floor_type *sf_ptr, BIT_FLAGS mode)
 {

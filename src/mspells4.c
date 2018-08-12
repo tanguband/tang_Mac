@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file mspells4.c
- * @brief ã‚¹ãƒšãƒ«å®Ÿè¡Œå‡¦ç† / Spell launch
+ * @brief ¥¹¥Ú¥ë¼Â¹Ô½èÍı / Spell launch
  * @date 2014/07/14
  * @author Habu
  */
@@ -9,9 +9,9 @@
 #include "angband.h"
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã‚’å–ã‚Šã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åã‚’m_nameã«ä»£å…¥ã™ã‚‹ /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param m_name ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åã‚’å…¥åŠ›ã™ã‚‹é…åˆ—
+* @brief ¥â¥ó¥¹¥¿¡¼ID¤ò¼è¤ê¡¢¥â¥ó¥¹¥¿¡¼Ì¾¤òm_name¤ËÂåÆş¤¹¤ë /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID
+* @param m_name ¥â¥ó¥¹¥¿¡¼Ì¾¤òÆşÎÏ¤¹¤ëÇÛÎó
 */
 void monster_name(MONSTER_IDX m_idx, char* m_name)
 {
@@ -20,10 +20,10 @@ void monster_name(MONSTER_IDX m_idx, char* m_name)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼2ä½“ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¿‘ãã«å±…ã‚‹ã‹ã®åˆ¤å®š /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDä¸€ä½“ç›®
-* @param t_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDäºŒä½“ç›®
-* @return ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼2ä½“ã®ã©ã¡ã‚‰ã‹ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¿‘ãã«å±…ã‚Œã°TRUEã€ã©ã¡ã‚‰ã‚‚é ã‘ã‚Œã°FALSEã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼2ÂÎ¤¬¥×¥ì¥¤¥ä¡¼¤Î¶á¤¯¤Ëµï¤ë¤«¤ÎÈ½Äê /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID°ìÂÎÌÜ
+* @param t_idx ¥â¥ó¥¹¥¿¡¼IDÆóÂÎÌÜ
+* @return ¥â¥ó¥¹¥¿¡¼2ÂÎ¤Î¤É¤Á¤é¤«¤¬¥×¥ì¥¤¥ä¡¼¤Î¶á¤¯¤Ëµï¤ì¤ĞTRUE¡¢¤É¤Á¤é¤â±ó¤±¤ì¤ĞFALSE¤òÊÖ¤¹¡£
 */
 bool monster_near_player(MONSTER_IDX m_idx, IDX t_idx)
 {
@@ -33,9 +33,9 @@ bool monster_near_player(MONSTER_IDX m_idx, IDX t_idx)
 }
 
 /*!
-* @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’è¦‹ã‚‹ã“ã¨ãŒã§ãã‚‹ã‹ã®åˆ¤å®š /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’è¦‹ã‚‹ã“ã¨ãŒã§ãã‚‹ãªã‚‰TRUEã€ãã†ã§ãªã‘ã‚Œã°FALSEã‚’è¿”ã™ã€‚
+* @brief ¥×¥ì¥¤¥ä¡¼¤¬¥â¥ó¥¹¥¿¡¼¤ò¸«¤ë¤³¤È¤¬¤Ç¤­¤ë¤«¤ÎÈ½Äê /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID
+* @return ¥×¥ì¥¤¥ä¡¼¤¬¥â¥ó¥¹¥¿¡¼¤ò¸«¤ë¤³¤È¤¬¤Ç¤­¤ë¤Ê¤éTRUE¡¢¤½¤¦¤Ç¤Ê¤±¤ì¤ĞFALSE¤òÊÖ¤¹¡£
 */
 bool see_monster(MONSTER_IDX m_idx)
 {
@@ -44,9 +44,9 @@ bool see_monster(MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å”±ãˆãŸå‘ªæ–‡ã‚’é’é­”æ³•ã§å­¦ç¿’ã§ãã‚‹ã‹åˆ¤å®šã™ã‚‹ /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒé’é­”æ³•ã§å­¦ç¿’ã§ãã‚‹ãªã‚‰TRUEã€ãã†ã§ãªã‘ã‚Œã°FALSEã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤Î¾§¤¨¤¿¼öÊ¸¤òÀÄËâË¡¤Ç³Ø½¬¤Ç¤­¤ë¤«È½Äê¤¹¤ë /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID
+* @return ¥×¥ì¥¤¥ä¡¼¤¬ÀÄËâË¡¤Ç³Ø½¬¤Ç¤­¤ë¤Ê¤éTRUE¡¢¤½¤¦¤Ç¤Ê¤±¤ì¤ĞFALSE¤òÊÖ¤¹¡£
 */
 bool spell_learnable(MONSTER_IDX m_idx)
 {
@@ -59,9 +59,9 @@ bool spell_learnable(MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã‹ã‚‰ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«ã‚’å–å¾—ã™ã‚‹ /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
+* @brief ¥â¥ó¥¹¥¿¡¼ID¤«¤é¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë¤ò¼èÆÀ¤¹¤ë /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID
+* @return ¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
 */
 int monster_level_idx(MONSTER_IDX m_idx)
 {
@@ -72,9 +72,9 @@ int monster_level_idx(MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã‹ã‚‰POWERFULãƒ•ãƒ©ã‚°ã®æœ‰ç„¡ã‚’å–å¾—ã™ã‚‹ /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return POWERFULãƒ•ãƒ©ã‚°ãŒã‚ã‚Œã°TRUEã€ãªã‘ã‚Œã°FALSEã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼ID¤«¤éPOWERFUL¥Õ¥é¥°¤ÎÍ­Ìµ¤ò¼èÆÀ¤¹¤ë /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID
+* @return POWERFUL¥Õ¥é¥°¤¬¤¢¤ì¤ĞTRUE¡¢¤Ê¤±¤ì¤ĞFALSE¤òÊÖ¤¹¡£
 */
 bool monster_is_powerful(MONSTER_IDX m_idx)
 {
@@ -85,9 +85,9 @@ bool monster_is_powerful(MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ¦ãƒ‹ãƒ¼ã‚¯å¬å–šå¯èƒ½ã§ã‚ã‚‹ã‹ã‚’åˆ¤å®šã™ã‚‹ /
-* @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return å¬å–šå¯èƒ½ã§ã‚ã‚Œã°PM_ALLOW_UNIQUEã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤¬¥æ¥Ë¡¼¥¯¾¤´­²ÄÇ½¤Ç¤¢¤ë¤«¤òÈ½Äê¤¹¤ë /
+* @param m_idx ¥â¥ó¥¹¥¿¡¼ID
+* @return ¾¤´­²ÄÇ½¤Ç¤¢¤ì¤ĞPM_ALLOW_UNIQUE¤òÊÖ¤¹¡£
 */
 u32b monster_u_mode(MONSTER_IDX m_idx)
 {
@@ -99,8 +99,8 @@ u32b monster_u_mode(MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’èµ·ã“ã™ /
-* @param t_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+* @brief ¥â¥ó¥¹¥¿¡¼¤òµ¯¤³¤¹ /
+* @param t_idx ¥â¥ó¥¹¥¿¡¼ID
 */
 void monster_wakeup(IDX t_idx)
 {
@@ -108,15 +108,15 @@ void monster_wakeup(IDX t_idx)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå‘ªæ–‡è¡Œä½¿ã™ã‚‹éš›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†ã™ã‚‹æ±ç”¨é–¢æ•° /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param msg1 msg_flagãŒTRUEã§ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
- * @param msg2 msg_flagãŒTRUEã§ã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
- * @param msg3 msg_flagãŒFALSEã§ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
- * @param msg4 msg_flagãŒFALSEã§ã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
- * @param msg_flag_aux ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆ†å²ã™ã‚‹ãŸã‚ã®ãƒ•ãƒ©ã‚°
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief ¥â¥ó¥¹¥¿¡¼¤¬¼öÊ¸¹Ô»È¤¹¤ëºİ¤Î¥á¥Ã¥»¡¼¥¸¤ò½èÍı¤¹¤ëÈÆÍÑ´Ø¿ô /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param msg1 msg_flag¤¬TRUE¤Ç¡¢¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+ * @param msg2 msg_flag¤¬TRUE¤Ç¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+ * @param msg3 msg_flag¤¬FALSE¤Ç¡¢¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+ * @param msg4 msg_flag¤¬FALSE¤Ç¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+ * @param msg_flag_aux ¥á¥Ã¥»¡¼¥¸¤òÊ¬´ô¤¹¤ë¤¿¤á¤Î¥Õ¥é¥°
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 static void monspell_message_base(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, cptr msg4, bool msg_flag_aux, int TARGET_TYPE)
 {
@@ -155,13 +155,13 @@ static void monspell_message_base(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr 
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå‘ªæ–‡è¡Œä½¿ã™ã‚‹éš›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†ã™ã‚‹æ±ç”¨é–¢æ•°ã€‚ç›²ç›®æ™‚ã¨é€šå¸¸æ™‚ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param msg1 ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç›²ç›®çŠ¶æ…‹ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param msg2 ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç›²ç›®ã§ãªãã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param msg3 ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç›²ç›®ã§ãªãã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief ¥â¥ó¥¹¥¿¡¼¤¬¼öÊ¸¹Ô»È¤¹¤ëºİ¤Î¥á¥Ã¥»¡¼¥¸¤ò½èÍı¤¹¤ëÈÆÍÑ´Ø¿ô¡£ÌÕÌÜ»ş¤ÈÄÌ¾ï»ş¤Î¥á¥Ã¥»¡¼¥¸¤òÀÚ¤êÂØ¤¨¤ë¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param msg1 ¥×¥ì¥¤¥ä¡¼¤¬ÌÕÌÜ¾õÂÖ¤Î¥á¥Ã¥»¡¼¥¸
+* @param msg2 ¥×¥ì¥¤¥ä¡¼¤¬ÌÕÌÜ¤Ç¤Ê¤¯¡¢¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+* @param msg3 ¥×¥ì¥¤¥ä¡¼¤¬ÌÕÌÜ¤Ç¤Ê¤¯¡¢¥â¥ó¥¹¥¿¡¼ÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void monspell_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, int TARGET_TYPE)
 {
@@ -169,12 +169,12 @@ void monspell_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr m
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå‘ªæ–‡è¡Œä½¿ã™ã‚‹éš›ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡¦ç†ã™ã‚‹æ±ç”¨é–¢æ•°ã€‚å¯¾ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¨å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param msg1 ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param msg2 ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å¯¾è±¡ã¨ã™ã‚‹å ´åˆã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief ¥â¥ó¥¹¥¿¡¼¤¬¼öÊ¸¹Ô»È¤¹¤ëºİ¤Î¥á¥Ã¥»¡¼¥¸¤ò½èÍı¤¹¤ëÈÆÍÑ´Ø¿ô¡£ÂĞ¥â¥ó¥¹¥¿¡¼¤ÈÂĞ¥×¥ì¥¤¥ä¡¼¤Î¥á¥Ã¥»¡¼¥¸¤òÀÚ¤êÂØ¤¨¤ë¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param msg1 ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+* @param msg2 ¥â¥ó¥¹¥¿¡¼ÂĞ¾İ¤È¤¹¤ë¾ì¹ç¤Î¥á¥Ã¥»¡¼¥¸
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void simple_monspell_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, int TARGET_TYPE)
 {
@@ -182,16 +182,16 @@ void simple_monspell_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2,
 }
 
 /*!
- * @brief RF4_SHRIEKã®å‡¦ç†ã€‚å«ã³ã€‚ /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF4_SHRIEK¤Î½èÍı¡£¶«¤Ó¡£ /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF4_SHRIEK(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	simple_monspell_message(m_idx, t_idx,
-		_("%^sãŒã‹ã‚“é«˜ã„é‡‘åˆ‡ã‚Šå£°ã‚’ã‚ã’ãŸã€‚", "%^s makes a high pitched shriek."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦å«ã‚“ã ã€‚", "%^s shrieks at %s."),
+		_("%^s¤¬¤«¤ó¹â¤¤¶âÀÚ¤êÀ¼¤ò¤¢¤²¤¿¡£", "%^s makes a high pitched shriek."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¶«¤ó¤À¡£", "%^s shrieks at %s."),
 		TARGET_TYPE);
 
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
@@ -205,10 +205,10 @@ void spell_RF4_SHRIEK(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
- * @brief RF4_DISPELã®å‡¦ç†ã€‚é­”åŠ›æ¶ˆå»ã€‚ /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF4_DISPEL¤Î½èÍı¡£ËâÎÏ¾Ãµî¡£ /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF4_DISPEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -217,9 +217,9 @@ void spell_RF4_DISPEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 	monster_name(t_idx, t_name);
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’åŠ›å¼·ãã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles powerfully."),
-		_("%^sãŒé­”åŠ›æ¶ˆå»ã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a dispel magic."),
-		_("%^sãŒ%sã«å¯¾ã—ã¦é­”åŠ›æ¶ˆå»ã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a dispel magic at %s."),
+		_("%^s¤¬²¿¤«¤òÎÏ¶¯¤¯¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles powerfully."),
+		_("%^s¤¬ËâÎÏ¾Ãµî¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a dispel magic."),
+		_("%^s¤¬%s¤ËÂĞ¤·¤ÆËâÎÏ¾Ãµî¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a dispel magic at %s."),
 		TARGET_TYPE);
 
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
@@ -228,7 +228,7 @@ void spell_RF4_DISPEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		if (p_ptr->riding) dispel_monster_status(p_ptr->riding);
 
 		if ((p_ptr->pseikaku == SEIKAKU_COMBAT) || (inventory[INVEN_BOW].name1 == ART_CRIMSON))
-			msg_print(_("ã‚„ã‚Šã‚„ãŒã£ãŸãªï¼", ""));
+			msg_print(_("¤ä¤ê¤ä¤¬¤Ã¤¿¤Ê¡ª", ""));
 
 		learn_spell(MS_DISPEL);
 	}
@@ -240,22 +240,22 @@ void spell_RF4_DISPEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF4_ROCKETã®å‡¦ç†ã€‚ãƒ­ã‚±ãƒƒãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF4_ROCKET¤Î½èÍı¡£¥í¥±¥Ã¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF4_ROCKET(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’å°„ã£ãŸã€‚", "%^s shoots something."),
-		_("%^sãŒãƒ­ã‚±ãƒƒãƒˆã‚’ç™ºå°„ã—ãŸã€‚", "%^s fires a rocket."),
-		_("%^sãŒ%sã«ãƒ­ã‚±ãƒƒãƒˆã‚’ç™ºå°„ã—ãŸã€‚", "%^s fires a rocket at %s."),
+		_("%^s¤¬²¿¤«¤ò¼Í¤Ã¤¿¡£", "%^s shoots something."),
+		_("%^s¤¬¥í¥±¥Ã¥È¤òÈ¯¼Í¤·¤¿¡£", "%^s fires a rocket."),
+		_("%^s¤¬%s¤Ë¥í¥±¥Ã¥È¤òÈ¯¼Í¤·¤¿¡£", "%^s fires a rocket at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_ROCKET), m_idx, DAM_ROLL);
@@ -266,22 +266,22 @@ HIT_POINT spell_RF4_ROCKET(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 }
 
 /*!
-* @brief RF4_SHOOTã®å‡¦ç†ã€‚å°„æ’ƒã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF4_SHOOT¤Î½èÍı¡£¼Í·â¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF4_SHOOT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒå¥‡å¦™ãªéŸ³ã‚’ç™ºã—ãŸã€‚", "%^s makes a strange noise."),
-		_("%^sãŒçŸ¢ã‚’æ”¾ã£ãŸã€‚", "%^s fires an arrow."),
-		_("%^sãŒ%sã«çŸ¢ã‚’æ”¾ã£ãŸã€‚", "%^s fires an arrow at %s."),
+		_("%^s¤¬´ñÌ¯¤Ê²»¤òÈ¯¤·¤¿¡£", "%^s makes a strange noise."),
+		_("%^s¤¬Ìğ¤òÊü¤Ã¤¿¡£", "%^s fires an arrow."),
+		_("%^s¤¬%s¤ËÌğ¤òÊü¤Ã¤¿¡£", "%^s fires an arrow at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_SHOOT), m_idx, DAM_ROLL);
@@ -292,14 +292,14 @@ HIT_POINT spell_RF4_SHOOT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,i
 }
 
 /*!
-* @brief RF4_BR_*ã®å‡¦ç†ã€‚å„ç¨®ãƒ–ãƒ¬ã‚¹ã€‚ /
-* @param GF_TYPE ãƒ–ãƒ¬ã‚¹ã®å±æ€§
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF4_BR_*¤Î½èÍı¡£³Æ¼ï¥Ö¥ì¥¹¡£ /
+* @param GF_TYPE ¥Ö¥ì¥¹¤ÎÂ°À­
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF4_BREATH(int GF_TYPE, POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -319,140 +319,140 @@ HIT_POINT spell_RF4_BREATH(int GF_TYPE, POSITION y, POSITION x, MONSTER_IDX m_id
 	{
 	case GF_ACID:
 		dam = monspell_damage((MS_BR_ACID), m_idx, DAM_ROLL);
-		type_s = _("é…¸", "acid");
+		type_s = _("»À", "acid");
 		ms_type = MS_BR_ACID;
 		drs_type = DRS_ACID;
 		break;
 	case GF_ELEC:
 		dam = monspell_damage((MS_BR_ELEC), m_idx, DAM_ROLL);
-		type_s = _("ç¨²å¦»", "lightning");
+		type_s = _("°ğºÊ", "lightning");
 		ms_type = MS_BR_ELEC;
 		drs_type = DRS_ELEC;
 		break;
 	case GF_FIRE:
 		dam = monspell_damage((MS_BR_FIRE), m_idx, DAM_ROLL);
-		type_s = _("ç«ç‚", "fire");
+		type_s = _("²Ğ±ê", "fire");
 		ms_type = MS_BR_FIRE;
 		drs_type = DRS_FIRE;
 		break;
 	case GF_COLD:
 		dam = monspell_damage((MS_BR_COLD), m_idx, DAM_ROLL);
-		type_s = _("å†·æ°—", "frost");
+		type_s = _("Îäµ¤", "frost");
 		ms_type = MS_BR_COLD;
 		drs_type = DRS_COLD;
 		break;
 	case GF_POIS:
 		dam = monspell_damage((MS_BR_POIS), m_idx, DAM_ROLL);
-		type_s = _("ã‚¬ã‚¹", "gas");
+		type_s = _("¥¬¥¹", "gas");
 		ms_type = MS_BR_POIS;
 		drs_type = DRS_POIS;
 		break;
 	case GF_NETHER:
 		dam = monspell_damage((MS_BR_NETHER), m_idx, DAM_ROLL);
-		type_s = _("åœ°ç„", "nether");
+		type_s = _("ÃÏ¹ö", "nether");
 		ms_type = MS_BR_NETHER;
 		drs_type = DRS_NETH;
 		break;
 	case GF_LITE:
 		dam = monspell_damage((MS_BR_LITE), m_idx, DAM_ROLL);
-		type_s = _("é–ƒå…‰", "light");
+		type_s = _("Á®¸÷", "light");
 		ms_type = MS_BR_LITE;
 		drs_type = DRS_LITE;
 		break;
 	case GF_DARK:
 		dam = monspell_damage((MS_BR_DARK), m_idx, DAM_ROLL);
-		type_s = _("æš—é»’", "darkness");
+		type_s = _("°Å¹õ", "darkness");
 		ms_type = MS_BR_DARK;
 		drs_type = DRS_DARK;
 		break;
 	case GF_CONFUSION:
 		dam = monspell_damage((MS_BR_CONF), m_idx, DAM_ROLL);
-		type_s = _("æ··ä¹±", "confusion");
+		type_s = _("º®Íğ", "confusion");
 		ms_type = MS_BR_CONF;
 		drs_type = DRS_CONF;
 		break;
 	case GF_SOUND:
 		dam = monspell_damage((MS_BR_SOUND), m_idx, DAM_ROLL);
-		type_s = _("è½ŸéŸ³", "sound");
+		type_s = _("¹ì²»", "sound");
 		ms_type = MS_BR_SOUND;
 		drs_type = DRS_SOUND;
 		break;
 	case GF_CHAOS:
 		dam = monspell_damage((MS_BR_CHAOS), m_idx, DAM_ROLL);
-		type_s = _("ã‚«ã‚ªã‚¹", "chaos");
+		type_s = _("¥«¥ª¥¹", "chaos");
 		ms_type = MS_BR_CHAOS;
 		drs_type = DRS_CHAOS;
 		break;
 	case GF_DISENCHANT:
 		dam = monspell_damage((MS_BR_DISEN), m_idx, DAM_ROLL);
-		type_s = _("åŠ£åŒ–", "disenchantment");
+		type_s = _("Îô²½", "disenchantment");
 		ms_type = MS_BR_DISEN;
 		drs_type = DRS_DISEN;
 		break;
 	case GF_NEXUS:
 		dam = monspell_damage((MS_BR_NEXUS), m_idx, DAM_ROLL);
-		type_s = _("å› æœæ··ä¹±", "nexus");
+		type_s = _("°ø²Ìº®Íğ", "nexus");
 		ms_type = MS_BR_NEXUS;
 		drs_type = DRS_NEXUS;
 		break;
 	case GF_TIME:
 		dam = monspell_damage((MS_BR_TIME), m_idx, DAM_ROLL);
-		type_s = _("æ™‚é–“é€†è»¢", "time");
+		type_s = _("»ş´ÖµÕÅ¾", "time");
 		ms_type = MS_BR_TIME;
 		smart_learn_aux = FALSE;
 		break;
 	case GF_INERTIAL:
 		dam = monspell_damage((MS_BR_INERTIA), m_idx, DAM_ROLL);
-		type_s = _("é…éˆ", "inertia");
+		type_s = _("ÃÙÆß", "inertia");
 		ms_type = MS_BR_INERTIA;
 		smart_learn_aux = FALSE;
 		break;
 	case GF_GRAVITY:
 		dam = monspell_damage((MS_BR_GRAVITY), m_idx, DAM_ROLL);
-		type_s = _("é‡åŠ›", "gravity");
+		type_s = _("½ÅÎÏ", "gravity");
 		ms_type = MS_BR_GRAVITY;
 		smart_learn_aux = FALSE;
 		break;
 	case GF_SHARDS:
 		dam = monspell_damage((MS_BR_SHARDS), m_idx, DAM_ROLL);
-		type_s = _("ç ´ç‰‡", "shards");
+		type_s = _("ÇËÊÒ", "shards");
 		ms_type = MS_BR_SHARDS;
 		drs_type = DRS_SHARD;
 		break;
 	case GF_PLASMA:
 		dam = monspell_damage((MS_BR_PLASMA), m_idx, DAM_ROLL);
-		type_s = _("ãƒ—ãƒ©ã‚ºãƒ", "plasma");
+		type_s = _("¥×¥é¥º¥Ş", "plasma");
 		ms_type = MS_BR_PLASMA;
 		smart_learn_aux = FALSE;
 		break;
 	case GF_FORCE:
 		dam = monspell_damage((MS_BR_FORCE), m_idx, DAM_ROLL);
-		type_s = _("ãƒ•ã‚©ãƒ¼ã‚¹", "force");
+		type_s = _("¥Õ¥©¡¼¥¹", "force");
 		ms_type = MS_BR_FORCE;
 		smart_learn_aux = FALSE;
 		break;
 	case GF_MANA:
 		dam = monspell_damage((MS_BR_MANA), m_idx, DAM_ROLL);
-		type_s = _("é­”åŠ›", "mana");
+		type_s = _("ËâÎÏ", "mana");
 		ms_type = MS_BR_MANA;
 		smart_learn_aux = FALSE;
 		break;
 	case GF_NUKE:
 		dam = monspell_damage((MS_BR_NUKE), m_idx, DAM_ROLL);
-		type_s = _("æ”¾å°„æ€§å»ƒæ£„ç‰©", "toxic waste");
+		type_s = _("Êü¼ÍÀ­ÇÑ´şÊª", "toxic waste");
 		ms_type = MS_BR_NUKE;
 		drs_type = DRS_POIS;
 		break;
 	case GF_DISINTEGRATE:
 		dam = monspell_damage((MS_BR_DISI), m_idx, DAM_ROLL);
-		type_s = _("åˆ†è§£", "disintegration");
+		type_s = _("Ê¬²ò", "disintegration");
 		ms_type = MS_BR_DISI;
 		smart_learn_aux = FALSE;
 		break;
 	default:
 		/* Do not reach here */
 		dam = 0;
-		type_s = _("ä¸æ˜", "Unknown");
+		type_s = _("ÉÔÌÀ", "Unknown");
 		ms_type = MS_BR_ACID;
 		smart_learn_aux = FALSE;
 		break;
@@ -463,26 +463,26 @@ HIT_POINT spell_RF4_BREATH(int GF_TYPE, POSITION y, POSITION x, MONSTER_IDX m_id
 
 	if (m_ptr->r_idx == MON_JAIAN && GF_TYPE == GF_SOUND)
 	{
-		msg_format(_("ã€Œãƒœã‚©ã‚¨ï½ï½ï½ï½ï½ï½ã€", "'Booooeeeeee'"));
+		msg_format(_("¡Ö¥Ü¥©¥¨¡Á¡Á¡Á¡Á¡Á¡Á¡×", "'Booooeeeeee'"));
 	}
 	else if (m_ptr->r_idx == MON_BOTEI && GF_TYPE == GF_SHARDS)
 	{
-		msg_format(_("ã€Œãƒœå¸ãƒ“ãƒ«ã‚«ãƒƒã‚¿ãƒ¼ï¼ï¼ï¼ã€", "'Boty-Build cutter!!!'"));
+		msg_format(_("¡Ö¥ÜÄë¥Ó¥ë¥«¥Ã¥¿¡¼¡ª¡ª¡ª¡×", "'Boty-Build cutter!!!'"));
 	}
 	else if (p_ptr->blind)
 	{
 		if (mon_to_player || (mon_to_mon && known && see_either))
-			msg_format(_("%^sãŒä½•ã‹ã®ãƒ–ãƒ¬ã‚¹ã‚’åã„ãŸã€‚", "%^s breathes."), m_name);
+			msg_format(_("%^s¤¬²¿¤«¤Î¥Ö¥ì¥¹¤òÅÇ¤¤¤¿¡£", "%^s breathes."), m_name);
 	}
 	else
 	{
 		if (mon_to_player)
 		{
-			msg_format(_("%^sãŒ%^sã®ãƒ–ãƒ¬ã‚¹ã‚’åã„ãŸã€‚", "%^s breathes %^s."), m_name, type_s);
+			msg_format(_("%^s¤¬%^s¤Î¥Ö¥ì¥¹¤òÅÇ¤¤¤¿¡£", "%^s breathes %^s."), m_name, type_s);
 		}
 		else if (mon_to_mon && known && see_either)
 		{
-			_(msg_format("%^sãŒ%^sã«%^sã®ãƒ–ãƒ¬ã‚¹ã‚’åã„ãŸã€‚", m_name, t_name, type_s),
+			_(msg_format("%^s¤¬%^s¤Ë%^s¤Î¥Ö¥ì¥¹¤òÅÇ¤¤¤¿¡£", m_name, t_name, type_s),
 			  msg_format("%^s breathes %^s at %^s.", m_name, type_s, t_name));
 		}
 	}
@@ -499,22 +499,22 @@ HIT_POINT spell_RF4_BREATH(int GF_TYPE, POSITION y, POSITION x, MONSTER_IDX m_id
 }
 
 /*!
-* @brief RF4_BA_NUKEã®å‡¦ç†ã€‚æ”¾å°„èƒ½çƒã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF4_BA_NUKE¤Î½èÍı¡£Êü¼ÍÇ½µå¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF4_BA_NUKE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒæ”¾å°„èƒ½çƒã‚’æ”¾ã£ãŸã€‚", "%^s casts a ball of radiation."),
-		_("%^sãŒ%sã«æ”¾å°„èƒ½çƒã‚’æ”¾ã£ãŸã€‚", "%^s casts a ball of radiation at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬Êü¼ÍÇ½µå¤òÊü¤Ã¤¿¡£", "%^s casts a ball of radiation."),
+		_("%^s¤¬%s¤ËÊü¼ÍÇ½µå¤òÊü¤Ã¤¿¡£", "%^s casts a ball of radiation at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BALL_NUKE), m_idx, DAM_ROLL);
@@ -526,22 +526,22 @@ HIT_POINT spell_RF4_BA_NUKE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF4_BA_CHAOã®å‡¦ç†ã€‚ç´”ãƒ­ã‚°ãƒ«ã‚¹ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF4_BA_CHAO¤Î½èÍı¡£½ã¥í¥°¥ë¥¹¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF4_BA_CHAO(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒæã‚ã—ã’ã«ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles frighteningly."),
-		_("%^sãŒç´”ãƒ­ã‚°ãƒ«ã‚¹ã‚’æ”¾ã£ãŸã€‚", "%^s invokes a raw Logrus."),
-		_("%^sãŒ%sã«ç´”ãƒ­ã‚°ãƒ«ã‚¹ã‚’æ”¾ã£ãŸã€‚", "%^s invokes raw Logrus upon %s."),
+		_("%^s¤¬¶²¤í¤·¤²¤Ë¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles frighteningly."),
+		_("%^s¤¬½ã¥í¥°¥ë¥¹¤òÊü¤Ã¤¿¡£", "%^s invokes a raw Logrus."),
+		_("%^s¤¬%s¤Ë½ã¥í¥°¥ë¥¹¤òÊü¤Ã¤¿¡£", "%^s invokes raw Logrus upon %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BALL_CHAOS), m_idx, DAM_ROLL);
@@ -553,22 +553,22 @@ HIT_POINT spell_RF4_BA_CHAO(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_ACIDã®å‡¦ç†ã€‚ã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ¼ãƒ«ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_ACID¤Î½èÍı¡£¥¢¥·¥Ã¥É¡¦¥Ü¡¼¥ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_ACID(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam, rad;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts an acid ball."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚",
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥¢¥·¥Ã¥É¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts an acid ball."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥¢¥·¥Ã¥É¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£",
 		  "%^s casts an acid ball at %s."),
 		TARGET_TYPE);
 
@@ -582,22 +582,22 @@ HIT_POINT spell_RF5_BA_ACID(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_ELECã®å‡¦ç†ã€‚ã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ¼ãƒ«ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_ELEC¤Î½èÍı¡£¥µ¥ó¥À¡¼¡¦¥Ü¡¼¥ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_ELEC(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam, rad;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a lightning ball."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", 
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥µ¥ó¥À¡¼¡¦¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a lightning ball."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥µ¥ó¥À¡¼¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", 
 		  "%^s casts a lightning ball at %s."),
 		TARGET_TYPE);
 
@@ -611,13 +611,13 @@ HIT_POINT spell_RF5_BA_ELEC(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_FIREã®å‡¦ç†ã€‚ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ¼ãƒ«ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_FIRE¤Î½èÍı¡£¥Õ¥¡¥¤¥¢¡¦¥Ü¡¼¥ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -627,17 +627,17 @@ HIT_POINT spell_RF5_BA_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 	if (m_ptr->r_idx == MON_ROLENTO)
 	{
 		monspell_message(m_idx, t_idx,
-			_("%sãŒä½•ã‹ã‚’æŠ•ã’ãŸã€‚", "%^s throws something."),
-			_("%sã¯æ‰‹æ¦´å¼¾ã‚’æŠ•ã’ãŸã€‚", "%^s throws a hand grenade."),
-			_("%^sãŒ%^sã«å‘ã‹ã£ã¦æ‰‹æ¦´å¼¾ã‚’æŠ•ã’ãŸã€‚", "%^s throws a hand grenade."),
+			_("%s¤¬²¿¤«¤òÅê¤²¤¿¡£", "%^s throws something."),
+			_("%s¤Ï¼êÜØÃÆ¤òÅê¤²¤¿¡£", "%^s throws a hand grenade."),
+			_("%^s¤¬%^s¤Ë¸ş¤«¤Ã¤Æ¼êÜØÃÆ¤òÅê¤²¤¿¡£", "%^s throws a hand grenade."),
 			TARGET_TYPE);
 	}
 	else
 	{
 		monspell_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a fire ball."),
-			_("%^sãŒ%sã«å‘ã‹ã£ã¦ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚",
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬¥Õ¥¡¥¤¥¢¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a fire ball."),
+			_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥Õ¥¡¥¤¥¢¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£",
 			"%^s casts a fire ball at %s."),
 			TARGET_TYPE);
 	}
@@ -651,22 +651,22 @@ HIT_POINT spell_RF5_BA_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_COLDã®å‡¦ç†ã€‚ã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ¼ãƒ«ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_COLD¤Î½èÍı¡£¥¢¥¤¥¹¡¦¥Ü¡¼¥ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_COLD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam, rad;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a frost ball."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚",
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥¢¥¤¥¹¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a frost ball."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥¢¥¤¥¹¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£",
 		"%^s casts a frost ball at %s."),
 		TARGET_TYPE);
 
@@ -680,22 +680,22 @@ HIT_POINT spell_RF5_BA_COLD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_POISã®å‡¦ç†ã€‚æ‚ªè‡­é›²ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_POIS¤Î½èÍı¡£°­½­±À¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_POIS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒæ‚ªè‡­é›²ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a stinking cloud."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦æ‚ªè‡­é›²ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a stinking cloud at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬°­½­±À¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a stinking cloud."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ°­½­±À¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a stinking cloud at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BALL_POIS), m_idx, DAM_ROLL);
@@ -707,22 +707,22 @@ HIT_POINT spell_RF5_BA_POIS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_NETHã®å‡¦ç†ã€‚åœ°ç„çƒã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_NETH¤Î½èÍı¡£ÃÏ¹öµå¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_NETH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒåœ°ç„çƒã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a nether ball."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦åœ°ç„çƒã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a nether ball at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ÃÏ¹öµå¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a nether ball."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤ÆÃÏ¹öµå¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a nether ball at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BALL_NETHER), m_idx, DAM_ROLL);
@@ -734,13 +734,13 @@ HIT_POINT spell_RF5_BA_NETH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_WATEã®å‡¦ç†ã€‚ã‚¦ã‚©ãƒ¼ã‚¿ãƒ¼ãƒ»ãƒœãƒ¼ãƒ«ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_WATE¤Î½èÍı¡£¥¦¥©¡¼¥¿¡¼¡¦¥Ü¡¼¥ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -754,18 +754,18 @@ HIT_POINT spell_RF5_BA_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒæµã‚Œã‚‹ã‚ˆã†ãªèº«æŒ¯ã‚Šã‚’ã—ãŸã€‚", "%^s gestures fluidly."),
-		_("%^sãŒ%sã«å¯¾ã—ã¦æµã‚Œã‚‹ã‚ˆã†ãªèº«æŒ¯ã‚Šã‚’ã—ãŸã€‚", "%^s gestures fluidly at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬Î®¤ì¤ë¤è¤¦¤Ê¿È¿¶¤ê¤ò¤·¤¿¡£", "%^s gestures fluidly."),
+		_("%^s¤¬%s¤ËÂĞ¤·¤ÆÎ®¤ì¤ë¤è¤¦¤Ê¿È¿¶¤ê¤ò¤·¤¿¡£", "%^s gestures fluidly at %s."),
 		TARGET_TYPE);
 
 	if (mon_to_player)
 	{
-		msg_format(_("ã‚ãªãŸã¯æ¸¦å·»ãã«é£²ã¿è¾¼ã¾ã‚ŒãŸã€‚", "You are engulfed in a whirlpool."));
+		msg_format(_("¤¢¤Ê¤¿¤Ï±²´¬¤­¤Ë°û¤ß¹ş¤Ş¤ì¤¿¡£", "You are engulfed in a whirlpool."));
 	}
 	else if (mon_to_mon && known && see_either && !p_ptr->blind)
 	{
-		msg_format(_("%^sã¯æ¸¦å·»ã«é£²ã¿è¾¼ã¾ã‚ŒãŸã€‚", "%^s is engulfed in a whirlpool."), t_name);
+		msg_format(_("%^s¤Ï±²´¬¤Ë°û¤ß¹ş¤Ş¤ì¤¿¡£", "%^s is engulfed in a whirlpool."), t_name);
 	}
 
 	dam = monspell_damage((MS_BALL_WATER), m_idx, DAM_ROLL);
@@ -774,22 +774,22 @@ HIT_POINT spell_RF5_BA_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_MANAã®å‡¦ç†ã€‚é­”åŠ›ã®åµã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_MANA¤Î½èÍı¡£ËâÎÏ¤ÎÍò¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’åŠ›å¼·ãã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles powerfully."),
-		_("%^sãŒé­”åŠ›ã®åµã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a mana storm."),
-		_("%^sãŒ%sã«å¯¾ã—ã¦é­”åŠ›ã®åµã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a mana storm upon %s."),
+		_("%^s¤¬²¿¤«¤òÎÏ¶¯¤¯¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles powerfully."),
+		_("%^s¤¬ËâÎÏ¤ÎÍò¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a mana storm."),
+		_("%^s¤¬%s¤ËÂĞ¤·¤ÆËâÎÏ¤ÎÍò¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a mana storm upon %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BALL_MANA), m_idx, DAM_ROLL);
@@ -798,22 +798,22 @@ HIT_POINT spell_RF5_BA_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_DARKã®å‡¦ç†ã€‚æš—é»’ã®åµã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_DARK¤Î½èÍı¡£°Å¹õ¤ÎÍò¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_DARK(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’åŠ›å¼·ãã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles powerfully."),
-		_("%^sãŒæš—é»’ã®åµã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a darkness storm."),
-		_("%^sãŒ%sã«å¯¾ã—ã¦æš—é»’ã®åµã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a darkness storm upon %s."),
+		_("%^s¤¬²¿¤«¤òÎÏ¶¯¤¯¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles powerfully."),
+		_("%^s¤¬°Å¹õ¤ÎÍò¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a darkness storm."),
+		_("%^s¤¬%s¤ËÂĞ¤·¤Æ°Å¹õ¤ÎÍò¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a darkness storm upon %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BALL_DARK), m_idx, DAM_ROLL);
@@ -825,13 +825,13 @@ HIT_POINT spell_RF5_BA_DARK(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_DRAIN_MANAã®å‡¦ç†ã€‚é­”åŠ›å¸åã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_DRAIN_MANA¤Î½èÍı¡£ËâÎÏµÛ¼ı¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_DRAIN_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -848,7 +848,7 @@ HIT_POINT spell_RF5_DRAIN_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_
 	else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
 	{ 
 		/* Basic message */
-		msg_format(_("%^sã¯ç²¾ç¥ã‚¨ãƒãƒ«ã‚®ãƒ¼ã‚’%sã‹ã‚‰å¸ã„ã¨ã£ãŸã€‚", "%^s draws psychic energy from %s."), m_name, t_name);
+		msg_format(_("%^s¤ÏÀº¿À¥¨¥Í¥ë¥®¡¼¤ò%s¤«¤éµÛ¤¤¤È¤Ã¤¿¡£", "%^s draws psychic energy from %s."), m_name, t_name);
 	}
 
 	dam = monspell_damage((MS_DRAIN_MANA), m_idx, DAM_ROLL);
@@ -860,13 +860,13 @@ HIT_POINT spell_RF5_DRAIN_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_
 }
 
 /*!
-* @brief RF5_MIND_BLASTã®å‡¦ç†ã€‚ç²¾ç¥æ”»æ’ƒã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_MIND_BLAST¤Î½èÍı¡£Àº¿À¹¶·â¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_MIND_BLAST(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -882,13 +882,13 @@ HIT_POINT spell_RF5_MIND_BLAST(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_
 	{
 		disturb(1, 1);
 		if (!seen)
-			msg_print(_("ä½•ã‹ãŒã‚ãªãŸã®ç²¾ç¥ã«å¿µã‚’æ”¾ã£ã¦ã„ã‚‹ã‚ˆã†ã ã€‚", "You feel something focusing on your mind."));
+			msg_print(_("²¿¤«¤¬¤¢¤Ê¤¿¤ÎÀº¿À¤ËÇ°¤òÊü¤Ã¤Æ¤¤¤ë¤è¤¦¤À¡£", "You feel something focusing on your mind."));
 		else
-			msg_format(_("%^sãŒã‚ãªãŸã®ç³ã‚’ã˜ã£ã¨ã«ã‚‰ã‚“ã§ã„ã‚‹ã€‚", "%^s gazes deep into your eyes."), m_name);
+			msg_format(_("%^s¤¬¤¢¤Ê¤¿¤ÎÆ·¤ò¤¸¤Ã¤È¤Ë¤é¤ó¤Ç¤¤¤ë¡£", "%^s gazes deep into your eyes."), m_name);
 	}
 	else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
 	{
-		msg_format(_("%^sã¯%sã‚’ã˜ã£ã¨ç¨ã‚“ã ã€‚", "%^s gazes intently at %s."), m_name, t_name);
+		msg_format(_("%^s¤Ï%s¤ò¤¸¤Ã¤ÈâË¤ó¤À¡£", "%^s gazes intently at %s."), m_name, t_name);
 	}
 
 	dam = monspell_damage((MS_MIND_BLAST), m_idx, DAM_ROLL);
@@ -897,13 +897,13 @@ HIT_POINT spell_RF5_MIND_BLAST(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_
 }
 
 /*!
-* @brief RF5_BRAIN_SMASHã®å‡¦ç†ã€‚è„³æ”»æ’ƒã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BRAIN_SMASH¤Î½èÍı¡£Ç¾¹¶·â¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BRAIN_SMASH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -919,13 +919,13 @@ HIT_POINT spell_RF5_BRAIN_SMASH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t
 	{
 		disturb(1, 1);
 		if (!seen)
-			msg_print(_("ä½•ã‹ãŒã‚ãªãŸã®ç²¾ç¥ã«å¿µã‚’æ”¾ã£ã¦ã„ã‚‹ã‚ˆã†ã ã€‚", "You feel something focusing on your mind."));
+			msg_print(_("²¿¤«¤¬¤¢¤Ê¤¿¤ÎÀº¿À¤ËÇ°¤òÊü¤Ã¤Æ¤¤¤ë¤è¤¦¤À¡£", "You feel something focusing on your mind."));
 		else
-			msg_format(_("%^sãŒã‚ãªãŸã®ç³ã‚’ã˜ã£ã¨ã«ã‚‰ã‚“ã§ã„ã‚‹ã€‚", "%^s gazes deep into your eyes."), m_name);
+			msg_format(_("%^s¤¬¤¢¤Ê¤¿¤ÎÆ·¤ò¤¸¤Ã¤È¤Ë¤é¤ó¤Ç¤¤¤ë¡£", "%^s gazes deep into your eyes."), m_name);
 	}
 	else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
 	{
-		msg_format(_("%^sã¯%sã‚’ã˜ã£ã¨ç¨ã‚“ã ã€‚", "%^s gazes intently at %s."), m_name, t_name);
+		msg_format(_("%^s¤Ï%s¤ò¤¸¤Ã¤ÈâË¤ó¤À¡£", "%^s gazes intently at %s."), m_name, t_name);
 	}
 
 	dam = monspell_damage((MS_BRAIN_SMASH), m_idx, DAM_ROLL);
@@ -934,19 +934,19 @@ HIT_POINT spell_RF5_BRAIN_SMASH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t
 }
 
 /*!
-* @brief RF5_CAUSE_*ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•° /
-* @param GF_TYPE æ”»æ’ƒã«ä½¿ç”¨ã™ã‚‹å±æ€§
-* @param dam æ”»æ’ƒã«ä½¿ç”¨ã™ã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param msg1 å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€ç›²ç›®æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param msg2 å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€éç›²ç›®æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param msg3 å¯¾ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
-* @param MS_TYPE å‘ªæ–‡ã®ç•ªå·
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_CAUSE_*¤Î¥á¥Ã¥»¡¼¥¸½èÍı´Ø¿ô /
+* @param GF_TYPE ¹¶·â¤Ë»ÈÍÑ¤¹¤ëÂ°À­
+* @param dam ¹¶·â¤Ë»ÈÍÑ¤¹¤ë¥À¥á¡¼¥¸ÎÌ
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param msg1 ÂĞ¥×¥ì¥¤¥ä¡¼¡¢ÌÕÌÜ»ş¥á¥Ã¥»¡¼¥¸
+* @param msg2 ÂĞ¥×¥ì¥¤¥ä¡¼¡¢ÈóÌÕÌÜ»ş¥á¥Ã¥»¡¼¥¸
+* @param msg3 ÂĞ¥â¥ó¥¹¥¿¡¼¤Î¥á¥Ã¥»¡¼¥¸
+* @param MS_TYPE ¼öÊ¸¤ÎÈÖ¹æ
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 void spell_RF5_CAUSE(int GF_TYPE, HIT_POINT dam, POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, int MS_TYPE, int TARGET_TYPE)
 {
@@ -977,13 +977,13 @@ void spell_RF5_CAUSE(int GF_TYPE, HIT_POINT dam, POSITION y, POSITION x, MONSTER
 }
 
 /*!
-* @brief RF5_CAUSE_1ã®å‡¦ç†ã€‚è»½å‚·ã®å‘ªã„ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_CAUSE_1¤Î½èÍı¡£·Ú½ı¤Î¼ö¤¤¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_CAUSE_1(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -991,22 +991,22 @@ HIT_POINT spell_RF5_CAUSE_1(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 	HIT_POINT dam;
 	dam = monspell_damage((MS_CAUSE_1), m_idx, DAM_ROLL);
 
-	msg1 = _("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles.");
-	msg2 = _("%^sãŒã‚ãªãŸã‚’æŒ‡ã•ã—ã¦å‘ªã£ãŸã€‚", "%^s points at you and curses.");
-	msg3 = _("%^sã¯%sã‚’æŒ‡ã•ã—ã¦å‘ªã„ã‚’ã‹ã‘ãŸã€‚", "%^s points at %s and curses.");
+	msg1 = _("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles.");
+	msg2 = _("%^s¤¬¤¢¤Ê¤¿¤ò»Ø¤µ¤·¤Æ¼ö¤Ã¤¿¡£", "%^s points at you and curses.");
+	msg3 = _("%^s¤Ï%s¤ò»Ø¤µ¤·¤Æ¼ö¤¤¤ò¤«¤±¤¿¡£", "%^s points at %s and curses.");
 	
 	spell_RF5_CAUSE(GF_CAUSE_1, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_1, TARGET_TYPE);
 	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_2ã®å‡¦ç†ã€‚é‡å‚·ã®å‘ªã„ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_CAUSE_2¤Î½èÍı¡£½Å½ı¤Î¼ö¤¤¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_CAUSE_2(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1014,22 +1014,22 @@ HIT_POINT spell_RF5_CAUSE_2(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 	HIT_POINT dam;
 	dam = monspell_damage((MS_CAUSE_2), m_idx, DAM_ROLL);
 
-	msg1 = _("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles.");
-	msg2 = _("%^sãŒã‚ãªãŸã‚’æŒ‡ã•ã—ã¦æã‚ã—ã’ã«å‘ªã£ãŸã€‚", "%^s points at you and curses horribly.");
-	msg3 = _("%^sã¯%sã‚’æŒ‡ã•ã—ã¦æã‚ã—ã’ã«å‘ªã„ã‚’ã‹ã‘ãŸã€‚", "%^s points at %s and curses horribly.");
+	msg1 = _("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles.");
+	msg2 = _("%^s¤¬¤¢¤Ê¤¿¤ò»Ø¤µ¤·¤Æ¶²¤í¤·¤²¤Ë¼ö¤Ã¤¿¡£", "%^s points at you and curses horribly.");
+	msg3 = _("%^s¤Ï%s¤ò»Ø¤µ¤·¤Æ¶²¤í¤·¤²¤Ë¼ö¤¤¤ò¤«¤±¤¿¡£", "%^s points at %s and curses horribly.");
 
 	spell_RF5_CAUSE(GF_CAUSE_2, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_2, TARGET_TYPE);
 	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_3ã®å‡¦ç†ã€‚è‡´å‘½å‚·ã®å‘ªã„ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_CAUSE_3¤Î½èÍı¡£Ã×Ì¿½ı¤Î¼ö¤¤¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_CAUSE_3(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1037,22 +1037,22 @@ HIT_POINT spell_RF5_CAUSE_3(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 	HIT_POINT dam;
 	dam = monspell_damage((MS_CAUSE_3), m_idx, DAM_ROLL);
 
-	msg1 = _("%^sãŒä½•ã‹ã‚’å¤§å£°ã§å«ã‚“ã ã€‚", "%^s mumbles loudly.");
-	msg2 = _("%^sãŒã‚ãªãŸã‚’æŒ‡ã•ã—ã¦æã‚ã—ã’ã«å‘ªæ–‡ã‚’å”±ãˆãŸï¼", "%^s points at you, incanting terribly!");
-	msg3 = _("%^sã¯%sã‚’æŒ‡ã•ã—ã€æã‚ã—ã’ã«å‘ªæ–‡ã‚’å”±ãˆãŸï¼", "%^s points at %s, incanting terribly!");
+	msg1 = _("%^s¤¬²¿¤«¤òÂçÀ¼¤Ç¶«¤ó¤À¡£", "%^s mumbles loudly.");
+	msg2 = _("%^s¤¬¤¢¤Ê¤¿¤ò»Ø¤µ¤·¤Æ¶²¤í¤·¤²¤Ë¼öÊ¸¤ò¾§¤¨¤¿¡ª", "%^s points at you, incanting terribly!");
+	msg3 = _("%^s¤Ï%s¤ò»Ø¤µ¤·¡¢¶²¤í¤·¤²¤Ë¼öÊ¸¤ò¾§¤¨¤¿¡ª", "%^s points at %s, incanting terribly!");
 
 	spell_RF5_CAUSE(GF_CAUSE_3, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_3, TARGET_TYPE);
 	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_4ã®å‡¦ç†ã€‚ç§˜å­”ã‚’çªãã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_CAUSE_4¤Î½èÍı¡£Èë¹¦¤òÆÍ¤¯¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_CAUSE_4(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1060,31 +1060,31 @@ HIT_POINT spell_RF5_CAUSE_4(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 	HIT_POINT dam;
 	dam = monspell_damage((MS_CAUSE_4), m_idx, DAM_ROLL);
 
-	msg1 = _("%^sãŒã€ŒãŠå‰ã¯æ—¢ã«æ­»ã‚“ã§ã„ã‚‹ã€ã¨å«ã‚“ã ã€‚", "%^s screams the word 'DIE!'");
-	msg2 = _("%^sãŒã‚ãªãŸã®ç§˜å­”ã‚’çªã„ã¦ã€ŒãŠå‰ã¯æ—¢ã«æ­»ã‚“ã§ã„ã‚‹ã€ã¨å«ã‚“ã ã€‚", "%^s points at you, screaming the word DIE!");
-	msg3 = _("%^sãŒ%sã®ç§˜å­”ã‚’çªã„ã¦ã€ã€ŒãŠå‰ã¯æ—¢ã«æ­»ã‚“ã§ã„ã‚‹ã€ã¨å«ã‚“ã ã€‚", "%^s points at %s, screaming the word, 'DIE!'");
+	msg1 = _("%^s¤¬¡Ö¤ªÁ°¤Ï´û¤Ë»à¤ó¤Ç¤¤¤ë¡×¤È¶«¤ó¤À¡£", "%^s screams the word 'DIE!'");
+	msg2 = _("%^s¤¬¤¢¤Ê¤¿¤ÎÈë¹¦¤òÆÍ¤¤¤Æ¡Ö¤ªÁ°¤Ï´û¤Ë»à¤ó¤Ç¤¤¤ë¡×¤È¶«¤ó¤À¡£", "%^s points at you, screaming the word DIE!");
+	msg3 = _("%^s¤¬%s¤ÎÈë¹¦¤òÆÍ¤¤¤Æ¡¢¡Ö¤ªÁ°¤Ï´û¤Ë»à¤ó¤Ç¤¤¤ë¡×¤È¶«¤ó¤À¡£", "%^s points at %s, screaming the word, 'DIE!'");
 
 	spell_RF5_CAUSE(GF_CAUSE_4, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_4, TARGET_TYPE);
 	return dam;
 }
 
 /*!
-* @brief RF5_BO_ACIDã®å‡¦ç†ã€‚ã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ«ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_ACID¤Î½èÍı¡£¥¢¥·¥Ã¥É¡¦¥Ü¥ë¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_ACID(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a acid bolt."),
-		_("%sãŒ%sã«å‘ã‹ã£ã¦ã‚¢ã‚·ãƒƒãƒ‰ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts an acid bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥¢¥·¥Ã¥É¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a acid bolt."),
+		_("%s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥¢¥·¥Ã¥É¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts an acid bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_ACID), m_idx, DAM_ROLL);
@@ -1098,22 +1098,22 @@ HIT_POINT spell_RF5_BO_ACID(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_ELECã®å‡¦ç†ã€‚ã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ«ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_ELEC¤Î½èÍı¡£¥µ¥ó¥À¡¼¡¦¥Ü¥ë¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_ELEC(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a lightning bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ã‚µãƒ³ãƒ€ãƒ¼ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a lightning bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥µ¥ó¥À¡¼¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a lightning bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥µ¥ó¥À¡¼¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a lightning bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_ELEC), m_idx, DAM_ROLL);
@@ -1127,22 +1127,22 @@ HIT_POINT spell_RF5_BO_ELEC(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_FIREã®å‡¦ç†ã€‚ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ«ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_FIRE¤Î½èÍı¡£¥Õ¥¡¥¤¥¢¡¦¥Ü¥ë¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a fire bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a fire bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥Õ¥¡¥¤¥¢¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a fire bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥Õ¥¡¥¤¥¢¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a fire bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_FIRE), m_idx, DAM_ROLL);
@@ -1156,22 +1156,22 @@ HIT_POINT spell_RF5_BO_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_COLDã®å‡¦ç†ã€‚ã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ«ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_COLD¤Î½èÍı¡£¥¢¥¤¥¹¡¦¥Ü¥ë¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_COLD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a frost bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ã‚¢ã‚¤ã‚¹ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a frost bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥¢¥¤¥¹¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a frost bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥¢¥¤¥¹¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a frost bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_COLD), m_idx, DAM_ROLL);
@@ -1185,22 +1185,22 @@ HIT_POINT spell_RF5_BO_COLD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BA_LITEã®å‡¦ç†ã€‚ã‚¹ã‚¿ãƒ¼ãƒãƒ¼ã‚¹ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BA_LITE¤Î½èÍı¡£¥¹¥¿¡¼¥Ğ¡¼¥¹¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BA_LITE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’åŠ›å¼·ãã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles powerfully."),
-		_("%^sãŒã‚¹ã‚¿ãƒ¼ãƒãƒ¼ã‚¹ãƒˆã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a starburst."),
-		_("%^sãŒ%sã«å¯¾ã—ã¦ã‚¹ã‚¿ãƒ¼ãƒãƒ¼ã‚¹ãƒˆã®å‘ªæ–‡ã‚’å¿µã˜ãŸã€‚", "%^s invokes a starburst upon %s."),
+		_("%^s¤¬²¿¤«¤òÎÏ¶¯¤¯¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles powerfully."),
+		_("%^s¤¬¥¹¥¿¡¼¥Ğ¡¼¥¹¥È¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a starburst."),
+		_("%^s¤¬%s¤ËÂĞ¤·¤Æ¥¹¥¿¡¼¥Ğ¡¼¥¹¥È¤Î¼öÊ¸¤òÇ°¤¸¤¿¡£", "%^s invokes a starburst upon %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_STARBURST), m_idx, DAM_ROLL);
@@ -1212,22 +1212,22 @@ HIT_POINT spell_RF5_BA_LITE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_NETHã®å‡¦ç†ã€‚åœ°ç„ã®çŸ¢ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_NETH¤Î½èÍı¡£ÃÏ¹ö¤ÎÌğ¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_NETH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒåœ°ç„ã®çŸ¢ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a nether bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦åœ°ç„ã®çŸ¢ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a nether bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ÃÏ¹ö¤ÎÌğ¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a nether bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤ÆÃÏ¹ö¤ÎÌğ¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a nether bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_NETHER), m_idx, DAM_ROLL);
@@ -1241,22 +1241,22 @@ HIT_POINT spell_RF5_BO_NETH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_WATEã®å‡¦ç†ã€‚ã‚¦ã‚©ãƒ¼ã‚¿ãƒ¼ãƒ»ãƒœãƒ«ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_WATE¤Î½èÍı¡£¥¦¥©¡¼¥¿¡¼¡¦¥Ü¥ë¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚¦ã‚©ãƒ¼ã‚¿ãƒ¼ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a water bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ã‚¦ã‚©ãƒ¼ã‚¿ãƒ¼ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a water bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥¦¥©¡¼¥¿¡¼¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a water bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥¦¥©¡¼¥¿¡¼¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a water bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_WATER), m_idx, DAM_ROLL);
@@ -1269,22 +1269,22 @@ HIT_POINT spell_RF5_BO_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_MANAã®å‡¦ç†ã€‚é­”åŠ›ã®çŸ¢ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_MANA¤Î½èÍı¡£ËâÎÏ¤ÎÌğ¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”åŠ›ã®çŸ¢ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a mana bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦é­”åŠ›ã®çŸ¢ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a mana bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâÎÏ¤ÎÌğ¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a mana bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤ÆËâÎÏ¤ÎÌğ¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a mana bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_MANA), m_idx, DAM_ROLL);
@@ -1297,22 +1297,22 @@ HIT_POINT spell_RF5_BO_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_PLASã®å‡¦ç†ã€‚ãƒ—ãƒ©ã‚ºãƒãƒ»ãƒœãƒ«ãƒˆã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_PLAS¤Î½èÍı¡£¥×¥é¥º¥Ş¡¦¥Ü¥ë¥È¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_PLAS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒãƒ—ãƒ©ã‚ºãƒãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a plasma bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ãƒ—ãƒ©ã‚ºãƒãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a plasma bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥×¥é¥º¥Ş¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a plasma bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥×¥é¥º¥Ş¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a plasma bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_PLASMA), m_idx, DAM_ROLL);
@@ -1325,22 +1325,22 @@ HIT_POINT spell_RF5_BO_PLAS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_BO_ICEEã®å‡¦ç†ã€‚æ¥µå¯’ã®çŸ¢ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_BO_ICEE¤Î½èÍı¡£¶Ë´¨¤ÎÌğ¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_BO_ICEE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒæ¥µå¯’ã®çŸ¢ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts an ice bolt."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦æ¥µå¯’ã®çŸ¢ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts an ice bolt at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¶Ë´¨¤ÎÌğ¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts an ice bolt."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¶Ë´¨¤ÎÌğ¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts an ice bolt at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_BOLT_ICE), m_idx, DAM_ROLL);
@@ -1354,22 +1354,22 @@ HIT_POINT spell_RF5_BO_ICEE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF5_MISSILEã®å‡¦ç†ã€‚ãƒã‚¸ãƒƒã‚¯ãƒ»ãƒŸã‚µã‚¤ãƒ«ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF5_MISSILE¤Î½èÍı¡£¥Ş¥¸¥Ã¥¯¡¦¥ß¥µ¥¤¥ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF5_MISSILE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒãƒã‚¸ãƒƒã‚¯ãƒ»ãƒŸã‚µã‚¤ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a magic missile."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦ãƒã‚¸ãƒƒã‚¯ãƒ»ãƒŸã‚µã‚¤ãƒ«ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a magic missile at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥Ş¥¸¥Ã¥¯¡¦¥ß¥µ¥¤¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a magic missile."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¥Ş¥¸¥Ã¥¯¡¦¥ß¥µ¥¤¥ë¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a magic missile at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_MAGIC_MISSILE), m_idx, DAM_ROLL);
@@ -1382,16 +1382,16 @@ HIT_POINT spell_RF5_MISSILE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief çŠ¶æ…‹ç•°å¸¸å‘ªæ–‡ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†é–¢æ•°ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param msg1 å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãªã‚‰ç›²ç›®æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚å¯¾ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãªã‚‰é€šå¸¸æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
-* @param msg2 å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãªã‚‰éç›²ç›®æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚å¯¾ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãªã‚‰è€æ€§æœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
-* @param msg3 å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãªã‚‰è€æ€§æœ‰ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚å¯¾ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãªã‚‰æŠµæŠ—æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
-* @param msg4 å¯¾ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãªã‚‰æŠµæŠ—æ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚å¯¾ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãªã‚‰æˆåŠŸæ™‚ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã€‚
-* @param resist è€æ€§ã®æœ‰ç„¡ã‚’åˆ¤åˆ¥ã™ã‚‹ãƒ•ãƒ©ã‚°
-* @param saving_throw æŠµæŠ—ã«æˆåŠŸã—ãŸã‹åˆ¤åˆ¥ã™ã‚‹ãƒ•ãƒ©ã‚°
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief ¾õÂÖ°Û¾ï¼öÊ¸¤Î¥á¥Ã¥»¡¼¥¸½èÍı´Ø¿ô¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param msg1 ÂĞ¥×¥ì¥¤¥ä¡¼¤Ê¤éÌÕÌÜ»ş¥á¥Ã¥»¡¼¥¸¡£ÂĞ¥â¥ó¥¹¥¿¡¼¤Ê¤éÄÌ¾ï»ş¥á¥Ã¥»¡¼¥¸¡£
+* @param msg2 ÂĞ¥×¥ì¥¤¥ä¡¼¤Ê¤éÈóÌÕÌÜ»ş¥á¥Ã¥»¡¼¥¸¡£ÂĞ¥â¥ó¥¹¥¿¡¼¤Ê¤éÂÑÀ­Í­¥á¥Ã¥»¡¼¥¸¡£
+* @param msg3 ÂĞ¥×¥ì¥¤¥ä¡¼¤Ê¤éÂÑÀ­Í­¥á¥Ã¥»¡¼¥¸¡£ÂĞ¥â¥ó¥¹¥¿¡¼¤Ê¤éÄñ¹³»ş¥á¥Ã¥»¡¼¥¸¡£
+* @param msg4 ÂĞ¥×¥ì¥¤¥ä¡¼¤Ê¤éÄñ¹³»ş¥á¥Ã¥»¡¼¥¸¡£ÂĞ¥â¥ó¥¹¥¿¡¼¤Ê¤éÀ®¸ù»ş¥á¥Ã¥»¡¼¥¸¡£
+* @param resist ÂÑÀ­¤ÎÍ­Ìµ¤òÈ½ÊÌ¤¹¤ë¥Õ¥é¥°
+* @param saving_throw Äñ¹³¤ËÀ®¸ù¤·¤¿¤«È½ÊÌ¤¹¤ë¥Õ¥é¥°
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_badstatus_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, cptr msg4, bool resist, bool saving_throw, int TARGET_TYPE)
 {
@@ -1450,10 +1450,10 @@ void spell_badstatus_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2,
 }
 
 /*!
- * @brief RF5_SCAREã®å‡¦ç†ã€‚ææ€–ã€‚ /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF5_SCARE¤Î½èÍı¡£¶²Éİ¡£ /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF5_SCARE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1467,10 +1467,10 @@ void spell_RF5_SCARE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		resist = p_ptr->resist_fear;
 		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ãã¨ã€æã‚ã—ã’ãªéŸ³ãŒèã“ãˆãŸã€‚", "%^s mumbles, and you hear scary noises."),
-			_("%^sãŒæã‚ã—ã’ãªå¹»è¦šã‚’ä½œã‚Šå‡ºã—ãŸã€‚", "%^s casts a fearful illusion."),
-			_("ã—ã‹ã—ææ€–ã«ä¾µã•ã‚Œãªã‹ã£ãŸã€‚", "You refuse to be frightened."),
-			_("ã—ã‹ã—ææ€–ã«ä¾µã•ã‚Œãªã‹ã£ãŸã€‚", "You refuse to be frightened."),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¯¤È¡¢¶²¤í¤·¤²¤Ê²»¤¬Ê¹¤³¤¨¤¿¡£", "%^s mumbles, and you hear scary noises."),
+			_("%^s¤¬¶²¤í¤·¤²¤Ê¸¸³Ğ¤òºî¤ê½Ğ¤·¤¿¡£", "%^s casts a fearful illusion."),
+			_("¤·¤«¤·¶²Éİ¤Ë¿¯¤µ¤ì¤Ê¤«¤Ã¤¿¡£", "You refuse to be frightened."),
+			_("¤·¤«¤·¶²Éİ¤Ë¿¯¤µ¤ì¤Ê¤«¤Ã¤¿¡£", "You refuse to be frightened."),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1486,10 +1486,10 @@ void spell_RF5_SCARE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
 		spell_badstatus_message(m_idx, t_idx, 
-			_("%^sãŒæã‚ã—ã’ãªå¹»è¦šã‚’ä½œã‚Šå‡ºã—ãŸã€‚", "%^s casts a fearful illusion in front of %s."),
-			_("%^sã¯ææ€–ã‚’æ„Ÿã˜ãªã„ã€‚", "%^s refuses to be frightened."),
-			_("%^sã¯ææ€–ã‚’æ„Ÿã˜ãªã„ã€‚", "%^s refuses to be frightened."),
-			_("%^sã¯ææ€–ã—ã¦é€ƒã’å‡ºã—ãŸï¼", "%^s flees in terror!"),
+			_("%^s¤¬¶²¤í¤·¤²¤Ê¸¸³Ğ¤òºî¤ê½Ğ¤·¤¿¡£", "%^s casts a fearful illusion in front of %s."),
+			_("%^s¤Ï¶²Éİ¤ò´¶¤¸¤Ê¤¤¡£", "%^s refuses to be frightened."),
+			_("%^s¤Ï¶²Éİ¤ò´¶¤¸¤Ê¤¤¡£", "%^s refuses to be frightened."),
+			_("%^s¤Ï¶²Éİ¤·¤ÆÆ¨¤²½Ğ¤·¤¿¡ª", "%^s flees in terror!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1500,10 +1500,10 @@ void spell_RF5_SCARE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
- * @brief RF5_BLINDã®å‡¦ç†ã€‚ç›²ç›®ã€‚ /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF5_BLIND¤Î½èÍı¡£ÌÕÌÜ¡£ /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF5_BLIND(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1517,10 +1517,10 @@ void spell_RF5_BLIND(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		resist = p_ptr->resist_blind;
 		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒå‘ªæ–‡ã‚’å”±ãˆã¦ã‚ãªãŸã®ç›®ã‚’ãã‚‰ã¾ã—ãŸï¼", "%^s casts a spell, burning your eyes!"),
-			_("ã—ã‹ã—åŠ¹æœãŒãªã‹ã£ãŸï¼", "You are unaffected!"),
-			_("ã—ã‹ã—åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "You resist the effects!"),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬¼öÊ¸¤ò¾§¤¨¤Æ¤¢¤Ê¤¿¤ÎÌÜ¤ò¤¯¤é¤Ş¤·¤¿¡ª", "%^s casts a spell, burning your eyes!"),
+			_("¤·¤«¤·¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡ª", "You are unaffected!"),
+			_("¤·¤«¤·¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "You resist the effects!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1538,11 +1538,11 @@ void spell_RF5_BLIND(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		
 		if (streq(t_name, "it"))
 		{
-			msg1 = _("%sã¯å‘ªæ–‡ã‚’å”±ãˆã¦%sã®ç›®ã‚’ç„¼ãä»˜ã‹ã›ãŸã€‚", "%^s casts a spell, burning %ss eyes.");
+			msg1 = _("%s¤Ï¼öÊ¸¤ò¾§¤¨¤Æ%s¤ÎÌÜ¤ò¾Æ¤­ÉÕ¤«¤»¤¿¡£", "%^s casts a spell, burning %ss eyes.");
 		}
 		else
 		{
-			msg1 = _("%sã¯å‘ªæ–‡ã‚’å”±ãˆã¦%sã®ç›®ã‚’ç„¼ãä»˜ã‹ã›ãŸã€‚", "%^s casts a spell, burning %s's eyes.");
+			msg1 = _("%s¤Ï¼öÊ¸¤ò¾§¤¨¤Æ%s¤ÎÌÜ¤ò¾Æ¤­ÉÕ¤«¤»¤¿¡£", "%^s casts a spell, burning %s's eyes.");
 		}
 
 		resist = tr_ptr->flags3 & RF3_NO_CONF;
@@ -1550,9 +1550,9 @@ void spell_RF5_BLIND(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 		spell_badstatus_message(m_idx, t_idx,
 			msg1,
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."),
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."),
-			_("%^sã¯ç›®ãŒè¦‹ãˆãªããªã£ãŸï¼ ", "%^s is blinded!"),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."),
+			_("%^s¤ÏÌÜ¤¬¸«¤¨¤Ê¤¯¤Ê¤Ã¤¿¡ª ", "%^s is blinded!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1563,10 +1563,10 @@ void spell_RF5_BLIND(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
- * @brief RF5_CONFã®å‡¦ç†ã€‚æ··ä¹±ã€‚/
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF5_CONF¤Î½èÍı¡£º®Íğ¡£/
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF5_CONF(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1580,10 +1580,10 @@ void spell_RF5_CONF(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		resist = p_ptr->resist_conf;
 		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ãã¨ã€é ­ã‚’æ‚©ã¾ã™éŸ³ãŒã—ãŸã€‚", "%^s mumbles, and you hear puzzling noises."),
-			_("%^sãŒèª˜æƒ‘çš„ãªå¹»è¦šã‚’ä½œã‚Šå‡ºã—ãŸã€‚", "%^s creates a mesmerising illusion."),
-			_("ã—ã‹ã—å¹»è¦šã«ã¯ã ã¾ã•ã‚Œãªã‹ã£ãŸã€‚", "You disbelieve the feeble spell."),
-			_("ã—ã‹ã—å¹»è¦šã«ã¯ã ã¾ã•ã‚Œãªã‹ã£ãŸã€‚", "You disbelieve the feeble spell."),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¯¤È¡¢Æ¬¤òÇº¤Ş¤¹²»¤¬¤·¤¿¡£", "%^s mumbles, and you hear puzzling noises."),
+			_("%^s¤¬Í¶ÏÇÅª¤Ê¸¸³Ğ¤òºî¤ê½Ğ¤·¤¿¡£", "%^s creates a mesmerising illusion."),
+			_("¤·¤«¤·¸¸³Ğ¤Ë¤Ï¤À¤Ş¤µ¤ì¤Ê¤«¤Ã¤¿¡£", "You disbelieve the feeble spell."),
+			_("¤·¤«¤·¸¸³Ğ¤Ë¤Ï¤À¤Ş¤µ¤ì¤Ê¤«¤Ã¤¿¡£", "You disbelieve the feeble spell."),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1599,10 +1599,10 @@ void spell_RF5_CONF(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒ%sã®å‰ã«å¹»æƒ‘çš„ãªå¹»ã‚’ã¤ãã‚Šå‡ºã—ãŸã€‚", "%^s casts a mesmerizing illusion in front of %s."),
-			_("%^sã¯æƒ‘ã‚ã•ã‚Œãªã‹ã£ãŸã€‚", "%^s disbelieves the feeble spell."),
-			_("%^sã¯æƒ‘ã‚ã•ã‚Œãªã‹ã£ãŸã€‚", "%^s disbelieves the feeble spell."),
-			_("%^sã¯æ··ä¹±ã—ãŸã‚ˆã†ã ã€‚", "%^s seems confused."),
+			_("%^s¤¬%s¤ÎÁ°¤Ë¸¸ÏÇÅª¤Ê¸¸¤ò¤Ä¤¯¤ê½Ğ¤·¤¿¡£", "%^s casts a mesmerizing illusion in front of %s."),
+			_("%^s¤ÏÏÇ¤ï¤µ¤ì¤Ê¤«¤Ã¤¿¡£", "%^s disbelieves the feeble spell."),
+			_("%^s¤ÏÏÇ¤ï¤µ¤ì¤Ê¤«¤Ã¤¿¡£", "%^s disbelieves the feeble spell."),
+			_("%^s¤Ïº®Íğ¤·¤¿¤è¤¦¤À¡£", "%^s seems confused."),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1613,10 +1613,10 @@ void spell_RF5_CONF(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
- * @brief RF5_SLOWã®å‡¦ç†ã€‚æ¸›é€Ÿã€‚ /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF5_SLOW¤Î½èÍı¡£¸ºÂ®¡£ /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF5_SLOW(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1630,10 +1630,10 @@ void spell_RF5_SLOW(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		resist = p_ptr->resist_conf;
 		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒã‚ãªãŸã®ç­‹åŠ›ã‚’å¸ã„å–ã‚ã†ã¨ã—ãŸï¼", "%^s drains power from your muscles!"),
-			_("%^sãŒã‚ãªãŸã®ç­‹åŠ›ã‚’å¸ã„å–ã‚ã†ã¨ã—ãŸï¼", "%^s drains power from your muscles!"),
-			_("ã—ã‹ã—åŠ¹æœãŒãªã‹ã£ãŸï¼", "You are unaffected!"),
-			_("ã—ã‹ã—åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "You resist the effects!"),
+			_("%^s¤¬¤¢¤Ê¤¿¤Î¶ÚÎÏ¤òµÛ¤¤¼è¤í¤¦¤È¤·¤¿¡ª", "%^s drains power from your muscles!"),
+			_("%^s¤¬¤¢¤Ê¤¿¤Î¶ÚÎÏ¤òµÛ¤¤¼è¤í¤¦¤È¤·¤¿¡ª", "%^s drains power from your muscles!"),
+			_("¤·¤«¤·¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡ª", "You are unaffected!"),
+			_("¤·¤«¤·¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "You resist the effects!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1651,11 +1651,11 @@ void spell_RF5_SLOW(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 		if (streq(t_name, "it"))
 		{
-			msg1 = _("%sãŒ%sã®ç­‹è‚‰ã‹ã‚‰åŠ›ã‚’å¸ã„ã¨ã£ãŸã€‚", "%^s drains power from %ss muscles.");
+			msg1 = _("%s¤¬%s¤Î¶ÚÆù¤«¤éÎÏ¤òµÛ¤¤¤È¤Ã¤¿¡£", "%^s drains power from %ss muscles.");
 		}
 		else
 		{
-			msg1 = _("%sãŒ%sã®ç­‹è‚‰ã‹ã‚‰åŠ›ã‚’å¸ã„ã¨ã£ãŸã€‚", "%^s drains power from %s's muscles.");
+			msg1 = _("%s¤¬%s¤Î¶ÚÆù¤«¤éÎÏ¤òµÛ¤¤¤È¤Ã¤¿¡£", "%^s drains power from %s's muscles.");
 		}
 
 		resist = tr_ptr->flags1 & RF1_UNIQUE;
@@ -1663,9 +1663,9 @@ void spell_RF5_SLOW(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 		spell_badstatus_message(m_idx, t_idx,
 			msg1,
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."),
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."),
-			_("%sã®å‹•ããŒé…ããªã£ãŸã€‚", "%^s starts moving slower."),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."),
+			_("%s¤ÎÆ°¤­¤¬ÃÙ¤¯¤Ê¤Ã¤¿¡£", "%^s starts moving slower."),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1676,10 +1676,10 @@ void spell_RF5_SLOW(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
- * @brief RF5_HOLDã®å‡¦ç†ã€‚éº»ç—ºã€‚ /
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+ * @brief RF5_HOLD¤Î½èÍı¡£Ëãáã¡£ /
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
  */
 void spell_RF5_HOLD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1693,10 +1693,10 @@ void spell_RF5_HOLD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		resist = p_ptr->free_act;
 		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒã‚ãªãŸã®ç›®ã‚’ã˜ã£ã¨è¦‹ã¤ã‚ãŸï¼", "%^s stares deep into your eyes!"),
-			_("ã—ã‹ã—åŠ¹æœãŒãªã‹ã£ãŸï¼", "You are unaffected!"),
-			_("ã—ã‹ã—åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "You resist the effects!"),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬¤¢¤Ê¤¿¤ÎÌÜ¤ò¤¸¤Ã¤È¸«¤Ä¤á¤¿¡ª", "%^s stares deep into your eyes!"),
+			_("¤·¤«¤·¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡ª", "You are unaffected!"),
+			_("¤·¤«¤·¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "You resist the effects!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1712,10 +1712,10 @@ void spell_RF5_HOLD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sã¯%sã‚’ã˜ã£ã¨è¦‹ã¤ã‚ãŸã€‚", "%^s stares intently at %s."),
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."),
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."), 
-			_("%^sã¯éº»ç—ºã—ãŸï¼", "%^s is paralyzed!"),
+			_("%^s¤Ï%s¤ò¤¸¤Ã¤È¸«¤Ä¤á¤¿¡£", "%^s stares intently at %s."),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."), 
+			_("%^s¤ÏËãáã¤·¤¿¡ª", "%^s is paralyzed!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -1726,10 +1726,10 @@ void spell_RF5_HOLD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_HASTEã®å‡¦ç†ã€‚åŠ é€Ÿã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_HASTE¤Î½èÍı¡£²ÃÂ®¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_HASTE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1739,10 +1739,10 @@ void spell_RF6_HASTE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 	monster_name(m_idx, m_name);
 
 	monspell_message_base(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒè‡ªåˆ†ã®ä½“ã«å¿µã‚’é€ã£ãŸã€‚", "%^s concentrates on %s body."),
-		_("%^sãŒè‡ªåˆ†ã®ä½“ã«å¿µã‚’é€ã£ãŸã€‚", "%^s concentrates on %s body."),
-		_("%^sãŒè‡ªåˆ†ã®ä½“ã«å¿µã‚’é€ã£ãŸã€‚", "%^s concentrates on %s body."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¼«Ê¬¤ÎÂÎ¤ËÇ°¤òÁ÷¤Ã¤¿¡£", "%^s concentrates on %s body."),
+		_("%^s¤¬¼«Ê¬¤ÎÂÎ¤ËÇ°¤òÁ÷¤Ã¤¿¡£", "%^s concentrates on %s body."),
+		_("%^s¤¬¼«Ê¬¤ÎÂÎ¤ËÇ°¤òÁ÷¤Ã¤¿¡£", "%^s concentrates on %s body."),
 		p_ptr->blind > 0, TARGET_TYPE);
 
 	/* Allow quick speed increases to base+10 */
@@ -1750,26 +1750,26 @@ void spell_RF6_HASTE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 	{
 		if (TARGET_TYPE == MONSTER_TO_PLAYER ||
 			(TARGET_TYPE == MONSTER_TO_MONSTER && see_m))
-			msg_format(_("%^sã®å‹•ããŒé€Ÿããªã£ãŸã€‚", "%^s starts moving faster."), m_name);
+			msg_format(_("%^s¤ÎÆ°¤­¤¬Â®¤¯¤Ê¤Ã¤¿¡£", "%^s starts moving faster."), m_name);
 	}
 }
 
 /*!
-* @brief RF6_HAND_DOOMã®å‡¦ç†ã€‚ç ´æ»…ã®æ‰‹ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF6_HAND_DOOM¤Î½èÍı¡£ÇËÌÇ¤Î¼ê¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF6_HAND_DOOM(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam = 0;
 
 	simple_monspell_message(m_idx, t_idx,
-		_("%^sãŒ<ç ´æ»…ã®æ‰‹>ã‚’æ”¾ã£ãŸï¼", "%^s invokes the Hand of Doom!"),
-		_("%^sãŒ%sã«<ç ´æ»…ã®æ‰‹>ã‚’æ”¾ã£ãŸï¼", "%^s invokes the Hand of Doom upon %s!"),
+		_("%^s¤¬<ÇËÌÇ¤Î¼ê>¤òÊü¤Ã¤¿¡ª", "%^s invokes the Hand of Doom!"),
+		_("%^s¤¬%s¤Ë<ÇËÌÇ¤Î¼ê>¤òÊü¤Ã¤¿¡ª", "%^s invokes the Hand of Doom upon %s!"),
 		TARGET_TYPE);
 
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
@@ -1786,10 +1786,10 @@ HIT_POINT spell_RF6_HAND_DOOM(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 }
 
 /*!
-* @brief RF6_HEALã®å‡¦ç†ã€‚æ²»ç™’ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_HEAL¤Î½èÍı¡£¼£Ìş¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_HEAL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1803,10 +1803,10 @@ void spell_RF6_HEAL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 	/* Message */
 	monspell_message_base(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sã¯è‡ªåˆ†ã®å‚·ã«å¿µã‚’é›†ä¸­ã—ãŸã€‚", "%^s concentrates on %s wounds."),
-		_("%^sãŒè‡ªåˆ†ã®å‚·ã«é›†ä¸­ã—ãŸã€‚", "%^s concentrates on %s wounds."),
-		_("%^sã¯è‡ªåˆ†ã®å‚·ã«å¿µã‚’é›†ä¸­ã—ãŸã€‚", "%^s concentrates on %s wounds."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤Ï¼«Ê¬¤Î½ı¤ËÇ°¤ò½¸Ãæ¤·¤¿¡£", "%^s concentrates on %s wounds."),
+		_("%^s¤¬¼«Ê¬¤Î½ı¤Ë½¸Ãæ¤·¤¿¡£", "%^s concentrates on %s wounds."),
+		_("%^s¤Ï¼«Ê¬¤Î½ı¤ËÇ°¤ò½¸Ãæ¤·¤¿¡£", "%^s concentrates on %s wounds."),
 		p_ptr->blind > 0, TARGET_TYPE);
 
 	/* Heal some */
@@ -1820,10 +1820,10 @@ void spell_RF6_HEAL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 		/* Message */
 		monspell_message_base(m_idx, t_idx,
-			_("%^sã¯å®Œå…¨ã«æ²»ã£ãŸã‚ˆã†ã ï¼", "%^s sounds completely healed!"),
-			_("%^sã¯å®Œå…¨ã«æ²»ã£ãŸã‚ˆã†ã ï¼", "%^s sounds completely healed!"),
-			_("%^sã¯å®Œå…¨ã«æ²»ã£ãŸï¼", "%^s looks completely healed!"),
-			_("%^sã¯å®Œå…¨ã«æ²»ã£ãŸï¼", "%^s looks completely healed!"),
+			_("%^s¤Ï´°Á´¤Ë¼£¤Ã¤¿¤è¤¦¤À¡ª", "%^s sounds completely healed!"),
+			_("%^s¤Ï´°Á´¤Ë¼£¤Ã¤¿¤è¤¦¤À¡ª", "%^s sounds completely healed!"),
+			_("%^s¤Ï´°Á´¤Ë¼£¤Ã¤¿¡ª", "%^s looks completely healed!"),
+			_("%^s¤Ï´°Á´¤Ë¼£¤Ã¤¿¡ª", "%^s looks completely healed!"),
 			!seen, TARGET_TYPE);
 	}
 
@@ -1832,10 +1832,10 @@ void spell_RF6_HEAL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 	{
 		/* Message */
 		monspell_message_base(m_idx, t_idx,
-			_("%^sã¯ä½“åŠ›ã‚’å›å¾©ã—ãŸã‚ˆã†ã ã€‚", "%^s sounds healthier."),
-			_("%^sã¯ä½“åŠ›ã‚’å›å¾©ã—ãŸã‚ˆã†ã ã€‚", "%^s sounds healthier."),
-			_("%^sã¯ä½“åŠ›ã‚’å›å¾©ã—ãŸã‚ˆã†ã ã€‚", "%^s looks healthier."),
-			_("%^sã¯ä½“åŠ›ã‚’å›å¾©ã—ãŸã‚ˆã†ã ã€‚", "%^s looks healthier."),
+			_("%^s¤ÏÂÎÎÏ¤ò²óÉü¤·¤¿¤è¤¦¤À¡£", "%^s sounds healthier."),
+			_("%^s¤ÏÂÎÎÏ¤ò²óÉü¤·¤¿¤è¤¦¤À¡£", "%^s sounds healthier."),
+			_("%^s¤ÏÂÎÎÏ¤ò²óÉü¤·¤¿¤è¤¦¤À¡£", "%^s looks healthier."),
+			_("%^s¤ÏÂÎÎÏ¤ò²óÉü¤·¤¿¤è¤¦¤À¡£", "%^s looks healthier."),
 			!seen, TARGET_TYPE);
 	}
 
@@ -1851,15 +1851,15 @@ void spell_RF6_HEAL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 		/* Message */
 		if (see_monster(m_idx))
-			msg_format(_("%^sã¯å‹‡æ°—ã‚’å–ã‚Šæˆ»ã—ãŸã€‚", "%^s recovers %s courage."), m_name);
+			msg_format(_("%^s¤ÏÍ¦µ¤¤ò¼è¤êÌá¤·¤¿¡£", "%^s recovers %s courage."), m_name);
 	}
 }
 
 /*!
-* @brief RF6_INVULNERã®å‡¦ç†ã€‚ç„¡æ•µã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_INVULNER¤Î½èÍı¡£ÌµÅ¨¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_INVULNER(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -1868,19 +1868,19 @@ void spell_RF6_INVULNER(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 	/* Message */
 	monspell_message_base(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’åŠ›å¼·ãã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles powerfully."),
-			_("%^sãŒä½•ã‹ã‚’åŠ›å¼·ãã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles powerfully."),
-			_("%sã¯ç„¡å‚·ã®çƒã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a Globe of Invulnerability."),
-			_("%sã¯ç„¡å‚·ã®çƒã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a Globe of Invulnerability."),
+			_("%^s¤¬²¿¤«¤òÎÏ¶¯¤¯¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles powerfully."),
+			_("%^s¤¬²¿¤«¤òÎÏ¶¯¤¯¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles powerfully."),
+			_("%s¤ÏÌµ½ı¤Îµå¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a Globe of Invulnerability."),
+			_("%s¤ÏÌµ½ı¤Îµå¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a Globe of Invulnerability."),
 			!seen, TARGET_TYPE);
 
 	if (!MON_INVULNER(m_ptr)) (void)set_monster_invulner(m_idx, randint1(4) + 4, FALSE);
 }
 
 /*!
-* @brief RF6_BLINKã®å‡¦ç†ã€‚ã‚·ãƒ§ãƒ¼ãƒˆãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_BLINK¤Î½èÍı¡£¥·¥ç¡¼¥È¡¦¥Æ¥ì¥İ¡¼¥È¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_BLINK(MONSTER_IDX m_idx, int TARGET_TYPE)
 {
@@ -1893,13 +1893,13 @@ void spell_RF6_BLINK(MONSTER_IDX m_idx, int TARGET_TYPE)
 	if (teleport_barrier(m_idx))
 	{
 		if(see_monster(m_idx))
-			msg_format(_("é­”æ³•ã®ãƒãƒªã‚¢ãŒ%^sã®ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚’é‚ªé­”ã—ãŸã€‚",
+			msg_format(_("ËâË¡¤Î¥Ğ¥ê¥¢¤¬%^s¤Î¥Æ¥ì¥İ¡¼¥È¤ò¼ÙËâ¤·¤¿¡£",
 						 "Magic barrier obstructs teleporting of %^s."), m_name);
 	}
 	else
 	{
 		if(see_monster(m_idx))
-			msg_format(_("%^sãŒç¬æ™‚ã«æ¶ˆãˆãŸã€‚", "%^s blinks away."), m_name);
+			msg_format(_("%^s¤¬½Ö»ş¤Ë¾Ã¤¨¤¿¡£", "%^s blinks away."), m_name);
 
 		teleport_away(m_idx, 10, 0L);
 
@@ -1909,9 +1909,9 @@ void spell_RF6_BLINK(MONSTER_IDX m_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_TPORTã®å‡¦ç†ã€‚ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_TPORT¤Î½èÍı¡£¥Æ¥ì¥İ¡¼¥È¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_TPORT(MONSTER_IDX m_idx, int TARGET_TYPE)
 {	
@@ -1923,21 +1923,21 @@ void spell_RF6_TPORT(MONSTER_IDX m_idx, int TARGET_TYPE)
 	if (teleport_barrier(m_idx))
 	{
 		if(see_monster(m_idx))
-			msg_format(_("é­”æ³•ã®ãƒãƒªã‚¢ãŒ%^sã®ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚’é‚ªé­”ã—ãŸã€‚",
+			msg_format(_("ËâË¡¤Î¥Ğ¥ê¥¢¤¬%^s¤Î¥Æ¥ì¥İ¡¼¥È¤ò¼ÙËâ¤·¤¿¡£",
 						 "Magic barrier obstructs teleporting of %^s."), m_name);
 	}
 	else
 	{
 		if(see_monster(m_idx))
-			msg_format(_("%^sãŒãƒ†ãƒ¬ãƒãƒ¼ãƒˆã—ãŸã€‚", "%^s teleports away."), m_name);
+			msg_format(_("%^s¤¬¥Æ¥ì¥İ¡¼¥È¤·¤¿¡£", "%^s teleports away."), m_name);
 
 		teleport_away_followable(m_idx);
 	}
 }
 
 /*!
-* @brief RF6_WORLDã®å‡¦ç†ã€‚æ™‚ã‚’æ­¢ã‚ã‚‹ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+* @brief RF6_WORLD¤Î½èÍı¡£»ş¤ò»ß¤á¤ë¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
 */
 HIT_POINT spell_RF6_WORLD(MONSTER_IDX m_idx)
 {
@@ -1954,8 +1954,8 @@ HIT_POINT spell_RF6_WORLD(MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief ãƒãƒ¼ãƒãƒ¼ãƒ«ãƒ»ãƒ«ãƒ‘ãƒ¼ãƒˆã®RF6_SPECIALã®å‡¦ç†ã€‚åˆ†è£‚ãƒ»åˆä½“ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+* @brief ¥Ğ¡¼¥Î¡¼¥ë¡¦¥ë¥Ñ¡¼¥È¤ÎRF6_SPECIAL¤Î½èÍı¡£Ê¬Îö¡¦¹çÂÎ¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
 */
 HIT_POINT spell_RF6_SPECIAL_BANORLUPART(MONSTER_IDX m_idx)
 {
@@ -1983,7 +1983,7 @@ HIT_POINT spell_RF6_SPECIAL_BANORLUPART(MONSTER_IDX m_idx)
 			m_list[hack_m_idx_ii].hp = dummy_hp;
 			m_list[hack_m_idx_ii].maxhp = dummy_maxhp;
 
-			msg_print(_("ã€ãƒãƒ¼ãƒãƒ¼ãƒ«ãƒ»ãƒ«ãƒ‘ãƒ¼ãƒˆã€ãŒåˆ†è£‚ã—ãŸï¼","Banor=Rupart splits in two person!"));
+			msg_print(_("¡Ø¥Ğ¡¼¥Î¡¼¥ë¡¦¥ë¥Ñ¡¼¥È¡Ù¤¬Ê¬Îö¤·¤¿¡ª","Banor=Rupart splits in two person!"));
 			break;
 		
 		case MON_BANOR:
@@ -2012,20 +2012,20 @@ HIT_POINT spell_RF6_SPECIAL_BANORLUPART(MONSTER_IDX m_idx)
 			m_list[hack_m_idx_ii].hp = dummy_hp;
 			m_list[hack_m_idx_ii].maxhp = dummy_maxhp;
 
-			msg_print(_("ã€ãƒãƒ¼ãƒãƒ¼ãƒ«ã€ã¨ã€ãƒ«ãƒ‘ãƒ¼ãƒˆã€ãŒåˆä½“ã—ãŸï¼", "Banor and Rupart combine into one!"));
+			msg_print(_("¡Ø¥Ğ¡¼¥Î¡¼¥ë¡Ù¤È¡Ø¥ë¥Ñ¡¼¥È¡Ù¤¬¹çÂÎ¤·¤¿¡ª", "Banor and Rupart combine into one!"));
 			break;
 	}
 	return 0;
 }
 
 /*!
-* @brief ãƒ­ãƒ¬ãƒ³ãƒˆã®RF6_SPECIALã®å‡¦ç†ã€‚æ‰‹æ¦´å¼¾ã®å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief ¥í¥ì¥ó¥È¤ÎRF6_SPECIAL¤Î½èÍı¡£¼êÜØÃÆ¤Î¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF6_SPECIAL_ROLENTO(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2034,9 +2034,9 @@ HIT_POINT spell_RF6_SPECIAL_ROLENTO(POSITION y, POSITION x, MONSTER_IDX m_idx, I
 	BIT_FLAGS mode = 0L;
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹å¤§é‡ã«æŠ•ã’ãŸã€‚", "%^s spreads something."),
-		_("%^sã¯æ‰‹æ¦´å¼¾ã‚’ã°ã‚‰ã¾ã„ãŸã€‚", "%^s throws some hand grenades."),
-		_("%^sã¯æ‰‹æ¦´å¼¾ã‚’ã°ã‚‰ã¾ã„ãŸã€‚", "%^s throws some hand grenades."),
+		_("%^s¤¬²¿¤«ÂçÎÌ¤ËÅê¤²¤¿¡£", "%^s spreads something."),
+		_("%^s¤Ï¼êÜØÃÆ¤ò¤Ğ¤é¤Ş¤¤¤¿¡£", "%^s throws some hand grenades."),
+		_("%^s¤Ï¼êÜØÃÆ¤ò¤Ğ¤é¤Ş¤¤¤¿¡£", "%^s throws some hand grenades."),
 		TARGET_TYPE);
 
 	for (k = 0; k < num; k++)
@@ -2045,19 +2045,19 @@ HIT_POINT spell_RF6_SPECIAL_ROLENTO(POSITION y, POSITION x, MONSTER_IDX m_idx, I
 	}
 	
 	if (p_ptr->blind && count)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ã°ã‚‰ã¾ã‹ã‚Œã‚‹éŸ³ãŒã™ã‚‹ã€‚", "You hear many things are scattered nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¤Ğ¤é¤Ş¤«¤ì¤ë²»¤¬¤¹¤ë¡£", "You hear many things are scattered nearby."));
 	
 	return 0;
 }
 
 /*!
-* @brief Bã‚·ãƒ³ãƒœãƒ«ã®RF6_SPECIALã®å‡¦ç†ã€‚æŠ•ã’è½ã¨ã™æ”»æ’ƒã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief B¥·¥ó¥Ü¥ë¤ÎRF6_SPECIAL¤Î½èÍı¡£Åê¤²Íî¤È¤¹¹¶·â¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2075,8 +2075,8 @@ HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 	if (one_in_(3) || !direct)
 	{		
 		simple_monspell_message(m_idx, t_idx,
-			_("%^sã¯çªç„¶è¦–ç•Œã‹ã‚‰æ¶ˆãˆãŸ!", "%^s suddenly go out of your sight!"),
-			_("%^sã¯çªç„¶æ€¥ä¸Šæ˜‡ã—ã¦è¦–ç•Œã‹ã‚‰æ¶ˆãˆãŸ!", "%^s suddenly go out of your sight!"),
+			_("%^s¤ÏÆÍÁ³»ë³¦¤«¤é¾Ã¤¨¤¿!", "%^s suddenly go out of your sight!"),
+			_("%^s¤ÏÆÍÁ³µŞ¾å¾º¤·¤Æ»ë³¦¤«¤é¾Ã¤¨¤¿!", "%^s suddenly go out of your sight!"),
 			TARGET_TYPE);
 				
 		teleport_away(m_idx, 10, TELEPORT_NONMAGICAL);
@@ -2088,8 +2088,8 @@ HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 		bool fear; /* dummy */
 	
 		simple_monspell_message(m_idx, t_idx,
-			_("%^sãŒã‚ãªãŸã‚’æ´ã‚“ã§ç©ºä¸­ã‹ã‚‰æŠ•ã’è½ã¨ã—ãŸã€‚", "%^s holds you, and drops from the sky."),
-			_("%^sãŒ%sã‚’æ´ã‚“ã§ç©ºä¸­ã‹ã‚‰æŠ•ã’è½ã¨ã—ãŸã€‚", "%^s holds %s, and drops from the sky."),
+			_("%^s¤¬¤¢¤Ê¤¿¤òÄÏ¤ó¤Ç¶õÃæ¤«¤éÅê¤²Íî¤È¤·¤¿¡£", "%^s holds you, and drops from the sky."),
+			_("%^s¤¬%s¤òÄÏ¤ó¤Ç¶õÃæ¤«¤éÅê¤²Íî¤È¤·¤¿¡£", "%^s holds %s, and drops from the sky."),
 			TARGET_TYPE);
 
 		dam = damroll(4, 8);
@@ -2105,15 +2105,15 @@ HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 			(monster_to_monster && (tr_ptr->flags7 & RF7_CAN_FLY)))
 		{
 			simple_monspell_message(m_idx, t_idx,
-				_("ã‚ãªãŸã¯é™ã‹ã«ç€åœ°ã—ãŸã€‚", "You float gently down to the ground."),
-				_("%^sã¯é™ã‹ã«ç€åœ°ã—ãŸã€‚", "%^s floats gently down to the ground."),
+				_("¤¢¤Ê¤¿¤ÏÀÅ¤«¤ËÃåÃÏ¤·¤¿¡£", "You float gently down to the ground."),
+				_("%^s¤ÏÀÅ¤«¤ËÃåÃÏ¤·¤¿¡£", "%^s floats gently down to the ground."),
 				TARGET_TYPE);
 		}
 		else
 		{
 			simple_monspell_message(m_idx, t_idx,
-				_("ã‚ãªãŸã¯åœ°é¢ã«å©ãã¤ã‘ã‚‰ã‚ŒãŸã€‚", "You crashed into the ground."),
-				_("%^sã¯åœ°é¢ã«å©ãã¤ã‘ã‚‰ã‚ŒãŸã€‚", "%^s crashed into the ground."),
+				_("¤¢¤Ê¤¿¤ÏÃÏÌÌ¤ËÃ¡¤­¤Ä¤±¤é¤ì¤¿¡£", "You crashed into the ground."),
+				_("%^s¤ÏÃÏÌÌ¤ËÃ¡¤­¤Ä¤±¤é¤ì¤¿¡£", "%^s crashed into the ground."),
 				TARGET_TYPE);
 			dam += damroll(6, 8);
 		}
@@ -2131,7 +2131,7 @@ HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 				/* hisself */
 				monster_desc(m_name_self, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE | MD_OBJECTIVE);
 
-				msg_format(_("æ”»æ’ƒãŒ%sè‡ªèº«ã‚’å‚·ã¤ã‘ãŸï¼", "The attack of %s has wounded %s!"), m_name, m_name_self);
+				msg_format(_("¹¶·â¤¬%s¼«¿È¤ò½ı¤Ä¤±¤¿¡ª", "The attack of %s has wounded %s!"), m_name, m_name_self);
 
 				project(0, 0, m_ptr->fy, m_ptr->fx, get_damage, GF_MISSILE, PROJECT_KILL, -1);
 				set_tim_eyeeye(p_ptr->tim_eyeeye - 5, TRUE);
@@ -2148,13 +2148,13 @@ HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 }
 
 /*!
-* @brief RF6_SPECIALã®å‡¦ç†ã€‚ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¨®é¡ã«ã‚ˆã£ã¦å®Ÿå‡¦ç†ã«æŒ¯ã‚Šåˆ†ã‘ã‚‹ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF6_SPECIAL¤Î½èÍı¡£¥â¥ó¥¹¥¿¡¼¤Î¼ïÎà¤Ë¤è¤Ã¤Æ¼Â½èÍı¤Ë¿¶¤êÊ¬¤±¤ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF6_SPECIAL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2190,11 +2190,11 @@ HIT_POINT spell_RF6_SPECIAL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx
 }
 
 /*!
-* @brief RF6_TELE_TOã®å‡¦ç†ã€‚ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ãƒãƒƒã‚¯ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF6_TELE_TO¤Î½èÍı¡£¥Æ¥ì¥İ¡¼¥È¡¦¥Ğ¥Ã¥¯¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 void spell_RF6_TELE_TO(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2203,8 +2203,8 @@ void spell_RF6_TELE_TO(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
 
 	simple_monspell_message(m_idx, t_idx,
-		_("%^sãŒã‚ãªãŸã‚’å¼•ãæˆ»ã—ãŸã€‚", "%^s commands you to return."),
-		_("%^sãŒ%sã‚’å¼•ãæˆ»ã—ãŸã€‚", "%^s commands %s to return."),
+		_("%^s¤¬¤¢¤Ê¤¿¤ò°ú¤­Ìá¤·¤¿¡£", "%^s commands you to return."),
+		_("%^s¤¬%s¤ò°ú¤­Ìá¤·¤¿¡£", "%^s commands %s to return."),
 		TARGET_TYPE);
 	
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
@@ -2225,7 +2225,7 @@ void spell_RF6_TELE_TO(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected!"), t_name);
+					msg_format(_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2234,7 +2234,7 @@ void spell_RF6_TELE_TO(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^sã¯è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ï¼", "%^s resists!"), t_name);
+					msg_format(_("%^s¤ÏÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡ª", "%^s resists!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2252,11 +2252,11 @@ void spell_RF6_TELE_TO(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_TELE_AWAYã®å‡¦ç†ã€‚ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ã‚¢ã‚¦ã‚§ã‚¤ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF6_TELE_AWAY¤Î½èÍı¡£¥Æ¥ì¥İ¡¼¥È¡¦¥¢¥¦¥§¥¤¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 void spell_RF6_TELE_AWAY(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2264,14 +2264,14 @@ void spell_RF6_TELE_AWAY(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
 
 	simple_monspell_message(m_idx, t_idx,
-		_("%^sã«ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã•ã›ã‚‰ã‚ŒãŸã€‚", "%^s teleports you away."),
-		_("%^sã¯%sã‚’ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã•ã›ãŸã€‚", "%^s teleports %s away."),
+		_("%^s¤Ë¥Æ¥ì¥İ¡¼¥È¤µ¤»¤é¤ì¤¿¡£", "%^s teleports you away."),
+		_("%^s¤Ï%s¤ò¥Æ¥ì¥İ¡¼¥È¤µ¤»¤¿¡£", "%^s teleports %s away."),
 		TARGET_TYPE);
 	
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
 	{
 		if ((p_ptr->pseikaku == SEIKAKU_COMBAT) || (inventory[INVEN_BOW].name1 == ART_CRIMSON))
-			msg_print(_("ãã£ãï½", ""));
+			msg_print(_("¤¯¤Ã¤½¡Á", ""));
 		
 		learn_spell(MS_TELE_AWAY);
 		teleport_player_away(m_idx, 100);
@@ -2289,7 +2289,7 @@ void spell_RF6_TELE_AWAY(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected!"), t_name);
+					msg_format(_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2298,7 +2298,7 @@ void spell_RF6_TELE_AWAY(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^sã¯è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ï¼", "%^s resists!"), t_name);
+					msg_format(_("%^s¤ÏÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡ª", "%^s resists!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2316,11 +2316,11 @@ void spell_RF6_TELE_AWAY(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_TELE_LEVELã®å‡¦ç†ã€‚ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ãƒ¬ãƒ™ãƒ«ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF6_TELE_LEVEL¤Î½èÍı¡£¥Æ¥ì¥İ¡¼¥È¡¦¥ì¥Ù¥ë¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 void spell_RF6_TELE_LEVEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2334,10 +2334,10 @@ void spell_RF6_TELE_LEVEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 		resist = p_ptr->resist_nexus;
 		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
 		spell_badstatus_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹å¥‡å¦™ãªè¨€è‘‰ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles strangely."),
-			_("%^sãŒã‚ãªãŸã®è¶³ã‚’æŒ‡ã•ã—ãŸã€‚", "%^s gestures at your feet."),
-			_("ã—ã‹ã—åŠ¹æœãŒãªã‹ã£ãŸï¼", "You are unaffected!"),
-			_("ã—ã‹ã—åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "You resist the effects!"),
+			_("%^s¤¬²¿¤«´ñÌ¯¤Ê¸ÀÍÕ¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles strangely."),
+			_("%^s¤¬¤¢¤Ê¤¿¤ÎÂ­¤ò»Ø¤µ¤·¤¿¡£", "%^s gestures at your feet."),
+			_("¤·¤«¤·¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡ª", "You are unaffected!"),
+			_("¤·¤«¤·¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "You resist the effects!"),
 			resist, saving_throw, TARGET_TYPE);
 
 		if (!resist && !saving_throw)
@@ -2354,9 +2354,9 @@ void spell_RF6_TELE_LEVEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 					   (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
 		spell_badstatus_message(m_idx, t_idx, 
-			_("%^sãŒ%sã®è¶³ã‚’æŒ‡ã•ã—ãŸã€‚", "%^s gestures at %s's feet."),
-			_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected!"),
-			_("%^sã¯åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "%^s resist the effects!"),
+			_("%^s¤¬%s¤ÎÂ­¤ò»Ø¤µ¤·¤¿¡£", "%^s gestures at %s's feet."),
+			_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected!"),
+			_("%^s¤Ï¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "%^s resist the effects!"),
 			"",
 			resist, saving_throw, TARGET_TYPE);
 
@@ -2368,22 +2368,22 @@ void spell_RF6_TELE_LEVEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_PSY_SPEARã®å‡¦ç†ã€‚å…‰ã®å‰£ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return ãƒ€ãƒ¡ãƒ¼ã‚¸é‡ã‚’è¿”ã™ã€‚
+* @brief RF6_PSY_SPEAR¤Î½èÍı¡£¸÷¤Î·õ¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¥À¥á¡¼¥¸ÎÌ¤òÊÖ¤¹¡£
 */
 HIT_POINT spell_RF6_PSY_SPEAR(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	HIT_POINT dam;
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒå…‰ã®å‰£ã‚’æ”¾ã£ãŸã€‚", "%^s throw a Psycho-Spear."),
-		_("%^sãŒ%sã«å‘ã‹ã£ã¦å…‰ã®å‰£ã‚’æ”¾ã£ãŸã€‚", "%^s throw a Psycho-spear at %s."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¸÷¤Î·õ¤òÊü¤Ã¤¿¡£", "%^s throw a Psycho-Spear."),
+		_("%^s¤¬%s¤Ë¸ş¤«¤Ã¤Æ¸÷¤Î·õ¤òÊü¤Ã¤¿¡£", "%^s throw a Psycho-spear at %s."),
 		TARGET_TYPE);
 
 	dam = monspell_damage((MS_PSY_SPEAR), m_idx, DAM_ROLL);
@@ -2392,12 +2392,12 @@ HIT_POINT spell_RF6_PSY_SPEAR(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_i
 }
 
 /*!
-* @brief RF6_DARKNESSã®å‡¦ç†ã€‚æš—é—‡oré–ƒå…‰ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_DARKNESS¤Î½èÍı¡£°Å°ÇorÁ®¸÷¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_DARKNESS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2422,27 +2422,27 @@ void spell_RF6_DARKNESS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	if (can_use_lite_area)
 	{
 		monspell_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒè¾ºã‚Šã‚’æ˜ã‚‹ãç…§ã‚‰ã—ãŸã€‚", "%^s cast a spell to light up."),
-			_("%^sãŒè¾ºã‚Šã‚’æ˜ã‚‹ãç…§ã‚‰ã—ãŸã€‚", "%^s cast a spell to light up."),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬ÊÕ¤ê¤òÌÀ¤ë¤¯¾È¤é¤·¤¿¡£", "%^s cast a spell to light up."),
+			_("%^s¤¬ÊÕ¤ê¤òÌÀ¤ë¤¯¾È¤é¤·¤¿¡£", "%^s cast a spell to light up."),
 			TARGET_TYPE);
 
 		if (see_monster(t_idx) && monster_to_monster)
 		{
-			msg_format(_("%^sã¯ç™½ã„å…‰ã«åŒ…ã¾ã‚ŒãŸã€‚", "%^s is surrounded by a white light."), t_name);
+			msg_format(_("%^s¤ÏÇò¤¤¸÷¤ËÊñ¤Ş¤ì¤¿¡£", "%^s is surrounded by a white light."), t_name);
 		}
 	}
 	else
 	{
 		monspell_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒæš—é—‡ã®ä¸­ã§æ‰‹ã‚’æŒ¯ã£ãŸã€‚", "%^s gestures in shadow."),
-			_("%^sãŒæš—é—‡ã®ä¸­ã§æ‰‹ã‚’æŒ¯ã£ãŸã€‚", "%^s gestures in shadow."),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬°Å°Ç¤ÎÃæ¤Ç¼ê¤ò¿¶¤Ã¤¿¡£", "%^s gestures in shadow."),
+			_("%^s¤¬°Å°Ç¤ÎÃæ¤Ç¼ê¤ò¿¶¤Ã¤¿¡£", "%^s gestures in shadow."),
 			TARGET_TYPE);
 
 		if (see_monster(t_idx) && monster_to_monster)
 		{
-			msg_format(_("%^sã¯æš—é—‡ã«åŒ…ã¾ã‚ŒãŸã€‚", "%^s is surrounded by darkness."), t_name);
+			msg_format(_("%^s¤Ï°Å°Ç¤ËÊñ¤Ş¤ì¤¿¡£", "%^s is surrounded by darkness."), t_name);
 		}
 	}
 
@@ -2474,10 +2474,10 @@ void spell_RF6_DARKNESS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 }
 
 /*!
-* @brief RF6_TRAPSã®å‡¦ç†ã€‚ãƒˆãƒ©ãƒƒãƒ—ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+* @brief RF6_TRAPS¤Î½èÍı¡£¥È¥é¥Ã¥×¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
 */
 void spell_RF6_TRAPS(POSITION y, POSITION x, MONSTER_IDX m_idx)
 {
@@ -2486,10 +2486,10 @@ void spell_RF6_TRAPS(POSITION y, POSITION x, MONSTER_IDX m_idx)
 	disturb(1, 1);
 
 	if (p_ptr->blind)
-		msg_format(_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ã¦é‚ªæ‚ªã«å¾®ç¬‘ã‚“ã ã€‚",
+		msg_format(_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤Æ¼Ù°­¤ËÈù¾Ğ¤ó¤À¡£",
 		"%^s mumbles, and then cackles evilly."), m_name);
 	else
-		msg_format(_("%^sãŒå‘ªæ–‡ã‚’å”±ãˆã¦é‚ªæ‚ªã«å¾®ç¬‘ã‚“ã ã€‚",
+		msg_format(_("%^s¤¬¼öÊ¸¤ò¾§¤¨¤Æ¼Ù°­¤ËÈù¾Ğ¤ó¤À¡£",
 		"%^s casts a spell and cackles evilly."), m_name);
 
 	learn_spell(MS_MAKE_TRAP);
@@ -2497,8 +2497,8 @@ void spell_RF6_TRAPS(POSITION y, POSITION x, MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief RF6_FORGETã®å‡¦ç†ã€‚è¨˜æ†¶æ¶ˆå»ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+* @brief RF6_FORGET¤Î½èÍı¡£µ­²±¾Ãµî¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
 */
 void spell_RF6_FORGET(MONSTER_IDX m_idx)
 {
@@ -2508,35 +2508,35 @@ void spell_RF6_FORGET(MONSTER_IDX m_idx)
 
 	disturb(1, 1);
 
-	msg_format(_("%^sãŒã‚ãªãŸã®è¨˜æ†¶ã‚’æ¶ˆå»ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã€‚",
+	msg_format(_("%^s¤¬¤¢¤Ê¤¿¤Îµ­²±¤ò¾Ãµî¤·¤è¤¦¤È¤·¤Æ¤¤¤ë¡£",
 		"%^s tries to blank your mind."), m_name);
 
 	if (randint0(100 + rlev / 2) < p_ptr->skill_sav)
 	{
-		msg_print(_("ã—ã‹ã—åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "You resist the effects!"));
+		msg_print(_("¤·¤«¤·¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "You resist the effects!"));
 	}
 	else if (lose_all_info())
 	{
-		msg_print(_("è¨˜æ†¶ãŒè–„ã‚Œã¦ã—ã¾ã£ãŸã€‚", "Your memories fade away."));
+		msg_print(_("µ­²±¤¬Çö¤ì¤Æ¤·¤Ş¤Ã¤¿¡£", "Your memories fade away."));
 	}
 	learn_spell(MS_FORGET);
 }
 
 
 /*!
-* @brief RF6_RAISE_DEADã®å‡¦ç†ã€‚æ­»è€…å¾©æ´»ã€‚ /
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
+* @brief RF6_RAISE_DEAD¤Î½èÍı¡£»à¼ÔÉü³è¡£ /
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
 */
 void spell_RF6_RAISE_DEAD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	monster_type	*m_ptr = &m_list[m_idx];
 
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒæ­»è€…å¾©æ´»ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a spell to revive corpses."),
-		_("%^sãŒæ­»è€…å¾©æ´»ã®å‘ªæ–‡ã‚’å”±ãˆãŸã€‚", "%^s casts a spell to revive corpses."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬»à¼ÔÉü³è¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a spell to revive corpses."),
+		_("%^s¤¬»à¼ÔÉü³è¤Î¼öÊ¸¤ò¾§¤¨¤¿¡£", "%^s casts a spell to revive corpses."),
 		TARGET_TYPE);
 
 	animate_dead(m_idx, m_ptr->fy, m_ptr->fx);
@@ -2544,12 +2544,12 @@ void spell_RF6_RAISE_DEAD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 
 
 /*!
-* @brief é·¹å¬å–šã®å‡¦ç†ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief Âë¾¤´­¤Î½èÍı¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 MONSTER_NUMBER summon_EAGLE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
@@ -2563,12 +2563,12 @@ MONSTER_NUMBER summon_EAGLE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 }
 
 /*!
- * @brief ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆãƒ»ã‚¨ã‚¯ã‚¹ãƒ—ãƒ­ãƒ¼ãƒ€ãƒ¼å¬å–šã®å‡¦ç†ã€‚ /
- * @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
- * @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
- * @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+ * @brief ¥¤¥ó¥¿¡¼¥Í¥Ã¥È¡¦¥¨¥¯¥¹¥×¥í¡¼¥À¡¼¾¤´­¤Î½èÍı¡£ /
+ * @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+ * @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+ * @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
  */
 MONSTER_NUMBER summon_IE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
@@ -2583,14 +2583,14 @@ MONSTER_NUMBER summon_IE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 }
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ»ã‚¬ãƒ¼ãƒ‡ã‚£ã‚¢ãƒ³å¬å–šã®å‡¦ç†ã€‚ /
- * @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
- * @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
- * @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
- * @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
- * @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
- * @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+ * @brief ¥À¥ó¥¸¥ç¥ó¡¦¥¬¡¼¥Ç¥£¥¢¥ó¾¤´­¤Î½èÍı¡£ /
+ * @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+ * @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+ * @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+ * @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+ * @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+ * @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
  */
 MONSTER_NUMBER summon_Guardian(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2602,8 +2602,8 @@ MONSTER_NUMBER summon_Guardian(POSITION y, POSITION x, int rlev, MONSTER_IDX m_i
 	if (r_info[MON_JORMUNGAND].cur_num < r_info[MON_JORMUNGAND].max_num && one_in_(6))
 	{
 		simple_monspell_message(m_idx, t_idx,
-			_("åœ°é¢ã‹ã‚‰æ°´ãŒå¹ãå‡ºã—ãŸï¼", "Water blew off from the ground!"),
-			_("åœ°é¢ã‹ã‚‰æ°´ãŒå¹ãå‡ºã—ãŸï¼", "Water blew off from the ground!"),
+			_("ÃÏÌÌ¤«¤é¿å¤¬¿á¤­½Ğ¤·¤¿¡ª", "Water blew off from the ground!"),
+			_("ÃÏÌÌ¤«¤é¿å¤¬¿á¤­½Ğ¤·¤¿¡ª", "Water blew off from the ground!"),
 			TARGET_TYPE);
 
 		if(mon_to_player)
@@ -2620,12 +2620,12 @@ MONSTER_NUMBER summon_Guardian(POSITION y, POSITION x, int rlev, MONSTER_IDX m_i
 }
 
 /*!
-* @brief ãƒ­ãƒƒã‚¯ã®ã‚¯ãƒ­ãƒ¼ãƒ³å¬å–šã®å‡¦ç†ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief ¥í¥Ã¥¯¤Î¥¯¥í¡¼¥ó¾¤´­¤Î½èÍı¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 MONSTER_NUMBER summon_LOCK_CLONE(POSITION y, POSITION x, DEPTH rlev, MONSTER_IDX m_idx)
 {
@@ -2641,12 +2641,12 @@ MONSTER_NUMBER summon_LOCK_CLONE(POSITION y, POSITION x, DEPTH rlev, MONSTER_IDX
 }
 
 /*!
-* @brief ã‚·ãƒ©ãƒŸå¬å–šã®å‡¦ç†ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief ¥·¥é¥ß¾¤´­¤Î½èÍı¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 MONSTER_NUMBER summon_LOUSE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
@@ -2660,12 +2660,12 @@ MONSTER_NUMBER summon_LOUSE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief æ•‘æ´å¬å–šã®é€šå¸¸å‡¦ç†ã€‚åŒã‚·ãƒ³ãƒœãƒ«ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¬å–šã™ã‚‹ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief µß±ç¾¤´­¤ÎÄÌ¾ï½èÍı¡£Æ±¥·¥ó¥Ü¥ë¤Î¥â¥ó¥¹¥¿¡¼¤ò¾¤´­¤¹¤ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 MONSTER_NUMBER summon_Kin(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
@@ -2682,13 +2682,13 @@ MONSTER_NUMBER summon_Kin(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 }
 
 /*!
-* @brief RF6_S_KINã®å‡¦ç†ã€‚æ•‘æ´å¬å–šã€‚ä½¿ç”¨ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¨®é¡ã«ã‚ˆã‚Šã€å®Ÿå‡¦ç†ã«åˆ†å²ã•ã›ã‚‹ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_KIN¤Î½èÍı¡£µß±ç¾¤´­¡£»ÈÍÑ¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î¼ïÎà¤Ë¤è¤ê¡¢¼Â½èÍı¤ËÊ¬´ô¤µ¤»¤ë¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_KIN(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2709,9 +2709,9 @@ void spell_RF6_S_KIN(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int T
 	if (m_ptr->r_idx == MON_SERPENT || m_ptr->r_idx == MON_ZOMBI_SERPENT)
 	{
 		monspell_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ä¸»ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons guardians of dungeons."),
-			_("%^sãŒãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ä¸»ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons guardians of dungeons."),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬¥À¥ó¥¸¥ç¥ó¤Î¼ç¤ò¾¤´­¤·¤¿¡£", "%^s magically summons guardians of dungeons."),
+			_("%^s¤¬¥À¥ó¥¸¥ç¥ó¤Î¼ç¤ò¾¤´­¤·¤¿¡£", "%^s magically summons guardians of dungeons."),
 			TARGET_TYPE);
 	}
 	else
@@ -2722,13 +2722,13 @@ void spell_RF6_S_KIN(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int T
 		if (p_ptr->blind)
 		{
 			if (mon_to_player)
-				msg_format(_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."), m_name);
+				msg_format(_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."), m_name);
 		}
 		else
 		{
 			if (mon_to_player || (mon_to_mon && known && see_either))
 			{
-				_(msg_format("%sãŒé­”æ³•ã§%sã‚’å¬å–šã—ãŸã€‚", m_name, ((r_ptr->flags1 & RF1_UNIQUE) ? "æ‰‹ä¸‹" : "ä»²é–“")),
+				_(msg_format("%s¤¬ËâË¡¤Ç%s¤ò¾¤´­¤·¤¿¡£", m_name, ((r_ptr->flags1 & RF1_UNIQUE) ? "¼ê²¼" : "Ãç´Ö")),
 				  msg_format("%^s magically summons %s %s.", m_name, m_poss, ((r_ptr->flags1 & RF1_UNIQUE) ? "minions" : "kin")));
 			}
 		}
@@ -2768,20 +2768,20 @@ void spell_RF6_S_KIN(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int T
 	}
 	
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 
 	if (known && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_CYBERã®å‡¦ç†ã€‚ã‚µã‚¤ãƒãƒ¼ãƒ»ãƒ‡ãƒ¼ãƒ¢ãƒ³å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_CYBER¤Î½èÍı¡£¥µ¥¤¥Ğ¡¼¡¦¥Ç¡¼¥â¥ó¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_CYBER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2792,9 +2792,9 @@ void spell_RF6_S_CYBER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚µã‚¤ãƒãƒ¼ãƒ‡ãƒ¼ãƒ¢ãƒ³ã‚’å¬å–šã—ãŸï¼", "%^s magically summons Cyberdemons!"),
-		_("%^sãŒã‚µã‚¤ãƒãƒ¼ãƒ‡ãƒ¼ãƒ¢ãƒ³ã‚’å¬å–šã—ãŸï¼", "%^s magically summons Cyberdemons!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥µ¥¤¥Ğ¡¼¥Ç¡¼¥â¥ó¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons Cyberdemons!"),
+		_("%^s¤¬¥µ¥¤¥Ğ¡¼¥Ç¡¼¥â¥ó¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons Cyberdemons!"),
 		TARGET_TYPE);
 
 	if (is_friendly(m_ptr) && mon_to_mon)
@@ -2807,20 +2807,20 @@ void spell_RF6_S_CYBER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("é‡åšãªè¶³éŸ³ãŒè¿‘ãã§èã“ãˆã‚‹ã€‚", "You hear heavy steps nearby."));
+		msg_print(_("½Å¸ü¤ÊÂ­²»¤¬¶á¤¯¤ÇÊ¹¤³¤¨¤ë¡£", "You hear heavy steps nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_MONSTERã®å‡¦ç†ã€‚ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä¸€ä½“å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_MONSTER¤Î½èÍı¡£¥â¥ó¥¹¥¿¡¼°ìÂÎ¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_MONSTER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2830,9 +2830,9 @@ void spell_RF6_S_MONSTER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, i
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ä»²é–“ã‚’å¬å–šã—ãŸï¼", "%^s magically summons help!"),
-		_("%^sãŒé­”æ³•ã§ä»²é–“ã‚’å¬å–šã—ãŸï¼", "%^s magically summons help!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤ÇÃç´Ö¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons help!"),
+		_("%^s¤¬ËâË¡¤ÇÃç´Ö¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons help!"),
 		TARGET_TYPE);
 
 	for (k = 0; k < 1; k++)
@@ -2845,20 +2845,20 @@ void spell_RF6_S_MONSTER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, i
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("ä½•ã‹ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear something appear nearby."));
+		msg_print(_("²¿¤«¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear something appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_MONSTERSã®å‡¦ç†ã€‚ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼è¤‡æ•°å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_MONSTERS¤Î½èÍı¡£¥â¥ó¥¹¥¿¡¼Ê£¿ô¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_MONSTERS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2868,9 +2868,9 @@ void spell_RF6_S_MONSTERS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, 
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¬å–šã—ãŸï¼", "%^s magically summons monsters!"),
-		_("%^sãŒé­”æ³•ã§ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¬å–šã—ãŸï¼", "%^s magically summons monsters!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥â¥ó¥¹¥¿¡¼¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons monsters!"),
+		_("%^s¤¬ËâË¡¤Ç¥â¥ó¥¹¥¿¡¼¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons monsters!"),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_6; k++)
@@ -2883,20 +2883,20 @@ void spell_RF6_S_MONSTERS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, 
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_ANTã®å‡¦ç†ã€‚ã‚¢ãƒªå¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_ANT¤Î½èÍı¡£¥¢¥ê¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_ANT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2906,9 +2906,9 @@ void spell_RF6_S_ANT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int T
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ã‚¢ãƒªã‚’å¬å–šã—ãŸã€‚", "%^s magically summons ants."),
-		_("%^sãŒé­”æ³•ã§ã‚¢ãƒªã‚’å¬å–šã—ãŸã€‚", "%^s magically summons ants."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥¢¥ê¤ò¾¤´­¤·¤¿¡£", "%^s magically summons ants."),
+		_("%^s¤¬ËâË¡¤Ç¥¢¥ê¤ò¾¤´­¤·¤¿¡£", "%^s magically summons ants."),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_6; k++)
@@ -2917,20 +2917,20 @@ void spell_RF6_S_ANT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int T
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_SPIDERã®å‡¦ç†ã€‚ã‚¯ãƒ¢å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_SPIDER¤Î½èÍı¡£¥¯¥â¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_SPIDER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2940,9 +2940,9 @@ void spell_RF6_S_SPIDER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	int rlev = monster_level_idx(m_idx);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ã‚¯ãƒ¢ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons spiders."),
-		_("%^sãŒé­”æ³•ã§ã‚¯ãƒ¢ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons spiders."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥¯¥â¤ò¾¤´­¤·¤¿¡£", "%^s magically summons spiders."),
+		_("%^s¤¬ËâË¡¤Ç¥¯¥â¤ò¾¤´­¤·¤¿¡£", "%^s magically summons spiders."),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_6; k++)
@@ -2951,20 +2951,20 @@ void spell_RF6_S_SPIDER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_HOUNDã®å‡¦ç†ã€‚ãƒã‚¦ãƒ³ãƒ‰å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_HOUND¤Î½èÍı¡£¥Ï¥¦¥ó¥É¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_HOUND(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -2974,9 +2974,9 @@ void spell_RF6_S_HOUND(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ãƒã‚¦ãƒ³ãƒ‰ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons hounds."),
-		_("%^sãŒé­”æ³•ã§ãƒã‚¦ãƒ³ãƒ‰ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons hounds."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥Ï¥¦¥ó¥É¤ò¾¤´­¤·¤¿¡£", "%^s magically summons hounds."),
+		_("%^s¤¬ËâË¡¤Ç¥Ï¥¦¥ó¥É¤ò¾¤´­¤·¤¿¡£", "%^s magically summons hounds."),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_4; k++)
@@ -2985,20 +2985,20 @@ void spell_RF6_S_HOUND(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_HYDRAã®å‡¦ç†ã€‚ãƒ’ãƒ‰ãƒ©å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_HYDRA¤Î½èÍı¡£¥Ò¥É¥é¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_HYDRA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3008,9 +3008,9 @@ void spell_RF6_S_HYDRA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ãƒ’ãƒ‰ãƒ©ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons hydras."),
-		_("%^sãŒé­”æ³•ã§ãƒ’ãƒ‰ãƒ©ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons hydras."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥Ò¥É¥é¤ò¾¤´­¤·¤¿¡£", "%^s magically summons hydras."),
+		_("%^s¤¬ËâË¡¤Ç¥Ò¥É¥é¤ò¾¤´­¤·¤¿¡£", "%^s magically summons hydras."),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_4; k++)
@@ -3019,20 +3019,20 @@ void spell_RF6_S_HYDRA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	}
 
 	if (p_ptr->blind && count && mon_to_player)
-		msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+		msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_ANGELã®å‡¦ç†ã€‚å¤©ä½¿ä¸€ä½“å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_ANGEL¤Î½èÍı¡£Å·»È°ìÂÎ¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_ANGEL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3044,9 +3044,9 @@ void spell_RF6_S_ANGEL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§å¤©ä½¿ã‚’å¬å–šã—ãŸï¼", "%^s magically summons an angel!"),
-		_("%^sãŒé­”æ³•ã§å¤©ä½¿ã‚’å¬å–šã—ãŸï¼", "%^s magically summons an angel!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤ÇÅ·»È¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons an angel!"),
+		_("%^s¤¬ËâË¡¤ÇÅ·»È¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons an angel!"),
 		TARGET_TYPE);
 	
 	if ((r_ptr->flags1 & RF1_UNIQUE) && !easy_band)
@@ -3062,12 +3062,12 @@ void spell_RF6_S_ANGEL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	if (count < 2)
 	{
 		if (p_ptr->blind && count)
-			msg_print(_("ä½•ã‹ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear something appear nearby."));
+			msg_print(_("²¿¤«¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear something appear nearby."));
 	}
 	else
 	{
 		if (p_ptr->blind)
-			msg_print(_("å¤šãã®ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear many things appear nearby."));
+			msg_print(_("Â¿¤¯¤Î¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear many things appear nearby."));
 	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
@@ -3075,13 +3075,13 @@ void spell_RF6_S_ANGEL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 }
 
 /*!
-* @brief RF6_S_DEMONã®å‡¦ç†ã€‚ãƒ‡ãƒ¼ãƒ¢ãƒ³ä¸€ä½“å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_DEMON¤Î½èÍı¡£¥Ç¡¼¥â¥ó°ìÂÎ¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_DEMON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3090,9 +3090,9 @@ void spell_RF6_S_DEMON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sã¯é­”æ³•ã§æ··æ²Œã®å®®å»·ã‹ã‚‰æ‚ªé­”ã‚’å¬å–šã—ãŸï¼", "%^s magically summons a demon from the Courts of Chaos!"),
-		_("%^sã¯é­”æ³•ã§æ··æ²Œã®å®®å»·ã‹ã‚‰æ‚ªé­”ã‚’å¬å–šã—ãŸï¼", "%^s magically summons a demon from the Courts of Chaos!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤ÏËâË¡¤Çº®ÆÙ¤ÎµÜÄî¤«¤é°­Ëâ¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons a demon from the Courts of Chaos!"),
+		_("%^s¤ÏËâË¡¤Çº®ÆÙ¤ÎµÜÄî¤«¤é°­Ëâ¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons a demon from the Courts of Chaos!"),
 		TARGET_TYPE);
 	
 	for (k = 0; k < 1; k++)
@@ -3101,20 +3101,20 @@ void spell_RF6_S_DEMON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int
 	}
 	
 	if (p_ptr->blind && count)
-		msg_print(_("ä½•ã‹ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear something appear nearby."));
+		msg_print(_("²¿¤«¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear something appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_UNDEADã®å‡¦ç†ã€‚ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ä¸€ä½“å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_UNDEAD¤Î½èÍı¡£¥¢¥ó¥Ç¥Ã¥É°ìÂÎ¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3123,9 +3123,9 @@ void spell_RF6_S_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã®å¼·æ•µã‚’å¬å–šã—ãŸï¼", "%^s magically summons an undead adversary!"),
-		_("%sãŒé­”æ³•ã§ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons undead."),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥¢¥ó¥Ç¥Ã¥É¤Î¶¯Å¨¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons an undead adversary!"),
+		_("%s¤¬ËâË¡¤Ç¥¢¥ó¥Ç¥Ã¥É¤ò¾¤´­¤·¤¿¡£", "%^s magically summons undead."),
 		TARGET_TYPE);
 	
 	for (k = 0; k < 1; k++)
@@ -3134,20 +3134,20 @@ void spell_RF6_S_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	}
 	
 	if (p_ptr->blind && count)
-		msg_print(_("ä½•ã‹ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear something appear nearby."));
+		msg_print(_("²¿¤«¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear something appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_DRAGONã®å‡¦ç†ã€‚ãƒ‰ãƒ©ã‚´ãƒ³ä¸€ä½“å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_DRAGON¤Î½èÍı¡£¥É¥é¥´¥ó°ìÂÎ¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3156,9 +3156,9 @@ void spell_RF6_S_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ãƒ‰ãƒ©ã‚´ãƒ³ã‚’å¬å–šã—ãŸï¼", "%^s magically summons a dragon!"),
-		_("%^sãŒé­”æ³•ã§ãƒ‰ãƒ©ã‚´ãƒ³ã‚’å¬å–šã—ãŸï¼", "%^s magically summons a dragon!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¥É¥é¥´¥ó¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons a dragon!"),
+		_("%^s¤¬ËâË¡¤Ç¥É¥é¥´¥ó¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons a dragon!"),
 		TARGET_TYPE);
 	
 	for (k = 0; k < 1; k++)
@@ -3167,18 +3167,18 @@ void spell_RF6_S_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	}
 	
 	if (p_ptr->blind && count)
-		msg_print(_("ä½•ã‹ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒã™ã‚‹ã€‚", "You hear something appear nearby."));
+		msg_print(_("²¿¤«¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬¤¹¤ë¡£", "You hear something appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief ãƒŠã‚ºã‚°ãƒ«æˆ¦éšŠå¬å–šã®å‡¦ç†ã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief ¥Ê¥º¥°¥ëÀïÂâ¾¤´­¤Î½èÍı¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 MONSTER_NUMBER summon_NAZGUL(POSITION y, POSITION x, MONSTER_IDX m_idx)
 {
@@ -3190,9 +3190,9 @@ MONSTER_NUMBER summon_NAZGUL(POSITION y, POSITION x, MONSTER_IDX m_idx)
 	monster_name(m_idx, m_name);
 
 	if (p_ptr->blind)
-		msg_format(_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."), m_name);
+		msg_format(_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."), m_name);
 	else
-		msg_format(_("%^sãŒé­”æ³•ã§å¹½é¬¼æˆ¦éšŠã‚’å¬å–šã—ãŸï¼", "%^s magically summons rangers of Nazgul!"), m_name);
+		msg_format(_("%^s¤¬ËâË¡¤ÇÍ©µ´ÀïÂâ¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons rangers of Nazgul!"), m_name);
 
 	msg_print(NULL);
 
@@ -3216,29 +3216,29 @@ MONSTER_NUMBER summon_NAZGUL(POSITION y, POSITION x, MONSTER_IDX m_idx)
 			x = cx;
 			count++;
 			if (count == 1)
-				msg_format(_("ã€Œå¹½é¬¼æˆ¦éšŠ%då·ã€ãƒŠã‚ºã‚°ãƒ«ãƒ»ãƒ–ãƒ©ãƒƒã‚¯ï¼ã€",
+				msg_format(_("¡ÖÍ©µ´ÀïÂâ%d¹æ¡¢¥Ê¥º¥°¥ë¡¦¥Ö¥é¥Ã¥¯¡ª¡×",
 				"A Nazgul says 'Nazgul-Rangers Number %d, Nazgul-Black!'"), count);
 			else
-				msg_format(_("ã€ŒåŒã˜ã%då·ã€ãƒŠã‚ºã‚°ãƒ«ãƒ»ãƒ–ãƒ©ãƒƒã‚¯ï¼ã€",
+				msg_format(_("¡ÖÆ±¤¸¤¯%d¹æ¡¢¥Ê¥º¥°¥ë¡¦¥Ö¥é¥Ã¥¯¡ª¡×",
 				"Another one says 'Number %d, Nazgul-Black!'"), count);
 
 			msg_print(NULL);
 		}
 	}
-	msg_format(_("ã€Œ%däººãã‚ã£ã¦ã€ãƒªãƒ³ã‚°ãƒ¬ãƒ³ã‚¸ãƒ£ãƒ¼ï¼ã€",
+	msg_format(_("¡Ö%d¿Í¤½¤í¤Ã¤Æ¡¢¥ê¥ó¥°¥ì¥ó¥¸¥ã¡¼¡ª¡×",
 		"They say 'The %d meets! We are the Ring-Ranger!'."), count);
 	msg_print(NULL);
 	return count;
 }
 
 /*!
-* @brief RF6_S_HI_UNDEADã®å‡¦ç†ã€‚å¼·åŠ›ãªã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_HI_UNDEAD¤Î½èÍı¡£¶¯ÎÏ¤Ê¥¢¥ó¥Ç¥Ã¥É¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_HI_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3261,9 +3261,9 @@ void spell_RF6_S_HI_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 	else
 	{	
 		monspell_message(m_idx, t_idx,
-			_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-			_("%^sãŒé­”æ³•ã§å¼·åŠ›ãªã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã‚’å¬å–šã—ãŸï¼", "%^s magically summons greater undead!"),
-			_("%sãŒé­”æ³•ã§ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã‚’å¬å–šã—ãŸã€‚", "%^s magically summons undead."),
+			_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+			_("%^s¤¬ËâË¡¤Ç¶¯ÎÏ¤Ê¥¢¥ó¥Ç¥Ã¥É¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons greater undead!"),
+			_("%s¤¬ËâË¡¤Ç¥¢¥ó¥Ç¥Ã¥É¤ò¾¤´­¤·¤¿¡£", "%^s magically summons undead."),
 			TARGET_TYPE);
 
 		for (k = 0; k < S_NUM_6; k++)
@@ -3277,7 +3277,7 @@ void spell_RF6_S_HI_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 	}
 	if (p_ptr->blind && count && mon_to_player)
 	{
-		msg_print(_("é–“è¿‘ã§ä½•ã‹å¤šãã®ã‚‚ã®ãŒé€™ã„å›ã‚‹éŸ³ãŒèã“ãˆã‚‹ã€‚", "You hear many creepy things appear nearby."));
+		msg_print(_("´Ö¶á¤Ç²¿¤«Â¿¤¯¤Î¤â¤Î¤¬Çç¤¤²ó¤ë²»¤¬Ê¹¤³¤¨¤ë¡£", "You hear many creepy things appear nearby."));
 	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
@@ -3285,13 +3285,13 @@ void spell_RF6_S_HI_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 }
 
 /*!
-* @brief RF6_S_HI_DRAGONã®å‡¦ç†ã€‚å¤ä»£ãƒ‰ãƒ©ã‚´ãƒ³å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_HI_DRAGON¤Î½èÍı¡£¸ÅÂå¥É¥é¥´¥ó¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_HI_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3301,9 +3301,9 @@ void spell_RF6_S_HI_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§å¤ä»£ãƒ‰ãƒ©ã‚´ãƒ³ã‚’å¬å–šã—ãŸï¼", "%^s magically summons ancient dragons!"),
-		_("%^sãŒé­”æ³•ã§å¤ä»£ãƒ‰ãƒ©ã‚´ãƒ³ã‚’å¬å–šã—ãŸï¼", "%^s magically summons ancient dragons!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤Ç¸ÅÂå¥É¥é¥´¥ó¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons ancient dragons!"),
+		_("%^s¤¬ËâË¡¤Ç¸ÅÂå¥É¥é¥´¥ó¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons ancient dragons!"),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_4; k++)
@@ -3317,7 +3317,7 @@ void spell_RF6_S_HI_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 	
 	if (p_ptr->blind && count && mon_to_player)
 	{
-		msg_print(_("å¤šãã®åŠ›å¼·ã„ã‚‚ã®ãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒèã“ãˆã‚‹ã€‚", "You hear many powerful things appear nearby."));
+		msg_print(_("Â¿¤¯¤ÎÎÏ¶¯¤¤¤â¤Î¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬Ê¹¤³¤¨¤ë¡£", "You hear many powerful things appear nearby."));
 	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
@@ -3325,13 +3325,13 @@ void spell_RF6_S_HI_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 }
 
 /*!
-* @brief RF6_S_AMBERITESã®å‡¦ç†ã€‚ã‚¢ãƒ³ãƒãƒ¼ã®ç‹æ—å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_AMBERITES¤Î½èÍı¡£¥¢¥ó¥Ğ¡¼¤Î²¦Â²¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_AMBERITES(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3341,9 +3341,9 @@ void spell_RF6_S_AMBERITES(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒã‚¢ãƒ³ãƒãƒ¼ã®ç‹æ—ã‚’å¬å–šã—ãŸï¼", "%^s magically summons Lords of Amber!"),
-		_("%^sãŒã‚¢ãƒ³ãƒãƒ¼ã®ç‹æ—ã‚’å¬å–šã—ãŸï¼", "%^s magically summons Lords of Amber!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬¥¢¥ó¥Ğ¡¼¤Î²¦Â²¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons Lords of Amber!"),
+		_("%^s¤¬¥¢¥ó¥Ğ¡¼¤Î²¦Â²¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons Lords of Amber!"),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_4; k++)
@@ -3353,7 +3353,7 @@ void spell_RF6_S_AMBERITES(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 	
 	if (p_ptr->blind && count && mon_to_player)
 	{
-		msg_print(_("ä¸æ­»ã®è€…ãŒè¿‘ãã«ç¾ã‚Œã‚‹ã®ãŒèã“ãˆãŸã€‚", "You hear immortal beings appear nearby."));
+		msg_print(_("ÉÔ»à¤Î¼Ô¤¬¶á¤¯¤Ë¸½¤ì¤ë¤Î¤¬Ê¹¤³¤¨¤¿¡£", "You hear immortal beings appear nearby."));
 	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
@@ -3361,13 +3361,13 @@ void spell_RF6_S_AMBERITES(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,
 }
 
 /*!
-* @brief RF6_S_UNIQUEã®å‡¦ç†ã€‚ãƒ¦ãƒ‹ãƒ¼ã‚¯ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å¬å–šã€‚ /
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @param TARGET_TYPE ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_PLAYERã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¯¾è±¡ã¨ã™ã‚‹å ´åˆMONSTER_TO_MONSTER
-* @return å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚
+* @brief RF6_S_UNIQUE¤Î½èÍı¡£¥æ¥Ë¡¼¥¯¡¦¥â¥ó¥¹¥¿¡¼¾¤´­¡£ /
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @param TARGET_TYPE ¥×¥ì¥¤¥ä¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_PLAYER¡¢¥â¥ó¥¹¥¿¡¼¤òÂĞ¾İ¤È¤¹¤ë¾ì¹çMONSTER_TO_MONSTER
+* @return ¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£
 */
 void spell_RF6_S_UNIQUE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
@@ -3380,9 +3380,9 @@ void spell_RF6_S_UNIQUE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 	int non_unique_type = SUMMON_HI_UNDEAD;
 	
 	monspell_message(m_idx, t_idx,
-		_("%^sãŒä½•ã‹ã‚’ã¤ã¶ã‚„ã„ãŸã€‚", "%^s mumbles."),
-		_("%^sãŒé­”æ³•ã§ç‰¹åˆ¥ãªå¼·æ•µã‚’å¬å–šã—ãŸï¼", "%^s magically summons special opponents!"),
-		_("%^sãŒé­”æ³•ã§ç‰¹åˆ¥ãªå¼·æ•µã‚’å¬å–šã—ãŸï¼", "%^s magically summons special opponents!"),
+		_("%^s¤¬²¿¤«¤ò¤Ä¤Ö¤ä¤¤¤¿¡£", "%^s mumbles."),
+		_("%^s¤¬ËâË¡¤ÇÆÃÊÌ¤Ê¶¯Å¨¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons special opponents!"),
+		_("%^s¤¬ËâË¡¤ÇÆÃÊÌ¤Ê¶¯Å¨¤ò¾¤´­¤·¤¿¡ª", "%^s magically summons special opponents!"),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_4; k++)
@@ -3404,8 +3404,8 @@ void spell_RF6_S_UNIQUE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 
 	if (p_ptr->blind && count && mon_to_player)
 	{
-		msg_format(_("å¤šãã®%sãŒé–“è¿‘ã«ç¾ã‚ŒãŸéŸ³ãŒèã“ãˆã‚‹ã€‚", "You hear many %s appear nearby."),
-			uniques_are_summoned ? _("åŠ›å¼·ã„ã‚‚ã®", "powerful things") : _("ã‚‚ã®", "things"));
+		msg_format(_("Â¿¤¯¤Î%s¤¬´Ö¶á¤Ë¸½¤ì¤¿²»¤¬Ê¹¤³¤¨¤ë¡£", "You hear many %s appear nearby."),
+			uniques_are_summoned ? _("ÎÏ¶¯¤¤¤â¤Î", "powerful things") : _("¤â¤Î", "things"));
 	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
@@ -3415,12 +3415,12 @@ void spell_RF6_S_UNIQUE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, in
 
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸ã®å‘ªæ–‡ã®æŒ¯ã‚Šåˆ†ã‘é–¢æ•°ã€‚ /
-* @param SPELL_NUM ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é­”æ³•ID
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã€ã¾ãŸã¯å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚ãã®ä»–ã®å ´åˆ0ã€‚ä»¥é™ã®å‡¦ç†ã‚’ä¸­æ–­ã™ã‚‹ãªã‚‰-1ã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤«¤é¥×¥ì¥¤¥ä¡¼¤Ø¤Î¼öÊ¸¤Î¿¶¤êÊ¬¤±´Ø¿ô¡£ /
+* @param SPELL_NUM ¥â¥ó¥¹¥¿¡¼ËâË¡ID
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¡¢¤Ş¤¿¤Ï¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£¤½¤ÎÂ¾¤Î¾ì¹ç0¡£°Ê¹ß¤Î½èÍı¤òÃæÃÇ¤¹¤ë¤Ê¤é-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_to_player(int SPELL_NUM, POSITION y, POSITION x, MONSTER_IDX m_idx)
 {
@@ -3527,13 +3527,13 @@ HIT_POINT monspell_to_player(int SPELL_NUM, POSITION y, POSITION x, MONSTER_IDX 
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã‚‰ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®å‘ªæ–‡ã®æŒ¯ã‚Šåˆ†ã‘é–¢æ•°ã€‚ /
-* @param SPELL_NUM ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é­”æ³•ID
-* @param y å¯¾è±¡ã®åœ°ç‚¹ã®yåº§æ¨™
-* @param x å¯¾è±¡ã®åœ°ç‚¹ã®xåº§æ¨™
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param t_idx å‘ªæ–‡ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã€‚ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å ´åˆã¯dummyã§0ã¨ã™ã‚‹ã€‚
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã€ã¾ãŸã¯å¬å–šã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã‚’è¿”ã™ã€‚ãã®ä»–ã®å ´åˆ0ã€‚ä»¥é™ã®å‡¦ç†ã‚’ä¸­æ–­ã™ã‚‹ãªã‚‰-1ã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤«¤é¥â¥ó¥¹¥¿¡¼¤Ø¤Î¼öÊ¸¤Î¿¶¤êÊ¬¤±´Ø¿ô¡£ /
+* @param SPELL_NUM ¥â¥ó¥¹¥¿¡¼ËâË¡ID
+* @param y ÂĞ¾İ¤ÎÃÏÅÀ¤ÎyºÂÉ¸
+* @param x ÂĞ¾İ¤ÎÃÏÅÀ¤ÎxºÂÉ¸
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param t_idx ¼öÊ¸¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼ID¡£¥×¥ì¥¤¥ä¡¼¤Î¾ì¹ç¤Ïdummy¤Ç0¤È¤¹¤ë¡£
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¡¢¤Ş¤¿¤Ï¾¤´­¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î¿ô¤òÊÖ¤¹¡£¤½¤ÎÂ¾¤Î¾ì¹ç0¡£°Ê¹ß¤Î½èÍı¤òÃæÃÇ¤¹¤ë¤Ê¤é-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_to_monster(int SPELL_NUM, POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx)
 {
@@ -3640,14 +3640,14 @@ HIT_POINT monspell_to_monster(int SPELL_NUM, POSITION y, POSITION x, MONSTER_IDX
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½¿ã†å‘ªæ–‡ã®å¨åŠ›ã‚’æ±ºå®šã™ã‚‹ /
-* @param dam å®šæ•°å€¤
-* @param dice_num ãƒ€ã‚¤ã‚¹æ•°
-* @param dice_side ãƒ€ã‚¤ã‚¹é¢
-* @param mult ãƒ€ã‚¤ã‚¹å€ç‡
-* @param div ãƒ€ã‚¤ã‚¹å€ç‡
-* @param TYPE  DAM_MAXã§æœ€å¤§å€¤ã‚’è¿”ã—ã€DAM_MINã§æœ€å°å€¤ã‚’è¿”ã™ã€‚DAM_ROLLã¯ãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã£ã¦å€¤ã‚’æ±ºå®šã™ã‚‹ã€‚
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ã€‚æ”»æ’ƒå‘ªæ–‡ä»¥å¤–ã¯-1ã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤Î»È¤¦¼öÊ¸¤Î°ÒÎÏ¤ò·èÄê¤¹¤ë /
+* @param dam Äê¿ôÃÍ
+* @param dice_num ¥À¥¤¥¹¿ô
+* @param dice_side ¥À¥¤¥¹ÌÌ
+* @param mult ¥À¥¤¥¹ÇÜÎ¨
+* @param div ¥À¥¤¥¹ÇÜÎ¨
+* @param TYPE  DAM_MAX¤ÇºÇÂçÃÍ¤òÊÖ¤·¡¢DAM_MIN¤ÇºÇ¾®ÃÍ¤òÊÖ¤¹¡£DAM_ROLL¤Ï¥À¥¤¥¹¤ò¿¶¤Ã¤ÆÃÍ¤ò·èÄê¤¹¤ë¡£
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¤òÊÖ¤¹¡£¹¶·â¼öÊ¸°Ê³°¤Ï-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_damage_roll(HIT_POINT dam, int dice_num, int dice_side, int mult, int div, int TYPE)
 {
@@ -3667,16 +3667,16 @@ HIT_POINT monspell_damage_roll(HIT_POINT dam, int dice_num, int dice_side, int m
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½¿ã†å‘ªæ–‡ã®å¨åŠ›ã‚’è¿”ã™ /
-* @param SPELL_NUM å‘ªæ–‡ç•ªå·
-* @param hp å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½“åŠ›
-* @param rlev å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
-* @param powerful å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®powerfulãƒ•ãƒ©ã‚°
-* @param shoot_dd å°„æ’ƒã®ãƒ€ã‚¤ã‚¹æ•°
-* @param shoot_ds å°„æ’ƒã®ãƒ€ã‚¤ã‚¹é¢
-* @param shoot_base å°„æ’ƒã®å›ºå®šå¨åŠ›å€¤
-* @param TYPE  DAM_MAXã§æœ€å¤§å€¤ã‚’è¿”ã—ã€DAM_MINã§æœ€å°å€¤ã‚’è¿”ã™ã€‚DAM_ROLLã¯ãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã£ã¦å€¤ã‚’æ±ºå®šã™ã‚‹ã€‚
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ã€‚æ”»æ’ƒå‘ªæ–‡ä»¥å¤–ã¯-1ã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤Î»È¤¦¼öÊ¸¤Î°ÒÎÏ¤òÊÖ¤¹ /
+* @param SPELL_NUM ¼öÊ¸ÈÖ¹æ
+* @param hp ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤ÎÂÎÎÏ
+* @param rlev ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
+* @param powerful ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Îpowerful¥Õ¥é¥°
+* @param shoot_dd ¼Í·â¤Î¥À¥¤¥¹¿ô
+* @param shoot_ds ¼Í·â¤Î¥À¥¤¥¹ÌÌ
+* @param shoot_base ¼Í·â¤Î¸ÇÄê°ÒÎÏÃÍ
+* @param TYPE  DAM_MAX¤ÇºÇÂçÃÍ¤òÊÖ¤·¡¢DAM_MIN¤ÇºÇ¾®ÃÍ¤òÊÖ¤¹¡£DAM_ROLL¤Ï¥À¥¤¥¹¤ò¿¶¤Ã¤ÆÃÍ¤ò·èÄê¤¹¤ë¡£
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¤òÊÖ¤¹¡£¹¶·â¼öÊ¸°Ê³°¤Ï-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_damage_base(int SPELL_NUM, int hp, int rlev, bool powerful, int shoot_dd, int shoot_ds, int shoot_base, int TYPE)
 {
@@ -4089,11 +4089,11 @@ HIT_POINT monspell_damage_base(int SPELL_NUM, int hp, int rlev, bool powerful, i
 
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½¿ã†å‘ªæ–‡ã®å¨åŠ›ã‚’è¿”ã™ /
-* @param SPELL_NUM å‘ªæ–‡ç•ªå·
-* @param m_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
-* @param TYPE  DAM_MAXã§æœ€å¤§å€¤ã‚’è¿”ã—ã€DAM_MINã§æœ€å°å€¤ã‚’è¿”ã™ã€‚DAM_ROLLã¯ãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã£ã¦å€¤ã‚’æ±ºå®šã™ã‚‹ã€‚
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ã€‚æ”»æ’ƒå‘ªæ–‡ä»¥å¤–ã¯-1ã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤Î»È¤¦¼öÊ¸¤Î°ÒÎÏ¤òÊÖ¤¹ /
+* @param SPELL_NUM ¼öÊ¸ÈÖ¹æ
+* @param m_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼ID
+* @param TYPE  DAM_MAX¤ÇºÇÂçÃÍ¤òÊÖ¤·¡¢DAM_MIN¤ÇºÇ¾®ÃÍ¤òÊÖ¤¹¡£DAM_ROLL¤Ï¥À¥¤¥¹¤ò¿¶¤Ã¤ÆÃÍ¤ò·èÄê¤¹¤ë¡£
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¤òÊÖ¤¹¡£¹¶·â¼öÊ¸°Ê³°¤Ï-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_damage(int SPELL_NUM, MONSTER_IDX m_idx, int TYPE)
 {
@@ -4116,11 +4116,11 @@ HIT_POINT monspell_damage(int SPELL_NUM, MONSTER_IDX m_idx, int TYPE)
 }
 
 /*!
-* @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½¿ã†å‘ªæ–‡ã®å¨åŠ›ã‚’è¿”ã™ /
-* @param SPELL_NUM å‘ªæ–‡ç•ªå·
-* @param r_idx å‘ªæ–‡ã‚’å”±ãˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¨®æ—ID
-* @param TYPE  DAM_MAXã§æœ€å¤§å€¤ã‚’è¿”ã—ã€DAM_MINã§æœ€å°å€¤ã‚’è¿”ã™ã€‚DAM_ROLLã¯ãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã£ã¦å€¤ã‚’æ±ºå®šã™ã‚‹ã€‚
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ã€‚æ”»æ’ƒå‘ªæ–‡ä»¥å¤–ã¯-1ã‚’è¿”ã™ã€‚
+* @brief ¥â¥ó¥¹¥¿¡¼¤Î»È¤¦¼öÊ¸¤Î°ÒÎÏ¤òÊÖ¤¹ /
+* @param SPELL_NUM ¼öÊ¸ÈÖ¹æ
+* @param r_idx ¼öÊ¸¤ò¾§¤¨¤ë¥â¥ó¥¹¥¿¡¼¤Î¼ïÂ²ID
+* @param TYPE  DAM_MAX¤ÇºÇÂçÃÍ¤òÊÖ¤·¡¢DAM_MIN¤ÇºÇ¾®ÃÍ¤òÊÖ¤¹¡£DAM_ROLL¤Ï¥À¥¤¥¹¤ò¿¶¤Ã¤ÆÃÍ¤ò·èÄê¤¹¤ë¡£
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¤òÊÖ¤¹¡£¹¶·â¼öÊ¸°Ê³°¤Ï-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_race_damage(int SPELL_NUM, MONRACE_IDX r_idx, int TYPE)
 {
@@ -4135,11 +4135,11 @@ HIT_POINT monspell_race_damage(int SPELL_NUM, MONRACE_IDX r_idx, int TYPE)
 }
 
 /*!
-* @brief é’é­”å°å¸«ã®ä½¿ã†å‘ªæ–‡ã®å¨åŠ›ã‚’è¿”ã™ /
-* @param SPELL_NUM å‘ªæ–‡ç•ªå·
-* @param plev ä½¿ç”¨ã™ã‚‹ãƒ¬ãƒ™ãƒ«ã€‚2å€ã—ã¦æ‰±ã†ã€‚
-* @param TYPE  DAM_MAXã§æœ€å¤§å€¤ã‚’è¿”ã—ã€DAM_MINã§æœ€å°å€¤ã‚’è¿”ã™ã€‚DAM_ROLLã¯ãƒ€ã‚¤ã‚¹ã‚’æŒ¯ã£ã¦å€¤ã‚’æ±ºå®šã™ã‚‹ã€‚
-* @return æ”»æ’ƒå‘ªæ–‡ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ã€‚æ”»æ’ƒå‘ªæ–‡ä»¥å¤–ã¯-1ã‚’è¿”ã™ã€‚
+* @brief ÀÄËâÆ³»Õ¤Î»È¤¦¼öÊ¸¤Î°ÒÎÏ¤òÊÖ¤¹ /
+* @param SPELL_NUM ¼öÊ¸ÈÖ¹æ
+* @param plev »ÈÍÑ¤¹¤ë¥ì¥Ù¥ë¡£2ÇÜ¤·¤Æ°·¤¦¡£
+* @param TYPE  DAM_MAX¤ÇºÇÂçÃÍ¤òÊÖ¤·¡¢DAM_MIN¤ÇºÇ¾®ÃÍ¤òÊÖ¤¹¡£DAM_ROLL¤Ï¥À¥¤¥¹¤ò¿¶¤Ã¤ÆÃÍ¤ò·èÄê¤¹¤ë¡£
+* @return ¹¶·â¼öÊ¸¤Î¥À¥á¡¼¥¸¤òÊÖ¤¹¡£¹¶·â¼öÊ¸°Ê³°¤Ï-1¤òÊÖ¤¹¡£
 */
 HIT_POINT monspell_bluemage_damage(int SPELL_NUM, int plev, int TYPE)
 {

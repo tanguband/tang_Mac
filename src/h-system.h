@@ -1,10 +1,10 @@
-ï»¿/*!
+/*!
  * @file h-system.h
- * @brief å¤‰æ„šè›®æ€’ç”¨ã‚·ã‚¹ãƒ†ãƒ ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ« /
+ * @brief ÊÑ¶òÈÚÅÜÍÑ¥·¥¹¥Æ¥à¥Ø¥Ã¥À¡¼¥Õ¥¡¥¤¥ë /
  * The most basic "include" file. This file simply includes other low level header files.
  * @date 2014/08/16
  * @author
- * ä¸æ˜(å¤‰æ„šè›®æ€’ã‚¹ã‚¿ãƒƒãƒ•ï¼Ÿ)
+ * ÉÔÌÀ(ÊÑ¶òÈÚÅÜ¥¹¥¿¥Ã¥Õ¡©)
  * @details
  * Include the basic "system" files.
  * Make sure all "system" constants/macros are defined.

@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file scores.c
- * @brief ãƒã‚¤ã‚¹ã‚³ã‚¢å‡¦ç† / Highscores handling
+ * @brief ¥Ï¥¤¥¹¥³¥¢½èÍı / Highscores handling
  * @date 2014/07/14
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
@@ -13,9 +13,9 @@
 #include "angband.h"
 
 /*!
- * @brief iç•ªç›®ã®ã‚¹ã‚³ã‚¢æƒ…å ±ã«ãƒãƒƒãƒ•ã‚¡ä½ç½®ã‚’ã‚·ãƒ¼ã‚¯ã™ã‚‹ / Seek score 'i' in the highscore file
- * @param i ã‚¹ã‚³ã‚¢æƒ…å ±ID
- * @return å•é¡ŒãŒãªã‘ã‚Œã°0ã‚’è¿”ã™
+ * @brief iÈÖÌÜ¤Î¥¹¥³¥¢¾ğÊó¤Ë¥Ğ¥Ã¥Õ¥¡°ÌÃÖ¤ò¥·¡¼¥¯¤¹¤ë / Seek score 'i' in the highscore file
+ * @param i ¥¹¥³¥¢¾ğÊóID
+ * @return ÌäÂê¤¬¤Ê¤±¤ì¤Ğ0¤òÊÖ¤¹
  */
 static int highscore_seek(int i)
 {
@@ -25,9 +25,9 @@ static int highscore_seek(int i)
 
 
 /*!
- * @brief æ‰€å®šãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã‚¹ã‚³ã‚¢æƒ…å ±ã‚’èª­ã¿å–ã‚‹ / Read one score from the highscore file
- * @param score ã‚¹ã‚³ã‚¢æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @brief ½êÄê¥İ¥¤¥ó¥¿¤«¤é¥¹¥³¥¢¾ğÊó¤òÆÉ¤ß¼è¤ë / Read one score from the highscore file
+ * @param score ¥¹¥³¥¢¾ğÊó»²¾È¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 static errr highscore_read(high_score *score)
 {
@@ -37,9 +37,9 @@ static errr highscore_read(high_score *score)
 
 
 /*!
- * @brief æ‰€å®šãƒã‚¤ãƒ³ã‚¿ã¸ã‚¹ã‚³ã‚¢æƒ…å ±ã‚’æ›¸ãè¾¼ã‚€ / Write one score to the highscore file
- * @param score ã‚¹ã‚³ã‚¢æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰(å•é¡ŒãŒãªã‘ã‚Œã°0ã‚’è¿”ã™)
+ * @brief ½êÄê¥İ¥¤¥ó¥¿¤Ø¥¹¥³¥¢¾ğÊó¤ò½ñ¤­¹ş¤à / Write one score to the highscore file
+ * @param score ¥¹¥³¥¢¾ğÊó»²¾È¥İ¥¤¥ó¥¿
+ * @return ¥¨¥é¡¼¥³¡¼¥É(ÌäÂê¤¬¤Ê¤±¤ì¤Ğ0¤òÊÖ¤¹)
  */
 static int highscore_write(high_score *score)
 {
@@ -48,9 +48,9 @@ static int highscore_write(high_score *score)
 }
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢æƒ…å ±ã‚’å…¨ã¦å¾—ã‚‹ã¾ã§ç¹°ã‚Šè¿”ã—å–å¾—ã™ã‚‹ / Just determine where a new score *would* be placed
- * @param score ã‚¹ã‚³ã‚¢æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return æ­£å¸¸ãªã‚‰ã°(MAX_HISCORES - 1)ã€å•é¡ŒãŒã‚ã‚Œã°-1ã‚’è¿”ã™
+ * @brief ¥¹¥³¥¢¾ğÊó¤òÁ´¤ÆÆÀ¤ë¤Ş¤Ç·«¤êÊÖ¤·¼èÆÀ¤¹¤ë / Just determine where a new score *would* be placed
+ * @param score ¥¹¥³¥¢¾ğÊó»²¾È¥İ¥¤¥ó¥¿
+ * @return Àµ¾ï¤Ê¤é¤Ğ(MAX_HISCORES - 1)¡¢ÌäÂê¤¬¤¢¤ì¤Ğ-1¤òÊÖ¤¹
  */
 static int highscore_where(high_score *score)
 {
@@ -83,9 +83,9 @@ static int highscore_where(high_score *score)
 
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢æƒ…å ±ã‚’ãƒãƒƒãƒ•ã‚¡ã®æœ«å°¾ã«è¿½åŠ ã™ã‚‹ / Actually place an entry into the high score file
- * @param score ã‚¹ã‚³ã‚¢æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return æ­£å¸¸ãªã‚‰ã°æ›¸ãè¾¼ã‚“ã ã‚¹ãƒ­ãƒƒãƒˆä½ç½®ã€å•é¡ŒãŒã‚ã‚Œã°-1ã‚’è¿”ã™ / Return the location (0 is best) or -1 on "failure"
+ * @brief ¥¹¥³¥¢¾ğÊó¤ò¥Ğ¥Ã¥Õ¥¡¤ÎËöÈø¤ËÄÉ²Ã¤¹¤ë / Actually place an entry into the high score file
+ * @param score ¥¹¥³¥¢¾ğÊó»²¾È¥İ¥¤¥ó¥¿
+ * @return Àµ¾ï¤Ê¤é¤Ğ½ñ¤­¹ş¤ó¤À¥¹¥í¥Ã¥È°ÌÃÖ¡¢ÌäÂê¤¬¤¢¤ì¤Ğ-1¤òÊÖ¤¹ / Return the location (0 is best) or -1 on "failure"
  */
 static int highscore_add(high_score *score)
 {
@@ -129,12 +129,12 @@ static int highscore_add(high_score *score)
 
 
 /*!
- * @brief æŒ‡å®šã•ã‚ŒãŸé †ä½ç¯„å›²ã§ã‚¹ã‚³ã‚¢ã‚’ä¸¦ã¹ã¦è¡¨ç¤ºã™ã‚‹ / Display the scores in a given range.
- * @param from é †ä½å…ˆé ­
- * @param to é †ä½æœ«å°¾
- * @param note é»„è‰²è¡¨ç¤ºã§ãƒã‚¤ãƒ©ã‚¤ãƒˆã™ã‚‹é †ä½
- * @param score ã‚¹ã‚³ã‚¢é…åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
- * @return ãªã—
+ * @brief »ØÄê¤µ¤ì¤¿½ç°ÌÈÏ°Ï¤Ç¥¹¥³¥¢¤òÊÂ¤Ù¤ÆÉ½¼¨¤¹¤ë / Display the scores in a given range.
+ * @param from ½ç°ÌÀèÆ¬
+ * @param to ½ç°ÌËöÈø
+ * @param note ²«¿§É½¼¨¤Ç¥Ï¥¤¥é¥¤¥È¤¹¤ë½ç°Ì
+ * @param score ¥¹¥³¥¢ÇÛÎó»²¾È¥İ¥¤¥ó¥¿
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * Assumes the high score list is already open.
@@ -191,12 +191,12 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 		Term_clear();
 
 		/* Title */
-		put_str(_("                å¤‰æ„šè›®æ€’: å‹‡è€…ã®æ®¿å ‚", "                Hengband Hall of Fame"), 0, 0);
+		put_str(_("                ÊÑ¶òÈÚÅÜ: Í¦¼Ô¤ÎÅÂÆ²", "                Hengband Hall of Fame"), 0, 0);
 
 		/* Indicate non-top scores */
 		if (k > 0)
 		{
-			sprintf(tmp_val, _("( %d ä½ä»¥ä¸‹ )", "(from position %d)"), k + 1);
+			sprintf(tmp_val, _("( %d °Ì°Ê²¼ )", "(from position %d)"), k + 1);
 			put_str(tmp_val, 0, 40);
 		}
 
@@ -257,10 +257,10 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 
 			/* Dump some info */
 #ifdef JP
-/*sprintf(out_val, "%3d.%9s  %s%s%sã¨ã„ã†åã®%sã®%s (ãƒ¬ãƒ™ãƒ« %d)", */
-			sprintf(out_val, "%3d.%9s  %s%s%s - %s%s (ãƒ¬ãƒ™ãƒ« %d)",
+/*sprintf(out_val, "%3d.%9s  %s%s%s¤È¤¤¤¦Ì¾¤Î%s¤Î%s (¥ì¥Ù¥ë %d)", */
+			sprintf(out_val, "%3d.%9s  %s%s%s - %s%s (¥ì¥Ù¥ë %d)",
 				place, the_score.pts,
-				seikaku_info[pa].title, (seikaku_info[pa].no ? "ã®" : ""),
+				seikaku_info[pa].title, (seikaku_info[pa].no ? "¤Î" : ""),
 				the_score.who,
 				race_info[pr].title, class_info[pc].title,
 				clev);
@@ -275,7 +275,7 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 
 
 			/* Append a "maximum level" */
-			if (mlev > clev) strcat(out_val, format(_(" (æœ€é«˜%d)", " (Max %d)"), mlev));
+			if (mlev > clev) strcat(out_val, format(_(" (ºÇ¹â%d)", " (Max %d)"), mlev));
 
 			/* Dump the first line */
 			c_put_str(attr, out_val, n*4 + 2, 0);
@@ -283,27 +283,27 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 			/* Another line of info */
 #ifdef JP
 			if (mdun != 0)
-				sprintf(out_val, "    æœ€é«˜%3déš", mdun);
+				sprintf(out_val, "    ºÇ¹â%3d³¬", mdun);
 			else
 				sprintf(out_val, "             ");
 
 
-			/* æ­»äº¡åŸå› ã‚’ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚ˆã‚Šç´°ã‹ãè¡¨ç¤º */
+			/* »àË´¸¶°ø¤ò¥ª¥ê¥¸¥Ê¥ë¤è¤êºÙ¤«¤¯É½¼¨ */
 			if (streq(the_score.how, "yet"))
 			{
-				sprintf(out_val+13, "  ã¾ã ç”Ÿãã¦ã„ã‚‹ (%d%s)",
-				       cdun, "éš");
+				sprintf(out_val+13, "  ¤Ş¤ÀÀ¸¤­¤Æ¤¤¤ë (%d%s)",
+				       cdun, "³¬");
 			}
 			else
 			if (streq(the_score.how, "ripe"))
 			{
-				sprintf(out_val+13, "  å‹åˆ©ã®å¾Œã«å¼•é€€ (%d%s)",
-					cdun, "éš");
+				sprintf(out_val+13, "  ¾¡Íø¤Î¸å¤Ë°úÂà (%d%s)",
+					cdun, "³¬");
 			}
 			else if (streq(the_score.how, "Seppuku"))
 			{
-				sprintf(out_val+13, "  å‹åˆ©ã®å¾Œã«åˆ‡è…¹ (%d%s)",
-					cdun, "éš");
+				sprintf(out_val+13, "  ¾¡Íø¤Î¸å¤ËÀÚÊ¢ (%d%s)",
+					cdun, "³¬");
 			}
 			else
 			{
@@ -311,9 +311,9 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 
 				/* Some people die outside of the dungeon */
 				if (!cdun)
-					sprintf(out_val+13, "  åœ°ä¸Šã§%sã«æ®ºã•ã‚ŒãŸ", the_score.how);
+					sprintf(out_val+13, "  ÃÏ¾å¤Ç%s¤Ë»¦¤µ¤ì¤¿", the_score.how);
 				else
-					sprintf(out_val+13, "  %déšã§%sã«æ®ºã•ã‚ŒãŸ",
+					sprintf(out_val+13, "  %d³¬¤Ç%s¤Ë»¦¤µ¤ì¤¿",
 						cdun, the_score.how);
 			}
 
@@ -340,13 +340,13 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 			{
 				char buf[11];
 
-				/* æ—¥ä»˜ã‚’ 19yy/mm/dd ã®å½¢å¼ã«å¤‰æ›´ã™ã‚‹ */
+				/* ÆüÉÕ¤ò 19yy/mm/dd ¤Î·Á¼°¤ËÊÑ¹¹¤¹¤ë */
 				if (strlen(when) == 8 && when[2] == '/' && when[5] == '/') {
 					sprintf(buf, "%d%s/%.5s", 19 + (when[6] < '8'), when + 6, when);
 					when = buf;
 				}
 				sprintf(out_val,
-						"        (ãƒ¦ãƒ¼ã‚¶ãƒ¼:%s, æ—¥ä»˜:%s, æ‰€æŒé‡‘:%s, ã‚¿ãƒ¼ãƒ³:%s)",
+						"        (¥æ¡¼¥¶¡¼:%s, ÆüÉÕ:%s, ½ê»ı¶â:%s, ¥¿¡¼¥ó:%s)",
 						user, when, gold, aged);
 			}
 
@@ -361,7 +361,7 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 
 
 		/* Wait for response */
-		prt(_("[ ESCã§ä¸­æ–­, ãã®ä»–ã®ã‚­ãƒ¼ã§ç¶šã‘ã¾ã™ ]", "[Press ESC to quit, any other key to continue.]"), hgt - 1, _(21, 17));
+		prt(_("[ ESC¤ÇÃæÃÇ, ¤½¤ÎÂ¾¤Î¥­¡¼¤ÇÂ³¤±¤Ş¤¹ ]", "[Press ESC to quit, any other key to continue.]"), hgt - 1, _(21, 17));
 
 		j = inkey();
 		prt("", hgt - 1, 0);
@@ -373,10 +373,10 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢è¡¨ç¤ºå‡¦ç†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ / Hack -- Display the scores in a given range and quit.
- * @param from é †ä½å…ˆé ­
- * @param to é †ä½æœ«å°¾
- * @return ãªã—
+ * @brief ¥¹¥³¥¢É½¼¨½èÍı¥á¥¤¥ó¥ë¡¼¥Á¥ó / Hack -- Display the scores in a given range and quit.
+ * @param from ½ç°ÌÀèÆ¬
+ * @param to ½ç°ÌËöÈø
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * This function is only called from "main.c" when the user asks
@@ -394,7 +394,7 @@ void display_scores(int from, int to)
 	highscore_fd = fd_open(buf, O_RDONLY);
 
 	/* Paranoia -- No score file */
-	if (highscore_fd < 0) quit(_("ã‚¹ã‚³ã‚¢ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚", "Score file unavailable."));
+	if (highscore_fd < 0) quit(_("¥¹¥³¥¢¡¦¥Õ¥¡¥¤¥ë¤¬»ÈÍÑ¤Ç¤­¤Ş¤»¤ó¡£", "Score file unavailable."));
 
 	/* Clear screen */
 	Term_clear();
@@ -414,9 +414,9 @@ void display_scores(int from, int to)
 
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢ã‚µãƒ¼ãƒã¸ã®è»¢é€å‡¦ç†
- * @param do_send å®Ÿéš›ã«è»¢é€ã‚¢å‡¦ç½®ã‚’è¡Œã†ã‹å¦ã‹
- * @return è»¢é€ãŒæˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™
+ * @brief ¥¹¥³¥¢¥µ¡¼¥Ğ¤Ø¤ÎÅ¾Á÷½èÍı
+ * @param do_send ¼Âºİ¤ËÅ¾Á÷¥¢½èÃÖ¤ò¹Ô¤¦¤«Èİ¤«
+ * @return Å¾Á÷¤¬À®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹
  */
 bool send_world_score(bool do_send)
 {
@@ -425,15 +425,15 @@ bool send_world_score(bool do_send)
 	{
 		if(easy_band)
 		{
-			msg_print(_("åˆå¿ƒè€…ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãƒ¯ãƒ¼ãƒ«ãƒ‰ã‚¹ã‚³ã‚¢ã«ç™»éŒ²ã§ãã¾ã›ã‚“ã€‚",
+			msg_print(_("½é¿´¼Ô¥â¡¼¥É¤Ç¤Ï¥ï¡¼¥ë¥É¥¹¥³¥¢¤ËÅĞÏ¿¤Ç¤­¤Ş¤»¤ó¡£",
 			"Since you are in the Easy Mode, you cannot send score to world score server."));
 		}
-		else if(get_check_strict(_("ã‚¹ã‚³ã‚¢ã‚’ã‚¹ã‚³ã‚¢ãƒ»ã‚µãƒ¼ãƒã«ç™»éŒ²ã—ã¾ã™ã‹? ", "Do you send score to the world score sever? "), 
+		else if(get_check_strict(_("¥¹¥³¥¢¤ò¥¹¥³¥¢¡¦¥µ¡¼¥Ğ¤ËÅĞÏ¿¤·¤Ş¤¹¤«? ", "Do you send score to the world score sever? "), 
 				(CHECK_NO_ESCAPE | CHECK_NO_HISTORY)))
 		{
 			errr err;
 			prt("",0,0);
-			prt(_("é€ä¿¡ä¸­ï¼ï¼", "Sending..."),0,0);
+			prt(_("Á÷¿®Ãæ¡¥¡¥", "Sending..."),0,0);
 			Term_fresh();
 			screen_save();
 			err = report_score();
@@ -442,7 +442,7 @@ bool send_world_score(bool do_send)
 			{
 				return FALSE;
 			}
-			prt(_("å®Œäº†ã€‚ä½•ã‹ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚", "Completed.  Hit any key."), 0, 0);
+			prt(_("´°Î»¡£²¿¤«¥­¡¼¤ò²¡¤·¤Æ¤¯¤À¤µ¤¤¡£", "Completed.  Hit any key."), 0, 0);
 			(void)inkey();
 		}
 		else return FALSE;
@@ -452,10 +452,10 @@ bool send_world_score(bool do_send)
 }
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢ã®éå»äºŒåä½å†…ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
+ * @brief ¥¹¥³¥¢¤Î²áµîÆó½½°ÌÆâ¥é¥ó¥­¥ó¥°¤òÉ½¼¨¤¹¤ë
  * Enters a players name on a hi-score table, if "legal", and in any
  * case, displays some relevant portion of the high score list.
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  * @details
  * Assumes "signals_ignore_tstp()" has been called.
  */
@@ -519,7 +519,7 @@ errr top_twenty(void)
 	{
 #ifdef JP
 		my_strcpy(the_score.how, p_ptr->died_from, sizeof(the_score.how) - 2);
-		strcat(the_score.how, "â€¦");
+		strcat(the_score.how, "¡Ä");
 #else
 		my_strcpy(the_score.how, p_ptr->died_from, sizeof(the_score.how) - 3);
 		strcat(the_score.how, "...");
@@ -575,9 +575,9 @@ errr top_twenty(void)
 }
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨ã®ã‚¹ã‚³ã‚¢ã‚’ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã«æŒŸã‚€ /
+ * @brief ¥×¥ì¥¤¥ä¡¼¤Î¸½ºß¤Î¥¹¥³¥¢¤ò¥é¥ó¥­¥ó¥°¤Ë¶´¤à /
  * Predict the players location, and display it.
- * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+ * @return ¥¨¥é¡¼¥³¡¼¥É
  */
 errr predict_score(void)
 {
@@ -589,7 +589,7 @@ errr predict_score(void)
 	/* No score file */
 	if (highscore_fd < 0)
 	{
-		msg_print(_("ã‚¹ã‚³ã‚¢ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚", "Score file unavailable."));
+		msg_print(_("¥¹¥³¥¢¡¦¥Õ¥¡¥¤¥ë¤¬»ÈÍÑ¤Ç¤­¤Ş¤»¤ó¡£", "Score file unavailable."));
 		msg_print(NULL);
 		return (0);
 	}
@@ -609,7 +609,7 @@ errr predict_score(void)
 	sprintf(the_score.turns, "%9lu", (long)turn_real(turn));
 
 	/* Hack -- no time needed */
-	strcpy(the_score.day, _("ä»Šæ—¥", "TODAY"));
+	strcpy(the_score.day, _("º£Æü", "TODAY"));
 
 	/* Save the player name (15 chars) */
 	sprintf(the_score.who, "%-.15s", p_ptr->name);
@@ -628,7 +628,7 @@ errr predict_score(void)
 	sprintf(the_score.max_dun, "%3d", (int)max_dlv[dungeon_type]);
 
 	/* Hack -- no cause of death */
-	/* ã¾ã æ­»ã‚“ã§ã„ãªã„ã¨ãã®è­˜åˆ¥æ–‡å­— */
+	/* ¤Ş¤À»à¤ó¤Ç¤¤¤Ê¤¤¤È¤­¤Î¼±ÊÌÊ¸»ú */
 	strcpy(the_score.how, _("yet", "nobody (yet!)"));
 
 	/* See where the entry would be placed */
@@ -655,9 +655,9 @@ errr predict_score(void)
 
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ç°¡æ˜“è¡¨ç¤º /
+ * @brief ¥¹¥³¥¢¥é¥ó¥­¥ó¥°¤Î´Ê°×É½¼¨ /
  * show_highclass - selectively list highscores based on class -KMW-
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 void show_highclass(void)
 {
@@ -677,7 +677,7 @@ void show_highclass(void)
 
 	if (highscore_fd < 0)
 	{
-		msg_print(_("ã‚¹ã‚³ã‚¢ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚", "Score file unavailable."));
+		msg_print(_("¥¹¥³¥¢¡¦¥Õ¥¡¥¤¥ë¤¬»ÈÍÑ¤Ç¤­¤Ş¤»¤ó¡£", "Score file unavailable."));
 		msg_print(NULL);
 		return;
 	}
@@ -699,7 +699,7 @@ void show_highclass(void)
 		clev = (PLAYER_LEVEL)atoi(the_score.cur_lev);
 
 #ifdef JP
-		sprintf(out_val, "   %3d) %sã®%s (ãƒ¬ãƒ™ãƒ« %2d)",
+		sprintf(out_val, "   %3d) %s¤Î%s (¥ì¥Ù¥ë %2d)",
 		    (m + 1), race_info[pr].title,the_score.who, clev);
 #else
 		sprintf(out_val, "%3d) %s the %s (Level %2d)",
@@ -712,7 +712,7 @@ void show_highclass(void)
 	}
 
 #ifdef JP
-	sprintf(out_val, "ã‚ãªãŸ) %sã®%s (ãƒ¬ãƒ™ãƒ« %2d)",
+	sprintf(out_val, "¤¢¤Ê¤¿) %s¤Î%s (¥ì¥Ù¥ë %2d)",
 	    race_info[p_ptr->prace].title,p_ptr->name, p_ptr->lev);
 #else
 	sprintf(out_val, "You) %s the %s (Level %2d)",
@@ -723,7 +723,7 @@ void show_highclass(void)
 
 	(void)fd_close(highscore_fd);
 	highscore_fd = -1;
-	prt(_("ä½•ã‹ã‚­ãƒ¼ã‚’æŠ¼ã™ã¨ã‚²ãƒ¼ãƒ ã«æˆ»ã‚Šã¾ã™", "Hit any key to continue"),0,0);
+	prt(_("²¿¤«¥­¡¼¤ò²¡¤¹¤È¥²¡¼¥à¤ËÌá¤ê¤Ş¤¹", "Hit any key to continue"),0,0);
 
 	(void)inkey();
 
@@ -732,10 +732,10 @@ void show_highclass(void)
 }
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ç°¡æ˜“è¡¨ç¤º(ç¨®æ—æ¯)ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥¹¥³¥¢¥é¥ó¥­¥ó¥°¤Î´Ê°×É½¼¨(¼ïÂ²Ëè)¥µ¥Ö¥ë¡¼¥Á¥ó /
  * Race Legends -KMW-
- * @param race_num ç¨®æ—ID
- * @return ãªã—
+ * @param race_num ¼ïÂ²ID
+ * @return ¤Ê¤·
  */
 void race_score(int race_num)
 {
@@ -747,7 +747,7 @@ void race_score(int race_num)
 	lastlev = 0;
 
 	/* rr9: TODO - pluralize the race */
-	sprintf(tmp_str,_("æœ€é«˜ã®%s", "The Greatest of all the %s"), race_info[race_num].title);
+	sprintf(tmp_str,_("ºÇ¹â¤Î%s", "The Greatest of all the %s"), race_info[race_num].title);
 
 	prt(tmp_str, 5, 15);
 
@@ -758,7 +758,7 @@ void race_score(int race_num)
 
 	if (highscore_fd < 0)
 	{
-		msg_print(_("ã‚¹ã‚³ã‚¢ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚", "Score file unavailable."));
+		msg_print(_("¥¹¥³¥¢¡¦¥Õ¥¡¥¤¥ë¤¬»ÈÍÑ¤Ç¤­¤Ş¤»¤ó¡£", "Score file unavailable."));
 		msg_print(NULL);
 		return;
 	}
@@ -783,7 +783,7 @@ void race_score(int race_num)
 		if (pr == race_num)
 		{
 #ifdef JP
-		sprintf(out_val, "   %3d) %sã®%s (ãƒ¬ãƒ™ãƒ« %2d)",
+		sprintf(out_val, "   %3d) %s¤Î%s (¥ì¥Ù¥ë %2d)",
 			    (m + 1), race_info[pr].title, 
 				the_score.who,clev);
 #else
@@ -803,7 +803,7 @@ void race_score(int race_num)
 	if ((p_ptr->prace == race_num) && (p_ptr->lev >= lastlev))
 	{
 #ifdef JP
-	sprintf(out_val, "ã‚ãªãŸ) %sã®%s (ãƒ¬ãƒ™ãƒ« %2d)",
+	sprintf(out_val, "¤¢¤Ê¤¿) %s¤Î%s (¥ì¥Ù¥ë %2d)",
 		     race_info[p_ptr->prace].title,p_ptr->name, p_ptr->lev);
 #else
 		sprintf(out_val, "You) %s the %s (Level %3d)",
@@ -819,9 +819,9 @@ void race_score(int race_num)
 
 
 /*!
- * @brief ã‚¹ã‚³ã‚¢ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã®ç°¡æ˜“è¡¨ç¤º(ç¨®æ—æ¯)ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @brief ¥¹¥³¥¢¥é¥ó¥­¥ó¥°¤Î´Ê°×É½¼¨(¼ïÂ²Ëè)¥á¥¤¥ó¥ë¡¼¥Á¥ó /
  * Race Legends -KMW-
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 void race_legends(void)
 {
@@ -830,7 +830,7 @@ void race_legends(void)
 	for (i = 0; i < MAX_RACES; i++)
 	{
 		race_score(i);
-		msg_print(_("ä½•ã‹ã‚­ãƒ¼ã‚’æŠ¼ã™ã¨ã‚²ãƒ¼ãƒ ã«æˆ»ã‚Šã¾ã™", "Hit any key to continue"));
+		msg_print(_("²¿¤«¥­¡¼¤ò²¡¤¹¤È¥²¡¼¥à¤ËÌá¤ê¤Ş¤¹", "Hit any key to continue"));
 		msg_print(NULL);
 		for (j = 5; j < 19; j++)
 			prt("", j, 0);
@@ -838,9 +838,9 @@ void race_legends(void)
 }
 
 /*!
- * @brief å‹åˆ©è€…ç”¨ã®å¼•é€€æ¼”å‡ºå‡¦ç† /
+ * @brief ¾¡Íø¼ÔÍÑ¤Î°úÂà±é½Ğ½èÍı /
  * Change the player into a King! -RAK-
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 void kingly(void)
 {
@@ -853,7 +853,7 @@ void kingly(void)
 
 	/* Fake death */
 	if (!seppuku)
-		/* å¼•é€€ã—ãŸã¨ãã®è­˜åˆ¥æ–‡å­— */
+		/* °úÂà¤·¤¿¤È¤­¤Î¼±ÊÌÊ¸»ú */
 		(void)strcpy(p_ptr->died_from, _("ripe", "Ripe Old Age"));
 
 	/* Restore the experience */
@@ -889,8 +889,8 @@ void kingly(void)
 	/* Display a message */
 #ifdef JP
 	put_str("Veni, Vidi, Vici!", cy + 3, cx - 9);
-	put_str("æ¥ãŸã€è¦‹ãŸã€å‹ã£ãŸï¼", cy + 4, cx - 10);
-	put_str(format("å‰å¤§ãªã‚‹%sä¸‡æ­³ï¼", sp_ptr->winner), cy + 5, cx - 11);
+	put_str("Íè¤¿¡¢¸«¤¿¡¢¾¡¤Ã¤¿¡ª", cy + 4, cx - 10);
+	put_str(format("°ÎÂç¤Ê¤ë%sËüºĞ¡ª", sp_ptr->winner), cy + 5, cx - 11);
 #else
 	put_str("Veni, Vidi, Vici!", cy + 3, cx - 9);
 	put_str("I came, I saw, I conquered!", cy + 4, cx - 14);
@@ -900,8 +900,8 @@ void kingly(void)
 	/* If player did Seppuku, that is already written in playrecord */
 	if (!seppuku)
 	{
-		do_cmd_write_nikki(NIKKI_BUNSHOU, 0, _("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®æ¢ç´¢ã‹ã‚‰å¼•é€€ã—ãŸã€‚", "retired exploring dungeons."));
-		do_cmd_write_nikki(NIKKI_GAMESTART, 1, _("-------- ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ --------", "--------   Game  Over   --------"));
+		do_cmd_write_nikki(NIKKI_BUNSHOU, 0, _("¥À¥ó¥¸¥ç¥ó¤ÎÃµº÷¤«¤é°úÂà¤·¤¿¡£", "retired exploring dungeons."));
+		do_cmd_write_nikki(NIKKI_GAMESTART, 1, _("-------- ¥²¡¼¥à¥ª¡¼¥Ğ¡¼ --------", "--------   Game  Over   --------"));
 		do_cmd_write_nikki(NIKKI_BUNSHOU, 1, "\n\n\n\n");
 	}
 

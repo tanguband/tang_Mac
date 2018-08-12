@@ -1,25 +1,25 @@
-﻿/*!
+/*!
  * @file generate.h
- * @brief ダンジョン生成処理のヘッダーファイル
+ * @brief ���󥸥�����������Υإå����ե�����
  * @date 2014/08/08
  * @author
- * 不明(変愚蛮怒スタッフ？)
+ * ����(�Ѷ����ܥ����åա�)
  */
 
 #define ALLOW_CAVERNS_AND_LAKES
 
-#define SAFE_MAX_ATTEMPTS 5000 /*!< 生成処理基本試行回数 */
+#define SAFE_MAX_ATTEMPTS 5000 /*!< �����������ܻ�Բ�� */
 
 /*
  * Dungeon generation values
  */
-#define DUN_UNUSUAL 250 /*!< 通常ではない部屋が生成される基本確率(レベル/定数) / Level/chance of unusual room (was 200) */
-#define DUN_DEST    18  /*!< 破壊地形がフロアに発生する基本確率(1/定数) / 1/chance of having a destroyed level */
-#define SMALL_LEVEL 3   /*!< 小さいフロアの生成される基本確率(1/定数) / 1/chance of smaller size (3) */
-#define EMPTY_LEVEL 24  /*!< アリーナレベル(外壁のないフロア)の生成される基本確率(1/定数) / 1/chance of being 'empty' (15) */
-#define LAKE_LEVEL  24  /*!< 川や湖のあるフロアの生成される確率(1/定数) / 1/chance of being a lake on the level */
-#define DARK_EMPTY  5   /*!< フロア全体が暗い可能性の基本確率(1/定数) / 1/chance of arena level NOT being lit (2) */
-#define DUN_CAVERN  20	/*!< 洞窟状のダンジョンが生成される基本確率(1/定数) / 1/chance of having a cavern level */
+#define DUN_UNUSUAL 250 /*!< �̾�ǤϤʤ������������������ܳ�Ψ(��٥�/���) / Level/chance of unusual room (was 200) */
+#define DUN_DEST    18  /*!< �˲��Ϸ����ե�����ȯ��������ܳ�Ψ(1/���) / 1/chance of having a destroyed level */
+#define SMALL_LEVEL 3   /*!< �������ե����������������ܳ�Ψ(1/���) / 1/chance of smaller size (3) */
+#define EMPTY_LEVEL 24  /*!< ���꡼�ʥ�٥�(���ɤΤʤ��ե���)�������������ܳ�Ψ(1/���) / 1/chance of being 'empty' (15) */
+#define LAKE_LEVEL  24  /*!< ���ФΤ���ե���������������Ψ(1/���) / 1/chance of being a lake on the level */
+#define DARK_EMPTY  5   /*!< �ե������Τ��Ť���ǽ���δ��ܳ�Ψ(1/���) / 1/chance of arena level NOT being lit (2) */
+#define DUN_CAVERN  20	/*!< ƶ�����Υ��󥸥�������������ܳ�Ψ(1/���) / 1/chance of having a cavern level */
 
 /*
  * Dungeon tunnel generation values
@@ -36,11 +36,11 @@
 #define DUN_TUN_JCT_MAX 90
 
 
-extern int dun_tun_rnd; /*!< ダンジョンの通路方向を掻き回す頻度(一回の試行ごとに%で判定している) */
-extern int dun_tun_chg; /*!< ダンジョンの通路をクランクさせる頻度(一回の試行ごとに%で判定している) */
-extern int dun_tun_con; /*!< ダンジョンの通路を継続して引き延ばす頻度(一回の試行ごとに%で判定している) */
-extern int dun_tun_pen; /*!< ダンジョンの部屋入口にドアを設置する頻度(一回の試行ごとに%で判定している) */
-extern int dun_tun_jct; /*!< ダンジョンの通路交差地点付近にドアを設置する頻度(一回の試行ごとに%で判定している) */
+extern int dun_tun_rnd; /*!< ���󥸥�����ϩ�������ߤ�������(���λ�Ԥ��Ȥ�%��Ƚ�ꤷ�Ƥ���) */
+extern int dun_tun_chg; /*!< ���󥸥�����ϩ�򥯥�󥯤���������(���λ�Ԥ��Ȥ�%��Ƚ�ꤷ�Ƥ���) */
+extern int dun_tun_con; /*!< ���󥸥�����ϩ���³���ư�����Ф�����(���λ�Ԥ��Ȥ�%��Ƚ�ꤷ�Ƥ���) */
+extern int dun_tun_pen; /*!< ���󥸥������������˥ɥ������֤�������(���λ�Ԥ��Ȥ�%��Ƚ�ꤷ�Ƥ���) */
+extern int dun_tun_jct; /*!< ���󥸥�����ϩ�������ն�˥ɥ������֤�������(���λ�Ԥ��Ȥ�%��Ƚ�ꤷ�Ƥ���) */
 /*
  * Dungeon streamer generation values
  */

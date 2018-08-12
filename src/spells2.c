@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file spells2.c
- * @brief é­”æ³•åŠ¹æœã®å®Ÿè£…/ Spell code (part 2)
+ * @brief ËâË¡¸ú²Ì¤Î¼ÂÁõ/ Spell code (part 2)
  * @date 2014/07/15
  * @author
  * <pre>
@@ -15,8 +15,8 @@
 #include "grid.h"
 
 /*!
- * @brief è‡ªå·±åˆ†æå‡¦ç†(Nethackã‹ã‚‰ã®ã‚¢ã‚¤ãƒ‡ã‚¢) / self-knowledge... idea from nethack.
- * @return ãªã—
+ * @brief ¼«¸ÊÊ¬ÀÏ½èÍı(Nethack¤«¤é¤Î¥¢¥¤¥Ç¥¢) / self-knowledge... idea from nethack.
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * Useful for determining powers and
@@ -64,7 +64,7 @@ void self_knowledge(void)
 		(2 * p_ptr->hitdie +
 		((PY_MAX_LEVEL - 1+3) * (p_ptr->hitdie + 1))));
 
-	sprintf(Dummy, _("ç¾åœ¨ã®ä½“åŠ›ãƒ©ãƒ³ã‚¯ : %d/100", "Your current Life Rating is %d/100."), percent);
+	sprintf(Dummy, _("¸½ºß¤ÎÂÎÎÏ¥é¥ó¥¯ : %d/100", "Your current Life Rating is %d/100."), percent);
 	strcpy(buf[0], Dummy);
 	info[i++] = buf[0];
 	info[i++] = "";
@@ -90,7 +90,7 @@ void self_knowledge(void)
 			flgs[j] |= tflgs[j];
 	}
 
-	info[i++] = _("èƒ½åŠ›ã®æœ€å¤§å€¤", "Limits of maximum stats");
+	info[i++] = _("Ç½ÎÏ¤ÎºÇÂçÃÍ", "Limits of maximum stats");
 
 	for (v_nr = 0; v_nr < 6; v_nr++)
 	{
@@ -104,7 +104,7 @@ void self_knowledge(void)
 	}
 	info[i++] = "";
 
-	sprintf(Dummy, _("ç¾åœ¨ã®å±æ€§ : %s(%ld)", "Your alighnment : %s(%ld)"), your_alignment(), (long int)p_ptr->align);
+	sprintf(Dummy, _("¸½ºß¤ÎÂ°À­ : %s(%ld)", "Your alighnment : %s(%ld)"), your_alignment(), (long int)p_ptr->align);
 	strcpy(buf[1], Dummy);
 	info[i++] = buf[1];
 	for (v_nr = 0; v_nr < 8; v_nr++)
@@ -115,45 +115,45 @@ void self_knowledge(void)
 	
 		strcpy(vir_name, virtue[(p_ptr->vir_types[v_nr])-1]);
  
-		sprintf(vir_desc, _("ãŠã£ã¨ã€‚%sã®æƒ…å ±ãªã—ã€‚", "Oops. No info about %s."), vir_name);
+		sprintf(vir_desc, _("¤ª¤Ã¤È¡£%s¤Î¾ğÊó¤Ê¤·¡£", "Oops. No info about %s."), vir_name);
 		if (tester < -100)
-			sprintf(vir_desc, _("[%s]ã®å¯¾æ¥µ (%d)", "You are the polar opposite of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÂĞ¶Ë (%d)", "You are the polar opposite of %s (%d)."),
 				vir_name, tester);
 		else if (tester < -80)
-			sprintf(vir_desc, _("[%s]ã®å¤§æ•µ (%d)", "You are an arch-enemy of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÂçÅ¨ (%d)", "You are an arch-enemy of %s (%d)."),
 				vir_name, tester);
 		else if (tester < -60)
-			sprintf(vir_desc, _("[%s]ã®å¼·æ•µ (%d)", "You are a bitter enemy of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤Î¶¯Å¨ (%d)", "You are a bitter enemy of %s (%d)."),
 				vir_name, tester);
 		else if (tester < -40)
-			sprintf(vir_desc, _("[%s]ã®æ•µ (%d)", "You are an enemy of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÅ¨ (%d)", "You are an enemy of %s (%d)."),
 				vir_name, tester);
 		else if (tester < -20)
-			sprintf(vir_desc, _("[%s]ã®ç½ªè€… (%d)", "You have sinned against %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤Îºá¼Ô (%d)", "You have sinned against %s (%d)."),
 				vir_name, tester);
 		else if (tester < 0)
-			sprintf(vir_desc, _("[%s]ã®è¿·é“è€… (%d)", "You have strayed from the path of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÌÂÆ»¼Ô (%d)", "You have strayed from the path of %s (%d)."),
 				vir_name, tester);
 		else if (tester == 0)
-			sprintf(vir_desc, _("[%s]ã®ä¸­ç«‹è€… (%d)", "You are neutral to %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÃæÎ©¼Ô (%d)", "You are neutral to %s (%d)."),
 				vir_name, tester);
 		else if (tester < 20)
-			sprintf(vir_desc, _("[%s]ã®å°å¾³è€… (%d)", "You are somewhat virtuous in %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤Î¾®ÆÁ¼Ô (%d)", "You are somewhat virtuous in %s (%d)."),
 				vir_name, tester);
 		else if (tester < 40)
-			sprintf(vir_desc, _("[%s]ã®ä¸­å¾³è€… (%d)", "You are virtuous in %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÃæÆÁ¼Ô (%d)", "You are virtuous in %s (%d)."),
 				vir_name, tester);
 		else if (tester < 60)
-			sprintf(vir_desc, _("[%s]ã®é«˜å¾³è€… (%d)", "You are very virtuous in %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤Î¹âÆÁ¼Ô (%d)", "You are very virtuous in %s (%d)."),
 				vir_name, tester);
 		else if (tester < 80)
-			sprintf(vir_desc, _("[%s]ã®è¦‡è€… (%d)", "You are a champion of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤ÎÇÆ¼Ô (%d)", "You are a champion of %s (%d)."),
 				vir_name, tester);
 		else if (tester < 100)
-			sprintf(vir_desc, _("[%s]ã®å‰å¤§ãªè¦‡è€… (%d)", "You are a great champion of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤Î°ÎÂç¤ÊÇÆ¼Ô (%d)", "You are a great champion of %s (%d)."),
 				vir_name, tester);
 		else
-			sprintf(vir_desc, _("[%s]ã®å…·ç¾è€… (%d)", "You are the living embodiment of %s (%d)."),
+			sprintf(vir_desc, _("[%s]¤Î¶ñ¸½¼Ô (%d)", "You are the living embodiment of %s (%d)."),
 				vir_name, tester);
 	
 		strcpy(v_string[v_nr], vir_desc);
@@ -169,7 +169,7 @@ void self_knowledge(void)
 		{
 			case MIMIC_DEMON:
 			case MIMIC_DEMON_LORD:
-			sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®åœ°ç„ã‹ç«ç‚ã®ãƒ–ãƒ¬ã‚¹ã‚’åãã“ã¨ãŒã§ãã‚‹ã€‚(%d MP)", 
+			sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤ÎÃÏ¹ö¤«²Ğ±ê¤Î¥Ö¥ì¥¹¤òÅÇ¤¯¤³¤È¤¬¤Ç¤­¤ë¡£(%d MP)", 
 							"You can nether breathe, dam. %d (cost %d)."), 3 * plev, 10+plev/3);
 
 				info[i++] = Dummy;
@@ -177,7 +177,7 @@ void self_knowledge(void)
 		case MIMIC_VAMPIRE:
 			if (plev > 1)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯æ•µã‹ã‚‰ %d-%d HP ã®ç”Ÿå‘½åŠ›ã‚’å¸åã§ãã‚‹ã€‚(%d MP)", 
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤ÏÅ¨¤«¤é %d-%d HP ¤ÎÀ¸Ì¿ÎÏ¤òµÛ¼ı¤Ç¤­¤ë¡£(%d MP)", 
 								"You can steal life from a foe, dam. %d-%d (cost %d)."),
 				    plev + MAX(1, plev / 10), plev + plev * MAX(1, plev / 10), 1 + (plev / 3));
 				info[i++] = Dummy;
@@ -192,72 +192,72 @@ void self_knowledge(void)
 		case RACE_NIBELUNG:
 		case RACE_DWARF:
 			if (plev > 4)
-			info[i++] = _("ã‚ãªãŸã¯ç½ ã¨ãƒ‰ã‚¢ã¨éšæ®µã‚’æ„ŸçŸ¥ã§ãã‚‹ã€‚(5 MP)", "You can find traps, doors and stairs (cost 5).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ïæ«¤È¥É¥¢¤È³¬ÃÊ¤ò´¶ÃÎ¤Ç¤­¤ë¡£(5 MP)", "You can find traps, doors and stairs (cost 5).");
 			break;
 		case RACE_HOBBIT:
 			if (plev > 14)
 			{
-				info[i++] = _("ã‚ãªãŸã¯é£Ÿæ–™ã‚’ç”Ÿæˆã§ãã‚‹ã€‚(10 MP)", "You can produce food (cost 10).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¿©ÎÁ¤òÀ¸À®¤Ç¤­¤ë¡£(10 MP)", "You can produce food (cost 10).");
 			}
 			break;
 		case RACE_GNOME:
 			if (plev > 4)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯ç¯„å›² %d ä»¥å†…ã«ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§ãã‚‹ã€‚(%d MP)", "You can teleport, range %d (cost %d)."),
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤ÏÈÏ°Ï %d °ÊÆâ¤Ë¥Æ¥ì¥İ¡¼¥È¤Ç¤­¤ë¡£(%d MP)", "You can teleport, range %d (cost %d)."),
 				    (1 + plev), (5 + (plev / 5)));
 				info[i++] = Dummy;
 			}
 			break;
 		case RACE_HALF_ORC:
 			if (plev > 2)
-				info[i++] = _("ã‚ãªãŸã¯ææ€–ã‚’é™¤å»ã§ãã‚‹ã€‚(5 MP)", "You can remove fear (cost 5).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¶²Éİ¤ò½üµî¤Ç¤­¤ë¡£(5 MP)", "You can remove fear (cost 5).");
 			break;
 		case RACE_HALF_TROLL:
 			if (plev > 9)
-				info[i++] = _("ã‚ãªãŸã¯ç‹‚æš´åŒ–ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(12 MP) ", "You enter berserk fury (cost 12).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¶¸Ë½²½¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(12 MP) ", "You enter berserk fury (cost 12).");
 			break;
 		case RACE_AMBERITE:
 			if (plev > 29)
-				info[i++] = _("ã‚ãªãŸã¯ã‚·ãƒ£ãƒ‰ã‚¦ã‚·ãƒ•ãƒˆã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(50 MP)", "You can Shift Shadows (cost 50).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¥·¥ã¥É¥¦¥·¥Õ¥È¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(50 MP)", "You can Shift Shadows (cost 50).");
 
 			if (plev > 39)
-				info[i++] = _("ã‚ãªãŸã¯ã€Œãƒ‘ã‚¿ãƒ¼ãƒ³ã€ã‚’å¿ƒã«æã„ã¦æ­©ãã“ã¨ãŒã§ãã‚‹ã€‚(75 MP)", "You can mentally Walk the Pattern (cost 75).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¡Ö¥Ñ¥¿¡¼¥ó¡×¤ò¿´¤ËÉÁ¤¤¤ÆÊâ¤¯¤³¤È¤¬¤Ç¤­¤ë¡£(75 MP)", "You can mentally Walk the Pattern (cost 75).");
 
 			break;
 		case RACE_BARBARIAN:
 			if (plev > 7)
-				info[i++] = _("ã‚ãªãŸã¯ç‹‚æš´åŒ–ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(10 MP) ", "You can enter berserk fury (cost 10).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¶¸Ë½²½¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(10 MP) ", "You can enter berserk fury (cost 10).");
 
 			break;
 		case RACE_HALF_OGRE:
 			if (plev > 24)
-				info[i++] = _("ã‚ãªãŸã¯çˆ†ç™ºã®ãƒ«ãƒ¼ãƒ³ã‚’ä»•æ›ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(35 MP)", "You can set an Explosive Rune (cost 35).");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÇúÈ¯¤Î¥ë¡¼¥ó¤ò»Å³İ¤±¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(35 MP)", "You can set an Explosive Rune (cost 35).");
 
 			break;
 		case RACE_HALF_GIANT:
 			if (plev > 19)
-				info[i++] = _("ã‚ãªãŸã¯çŸ³ã®å£ã‚’å£Šã™ã“ã¨ãŒã§ãã‚‹ã€‚(10 MP)", "You can break stone walls (cost 10).");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÀĞ¤ÎÊÉ¤ò²õ¤¹¤³¤È¤¬¤Ç¤­¤ë¡£(10 MP)", "You can break stone walls (cost 10).");
 			break;
 		case RACE_HALF_TITAN:
 			if (plev > 34)
-				info[i++] = _("ã‚ãªãŸã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ã‚¹ã‚­ãƒ£ãƒ³ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(20 MP)", "You can probe monsters (cost 20).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¥â¥ó¥¹¥¿¡¼¤ò¥¹¥­¥ã¥ó¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(20 MP)", "You can probe monsters (cost 20).");
 			break;
 		case RACE_CYCLOPS:
 			if (plev > 19)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®å²©çŸ³ã‚’æŠ•ã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(15 MP)", 
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î´äÀĞ¤òÅê¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(15 MP)", 
 							 "You can throw a boulder, dam. %d (cost 15)."), 3 * plev);
 				info[i++] = Dummy;
 			}
 			break;
 		case RACE_YEEK:
 			if (plev > 14)
-				info[i++] = _("ã‚ãªãŸã¯ææ€–ã‚’å‘¼ã³èµ·ã“ã™å«ã³å£°ã‚’ç™ºã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(15 MP)", "You can make a terrifying scream (cost 15).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¶²Éİ¤ò¸Æ¤Óµ¯¤³¤¹¶«¤ÓÀ¼¤òÈ¯¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(15 MP)", "You can make a terrifying scream (cost 15).");
 			break;
 		case RACE_KLACKON:
 			if (plev > 8)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®é…¸ã‚’å¹ãã‹ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(9 MP)", "You can spit acid, dam. %d (cost 9)."), plev);
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î»À¤ò¿á¤­¤«¤±¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(9 MP)", "You can spit acid, dam. %d (cost 9)."), plev);
 				info[i++] = Dummy;
 			}
 			break;
@@ -265,52 +265,52 @@ void self_knowledge(void)
 			if (plev > 11)
 			{
 				sprintf(Dummy,
-						_("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®æ¯’çŸ¢ã‚’æŠ•ã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(8 MP)", "You can throw a dart of poison, dam. %d (cost 8)."), plev);
+						_("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤ÎÆÇÌğ¤òÅê¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(8 MP)", "You can throw a dart of poison, dam. %d (cost 8)."), plev);
 				info[i++] = Dummy;
 			}
 			break;
 		case RACE_DARK_ELF:
 			if (plev > 1)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒã‚¸ãƒƒã‚¯ãƒ»ãƒŸã‚µã‚¤ãƒ«ã®å‘ªæ–‡ã‚’ä½¿ãˆã‚‹ã€‚(2 MP)", "You can cast a Magic Missile, dam %d (cost 2)."),
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Ş¥¸¥Ã¥¯¡¦¥ß¥µ¥¤¥ë¤Î¼öÊ¸¤ò»È¤¨¤ë¡£(2 MP)", "You can cast a Magic Missile, dam %d (cost 2)."),
 				    (3 + ((plev-1) / 5)));
 				info[i++] = Dummy;
 			}
 			break;
 		case RACE_DRACONIAN:
-			sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ–ãƒ¬ã‚¹ã‚’åãã“ã¨ãŒã§ãã‚‹ã€‚(%d MP)", "You can breathe, dam. %d (cost %d)."), 2 * plev, plev);
+			sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Ö¥ì¥¹¤òÅÇ¤¯¤³¤È¤¬¤Ç¤­¤ë¡£(%d MP)", "You can breathe, dam. %d (cost %d)."), 2 * plev, plev);
 			info[i++] = Dummy;
 			break;
 		case RACE_MIND_FLAYER:
 			if (plev > 14)
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ç²¾ç¥æ”»æ’ƒã‚’ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(12 MP)", "You can mind blast your enemies, dam %d (cost 12)."), plev);
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤ÎÀº¿À¹¶·â¤ò¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(12 MP)", "You can mind blast your enemies, dam %d (cost 12)."), plev);
 			info[i++] = Dummy;
 			break;
 		case RACE_IMP:
 			if (plev > 29)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ¼ãƒ«ã®å‘ªæ–‡ã‚’ä½¿ãˆã‚‹ã€‚(15 MP)", "You can cast a Fire Ball, dam. %d (cost 15)."), plev);
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Õ¥¡¥¤¥¢¡¦¥Ü¡¼¥ë¤Î¼öÊ¸¤ò»È¤¨¤ë¡£(15 MP)", "You can cast a Fire Ball, dam. %d (cost 15)."), plev);
 				info[i++] = Dummy;
 			}
 			else if (plev > 8)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ•ã‚¡ã‚¤ã‚¢ãƒ»ãƒœãƒ«ãƒˆã®å‘ªæ–‡ã‚’ä½¿ãˆã‚‹ã€‚(15 MP)", "You can cast a Fire Bolt, dam. %d (cost 15)."), plev);
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Õ¥¡¥¤¥¢¡¦¥Ü¥ë¥È¤Î¼öÊ¸¤ò»È¤¨¤ë¡£(15 MP)", "You can cast a Fire Bolt, dam. %d (cost 15)."), plev);
 				info[i++] = Dummy;
 			}
 			break;
 		case RACE_GOLEM:
 			if (plev > 19)
-				info[i++] = _("ã‚ãªãŸã¯ d20+30 ã‚¿ãƒ¼ãƒ³ã®é–“è‚Œã‚’çŸ³ã«å¤‰åŒ–ã•ã›ã‚‰ã‚Œã‚‹ã€‚(15 MP)", "You can turn your skin to stone, dur d20+30 (cost 15).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï d20+30 ¥¿¡¼¥ó¤Î´ÖÈ©¤òÀĞ¤ËÊÑ²½¤µ¤»¤é¤ì¤ë¡£(15 MP)", "You can turn your skin to stone, dur d20+30 (cost 15).");
 			break;
 		case RACE_ZOMBIE:
 		case RACE_SKELETON:
 			if (plev > 29)
-				info[i++] = _("ã‚ãªãŸã¯å¤±ã£ãŸçµŒé¨“å€¤ã‚’å›å¾©ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(30 MP)", "You can restore lost experience (cost 30).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¼º¤Ã¤¿·Ğ¸³ÃÍ¤ò²óÉü¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(30 MP)", "You can restore lost experience (cost 30).");
 			break;
 		case RACE_VAMPIRE:
 			if (plev > 1)
 			{
-				sprintf(Dummy, _("ã‚ãªãŸã¯æ•µã‹ã‚‰ %d-%d HP ã®ç”Ÿå‘½åŠ›ã‚’å¸åã§ãã‚‹ã€‚(%d MP)", "You can steal life from a foe, dam. %d-%d (cost %d)."),
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤ÏÅ¨¤«¤é %d-%d HP ¤ÎÀ¸Ì¿ÎÏ¤òµÛ¼ı¤Ç¤­¤ë¡£(%d MP)", "You can steal life from a foe, dam. %d-%d (cost %d)."),
 				    plev + MAX(1, plev / 10), plev + plev * MAX(1, plev / 10), 1 + (plev / 3));
 				info[i++] = Dummy;
 			}
@@ -318,38 +318,38 @@ void self_knowledge(void)
 		case RACE_SPECTRE:
 			if (plev > 3)
 			{
-				info[i++] = _("ã‚ãªãŸã¯æ³£ãå«ã‚“ã§æ•µã‚’ææ€–ã•ã›ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(3 MP)", "You can wail to terrify your enemies (cost 3).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ïµã¤­¶«¤ó¤ÇÅ¨¤ò¶²Éİ¤µ¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(3 MP)", "You can wail to terrify your enemies (cost 3).");
 			}
 			break;
 		case RACE_SPRITE:
 			if (plev > 11)
 			{
-				info[i++] = _("ã‚ãªãŸã¯æ•µã‚’çœ ã‚‰ã›ã‚‹é­”æ³•ã®ç²‰ã‚’æŠ•ã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(12 MP)", "You can throw magical dust which induces sleep (cost 12).");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÅ¨¤òÌ²¤é¤»¤ëËâË¡¤ÎÊ´¤òÅê¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(12 MP)", "You can throw magical dust which induces sleep (cost 12).");
 			}
 			break;
 		case RACE_DEMON:
-			sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®åœ°ç„ã‹ç«ç‚ã®ãƒ–ãƒ¬ã‚¹ã‚’åãã“ã¨ãŒã§ãã‚‹ã€‚(%d MP)", 
+			sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤ÎÃÏ¹ö¤«²Ğ±ê¤Î¥Ö¥ì¥¹¤òÅÇ¤¯¤³¤È¤¬¤Ç¤­¤ë¡£(%d MP)", 
 						"You can breathe nether, dam. %d (cost %d)."), 3 * plev, 10+plev/3);
 
 			info[i++] = Dummy;
 			break;
 		case RACE_KUTAR:
 			if (plev > 19)
-				info[i++] = _("ã‚ãªãŸã¯ d20+30 ã‚¿ãƒ¼ãƒ³ã®é–“æ¨ªã«ä¼¸ã³ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(15 MP)", "You can expand horizontally, dur d20+30 (cost 15).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï d20+30 ¥¿¡¼¥ó¤Î´Ö²£¤Ë¿­¤Ó¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(15 MP)", "You can expand horizontally, dur d20+30 (cost 15).");
 			break;
 		case RACE_ANDROID:
 			if (plev < 10)
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ¬ã‚¤ã‚¬ãƒ³ã‚’æ’ƒã¤ã“ã¨ãŒã§ãã‚‹ã€‚(7 MP)", "You can fire a ray gun with damage %d (cost 7)."), 
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥ì¥¤¥¬¥ó¤ò·â¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(7 MP)", "You can fire a ray gun with damage %d (cost 7)."), 
 					(plev + 1) / 2);
 			else if (plev < 25)
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ–ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’æ’ƒã¤ã“ã¨ãŒã§ãã‚‹ã€‚(13 MP)", "You can fire a blaster with damage %d (cost 13)."), plev);
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Ö¥é¥¹¥¿¡¼¤ò·â¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(13 MP)", "You can fire a blaster with damage %d (cost 13)."), plev);
 			else if (plev < 35)
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒã‚ºãƒ¼ã‚«ã‚’æ’ƒã¤ã“ã¨ãŒã§ãã‚‹ã€‚(26 MP)", "You can fire a bazooka with damage %d (cost 26)."), plev * 2);
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Ğ¥º¡¼¥«¤ò·â¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(26 MP)", "You can fire a bazooka with damage %d (cost 26)."), plev * 2);
 			else if (plev < 45)
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ“ãƒ¼ãƒ ã‚­ãƒ£ãƒãƒ³ã‚’æ’ƒã¤ã“ã¨ãŒã§ãã‚‹ã€‚(40 MP)", 
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥Ó¡¼¥à¥­¥ã¥Î¥ó¤ò·â¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(40 MP)", 
 						"You can fire a beam cannon with damage %d (cost 40)."), plev * 2);
 			else
-				sprintf(Dummy, _("ã‚ãªãŸã¯ %d ãƒ€ãƒ¡ãƒ¼ã‚¸ã®ãƒ­ã‚±ãƒƒãƒˆã‚’æ’ƒã¤ã“ã¨ãŒã§ãã‚‹ã€‚(60 MP)", 
+				sprintf(Dummy, _("¤¢¤Ê¤¿¤Ï %d ¥À¥á¡¼¥¸¤Î¥í¥±¥Ã¥È¤ò·â¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(60 MP)", 
 						"You can fire a rocket with damage %d (cost 60)."), plev * 5);
 
 			info[i++] = Dummy;
@@ -364,7 +364,7 @@ void self_knowledge(void)
 		case CLASS_WARRIOR:
 			if (plev > 39)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ãƒ©ãƒ³ãƒ€ãƒ ãªæ–¹å‘ã«å¯¾ã—ã¦æ•°å›æ”»æ’ƒã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(75 MP)", 
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¥é¥ó¥À¥à¤ÊÊı¸ş¤ËÂĞ¤·¤Æ¿ô²ó¹¶·â¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(75 MP)", 
 							"You can attack some random directions at a time (cost 75).");
 			}
 			break;
@@ -374,7 +374,7 @@ void self_knowledge(void)
 		case CLASS_SORCERER:
 			if (plev > 24)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ã‚¢ã‚¤ãƒ†ãƒ ã®é­”åŠ›ã‚’å¸åã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(1 MP)", 
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¥¢¥¤¥Æ¥à¤ÎËâÎÏ¤òµÛ¼ı¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(1 MP)", 
 						"You can absorb charges from an item (cost 1).");
 			}
 			break;
@@ -383,27 +383,27 @@ void self_knowledge(void)
 			{
 				if (plev > 34)
 				{
-					info[i++] = _("ã‚ãªãŸã¯æ­¦å™¨ã‚’ç¥ç¦ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(70 MP)", "You can bless a weapon (cost 70).");
+					info[i++] = _("¤¢¤Ê¤¿¤ÏÉğ´ï¤ò½ËÊ¡¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(70 MP)", "You can bless a weapon (cost 70).");
 				}
 			}
 			else
 			{
 				if (plev > 41)
 				{
-					info[i++] = _("ã‚ãªãŸã¯å‘¨ã‚Šã®ã™ã¹ã¦ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ”»æ’ƒã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(40 MP)", "You can damages all monsters in sight (cost 40).");
+					info[i++] = _("¤¢¤Ê¤¿¤Ï¼ş¤ê¤Î¤¹¤Ù¤Æ¤Î¥â¥ó¥¹¥¿¡¼¤ò¹¶·â¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(40 MP)", "You can damages all monsters in sight (cost 40).");
 				}
 			}
 			break;
 		case CLASS_ROGUE:
 			if (plev > 7)
 			{
-				info[i++] = _("ã‚ãªãŸã¯æ”»æ’ƒã—ã¦å³åº§ã«é€ƒã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(12 MP)", "You can hit a monster and teleport at a time (cost 12).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¹¶·â¤·¤ÆÂ¨ºÂ¤ËÆ¨¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(12 MP)", "You can hit a monster and teleport at a time (cost 12).");
 			}
 			break;
 		case CLASS_RANGER:
 			if (plev > 14)
 			{
-				info[i++] = _("ã‚ãªãŸã¯æ€ªç‰©ã‚’èª¿æŸ»ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(20 MP)", "You can prove monsters (cost 20).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï²øÊª¤òÄ´ºº¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(20 MP)", "You can prove monsters (cost 20).");
 			}
 			break;
 		case CLASS_PALADIN:
@@ -411,111 +411,111 @@ void self_knowledge(void)
 			{
 				if (plev > 29)
 				{
-					info[i++] = _("ã‚ãªãŸã¯è–ãªã‚‹æ§ã‚’æ”¾ã¤ã“ã¨ãŒã§ãã‚‹ã€‚(30 MP)", "You can fires a holy spear (cost 30).");
+					info[i++] = _("¤¢¤Ê¤¿¤ÏÀ»¤Ê¤ëÁä¤òÊü¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(30 MP)", "You can fires a holy spear (cost 30).");
 				}
 			}
 			else
 			{
 				if (plev > 29)
 				{
-					info[i++] = _("ã‚ãªãŸã¯ç”Ÿå‘½åŠ›ã‚’æ¸›å°‘ã•ã›ã‚‹æ§ã‚’æ”¾ã¤ã“ã¨ãŒã§ãã‚‹ã€‚(30 MP)", "You can fires a spear which drains vitality (cost 30).");
+					info[i++] = _("¤¢¤Ê¤¿¤ÏÀ¸Ì¿ÎÏ¤ò¸º¾¯¤µ¤»¤ëÁä¤òÊü¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£(30 MP)", "You can fires a spear which drains vitality (cost 30).");
 				}
 			}
 			break;
 		case CLASS_WARRIOR_MAGE:
 			if (plev > 24)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ï¼¨ï¼°ã‚’ï¼­ï¼°ã«å¤‰æ›ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(0 MP)", "You can convert HP to SP (cost 0).");
-				info[i++] = _("ã‚ãªãŸã¯ï¼­ï¼°ã‚’ï¼¨ï¼°ã«å¤‰æ›ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(0 MP)", "You can convert SP to HP (cost 0).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï£È£Ğ¤ò£Í£Ğ¤ËÊÑ´¹¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(0 MP)", "You can convert HP to SP (cost 0).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï£Í£Ğ¤ò£È£Ğ¤ËÊÑ´¹¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(0 MP)", "You can convert SP to HP (cost 0).");
 			}
 			break;
 		case CLASS_CHAOS_WARRIOR:
 			if (plev > 39)
 			{
-				info[i++] = _("ã‚ãªãŸã¯å‘¨å›²ã«æ€ªç‰©ã‚’æƒ‘ã‚ã™å…‰ã‚’ç™ºç”Ÿã•ã›ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(50 MP)",
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¼ş°Ï¤Ë²øÊª¤òÏÇ¤ï¤¹¸÷¤òÈ¯À¸¤µ¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(50 MP)",
 						"You can radiate light which confuses nearby monsters (cost 50).");
 			}
 			break;
 		case CLASS_MONK:
 			if (plev > 24)
 			{
-				info[i++] = _("ã‚ãªãŸã¯æ§‹ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(0 MP)", "You can assume a posture of special form (cost 0).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¹½¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(0 MP)", "You can assume a posture of special form (cost 0).");
 			}
 			if (plev > 29)
 			{
-				info[i++] = _("ã‚ãªãŸã¯é€šå¸¸ã®2å€ã®æ”»æ’ƒã‚’è¡Œã†ã“ã¨ãŒã§ãã‚‹ã€‚(30 MP)", "You can perform double attacks in a time (cost 30).");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÄÌ¾ï¤Î2ÇÜ¤Î¹¶·â¤ò¹Ô¤¦¤³¤È¤¬¤Ç¤­¤ë¡£(30 MP)", "You can perform double attacks in a time (cost 30).");
 			}
 			break;
 		case CLASS_MINDCRAFTER:
 		case CLASS_FORCETRAINER:
 			if (plev > 14)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ç²¾ç¥ã‚’é›†ä¸­ã—ã¦ï¼­ï¼°ã‚’å›å¾©ã•ã›ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(0 MP)", "You can concentrate to regenerate your mana (cost 0).");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÀº¿À¤ò½¸Ãæ¤·¤Æ£Í£Ğ¤ò²óÉü¤µ¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(0 MP)", "You can concentrate to regenerate your mana (cost 0).");
 			}
 			break;
 		case CLASS_TOURIST:
-			info[i++] = _("ã‚ãªãŸã¯å†™çœŸã‚’æ’®å½±ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(0 MP)", "You can take a photograph (cost 0).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ì¿¿¤ò»£±Æ¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(0 MP)", "You can take a photograph (cost 0).");
 			if (plev > 24)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ã‚¢ã‚¤ãƒ†ãƒ ã‚’å®Œå…¨ã«é‘‘å®šã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(20 MP)", "You can *identify* items (cost 20).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¥¢¥¤¥Æ¥à¤ò´°Á´¤Ë´ÕÄê¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(20 MP)", "You can *identify* items (cost 20).");
 			}
 			break;
 		case CLASS_IMITATOR:
 			if (plev > 29)
 			{
-				info[i++] = _("ã‚ãªãŸã¯æ€ªç‰©ã®ç‰¹æ®Šæ”»æ’ƒã‚’ãƒ€ãƒ¡ãƒ¼ã‚¸2å€ã§ã¾ã­ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(100 MP)", 
+				info[i++] = _("¤¢¤Ê¤¿¤Ï²øÊª¤ÎÆÃ¼ì¹¶·â¤ò¥À¥á¡¼¥¸2ÇÜ¤Ç¤Ş¤Í¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(100 MP)", 
 						"You can imitate monster's special attacks with double damage (cost 100).");
 			}
 			break;
 		case CLASS_BEASTMASTER:
-			info[i++] = _("ã‚ãªãŸã¯1ä½“ã®ç”Ÿå‘½ã®ã‚ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ”¯é…ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ¬ãƒ™ãƒ«/4 MP)", "You can dominate a monster (cost level/4).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï1ÂÎ¤ÎÀ¸Ì¿¤Î¤¢¤ë¥â¥ó¥¹¥¿¡¼¤ò»ÙÇÛ¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥ì¥Ù¥ë/4 MP)", "You can dominate a monster (cost level/4).");
 			if (plev > 29)
 			{
-				info[i++] = _("ã‚ãªãŸã¯è¦–ç•Œå†…ã®ç”Ÿå‘½ã®ã‚ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ”¯é…ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚((ãƒ¬ãƒ™ãƒ«+20)/2 MP)", 
+				info[i++] = _("¤¢¤Ê¤¿¤Ï»ë³¦Æâ¤ÎÀ¸Ì¿¤Î¤¢¤ë¥â¥ó¥¹¥¿¡¼¤ò»ÙÇÛ¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£((¥ì¥Ù¥ë+20)/2 MP)", 
 						"You can dominate living monsters in sight (cost (level+20)/4).");
 			}
 			break;
 		case CLASS_MAGIC_EATER:
-			info[i++] = _("ã‚ãªãŸã¯æ–/é­”æ³•æ£’/ãƒ­ãƒƒãƒ‰ã®é­”åŠ›ã‚’è‡ªåˆ†ã®ã‚‚ã®ã«ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can absorb a staff, wand or rod itself.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¾ó/ËâË¡ËÀ/¥í¥Ã¥É¤ÎËâÎÏ¤ò¼«Ê¬¤Î¤â¤Î¤Ë¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can absorb a staff, wand or rod itself.");
 			break;
 		case CLASS_RED_MAGE:
 			if (plev > 47)
 			{
-				info[i++] = _("ã‚ãªãŸã¯1ã‚¿ãƒ¼ãƒ³ã«2å›é­”æ³•ã‚’å”±ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(20 MP)", "You can cast two spells in one time (cost 20).");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï1¥¿¡¼¥ó¤Ë2²óËâË¡¤ò¾§¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(20 MP)", "You can cast two spells in one time (cost 20).");
 			}
 			break;
 		case CLASS_SAMURAI:
 			{
-				info[i++] = _("ã‚ãªãŸã¯ç²¾ç¥ã‚’é›†ä¸­ã—ã¦æ°—åˆã„ã‚’æºœã‚ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can concentrate to regenerate your mana.");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÀº¿À¤ò½¸Ãæ¤·¤Æµ¤¹ç¤¤¤òÎ¯¤á¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can concentrate to regenerate your mana.");
 			}
 			if (plev > 24)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ç‰¹æ®Šãªå‹ã§æ§‹ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can assume a posture of special form.");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÆÃ¼ì¤Ê·¿¤Ç¹½¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can assume a posture of special form.");
 			}
 			break;
 		case CLASS_BLUE_MAGE:
-			info[i++] = _("ã‚ãªãŸã¯ç›¸æ‰‹ã«ä½¿ã‚ã‚ŒãŸé­”æ³•ã‚’å­¦ã¶ã“ã¨ãŒã§ãã‚‹ã€‚", "You can study spells which your enemy casts on you.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÁê¼ê¤Ë»È¤ï¤ì¤¿ËâË¡¤ò³Ø¤Ö¤³¤È¤¬¤Ç¤­¤ë¡£", "You can study spells which your enemy casts on you.");
 			break;
 		case CLASS_CAVALRY:
 			if (plev > 9)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ä¹—ã£ã¦ç„¡ç†çŸ¢ç†ãƒšãƒƒãƒˆã«ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can ride on a hostile monster forcibly to turn it into pet.");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï¥â¥ó¥¹¥¿¡¼¤Ë¾è¤Ã¤ÆÌµÍıÌğÍı¥Ú¥Ã¥È¤Ë¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can ride on a hostile monster forcibly to turn it into pet.");
 			}
 			break;
 		case CLASS_BERSERKER:
 			if (plev > 9)
 			{
-				info[i++] = _("ã‚ãªãŸã¯è¡—ã¨ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®é–“ã‚’è¡Œãæ¥ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can travel between town and the depths.");
+				info[i++] = _("¤¢¤Ê¤¿¤Ï³¹¤È¥À¥ó¥¸¥ç¥ó¤Î´Ö¤ò¹Ô¤­Íè¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can travel between town and the depths.");
 			}
 			break;
 		case CLASS_MIRROR_MASTER:
-			info[i++] = _("ã‚ãªãŸã¯é¡ã‚’ä½œã‚Šå‡ºã™ã“ã¨ãŒã§ãã‚‹ã€‚(2 MP)", "You can create a Mirror (cost 2).");
-			info[i++] = _("ã‚ãªãŸã¯é¡ã‚’å‰²ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(0 MP)", "You can break distant Mirrors (cost 0).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¶À¤òºî¤ê½Ğ¤¹¤³¤È¤¬¤Ç¤­¤ë¡£(2 MP)", "You can create a Mirror (cost 2).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¶À¤ò³ä¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(0 MP)", "You can break distant Mirrors (cost 0).");
 			break;
 		case CLASS_NINJA:
 			if (plev > 19)
 			{
-				info[i++] = _("ã‚ãªãŸã¯ç´ æ—©ãç§»å‹•ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can walk extremery fast.");
+				info[i++] = _("¤¢¤Ê¤¿¤ÏÁÇÁá¤¯°ÜÆ°¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can walk extremery fast.");
 			}
 			break;
 	}
@@ -524,132 +524,132 @@ void self_knowledge(void)
 	{
 		if (p_ptr->muta1 & MUT1_SPIT_ACID)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é…¸ã‚’å¹ãã‹ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X1)", "You can spit acid (dam lvl).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»À¤ò¿á¤­¤«¤±¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX1)", "You can spit acid (dam lvl).");
 		}
 		if (p_ptr->muta1 & MUT1_BR_FIRE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç‚ã®ãƒ–ãƒ¬ã‚¹ã‚’åãã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X2)", "You can breathe fire (dam lvl * 2).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï±ê¤Î¥Ö¥ì¥¹¤òÅÇ¤¯¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX2)", "You can breathe fire (dam lvl * 2).");
 		}
 		if (p_ptr->muta1 & MUT1_HYPN_GAZE)
 		{
-			info[i++] = _("ã‚ãªãŸã®ç¨ã¿ã¯å‚¬çœ åŠ¹æœã‚’ã‚‚ã¤ã€‚", "Your gaze is hypnotic.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎâË¤ß¤ÏºÅÌ²¸ú²Ì¤ò¤â¤Ä¡£", "Your gaze is hypnotic.");
 		}
 		if (p_ptr->muta1 & MUT1_TELEKINES)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å¿µå‹•åŠ›ã‚’ã‚‚ã£ã¦ã„ã‚‹ã€‚", "You are telekinetic.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÇ°Æ°ÎÏ¤ò¤â¤Ã¤Æ¤¤¤ë¡£", "You are telekinetic.");
 		}
 		if (p_ptr->muta1 & MUT1_VTELEPORT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è‡ªåˆ†ã®æ„æ€ã§ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§ãã‚‹ã€‚", "You can teleport at will.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼«Ê¬¤Î°Õ»×¤Ç¥Æ¥ì¥İ¡¼¥È¤Ç¤­¤ë¡£", "You can teleport at will.");
 		}
 		if (p_ptr->muta1 & MUT1_MIND_BLST)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç²¾ç¥æ”»æ’ƒã‚’è¡Œãˆã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ 3ï½12d3)", "You can Mind Blast your enemies (3 to 12d3 dam).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÀº¿À¹¶·â¤ò¹Ô¤¨¤ë¡£(¥À¥á¡¼¥¸ 3¡Á12d3)", "You can Mind Blast your enemies (3 to 12d3 dam).");
 		}
 		if (p_ptr->muta1 & MUT1_RADIATION)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è‡ªåˆ†ã®æ„æ€ã§å¼·ã„æ”¾å°„ç·šã‚’ç™ºç”Ÿã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X2)", "You can emit hard radiation at will (dam lvl * 2).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼«Ê¬¤Î°Õ»×¤Ç¶¯¤¤Êü¼ÍÀş¤òÈ¯À¸¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX2)", "You can emit hard radiation at will (dam lvl * 2).");
 		}
 		if (p_ptr->muta1 & MUT1_VAMPIRISM)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å¸è¡€é¬¼ã®ã‚ˆã†ã«æ•µã‹ã‚‰ç”Ÿå‘½åŠ›ã‚’å¸åã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X2)", 
+			info[i++] = _("¤¢¤Ê¤¿¤ÏµÛ·ìµ´¤Î¤è¤¦¤ËÅ¨¤«¤éÀ¸Ì¿ÎÏ¤òµÛ¼ı¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX2)", 
 						"You can drain life from a foe like a vampire (dam lvl * 2).");
 		}
 		if (p_ptr->muta1 & MUT1_SMELL_MET)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è¿‘ãã«ã‚ã‚‹è²´é‡‘å±ã‚’ã‹ãåˆ†ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can smell nearby precious metal.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¶á¤¯¤Ë¤¢¤ëµ®¶âÂ°¤ò¤«¤®Ê¬¤±¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can smell nearby precious metal.");
 		}
 		if (p_ptr->muta1 & MUT1_SMELL_MON)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è¿‘ãã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­˜åœ¨ã‚’ã‹ãåˆ†ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can smell nearby monsters.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¶á¤¯¤Î¥â¥ó¥¹¥¿¡¼¤ÎÂ¸ºß¤ò¤«¤®Ê¬¤±¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can smell nearby monsters.");
 		}
 		if (p_ptr->muta1 & MUT1_BLINK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯çŸ­ã„è·é›¢ã‚’ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§ãã‚‹ã€‚", "You can teleport yourself short distances.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÃ»¤¤µ÷Î¥¤ò¥Æ¥ì¥İ¡¼¥È¤Ç¤­¤ë¡£", "You can teleport yourself short distances.");
 		}
 		if (p_ptr->muta1 & MUT1_EAT_ROCK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç¡¬ã„å²©ã‚’é£Ÿã¹ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can consume solid rock.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¹Å¤¤´ä¤ò¿©¤Ù¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can consume solid rock.");
 		}
 		if (p_ptr->muta1 & MUT1_SWAP_POS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ä»–ã®è€…ã¨å ´æ‰€ã‚’å…¥ã‚Œæ›¿ã‚ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can switch locations with another being.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÂ¾¤Î¼Ô¤È¾ì½ê¤òÆş¤ìÂØ¤ï¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can switch locations with another being.");
 		}
 		if (p_ptr->muta1 & MUT1_SHRIEK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯èº«ã®æ¯›ã‚‚ã‚ˆã ã¤å«ã³å£°ã‚’ç™ºã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X2)", "You can emit a horrible shriek (dam 2 * lvl).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¿È¤ÎÌÓ¤â¤è¤À¤Ä¶«¤ÓÀ¼¤òÈ¯¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX2)", "You can emit a horrible shriek (dam 2 * lvl).");
 		}
 		if (p_ptr->muta1 & MUT1_ILLUMINE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ˜ã‚‹ã„å…‰ã‚’æ”¾ã¤ã“ã¨ãŒã§ãã‚‹ã€‚", "You can emit bright light.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÌÀ¤ë¤¤¸÷¤òÊü¤Ä¤³¤È¤¬¤Ç¤­¤ë¡£", "You can emit bright light.");
 		}
 		if (p_ptr->muta1 & MUT1_DET_CURSE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªé­”æ³•ã®å±é™ºã‚’æ„Ÿã˜ã¨ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can feel the danger of evil magic.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤ÊËâË¡¤Î´í¸±¤ò´¶¤¸¤È¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can feel the danger of evil magic.");
 		}
 		if (p_ptr->muta1 & MUT1_BERSERK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è‡ªåˆ†ã®æ„æ€ã§ç‹‚ä¹±æˆ¦é—˜çŠ¶æ…‹ã«ãªã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can drive yourself into a berserk frenzy.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼«Ê¬¤Î°Õ»×¤Ç¶¸ÍğÀïÆ®¾õÂÖ¤Ë¤Ê¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can drive yourself into a berserk frenzy.");
 		}
 		if (p_ptr->muta1 & MUT1_POLYMORPH)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è‡ªåˆ†ã®æ„å¿—ã§å¤‰åŒ–ã§ãã‚‹ã€‚", "You can polymorph yourself at will.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼«Ê¬¤Î°Õ»Ö¤ÇÊÑ²½¤Ç¤­¤ë¡£", "You can polymorph yourself at will.");
 		}
 		if (p_ptr->muta1 & MUT1_MIDAS_TCH)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é€šå¸¸ã‚¢ã‚¤ãƒ†ãƒ ã‚’é‡‘ã«å¤‰ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can turn ordinary items to gold.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÄÌ¾ï¥¢¥¤¥Æ¥à¤ò¶â¤ËÊÑ¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can turn ordinary items to gold.");
 		}
 		if (p_ptr->muta1 & MUT1_GROW_MOLD)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å‘¨å›²ã«ã‚­ãƒã‚³ã‚’ç”Ÿã‚„ã™ã“ã¨ãŒã§ãã‚‹ã€‚", "You can cause mold to grow near you.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼ş°Ï¤Ë¥­¥Î¥³¤òÀ¸¤ä¤¹¤³¤È¤¬¤Ç¤­¤ë¡£", "You can cause mold to grow near you.");
 		}
 		if (p_ptr->muta1 & MUT1_RESIST)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å…ƒç´ ã®æ”»æ’ƒã«å¯¾ã—ã¦èº«ã‚’ç¡¬ãã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can harden yourself to the ravages of the elements.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¸µÁÇ¤Î¹¶·â¤ËÂĞ¤·¤Æ¿È¤ò¹Å¤¯¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can harden yourself to the ravages of the elements.");
 		}
 		if (p_ptr->muta1 & MUT1_EARTHQUAKE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å‘¨å›²ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚’å´©å£Šã•ã›ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can bring down the dungeon around your ears.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼ş°Ï¤Î¥À¥ó¥¸¥ç¥ó¤òÊø²õ¤µ¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can bring down the dungeon around your ears.");
 		}
 		if (p_ptr->muta1 & MUT1_EAT_MAGIC)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é­”æ³•ã®ã‚¨ãƒãƒ«ã‚®ãƒ¼ã‚’è‡ªåˆ†ã®ç‰©ã¨ã—ã¦ä½¿ç”¨ã§ãã‚‹ã€‚", "You can consume magic energy for your own use.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏËâË¡¤Î¥¨¥Í¥ë¥®¡¼¤ò¼«Ê¬¤ÎÊª¤È¤·¤Æ»ÈÍÑ¤Ç¤­¤ë¡£", "You can consume magic energy for your own use.");
 		}
 		if (p_ptr->muta1 & MUT1_WEIGH_MAG)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è‡ªåˆ†ã«å½±éŸ¿ã‚’ä¸ãˆã‚‹é­”æ³•ã®åŠ›ã‚’æ„Ÿã˜ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can feel the strength of the magics affecting you.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼«Ê¬¤Ë±Æ¶Á¤òÍ¿¤¨¤ëËâË¡¤ÎÎÏ¤ò´¶¤¸¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can feel the strength of the magics affecting you.");
 		}
 		if (p_ptr->muta1 & MUT1_STERILITY)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é›†å›£çš„ç”Ÿæ®–ä¸èƒ½ã‚’èµ·ã“ã™ã“ã¨ãŒã§ãã‚‹ã€‚", "You can cause mass impotence.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï½¸ÃÄÅªÀ¸¿£ÉÔÇ½¤òµ¯¤³¤¹¤³¤È¤¬¤Ç¤­¤ë¡£", "You can cause mass impotence.");
 		}
 		if (p_ptr->muta1 & MUT1_PANIC_HIT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ”»æ’ƒã—ãŸå¾Œèº«ã‚’å®ˆã‚‹ãŸã‚é€ƒã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can run for your life after hitting something.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¹¶·â¤·¤¿¸å¿È¤ò¼é¤ë¤¿¤áÆ¨¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can run for your life after hitting something.");
 		}
 		if (p_ptr->muta1 & MUT1_DAZZLE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ··ä¹±ã¨ç›²ç›®ã‚’å¼•ãèµ·ã“ã™æ”¾å°„èƒ½ã‚’ç™ºç”Ÿã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚ ", "You can emit confusing, blinding radiation.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ïº®Íğ¤ÈÌÕÌÜ¤ò°ú¤­µ¯¤³¤¹Êü¼ÍÇ½¤òÈ¯À¸¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£ ", "You can emit confusing, blinding radiation.");
 		}
 		if (p_ptr->muta1 & MUT1_LASER_EYE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç›®ã‹ã‚‰ãƒ¬ãƒ¼ã‚¶ãƒ¼å…‰ç·šã‚’ç™ºã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X2)", "Your eyes can fire laser beams (dam 2 * lvl).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÌÜ¤«¤é¥ì¡¼¥¶¡¼¸÷Àş¤òÈ¯¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX2)", "Your eyes can fire laser beams (dam 2 * lvl).");
 		}
 		if (p_ptr->muta1 & MUT1_RECALL)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è¡—ã¨ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®é–“ã‚’è¡Œãæ¥ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can travel between town and the depths.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï³¹¤È¥À¥ó¥¸¥ç¥ó¤Î´Ö¤ò¹Ô¤­Íè¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can travel between town and the depths.");
 		}
 		if (p_ptr->muta1 & MUT1_BANISH)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’åœ°ç„ã«è½ã¨ã™ã“ã¨ãŒã§ãã‚‹ã€‚", "You can send evil creatures directly to Hell.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤Ê¥â¥ó¥¹¥¿¡¼¤òÃÏ¹ö¤ËÍî¤È¤¹¤³¤È¤¬¤Ç¤­¤ë¡£", "You can send evil creatures directly to Hell.");
 		}
 		if (p_ptr->muta1 & MUT1_COLD_TOUCH)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ•µã‚’è§¦ã£ã¦å‡ã‚‰ã›ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ ãƒ¬ãƒ™ãƒ«X3)", "You can freeze things with a touch (dam 3 * lvl).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÅ¨¤ò¿¨¤Ã¤ÆÅà¤é¤»¤ë¤³¤È¤¬¤Ç¤­¤ë¡£(¥À¥á¡¼¥¸ ¥ì¥Ù¥ëX3)", "You can freeze things with a touch (dam 3 * lvl).");
 		}
 		if (p_ptr->muta1 & MUT1_LAUNCHER)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã‚¢ã‚¤ãƒ†ãƒ ã‚’åŠ›å¼·ãæŠ•ã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can hurl objects with great force.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥¢¥¤¥Æ¥à¤òÎÏ¶¯¤¯Åê¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can hurl objects with great force.");
 		}
 	}
 
@@ -657,131 +657,131 @@ void self_knowledge(void)
 	{
 		if (p_ptr->muta2 & MUT2_BERS_RAGE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç‹‚æˆ¦å£«åŒ–ã®ç™ºä½œã‚’èµ·ã“ã™ã€‚", "You are subject to berserker fits.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¶¸Àï»Î²½¤ÎÈ¯ºî¤òµ¯¤³¤¹¡£", "You are subject to berserker fits.");
 		}
 		if (p_ptr->muta2 & MUT2_COWARDICE)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…è‡†ç—…ã«ãªã‚‹ã€‚", "You are subject to cowardice.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹²²ÉÂ¤Ë¤Ê¤ë¡£", "You are subject to cowardice.");
 		}
 		if (p_ptr->muta2 & MUT2_RTELEPORT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ãƒ©ãƒ³ãƒ€ãƒ ã«ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã™ã‚‹ã€‚", "You are teleporting randomly.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥é¥ó¥À¥à¤Ë¥Æ¥ì¥İ¡¼¥È¤¹¤ë¡£", "You are teleporting randomly.");
 		}
 		if (p_ptr->muta2 & MUT2_ALCOHOL)
 		{
-			info[i++] = _("ã‚ãªãŸã®ä½“ã¯ã‚¢ãƒ«ã‚³ãƒ¼ãƒ«ã‚’åˆ†æ³Œã™ã‚‹ã€‚", "Your body produces alcohol.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÂÎ¤Ï¥¢¥ë¥³¡¼¥ë¤òÊ¬Èç¤¹¤ë¡£", "Your body produces alcohol.");
 		}
 		if (p_ptr->muta2 & MUT2_HALLU)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å¹»è¦šã‚’å¼•ãèµ·ã“ã™ç²¾ç¥éŒ¯ä¹±ã«ä¾µã•ã‚Œã¦ã„ã‚‹ã€‚", "You have a hallucinatory insanity.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¸¸³Ğ¤ò°ú¤­µ¯¤³¤¹Àº¿ÀºøÍğ¤Ë¿¯¤µ¤ì¤Æ¤¤¤ë¡£", "You have a hallucinatory insanity.");
 		}
 		if (p_ptr->muta2 & MUT2_FLATULENT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯åˆ¶å¾¡ã§ããªã„å¼·çƒˆãªå±ã‚’ã“ãã€‚", "You are subject to uncontrollable flatulence.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÀ©¸æ¤Ç¤­¤Ê¤¤¶¯Îõ¤ÊÕû¤ò¤³¤¯¡£", "You are subject to uncontrollable flatulence.");
 		}
 		if (p_ptr->muta2 & MUT2_PROD_MANA)
 		{
-			info[i++] = _("ã‚ãªãŸã¯åˆ¶å¾¡ä¸èƒ½ãªé­”æ³•ã®ã‚¨ãƒãƒ«ã‚®ãƒ¼ã‚’ç™ºã—ã¦ã„ã‚‹ã€‚", "You are producing magical energy uncontrollably.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÀ©¸æÉÔÇ½¤ÊËâË¡¤Î¥¨¥Í¥ë¥®¡¼¤òÈ¯¤·¤Æ¤¤¤ë¡£", "You are producing magical energy uncontrollably.");
 		}
 		if (p_ptr->muta2 & MUT2_ATT_DEMON)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ãƒ‡ãƒ¼ãƒ¢ãƒ³ã‚’å¼•ãã¤ã‘ã‚‹ã€‚", "You attract demons.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥Ç¡¼¥â¥ó¤ò°ú¤­¤Ä¤±¤ë¡£", "You attract demons.");
 		}
 		if (p_ptr->muta2 & MUT2_SCOR_TAIL)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã‚µã‚½ãƒªã®å°»å°¾ãŒç”Ÿãˆã¦ã„ã‚‹ã€‚(æ¯’ã€ãƒ€ãƒ¡ãƒ¼ã‚¸ 3d7)", "You have a scorpion tail (poison, 3d7).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥µ¥½¥ê¤Î¿¬Èø¤¬À¸¤¨¤Æ¤¤¤ë¡£(ÆÇ¡¢¥À¥á¡¼¥¸ 3d7)", "You have a scorpion tail (poison, 3d7).");
 		}
 		if (p_ptr->muta2 & MUT2_HORNS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è§’ãŒç”Ÿãˆã¦ã„ã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ 2d6)", "You have horns (dam. 2d6).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï³Ñ¤¬À¸¤¨¤Æ¤¤¤ë¡£(¥À¥á¡¼¥¸ 2d6)", "You have horns (dam. 2d6).");
 		}
 		if (p_ptr->muta2 & MUT2_BEAK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã‚¯ãƒãƒã‚·ãŒç”Ÿãˆã¦ã„ã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ 2d4)", "You have a beak (dam. 2d4).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥¯¥Á¥Ğ¥·¤¬À¸¤¨¤Æ¤¤¤ë¡£(¥À¥á¡¼¥¸ 2d4)", "You have a beak (dam. 2d4).");
 		}
 		if (p_ptr->muta2 & MUT2_SPEED_FLUX)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ãƒ©ãƒ³ãƒ€ãƒ ã«æ—©ãå‹•ã„ãŸã‚Šé…ãå‹•ã„ãŸã‚Šã™ã‚‹ã€‚", "You move faster or slower randomly.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥é¥ó¥À¥à¤ËÁá¤¯Æ°¤¤¤¿¤êÃÙ¤¯Æ°¤¤¤¿¤ê¤¹¤ë¡£", "You move faster or slower randomly.");
 		}
 		if (p_ptr->muta2 & MUT2_BANISH_ALL)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…è¿‘ãã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ¶ˆæ»…ã•ã›ã‚‹ã€‚", "You sometimes cause nearby creatures to vanish.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹¶á¤¯¤Î¥â¥ó¥¹¥¿¡¼¤ò¾ÃÌÇ¤µ¤»¤ë¡£", "You sometimes cause nearby creatures to vanish.");
 		}
 		if (p_ptr->muta2 & MUT2_EAT_LIGHT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…å‘¨å›²ã®å…‰ã‚’å¸åã—ã¦æ „é¤Šã«ã™ã‚‹ã€‚", "You sometimes feed off of the light around you.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹¼ş°Ï¤Î¸÷¤òµÛ¼ı¤·¤Æ±ÉÍÜ¤Ë¤¹¤ë¡£", "You sometimes feed off of the light around you.");
 		}
 		if (p_ptr->muta2 & MUT2_TRUNK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è±¡ã®ã‚ˆã†ãªé¼»ã‚’æŒã£ã¦ã„ã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ 1d4)", "You have an elephantine trunk (dam 1d4).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¾İ¤Î¤è¤¦¤ÊÉ¡¤ò»ı¤Ã¤Æ¤¤¤ë¡£(¥À¥á¡¼¥¸ 1d4)", "You have an elephantine trunk (dam 1d4).");
 		}
 		if (p_ptr->muta2 & MUT2_ATT_ANIMAL)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å‹•ç‰©ã‚’å¼•ãã¤ã‘ã‚‹ã€‚", "You attract animals.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÆ°Êª¤ò°ú¤­¤Ä¤±¤ë¡£", "You attract animals.");
 		}
 		if (p_ptr->muta2 & MUT2_TENTACLES)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªè§¦æ‰‹ã‚’æŒã£ã¦ã„ã‚‹ã€‚(ãƒ€ãƒ¡ãƒ¼ã‚¸ 2d5)", "You have evil looking tentacles (dam 2d5).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤Ê¿¨¼ê¤ò»ı¤Ã¤Æ¤¤¤ë¡£(¥À¥á¡¼¥¸ 2d5)", "You have evil looking tentacles (dam 2d5).");
 		}
 		if (p_ptr->muta2 & MUT2_RAW_CHAOS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã—ã°ã—ã°ç´”ã‚«ã‚ªã‚¹ã«åŒ…ã¾ã‚Œã‚‹ã€‚", "You occasionally are surrounded with raw chaos.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¤·¤Ğ¤·¤Ğ½ã¥«¥ª¥¹¤ËÊñ¤Ş¤ì¤ë¡£", "You occasionally are surrounded with raw chaos.");
 		}
 		if (p_ptr->muta2 & MUT2_NORMALITY)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å¤‰ç•°ã—ã¦ã„ãŸãŒã€å›å¾©ã—ã¦ãã¦ã„ã‚‹ã€‚", "You may be mutated, but you're recovering.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÊÑ°Û¤·¤Æ¤¤¤¿¤¬¡¢²óÉü¤·¤Æ¤­¤Æ¤¤¤ë¡£", "You may be mutated, but you're recovering.");
 		}
 		if (p_ptr->muta2 & MUT2_WRAITH)
 		{
-			info[i++] = _("ã‚ãªãŸã®è‚‰ä½“ã¯å¹½ä½“åŒ–ã—ãŸã‚Šå®Ÿä½“åŒ–ã—ãŸã‚Šã™ã‚‹ã€‚", "You fade in and out of physical reality.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÆùÂÎ¤ÏÍ©ÂÎ²½¤·¤¿¤ê¼ÂÂÎ²½¤·¤¿¤ê¤¹¤ë¡£", "You fade in and out of physical reality.");
 		}
 		if (p_ptr->muta2 & MUT2_POLY_WOUND)
 		{
-			info[i++] = _("ã‚ãªãŸã®å¥åº·ã¯ã‚«ã‚ªã‚¹ã®åŠ›ã«å½±éŸ¿ã‚’å—ã‘ã‚‹ã€‚", "Your health is subject to chaotic forces.");
+			info[i++] = _("¤¢¤Ê¤¿¤Î·ò¹¯¤Ï¥«¥ª¥¹¤ÎÎÏ¤Ë±Æ¶Á¤ò¼õ¤±¤ë¡£", "Your health is subject to chaotic forces.");
 		}
 		if (p_ptr->muta2 & MUT2_WASTING)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è¡°å¼±ã™ã‚‹æã‚ã—ã„ç—…æ°—ã«ã‹ã‹ã£ã¦ã„ã‚‹ã€‚", "You have a horrible wasting disease.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¿ê¼å¤¹¤ë¶²¤í¤·¤¤ÉÂµ¤¤Ë¤«¤«¤Ã¤Æ¤¤¤ë¡£", "You have a horrible wasting disease.");
 		}
 		if (p_ptr->muta2 & MUT2_ATT_DRAGON)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ãƒ‰ãƒ©ã‚´ãƒ³ã‚’å¼•ãã¤ã‘ã‚‹ã€‚", "You attract dragons.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥É¥é¥´¥ó¤ò°ú¤­¤Ä¤±¤ë¡£", "You attract dragons.");
 		}
 		if (p_ptr->muta2 & MUT2_WEIRD_MIND)
 		{
-			info[i++] = _("ã‚ãªãŸã®ç²¾ç¥ã¯ãƒ©ãƒ³ãƒ€ãƒ ã«æ‹¡å¤§ã—ãŸã‚Šç¸®å°ã—ãŸã‚Šã—ã¦ã„ã‚‹ã€‚", "Your mind randomly expands and contracts.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÀº¿À¤Ï¥é¥ó¥À¥à¤Ë³ÈÂç¤·¤¿¤ê½Ì¾®¤·¤¿¤ê¤·¤Æ¤¤¤ë¡£", "Your mind randomly expands and contracts.");
 		}
 		if (p_ptr->muta2 & MUT2_NAUSEA)
 		{
-			info[i++] = _("ã‚ãªãŸã®èƒƒã¯éå¸¸ã«è½ã¡ç€ããŒãªã„ã€‚", "You have a seriously upset stomach.");
+			info[i++] = _("¤¢¤Ê¤¿¤Î°ß¤ÏÈó¾ï¤ËÍî¤ÁÃå¤­¤¬¤Ê¤¤¡£", "You have a seriously upset stomach.");
 		}
 		if (p_ptr->muta2 & MUT2_CHAOS_GIFT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã‚«ã‚ªã‚¹ã®å®ˆè­·æ‚ªé­”ã‹ã‚‰è¤’ç¾ã‚’ã†ã‘ã¨ã‚‹ã€‚", "Chaos deities give you gifts.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥«¥ª¥¹¤Î¼é¸î°­Ëâ¤«¤éË«Èş¤ò¤¦¤±¤È¤ë¡£", "Chaos deities give you gifts.");
 		}
 		if (p_ptr->muta2 & MUT2_WALK_SHAD)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã—ã°ã—ã°ä»–ã®ã€Œå½±ã€ã«è¿·ã„è¾¼ã‚€ã€‚", "You occasionally stumble into other shadows.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¤·¤Ğ¤·¤ĞÂ¾¤Î¡Ö±Æ¡×¤ËÌÂ¤¤¹ş¤à¡£", "You occasionally stumble into other shadows.");
 		}
 		if (p_ptr->muta2 & MUT2_WARNING)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ•µã«é–¢ã™ã‚‹è­¦å‘Šã‚’æ„Ÿã˜ã‚‹ã€‚", "You receive warnings about your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÅ¨¤Ë´Ø¤¹¤ë·Ù¹ğ¤ò´¶¤¸¤ë¡£", "You receive warnings about your foes.");
 		}
 		if (p_ptr->muta2 & MUT2_INVULN)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…è² ã‘çŸ¥ã‚‰ãšãªæ°—åˆ†ã«ãªã‚‹ã€‚", "You occasionally feel invincible.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹Éé¤±ÃÎ¤é¤º¤Êµ¤Ê¬¤Ë¤Ê¤ë¡£", "You occasionally feel invincible.");
 		}
 		if (p_ptr->muta2 & MUT2_SP_TO_HP)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…è¡€ãŒç­‹è‚‰ã«ã©ã£ã¨æµã‚Œã‚‹ã€‚", "Your blood sometimes rushes to your muscles.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹·ì¤¬¶ÚÆù¤Ë¤É¤Ã¤ÈÎ®¤ì¤ë¡£", "Your blood sometimes rushes to your muscles.");
 		}
 		if (p_ptr->muta2 & MUT2_HP_TO_SP)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…é ­ã«è¡€ãŒã©ã£ã¨æµã‚Œã‚‹ã€‚", "Your blood sometimes rushes to your head.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹Æ¬¤Ë·ì¤¬¤É¤Ã¤ÈÎ®¤ì¤ë¡£", "Your blood sometimes rushes to your head.");
 		}
 		if (p_ptr->muta2 & MUT2_DISARM)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã‚ˆãã¤ã¾ã¥ã„ã¦ç‰©ã‚’è½ã¨ã™ã€‚", "You occasionally stumble and drop things.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¤è¤¯¤Ä¤Ş¤Å¤¤¤ÆÊª¤òÍî¤È¤¹¡£", "You occasionally stumble and drop things.");
 		}
 	}
 
@@ -789,95 +789,95 @@ void self_knowledge(void)
 	{
 		if (p_ptr->muta3 & MUT3_HYPER_STR)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è¶…äººçš„ã«å¼·ã„ã€‚(è…•åŠ›+4)", "You are superhumanly strong (+4 STR).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÄ¶¿ÍÅª¤Ë¶¯¤¤¡£(ÏÓÎÏ+4)", "You are superhumanly strong (+4 STR).");
 		}
 		if (p_ptr->muta3 & MUT3_PUNY)
 		{
-			info[i++] = _("ã‚ãªãŸã¯è™šå¼±ã ã€‚(è…•åŠ›-4)", "You are puny (-4 STR).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ïµõ¼å¤À¡£(ÏÓÎÏ-4)", "You are puny (-4 STR).");
 		}
 		if (p_ptr->muta3 & MUT3_HYPER_INT)
 		{
-			info[i++] = _("ã‚ãªãŸã®è„³ã¯ç”Ÿä½“ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã ã€‚(çŸ¥èƒ½ï¼†è³¢ã•+4)", "Your brain is a living computer (+4 INT/WIS).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÇ¾¤ÏÀ¸ÂÎ¥³¥ó¥Ô¥å¡¼¥¿¤À¡£(ÃÎÇ½¡õ¸­¤µ+4)", "Your brain is a living computer (+4 INT/WIS).");
 		}
 		if (p_ptr->muta3 & MUT3_MORONIC)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç²¾ç¥è–„å¼±ã ã€‚(çŸ¥èƒ½ï¼†è³¢ã•-4)", "You are moronic (-4 INT/WIS).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÀº¿ÀÇö¼å¤À¡£(ÃÎÇ½¡õ¸­¤µ-4)", "You are moronic (-4 INT/WIS).");
 		}
 		if (p_ptr->muta3 & MUT3_RESILIENT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯éå¸¸ã«ã‚¿ãƒ•ã ã€‚(è€ä¹…+4)", "You are very resilient (+4 CON).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÈó¾ï¤Ë¥¿¥Õ¤À¡£(ÂÑµ×+4)", "You are very resilient (+4 CON).");
 		}
 		if (p_ptr->muta3 & MUT3_XTRA_FAT)
 		{
-			info[i++] = _("ã‚ãªãŸã¯æ¥µç«¯ã«å¤ªã£ã¦ã„ã‚‹ã€‚(è€ä¹…+2,ã‚¹ãƒ”ãƒ¼ãƒ‰-2)", "You are extremely fat (+2 CON, -2 speed).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¶ËÃ¼¤ËÂÀ¤Ã¤Æ¤¤¤ë¡£(ÂÑµ×+2,¥¹¥Ô¡¼¥É-2)", "You are extremely fat (+2 CON, -2 speed).");
 		}
 		if (p_ptr->muta3 & MUT3_ALBINO)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã‚¢ãƒ«ãƒ“ãƒã ã€‚(è€ä¹…-4)", "You are albino (-4 CON).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¥¢¥ë¥Ó¥Î¤À¡£(ÂÑµ×-4)", "You are albino (-4 CON).");
 		}
 		if (p_ptr->muta3 & MUT3_FLESH_ROT)
 		{
-			info[i++] = _("ã‚ãªãŸã®è‚‰ä½“ã¯è…æ•—ã—ã¦ã„ã‚‹ã€‚(è€ä¹…-2,é­…åŠ›-1)", "Your flesh is rotting (-2 CON, -1 CHR).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÆùÂÎ¤ÏÉåÇÔ¤·¤Æ¤¤¤ë¡£(ÂÑµ×-2,Ì¥ÎÏ-1)", "Your flesh is rotting (-2 CON, -1 CHR).");
 		}
 		if (p_ptr->muta3 & MUT3_SILLY_VOI)
 		{
-			info[i++] = _("ã‚ãªãŸã®å£°ã¯é–“æŠœã‘ãªã‚­ãƒ¼ã‚­ãƒ¼å£°ã ã€‚(é­…åŠ›-4)", "Your voice is a silly squeak (-4 CHR).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÀ¼¤Ï´ÖÈ´¤±¤Ê¥­¡¼¥­¡¼À¼¤À¡£(Ì¥ÎÏ-4)", "Your voice is a silly squeak (-4 CHR).");
 		}
 		if (p_ptr->muta3 & MUT3_BLANK_FAC)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã®ã£ãºã‚‰ã¼ã†ã ã€‚(é­…åŠ›-1)", "Your face is featureless (-1 CHR).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¤Î¤Ã¤Ú¤é¤Ü¤¦¤À¡£(Ì¥ÎÏ-1)", "Your face is featureless (-1 CHR).");
 		}
 		if (p_ptr->muta3 & MUT3_ILL_NORM)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å¹»å½±ã«è¦†ã‚ã‚Œã¦ã„ã‚‹ã€‚", "Your appearance is masked with illusion.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¸¸±Æ¤ËÊ¤¤ï¤ì¤Æ¤¤¤ë¡£", "Your appearance is masked with illusion.");
 		}
 		if (p_ptr->muta3 & MUT3_XTRA_EYES)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ä½™åˆ†ã«äºŒã¤ã®ç›®ã‚’æŒã£ã¦ã„ã‚‹ã€‚(æ¢ç´¢+15)", "You have an extra pair of eyes (+15 search).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÍ¾Ê¬¤ËÆó¤Ä¤ÎÌÜ¤ò»ı¤Ã¤Æ¤¤¤ë¡£(Ãµº÷+15)", "You have an extra pair of eyes (+15 search).");
 		}
 		if (p_ptr->muta3 & MUT3_MAGIC_RES)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é­”æ³•ã¸ã®è€æ€§ã‚’ã‚‚ã£ã¦ã„ã‚‹ã€‚", "You are resistant to magic.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏËâË¡¤Ø¤ÎÂÑÀ­¤ò¤â¤Ã¤Æ¤¤¤ë¡£", "You are resistant to magic.");
 		}
 		if (p_ptr->muta3 & MUT3_XTRA_NOIS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å¤‰ãªéŸ³ã‚’ç™ºã—ã¦ã„ã‚‹ã€‚(éš å¯†-3)", "You make a lot of strange noise (-3 stealth).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÊÑ¤Ê²»¤òÈ¯¤·¤Æ¤¤¤ë¡£(±£Ì©-3)", "You make a lot of strange noise (-3 stealth).");
 		}
 		if (p_ptr->muta3 & MUT3_INFRAVIS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç´ æ™´ã‚‰ã—ã„èµ¤å¤–ç·šè¦–åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚(+3)", "You have remarkable infravision (+3).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÁÇÀ²¤é¤·¤¤ÀÖ³°Àş»ëÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£(+3)", "You have remarkable infravision (+3).");
 		}
 		if (p_ptr->muta3 & MUT3_XTRA_LEGS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ä½™åˆ†ã«äºŒæœ¬ã®è¶³ãŒç”Ÿãˆã¦ã„ã‚‹ã€‚(åŠ é€Ÿ+3)", "You have an extra pair of legs (+3 speed).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÍ¾Ê¬¤ËÆóËÜ¤ÎÂ­¤¬À¸¤¨¤Æ¤¤¤ë¡£(²ÃÂ®+3)", "You have an extra pair of legs (+3 speed).");
 		}
 		if (p_ptr->muta3 & MUT3_SHORT_LEG)
 		{
-			info[i++] = _("ã‚ãªãŸã®è¶³ã¯çŸ­ã„çªèµ·ã ã€‚(åŠ é€Ÿ-3)", "Your legs are short stubs (-3 speed).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÂ­¤ÏÃ»¤¤ÆÍµ¯¤À¡£(²ÃÂ®-3)", "Your legs are short stubs (-3 speed).");
 		}
 		if (p_ptr->muta3 & MUT3_ELEC_TOUC)
 		{
-			info[i++] = _("ã‚ãªãŸã®è¡€ç®¡ã«ã¯é›»æµãŒæµã‚Œã¦ã„ã‚‹ã€‚", "Electricity is running through your veins.");
+			info[i++] = _("¤¢¤Ê¤¿¤Î·ì´É¤Ë¤ÏÅÅÎ®¤¬Î®¤ì¤Æ¤¤¤ë¡£", "Electricity is running through your veins.");
 		}
 		if (p_ptr->muta3 & MUT3_FIRE_BODY)
 		{
-			info[i++] = _("ã‚ãªãŸã®ä½“ã¯ç‚ã«ã¤ã¤ã¾ã‚Œã¦ã„ã‚‹ã€‚", "Your body is enveloped in flames.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÂÎ¤Ï±ê¤Ë¤Ä¤Ä¤Ş¤ì¤Æ¤¤¤ë¡£", "Your body is enveloped in flames.");
 		}
 		if (p_ptr->muta3 & MUT3_WART_SKIN)
 		{
-			info[i++] = _("ã‚ãªãŸã®è‚Œã¯ã‚¤ãƒœã«è¢«ã‚ã‚Œã¦ã„ã‚‹ã€‚(é­…åŠ›-2, AC+5)", "Your skin is covered with warts (-2 CHR, +5 AC).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÈ©¤Ï¥¤¥Ü¤ËÈï¤ï¤ì¤Æ¤¤¤ë¡£(Ì¥ÎÏ-2, AC+5)", "Your skin is covered with warts (-2 CHR, +5 AC).");
 		}
 		if (p_ptr->muta3 & MUT3_SCALES)
 		{
-			info[i++] = _("ã‚ãªãŸã®è‚Œã¯é±—ã«ãªã£ã¦ã„ã‚‹ã€‚(é­…åŠ›-1, AC+10)", "Your skin has turned into scales (-1 CHR, +10 AC).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÈ©¤ÏÎÚ¤Ë¤Ê¤Ã¤Æ¤¤¤ë¡£(Ì¥ÎÏ-1, AC+10)", "Your skin has turned into scales (-1 CHR, +10 AC).");
 		}
 		if (p_ptr->muta3 & MUT3_IRON_SKIN)
 		{
-			info[i++] = _("ã‚ãªãŸã®è‚Œã¯é‰„ã§ã§ãã¦ã„ã‚‹ã€‚(å™¨ç”¨-1, AC+25)", "Your skin is made of steel (-1 DEX, +25 AC).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÈ©¤ÏÅ´¤Ç¤Ç¤­¤Æ¤¤¤ë¡£(´ïÍÑ-1, AC+25)", "Your skin is made of steel (-1 DEX, +25 AC).");
 		}
 		if (p_ptr->muta3 & MUT3_WINGS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç¾½ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You have wings.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï±©¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You have wings.");
 		}
 		if (p_ptr->muta3 & MUT3_FEARLESS)
 		{
@@ -893,542 +893,542 @@ void self_knowledge(void)
 		}
 		if (p_ptr->muta3 & MUT3_LIMBER)
 		{
-			info[i++] = _("ã‚ãªãŸã®ä½“ã¯éå¸¸ã«ã—ãªã‚„ã‹ã ã€‚(å™¨ç”¨+3)", "Your body is very limber (+3 DEX).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÂÎ¤ÏÈó¾ï¤Ë¤·¤Ê¤ä¤«¤À¡£(´ïÍÑ+3)", "Your body is very limber (+3 DEX).");
 		}
 		if (p_ptr->muta3 & MUT3_ARTHRITIS)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ã„ã¤ã‚‚é–¢ç¯€ã«ç—›ã¿ã‚’æ„Ÿã˜ã¦ã„ã‚‹ã€‚(å™¨ç”¨-3)", "Your joints ache constantly (-3 DEX).");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¤¤¤Ä¤â´ØÀá¤ËÄË¤ß¤ò´¶¤¸¤Æ¤¤¤ë¡£(´ïÍÑ-3)", "Your joints ache constantly (-3 DEX).");
 		}
 		if (p_ptr->muta3 & MUT3_VULN_ELEM)
 		{
-			info[i++] = _("ã‚ãªãŸã¯å…ƒç´ ã®æ”»æ’ƒã«å¼±ã„ã€‚", "You are susceptible to damage from the elements.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¸µÁÇ¤Î¹¶·â¤Ë¼å¤¤¡£", "You are susceptible to damage from the elements.");
 		}
 		if (p_ptr->muta3 & MUT3_MOTION)
 		{
-			info[i++] = _("ã‚ãªãŸã®å‹•ä½œã¯æ­£ç¢ºã§åŠ›å¼·ã„ã€‚(éš å¯†+1)", "Your movements are precise and forceful (+1 STL).");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÆ°ºî¤ÏÀµ³Î¤ÇÎÏ¶¯¤¤¡£(±£Ì©+1)", "Your movements are precise and forceful (+1 STL).");
 		}
 		if (p_ptr->muta3 & MUT3_GOOD_LUCK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯ç™½ã„ã‚ªãƒ¼ãƒ©ã«ã¤ã¤ã¾ã‚Œã¦ã„ã‚‹ã€‚", "There is a white aura surrounding you.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÏÇò¤¤¥ª¡¼¥é¤Ë¤Ä¤Ä¤Ş¤ì¤Æ¤¤¤ë¡£", "There is a white aura surrounding you.");
 		}
 		if (p_ptr->muta3 & MUT3_BAD_LUCK)
 		{
-			info[i++] = _("ã‚ãªãŸã¯é»’ã„ã‚ªãƒ¼ãƒ©ã«ã¤ã¤ã¾ã‚Œã¦ã„ã‚‹ã€‚", "There is a black aura surrounding you.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¹õ¤¤¥ª¡¼¥é¤Ë¤Ä¤Ä¤Ş¤ì¤Æ¤¤¤ë¡£", "There is a black aura surrounding you.");
 		}
 	}
 
 	if (p_ptr->blind)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç›®ãŒè¦‹ãˆãªã„ã€‚", "You cannot see.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÌÜ¤¬¸«¤¨¤Ê¤¤¡£", "You cannot see.");
 	}
 	if (p_ptr->confused)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ··ä¹±ã—ã¦ã„ã‚‹ã€‚", "You are confused.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ïº®Íğ¤·¤Æ¤¤¤ë¡£", "You are confused.");
 	}
 	if (p_ptr->afraid)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ææ€–ã«ä¾µã•ã‚Œã¦ã„ã‚‹ã€‚", "You are terrified.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¶²Éİ¤Ë¿¯¤µ¤ì¤Æ¤¤¤ë¡£", "You are terrified.");
 	}
 	if (p_ptr->cut)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å‡ºè¡€ã—ã¦ã„ã‚‹ã€‚", "You are bleeding.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï½Ğ·ì¤·¤Æ¤¤¤ë¡£", "You are bleeding.");
 	}
 	if (p_ptr->stun)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã‚‚ã†ã‚ã†ã¨ã—ã¦ã„ã‚‹ã€‚", "You are stunned.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¤â¤¦¤í¤¦¤È¤·¤Æ¤¤¤ë¡£", "You are stunned.");
 	}
 	if (p_ptr->poisoned)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ¯’ã«ä¾µã•ã‚Œã¦ã„ã‚‹ã€‚", "You are poisoned.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆÇ¤Ë¿¯¤µ¤ì¤Æ¤¤¤ë¡£", "You are poisoned.");
 	}
 	if (p_ptr->image)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å¹»è¦šã‚’è¦‹ã¦ã„ã‚‹ã€‚", "You are hallucinating.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¸¸³Ğ¤ò¸«¤Æ¤¤¤ë¡£", "You are hallucinating.");
 	}
 	if (p_ptr->cursed & TRC_TY_CURSE)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªæ€¨å¿µã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You carry an ancient foul curse.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤Ê±åÇ°¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You carry an ancient foul curse.");
 	}
 	if (p_ptr->cursed & TRC_AGGRAVATE)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ€’ã‚‰ã›ã¦ã„ã‚‹ã€‚", "You aggravate monsters.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥â¥ó¥¹¥¿¡¼¤òÅÜ¤é¤»¤Æ¤¤¤ë¡£", "You aggravate monsters.");
 	}
 	if (p_ptr->cursed & TRC_DRAIN_EXP)
 	{
-		info[i++] = _("ã‚ãªãŸã¯çµŒé¨“å€¤ã‚’å¸ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You are drained.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï·Ğ¸³ÃÍ¤òµÛ¤ï¤ì¤Æ¤¤¤ë¡£", "You are drained.");
 	}
 	if (p_ptr->cursed & TRC_SLOW_REGEN)
 	{
-		info[i++] = _("ã‚ãªãŸã®å›å¾©åŠ›ã¯éå¸¸ã«é…ã„ã€‚", "You regenerate slowly.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î²óÉüÎÏ¤ÏÈó¾ï¤ËÃÙ¤¤¡£", "You regenerate slowly.");
 	}
 	if (p_ptr->cursed & TRC_ADD_L_CURSE)
 	{
-		info[i++] = _("ã‚ãªãŸã®å¼±ã„å‘ªã„ã¯å¢—ãˆã‚‹ã€‚","Your weak curses multiply."); /* æš«å®šçš„ -- henkma */
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼å¤¤¼ö¤¤¤ÏÁı¤¨¤ë¡£","Your weak curses multiply."); /* »ÃÄêÅª -- henkma */
 	}
 	if (p_ptr->cursed & TRC_ADD_H_CURSE)
 	{
-		info[i++] = _("ã‚ãªãŸã®å¼·ã„å‘ªã„ã¯å¢—ãˆã‚‹ã€‚","Your heavy curses multiply."); /* æš«å®šçš„ -- henkma */
+		info[i++] = _("¤¢¤Ê¤¿¤Î¶¯¤¤¼ö¤¤¤ÏÁı¤¨¤ë¡£","Your heavy curses multiply."); /* »ÃÄêÅª -- henkma */
 	}
 	if (p_ptr->cursed & TRC_CALL_ANIMAL)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å‹•ç‰©ã«ç‹™ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You attract animals.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆ°Êª¤ËÁÀ¤ï¤ì¤Æ¤¤¤ë¡£", "You attract animals.");
 	}
 	if (p_ptr->cursed & TRC_CALL_DEMON)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ‚ªé­”ã«ç‹™ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You attract demons.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï°­Ëâ¤ËÁÀ¤ï¤ì¤Æ¤¤¤ë¡£", "You attract demons.");
 	}
 	if (p_ptr->cursed & TRC_CALL_DRAGON)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒ‰ãƒ©ã‚´ãƒ³ã«ç‹™ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You attract dragons.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥É¥é¥´¥ó¤ËÁÀ¤ï¤ì¤Æ¤¤¤ë¡£", "You attract dragons.");
 	}
 	if (p_ptr->cursed & TRC_COWARDICE)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ™‚ã€…è‡†ç—…ã«ãªã‚‹ã€‚", "You are subject to cowardice.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï»ş¡¹²²ÉÂ¤Ë¤Ê¤ë¡£", "You are subject to cowardice.");
 	}
 	if (p_ptr->cursed & TRC_TELEPORT)
 	{
-		info[i++] = _("ã‚ãªãŸã®ä½ç½®ã¯ã²ã˜ã‚‡ã†ã«ä¸å®‰å®šã ã€‚", "Your position is very uncertain.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î°ÌÃÖ¤Ï¤Ò¤¸¤ç¤¦¤ËÉÔ°ÂÄê¤À¡£", "Your position is very uncertain.");
 	}
 	if (p_ptr->cursed & TRC_LOW_MELEE)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ”»æ’ƒã‚’å¤–ã—ã‚„ã™ã„ã€‚", "Your weapon causes you to miss blows.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¹¶·â¤ò³°¤·¤ä¤¹¤¤¡£", "Your weapon causes you to miss blows.");
 	}
 	if (p_ptr->cursed & TRC_LOW_AC)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ”»æ’ƒã‚’å—ã‘ã‚„ã™ã„ã€‚", "You are subject to be hit.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¹¶·â¤ò¼õ¤±¤ä¤¹¤¤¡£", "You are subject to be hit.");
 	}
 	if (p_ptr->cursed & TRC_LOW_MAGIC)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é­”æ³•ã‚’å¤±æ•—ã—ã‚„ã™ã„ã€‚", "You are subject to fail spellcasting.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏËâË¡¤ò¼ºÇÔ¤·¤ä¤¹¤¤¡£", "You are subject to fail spellcasting.");
 	}
 	if (p_ptr->cursed & TRC_FAST_DIGEST)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã™ããŠè…¹ãŒã¸ã‚‹ã€‚", "You have a good appetite.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¤¹¤°¤ªÊ¢¤¬¤Ø¤ë¡£", "You have a good appetite.");
 	}
 	if (p_ptr->cursed & TRC_DRAIN_HP)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ä½“åŠ›ã‚’å¸ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You are drained.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÂÎÎÏ¤òµÛ¤ï¤ì¤Æ¤¤¤ë¡£", "You are drained.");
 	}
 	if (p_ptr->cursed & TRC_DRAIN_MANA)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é­”åŠ›ã‚’å¸ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You brain is drained.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏËâÎÏ¤òµÛ¤ï¤ì¤Æ¤¤¤ë¡£", "You brain is drained.");
 	}
 	if (IS_BLESSED())
 	{
-		info[i++] = _("ã‚ãªãŸã¯é«˜æ½”ã•ã‚’æ„Ÿã˜ã¦ã„ã‚‹ã€‚", "You feel rightous.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¹â·é¤µ¤ò´¶¤¸¤Æ¤¤¤ë¡£", "You feel rightous.");
 	}
 	if (IS_HERO())
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒ’ãƒ¼ãƒ­ãƒ¼æ°—åˆ†ã ã€‚", "You feel heroic.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥Ò¡¼¥í¡¼µ¤Ê¬¤À¡£", "You feel heroic.");
 	}
 	if (p_ptr->shero)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æˆ¦é—˜ç‹‚ã ã€‚", "You are in a battle rage.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÀïÆ®¶¸¤À¡£", "You are in a battle rage.");
 	}
 	if (p_ptr->protevil)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªã‚‹å­˜åœ¨ã‹ã‚‰å®ˆã‚‰ã‚Œã¦ã„ã‚‹ã€‚", "You are protected from evil.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤Ê¤ëÂ¸ºß¤«¤é¼é¤é¤ì¤Æ¤¤¤ë¡£", "You are protected from evil.");
 	}
 	if (p_ptr->shield)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç¥ç§˜ã®ã‚·ãƒ¼ãƒ«ãƒ‰ã§å®ˆã‚‰ã‚Œã¦ã„ã‚‹ã€‚", "You are protected by a mystic shield.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¿ÀÈë¤Î¥·¡¼¥ë¥É¤Ç¼é¤é¤ì¤Æ¤¤¤ë¡£", "You are protected by a mystic shield.");
 	}
 	if (IS_INVULN())
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç¾åœ¨å‚·ã¤ã‹ãªã„ã€‚", "You are temporarily invulnerable.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¸½ºß½ı¤Ä¤«¤Ê¤¤¡£", "You are temporarily invulnerable.");
 	}
 	if (p_ptr->wraith_form)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ä¸€æ™‚çš„ã«å¹½ä½“åŒ–ã—ã¦ã„ã‚‹ã€‚", "You are temporarily incorporeal.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï°ì»şÅª¤ËÍ©ÂÎ²½¤·¤Æ¤¤¤ë¡£", "You are temporarily incorporeal.");
 	}
 	if (p_ptr->special_attack & ATTACK_CONFUSE)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯èµ¤ãè¼ã„ã¦ã„ã‚‹ã€‚", "Your hands are glowing dull red.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤ÏÀÖ¤¯µ±¤¤¤Æ¤¤¤ë¡£", "Your hands are glowing dull red.");
 	}
 	if (p_ptr->special_attack & ATTACK_FIRE)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯ç«ç‚ã«è¦†ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You can strike the enemy with flame.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤Ï²Ğ±ê¤ËÊ¤¤ï¤ì¤Æ¤¤¤ë¡£", "You can strike the enemy with flame.");
 	}
 	if (p_ptr->special_attack & ATTACK_COLD)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯å†·æ°—ã«è¦†ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You can strike the enemy with cold.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤ÏÎäµ¤¤ËÊ¤¤ï¤ì¤Æ¤¤¤ë¡£", "You can strike the enemy with cold.");
 	}
 	if (p_ptr->special_attack & ATTACK_ACID)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯é…¸ã«è¦†ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You can strike the enemy with acid.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤Ï»À¤ËÊ¤¤ï¤ì¤Æ¤¤¤ë¡£", "You can strike the enemy with acid.");
 	}
 	if (p_ptr->special_attack & ATTACK_ELEC)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯é›»æ’ƒã«è¦†ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You can strike the enemy with electoric shock.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤ÏÅÅ·â¤ËÊ¤¤ï¤ì¤Æ¤¤¤ë¡£", "You can strike the enemy with electoric shock.");
 	}
 	if (p_ptr->special_attack & ATTACK_POIS)
 	{
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯æ¯’ã«è¦†ã‚ã‚Œã¦ã„ã‚‹ã€‚", "You can strike the enemy with poison.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤ÏÆÇ¤ËÊ¤¤ï¤ì¤Æ¤¤¤ë¡£", "You can strike the enemy with poison.");
 	}
 	switch (p_ptr->action)
 	{
 		case ACTION_SEARCH:
-			info[i++] = _("ã‚ãªãŸã¯ã²ã˜ã‚‡ã†ã«æ³¨æ„æ·±ãå‘¨å›²ã‚’è¦‹æ¸¡ã—ã¦ã„ã‚‹ã€‚", "You are looking around very carefully.");
+			info[i++] = _("¤¢¤Ê¤¿¤Ï¤Ò¤¸¤ç¤¦¤ËÃí°Õ¿¼¤¯¼ş°Ï¤ò¸«ÅÏ¤·¤Æ¤¤¤ë¡£", "You are looking around very carefully.");
 			break;
 	}
 	if (p_ptr->new_spells)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å‘ªæ–‡ã‚„ç¥ˆã‚Šã‚’å­¦ã¶ã“ã¨ãŒã§ãã‚‹ã€‚", "You can learn some spells/prayers.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼öÊ¸¤äµ§¤ê¤ò³Ø¤Ö¤³¤È¤¬¤Ç¤­¤ë¡£", "You can learn some spells/prayers.");
 	}
 	if (p_ptr->word_recall)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã™ãã«å¸°é‚„ã™ã‚‹ã ã‚ã†ã€‚", "You will soon be recalled.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¤¹¤°¤Ëµ¢´Ô¤¹¤ë¤À¤í¤¦¡£", "You will soon be recalled.");
 	}
 	if (p_ptr->alter_reality)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã™ãã«ã“ã®ä¸–ç•Œã‚’é›¢ã‚Œã‚‹ã ã‚ã†ã€‚", "You will soon be altered.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¤¹¤°¤Ë¤³¤ÎÀ¤³¦¤òÎ¥¤ì¤ë¤À¤í¤¦¡£", "You will soon be altered.");
 	}
 	if (p_ptr->see_infra)
 	{
-		info[i++] = _("ã‚ãªãŸã®ç³ã¯èµ¤å¤–ç·šã«æ•æ„Ÿã§ã‚ã‚‹ã€‚", "Your eyes are sensitive to infrared light.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÆ·¤ÏÀÖ³°Àş¤ËÉÒ´¶¤Ç¤¢¤ë¡£", "Your eyes are sensitive to infrared light.");
 	}
 	if (p_ptr->see_inv)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é€æ˜ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’è¦‹ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can see invisible creatures.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆ©ÌÀ¤Ê¥â¥ó¥¹¥¿¡¼¤ò¸«¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can see invisible creatures.");
 	}
 	if (p_ptr->levitation)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é£›ã¶ã“ã¨ãŒã§ãã‚‹ã€‚", "You can fly.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÈô¤Ö¤³¤È¤¬¤Ç¤­¤ë¡£", "You can fly.");
 	}
 	if (p_ptr->free_act)
 	{
-		info[i++] = _("ã‚ãªãŸã¯éº»ç—ºçŸ¥ã‚‰ãšã®åŠ¹æœã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You have free action.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏËãáãÃÎ¤é¤º¤Î¸ú²Ì¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You have free action.");
 	}
 	if (p_ptr->regenerate)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç´ æ—©ãä½“åŠ›ã‚’å›å¾©ã™ã‚‹ã€‚", "You regenerate quickly.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÁÇÁá¤¯ÂÎÎÏ¤ò²óÉü¤¹¤ë¡£", "You regenerate quickly.");
 	}
 	if (p_ptr->slow_digest)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é£Ÿæ¬²ãŒå°‘ãªã„ã€‚", "Your appetite is small.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¿©Íß¤¬¾¯¤Ê¤¤¡£", "Your appetite is small.");
 	}
 	if (p_ptr->telepathy)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You have ESP.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥Æ¥ì¥Ñ¥·¡¼Ç½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You have ESP.");
 	}
 	if (p_ptr->esp_animal)
 	{
-		info[i++] = _("ã‚ãªãŸã¯è‡ªç„¶ç•Œã®ç”Ÿç‰©ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense natural creatures.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼«Á³³¦¤ÎÀ¸Êª¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense natural creatures.");
 	}
 	if (p_ptr->esp_undead)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense undead.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥¢¥ó¥Ç¥Ã¥É¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense undead.");
 	}
 	if (p_ptr->esp_demon)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ‚ªé­”ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense demons.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï°­Ëâ¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense demons.");
 	}
 	if (p_ptr->esp_orc)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã‚ªãƒ¼ã‚¯ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense orcs.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥ª¡¼¥¯¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense orcs.");
 	}
 	if (p_ptr->esp_troll)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒˆãƒ­ãƒ«ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense trolls.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥È¥í¥ë¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense trolls.");
 	}
 	if (p_ptr->esp_giant)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å·¨äººã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense giants.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ïµğ¿Í¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense giants.");
 	}
 	if (p_ptr->esp_dragon)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒ‰ãƒ©ã‚´ãƒ³ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense dragons.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥É¥é¥´¥ó¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense dragons.");
 	}
 	if (p_ptr->esp_human)
 	{
-		info[i++] = _("ã‚ãªãŸã¯äººé–“ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense humans.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¿Í´Ö¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense humans.");
 	}
 	if (p_ptr->esp_evil)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªç”Ÿãç‰©ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense evil creatures.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤ÊÀ¸¤­Êª¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense evil creatures.");
 	}
 	if (p_ptr->esp_good)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å–„è‰¯ãªç”Ÿãç‰©ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense good creatures.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÁ±ÎÉ¤ÊÀ¸¤­Êª¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense good creatures.");
 	}
 	if (p_ptr->esp_nonliving)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ´»å‹•ã™ã‚‹ç„¡ç”Ÿç‰©ä½“ã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense non-living creatures.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï³èÆ°¤¹¤ëÌµÀ¸ÊªÂÎ¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense non-living creatures.");
 	}
 	if (p_ptr->esp_unique)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç‰¹åˆ¥ãªå¼·æ•µã®å­˜åœ¨ã‚’æ„Ÿã˜ã‚‹èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You sense unique monsters.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆÃÊÌ¤Ê¶¯Å¨¤ÎÂ¸ºß¤ò´¶¤¸¤ëÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You sense unique monsters.");
 	}
 	if (p_ptr->hold_exp)
 	{
-		info[i++] = _("ã‚ãªãŸã¯è‡ªå·±ã®çµŒé¨“å€¤ã‚’ã—ã£ã‹ã‚Šã¨ç¶­æŒã™ã‚‹ã€‚", "You have a firm hold on your experience.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼«¸Ê¤Î·Ğ¸³ÃÍ¤ò¤·¤Ã¤«¤ê¤È°İ»ı¤¹¤ë¡£", "You have a firm hold on your experience.");
 	}
 	if (p_ptr->reflect)
 	{
-		info[i++] = _("ã‚ãªãŸã¯çŸ¢ã®å‘ªæ–‡ã‚’åå°„ã™ã‚‹ã€‚", "You reflect bolt spells.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÌğ¤Î¼öÊ¸¤òÈ¿¼Í¤¹¤ë¡£", "You reflect bolt spells.");
 	}
 	if (p_ptr->sh_fire)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç‚ã®ã‚ªãƒ¼ãƒ©ã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You are surrounded with a fiery aura.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï±ê¤Î¥ª¡¼¥é¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You are surrounded with a fiery aura.");
 	}
 	if (p_ptr->sh_elec)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é›»æ°—ã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You are surrounded with electricity.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÅÅµ¤¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You are surrounded with electricity.");
 	}
 	if (p_ptr->sh_cold)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å†·æ°—ã®ã‚ªãƒ¼ãƒ©ã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You are surrounded with an aura of coldness.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÎäµ¤¤Î¥ª¡¼¥é¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You are surrounded with an aura of coldness.");
 	}
 	if (p_ptr->tim_sh_holy)
 	{
-		info[i++] = _("ã‚ãªãŸã¯è–ãªã‚‹ã‚ªãƒ¼ãƒ©ã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You are surrounded with a holy aura.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÀ»¤Ê¤ë¥ª¡¼¥é¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You are surrounded with a holy aura.");
 	}
 	if (p_ptr->tim_sh_touki)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é—˜æ°—ã®ã‚ªãƒ¼ãƒ©ã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You are surrounded with a energy aura.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆ®µ¤¤Î¥ª¡¼¥é¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You are surrounded with a energy aura.");
 	}
 	if (p_ptr->anti_magic)
 	{
-		info[i++] = _("ã‚ãªãŸã¯åé­”æ³•ã‚·ãƒ¼ãƒ«ãƒ‰ã«åŒ…ã¾ã‚Œã¦ã„ã‚‹ã€‚", "You are surrounded by an anti-magic shell.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÈ¿ËâË¡¥·¡¼¥ë¥É¤ËÊñ¤Ş¤ì¤Æ¤¤¤ë¡£", "You are surrounded by an anti-magic shell.");
 	}
 	if (p_ptr->anti_tele)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§ããªã„ã€‚", "You cannot teleport.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥Æ¥ì¥İ¡¼¥È¤Ç¤­¤Ê¤¤¡£", "You cannot teleport.");
 	}
 	if (p_ptr->lite)
 	{
-		info[i++] = _("ã‚ãªãŸã®èº«ä½“ã¯å…‰ã£ã¦ã„ã‚‹ã€‚", "You are carrying a permanent light.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¿ÈÂÎ¤Ï¸÷¤Ã¤Æ¤¤¤ë¡£", "You are carrying a permanent light.");
 	}
 	if (p_ptr->warning)
 	{
-		info[i++] = _("ã‚ãªãŸã¯è¡Œå‹•ã®å‰ã«å±é™ºã‚’å¯ŸçŸ¥ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You will be warned before dangerous actions.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¹ÔÆ°¤ÎÁ°¤Ë´í¸±¤ò»¡ÃÎ¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You will be warned before dangerous actions.");
 	}
 	if (p_ptr->dec_mana)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å°‘ãªã„æ¶ˆè²»é­”åŠ›ã§é­”æ³•ã‚’å”±ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "You can cast spells with fewer mana points.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¾¯¤Ê¤¤¾ÃÈñËâÎÏ¤ÇËâË¡¤ò¾§¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "You can cast spells with fewer mana points.");
 	}
 	if (p_ptr->easy_spell)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ä½ã„å¤±æ•—ç‡ã§é­”æ³•ã‚’å”±ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "Fail rate of your magic is decreased.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÄã¤¤¼ºÇÔÎ¨¤ÇËâË¡¤ò¾§¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "Fail rate of your magic is decreased.");
 	}
 	if (p_ptr->heavy_spell)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é«˜ã„å¤±æ•—ç‡ã§é­”æ³•ã‚’å”±ãˆãªã‘ã‚Œã°ã„ã‘ãªã„ã€‚", "Fail rate of your magic is increased.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¹â¤¤¼ºÇÔÎ¨¤ÇËâË¡¤ò¾§¤¨¤Ê¤±¤ì¤Ğ¤¤¤±¤Ê¤¤¡£", "Fail rate of your magic is increased.");
 	}
 	if (p_ptr->mighty_throw)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å¼·ãç‰©ã‚’æŠ•ã’ã‚‹ã€‚", "You can throw objects powerfully.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¶¯¤¯Êª¤òÅê¤²¤ë¡£", "You can throw objects powerfully.");
 	}
 
 	if (p_ptr->immune_acid)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é…¸ã«å¯¾ã™ã‚‹å®Œå…¨ãªã‚‹å…ç–«ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are completely immune to acid.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï»À¤ËÂĞ¤¹¤ë´°Á´¤Ê¤ëÌÈ±Ö¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are completely immune to acid.");
 	}
 	else if (p_ptr->resist_acid && IS_OPPOSE_ACID())
 	{
-		info[i++] = _("ã‚ãªãŸã¯é…¸ã¸ã®å¼·åŠ›ãªè€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You resist acid exceptionally well.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï»À¤Ø¤Î¶¯ÎÏ¤ÊÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You resist acid exceptionally well.");
 	}
 	else if (p_ptr->resist_acid || IS_OPPOSE_ACID())
 	{
-		info[i++] = _("ã‚ãªãŸã¯é…¸ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to acid.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï»À¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to acid.");
 	}
 
 	if (p_ptr->immune_elec)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é›»æ’ƒã«å¯¾ã™ã‚‹å®Œå…¨ãªã‚‹å…ç–«ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are completely immune to lightning.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÅÅ·â¤ËÂĞ¤¹¤ë´°Á´¤Ê¤ëÌÈ±Ö¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are completely immune to lightning.");
 	}
 	else if (p_ptr->resist_elec && IS_OPPOSE_ELEC())
 	{
-		info[i++] = _("ã‚ãªãŸã¯é›»æ’ƒã¸ã®å¼·åŠ›ãªè€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You resist lightning exceptionally well.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÅÅ·â¤Ø¤Î¶¯ÎÏ¤ÊÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You resist lightning exceptionally well.");
 	}
 	else if (p_ptr->resist_elec || IS_OPPOSE_ELEC())
 	{
-		info[i++] = _("ã‚ãªãŸã¯é›»æ’ƒã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to lightning.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÅÅ·â¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to lightning.");
 	}
 
 	if (prace_is_(RACE_ANDROID) && !p_ptr->immune_elec)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é›»æ’ƒã«å¼±ã„ã€‚", "You are susceptible to damage from lightning.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÅÅ·â¤Ë¼å¤¤¡£", "You are susceptible to damage from lightning.");
 	}
 
 	if (p_ptr->immune_fire)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç«ã«å¯¾ã™ã‚‹å®Œå…¨ãªã‚‹å…ç–«ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are completely immune to fire.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï²Ğ¤ËÂĞ¤¹¤ë´°Á´¤Ê¤ëÌÈ±Ö¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are completely immune to fire.");
 	}
 	else if (p_ptr->resist_fire && IS_OPPOSE_FIRE())
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç«ã¸ã®å¼·åŠ›ãªè€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You resist fire exceptionally well.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï²Ğ¤Ø¤Î¶¯ÎÏ¤ÊÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You resist fire exceptionally well.");
 	}
 	else if (p_ptr->resist_fire || IS_OPPOSE_FIRE())
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç«ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to fire.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï²Ğ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to fire.");
 	}
 
 	if (prace_is_(RACE_ENT) && !p_ptr->immune_fire)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç«ã«å¼±ã„ã€‚", "You are susceptible to damage from fire.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï²Ğ¤Ë¼å¤¤¡£", "You are susceptible to damage from fire.");
 	}
 
 	if (p_ptr->immune_cold)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å†·æ°—ã«å¯¾ã™ã‚‹å®Œå…¨ãªã‚‹å…ç–«ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are completely immune to cold.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÎäµ¤¤ËÂĞ¤¹¤ë´°Á´¤Ê¤ëÌÈ±Ö¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are completely immune to cold.");
 	}
 	else if (p_ptr->resist_cold && IS_OPPOSE_COLD())
 	{
-		info[i++] = _("ã‚ãªãŸã¯å†·æ°—ã¸ã®å¼·åŠ›ãªè€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You resist cold exceptionally well.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÎäµ¤¤Ø¤Î¶¯ÎÏ¤ÊÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You resist cold exceptionally well.");
 	}
 	else if (p_ptr->resist_cold || IS_OPPOSE_COLD())
 	{
-		info[i++] = _("ã‚ãªãŸã¯å†·æ°—ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to cold.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÎäµ¤¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to cold.");
 	}
 
 	if (p_ptr->resist_pois && IS_OPPOSE_POIS())
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ¯’ã¸ã®å¼·åŠ›ãªè€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You resist poison exceptionally well.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆÇ¤Ø¤Î¶¯ÎÏ¤ÊÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You resist poison exceptionally well.");
 	}
 	else if (p_ptr->resist_pois || IS_OPPOSE_POIS())
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ¯’ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to poison.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆÇ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to poison.");
 	}
 
 	if (p_ptr->resist_lite)
 	{
-		info[i++] = _("ã‚ãªãŸã¯é–ƒå…‰ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to bright light.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÁ®¸÷¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to bright light.");
 	}
 
 	if (prace_is_(RACE_VAMPIRE) || prace_is_(RACE_S_FAIRY) || (p_ptr->mimic_form == MIMIC_VAMPIRE))
 	{
-		info[i++] = _("ã‚ãªãŸã¯é–ƒå…‰ã«å¼±ã„ã€‚", "You are susceptible to damage from bright light.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÁ®¸÷¤Ë¼å¤¤¡£", "You are susceptible to damage from bright light.");
 	}
 
 	if (prace_is_(RACE_VAMPIRE) || (p_ptr->mimic_form == MIMIC_VAMPIRE) || p_ptr->wraith_form)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æš—é»’ã«å¯¾ã™ã‚‹å®Œå…¨ãªã‚‹å…ç–«ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are completely immune to darkness.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï°Å¹õ¤ËÂĞ¤¹¤ë´°Á´¤Ê¤ëÌÈ±Ö¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are completely immune to darkness.");
 	}
 
 	else if (p_ptr->resist_dark)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æš—é»’ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to darkness.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï°Å¹õ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to darkness.");
 	}
 	if (p_ptr->resist_conf)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ··ä¹±ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to confusion.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ïº®Íğ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to confusion.");
 	}
 	if (p_ptr->resist_sound)
 	{
-		info[i++] = _("ã‚ãªãŸã¯éŸ³æ³¢ã®è¡æ’ƒã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to sonic attacks.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï²»ÇÈ¤Î¾×·â¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to sonic attacks.");
 	}
 	if (p_ptr->resist_disen)
 	{
-		info[i++] = _("ã‚ãªãŸã¯åŠ£åŒ–ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to disenchantment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÎô²½¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to disenchantment.");
 	}
 	if (p_ptr->resist_chaos)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ã‚«ã‚ªã‚¹ã®åŠ›ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to chaos.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥«¥ª¥¹¤ÎÎÏ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to chaos.");
 	}
 	if (p_ptr->resist_shard)
 	{
-		info[i++] = _("ã‚ãªãŸã¯ç ´ç‰‡ã®æ”»æ’ƒã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to blasts of shards.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÇËÊÒ¤Î¹¶·â¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to blasts of shards.");
 	}
 	if (p_ptr->resist_nexus)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å› æœæ··ä¹±ã®æ”»æ’ƒã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to nexus attacks.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï°ø²Ìº®Íğ¤Î¹¶·â¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to nexus attacks.");
 	}
 
 	if (prace_is_(RACE_SPECTRE))
 	{
-		info[i++] = _("ã‚ãªãŸã¯åœ°ç„ã®åŠ›ã‚’å¸åã§ãã‚‹ã€‚", "You can drain nether forces.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÃÏ¹ö¤ÎÎÏ¤òµÛ¼ı¤Ç¤­¤ë¡£", "You can drain nether forces.");
 	}
 	else if (p_ptr->resist_neth)
 	{
-		info[i++] = _("ã‚ãªãŸã¯åœ°ç„ã®åŠ›ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to nether forces.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÃÏ¹ö¤ÎÎÏ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to nether forces.");
 	}
 	if (p_ptr->resist_fear)
 	{
-		info[i++] = _("ã‚ãªãŸã¯å…¨ãææ€–ã‚’æ„Ÿã˜ãªã„ã€‚", "You are completely fearless.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÁ´¤¯¶²Éİ¤ò´¶¤¸¤Ê¤¤¡£", "You are completely fearless.");
 	}
 	if (p_ptr->resist_blind)
 	{
-		info[i++] = _("ã‚ãªãŸã®ç›®ã¯ç›²ç›®ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "Your eyes are resistant to blindness.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÌÜ¤ÏÌÕÌÜ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "Your eyes are resistant to blindness.");
 	}
 	if (p_ptr->resist_time)
 	{
-		info[i++] = _("ã‚ãªãŸã¯æ™‚é–“é€†è»¢ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹ã€‚", "You are resistant to time.");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï»ş´ÖµÕÅ¾¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë¡£", "You are resistant to time.");
 	}
 
 	if (p_ptr->sustain_str)
 	{
-		info[i++] = _("ã‚ãªãŸã®è…•åŠ›ã¯ç¶­æŒã•ã‚Œã¦ã„ã‚‹ã€‚", "Your strength is sustained.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÏÓÎÏ¤Ï°İ»ı¤µ¤ì¤Æ¤¤¤ë¡£", "Your strength is sustained.");
 	}
 	if (p_ptr->sustain_int)
 	{
-		info[i++] = _("ã‚ãªãŸã®çŸ¥èƒ½ã¯ç¶­æŒã•ã‚Œã¦ã„ã‚‹ã€‚", "Your intelligence is sustained.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÃÎÇ½¤Ï°İ»ı¤µ¤ì¤Æ¤¤¤ë¡£", "Your intelligence is sustained.");
 	}
 	if (p_ptr->sustain_wis)
 	{
-		info[i++] = _("ã‚ãªãŸã®è³¢ã•ã¯ç¶­æŒã•ã‚Œã¦ã„ã‚‹ã€‚", "Your wisdom is sustained.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¸­¤µ¤Ï°İ»ı¤µ¤ì¤Æ¤¤¤ë¡£", "Your wisdom is sustained.");
 	}
 	if (p_ptr->sustain_con)
 	{
-		info[i++] = _("ã‚ãªãŸã®è€ä¹…åŠ›ã¯ç¶­æŒã•ã‚Œã¦ã„ã‚‹ã€‚", "Your constitution is sustained.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÂÑµ×ÎÏ¤Ï°İ»ı¤µ¤ì¤Æ¤¤¤ë¡£", "Your constitution is sustained.");
 	}
 	if (p_ptr->sustain_dex)
 	{
-		info[i++] = _("ã‚ãªãŸã®å™¨ç”¨ã•ã¯ç¶­æŒã•ã‚Œã¦ã„ã‚‹ã€‚", "Your dexterity is sustained.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î´ïÍÑ¤µ¤Ï°İ»ı¤µ¤ì¤Æ¤¤¤ë¡£", "Your dexterity is sustained.");
 	}
 	if (p_ptr->sustain_chr)
 	{
-		info[i++] = _("ã‚ãªãŸã®é­…åŠ›ã¯ç¶­æŒã•ã‚Œã¦ã„ã‚‹ã€‚", "Your charisma is sustained.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÌ¥ÎÏ¤Ï°İ»ı¤µ¤ì¤Æ¤¤¤ë¡£", "Your charisma is sustained.");
 	}
 
 	if (have_flag(flgs, TR_STR))
 	{
-		info[i++] = _("ã‚ãªãŸã®è…•åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your strength is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÏÓÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your strength is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_INT))
 	{
-		info[i++] = _("ã‚ãªãŸã®çŸ¥èƒ½ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your intelligence is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÃÎÇ½¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your intelligence is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_WIS))
 	{
-		info[i++] = _("ã‚ãªãŸã®è³¢ã•ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your wisdom is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¸­¤µ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your wisdom is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_DEX))
 	{
-		info[i++] = _("ã‚ãªãŸã®å™¨ç”¨ã•ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your dexterity is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î´ïÍÑ¤µ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your dexterity is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_CON))
 	{
-		info[i++] = _("ã‚ãªãŸã®è€ä¹…åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your constitution is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÂÑµ×ÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your constitution is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_CHR))
 	{
-		info[i++] = _("ã‚ãªãŸã®é­…åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your charisma is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÌ¥ÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your charisma is affected by your equipment.");
 	}
 
 	if (have_flag(flgs, TR_STEALTH))
 	{
-		info[i++] = _("ã‚ãªãŸã®éš å¯†è¡Œå‹•èƒ½åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your stealth is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î±£Ì©¹ÔÆ°Ç½ÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your stealth is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_SEARCH))
 	{
-		info[i++] = _("ã‚ãªãŸã®æ¢ç´¢èƒ½åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your searching ability is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÃµº÷Ç½ÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your searching ability is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_INFRA))
 	{
-		info[i++] = _("ã‚ãªãŸã®èµ¤å¤–ç·šè¦–åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your infravision is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎÀÖ³°Àş»ëÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your infravision is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_TUNNEL))
 	{
-		info[i++] = _("ã‚ãªãŸã®æ¡æ˜èƒ½åŠ›ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your digging ability is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤ÎºÎ·¡Ç½ÎÏ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your digging ability is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_SPEED))
 	{
-		info[i++] = _("ã‚ãªãŸã®ã‚¹ãƒ”ãƒ¼ãƒ‰ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your speed is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¥¹¥Ô¡¼¥É¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your speed is affected by your equipment.");
 	}
 	if (have_flag(flgs, TR_BLOWS))
 	{
-		info[i++] = _("ã‚ãªãŸã®æ”»æ’ƒé€Ÿåº¦ã¯è£…å‚™ã«ã‚ˆã£ã¦å½±éŸ¿ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your attack speed is affected by your equipment.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¹¶·âÂ®ÅÙ¤ÏÁõÈ÷¤Ë¤è¤Ã¤Æ±Æ¶Á¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your attack speed is affected by your equipment.");
 	}
 
 
@@ -1441,134 +1441,134 @@ void self_knowledge(void)
 		/* Indicate Blessing */
 		if (have_flag(flgs, TR_BLESSED))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ç¥ã®ç¥ç¦ã‚’å—ã‘ã¦ã„ã‚‹ã€‚", "Your weapon has been blessed by the gods.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¿À¤Î½ËÊ¡¤ò¼õ¤±¤Æ¤¤¤ë¡£", "Your weapon has been blessed by the gods.");
 		}
 
 		if (have_flag(flgs, TR_CHAOTIC))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒ­ã‚°ãƒ«ã‚¹ã®å¾´ã®å±æ€§ã‚’ã‚‚ã¤ã€‚", "Your weapon is branded with the Sign of Logrus.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥í¥°¥ë¥¹¤ÎÄ§¤ÎÂ°À­¤ò¤â¤Ä¡£", "Your weapon is branded with the Sign of Logrus.");
 		}
 
 		/* Hack */
 		if (have_flag(flgs, TR_IMPACT))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ‰“æ’ƒã§åœ°éœ‡ã‚’ç™ºç”Ÿã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚", "The impact of your weapon can cause earthquakes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÂÇ·â¤ÇÃÏ¿Ì¤òÈ¯À¸¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡£", "The impact of your weapon can cause earthquakes.");
 		}
 
 		if (have_flag(flgs, TR_VORPAL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯éå¸¸ã«é‹­ã„ã€‚", "Your weapon is very sharp.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÈó¾ï¤Ë±Ô¤¤¡£", "Your weapon is very sharp.");
 		}
 
 		if (have_flag(flgs, TR_VAMPIRIC))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ•µã‹ã‚‰ç”Ÿå‘½åŠ›ã‚’å¸åã™ã‚‹ã€‚", "Your weapon drains life from your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅ¨¤«¤éÀ¸Ì¿ÎÏ¤òµÛ¼ı¤¹¤ë¡£", "Your weapon drains life from your foes.");
 		}
 
 		/* Special "Attack Bonuses" */
 		if (have_flag(flgs, TR_BRAND_ACID))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ•µã‚’æº¶ã‹ã™ã€‚", "Your weapon melts your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅ¨¤òÍÏ¤«¤¹¡£", "Your weapon melts your foes.");
 		}
 		if (have_flag(flgs, TR_BRAND_ELEC))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ•µã‚’æ„Ÿé›»ã•ã›ã‚‹ã€‚", "Your weapon shocks your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅ¨¤ò´¶ÅÅ¤µ¤»¤ë¡£", "Your weapon shocks your foes.");
 		}
 		if (have_flag(flgs, TR_BRAND_FIRE))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ•µã‚’ç‡ƒã‚„ã™ã€‚", "Your weapon burns your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅ¨¤òÇ³¤ä¤¹¡£", "Your weapon burns your foes.");
 		}
 		if (have_flag(flgs, TR_BRAND_COLD))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ•µã‚’å‡ã‚‰ã›ã‚‹ã€‚", "Your weapon freezes your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅ¨¤òÅà¤é¤»¤ë¡£", "Your weapon freezes your foes.");
 		}
 		if (have_flag(flgs, TR_BRAND_POIS))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æ•µã‚’æ¯’ã§ä¾µã™ã€‚", "Your weapon poisons your foes.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅ¨¤òÆÇ¤Ç¿¯¤¹¡£", "Your weapon poisons your foes.");
 		}
 
 		/* Special "slay" flags */
 		if (have_flag(flgs, TR_KILL_ANIMAL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯å‹•ç‰©ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of animals.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÆ°Êª¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of animals.");
 		}
 		else if (have_flag(flgs, TR_SLAY_ANIMAL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯å‹•ç‰©ã«å¯¾ã—ã¦å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon strikes at animals with extra force.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÆ°Êª¤ËÂĞ¤·¤Æ¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon strikes at animals with extra force.");
 		}
 		if (have_flag(flgs, TR_KILL_EVIL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯é‚ªæ‚ªãªã‚‹å­˜åœ¨ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of evil.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¼Ù°­¤Ê¤ëÂ¸ºß¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of evil.");
 		}
 		else if (have_flag(flgs, TR_SLAY_EVIL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯é‚ªæ‚ªãªã‚‹å­˜åœ¨ã«å¯¾ã—ã¦å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon strikes at evil with extra force.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¼Ù°­¤Ê¤ëÂ¸ºß¤ËÂĞ¤·¤Æ¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon strikes at evil with extra force.");
 		}
 		if (have_flag(flgs, TR_KILL_HUMAN))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯äººé–“ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of humans.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¿Í´Ö¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of humans.");
 		}
 		else if (have_flag(flgs, TR_SLAY_HUMAN))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯äººé–“ã«å¯¾ã—ã¦ç‰¹ã«å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon is especially deadly against humans.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¿Í´Ö¤ËÂĞ¤·¤ÆÆÃ¤Ë¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon is especially deadly against humans.");
 		}
 		if (have_flag(flgs, TR_KILL_UNDEAD))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of undead.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥¢¥ó¥Ç¥Ã¥É¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of undead.");
 		}
 		else if (have_flag(flgs, TR_SLAY_UNDEAD))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã«å¯¾ã—ã¦ç¥è–ãªã‚‹åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon strikes at undead with holy wrath.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥¢¥ó¥Ç¥Ã¥É¤ËÂĞ¤·¤Æ¿ÀÀ»¤Ê¤ëÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon strikes at undead with holy wrath.");
 		}
 		if (have_flag(flgs, TR_KILL_DEMON))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒ‡ãƒ¼ãƒ¢ãƒ³ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of demons.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥Ç¡¼¥â¥ó¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of demons.");
 		}
 		else if (have_flag(flgs, TR_SLAY_DEMON))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒ‡ãƒ¼ãƒ¢ãƒ³ã«å¯¾ã—ã¦ç¥è–ãªã‚‹åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon strikes at demons with holy wrath.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥Ç¡¼¥â¥ó¤ËÂĞ¤·¤Æ¿ÀÀ»¤Ê¤ëÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon strikes at demons with holy wrath.");
 		}
 		if (have_flag(flgs, TR_KILL_ORC))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ã‚ªãƒ¼ã‚¯ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of orcs.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥ª¡¼¥¯¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of orcs.");
 		}
 		else if (have_flag(flgs, TR_SLAY_ORC))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ã‚ªãƒ¼ã‚¯ã«å¯¾ã—ã¦ç‰¹ã«å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon is especially deadly against orcs.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥ª¡¼¥¯¤ËÂĞ¤·¤ÆÆÃ¤Ë¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon is especially deadly against orcs.");
 		}
 		if (have_flag(flgs, TR_KILL_TROLL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒˆãƒ­ãƒ«ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of trolls.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥È¥í¥ë¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of trolls.");
 		}
 		else if (have_flag(flgs, TR_SLAY_TROLL))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒˆãƒ­ãƒ«ã«å¯¾ã—ã¦ç‰¹ã«å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon is especially deadly against trolls.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥È¥í¥ë¤ËÂĞ¤·¤ÆÆÃ¤Ë¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon is especially deadly against trolls.");
 		}
 		if (have_flag(flgs, TR_KILL_GIANT))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ã‚¸ãƒ£ã‚¤ã‚¢ãƒ³ãƒˆã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of giants.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥¸¥ã¥¤¥¢¥ó¥È¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of giants.");
 		}
 		else if (have_flag(flgs, TR_SLAY_GIANT))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ã‚¸ãƒ£ã‚¤ã‚¢ãƒ³ãƒˆã«å¯¾ã—ã¦ç‰¹ã«å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon is especially deadly against giants.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥¸¥ã¥¤¥¢¥ó¥È¤ËÂĞ¤·¤ÆÆÃ¤Ë¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon is especially deadly against giants.");
 		}
 		/* Special "kill" flags */
 		if (have_flag(flgs, TR_KILL_DRAGON))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒ‰ãƒ©ã‚´ãƒ³ã®å¤©æ•µã§ã‚ã‚‹ã€‚", "Your weapon is a great bane of dragons.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥É¥é¥´¥ó¤ÎÅ·Å¨¤Ç¤¢¤ë¡£", "Your weapon is a great bane of dragons.");
 		}
 		else if (have_flag(flgs, TR_SLAY_DRAGON))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯ãƒ‰ãƒ©ã‚´ãƒ³ã«å¯¾ã—ã¦ç‰¹ã«å¼·ã„åŠ›ã‚’ç™ºæ®ã™ã‚‹ã€‚", "Your weapon is especially deadly against dragons.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤Ï¥É¥é¥´¥ó¤ËÂĞ¤·¤ÆÆÃ¤Ë¶¯¤¤ÎÏ¤òÈ¯´ø¤¹¤ë¡£", "Your weapon is especially deadly against dragons.");
 		}
 
 		if (have_flag(flgs, TR_FORCE_WEAPON))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯MPã‚’ä½¿ã£ã¦æ”»æ’ƒã™ã‚‹ã€‚", "Your weapon causes greate damages using your MP.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏMP¤ò»È¤Ã¤Æ¹¶·â¤¹¤ë¡£", "Your weapon causes greate damages using your MP.");
 		}
 		if (have_flag(flgs, TR_THROW))
 		{
-			info[i++] = _("ã‚ãªãŸã®æ­¦å™¨ã¯æŠ•ã’ã‚„ã™ã„ã€‚", "Your weapon can be thrown well.");
+			info[i++] = _("¤¢¤Ê¤¿¤ÎÉğ´ï¤ÏÅê¤²¤ä¤¹¤¤¡£", "Your weapon can be thrown well.");
 		}
 	}
 
@@ -1580,7 +1580,7 @@ void self_knowledge(void)
 	for (k = 1; k < 24; k++) prt("", k, 13);
 
 	/* Label the information */
-	prt(_("        ã‚ãªãŸã®çŠ¶æ…‹:", "     Your Attributes:"), 1, 15);
+	prt(_("        ¤¢¤Ê¤¿¤Î¾õÂÖ:", "     Your Attributes:"), 1, 15);
 
 	/* We will print on top of the map (column 13) */
 	for (k = 2, j = 0; j < i; j++)
@@ -1591,14 +1591,14 @@ void self_knowledge(void)
 		/* Every 20 entries (lines 2 to 21), start over */
 		if ((k == 22) && (j+1 < i))
 		{
-			prt(_("-- ç¶šã --", "-- more --"), k, 15);
+			prt(_("-- Â³¤¯ --", "-- more --"), k, 15);
 			inkey();
 			for (; k > 2; k--) prt("", k, 15);
 		}
 	}
 
 	/* Pause */
-	prt(_("[ä½•ã‹ã‚­ãƒ¼ã‚’æŠ¼ã™ã¨ã‚²ãƒ¼ãƒ ã«æˆ»ã‚Šã¾ã™]", "[Press any key to continue]"), k, 13);
+	prt(_("[²¿¤«¥­¡¼¤ò²¡¤¹¤È¥²¡¼¥à¤ËÌá¤ê¤Ş¤¹]", "[Press any key to continue]"), k, 13);
 	inkey();
 
 	/* Restore the screen */
@@ -1606,9 +1606,9 @@ void self_knowledge(void)
 }
 
 /*!
- * @brief é­”æ³•åŠ¹æœæ™‚é–“ã®ã‚¿ãƒ¼ãƒ³æ•°ã«åŸºã¥ã„ã¦è¡¨ç¾IDã‚’è¿”ã™ã€‚
- * @param dur åŠ¹æœã‚¿ãƒ¼ãƒ³æ•°
- * @return åŠ¹æœæ™‚é–“ã®è¡¨ç¾ID
+ * @brief ËâË¡¸ú²Ì»ş´Ö¤Î¥¿¡¼¥ó¿ô¤Ë´ğ¤Å¤¤¤ÆÉ½¸½ID¤òÊÖ¤¹¡£
+ * @param dur ¸ú²Ì¥¿¡¼¥ó¿ô
+ * @return ¸ú²Ì»ş´Ö¤ÎÉ½¸½ID
  */
 static int report_magics_aux(int dur)
 {
@@ -1645,14 +1645,14 @@ static int report_magics_aux(int dur)
 static cptr report_magic_durations[] =
 {
 #ifdef JP
-"ã”ãçŸ­ã„é–“",
-"å°‘ã—ã®é–“",
-"ã—ã°ã‚‰ãã®é–“",
-"å¤šå°‘é•·ã„é–“",
-"é•·ã„é–“",
-"éå¸¸ã«é•·ã„é–“",
-"ä¿¡ã˜é›£ã„ã»ã©é•·ã„é–“",
-"ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ”»æ’ƒã™ã‚‹ã¾ã§"
+"¤´¤¯Ã»¤¤´Ö",
+"¾¯¤·¤Î´Ö",
+"¤·¤Ğ¤é¤¯¤Î´Ö",
+"Â¿¾¯Ä¹¤¤´Ö",
+"Ä¹¤¤´Ö",
+"Èó¾ï¤ËÄ¹¤¤´Ö",
+"¿®¤¸Æñ¤¤¤Û¤ÉÄ¹¤¤´Ö",
+"¥â¥ó¥¹¥¿¡¼¤ò¹¶·â¤¹¤ë¤Ş¤Ç"
 #else
 	"for a short time",
 	"for a little while",
@@ -1667,8 +1667,8 @@ static cptr report_magic_durations[] =
 };
 
 /*!
- * @brief ç¾åœ¨ã®ä¸€æ™‚çš„åŠ¹æœä¸€è¦§ã‚’è¿”ã™ / Report all currently active magical effects.
- * @return ãªã—
+ * @brief ¸½ºß¤Î°ì»şÅª¸ú²Ì°ìÍ÷¤òÊÖ¤¹ / Report all currently active magical effects.
+ * @return ¤Ê¤·
  */
 void report_magics(void)
 {
@@ -1681,102 +1681,102 @@ void report_magics(void)
 	if (p_ptr->blind)
 	{
 		info2[i]  = report_magics_aux(p_ptr->blind);
-		info[i++] = _("ã‚ãªãŸã¯ç›®ãŒè¦‹ãˆãªã„", "You cannot see");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÌÜ¤¬¸«¤¨¤Ê¤¤", "You cannot see");
 	}
 	if (p_ptr->confused)
 	{
 		info2[i]  = report_magics_aux(p_ptr->confused);
-		info[i++] = _("ã‚ãªãŸã¯æ··ä¹±ã—ã¦ã„ã‚‹", "You are confused");
+		info[i++] = _("¤¢¤Ê¤¿¤Ïº®Íğ¤·¤Æ¤¤¤ë", "You are confused");
 	}
 	if (p_ptr->afraid)
 	{
 		info2[i]  = report_magics_aux(p_ptr->afraid);
-		info[i++] = _("ã‚ãªãŸã¯ææ€–ã«ä¾µã•ã‚Œã¦ã„ã‚‹", "You are terrified");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¶²Éİ¤Ë¿¯¤µ¤ì¤Æ¤¤¤ë", "You are terrified");
 	}
 	if (p_ptr->poisoned)
 	{
 		info2[i]  = report_magics_aux(p_ptr->poisoned);
-		info[i++] = _("ã‚ãªãŸã¯æ¯’ã«ä¾µã•ã‚Œã¦ã„ã‚‹", "You are poisoned");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆÇ¤Ë¿¯¤µ¤ì¤Æ¤¤¤ë", "You are poisoned");
 	}
 	if (p_ptr->image)
 	{
 		info2[i]  = report_magics_aux(p_ptr->image);
-		info[i++] = _("ã‚ãªãŸã¯å¹»è¦šã‚’è¦‹ã¦ã„ã‚‹", "You are hallucinating");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¸¸³Ğ¤ò¸«¤Æ¤¤¤ë", "You are hallucinating");
 	}
 	if (p_ptr->blessed)
 	{
 		info2[i]  = report_magics_aux(p_ptr->blessed);
-		info[i++] = _("ã‚ãªãŸã¯é«˜æ½”ã•ã‚’æ„Ÿã˜ã¦ã„ã‚‹", "You feel rightous");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¹â·é¤µ¤ò´¶¤¸¤Æ¤¤¤ë", "You feel rightous");
 	}
 	if (p_ptr->hero)
 	{
 		info2[i]  = report_magics_aux(p_ptr->hero);
-		info[i++] = _("ã‚ãªãŸã¯ãƒ’ãƒ¼ãƒ­ãƒ¼æ°—åˆ†ã ", "You feel heroic");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¥Ò¡¼¥í¡¼µ¤Ê¬¤À", "You feel heroic");
 	}
 	if (p_ptr->shero)
 	{
 		info2[i]  = report_magics_aux(p_ptr->shero);
-		info[i++] = _("ã‚ãªãŸã¯æˆ¦é—˜ç‹‚ã ", "You are in a battle rage");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÀïÆ®¶¸¤À", "You are in a battle rage");
 	}
 	if (p_ptr->protevil)
 	{
 		info2[i]  = report_magics_aux(p_ptr->protevil);
-		info[i++] = _("ã‚ãªãŸã¯é‚ªæ‚ªãªã‚‹å­˜åœ¨ã‹ã‚‰å®ˆã‚‰ã‚Œã¦ã„ã‚‹", "You are protected from evil");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¼Ù°­¤Ê¤ëÂ¸ºß¤«¤é¼é¤é¤ì¤Æ¤¤¤ë", "You are protected from evil");
 	}
 	if (p_ptr->shield)
 	{
 		info2[i]  = report_magics_aux(p_ptr->shield);
-		info[i++] = _("ã‚ãªãŸã¯ç¥ç§˜ã®ã‚·ãƒ¼ãƒ«ãƒ‰ã§å®ˆã‚‰ã‚Œã¦ã„ã‚‹", "You are protected by a mystic shield");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï¿ÀÈë¤Î¥·¡¼¥ë¥É¤Ç¼é¤é¤ì¤Æ¤¤¤ë", "You are protected by a mystic shield");
 	}
 	if (p_ptr->invuln)
 	{
 		info2[i]  = report_magics_aux(p_ptr->invuln);
-		info[i++] = _("ã‚ãªãŸã¯ç„¡æ•µã ", "You are invulnerable");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÌµÅ¨¤À", "You are invulnerable");
 	}
 	if (p_ptr->wraith_form)
 	{
 		info2[i]  = report_magics_aux(p_ptr->wraith_form);
-		info[i++] = _("ã‚ãªãŸã¯å¹½ä½“åŒ–ã—ã¦ã„ã‚‹", "You are incorporeal");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÍ©ÂÎ²½¤·¤Æ¤¤¤ë", "You are incorporeal");
 	}
 	if (p_ptr->special_attack & ATTACK_CONFUSE)
 	{
 		info2[i]  = 7;
-		info[i++] = _("ã‚ãªãŸã®æ‰‹ã¯èµ¤ãè¼ã„ã¦ã„ã‚‹", "Your hands are glowing dull red.");
+		info[i++] = _("¤¢¤Ê¤¿¤Î¼ê¤ÏÀÖ¤¯µ±¤¤¤Æ¤¤¤ë", "Your hands are glowing dull red.");
 	}
 	if (p_ptr->word_recall)
 	{
 		info2[i]  = report_magics_aux(p_ptr->word_recall);
-		info[i++] = _("ã“ã®å¾Œå¸°é‚„ã®è©”ãŒç™ºå‹•ã™ã‚‹", "You are waiting to be recalled");
+		info[i++] = _("¤³¤Î¸åµ¢´Ô¤Î¾Û¤¬È¯Æ°¤¹¤ë", "You are waiting to be recalled");
 	}
 	if (p_ptr->alter_reality)
 	{
 		info2[i]  = report_magics_aux(p_ptr->alter_reality);
-		info[i++] = _("ã“ã®å¾Œç¾å®Ÿå¤‰å®¹ãŒç™ºå‹•ã™ã‚‹", "You waiting to be altered");
+		info[i++] = _("¤³¤Î¸å¸½¼ÂÊÑÍÆ¤¬È¯Æ°¤¹¤ë", "You waiting to be altered");
 	}
 	if (p_ptr->oppose_acid)
 	{
 		info2[i]  = report_magics_aux(p_ptr->oppose_acid);
-		info[i++] = _("ã‚ãªãŸã¯é…¸ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹", "You are resistant to acid");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï»À¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë", "You are resistant to acid");
 	}
 	if (p_ptr->oppose_elec)
 	{
 		info2[i]  = report_magics_aux(p_ptr->oppose_elec);
-		info[i++] = _("ã‚ãªãŸã¯é›»æ’ƒã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹", "You are resistant to lightning");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÅÅ·â¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë", "You are resistant to lightning");
 	}
 	if (p_ptr->oppose_fire)
 	{
 		info2[i]  = report_magics_aux(p_ptr->oppose_fire);
-		info[i++] = _("ã‚ãªãŸã¯ç«ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹", "You are resistant to fire");
+		info[i++] = _("¤¢¤Ê¤¿¤Ï²Ğ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë", "You are resistant to fire");
 	}
 	if (p_ptr->oppose_cold)
 	{
 		info2[i]  = report_magics_aux(p_ptr->oppose_cold);
-		info[i++] = _("ã‚ãªãŸã¯å†·æ°—ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹", "You are resistant to cold");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÎäµ¤¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë", "You are resistant to cold");
 	}
 	if (p_ptr->oppose_pois)
 	{
 		info2[i]  = report_magics_aux(p_ptr->oppose_pois);
-		info[i++] = _("ã‚ãªãŸã¯æ¯’ã¸ã®è€æ€§ã‚’æŒã£ã¦ã„ã‚‹", "You are resistant to poison");
+		info[i++] = _("¤¢¤Ê¤¿¤ÏÆÇ¤Ø¤ÎÂÑÀ­¤ò»ı¤Ã¤Æ¤¤¤ë", "You are resistant to poison");
 	}
 
 	/* Save the screen */
@@ -1786,28 +1786,28 @@ void report_magics(void)
 	for (k = 1; k < 24; k++) prt("", k, 13);
 
 	/* Label the information */
-	prt(_("    ç¾åœ¨ã‹ã‹ã£ã¦ã„ã‚‹é­”æ³•     :", "     Your Current Magic:"), 1, 15);
+	prt(_("    ¸½ºß¤«¤«¤Ã¤Æ¤¤¤ëËâË¡     :", "     Your Current Magic:"), 1, 15);
 
 
 	/* We will print on top of the map (column 13) */
 	for (k = 2, j = 0; j < i; j++)
 	{
 		/* Show the info */
-		sprintf(Dummy, _("%-28s : æœŸé–“ - %s ", "%s %s."), info[j],
+		sprintf(Dummy, _("%-28s : ´ü´Ö - %s ", "%s %s."), info[j],
 			report_magic_durations[info2[j]]);
 		prt(Dummy, k++, 15);
 
 		/* Every 20 entries (lines 2 to 21), start over */
 		if ((k == 22) && (j + 1 < i))
 		{
-			prt(_("-- ç¶šã --", "-- more --"), k, 15);
+			prt(_("-- Â³¤¯ --", "-- more --"), k, 15);
 			inkey();
 			for (; k > 2; k--) prt("", k, 15);
 		}
 	}
 
 	/* Pause */
-	prt(_("[ä½•ã‹ã‚­ãƒ¼ã‚’æŠ¼ã™ã¨ã‚²ãƒ¼ãƒ ã«æˆ»ã‚Šã¾ã™]", "[Press any key to continue]"), k, 13);
+	prt(_("[²¿¤«¥­¡¼¤ò²¡¤¹¤È¥²¡¼¥à¤ËÌá¤ê¤Ş¤¹]", "[Press any key to continue]"), k, 13);
 	inkey();
 
 	/* Restore the screen */
@@ -1815,11 +1815,11 @@ void report_magics(void)
 }
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‘¨è¾ºã®åœ°å½¢ã‚’æ„ŸçŸ¥ã™ã‚‹
- * @param range åŠ¹æœç¯„å›²
- * @param flag ç‰¹å®šåœ°å½¢ID
- * @param known åœ°å½¢ã‹ã‚‰å±é™ºãƒ•ãƒ©ã‚°ã‚’å¤–ã™ãªã‚‰TRUE
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼¼şÊÕ¤ÎÃÏ·Á¤ò´¶ÃÎ¤¹¤ë
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @param flag ÆÃÄêÃÏ·ÁID
+ * @param known ÃÏ·Á¤«¤é´í¸±¥Õ¥é¥°¤ò³°¤¹¤Ê¤éTRUE
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 static bool detect_feat_flag(POSITION range, int flag, bool known)
 {
@@ -1879,10 +1879,10 @@ static bool detect_feat_flag(POSITION range, int flag, bool known)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‘¨è¾ºã®ãƒˆãƒ©ãƒƒãƒ—ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all traps on current panel
- * @param range åŠ¹æœç¯„å›²
- * @param known æ„ŸçŸ¥å¤–ç¯„å›²ã‚’è¶…ãˆã‚‹è­¦å‘Šãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹å ´åˆTRUEã‚’è¿”ã™
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼¼şÊÕ¤Î¥È¥é¥Ã¥×¤ò´¶ÃÎ¤¹¤ë / Detect all traps on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @param known ´¶ÃÎ³°ÈÏ°Ï¤òÄ¶¤¨¤ë·Ù¹ğ¥Õ¥é¥°¤òÎ©¤Æ¤ë¾ì¹çTRUE¤òÊÖ¤¹
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_traps(POSITION range, bool known)
 {
@@ -1895,7 +1895,7 @@ bool detect_traps(POSITION range, bool known)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("ãƒˆãƒ©ãƒƒãƒ—ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of traps!"));
+		msg_print(_("¥È¥é¥Ã¥×¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of traps!"));
 	}
 
 	/* Result */
@@ -1904,9 +1904,9 @@ bool detect_traps(POSITION range, bool known)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‘¨è¾ºã®ãƒ‰ã‚¢ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all doors on current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼¼şÊÕ¤Î¥É¥¢¤ò´¶ÃÎ¤¹¤ë / Detect all doors on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_doors(POSITION range)
 {
@@ -1917,7 +1917,7 @@ bool detect_doors(POSITION range)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("ãƒ‰ã‚¢ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of doors!"));
+		msg_print(_("¥É¥¢¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of doors!"));
 	}
 
 	/* Result */
@@ -1926,9 +1926,9 @@ bool detect_doors(POSITION range)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‘¨è¾ºã®éšæ®µã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all stairs on current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼¼şÊÕ¤Î³¬ÃÊ¤ò´¶ÃÎ¤¹¤ë / Detect all stairs on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_stairs(POSITION range)
 {
@@ -1939,7 +1939,7 @@ bool detect_stairs(POSITION range)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("éšæ®µã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of stairs!"));
+		msg_print(_("³¬ÃÊ¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of stairs!"));
 	}
 
 	/* Result */
@@ -1948,9 +1948,9 @@ bool detect_stairs(POSITION range)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‘¨è¾ºã®åœ°å½¢è²¡å®ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect any treasure on the current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼¼şÊÕ¤ÎÃÏ·ÁºâÊõ¤ò´¶ÃÎ¤¹¤ë / Detect any treasure on the current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_treasure(POSITION range)
 {
@@ -1961,7 +1961,7 @@ bool detect_treasure(POSITION range)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("åŸ‹è”µã•ã‚ŒãŸè²¡å®ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of buried treasure!"));
+		msg_print(_("ËäÂ¢¤µ¤ì¤¿ºâÊõ¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of buried treasure!"));
 	}
 
 	/* Result */
@@ -1970,9 +1970,9 @@ bool detect_treasure(POSITION range)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å‘¨è¾ºã®ã‚¢ã‚¤ãƒ†ãƒ è²¡å®ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all "gold" objects on the current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼¼şÊÕ¤Î¥¢¥¤¥Æ¥àºâÊõ¤ò´¶ÃÎ¤¹¤ë / Detect all "gold" objects on the current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_objects_gold(POSITION range)
 {
@@ -2020,7 +2020,7 @@ bool detect_objects_gold(POSITION range)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("è²¡å®ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of treasure!"));
+		msg_print(_("ºâÊõ¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of treasure!"));
 	}
 
 	if (detect_monsters_string(range, "$"))
@@ -2034,9 +2034,9 @@ bool detect_objects_gold(POSITION range)
 
 
 /*!
- * @brief é€šå¸¸ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all "normal" objects on the current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ÄÌ¾ï¤Î¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤ò´¶ÃÎ¤¹¤ë / Detect all "normal" objects on the current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_objects_normal(POSITION range)
 {
@@ -2084,7 +2084,7 @@ bool detect_objects_normal(POSITION range)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("ã‚¢ã‚¤ãƒ†ãƒ ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of objects!"));
+		msg_print(_("¥¢¥¤¥Æ¥à¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of objects!"));
 	}
 
 	if (detect_monsters_string(range, "!=?|/`"))
@@ -2098,9 +2098,9 @@ bool detect_objects_normal(POSITION range)
 
 
 /*!
- * @brief é­”æ³•åŠ¹æœã®ã‚ã‚‹ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all "magic" objects on the current panel.
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ËâË¡¸ú²Ì¤Î¤¢¤ë¤Î¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤ò´¶ÃÎ¤¹¤ë / Detect all "magic" objects on the current panel.
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * This will light up all spaces with "magic" items, including artifacts,
@@ -2179,7 +2179,7 @@ bool detect_objects_magic(POSITION range)
 	/* Describe */
 	if (detect)
 	{
-		msg_print(_("é­”æ³•ã®ã‚¢ã‚¤ãƒ†ãƒ ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of magic objects!"));
+		msg_print(_("ËâË¡¤Î¥¢¥¤¥Æ¥à¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of magic objects!"));
 	}
 
 	/* Return result */
@@ -2188,9 +2188,9 @@ bool detect_objects_magic(POSITION range)
 
 
 /*!
- * @brief ä¸€èˆ¬ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all "normal" monsters on the current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief °ìÈÌ¤Î¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë / Detect all "normal" monsters on the current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_normal(POSITION range)
 {
@@ -2240,7 +2240,7 @@ bool detect_monsters_normal(POSITION range)
 	if (flag)
 	{
 		/* Describe result */
-		msg_print(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of monsters!"));
+		msg_print(_("¥â¥ó¥¹¥¿¡¼¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of monsters!"));
 	}
 
 	/* Result */
@@ -2249,9 +2249,9 @@ bool detect_monsters_normal(POSITION range)
 
 
 /*!
- * @brief ä¸å¯è¦–ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all "invisible" monsters around the player
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ÉÔ²Ä»ë¤Î¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë / Detect all "invisible" monsters around the player
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_invis(POSITION range)
 {
@@ -2307,7 +2307,7 @@ bool detect_monsters_invis(POSITION range)
 	if (flag)
 	{
 		/* Describe result */
-		msg_print(_("é€æ˜ãªç”Ÿç‰©ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of invisible creatures!"));
+		msg_print(_("Æ©ÌÀ¤ÊÀ¸Êª¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of invisible creatures!"));
 	}
 
 	/* Result */
@@ -2315,9 +2315,9 @@ bool detect_monsters_invis(POSITION range)
 }
 
 /*!
- * @brief é‚ªæ‚ªãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all "evil" monsters on current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¼Ù°­¤Ê¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë / Detect all "evil" monsters on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_evil(POSITION range)
 {
@@ -2377,7 +2377,7 @@ bool detect_monsters_evil(POSITION range)
 	if (flag)
 	{
 		/* Describe result */
-		msg_print(_("é‚ªæ‚ªãªã‚‹ç”Ÿç‰©ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of evil creatures!"));
+		msg_print(_("¼Ù°­¤Ê¤ëÀ¸Êª¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of evil creatures!"));
 	}
 
 	/* Result */
@@ -2385,9 +2385,9 @@ bool detect_monsters_evil(POSITION range)
 }
 
 /*!
- * @brief ç„¡ç”Ÿå‘½ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹(ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã€æ‚ªé­”ç³»ã‚’å«ã‚€) / Detect all "nonliving", "undead" or "demonic" monsters on current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ÌµÀ¸Ì¿¤Î¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë(¥¢¥ó¥Ç¥Ã¥É¡¢°­Ëâ·Ï¤ò´Ş¤à) / Detect all "nonliving", "undead" or "demonic" monsters on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_nonliving(POSITION range)
 {
@@ -2441,7 +2441,7 @@ bool detect_monsters_nonliving(POSITION range)
 	if (flag)
 	{
 		/* Describe result */
-		msg_print(_("è‡ªç„¶ã§ãªã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­˜åœ¨ã‚’æ„Ÿã˜ãŸï¼", "You sense the presence of unnatural beings!"));
+		msg_print(_("¼«Á³¤Ç¤Ê¤¤¥â¥ó¥¹¥¿¡¼¤ÎÂ¸ºß¤ò´¶¤¸¤¿¡ª", "You sense the presence of unnatural beings!"));
 	}
 
 	/* Result */
@@ -2449,9 +2449,9 @@ bool detect_monsters_nonliving(POSITION range)
 }
 
 /*!
- * @brief ç²¾ç¥ã®ã‚ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all monsters it has mind on current panel
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief Àº¿À¤Î¤¢¤ë¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë / Detect all monsters it has mind on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_mind(POSITION range)
 {
@@ -2505,7 +2505,7 @@ bool detect_monsters_mind(POSITION range)
 	if (flag)
 	{
 		/* Describe result */
-		msg_print(_("æ®ºæ°—ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of someone's mind!"));
+		msg_print(_("»¦µ¤¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of someone's mind!"));
 	}
 
 	/* Result */
@@ -2514,10 +2514,10 @@ bool detect_monsters_mind(POSITION range)
 
 
 /*!
- * @brief è©²å½“ã‚·ãƒ³ãƒœãƒ«ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹ / Detect all (string) monsters on current panel
- * @param range åŠ¹æœç¯„å›²
- * @param Match å¯¾å¿œã‚·ãƒ³ãƒœãƒ«ã®æ··ã˜ã£ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ–‡å­—åˆ—(è¤‡æ•°æŒ‡å®šåŒ–)
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ³ºÅö¥·¥ó¥Ü¥ë¤Î¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë / Detect all (string) monsters on current panel
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @param Match ÂĞ±ş¥·¥ó¥Ü¥ë¤Îº®¤¸¤Ã¤¿¥â¥ó¥¹¥¿¡¼Ê¸»úÎó(Ê£¿ô»ØÄê²½)
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_string(POSITION range, cptr Match)
 {
@@ -2573,7 +2573,7 @@ bool detect_monsters_string(POSITION range, cptr Match)
 	if (flag)
 	{
 		/* Describe result */
-		msg_print(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of monsters!"));
+		msg_print(_("¥â¥ó¥¹¥¿¡¼¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of monsters!"));
 	}
 
 	/* Result */
@@ -2581,17 +2581,17 @@ bool detect_monsters_string(POSITION range, cptr Match)
 }
 
 /*!
- * @brief flags3ã«å¯¾å¿œã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ„ŸçŸ¥ã™ã‚‹ / A "generic" detect monsters routine, tagged to flags3
- * @param range åŠ¹æœç¯„å›²
- * @param match_flag æ„ŸçŸ¥ãƒ•ãƒ©ã‚°
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief flags3¤ËÂĞ±ş¤¹¤ë¥â¥ó¥¹¥¿¡¼¤ò´¶ÃÎ¤¹¤ë / A "generic" detect monsters routine, tagged to flags3
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @param match_flag ´¶ÃÎ¥Õ¥é¥°
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_monsters_xxx(POSITION range, u32b match_flag)
 {
 	MONSTER_IDX i;
 	POSITION y, x;
 	bool flag = FALSE;
-	cptr desc_monsters = _("å¤‰ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼", "weird monsters");
+	cptr desc_monsters = _("ÊÑ¤Ê¥â¥ó¥¹¥¿¡¼", "weird monsters");
 
 	if (d_info[dungeon_type].flags1 & DF1_DARKNESS) range /= 3;
 
@@ -2647,15 +2647,15 @@ bool detect_monsters_xxx(POSITION range, u32b match_flag)
 		switch (match_flag)
 		{
 			case RF3_DEMON:
-			desc_monsters = _("ãƒ‡ãƒ¼ãƒ¢ãƒ³", "demons");
+			desc_monsters = _("¥Ç¡¼¥â¥ó", "demons");
 				break;
 			case RF3_UNDEAD:
-			desc_monsters = _("ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰", "the undead");
+			desc_monsters = _("¥¢¥ó¥Ç¥Ã¥É", "the undead");
 				break;
 		}
 
 		/* Describe result */
-		msg_format(_("%sã®å­˜åœ¨ã‚’æ„Ÿã˜ã¨ã£ãŸï¼", "You sense the presence of %s!"), desc_monsters);
+		msg_format(_("%s¤ÎÂ¸ºß¤ò´¶¤¸¤È¤Ã¤¿¡ª", "You sense the presence of %s!"), desc_monsters);
 		msg_print(NULL);
 	}
 
@@ -2665,9 +2665,9 @@ bool detect_monsters_xxx(POSITION range, u32b match_flag)
 
 
 /*!
- * @brief å…¨æ„ŸçŸ¥å‡¦ç† / Detect everything
- * @param range åŠ¹æœç¯„å›²
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief Á´´¶ÃÎ½èÍı / Detect everything
+ * @param range ¸ú²ÌÈÏ°Ï
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool detect_all(POSITION range)
 {
@@ -2692,10 +2692,10 @@ bool detect_all(POSITION range)
 
 
 /*!
- * @brief è¦–ç•Œå†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«é­”æ³•åŠ¹æœã‚’ä¸ãˆã‚‹ / Apply a "project()" directly to all viewable monsters
- * @param typ å±æ€§åŠ¹æœ
- * @param dam åŠ¹æœé‡
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¥â¥ó¥¹¥¿¡¼¤ËËâË¡¸ú²Ì¤òÍ¿¤¨¤ë / Apply a "project()" directly to all viewable monsters
+ * @param typ Â°À­¸ú²Ì
+ * @param dam ¸ú²ÌÎÌ
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Note that affected monsters are NOT auto-tracked by this usage.
@@ -2755,8 +2755,8 @@ bool project_hack(int typ, HIT_POINT dam)
 
 
 /*!
- * @brief è¦–ç•Œå†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’åŠ é€Ÿã™ã‚‹å‡¦ç† / Speed monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¥â¥ó¥¹¥¿¡¼¤ò²ÃÂ®¤¹¤ë½èÍı / Speed monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool speed_monsters(void)
 {
@@ -2764,8 +2764,8 @@ bool speed_monsters(void)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’åŠ é€Ÿã™ã‚‹å‡¦ç† / Slow monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¥â¥ó¥¹¥¿¡¼¤ò²ÃÂ®¤¹¤ë½èÍı / Slow monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool slow_monsters(int power)
 {
@@ -2773,8 +2773,8 @@ bool slow_monsters(int power)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’çœ ã‚‰ã›ã‚‹å‡¦ç† / Sleep monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¥â¥ó¥¹¥¿¡¼¤òÌ²¤é¤»¤ë½èÍı / Sleep monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool sleep_monsters(int power)
 {
@@ -2782,8 +2782,8 @@ bool sleep_monsters(int power)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®é‚ªæ‚ªãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ã‚¢ã‚¦ã‚§ã‚¤ã•ã›ã‚‹å‡¦ç† / Banish evil monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î¼Ù°­¤Ê¥â¥ó¥¹¥¿¡¼¤ò¥Æ¥ì¥İ¡¼¥È¡¦¥¢¥¦¥§¥¤¤µ¤»¤ë½èÍı / Banish evil monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool banish_evil(int dist)
 {
@@ -2791,8 +2791,8 @@ bool banish_evil(int dist)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ææ€–ã•ã›ã‚‹å‡¦ç† / Turn undead
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î¥¢¥ó¥Ç¥Ã¥É¡¦¥â¥ó¥¹¥¿¡¼¤ò¶²Éİ¤µ¤»¤ë½èÍı / Turn undead
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool turn_undead(void)
 {
@@ -2803,8 +2803,8 @@ bool turn_undead(void)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç† / Dispel undead monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î¥¢¥ó¥Ç¥Ã¥É¡¦¥â¥ó¥¹¥¿¡¼¤Ë¥À¥á¡¼¥¸¤òÍ¿¤¨¤ë½èÍı / Dispel undead monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool dispel_undead(HIT_POINT dam)
 {
@@ -2815,8 +2815,8 @@ bool dispel_undead(HIT_POINT dam)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®é‚ªæ‚ªãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç† / Dispel evil monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î¼Ù°­¤Ê¥â¥ó¥¹¥¿¡¼¤Ë¥À¥á¡¼¥¸¤òÍ¿¤¨¤ë½èÍı / Dispel evil monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool dispel_evil(HIT_POINT dam)
 {
@@ -2824,8 +2824,8 @@ bool dispel_evil(HIT_POINT dam)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®å–„è‰¯ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç† / Dispel good monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤ÎÁ±ÎÉ¤Ê¥â¥ó¥¹¥¿¡¼¤Ë¥À¥á¡¼¥¸¤òÍ¿¤¨¤ë½èÍı / Dispel good monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool dispel_good(HIT_POINT dam)
 {
@@ -2833,8 +2833,8 @@ bool dispel_good(HIT_POINT dam)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®ã‚ã‚‰ã‚†ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç† / Dispel all monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î¤¢¤é¤æ¤ë¥â¥ó¥¹¥¿¡¼¤Ë¥À¥á¡¼¥¸¤òÍ¿¤¨¤ë½èÍı / Dispel all monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool dispel_monsters(HIT_POINT dam)
 {
@@ -2842,8 +2842,8 @@ bool dispel_monsters(HIT_POINT dam)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®ç”Ÿå‘½ã®ã‚ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç† / Dispel 'living' monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤ÎÀ¸Ì¿¤Î¤¢¤ë¥â¥ó¥¹¥¿¡¼¤Ë¥À¥á¡¼¥¸¤òÍ¿¤¨¤ë½èÍı / Dispel 'living' monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool dispel_living(HIT_POINT dam)
 {
@@ -2851,8 +2851,8 @@ bool dispel_living(HIT_POINT dam)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®æ‚ªé­”ç³»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹å‡¦ç† / Dispel 'living' monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î°­Ëâ·Ï¥â¥ó¥¹¥¿¡¼¤Ë¥À¥á¡¼¥¸¤òÍ¿¤¨¤ë½èÍı / Dispel 'living' monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool dispel_demons(HIT_POINT dam)
 {
@@ -2860,8 +2860,8 @@ bool dispel_demons(HIT_POINT dam)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«ã€Œè–æˆ¦ã€åŠ¹æœã‚’ä¸ãˆã‚‹å‡¦ç†
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ë³¦Æâ¤Î¥â¥ó¥¹¥¿¡¼¤Ë¡ÖÀ»Àï¡×¸ú²Ì¤òÍ¿¤¨¤ë½èÍı
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool crusade(void)
 {
@@ -2869,9 +2869,9 @@ bool crusade(void)
 }
 
 /*!
- * @brief è¦–ç•Œå†…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ€’ã‚‰ã›ã‚‹å‡¦ç† / Wake up all monsters, and speed up "los" monsters.
- * @param who æ€’ã‚‰ã›ã‚‹åŸå› ã‚’èµ·ã“ã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼(0ãªã‚‰ã°ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼)
- * @return ãªã—
+ * @brief »ë³¦Æâ¥â¥ó¥¹¥¿¡¼¤òÅÜ¤é¤»¤ë½èÍı / Wake up all monsters, and speed up "los" monsters.
+ * @param who ÅÜ¤é¤»¤ë¸¶°ø¤òµ¯¤³¤·¤¿¥â¥ó¥¹¥¿¡¼(0¤Ê¤é¤Ğ¥×¥ì¥¤¥ä¡¼)
+ * @return ¤Ê¤·
  */
 void aggravate_monsters(MONSTER_IDX who)
 {
@@ -2917,8 +2917,8 @@ void aggravate_monsters(MONSTER_IDX who)
 
 	/* Messages */
 #ifdef JP
-	if (speed) msg_print("ä»˜è¿‘ã§ä½•ã‹ãŒçªå¦‚èˆˆå¥®ã—ãŸã‚ˆã†ãªæ„Ÿã˜ã‚’å—ã‘ãŸï¼");
-	else if (sleep) msg_print("ä½•ã‹ãŒçªå¦‚èˆˆå¥®ã—ãŸã‚ˆã†ãªé¨’ã€…ã—ã„éŸ³ãŒé ãã«èã“ãˆãŸï¼");
+	if (speed) msg_print("ÉÕ¶á¤Ç²¿¤«¤¬ÆÍÇ¡¶½Ê³¤·¤¿¤è¤¦¤Ê´¶¤¸¤ò¼õ¤±¤¿¡ª");
+	else if (sleep) msg_print("²¿¤«¤¬ÆÍÇ¡¶½Ê³¤·¤¿¤è¤¦¤ÊÁû¡¹¤·¤¤²»¤¬±ó¤¯¤ËÊ¹¤³¤¨¤¿¡ª");
 #else
 	if (speed) msg_print("You feel a sudden stirring nearby!");
 	else if (sleep) msg_print("You hear a sudden stirring in the distance!");
@@ -2928,13 +2928,13 @@ void aggravate_monsters(MONSTER_IDX who)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®å˜ä½“æŠ¹æ®ºå‡¦ç†ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ / Delete a non-unique/non-quest monster
- * @param m_idx æŠ¹æ®ºã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
- * @param power æŠ¹æ®ºã®å¨åŠ›
- * @param player_cast ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é­”æ³•ã«ã‚ˆã‚‹ã‚‚ã®ãªã‚‰ã° TRUE
- * @param dam_side ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸ã®è² æ‹…ãƒ€ãƒ¡ãƒ¼ã‚¸é‡(1d(dam_side))
- * @param spell_name æŠ¹æ®ºåŠ¹æœã‚’èµ·ã“ã—ãŸé­”æ³•ã®åå‰
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼¤Ø¤ÎÃ±ÂÎËõ»¦½èÍı¥µ¥Ö¥ë¡¼¥Á¥ó / Delete a non-unique/non-quest monster
+ * @param m_idx Ëõ»¦¤¹¤ë¥â¥ó¥¹¥¿¡¼ID
+ * @param power Ëõ»¦¤Î°ÒÎÏ
+ * @param player_cast ¥×¥ì¥¤¥ä¡¼¤ÎËâË¡¤Ë¤è¤ë¤â¤Î¤Ê¤é¤Ğ TRUE
+ * @param dam_side ¥×¥ì¥¤¥ä¡¼¤Ø¤ÎÉéÃ´¥À¥á¡¼¥¸ÎÌ(1d(dam_side))
+ * @param spell_name Ëõ»¦¸ú²Ì¤òµ¯¤³¤·¤¿ËâË¡¤ÎÌ¾Á°
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool genocide_aux(MONSTER_IDX m_idx, int power, bool player_cast, int dam_side, cptr spell_name)
 {
@@ -2980,21 +2980,21 @@ bool genocide_aux(MONSTER_IDX m_idx, int power, bool player_cast, int dam_side, 
 		monster_desc(m_name, m_ptr, 0);
 		if (see_m)
 		{
-			msg_format(_("%^sã«ã¯åŠ¹æœãŒãªã‹ã£ãŸã€‚", "%^s is unaffected."), m_name);
+			msg_format(_("%^s¤Ë¤Ï¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡£", "%^s is unaffected."), m_name);
 		}
 		if (MON_CSLEEP(m_ptr))
 		{
 			(void)set_monster_csleep(m_idx, 0);
 			if (m_ptr->ml)
 			{
-				msg_format(_("%^sãŒç›®ã‚’è¦šã¾ã—ãŸã€‚", "%^s wakes up."), m_name);
+				msg_format(_("%^s¤¬ÌÜ¤ò³Ğ¤Ş¤·¤¿¡£", "%^s wakes up."), m_name);
 			}
 		}
 		if (is_friendly(m_ptr) && !is_pet(m_ptr))
 		{
 			if (see_m)
 			{
-				msg_format(_("%sã¯æ€’ã£ãŸï¼", "%^s gets angry!"), m_name);
+				msg_format(_("%s¤ÏÅÜ¤Ã¤¿¡ª", "%^s gets angry!"), m_name);
 			}
 			set_hostile(m_ptr);
 		}
@@ -3004,7 +3004,7 @@ bool genocide_aux(MONSTER_IDX m_idx, int power, bool player_cast, int dam_side, 
 	if (player_cast)
 	{
 		/* Take damage */
-		take_hit(DAMAGE_GENO, randint1(dam_side), format(_("%^sã®å‘ªæ–‡ã‚’å”±ãˆãŸç–²åŠ´", "the strain of casting %^s"), spell_name), -1);
+		take_hit(DAMAGE_GENO, randint1(dam_side), format(_("%^s¤Î¼öÊ¸¤ò¾§¤¨¤¿ÈèÏ«", "the strain of casting %^s"), spell_name), -1);
 	}
 
 	/* Visual feedback */
@@ -3030,10 +3030,10 @@ bool genocide_aux(MONSTER_IDX m_idx, int power, bool player_cast, int dam_side, 
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®ã‚·ãƒ³ãƒœãƒ«æŠ¹æ®ºå‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ / Delete all non-unique/non-quest monsters of a given "type" from the level
- * @param power æŠ¹æ®ºã®å¨åŠ›
- * @param player_cast ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é­”æ³•ã«ã‚ˆã‚‹ã‚‚ã®ãªã‚‰ã° TRUE
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼¤Ø¤Î¥·¥ó¥Ü¥ëËõ»¦½èÍı¥ë¡¼¥Á¥ó / Delete all non-unique/non-quest monsters of a given "type" from the level
+ * @param power Ëõ»¦¤Î°ÒÎÏ
+ * @param player_cast ¥×¥ì¥¤¥ä¡¼¤ÎËâË¡¤Ë¤è¤ë¤â¤Î¤Ê¤é¤Ğ TRUE
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool symbol_genocide(int power, bool player_cast)
 {
@@ -3048,7 +3048,7 @@ bool symbol_genocide(int power, bool player_cast)
 	}
 
 	/* Mega-Hack -- Get a monster symbol */
-	while (!get_com(_("ã©ã®ç¨®é¡(æ–‡å­—)ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æŠ¹æ®ºã—ã¾ã™ã‹: ", "Choose a monster race (by symbol) to genocide: "), &typ, FALSE)) ;
+	while (!get_com(_("¤É¤Î¼ïÎà(Ê¸»ú)¤Î¥â¥ó¥¹¥¿¡¼¤òËõ»¦¤·¤Ş¤¹¤«: ", "Choose a monster race (by symbol) to genocide: "), &typ, FALSE)) ;
 
 	/* Delete the monsters of that "type" */
 	for (i = 1; i < m_max; i++)
@@ -3063,7 +3063,7 @@ bool symbol_genocide(int power, bool player_cast)
 		if (r_ptr->d_char != typ) continue;
 
 		/* Take note */
-		result |= genocide_aux(i, power, player_cast, 4, _("æŠ¹æ®º", "Genocide"));
+		result |= genocide_aux(i, power, player_cast, 4, _("Ëõ»¦", "Genocide"));
 	}
 
 	if (result)
@@ -3077,10 +3077,10 @@ bool symbol_genocide(int power, bool player_cast)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®å‘¨è¾ºæŠ¹æ®ºå‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ / Delete all nearby (non-unique) monsters
- * @param power æŠ¹æ®ºã®å¨åŠ›
- * @param player_cast ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é­”æ³•ã«ã‚ˆã‚‹ã‚‚ã®ãªã‚‰ã° TRUE
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼¤Ø¤Î¼şÊÕËõ»¦½èÍı¥ë¡¼¥Á¥ó / Delete all nearby (non-unique) monsters
+ * @param power Ëõ»¦¤Î°ÒÎÏ
+ * @param player_cast ¥×¥ì¥¤¥ä¡¼¤ÎËâË¡¤Ë¤è¤ë¤â¤Î¤Ê¤é¤Ğ TRUE
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool mass_genocide(int power, bool player_cast)
 {
@@ -3105,7 +3105,7 @@ bool mass_genocide(int power, bool player_cast)
 		if (m_ptr->cdis > MAX_SIGHT) continue;
 
 		/* Note effect */
-		result |= genocide_aux(i, power, player_cast, 3, _("å‘¨è¾ºæŠ¹æ®º", "Mass Genocide"));
+		result |= genocide_aux(i, power, player_cast, 3, _("¼şÊÕËõ»¦", "Mass Genocide"));
 	}
 
 	if (result)
@@ -3119,10 +3119,10 @@ bool mass_genocide(int power, bool player_cast)
 
 
 /*!
- * @brief ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®å‘¨è¾ºæŠ¹æ®ºå‡¦ç†ãƒ«ãƒ¼ãƒãƒ³ / Delete all nearby (non-unique) undead
- * @param power æŠ¹æ®ºã®å¨åŠ›
- * @param player_cast ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é­”æ³•ã«ã‚ˆã‚‹ã‚‚ã®ãªã‚‰ã° TRUE
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥¢¥ó¥Ç¥Ã¥É¡¦¥â¥ó¥¹¥¿¡¼¤Ø¤Î¼şÊÕËõ»¦½èÍı¥ë¡¼¥Á¥ó / Delete all nearby (non-unique) undead
+ * @param power Ëõ»¦¤Î°ÒÎÏ
+ * @param player_cast ¥×¥ì¥¤¥ä¡¼¤ÎËâË¡¤Ë¤è¤ë¤â¤Î¤Ê¤é¤Ğ TRUE
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool mass_genocide_undead(int power, bool player_cast)
 {
@@ -3150,7 +3150,7 @@ bool mass_genocide_undead(int power, bool player_cast)
 		if (m_ptr->cdis > MAX_SIGHT) continue;
 
 		/* Note effect */
-		result |= genocide_aux(i, power, player_cast, 3, _("ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰æ¶ˆæ»…", "Annihilate Undead"));
+		result |= genocide_aux(i, power, player_cast, 3, _("¥¢¥ó¥Ç¥Ã¥É¾ÃÌÇ", "Annihilate Undead"));
 	}
 
 	if (result)
@@ -3164,8 +3164,8 @@ bool mass_genocide_undead(int power, bool player_cast)
 
 
 /*!
- * @brief å‘¨è¾ºãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’èª¿æŸ»ã™ã‚‹ / Probe nearby monsters
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¼şÊÕ¥â¥ó¥¹¥¿¡¼¤òÄ´ºº¤¹¤ë / Probe nearby monsters
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool probing(void)
 {
@@ -3200,7 +3200,7 @@ bool probing(void)
 			/* Start the message */
 			if (!probe)
 			{
-				msg_print(_("èª¿æŸ»ä¸­...", "Probing..."));
+				msg_print(_("Ä´ººÃæ...", "Probing..."));
 			}
 
 			msg_print(NULL);
@@ -3223,13 +3223,13 @@ bool probing(void)
 
 			/* Get the monster's alignment */
 #ifdef JP
-			if ((r_ptr->flags3 & (RF3_EVIL | RF3_GOOD)) == (RF3_EVIL | RF3_GOOD)) align = "å–„æ‚ª";
-			else if (r_ptr->flags3 & RF3_EVIL) align = "é‚ªæ‚ª";
-			else if (r_ptr->flags3 & RF3_GOOD) align = "å–„è‰¯";
-			else if ((m_ptr->sub_align & (SUB_ALIGN_EVIL | SUB_ALIGN_GOOD)) == (SUB_ALIGN_EVIL | SUB_ALIGN_GOOD)) align = "ä¸­ç«‹(å–„æ‚ª)";
-			else if (m_ptr->sub_align & SUB_ALIGN_EVIL) align = "ä¸­ç«‹(é‚ªæ‚ª)";
-			else if (m_ptr->sub_align & SUB_ALIGN_GOOD) align = "ä¸­ç«‹(å–„è‰¯)";
-			else align = "ä¸­ç«‹";
+			if ((r_ptr->flags3 & (RF3_EVIL | RF3_GOOD)) == (RF3_EVIL | RF3_GOOD)) align = "Á±°­";
+			else if (r_ptr->flags3 & RF3_EVIL) align = "¼Ù°­";
+			else if (r_ptr->flags3 & RF3_GOOD) align = "Á±ÎÉ";
+			else if ((m_ptr->sub_align & (SUB_ALIGN_EVIL | SUB_ALIGN_GOOD)) == (SUB_ALIGN_EVIL | SUB_ALIGN_GOOD)) align = "ÃæÎ©(Á±°­)";
+			else if (m_ptr->sub_align & SUB_ALIGN_EVIL) align = "ÃæÎ©(¼Ù°­)";
+			else if (m_ptr->sub_align & SUB_ALIGN_GOOD) align = "ÃæÎ©(Á±ÎÉ)";
+			else align = "ÃæÎ©";
 #else
 			if ((r_ptr->flags3 & (RF3_EVIL | RF3_GOOD)) == (RF3_EVIL | RF3_GOOD)) align = "good&evil";
 			else if (r_ptr->flags3 & RF3_EVIL) align = "evil";
@@ -3241,7 +3241,7 @@ bool probing(void)
 #endif
 
 			/* Describe the monster */
-			sprintf(buf,_("%s ... å±æ€§:%s HP:%d/%d AC:%d é€Ÿåº¦:%s%d çµŒé¨“:", "%s ... align:%s HP:%d/%d AC:%d speed:%s%d exp:"),
+			sprintf(buf,_("%s ... Â°À­:%s HP:%d/%d AC:%d Â®ÅÙ:%s%d ·Ğ¸³:", "%s ... align:%s HP:%d/%d AC:%d speed:%s%d exp:"),
 				m_name, align, (int)m_ptr->hp, (int)m_ptr->maxhp, r_ptr->ac, (speed > 0) ? "+" : "", speed);
 
 			if (r_ptr->next_r_idx)
@@ -3254,11 +3254,11 @@ bool probing(void)
 			}
 
 #ifdef JP
-			if (MON_CSLEEP(m_ptr)) strcat(buf,"ç¡çœ  ");
-			if (MON_STUNNED(m_ptr)) strcat(buf,"æœ¦æœ§ ");
-			if (MON_MONFEAR(m_ptr)) strcat(buf,"ææ€– ");
-			if (MON_CONFUSED(m_ptr)) strcat(buf,"æ··ä¹± ");
-			if (MON_INVULNER(m_ptr)) strcat(buf,"ç„¡æ•µ ");
+			if (MON_CSLEEP(m_ptr)) strcat(buf,"¿çÌ² ");
+			if (MON_STUNNED(m_ptr)) strcat(buf,"Û¯Û° ");
+			if (MON_MONFEAR(m_ptr)) strcat(buf,"¶²Éİ ");
+			if (MON_CONFUSED(m_ptr)) strcat(buf,"º®Íğ ");
+			if (MON_INVULNER(m_ptr)) strcat(buf,"ÌµÅ¨ ");
 #else
 			if (MON_CSLEEP(m_ptr)) strcat(buf,"sleeping ");
 			if (MON_STUNNED(m_ptr)) strcat(buf,"stunned ");
@@ -3287,7 +3287,7 @@ bool probing(void)
 
 #ifdef JP
 				/* Note that we learnt some new flags  -Mogami- */
-				msg_format("%sã«ã¤ã„ã¦ã•ã‚‰ã«è©³ã—ããªã£ãŸæ°—ãŒã™ã‚‹ã€‚", buf);
+				msg_format("%s¤Ë¤Ä¤¤¤Æ¤µ¤é¤Ë¾Ü¤·¤¯¤Ê¤Ã¤¿µ¤¤¬¤¹¤ë¡£", buf);
 #else
 				/* Pluralize it */
 				plural_aux(buf);
@@ -3312,7 +3312,7 @@ bool probing(void)
 	if (probe)
 	{
 		chg_virtue(V_KNOWLEDGE, 1);
-		msg_print(_("ã“ã‚Œã§å…¨éƒ¨ã§ã™ã€‚", "That's all."));
+		msg_print(_("¤³¤ì¤ÇÁ´Éô¤Ç¤¹¡£", "That's all."));
 	}
 
 	/* Result */
@@ -3322,12 +3322,12 @@ bool probing(void)
 
 
 /*!
- * @brief *ç ´å£Š*å‡¦ç†ã‚’è¡Œã† / The spell of destruction
- * @param y1 ç ´å£Šã®ä¸­å¿ƒYåº§æ¨™
- * @param x1 ç ´å£Šã®ä¸­å¿ƒXåº§æ¨™ 
- * @param r ç ´å£Šã®åŠå¾„
- * @param in_generate ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ•ãƒ­ã‚¢ç”Ÿæˆä¸­ã®å‡¦ç†ãªã‚‰ã°TRUE
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief *ÇË²õ*½èÍı¤ò¹Ô¤¦ / The spell of destruction
+ * @param y1 ÇË²õ¤ÎÃæ¿´YºÂÉ¸
+ * @param x1 ÇË²õ¤ÎÃæ¿´XºÂÉ¸ 
+ * @param r ÇË²õ¤ÎÈ¾·Â
+ * @param in_generate ¥À¥ó¥¸¥ç¥ó¥Õ¥í¥¢À¸À®Ãæ¤Î½èÍı¤Ê¤é¤ĞTRUE
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * This spell "deletes" monsters (instead of "killing" them).
@@ -3452,12 +3452,12 @@ bool destroy_area(int y1, int x1, int r, bool in_generate)
 						{
 							char o_name[MAX_NLEN];
 							object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
-							msg_format(_("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ  (%s) ã¯ç”Ÿæˆä¸­ã«*ç ´å£Š*ã•ã‚ŒãŸã€‚", "Artifact (%s) was *destroyed* during generation."), o_name);
+							msg_format(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à (%s) ¤ÏÀ¸À®Ãæ¤Ë*ÇË²õ*¤µ¤ì¤¿¡£", "Artifact (%s) was *destroyed* during generation."), o_name);
 						}
 					}
 					else if (in_generate && cheat_peek && o_ptr->art_name)
 					{
-						msg_print(_("ãƒ©ãƒ³ãƒ€ãƒ ãƒ»ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®1ã¤ã¯ç”Ÿæˆä¸­ã«*ç ´å£Š*ã•ã‚ŒãŸã€‚", 
+						msg_print(_("¥é¥ó¥À¥à¡¦¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î1¤Ä¤ÏÀ¸À®Ãæ¤Ë*ÇË²õ*¤µ¤ì¤¿¡£", 
 									"One of the random artifacts was *destroyed* during generation."));
 					}
 				}
@@ -3570,7 +3570,7 @@ bool destroy_area(int y1, int x1, int r, bool in_generate)
 		if (flag)
 		{
 			/* Message */
-			msg_print(_("ç‡ƒãˆã‚‹ã‚ˆã†ãªé–ƒå…‰ãŒç™ºç”Ÿã—ãŸï¼", "There is a searing blast of light!"));
+			msg_print(_("Ç³¤¨¤ë¤è¤¦¤ÊÁ®¸÷¤¬È¯À¸¤·¤¿¡ª", "There is a searing blast of light!"));
 
 			/* Blind the player */
 			if (!p_ptr->resist_blind && !p_ptr->resist_lite)
@@ -3606,13 +3606,13 @@ bool destroy_area(int y1, int x1, int r, bool in_generate)
 
 
 /*!
- * @brief åœ°éœ‡å‡¦ç†(ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³) /
+ * @brief ÃÏ¿Ì½èÍı(¥µ¥Ö¥ë¡¼¥Á¥ó) /
  * Induce an "earthquake" of the given radius at the given location.
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
- * @param cy ä¸­å¿ƒYåº§æ¨™
- * @param cx ä¸­å¿ƒXåº§æ¨™
- * @param r åŠ¹æœåŠå¾„
- * @param m_idx åœ°éœ‡ã‚’èµ·ã“ã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID(0ãªã‚‰ã°ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼)
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param cy Ãæ¿´YºÂÉ¸
+ * @param cx Ãæ¿´XºÂÉ¸
+ * @param r ¸ú²ÌÈ¾·Â
+ * @param m_idx ÃÏ¿Ì¤òµ¯¤³¤·¤¿¥â¥ó¥¹¥¿¡¼ID(0¤Ê¤é¤Ğ¥×¥ì¥¤¥ä¡¼)
  * @details
  * <pre>
  *
@@ -3732,17 +3732,17 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 		{
 			case 1:
 			{
-				msg_print(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®å£ãŒå´©ã‚ŒãŸï¼", "The cave ceiling collapses!"));
+				msg_print(_("¥À¥ó¥¸¥ç¥ó¤ÎÊÉ¤¬Êø¤ì¤¿¡ª", "The cave ceiling collapses!"));
 				break;
 			}
 			case 2:
 			{
-				msg_print(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®åºŠãŒä¸è‡ªç„¶ã«ã­ã˜æ›²ãŒã£ãŸï¼", "The cave floor twists in an unnatural way!"));
+				msg_print(_("¥À¥ó¥¸¥ç¥ó¤Î¾²¤¬ÉÔ¼«Á³¤Ë¤Í¤¸¶Ê¤¬¤Ã¤¿¡ª", "The cave floor twists in an unnatural way!"));
 				break;
 			}
 			default:
 			{
-				msg_print(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãŒæºã‚ŒãŸï¼å´©ã‚ŒãŸå²©ãŒé ­ã«é™ã£ã¦ããŸï¼", "The cave quakes!  You are pummeled with debris!"));
+				msg_print(_("¥À¥ó¥¸¥ç¥ó¤¬ÍÉ¤ì¤¿¡ªÊø¤ì¤¿´ä¤¬Æ¬¤Ë¹ß¤Ã¤Æ¤­¤¿¡ª", "The cave quakes!  You are pummeled with debris!"));
 				break;
 			}
 		}
@@ -3751,7 +3751,7 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 		if (!sn)
 		{
 			/* Message and damage */
-			msg_print(_("ã‚ãªãŸã¯ã²ã©ã„æ€ªæˆ‘ã‚’è² ã£ãŸï¼", "You are severely crushed!"));
+			msg_print(_("¤¢¤Ê¤¿¤Ï¤Ò¤É¤¤²ø²æ¤òÉé¤Ã¤¿¡ª", "You are severely crushed!"));
 			damage = 200;
 		}
 
@@ -3763,20 +3763,20 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 			{
 				case 1:
 				{
-					msg_print(_("é™ã‚Šæ³¨ãå²©ã‚’ã†ã¾ãé¿ã‘ãŸï¼", "You nimbly dodge the blast!"));
+					msg_print(_("¹ß¤êÃí¤°´ä¤ò¤¦¤Ş¤¯Èò¤±¤¿¡ª", "You nimbly dodge the blast!"));
 					damage = 0;
 					break;
 				}
 				case 2:
 				{
-					msg_print(_("å²©çŸ³ãŒã‚ãªãŸã«ç›´æ’ƒã—ãŸ!", "You are bashed by rubble!"));
+					msg_print(_("´äÀĞ¤¬¤¢¤Ê¤¿¤ËÄ¾·â¤·¤¿!", "You are bashed by rubble!"));
 					damage = damroll(10, 4);
 					(void)set_stun(p_ptr->stun + randint1(50));
 					break;
 				}
 				case 3:
 				{
-					msg_print(_("ã‚ãªãŸã¯åºŠã¨å£ã¨ã®é–“ã«æŒŸã¾ã‚Œã¦ã—ã¾ã£ãŸï¼", "You are crushed between the floor and ceiling!"));
+					msg_print(_("¤¢¤Ê¤¿¤Ï¾²¤ÈÊÉ¤È¤Î´Ö¤Ë¶´¤Ş¤ì¤Æ¤·¤Ş¤Ã¤¿¡ª", "You are crushed between the floor and ceiling!"));
 					damage = damroll(10, 4);
 					(void)set_stun(p_ptr->stun + randint1(50));
 					break;
@@ -3803,11 +3803,11 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 				/* Get the monster's real name */
 				monster_desc(m_name, m_ptr, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
 
-				killer = format(_("%sã®èµ·ã“ã—ãŸåœ°éœ‡", "an earthquake caused by %s"), m_name);
+				killer = format(_("%s¤Îµ¯¤³¤·¤¿ÃÏ¿Ì", "an earthquake caused by %s"), m_name);
 			}
 			else
 			{
-				killer = _("åœ°éœ‡", "an earthquake");
+				killer = _("ÃÏ¿Ì", "an earthquake");
 			}
 
 			take_hit(DAMAGE_ATTACK, damage, killer, -1);
@@ -3896,7 +3896,7 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 					monster_desc(m_name, m_ptr, 0);
 
 					/* Scream in pain */
-					if (!ignore_unview || is_seen(m_ptr)) msg_format(_("%^sã¯è‹¦ç—›ã§æ³£ãã‚ã‚ã„ãŸï¼", "%^s wails out in pain!"), m_name);
+					if (!ignore_unview || is_seen(m_ptr)) msg_format(_("%^s¤Ï¶ìÄË¤Çµã¤­¤ï¤á¤¤¤¿¡ª", "%^s wails out in pain!"), m_name);
 
 					/* Take damage from the quake */
 					damage = (sn ? damroll(4, 8) : (m_ptr->hp + 1));
@@ -3912,7 +3912,7 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 					{
 						/* Message */
 						if (!ignore_unview || is_seen(m_ptr)) 
-							msg_format(_("%^sã¯å²©çŸ³ã«åŸ‹ã‚‚ã‚Œã¦ã—ã¾ã£ãŸï¼", "%^s is embedded in the rock!"), m_name);
+							msg_format(_("%^s¤Ï´äÀĞ¤ËËä¤â¤ì¤Æ¤·¤Ş¤Ã¤¿¡ª", "%^s is embedded in the rock!"), m_name);
 
 						if (c_ptr->m_idx)
 						{
@@ -4089,12 +4089,12 @@ bool earthquake_aux(int cy, int cx, int r, MONSTER_IDX m_idx)
 }
 
 /*!
- * @brief åœ°éœ‡å‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸­å¿ƒç™ºå‹•) /
+ * @brief ÃÏ¿Ì½èÍı(¥×¥ì¥¤¥ä¡¼¤ÎÃæ¿´È¯Æ°) /
  * Induce an "earthquake" of the given radius at the given location.
- * @return åŠ¹åŠ›ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
- * @param cy ä¸­å¿ƒYåº§æ¨™
- * @param cx ä¸­å¿ƒXåº§æ¨™
- * @param r åŠ¹æœåŠå¾„
+ * @return ¸úÎÏ¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param cy Ãæ¿´YºÂÉ¸
+ * @param cx Ãæ¿´XºÂÉ¸
+ * @param r ¸ú²ÌÈ¾·Â
  */
 bool earthquake(int cy, int cx, int r)
 {
@@ -4102,8 +4102,8 @@ bool earthquake(int cy, int cx, int r)
 }
 
 /*!
- * @brief ãƒšãƒƒãƒˆçˆ†ç ´å‡¦ç† /
- * @return ãªã—
+ * @brief ¥Ú¥Ã¥ÈÇúÇË½èÍı /
+ * @return ¤Ê¤·
  */
 void discharge_minion(void)
 {
@@ -4118,7 +4118,7 @@ void discharge_minion(void)
 	}
 	if (!okay || p_ptr->riding)
 	{
-		if (!get_check(_("æœ¬å½“ã«å…¨ãƒšãƒƒãƒˆã‚’çˆ†ç ´ã—ã¾ã™ã‹ï¼Ÿ", "You will blast all pets. Are you sure? ")))
+		if (!get_check(_("ËÜÅö¤ËÁ´¥Ú¥Ã¥È¤òÇúÇË¤·¤Ş¤¹¤«¡©", "You will blast all pets. Are you sure? ")))
 			return;
 	}
 	for (i = 1; i < m_max; i++)
@@ -4135,7 +4135,7 @@ void discharge_minion(void)
 		{
 			char m_name[80];
 			monster_desc(m_name, m_ptr, 0x00);
-			msg_format(_("%sã¯çˆ†ç ´ã•ã‚Œã‚‹ã®ã‚’å«ŒãŒã‚Šã€å‹æ‰‹ã«è‡ªåˆ†ã®ä¸–ç•Œã¸ã¨å¸°ã£ãŸã€‚", "%^s resists to be blasted, and run away."), m_name);
+			msg_format(_("%s¤ÏÇúÇË¤µ¤ì¤ë¤Î¤ò·ù¤¬¤ê¡¢¾¡¼ê¤Ë¼«Ê¬¤ÎÀ¤³¦¤Ø¤Èµ¢¤Ã¤¿¡£", "%^s resists to be blasted, and run away."), m_name);
 			delete_monster_idx(i);
 			continue;
 		}
@@ -4161,8 +4161,8 @@ void discharge_minion(void)
 
 
 /*!
- * @brief éƒ¨å±‹å…¨ä½“ã‚’ç…§ã‚‰ã™ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
- * @return ãªã—
+ * @brief Éô²°Á´ÂÎ¤ò¾È¤é¤¹¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * This routine clears the entire "temp" set.
@@ -4230,7 +4230,7 @@ static void cave_temp_room_lite(void)
 					monster_desc(m_name, m_ptr, 0);
 
 					/* Dump a message */
-					msg_format(_("%^sãŒç›®ã‚’è¦šã¾ã—ãŸã€‚", "%^s wakes up."), m_name);
+					msg_format(_("%^s¤¬ÌÜ¤ò³Ğ¤Ş¤·¤¿¡£", "%^s wakes up."), m_name);
 				}
 			}
 		}
@@ -4251,8 +4251,8 @@ static void cave_temp_room_lite(void)
 
 
 /*!
- * @brief éƒ¨å±‹å…¨ä½“ã‚’æš—ãã™ã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
- * @return ãªã—
+ * @brief Éô²°Á´ÂÎ¤ò°Å¤¯¤¹¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * This routine clears the entire "temp" set.
@@ -4336,11 +4336,11 @@ static void cave_temp_room_unlite(void)
 
 
 /*!
- * @brief å‘¨è¾ºã«é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã®æ¡ä»¶ã«è©²å½“ã™ã‚‹åœ°å½¢ãŒã„ãã¤ã‚ã‚‹ã‹ã‚’è¨ˆç®—ã™ã‚‹ / Determine how much contiguous open space this grid is next to
- * @param cy Yåº§æ¨™
- * @param cx Xåº§æ¨™
- * @param pass_bold åœ°å½¢æ¡ä»¶ã‚’è¿”ã™é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
- * @return è©²å½“åœ°å½¢ã®æ•°
+ * @brief ¼şÊÕ¤Ë´Ø¿ô¥İ¥¤¥ó¥¿¤Î¾ò·ï¤Ë³ºÅö¤¹¤ëÃÏ·Á¤¬¤¤¤¯¤Ä¤¢¤ë¤«¤ò·×»»¤¹¤ë / Determine how much contiguous open space this grid is next to
+ * @param cy YºÂÉ¸
+ * @param cx XºÂÉ¸
+ * @param pass_bold ÃÏ·Á¾ò·ï¤òÊÖ¤¹´Ø¿ô¥İ¥¤¥ó¥¿
+ * @return ³ºÅöÃÏ·Á¤Î¿ô
  */
 static int next_to_open(int cy, int cx, bool (*pass_bold)(int, int))
 {
@@ -4377,11 +4377,11 @@ static int next_to_open(int cy, int cx, bool (*pass_bold)(int, int))
 }
 
 /*!
- * @brief å‘¨è¾ºã«é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã®æ¡ä»¶ã«è©²å½“ã™ã‚‹åœ°å½¢ãŒã„ãã¤ã‚ã‚‹ã‹ã‚’è¨ˆç®—ã™ã‚‹ / Determine how much contiguous open space this grid is next to
- * @param cy Yåº§æ¨™
- * @param cx Xåº§æ¨™
- * @param pass_bold åœ°å½¢æ¡ä»¶ã‚’è¿”ã™é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
- * @return è©²å½“åœ°å½¢ã®æ•°
+ * @brief ¼şÊÕ¤Ë´Ø¿ô¥İ¥¤¥ó¥¿¤Î¾ò·ï¤Ë³ºÅö¤¹¤ëÃÏ·Á¤¬¤¤¤¯¤Ä¤¢¤ë¤«¤ò·×»»¤¹¤ë / Determine how much contiguous open space this grid is next to
+ * @param cy YºÂÉ¸
+ * @param cx XºÂÉ¸
+ * @param pass_bold ÃÏ·Á¾ò·ï¤òÊÖ¤¹´Ø¿ô¥İ¥¤¥ó¥¿
+ * @return ³ºÅöÃÏ·Á¤Î¿ô
  */
 static int next_to_walls_adj(int cy, int cx, bool (*pass_bold)(int, int))
 {
@@ -4404,12 +4404,12 @@ static int next_to_walls_adj(int cy, int cx, bool (*pass_bold)(int, int))
 
 
 /*!
- * @brief éƒ¨å±‹å†…ã«ã‚ã‚‹ä¸€ç‚¹ã®å‘¨å›²ã«è©²å½“ã™ã‚‹åœ°å½¢æ•°ã‹ã„ãã¤ã‚ã‚‹ã‹ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°temp_nã«è¿”ã™ / Aux function -- see below
- * @param y éƒ¨å±‹å†…ã®yåº§æ¨™1ç‚¹
- * @param x éƒ¨å±‹å†…ã®xåº§æ¨™1ç‚¹
- * @param only_room éƒ¨å±‹å†…åœ°å½¢ã®ã¿ã‚’ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã«ã™ã‚‹ãªã‚‰ã° TRUE
- * @param pass_bold åœ°å½¢æ¡ä»¶ã‚’è¿”ã™é–¢æ•°ãƒã‚¤ãƒ³ã‚¿
- * @return è©²å½“åœ°å½¢ã®æ•°
+ * @brief Éô²°Æâ¤Ë¤¢¤ë°ìÅÀ¤Î¼ş°Ï¤Ë³ºÅö¤¹¤ëÃÏ·Á¿ô¤«¤¤¤¯¤Ä¤¢¤ë¤«¤ò¥°¥í¡¼¥Ğ¥ëÊÑ¿ôtemp_n¤ËÊÖ¤¹ / Aux function -- see below
+ * @param y Éô²°Æâ¤ÎyºÂÉ¸1ÅÀ
+ * @param x Éô²°Æâ¤ÎxºÂÉ¸1ÅÀ
+ * @param only_room Éô²°ÆâÃÏ·Á¤Î¤ß¤ò¥Á¥§¥Ã¥¯ÂĞ¾İ¤Ë¤¹¤ë¤Ê¤é¤Ğ TRUE
+ * @param pass_bold ÃÏ·Á¾ò·ï¤òÊÖ¤¹´Ø¿ô¥İ¥¤¥ó¥¿
+ * @return ³ºÅöÃÏ·Á¤Î¿ô
  */
 static void cave_temp_room_aux(int y, int x, bool only_room, bool (*pass_bold)(int, int))
 {
@@ -4458,10 +4458,10 @@ static void cave_temp_room_aux(int y, int x, bool only_room, bool (*pass_bold)(i
 }
 
 /*!
- * @brief æŒ‡å®šã®ãƒã‚¹ãŒå…‰ã‚’é€šã™ã‹(LOSãƒ•ãƒ©ã‚°ã‚’æŒã¤ã‹)ã‚’è¿”ã™ã€‚ / Aux function -- see below
- * @param y æŒ‡å®šYåº§æ¨™
- * @param x æŒ‡å®šXåº§æ¨™
- * @return å…‰ã‚’é€šã™ãªã‚‰ã°trueã‚’è¿”ã™ã€‚
+ * @brief »ØÄê¤Î¥Ş¥¹¤¬¸÷¤òÄÌ¤¹¤«(LOS¥Õ¥é¥°¤ò»ı¤Ä¤«)¤òÊÖ¤¹¡£ / Aux function -- see below
+ * @param y »ØÄêYºÂÉ¸
+ * @param x »ØÄêXºÂÉ¸
+ * @return ¸÷¤òÄÌ¤¹¤Ê¤é¤Ğtrue¤òÊÖ¤¹¡£
  */
 static bool cave_pass_lite_bold(int y, int x)
 {
@@ -4469,10 +4469,10 @@ static bool cave_pass_lite_bold(int y, int x)
 }
 
 /*!
- * @brief éƒ¨å±‹å†…ã«ã‚ã‚‹ä¸€ç‚¹ã®å‘¨å›²ãŒã„ãã¤å…‰ã‚’é€šã™ã‹ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°temp_nã«è¿”ã™ / Aux function -- see below
- * @param y æŒ‡å®šYåº§æ¨™
- * @param x æŒ‡å®šXåº§æ¨™
- * @return ãªã—
+ * @brief Éô²°Æâ¤Ë¤¢¤ë°ìÅÀ¤Î¼ş°Ï¤¬¤¤¤¯¤Ä¸÷¤òÄÌ¤¹¤«¤ò¥°¥í¡¼¥Ğ¥ëÊÑ¿ôtemp_n¤ËÊÖ¤¹ / Aux function -- see below
+ * @param y »ØÄêYºÂÉ¸
+ * @param x »ØÄêXºÂÉ¸
+ * @return ¤Ê¤·
  */
 static void cave_temp_lite_room_aux(int y, int x)
 {
@@ -4480,10 +4480,10 @@ static void cave_temp_lite_room_aux(int y, int x)
 }
 
 /*!
- * @brief æŒ‡å®šã®ãƒã‚¹ãŒå…‰ã‚’é€šã•ãšå°„ç·šã®ã¿ã‚’é€šã™ã‹ã‚’è¿”ã™ã€‚ / Aux function -- see below
- * @param y æŒ‡å®šYåº§æ¨™
- * @param x æŒ‡å®šXåº§æ¨™
- * @return å°„ç·šã‚’é€šã™ãªã‚‰ã°trueã‚’è¿”ã™ã€‚
+ * @brief »ØÄê¤Î¥Ş¥¹¤¬¸÷¤òÄÌ¤µ¤º¼ÍÀş¤Î¤ß¤òÄÌ¤¹¤«¤òÊÖ¤¹¡£ / Aux function -- see below
+ * @param y »ØÄêYºÂÉ¸
+ * @param x »ØÄêXºÂÉ¸
+ * @return ¼ÍÀş¤òÄÌ¤¹¤Ê¤é¤Ğtrue¤òÊÖ¤¹¡£
  */
 static bool cave_pass_dark_bold(int y, int x)
 {
@@ -4492,10 +4492,10 @@ static bool cave_pass_dark_bold(int y, int x)
 
 
 /*!
- * @brief éƒ¨å±‹å†…ã«ã‚ã‚‹ä¸€ç‚¹ã®å‘¨å›²ãŒã„ãã¤å°„ç·šã‚’é€šã™ã‹ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°temp_nã«è¿”ã™ / Aux function -- see below
- * @param y æŒ‡å®šYåº§æ¨™
- * @param x æŒ‡å®šXåº§æ¨™
- * @return ãªã—
+ * @brief Éô²°Æâ¤Ë¤¢¤ë°ìÅÀ¤Î¼ş°Ï¤¬¤¤¤¯¤Ä¼ÍÀş¤òÄÌ¤¹¤«¤ò¥°¥í¡¼¥Ğ¥ëÊÑ¿ôtemp_n¤ËÊÖ¤¹ / Aux function -- see below
+ * @param y »ØÄêYºÂÉ¸
+ * @param x »ØÄêXºÂÉ¸
+ * @return ¤Ê¤·
  */
 static void cave_temp_unlite_room_aux(int y, int x)
 {
@@ -4504,10 +4504,10 @@ static void cave_temp_unlite_room_aux(int y, int x)
 
 
 /*!
- * @brief æŒ‡å®šã•ã‚ŒãŸéƒ¨å±‹å†…ã‚’ç…§ã‚‰ã™ / Illuminate any room containing the given location.
- * @param y1 æŒ‡å®šYåº§æ¨™
- * @param x1 æŒ‡å®šXåº§æ¨™
- * @return ãªã—
+ * @brief »ØÄê¤µ¤ì¤¿Éô²°Æâ¤ò¾È¤é¤¹ / Illuminate any room containing the given location.
+ * @param y1 »ØÄêYºÂÉ¸
+ * @param x1 »ØÄêXºÂÉ¸
+ * @return ¤Ê¤·
  */
 void lite_room(int y1, int x1)
 {
@@ -4548,10 +4548,10 @@ void lite_room(int y1, int x1)
 
 
 /*!
- * @brief æŒ‡å®šã•ã‚ŒãŸéƒ¨å±‹å†…ã‚’æš—ãã™ã‚‹ / Darken all rooms containing the given location
- * @param y1 æŒ‡å®šYåº§æ¨™
- * @param x1 æŒ‡å®šXåº§æ¨™
- * @return ãªã—
+ * @brief »ØÄê¤µ¤ì¤¿Éô²°Æâ¤ò°Å¤¯¤¹¤ë / Darken all rooms containing the given location
+ * @param y1 »ØÄêYºÂÉ¸
+ * @param x1 »ØÄêXºÂÉ¸
+ * @return ¤Ê¤·
  */
 void unlite_room(int y1, int x1)
 {
@@ -4588,10 +4588,10 @@ void unlite_room(int y1, int x1)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’ä¸­å¿ƒã«LITE_WEAKå±æ€§ã‚’é€šã˜ãŸç…§æ˜å‡¦ç†ã‚’è¡Œã† / Hack -- call light around the player Affect all monsters in the projection radius
- * @param dam å¨åŠ›
- * @param rad åŠ¹æœåŠå¾„
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼°ÌÃÖ¤òÃæ¿´¤ËLITE_WEAKÂ°À­¤òÄÌ¤¸¤¿¾ÈÌÀ½èÍı¤ò¹Ô¤¦ / Hack -- call light around the player Affect all monsters in the projection radius
+ * @param dam °ÒÎÏ
+ * @param rad ¸ú²ÌÈ¾·Â
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool lite_area(HIT_POINT dam, int rad)
 {
@@ -4599,14 +4599,14 @@ bool lite_area(HIT_POINT dam, int rad)
 
 	if (d_info[dungeon_type].flags1 & DF1_DARKNESS)
 	{
-		msg_print(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãŒå…‰ã‚’å¸åã—ãŸã€‚", "The darkness of this dungeon absorb your light."));
+		msg_print(_("¥À¥ó¥¸¥ç¥ó¤¬¸÷¤òµÛ¼ı¤·¤¿¡£", "The darkness of this dungeon absorb your light."));
 		return FALSE;
 	}
 
 	/* Hack -- Message */
 	if (!p_ptr->blind)
 	{
-		msg_print(_("ç™½ã„å…‰ãŒè¾ºã‚Šã‚’è¦†ã£ãŸã€‚", "You are surrounded by a white light."));
+		msg_print(_("Çò¤¤¸÷¤¬ÊÕ¤ê¤òÊ¤¤Ã¤¿¡£", "You are surrounded by a white light."));
 	}
 
 	/* Hook into the "project()" function */
@@ -4621,10 +4621,10 @@ bool lite_area(HIT_POINT dam, int rad)
 
 
 /*!
- * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä½ç½®ã‚’ä¸­å¿ƒã«LITE_DARKå±æ€§ã‚’é€šã˜ãŸæ¶ˆç¯å‡¦ç†ã‚’è¡Œã† / Hack -- call light around the player Affect all monsters in the projection radius
- * @param dam å¨åŠ›
- * @param rad åŠ¹æœåŠå¾„
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥×¥ì¥¤¥ä¡¼°ÌÃÖ¤òÃæ¿´¤ËLITE_DARKÂ°À­¤òÄÌ¤¸¤¿¾ÃÅô½èÍı¤ò¹Ô¤¦ / Hack -- call light around the player Affect all monsters in the projection radius
+ * @param dam °ÒÎÏ
+ * @param rad ¸ú²ÌÈ¾·Â
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool unlite_area(HIT_POINT dam, int rad)
 {
@@ -4633,7 +4633,7 @@ bool unlite_area(HIT_POINT dam, int rad)
 	/* Hack -- Message */
 	if (!p_ptr->blind)
 	{
-		msg_print(_("æš—é—‡ãŒè¾ºã‚Šã‚’è¦†ã£ãŸã€‚", "Darkness surrounds you."));
+		msg_print(_("°Å°Ç¤¬ÊÕ¤ê¤òÊ¤¤Ã¤¿¡£", "Darkness surrounds you."));
 	}
 
 	/* Hook into the "project()" function */
@@ -4649,12 +4649,12 @@ bool unlite_area(HIT_POINT dam, int rad)
 
 
 /*!
- * @brief ãƒœãƒ¼ãƒ«ç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a ball spell
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @param rad åŠå¾„
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Ü¡¼¥ë·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a ball spell
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @param rad È¾·Â
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Stop if we hit a monster, act as a "ball"
@@ -4686,12 +4686,12 @@ bool fire_ball(int typ, int dir, HIT_POINT dam, int rad)
 }
 
 /*!
-* @brief ãƒ–ãƒ¬ã‚¹ç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a breath spell
-* @param typ åŠ¹æœå±æ€§
-* @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
-* @param dam å¨åŠ›
-* @param rad åŠå¾„
-* @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+* @brief ¥Ö¥ì¥¹·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a breath spell
+* @param typ ¸ú²ÌÂ°À­
+* @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+* @param dam °ÒÎÏ
+* @param rad È¾·Â
+* @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
 * @details
 * <pre>
 * Stop if we hit a monster, act as a "ball"
@@ -4706,12 +4706,12 @@ bool fire_breath(int typ, int dir, HIT_POINT dam, int rad)
 
 
 /*!
- * @brief ãƒ­ã‚±ãƒƒãƒˆç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹•(è©³ç´°ãªå·®ã¯ç¢ºèªä¸­) / Cast a ball spell
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @param rad åŠå¾„
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥í¥±¥Ã¥È·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ°(¾ÜºÙ¤Êº¹¤Ï³ÎÇ§Ãæ) / Cast a ball spell
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @param rad È¾·Â
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Stop if we hit a monster, act as a "ball"
@@ -4742,12 +4742,12 @@ bool fire_rocket(int typ, int dir, HIT_POINT dam, int rad)
 
 
 /*!
- * @brief ãƒœãƒ¼ãƒ«(ãƒã‚¤ãƒ‰)ç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a ball spell
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @param rad åŠå¾„
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Ü¡¼¥ë(¥Ï¥¤¥É)·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a ball spell
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @param rad È¾·Â
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Stop if we hit a monster, act as a "ball"
@@ -4779,14 +4779,14 @@ bool fire_ball_hide(int typ, int dir, HIT_POINT dam, int rad)
 
 
 /*!
- * @brief ãƒ¡ãƒ†ã‚ªç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a meteor spell
- * @param who ã‚¹ãºãƒ«è© å”±è€…ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID(0=ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼)
- * @param typ åŠ¹æœå±æ€§
- * @param dam å¨åŠ›
- * @param rad åŠå¾„
- * @param y ä¸­å¿ƒç‚¹Yåº§æ¨™
- * @param x ä¸­å¿ƒç‚¹Xåº§æ¨™
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥á¥Æ¥ª·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a meteor spell
+ * @param who ¥¹¤Ú¥ë±Ó¾§¼Ô¤Î¥â¥ó¥¹¥¿¡¼ID(0=¥×¥ì¥¤¥ä¡¼)
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dam °ÒÎÏ
+ * @param rad È¾·Â
+ * @param y Ãæ¿´ÅÀYºÂÉ¸
+ * @param x Ãæ¿´ÅÀXºÂÉ¸
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Cast a meteor spell, defined as a ball spell cast by an arbitary monster, 
@@ -4806,14 +4806,14 @@ bool fire_meteor(MONSTER_IDX who, EFFECT_ID typ, POSITION y, POSITION x, HIT_POI
 
 
 /*!
- * @brief ãƒ–ãƒ©ã‚¹ãƒˆç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a blast spell
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dd å¨åŠ›ãƒ€ã‚¤ã‚¹æ•°
- * @param ds å¨åŠ›ãƒ€ã‚¤ã‚¹ç›®
- * @param num åŸºæœ¬å›æ•°
- * @param dev å›æ•°åˆ†æ•£
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Ö¥é¥¹¥È·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a blast spell
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dd °ÒÎÏ¥À¥¤¥¹¿ô
+ * @param ds °ÒÎÏ¥À¥¤¥¹ÌÜ
+ * @param num ´ğËÜ²ó¿ô
+ * @param dev ²ó¿ôÊ¬»¶
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool fire_blast(int typ, int dir, int dd, int ds, int num, int dev)
 {
@@ -4869,9 +4869,9 @@ bool fire_blast(int typ, int dir, int dd, int ds, int num, int dev)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¨ã®ä½ç½®äº¤æ›å‡¦ç† / Switch position with a monster.
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼¤È¤Î°ÌÃÖ¸ò´¹½èÍı / Switch position with a monster.
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool teleport_swap(int dir)
 {
@@ -4894,13 +4894,13 @@ bool teleport_swap(int dir)
 
 	if (p_ptr->anti_tele)
 	{
-		msg_print(_("ä¸æ€è­°ãªåŠ›ãŒãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚’é˜²ã„ã ï¼", "A mysterious force prevents you from teleporting!"));
+		msg_print(_("ÉÔ»×µÄ¤ÊÎÏ¤¬¥Æ¥ì¥İ¡¼¥È¤òËÉ¤¤¤À¡ª", "A mysterious force prevents you from teleporting!"));
 		return FALSE;
 	}
 
 	if (!c_ptr->m_idx || (c_ptr->m_idx == p_ptr->riding))
 	{
-		msg_print(_("ãã‚Œã¨ã¯å ´æ‰€ã‚’äº¤æ›ã§ãã¾ã›ã‚“ã€‚", "You can't trade places with that!"));
+		msg_print(_("¤½¤ì¤È¤Ï¾ì½ê¤ò¸ò´¹¤Ç¤­¤Ş¤»¤ó¡£", "You can't trade places with that!"));
 
 		/* Failure */
 		return FALSE;
@@ -4908,7 +4908,7 @@ bool teleport_swap(int dir)
 
 	if ((c_ptr->info & CAVE_ICKY) || (distance(ty, tx, p_ptr->y, p_ptr->x) > p_ptr->lev * 3 / 2 + 10))
 	{
-		msg_print(_("å¤±æ•—ã—ãŸã€‚", "Failed to swap."));
+		msg_print(_("¼ºÇÔ¤·¤¿¡£", "Failed to swap."));
 
 		/* Failure */
 		return FALSE;
@@ -4921,7 +4921,7 @@ bool teleport_swap(int dir)
 
 	if (r_ptr->flagsr & RFR_RES_TELE)
 	{
-		msg_print(_("ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã‚’é‚ªé­”ã•ã‚ŒãŸï¼", "Your teleportation is blocked!"));
+		msg_print(_("¥Æ¥ì¥İ¡¼¥È¤ò¼ÙËâ¤µ¤ì¤¿¡ª", "Your teleportation is blocked!"));
 
 		if (is_original_ap_and_seen(m_ptr)) r_ptr->r_flagsr |= RFR_RES_TELE;
 
@@ -4940,12 +4940,12 @@ bool teleport_swap(int dir)
 
 
 /*!
- * @brief æŒ‡å®šæ–¹å‘ã«é£›ã³é“å…·ã‚’é£›ã°ã™ï¼ˆãƒ•ãƒ©ã‚°ä»»æ„æŒ‡å®šï¼‰ / Hack -- apply a "projection()" in a direction (or at the target)
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @param flg ãƒ•ãƒ©ã‚°
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »ØÄêÊı¸ş¤ËÈô¤ÓÆ»¶ñ¤òÈô¤Ğ¤¹¡Ê¥Õ¥é¥°Ç¤°Õ»ØÄê¡Ë / Hack -- apply a "projection()" in a direction (or at the target)
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @param flg ¥Õ¥é¥°
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool project_hook(int typ, int dir, HIT_POINT dam, BIT_FLAGS flg)
 {
@@ -4971,11 +4971,11 @@ bool project_hook(int typ, int dir, HIT_POINT dam, BIT_FLAGS flg)
 
 
 /*!
- * @brief ãƒœãƒ«ãƒˆç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a bolt spell.
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Ü¥ë¥È·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a bolt spell.
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Stop if we hit a monster, as a "bolt".
@@ -4991,11 +4991,11 @@ bool fire_bolt(int typ, int dir, HIT_POINT dam)
 
 
 /*!
- * @brief ãƒ“ãƒ¼ãƒ ç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a beam spell.
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Ó¡¼¥à·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a beam spell.
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Pass through monsters, as a "beam".
@@ -5010,12 +5010,12 @@ bool fire_beam(int typ, int dir, HIT_POINT dam)
 
 
 /*!
- * @brief ç¢ºç‡ã«å¿œã˜ãŸãƒœãƒ«ãƒˆç³»/ãƒ“ãƒ¼ãƒ ç³»ã‚¹ãƒšãƒ«ã®ç™ºå‹• / Cast a bolt spell, or rarely, a beam spell.
- * @param prob ãƒ“ãƒ¼ãƒ åŒ–ã™ã‚‹ç¢ºç‡(%)
- * @param typ åŠ¹æœå±æ€§
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ³ÎÎ¨¤Ë±ş¤¸¤¿¥Ü¥ë¥È·Ï/¥Ó¡¼¥à·Ï¥¹¥Ú¥ë¤ÎÈ¯Æ° / Cast a bolt spell, or rarely, a beam spell.
+ * @param prob ¥Ó¡¼¥à²½¤¹¤ë³ÎÎ¨(%)
+ * @param typ ¸ú²ÌÂ°À­
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * Pass through monsters, as a "beam".
@@ -5035,10 +5035,10 @@ bool fire_bolt_or_beam(int prob, int typ, int dir, HIT_POINT dam)
 }
 
 /*!
- * @brief LITE_WEAKå±æ€§ã«ã‚ˆã‚‹å…‰æºãƒ“ãƒ¼ãƒ å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief LITE_WEAKÂ°À­¤Ë¤è¤ë¸÷¸»¥Ó¡¼¥à½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool lite_line(int dir, HIT_POINT dam)
 {
@@ -5047,10 +5047,10 @@ bool lite_line(int dir, HIT_POINT dam)
 }
 
 /*!
- * @brief è¡°å¼±ãƒœãƒ«ãƒˆå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¿ê¼å¥Ü¥ë¥È½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool hypodynamic_bolt(int dir, HIT_POINT dam)
 {
@@ -5059,10 +5059,10 @@ bool hypodynamic_bolt(int dir, HIT_POINT dam)
 }
 
 /*!
- * @brief å²©çŸ³æº¶è§£å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ´äÀĞÍÏ²ò½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool wall_to_mud(int dir, HIT_POINT dam)
 {
@@ -5071,9 +5071,9 @@ bool wall_to_mud(int dir, HIT_POINT dam)
 }
 
 /*!
- * @brief é­”æ³•ã®æ–½éŒ å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ËâË¡¤Î»Ü¾û½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool wizard_lock(int dir)
 {
@@ -5082,9 +5082,9 @@ bool wizard_lock(int dir)
 }
 
 /*!
- * @brief ãƒ‰ã‚¢ç ´å£Šå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥É¥¢ÇË²õ½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool destroy_door(int dir)
 {
@@ -5093,9 +5093,9 @@ bool destroy_door(int dir)
 }
 
 /*!
- * @brief ãƒˆãƒ©ãƒƒãƒ—è§£é™¤å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥È¥é¥Ã¥×²ò½ü½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool disarm_trap(int dir)
 {
@@ -5104,10 +5104,10 @@ bool disarm_trap(int dir)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å›å¾©å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param dam å¨åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼²óÉü½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param dam °ÒÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool heal_monster(int dir, HIT_POINT dam)
 {
@@ -5116,10 +5116,10 @@ bool heal_monster(int dir, HIT_POINT dam)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åŠ é€Ÿå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param power åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼²ÃÂ®½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param power ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool speed_monster(int dir, int power)
 {
@@ -5128,10 +5128,10 @@ bool speed_monster(int dir, int power)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ¸›é€Ÿå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param power åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼¸ºÂ®½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param power ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool slow_monster(int dir, int power)
 {
@@ -5140,10 +5140,10 @@ bool slow_monster(int dir, int power)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚¬çœ å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param power åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼ºÅÌ²½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param power ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool sleep_monster(int dir, int power)
 {
@@ -5152,10 +5152,10 @@ bool sleep_monster(int dir, int power)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‹˜æŸ(STASIS)å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
- * @details å¨åŠ›ã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«*2ã«å›ºå®š
+ * @brief ¥â¥ó¥¹¥¿¡¼¹´Â«(STASIS)½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @details °ÒÎÏ¤Ï¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë*2¤Ë¸ÇÄê
  */
 bool stasis_monster(int dir)
 {
@@ -5163,10 +5163,10 @@ bool stasis_monster(int dir)
 }
 
 /*!
- * @brief é‚ªæ‚ªãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‹˜æŸ(STASIS)å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
- * @details å¨åŠ›ã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«*2ã«å›ºå®š
+ * @brief ¼Ù°­¤Ê¥â¥ó¥¹¥¿¡¼¹´Â«(STASIS)½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @details °ÒÎÏ¤Ï¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë*2¤Ë¸ÇÄê
  */
 bool stasis_evil(int dir)
 {
@@ -5174,10 +5174,10 @@ bool stasis_evil(int dir)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ··ä¹±å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«(=åŠ¹åŠ›)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼º®Íğ½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë(=¸úÎÏ)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool confuse_monster(int dir, int plev)
 {
@@ -5186,10 +5186,10 @@ bool confuse_monster(int dir, int plev)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æœ¦æœ§å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«(=åŠ¹åŠ›)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼Û¯Û°½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë(=¸úÎÏ)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool stun_monster(int dir, int plev)
 {
@@ -5198,10 +5198,10 @@ bool stun_monster(int dir, int plev)
 }
 
 /*!
- * @brief ãƒã‚§ãƒ³ã‚¸ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param power åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Á¥§¥ó¥¸¥â¥ó¥¹¥¿¡¼½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param power ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool poly_monster(int dir, int power)
 {
@@ -5213,9 +5213,9 @@ bool poly_monster(int dir, int power)
 }
 
 /*!
- * @brief ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥¯¥í¡¼¥ó¥â¥ó¥¹¥¿¡¼½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool clone_monster(int dir)
 {
@@ -5224,10 +5224,10 @@ bool clone_monster(int dir)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ææ…Œå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«(=åŠ¹åŠ›)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼¶²¹²½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë(=¸úÎÏ)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool fear_monster(int dir, int plev)
 {
@@ -5236,10 +5236,10 @@ bool fear_monster(int dir, int plev)
 }
 
 /*!
- * @brief æ­»ã®å…‰ç·šå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«(åŠ¹åŠ›ã¯plev*200)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »à¤Î¸÷Àş½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë(¸úÎÏ¤Ïplev*200)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool death_ray(int dir, int plev)
 {
@@ -5248,10 +5248,10 @@ bool death_ray(int dir, int plev)
 }
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”¨ãƒ†ãƒ¬ãƒãƒ¼ãƒˆå‡¦ç†
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param distance ç§»å‹•è·é›¢
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼ÍÑ¥Æ¥ì¥İ¡¼¥È½èÍı
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param distance °ÜÆ°µ÷Î¥
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool teleport_monster(int dir, int distance)
 {
@@ -5260,8 +5260,8 @@ bool teleport_monster(int dir, int distance)
 }
 
 /*!
- * @brief ãƒ‰ã‚¢ç”Ÿæˆå‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹) / Hooks -- affect adjacent grids (radius 1 ball attack)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥É¥¢À¸À®½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹) / Hooks -- affect adjacent grids (radius 1 ball attack)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool door_creation(void)
 {
@@ -5270,10 +5270,10 @@ bool door_creation(void)
 }
 
 /*!
- * @brief ãƒˆãƒ©ãƒƒãƒ—ç”Ÿæˆå‡¦ç†(èµ·ç‚¹ã‹ã‚‰å‘¨å›²1ãƒã‚¹)
- * @param y èµ·ç‚¹Yåº§æ¨™
- * @param x èµ·ç‚¹Xåº§æ¨™
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥È¥é¥Ã¥×À¸À®½èÍı(µ¯ÅÀ¤«¤é¼ş°Ï1¥Ş¥¹)
+ * @param y µ¯ÅÀYºÂÉ¸
+ * @param x µ¯ÅÀXºÂÉ¸
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool trap_creation(int y, int x)
 {
@@ -5282,8 +5282,8 @@ bool trap_creation(int y, int x)
 }
 
 /*!
- * @brief æ£®æ—ç”Ÿæˆå‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¿¹ÎÓÀ¸À®½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool tree_creation(void)
 {
@@ -5292,8 +5292,8 @@ bool tree_creation(void)
 }
 
 /*!
- * @brief é­”æ³•ã®ãƒ«ãƒ¼ãƒ³ç”Ÿæˆå‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ËâË¡¤Î¥ë¡¼¥óÀ¸À®½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool glyph_creation(void)
 {
@@ -5302,8 +5302,8 @@ bool glyph_creation(void)
 }
 
 /*!
- * @brief å£ç”Ÿæˆå‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ÊÉÀ¸À®½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool wall_stone(void)
 {
@@ -5321,8 +5321,8 @@ bool wall_stone(void)
 }
 
 /*!
- * @brief ãƒ‰ã‚¢ç ´å£Šå‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥É¥¢ÇË²õ½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool destroy_doors_touch(void)
 {
@@ -5331,8 +5331,8 @@ bool destroy_doors_touch(void)
 }
 
 /*!
- * @brief ãƒˆãƒ©ãƒƒãƒ—è§£é™¤å‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥È¥é¥Ã¥×²ò½ü½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool disarm_traps_touch(void)
 {
@@ -5341,8 +5341,8 @@ bool disarm_traps_touch(void)
 }
 
 /*!
- * @brief ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‡¦ç†(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒã«å‘¨å›²1ãƒã‚¹)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥¹¥ê¡¼¥×¥â¥ó¥¹¥¿¡¼½èÍı(¥×¥ì¥¤¥ä¡¼Ãæ¿´¤Ë¼ş°Ï1¥Ş¥¹)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool sleep_monsters_touch(void)
 {
@@ -5352,11 +5352,11 @@ bool sleep_monsters_touch(void)
 
 
 /*!
- * @brief æ­»è€…å¾©æ´»å‡¦ç†(èµ·ç‚¹ã‚ˆã‚Šå‘¨å›²5ãƒã‚¹)
- * @param who è¡“è€…ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID(0ãªã‚‰ã°ãƒ—ãƒ¬ã‚¤ã‚„ãƒ¼)
- * @param y èµ·ç‚¹Yåº§æ¨™
- * @param x èµ·ç‚¹Xåº§æ¨™
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »à¼ÔÉü³è½èÍı(µ¯ÅÀ¤è¤ê¼ş°Ï5¥Ş¥¹)
+ * @param who ½Ñ¼Ô¥â¥ó¥¹¥¿¡¼ID(0¤Ê¤é¤Ğ¥×¥ì¥¤¤ä¡¼)
+ * @param y µ¯ÅÀYºÂÉ¸
+ * @param x µ¯ÅÀXºÂÉ¸
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool animate_dead(MONSTER_IDX who, POSITION y, POSITION x)
 {
@@ -5365,8 +5365,8 @@ bool animate_dead(MONSTER_IDX who, POSITION y, POSITION x)
 }
 
 /*!
- * @brief æ··æ²Œæ‹›æ¥å‡¦ç†
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief º®ÆÙ¾·Íè½èÍı
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 void call_chaos(void)
 {
@@ -5417,10 +5417,10 @@ void call_chaos(void)
 }
 
 /*!
- * @brief TY_CURSEå‡¦ç†ç™ºå‹• / Activate the evil Topi Ylinen curse
- * @param stop_ty å†å¸°å‡¦ç†åœæ­¢ãƒ•ãƒ©ã‚°
- * @param count ç™ºå‹•å›æ•°
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief TY_CURSE½èÍıÈ¯Æ° / Activate the evil Topi Ylinen curse
+ * @param stop_ty ºÆµ¢½èÍıÄä»ß¥Õ¥é¥°
+ * @param count È¯Æ°²ó¿ô
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  * @details
  * <pre>
  * rr9: Stop the nasty things when a Cyberdemon is summoned
@@ -5440,7 +5440,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
 		case 28: case 29:
 			if (!(*count))
 			{
-				msg_print(_("åœ°é¢ãŒæºã‚ŒãŸ...", "The ground trembles..."));
+				msg_print(_("ÃÏÌÌ¤¬ÍÉ¤ì¤¿...", "The ground trembles..."));
 				earthquake(p_ptr->y, p_ptr->x, 5 + randint0(10));
 				if (!one_in_(6)) break;
 			}
@@ -5448,26 +5448,26 @@ bool activate_ty_curse(bool stop_ty, int *count)
 			if (!(*count))
 			{
 				HIT_POINT dam = damroll(10, 10);
-				msg_print(_("ç´”ç²‹ãªé­”åŠ›ã®æ¬¡å…ƒã¸ã®æ‰‰ãŒé–‹ã„ãŸï¼", "A portal opens to a plane of raw mana!"));
+				msg_print(_("½ã¿è¤ÊËâÎÏ¤Î¼¡¸µ¤Ø¤ÎÈâ¤¬³«¤¤¤¿¡ª", "A portal opens to a plane of raw mana!"));
 				project(0, 8, p_ptr->y, p_ptr->x, dam, GF_MANA, flg, -1);
-				take_hit(DAMAGE_NOESCAPE, dam, _("ç´”ç²‹ãªé­”åŠ›ã®è§£æ”¾", "released pure mana"), -1);
+				take_hit(DAMAGE_NOESCAPE, dam, _("½ã¿è¤ÊËâÎÏ¤Î²òÊü", "released pure mana"), -1);
 				if (!one_in_(6)) break;
 			}
 		case 32: case 33:
 			if (!(*count))
 			{
-				msg_print(_("å‘¨å›²ã®ç©ºé–“ãŒæ­ªã‚“ã ï¼", "Space warps about you!"));
+				msg_print(_("¼ş°Ï¤Î¶õ´Ö¤¬ÏÄ¤ó¤À¡ª", "Space warps about you!"));
 				teleport_player(damroll(10, 10), TELEPORT_PASSIVE);
 				if (randint0(13)) (*count) += activate_hi_summon(p_ptr->y, p_ptr->x, FALSE);
 				if (!one_in_(6)) break;
 			}
 		case 34:
-			msg_print(_("ã‚¨ãƒãƒ«ã‚®ãƒ¼ã®ã†ã­ã‚Šã‚’æ„Ÿã˜ãŸï¼", "You feel a surge of energy!"));
+			msg_print(_("¥¨¥Í¥ë¥®¡¼¤Î¤¦¤Í¤ê¤ò´¶¤¸¤¿¡ª", "You feel a surge of energy!"));
 			wall_breaker();
 			if (!randint0(7))
 			{
 				project(0, 7, p_ptr->y, p_ptr->x, 50, GF_KILL_WALL, flg, -1);
-				take_hit(DAMAGE_NOESCAPE, 50, _("ã‚¨ãƒãƒ«ã‚®ãƒ¼ã®ã†ã­ã‚Š", "surge of energy"), -1);
+				take_hit(DAMAGE_NOESCAPE, 50, _("¥¨¥Í¥ë¥®¡¼¤Î¤¦¤Í¤ê", "surge of energy"), -1);
 			}
 			if (!one_in_(6)) break;
 		case 1: case 2: case 3: case 16: case 17:
@@ -5480,7 +5480,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
 			(*count) += summon_specific(0, p_ptr->y, p_ptr->x, dun_level, 0, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE | PM_NO_PET));
 			if (!one_in_(6)) break;
 		case 10: case 11: case 12:
-			msg_print(_("çµŒé¨“å€¤ãŒä½“ã‹ã‚‰å¸ã„å–ã‚‰ã‚ŒãŸæ°—ãŒã™ã‚‹ï¼", "You feel your experience draining away..."));
+			msg_print(_("·Ğ¸³ÃÍ¤¬ÂÎ¤«¤éµÛ¤¤¼è¤é¤ì¤¿µ¤¤¬¤¹¤ë¡ª", "You feel your experience draining away..."));
 			lose_exp(p_ptr->exp / 16);
 			if (!one_in_(6)) break;
 		case 13: case 14: case 15: case 19: case 20:
@@ -5490,7 +5490,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
 			}
 			else
 			{
-				msg_print(_("å½«åƒã«ãªã£ãŸæ°—åˆ†ã ï¼", "You feel like a statue!"));
+				msg_print(_("Ä¦Áü¤Ë¤Ê¤Ã¤¿µ¤Ê¬¤À¡ª", "You feel like a statue!"));
 				if (p_ptr->free_act)
 					set_paralyzed(p_ptr->paralyzed + randint1(3));
 				else
@@ -5502,7 +5502,7 @@ bool activate_ty_curse(bool stop_ty, int *count)
 			(void)do_dec_stat(randint0(6));
 			if (!one_in_(6)) break;
 		case 24:
-			msg_print(_("ã»ãˆï¼Ÿç§ã¯èª°ï¼Ÿã“ã“ã§ä½•ã—ã¦ã‚‹ï¼Ÿ", "Huh? Who am I? What am I doing here?"));
+			msg_print(_("¤Û¤¨¡©»ä¤ÏÃ¯¡©¤³¤³¤Ç²¿¤·¤Æ¤ë¡©", "Huh? Who am I? What am I doing here?"));
 			lose_all_info();
 			if (!one_in_(6)) break;
 		case 25:
@@ -5535,11 +5535,11 @@ bool activate_ty_curse(bool stop_ty, int *count)
 }
 
 /*!
- * @brief HI_SUMMON(ä¸Šç´šå¬å–š)å‡¦ç†ç™ºå‹•
- * @param y å¬å–šä½ç½®Yåº§æ¨™
- * @param x å¬å–šä½ç½®Xåº§æ¨™
- * @param can_pet ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒšãƒƒãƒˆã¨ãªã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ãªã‚‰ã°TRUEã«ã™ã‚‹
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief HI_SUMMON(¾åµé¾¤´­)½èÍıÈ¯Æ°
+ * @param y ¾¤´­°ÌÃÖYºÂÉ¸
+ * @param x ¾¤´­°ÌÃÖXºÂÉ¸
+ * @param can_pet ¥×¥ì¥¤¥ä¡¼¤Î¥Ú¥Ã¥È¤È¤Ê¤ë²ÄÇ½À­¤¬¤¢¤ë¤Ê¤é¤ĞTRUE¤Ë¤¹¤ë
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 int activate_hi_summon(POSITION y, POSITION x, bool can_pet)
 {
@@ -5624,11 +5624,11 @@ int activate_hi_summon(POSITION y, POSITION x, bool can_pet)
 
 
 /*!
- * @brief ã‚µã‚¤ãƒãƒ¼ãƒ‡ãƒ¼ãƒ¢ãƒ³ã®å¬å–š
- * @param who å¬å–šä¸»ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID(0ãªã‚‰ã°ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼)
- * @param y å¬å–šä½ç½®Yåº§æ¨™
- * @param x å¬å–šä½ç½®Xåº§æ¨™
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥µ¥¤¥Ğ¡¼¥Ç¡¼¥â¥ó¤Î¾¤´­
+ * @param who ¾¤´­¼ç¤Î¥â¥ó¥¹¥¿¡¼ID(0¤Ê¤é¤Ğ¥×¥ì¥¤¥ä¡¼)
+ * @param y ¾¤´­°ÌÃÖYºÂÉ¸
+ * @param x ¾¤´­°ÌÃÖXºÂÉ¸
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 int summon_cyber(MONSTER_IDX who, POSITION y, POSITION x)
 {
@@ -5655,8 +5655,8 @@ int summon_cyber(MONSTER_IDX who, POSITION y, POSITION x)
 }
 
 /*!
- * @brief å‘¨è¾ºç ´å£ŠåŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä¸­å¿ƒ)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¼şÊÕÇË²õ¸ú²Ì(¥×¥ì¥¤¥ä¡¼Ãæ¿´)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 void wall_breaker(void)
 {
@@ -5703,9 +5703,9 @@ void wall_breaker(void)
 
 
 /*!
- * @brief ãƒ‘ãƒ‹ãƒƒã‚¯ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Confuse monsters
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Ñ¥Ë¥Ã¥¯¡¦¥â¥ó¥¹¥¿¡¼¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Confuse monsters
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool confuse_monsters(HIT_POINT dam)
 {
@@ -5714,9 +5714,9 @@ bool confuse_monsters(HIT_POINT dam)
 
 
 /*!
- * @brief ãƒãƒ£ãƒ¼ãƒ ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Charm monsters
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Á¥ã¡¼¥à¡¦¥â¥ó¥¹¥¿¡¼¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Charm monsters
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool charm_monsters(HIT_POINT dam)
 {
@@ -5725,9 +5725,9 @@ bool charm_monsters(HIT_POINT dam)
 
 
 /*!
- * @brief å‹•ç‰©é­…äº†åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Charm Animals
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief Æ°ÊªÌ¥Î»¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Charm Animals
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool charm_animals(HIT_POINT dam)
 {
@@ -5736,9 +5736,9 @@ bool charm_animals(HIT_POINT dam)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æœ¦æœ§åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Stun monsters
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼Û¯Û°¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Stun monsters
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool stun_monsters(HIT_POINT dam)
 {
@@ -5747,9 +5747,9 @@ bool stun_monsters(HIT_POINT dam)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åœæ­¢åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Stasis monsters
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼Ää»ß¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Stasis monsters
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool stasis_monsters(HIT_POINT dam)
 {
@@ -5758,9 +5758,9 @@ bool stasis_monsters(HIT_POINT dam)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç²¾ç¥æ”»æ’ƒåŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Mindblast monsters
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼Àº¿À¹¶·â¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Mindblast monsters
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool mindblast_monsters(HIT_POINT dam)
 {
@@ -5769,9 +5769,9 @@ bool mindblast_monsters(HIT_POINT dam)
 
 
 /*!
- * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼è¿½æ”¾åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Banish all monsters
- * @param dist åŠ¹åŠ›ï¼ˆè·é›¢ï¼‰
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥â¥ó¥¹¥¿¡¼ÄÉÊü¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Banish all monsters
+ * @param dist ¸úÎÏ¡Êµ÷Î¥¡Ë
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool banish_monsters(int dist)
 {
@@ -5780,9 +5780,9 @@ bool banish_monsters(int dist)
 
 
 /*!
- * @brief é‚ªæ‚ªé€€æ•£åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Turn evil
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¼Ù°­Âà»¶¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Turn evil
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool turn_evil(HIT_POINT dam)
 {
@@ -5791,9 +5791,9 @@ bool turn_evil(HIT_POINT dam)
 
 
 /*!
- * @brief å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é€€æ•£åŠ¹æœ(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Turn everyone
- * @param dam åŠ¹åŠ›
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief Á´¥â¥ó¥¹¥¿¡¼Âà»¶¸ú²Ì(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Turn everyone
+ * @param dam ¸úÎÏ
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool turn_monsters(HIT_POINT dam)
 {
@@ -5802,8 +5802,8 @@ bool turn_monsters(HIT_POINT dam)
 
 
 /*!
- * @brief æ­»ã®å…‰ç·š(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¦–ç•Œç¯„å›²å†…) / Death-ray all monsters (note: OBSCENELY powerful)
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief »à¤Î¸÷Àş(¥×¥ì¥¤¥ä¡¼»ë³¦ÈÏ°ÏÆâ) / Death-ray all monsters (note: OBSCENELY powerful)
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool deathray_monsters(void)
 {
@@ -5811,10 +5811,10 @@ bool deathray_monsters(void)
 }
 
 /*!
- * @brief ãƒãƒ£ãƒ¼ãƒ ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼(1ä½“)
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ‘ãƒ¯ãƒ¼
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥Á¥ã¡¼¥à¡¦¥â¥ó¥¹¥¿¡¼(1ÂÎ)
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥Ñ¥ï¡¼
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool charm_monster(int dir, int plev)
 {
@@ -5823,10 +5823,10 @@ bool charm_monster(int dir, int plev)
 }
 
 /*!
- * @brief ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰æ”¯é…(1ä½“)
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ‘ãƒ¯ãƒ¼
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ¥¢¥ó¥Ç¥Ã¥É»ÙÇÛ(1ÂÎ)
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥Ñ¥ï¡¼
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool control_one_undead(int dir, int plev)
 {
@@ -5835,10 +5835,10 @@ bool control_one_undead(int dir, int plev)
 }
 
 /*!
- * @brief æ‚ªé­”æ”¯é…(1ä½“)
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ‘ãƒ¯ãƒ¼
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief °­Ëâ»ÙÇÛ(1ÂÎ)
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥Ñ¥ï¡¼
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool control_one_demon(int dir, int plev)
 {
@@ -5847,10 +5847,10 @@ bool control_one_demon(int dir, int plev)
 }
 
 /*!
- * @brief å‹•ç‰©æ”¯é…(1ä½“)
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ‘ãƒ¯ãƒ¼
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief Æ°Êª»ÙÇÛ(1ÂÎ)
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥Ñ¥ï¡¼
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool charm_animal(int dir, int plev)
 {
@@ -5859,10 +5859,10 @@ bool charm_animal(int dir, int plev)
 }
 
 /*!
- * @brief ç”Ÿç‰©æ”¯é…(1ä½“)
- * @param dir æ–¹å‘(5ãªã‚‰ã°ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° target_col/target_row ã®åº§æ¨™ã‚’ç›®æ¨™ã«ã™ã‚‹)
- * @param plev ãƒ‘ãƒ¯ãƒ¼
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief À¸Êª»ÙÇÛ(1ÂÎ)
+ * @param dir Êı¸ş(5¤Ê¤é¤Ğ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô target_col/target_row ¤ÎºÂÉ¸¤òÌÜÉ¸¤Ë¤¹¤ë)
+ * @param plev ¥Ñ¥ï¡¼
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool charm_living(int dir, int plev)
 {
@@ -5871,9 +5871,9 @@ bool charm_living(int dir, int plev)
 }
 
 /*!
- * @brief å¤‰ã‚ã‚Šèº«å‡¦ç†
- * @param success åˆ¤å®šæˆåŠŸä¸Šã®å‡¦ç†ãªã‚‰ã°TRUE
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
+ * @brief ÊÑ¤ï¤ê¿È½èÍı
+ * @param success È½ÄêÀ®¸ù¾å¤Î½èÍı¤Ê¤é¤ĞTRUE
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
  */
 bool kawarimi(bool success)
 {
@@ -5887,7 +5887,7 @@ bool kawarimi(bool success)
 
 	if (!success && one_in_(3))
 	{
-		msg_print(_("å¤±æ•—ï¼é€ƒã’ã‚‰ã‚Œãªã‹ã£ãŸã€‚", "Failed! You couldn't run away."));
+		msg_print(_("¼ºÇÔ¡ªÆ¨¤²¤é¤ì¤Ê¤«¤Ã¤¿¡£", "Failed! You couldn't run away."));
 		p_ptr->special_defense &= ~(NINJA_KAWARIMI);
 		p_ptr->redraw |= (PR_STATUS);
 		return FALSE;
@@ -5908,8 +5908,8 @@ bool kawarimi(bool success)
 	(void)drop_near(q_ptr, -1, y, x);
 
 #ifdef JP
-	if (success) msg_print("æ”»æ’ƒã‚’å—ã‘ã‚‹å‰ã«ç´ æ—©ãèº«ã‚’ã²ã‚‹ãŒãˆã—ãŸã€‚");
-	else msg_print("å¤±æ•—ï¼æ”»æ’ƒã‚’å—ã‘ã¦ã—ã¾ã£ãŸã€‚");
+	if (success) msg_print("¹¶·â¤ò¼õ¤±¤ëÁ°¤ËÁÇÁá¤¯¿È¤ò¤Ò¤ë¤¬¤¨¤·¤¿¡£");
+	else msg_print("¼ºÇÔ¡ª¹¶·â¤ò¼õ¤±¤Æ¤·¤Ş¤Ã¤¿¡£");
 #else
 	if (success) msg_print("You have turned around just before the attack hit you.");
 	else msg_print("Failed! You are hit by the attack.");
@@ -5924,9 +5924,9 @@ bool kawarimi(bool success)
 
 
 /*!
- * @brief å…¥èº«å‡¦ç† / "Rush Attack" routine for Samurai or Ninja
- * @param mdeath ç›®æ¨™ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ­»äº¡ã—ãŸã‹ã‚’è¿”ã™
- * @return ä½œç”¨ãŒå®Ÿéš›ã«ã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™ /  Return value is for checking "done"
+ * @brief Æş¿È½èÍı / "Rush Attack" routine for Samurai or Ninja
+ * @param mdeath ÌÜÉ¸¥â¥ó¥¹¥¿¡¼¤¬»àË´¤·¤¿¤«¤òÊÖ¤¹
+ * @return ºîÍÑ¤¬¼Âºİ¤Ë¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹ /  Return value is for checking "done"
  */
 bool rush_attack(bool *mdeath)
 {
@@ -5987,11 +5987,11 @@ bool rush_attack(bool *mdeath)
 		{
 			if (tm_idx)
 			{
-				msg_print(_("å¤±æ•—ï¼", "Failed!"));
+				msg_print(_("¼ºÇÔ¡ª", "Failed!"));
 			}
 			else
 			{
-				msg_print(_("ã“ã“ã«ã¯å…¥èº«ã§ã¯å…¥ã‚Œãªã„ã€‚", "You can't move to that place."));
+				msg_print(_("¤³¤³¤Ë¤ÏÆş¿È¤Ç¤ÏÆş¤ì¤Ê¤¤¡£", "You can't move to that place."));
 			}
 
 			/* Exit loop */
@@ -6010,8 +6010,8 @@ bool rush_attack(bool *mdeath)
 		if (tm_idx != cave[ny][nx].m_idx)
 		{
 #ifdef JP
-			msg_format("%s%sãŒç«‹ã¡ãµã•ãŒã£ã¦ã„ã‚‹ï¼", tm_idx ? "åˆ¥ã®" : "",
-				   m_ptr->ml ? "ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼" : "ä½•ã‹");
+			msg_format("%s%s¤¬Î©¤Á¤Õ¤µ¤¬¤Ã¤Æ¤¤¤ë¡ª", tm_idx ? "ÊÌ¤Î" : "",
+				   m_ptr->ml ? "¥â¥ó¥¹¥¿¡¼" : "²¿¤«");
 #else
 			msg_format("There is %s in the way!", m_ptr->ml ? (tm_idx ? "another monster" : "a monster") : "someone");
 #endif
@@ -6023,7 +6023,7 @@ bool rush_attack(bool *mdeath)
 
 			/* Get the monster name (BEFORE polymorphing) */
 			monster_desc(m_name, m_ptr, 0);
-			msg_format(_("ç´ æ—©ã%sã®æ‡ã«å…¥ã‚Šè¾¼ã‚“ã ï¼", "You quickly jump in and attack %s!"), m_name);
+			msg_format(_("ÁÇÁá¤¯%s¤Î²û¤ËÆş¤ê¹ş¤ó¤À¡ª", "You quickly jump in and attack %s!"), m_name);
 		}
 
 		if (!player_bold(ty, tx)) teleport_player_to(ty, tx, TELEPORT_NONMAGICAL);
@@ -6041,9 +6041,9 @@ bool rush_attack(bool *mdeath)
 
 
 /*!
- * @brief å…¨é¡ã®æ¶ˆå» / Remove all mirrors in this floor
- * @param explode çˆ†ç™ºå‡¦ç†ã‚’ä¼´ã†ãªã‚‰ã°TRUE
- * @return ãªã—
+ * @brief Á´¶À¤Î¾Ãµî / Remove all mirrors in this floor
+ * @param explode ÇúÈ¯½èÍı¤òÈ¼¤¦¤Ê¤é¤ĞTRUE
+ * @return ¤Ê¤·
  */
 void remove_all_mirrors(bool explode)
 {

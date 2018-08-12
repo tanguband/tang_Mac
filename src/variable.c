@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file variable.c
- * @brief ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®šç¾© / Angband variables
+ * @brief ¥°¥í¡¼¥Ğ¥ëÊÑ¿ôÄêµÁ / Angband variables
  * @date 2014/10/05
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke<br>
@@ -13,7 +13,7 @@
 #include "angband.h"
 
 /*!
- * ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆæƒ…å ± /
+ * ¥³¥Ô¡¼¥é¥¤¥È¾ğÊó /
  * Hack -- Link a copyright message into the executable
  */
 const cptr copyright[5] =
@@ -26,22 +26,22 @@ const cptr copyright[5] =
 };
 
 
-int max_macrotrigger = 0; /*!< ç¾åœ¨ç™»éŒ²ä¸­ã®ãƒã‚¯ãƒ­(ãƒˆãƒªã‚¬ãƒ¼)ã®æ•° */
-cptr macro_template = NULL; /*!< Angbandè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®T: ã‚¿ã‚°æƒ…å ±ã‹ã‚‰èª­ã¿è¾¼ã‚“ã é•·ã„Tã‚³ãƒ¼ãƒ‰ã‚’å‡¦ç†ã™ã‚‹ãŸã‚ã«åˆ©ç”¨ã™ã‚‹æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿ */
-cptr macro_modifier_chr; /*!< &x# ã§æŒ‡å®šã•ã‚Œã‚‹ãƒã‚¯ãƒ­ãƒˆãƒªã‚¬ãƒ¼ã«é–¢ã™ã‚‹æƒ…å ±ã‚’è¨˜éŒ²ã™ã‚‹æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿ */
-cptr macro_modifier_name[MAX_MACRO_MOD]; /*!< ãƒã‚¯ãƒ­ä¸Šã§å–ã‚Šæ‰±ã†ç‰¹æ®Šã‚­ãƒ¼ã‚’æ–‡å­—åˆ—ä¸Šã§è¡¨ç¾ã™ã‚‹ãŸã‚ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨˜éŒ²ã—ãŸæ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿é…åˆ— */
-cptr macro_trigger_name[MAX_MACRO_TRIG]; /*!< ãƒã‚¯ãƒ­ã®ãƒˆãƒªã‚¬ãƒ¼ã‚³ãƒ¼ãƒ‰ */
-cptr macro_trigger_keycode[2][MAX_MACRO_TRIG];  /*!< ãƒã‚¯ãƒ­ã®å†…å®¹ */
+int max_macrotrigger = 0; /*!< ¸½ºßÅĞÏ¿Ãæ¤Î¥Ş¥¯¥í(¥È¥ê¥¬¡¼)¤Î¿ô */
+cptr macro_template = NULL; /*!< AngbandÀßÄê¥Õ¥¡¥¤¥ë¤ÎT: ¥¿¥°¾ğÊó¤«¤éÆÉ¤ß¹ş¤ó¤ÀÄ¹¤¤T¥³¡¼¥É¤ò½èÍı¤¹¤ë¤¿¤á¤ËÍøÍÑ¤¹¤ëÊ¸»úÎó¥İ¥¤¥ó¥¿ */
+cptr macro_modifier_chr; /*!< &x# ¤Ç»ØÄê¤µ¤ì¤ë¥Ş¥¯¥í¥È¥ê¥¬¡¼¤Ë´Ø¤¹¤ë¾ğÊó¤òµ­Ï¿¤¹¤ëÊ¸»úÎó¥İ¥¤¥ó¥¿ */
+cptr macro_modifier_name[MAX_MACRO_MOD]; /*!< ¥Ş¥¯¥í¾å¤Ç¼è¤ê°·¤¦ÆÃ¼ì¥­¡¼¤òÊ¸»úÎó¾å¤ÇÉ½¸½¤¹¤ë¤¿¤á¤Î¥Õ¥©¡¼¥Ş¥Ã¥È¤òµ­Ï¿¤·¤¿Ê¸»úÎó¥İ¥¤¥ó¥¿ÇÛÎó */
+cptr macro_trigger_name[MAX_MACRO_TRIG]; /*!< ¥Ş¥¯¥í¤Î¥È¥ê¥¬¡¼¥³¡¼¥É */
+cptr macro_trigger_keycode[2][MAX_MACRO_TRIG];  /*!< ¥Ş¥¯¥í¤ÎÆâÍÆ */
 
-int level_up = 0; /*!< ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã®éš›ã«é…å»¶ã—ã¦calc_mana()é–¢æ•°ä¸Šã§ä¸Šæ˜‡é‡ã‚’è¡¨ç¤ºã™ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®šãƒ•ãƒ©ã‚° */
+int level_up = 0; /*!< ¥ì¥Ù¥ë¥¢¥Ã¥×¤Îºİ¤ËÃÙ±ä¤·¤Æcalc_mana()´Ø¿ô¾å¤Ç¾å¾ºÎÌ¤òÉ½¼¨¤¹¤ë¤«¤É¤¦¤«¤ÎÈ½Äê¥Õ¥é¥° */
 
 
 /* 
- * è‡ªå‹•æ‹¾ã„/ç ´å£Šè¨­å®šã®ãƒªã‚¹ãƒˆã«é–¢ã™ã‚‹å¤‰æ•° / List for auto-picker/destroyer entries
+ * ¼«Æ°½¦¤¤/ÇË²õÀßÄê¤Î¥ê¥¹¥È¤Ë´Ø¤¹¤ëÊÑ¿ô / List for auto-picker/destroyer entries
  */
-int max_autopick = 0; /*!< ç¾åœ¨ç™»éŒ²ã—ã¦ã„ã‚‹è‡ªå‹•æ‹¾ã„/ç ´å£Šè¨­å®šã®æ•° */
-int max_max_autopick = 0; /*!< è‡ªå‹•æ‹¾ã„/ç ´å£Šè¨­å®šã®é™ç•Œæ•° */
-autopick_type *autopick_list = NULL; /*!< è‡ªå‹•æ‹¾ã„/ç ´å£Šè¨­å®šæ§‹é€ ä½“ã®ãƒã‚¤ãƒ³ã‚¿é…åˆ— */
+int max_autopick = 0; /*!< ¸½ºßÅĞÏ¿¤·¤Æ¤¤¤ë¼«Æ°½¦¤¤/ÇË²õÀßÄê¤Î¿ô */
+int max_max_autopick = 0; /*!< ¼«Æ°½¦¤¤/ÇË²õÀßÄê¤Î¸Â³¦¿ô */
+autopick_type *autopick_list = NULL; /*!< ¼«Æ°½¦¤¤/ÇË²õÀßÄê¹½Â¤ÂÎ¤Î¥İ¥¤¥ó¥¿ÇÛÎó */
 
 /*
  * Savefile version
@@ -96,11 +96,11 @@ u32b seed_town;			/* Hack -- consistent town layout */
 
 s16b command_cmd;		/* Current "Angband Command" */
 
-COMMAND_ARG command_arg;	/*!< å„ç¨®ã‚³ãƒãƒ³ãƒ‰ã®æ±ç”¨çš„ãªå¼•æ•°ã¨ã—ã¦æ‰±ã† / Gives argument of current command */
+COMMAND_ARG command_arg;	/*!< ³Æ¼ï¥³¥Ş¥ó¥É¤ÎÈÆÍÑÅª¤Ê°ú¿ô¤È¤·¤Æ°·¤¦ / Gives argument of current command */
 
-COMMAND_NUM command_rep;	/*!< å„ç¨®ã‚³ãƒãƒ³ãƒ‰ã®æ±ç”¨çš„ãªãƒªãƒ”ãƒ¼ãƒˆæ•°ã¨ã—ã¦æ‰±ã† / Gives repetition of current command */
+COMMAND_NUM command_rep;	/*!< ³Æ¼ï¥³¥Ş¥ó¥É¤ÎÈÆÍÑÅª¤Ê¥ê¥Ô¡¼¥È¿ô¤È¤·¤Æ°·¤¦ / Gives repetition of current command */
 
-DIRECTION command_dir;		/*!< å„ç¨®ã‚³ãƒãƒ³ãƒ‰ã®æ±ç”¨çš„ãªæ–¹å‘å€¤å‡¦ç†ã¨ã—ã¦æ‰±ã†/ Gives direction of current command */
+DIRECTION command_dir;		/*!< ³Æ¼ï¥³¥Ş¥ó¥É¤ÎÈÆÍÑÅª¤ÊÊı¸şÃÍ½èÍı¤È¤·¤Æ°·¤¦/ Gives direction of current command */
 
 s16b command_see;		/* See "object1.c" */
 s16b command_wrk;		/* See "object1.c" */
@@ -116,17 +116,17 @@ GAME_TURN resting;			/* Current counter for resting, if any */
 
 POSITION cur_hgt;		/* Current dungeon height */
 POSITION cur_wid;		/* Current dungeon width */
-DEPTH dun_level;		/*!< ç¾åœ¨ã®å®Ÿãƒ€ãƒ³ã‚¸ãƒ§ãƒ³éšå±¤ã€base_levelã®å‚ç…§å…ƒã¨ãªã‚‹ / Current dungeon level */
+DEPTH dun_level;		/*!< ¸½ºß¤Î¼Â¥À¥ó¥¸¥ç¥ó³¬ÁØ¡¢base_level¤Î»²¾È¸µ¤È¤Ê¤ë / Current dungeon level */
 s16b num_repro;			/* Current reproducer count */
-DEPTH base_level;		/*!< åŸºæœ¬ç”Ÿæˆãƒ¬ãƒ™ãƒ«ã€å¾Œè¿°ã®object_level, monster_levelã®å‚ç…§å…ƒã¨ãªã‚‹ / Base dungeon level */
-DEPTH object_level;		/*!< ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆãƒ¬ãƒ™ãƒ«ã€base_levelã‚’èµ·ç‚¹ã«ä¸€æ™‚å¤‰æ›´ã™ã‚‹æ™‚ã«å‚ç…§ / Current object creation level */
-DEPTH monster_level;	/*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç”Ÿæˆãƒ¬ãƒ™ãƒ«ã€base_levelã‚’èµ·ç‚¹ã«ä¸€æ™‚å¤‰æ›´ã™ã‚‹æ™‚ã«å‚ç…§ / Current monster creation level */
-bool invoking_midnight_curse; /*!< æ‚ªå¤¢ãƒ¢ãƒ¼ãƒ‰æ™‚ã®çœŸå¤œä¸­å¤ªå¤ã®å‘ªã„ç™ºç”Ÿå‡¦ç†ãƒ•ãƒ©ã‚° */
+DEPTH base_level;		/*!< ´ğËÜÀ¸À®¥ì¥Ù¥ë¡¢¸å½Ò¤Îobject_level, monster_level¤Î»²¾È¸µ¤È¤Ê¤ë / Base dungeon level */
+DEPTH object_level;		/*!< ¥¢¥¤¥Æ¥à¤ÎÀ¸À®¥ì¥Ù¥ë¡¢base_level¤òµ¯ÅÀ¤Ë°ì»şÊÑ¹¹¤¹¤ë»ş¤Ë»²¾È / Current object creation level */
+DEPTH monster_level;	/*!< ¥â¥ó¥¹¥¿¡¼¤ÎÀ¸À®¥ì¥Ù¥ë¡¢base_level¤òµ¯ÅÀ¤Ë°ì»şÊÑ¹¹¤¹¤ë»ş¤Ë»²¾È / Current monster creation level */
+bool invoking_midnight_curse; /*!< °­Ì´¥â¡¼¥É»ş¤Î¿¿ÌëÃæÂÀ¸Å¤Î¼ö¤¤È¯À¸½èÍı¥Õ¥é¥° */
 
-GAME_TURN turn;				/*!< ç”»é¢è¡¨ç¤ºä¸Šã®ã‚²ãƒ¼ãƒ æ™‚é–“åŸºæº–ã¨ãªã‚‹ã‚¿ãƒ¼ãƒ³ / Current game turn */
-GAME_TURN turn_limit;		/*!< turnã®æœ€å¤§å€¤ / Limit of game turn */
-GAME_TURN dungeon_turn;			/*!< NASTYç”Ÿæˆã®è¨ˆç®—ã«é–¢ã‚ã‚‹å†…éƒ¨ã‚¿ãƒ¼ãƒ³å€¤ / Game turn in dungeon */
-GAME_TURN dungeon_turn_limit;	/*!< dungeon_turnã®æœ€å¤§å€¤ / Limit of game turn in dungeon */
+GAME_TURN turn;				/*!< ²èÌÌÉ½¼¨¾å¤Î¥²¡¼¥à»ş´Ö´ğ½à¤È¤Ê¤ë¥¿¡¼¥ó / Current game turn */
+GAME_TURN turn_limit;		/*!< turn¤ÎºÇÂçÃÍ / Limit of game turn */
+GAME_TURN dungeon_turn;			/*!< NASTYÀ¸À®¤Î·×»»¤Ë´Ø¤ï¤ëÆâÉô¥¿¡¼¥óÃÍ / Game turn in dungeon */
+GAME_TURN dungeon_turn_limit;	/*!< dungeon_turn¤ÎºÇÂçÃÍ / Limit of game turn in dungeon */
 GAME_TURN old_turn;			/* Turn when level began */
 GAME_TURN old_battle;
 
@@ -153,7 +153,7 @@ bool shimmer_objects;	/* Hack -- optimize multi-hued objects */
 bool repair_monsters;	/* Hack -- optimize detect monsters */
 bool repair_objects;	/* Hack -- optimize detect objects */
 
-bool is_loading_now;	/*!< ãƒ­ãƒ¼ãƒ‰ç›´å¾Œã«calc_bonus()æ™‚ã®å¾³å¤‰åŒ–ã€åŠã³sanity_blast()ã«ã‚ˆã‚‹ç•°å¸¸ã‚’æŠ‘æ­¢ã™ã‚‹ */
+bool is_loading_now;	/*!< ¥í¡¼¥ÉÄ¾¸å¤Ëcalc_bonus()»ş¤ÎÆÁÊÑ²½¡¢µÚ¤Ósanity_blast()¤Ë¤è¤ë°Û¾ï¤òÍŞ»ß¤¹¤ë */
 bool hack_mutation;
 
 s16b inven_cnt;			/* Number of items in inventory */

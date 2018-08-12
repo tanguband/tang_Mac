@@ -1,9 +1,9 @@
-ï»¿/*!
+/*!
  * @file h-type.h
- * @brief ã‚²ãƒ¼ãƒ ä¸­ã«ç”¨ã„ã‚‹å¤‰æ•°å‹å®šç¾© / Basic "types".
+ * @brief ¥²¡¼¥àÃæ¤ËÍÑ¤¤¤ëÊÑ¿ô·¿ÄêµÁ / Basic "types".
  * @date 2017/12/03
  * @author
- * ä¸æ˜(å¤‰æ„šè›®æ€’ã‚¹ã‚¿ãƒƒãƒ•ï¼Ÿ)
+ * ÉÔÌÀ(ÊÑ¶òÈÚÅÜ¥¹¥¿¥Ã¥Õ¡©)
  * @details
  * <pre>
  * Note the attempt to make all basic types have 4 letters.
@@ -41,30 +41,30 @@
 
 /*** Special 4 letter names for some standard types ***/
 
-typedef void *vptr;       /*!< voidå‹ãƒã‚¤ãƒ³ã‚¿å®šç¾© / A standard pointer (to "void" because ANSI C says so) */
-typedef const char *cptr; /*!< æ–‡å­—åˆ—å®šæ•°ç”¨ãƒã‚¤ãƒ³ã‚¿å®šç¾© / A simple pointer (to unmodifiable strings) */
-typedef double real;      /*!< doubleã‚’realå‹ã¨ã—ã¦å®šç¾© / Since float's are silly, hard code real numbers as doubles */
+typedef void *vptr;       /*!< void·¿¥İ¥¤¥ó¥¿ÄêµÁ / A standard pointer (to "void" because ANSI C says so) */
+typedef const char *cptr; /*!< Ê¸»úÎóÄê¿ôÍÑ¥İ¥¤¥ó¥¿ÄêµÁ / A simple pointer (to unmodifiable strings) */
+typedef double real;      /*!< double¤òreal·¿¤È¤·¤ÆÄêµÁ / Since float's are silly, hard code real numbers as doubles */
 
 
 /*!
- * @brief ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã®å®šç¾© / Error codes for function return values
+ * @brief ¥¨¥é¡¼¥³¡¼¥É¤ÎÄêµÁ / Error codes for function return values
  * @details
- * ä¸€èˆ¬ã«æˆåŠŸæ™‚0ã€å¤±æ•—æ™‚è² æ•°ã€ä½•ã‚‰ã‹ã®å•é¡Œæ™‚æ•´æ•°ã¨ã™ã‚‹ã€‚
+ * °ìÈÌ¤ËÀ®¸ù»ş0¡¢¼ºÇÔ»şÉé¿ô¡¢²¿¤é¤«¤ÎÌäÂê»şÀ°¿ô¤È¤¹¤ë¡£
  * Success = 0, Failure = -N, Problem = +N 
  */
 typedef int errr;
 
 #undef uint
-#define uint uint_hack /*!< éãƒãƒƒã‚­ãƒ³ãƒˆãƒƒã‚·ãƒ¥ç’°å¢ƒã§é‡è¤‡ã‚’é¿ã‘ã‚‹ãŸã‚ã®uint_hackå‹å®šç¾© / Hack -- prevent problems with non-MACINTOSH */
+#define uint uint_hack /*!< Èó¥Ş¥Ã¥­¥ó¥È¥Ã¥·¥å´Ä¶­¤Ç½ÅÊ£¤òÈò¤±¤ë¤¿¤á¤Îuint_hack·¿ÄêµÁ / Hack -- prevent problems with non-MACINTOSH */
 
 #undef huge
-#define huge huge_hack /*!< WINDOWSç’°å¢ƒã§é‡è¤‡ã‚’é¿ã‘ã‚‹ãŸã‚ã®huge_hackå®šç¾© / Hack -- prevent problems with WINDOWS */
+#define huge huge_hack /*!< WINDOWS´Ä¶­¤Ç½ÅÊ£¤òÈò¤±¤ë¤¿¤á¤Îhuge_hackÄêµÁ / Hack -- prevent problems with WINDOWS */
 
 #undef byte
-#define byte byte_hack /*!< AMIGAç’°å¢ƒã§é‡è¤‡ã‚’é¿ã‘ã‚‹ãŸã‚ã®byte_hackå®šç¾© / Hack -- prevent problems with AMIGA */
+#define byte byte_hack /*!< AMIGA´Ä¶­¤Ç½ÅÊ£¤òÈò¤±¤ë¤¿¤á¤Îbyte_hackÄêµÁ / Hack -- prevent problems with AMIGA */
 
 #undef bool
-#define bool bool_hack /*!< C++ç’°å¢ƒã§é‡è¤‡ã‚’é¿ã‘ã‚‹ãŸã‚ã®bool_hackå®šç¾© Hack -- prevent problems with C++ */
+#define bool bool_hack /*!< C++´Ä¶­¤Ç½ÅÊ£¤òÈò¤±¤ë¤¿¤á¤Îbool_hackÄêµÁ Hack -- prevent problems with C++ */
 
 
 /* Note that "signed char" is not always "defined" */
@@ -72,10 +72,10 @@ typedef int errr;
 /* A signed byte of memory */
 /* typedef signed char syte; */
 
-typedef unsigned char byte; /*!< byteå‹ã‚’unsighned charã¨ã—ã¦å®šç¾© / Note that unsigned values can cause math problems / An unsigned byte of memory */
-typedef char bool; /*!< boolå‹ã‚’charã¨ã—ã¦å®šç¾© / Note that a bool is smaller than a full "int" / Simple True/False type */
-typedef int sint; /*!< sintå‹ã‚’intã¨ã—ã¦å®šç¾© / A signed, standard integer (at least 2 bytes) */
-typedef unsigned int uint; /* uintå‹ã‚’intã¨ã—ã¦å®šç¾© /  An unsigned, "standard" integer (often pre-defined) */
+typedef unsigned char byte; /*!< byte·¿¤òunsighned char¤È¤·¤ÆÄêµÁ / Note that unsigned values can cause math problems / An unsigned byte of memory */
+typedef char bool; /*!< bool·¿¤òchar¤È¤·¤ÆÄêµÁ / Note that a bool is smaller than a full "int" / Simple True/False type */
+typedef int sint; /*!< sint·¿¤òint¤È¤·¤ÆÄêµÁ / A signed, standard integer (at least 2 bytes) */
+typedef unsigned int uint; /* uint·¿¤òint¤È¤·¤ÆÄêµÁ /  An unsigned, "standard" integer (often pre-defined) */
 
 
 /* The largest possible signed integer (pre-defined) */
@@ -103,148 +103,148 @@ typedef unsigned long u32b;
 #endif
 
 
-typedef s16b IDX;				/*!< ã‚²ãƒ¼ãƒ ä¸­ã®IDå‹ã‚’å®šç¾© */
+typedef s16b IDX;				/*!< ¥²¡¼¥àÃæ¤ÎID·¿¤òÄêµÁ */
 
-typedef s16b FEAT_IDX;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®åœ°å½¢IDå‹ã‚’å®šç¾© */
-typedef s16b FLOOR_IDX;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®åœ°å½¢IDå‹ã‚’å®šç¾© */
+typedef s16b FEAT_IDX;			/*!< ¥²¡¼¥àÃæ¤ÎÃÏ·ÁID·¿¤òÄêµÁ */
+typedef s16b FLOOR_IDX;			/*!< ¥²¡¼¥àÃæ¤ÎÃÏ·ÁID·¿¤òÄêµÁ */
 
-typedef s16b RACE_IDX;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç¨®æ—IDå‹ã‚’å®šç¾© */
-typedef s16b CLASS_IDX;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è·æ¥­IDå‹ã‚’å®šç¾© */
-typedef s16b MIMIC_RACE_IDX;	/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å¤‰èº«ç¨®æ—IDå‹ã‚’å®šç¾© */
-typedef s16b PATRON_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ‘ãƒˆãƒ­ãƒ³IDå‹ã‚’å®šç¾© */
-typedef s32b ACTION_IDX;		/*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç¾åœ¨å–ã£ã¦ã„ã‚‹å¸¸æ™‚è¡Œå‹•ã®IDå®šç¾© */
-typedef s16b BACT_IDX;			/*!< ç”ºã®æ–½è¨­å‡¦ç†ã®IDå®šç¾© */
-typedef s16b BACT_RESTRICT_IDX;	/*!< ç”ºã®æ–½è¨­å‡¦ç†ã®è¦åˆ¶å‡¦ç†IDå®šç¾© */
+typedef s16b RACE_IDX;			/*!< ¥²¡¼¥àÃæ¤Î¥×¥ì¥¤¥ä¡¼¼ïÂ²ID·¿¤òÄêµÁ */
+typedef s16b CLASS_IDX;			/*!< ¥²¡¼¥àÃæ¤Î¥×¥ì¥¤¥ä¡¼¿¦¶ÈID·¿¤òÄêµÁ */
+typedef s16b MIMIC_RACE_IDX;	/*!< ¥²¡¼¥àÃæ¤Î¥×¥ì¥¤¥ä¡¼ÊÑ¿È¼ïÂ²ID·¿¤òÄêµÁ */
+typedef s16b PATRON_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥×¥ì¥¤¥ä¡¼¥Ñ¥È¥í¥óID·¿¤òÄêµÁ */
+typedef s32b ACTION_IDX;		/*!< ¥×¥ì¥¤¥ä¡¼¤¬¸½ºß¼è¤Ã¤Æ¤¤¤ë¾ï»ş¹ÔÆ°¤ÎIDÄêµÁ */
+typedef s16b BACT_IDX;			/*!< Ä®¤Î»ÜÀß½èÍı¤ÎIDÄêµÁ */
+typedef s16b BACT_RESTRICT_IDX;	/*!< Ä®¤Î»ÜÀß½èÍı¤Îµ¬À©½èÍıIDÄêµÁ */
 
-typedef s16b MONRACE_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—IDå‹ã‚’å®šç¾© */
-typedef s16b MONSTER_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å€‹ä½“IDå‹ã‚’å®šç¾© */
-typedef s16b DUNGEON_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³IDå‹ã‚’å®šç¾© */
-typedef s16b REALM_IDX;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®é­”æ³•é ˜åŸŸIDå‹ã‚’å®šç¾© */
-typedef s16b ARTIFACT_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆIDå‹ã‚’å®šç¾© */
-typedef s16b EGO_IDX;			/*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¨ã‚´ã®IDå‹ã‚’å®šç¾© */
-typedef s16b ACTIVATION_IDX;	/*!< ã‚¢ã‚¤ãƒ†ãƒ ã®ç™ºå‹•åŠ¹æœIDå‹ã‚’å®šç¾© */
-typedef s16b VIRTUES_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®å¾³IDå‹ã‚’å®šç¾© */
-typedef s16b QUEST_IDX;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¯ã‚¨ã‚¹ãƒˆIDå‹ã‚’å®šç¾© */
-typedef byte ROOM_IDX;			/*!< éƒ¨å±‹ã®IDå‹ã‚’å®šç¾© */
+typedef s16b MONRACE_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²ID·¿¤òÄêµÁ */
+typedef s16b MONSTER_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥â¥ó¥¹¥¿¡¼¸ÄÂÎID·¿¤òÄêµÁ */
+typedef s16b DUNGEON_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥À¥ó¥¸¥ç¥óID·¿¤òÄêµÁ */
+typedef s16b REALM_IDX;			/*!< ¥²¡¼¥àÃæ¤ÎËâË¡ÎÎ°èID·¿¤òÄêµÁ */
+typedef s16b ARTIFACT_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈID·¿¤òÄêµÁ */
+typedef s16b EGO_IDX;			/*!< ¥¢¥¤¥Æ¥à¥¨¥´¤ÎID·¿¤òÄêµÁ */
+typedef s16b ACTIVATION_IDX;	/*!< ¥¢¥¤¥Æ¥à¤ÎÈ¯Æ°¸ú²ÌID·¿¤òÄêµÁ */
+typedef s16b VIRTUES_IDX;		/*!< ¥²¡¼¥àÃæ¤ÎÆÁID·¿¤òÄêµÁ */
+typedef s16b QUEST_IDX;			/*!< ¥²¡¼¥àÃæ¤Î¥¯¥¨¥¹¥ÈID·¿¤òÄêµÁ */
+typedef byte ROOM_IDX;			/*!< Éô²°¤ÎID·¿¤òÄêµÁ */
 
-typedef s16b INVENTORY_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®æ‰€æŒå“IDå‹ã‚’å®šç¾© */
-typedef s16b OBJECT_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ IDå‹ã‚’å®šç¾© */
-typedef s32b ESSENCE_IDX;		/*!< é›å†¶ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®IDå‹ */
-typedef s16b KIND_OBJECT_IDX;	/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ IDå‹ã‚’å®šç¾© */
+typedef s16b INVENTORY_IDX;		/*!< ¥²¡¼¥àÃæ¤Î½ê»ıÉÊID·¿¤òÄêµÁ */
+typedef s16b OBJECT_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥¢¥¤¥Æ¥àID·¿¤òÄêµÁ */
+typedef s32b ESSENCE_IDX;		/*!< ÃÃÌê¥¨¥Ã¥»¥ó¥¹¤ÎID·¿ */
+typedef s16b KIND_OBJECT_IDX;	/*!< ¥²¡¼¥àÃæ¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥àID·¿¤òÄêµÁ */
 
-typedef s32b POSITION;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®åº§æ¨™å‹ã‚’å®šç¾© */
-typedef s16b POSITION_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®åº§æ¨™ãƒªã‚¹ãƒˆIDå‹ */
+typedef s32b POSITION;			/*!< ¥²¡¼¥àÃæ¤ÎºÂÉ¸·¿¤òÄêµÁ */
+typedef s16b POSITION_IDX;		/*!< ¥²¡¼¥àÃæ¤ÎºÂÉ¸¥ê¥¹¥ÈID·¿ */
 
-typedef s32b ALIGNMENT;		/*!< å–„æ‚ªå±æ€§ã®å‹å®šç¾© */
-typedef byte FEAT_SUBTYPE;	/*!< åœ°å½¢æƒ…å ±ã®å‰¯å€¤ (ãƒˆãƒ©ãƒƒãƒ—ç¨®åˆ¥/ãƒ‘ã‚¿ãƒ¼ãƒ³ç¨®åˆ¥/åº—èˆ—ç¨®åˆ¥)*/
+typedef s32b ALIGNMENT;		/*!< Á±°­Â°À­¤Î·¿ÄêµÁ */
+typedef byte FEAT_SUBTYPE;	/*!< ÃÏ·Á¾ğÊó¤ÎÉûÃÍ (¥È¥é¥Ã¥×¼ïÊÌ/¥Ñ¥¿¡¼¥ó¼ïÊÌ/Å¹ÊŞ¼ïÊÌ)*/
 
 /*!
  * @var typedef s32b HIT_POINT
- * @brief HPã¨ãã®å¢—æ¸›é‡ã®å‹å®šç¾©
+ * @brief HP¤È¤½¤ÎÁı¸ºÎÌ¤Î·¿ÄêµÁ
  * @details 
- * HIT_POINTã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åŠã³ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®HPã®å„å€¤ã¨ãã®å¢—æ¸›é‡ã®å‹ã§ã‚ã‚‹ã€‚
+ * HIT_POINT¤Ï¥×¥ì¥¤¥ä¡¼µÚ¤Ó¥â¥ó¥¹¥¿¡¼¤ÎHP¤Î³ÆÃÍ¤È¤½¤ÎÁı¸ºÎÌ¤Î·¿¤Ç¤¢¤ë¡£
  */
 typedef s32b HIT_POINT;			
 
 /*!
  * @var typedef s32b MANA_POINT
- * @brief MPã¨ãã®å¢—æ¸›é‡ã®å‹å®šç¾©
+ * @brief MP¤È¤½¤ÎÁı¸ºÎÌ¤Î·¿ÄêµÁ
  * @details
- * MANA_POINTã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®MPã®å„åœ°ã¨ãã®å¢—æ¸›é‡ã®å‹ã§ã‚ã‚‹ã€‚
+ * MANA_POINT¤Ï¥×¥ì¥¤¥ä¡¼¤ÎMP¤Î³ÆÃÏ¤È¤½¤ÎÁı¸ºÎÌ¤Î·¿¤Ç¤¢¤ë¡£
  */
-typedef s32b MANA_POINT;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®MPå‹ã‚’å®šç¾© */
+typedef s32b MANA_POINT;		/*!< ¥²¡¼¥àÃæ¤ÎMP·¿¤òÄêµÁ */
 
-typedef int ARTIFACT_BIAS_IDX;  /*!< ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ãƒã‚¤ã‚¢ã‚¹å‹ */
+typedef int ARTIFACT_BIAS_IDX;  /*!< ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¥Ğ¥¤¥¢¥¹·¿ */
 
-typedef s16b HIT_PROB;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®å‘½ä¸­ä¿®æ­£å€¤ã‚’å®šç¾© */
-typedef s16b BASE_STATUS;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®åŸºç¤èƒ½åŠ›å€¤å‹ã‚’å®šç¾© */
+typedef s16b HIT_PROB;			/*!< ¥²¡¼¥àÃæ¤ÎÌ¿Ãæ½¤ÀµÃÍ¤òÄêµÁ */
+typedef s16b BASE_STATUS;		/*!< ¥²¡¼¥àÃæ¤Î´ğÁÃÇ½ÎÏÃÍ·¿¤òÄêµÁ */
 
-typedef s32b MONSTER_NUMBER;	/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ•°å‹ã‚’å®šç¾© */
-typedef s32b ITEM_NUMBER;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ æ•°å‹ã‚’å®šç¾© */
+typedef s32b MONSTER_NUMBER;	/*!< ¥²¡¼¥àÃæ¤Î¥â¥ó¥¹¥¿¡¼¿ô·¿¤òÄêµÁ */
+typedef s32b ITEM_NUMBER;		/*!< ¥²¡¼¥àÃæ¤Î¥¢¥¤¥Æ¥à¿ô·¿¤òÄêµÁ */
 
-typedef s16b ACTION_ENERGY;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®è¡Œå‹•ã‚¨ãƒãƒ«ã‚®ãƒ¼å‹ã‚’å®šç¾© */
-typedef s16b ARMOUR_CLASS;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®è¡Œå‹•ã‚¢ãƒ¼ãƒãƒ¼ã‚¯ãƒ©ã‚¹å‹ã‚’å®šç¾© */
-typedef s16b TIME_EFFECT;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®æ™‚é™æœŸé–“ã®å‹ã‚’å®šç¾© */
-typedef byte CHARACTER_IDX;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ç‰¹æ€§å„ç¨®IDã®å‹ã‚’å®šç¾© */
-typedef byte DISCOUNT_RATE;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®å€¤å¼•ãç‡ã®å‹ã‚’å®šç¾© */
-typedef byte SPEED;				/*!< ã‚²ãƒ¼ãƒ ä¸­ã®åŠ é€Ÿå€¤ã®å‹å®šç¾© */
+typedef s16b ACTION_ENERGY;		/*!< ¥²¡¼¥àÃæ¤Î¹ÔÆ°¥¨¥Í¥ë¥®¡¼·¿¤òÄêµÁ */
+typedef s16b ARMOUR_CLASS;		/*!< ¥²¡¼¥àÃæ¤Î¹ÔÆ°¥¢¡¼¥Ş¡¼¥¯¥é¥¹·¿¤òÄêµÁ */
+typedef s16b TIME_EFFECT;		/*!< ¥²¡¼¥àÃæ¤Î»ş¸Â´ü´Ö¤Î·¿¤òÄêµÁ */
+typedef byte CHARACTER_IDX;		/*!< ¥²¡¼¥àÃæ¤Î¥­¥ã¥é¥¯¥¿¡¼ÆÃÀ­³Æ¼ïID¤Î·¿¤òÄêµÁ */
+typedef byte DISCOUNT_RATE;		/*!< ¥²¡¼¥àÃæ¤ÎÃÍ°ú¤­Î¨¤Î·¿¤òÄêµÁ */
+typedef byte SPEED;				/*!< ¥²¡¼¥àÃæ¤Î²ÃÂ®ÃÍ¤Î·¿ÄêµÁ */
 
 /*!
  * @var typedef s16b ENEGRY
- * @brief è¡Œå‹•ã‚¨ãƒãƒ«ã‚®ãƒ¼ã®å‹å®šç¾©
+ * @brief ¹ÔÆ°¥¨¥Í¥ë¥®¡¼¤Î·¿ÄêµÁ
  * @details
- * ENERGYã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®è¡Œå‹•é †ã‚’å®šã‚ã‚‹è¡Œå‹•ã‚¨ãƒãƒ«ã‚®ãƒ¼ã‚’ç¤ºã™å‹å®šç¾©ã§ã‚ã‚‹ã€‚
+ * ENERGY¤Ï¥×¥ì¥¤¥ä¡¼¤È¥â¥ó¥¹¥¿¡¼¤Î¹ÔÆ°½ç¤òÄê¤á¤ë¹ÔÆ°¥¨¥Í¥ë¥®¡¼¤ò¼¨¤¹·¿ÄêµÁ¤Ç¤¢¤ë¡£
  */
-typedef s16b ENERGY;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®è¡Œå‹•ã‚¨ãƒãƒ«ã‚®ãƒ¼ã®å‹å®šç¾© */
+typedef s16b ENERGY;			/*!< ¥²¡¼¥àÃæ¤Î¹ÔÆ°¥¨¥Í¥ë¥®¡¼¤Î·¿ÄêµÁ */
 
 
-typedef s16b SLEEP_DEGREE;		/*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¡çœ åº¦ã®å‹å®šç¾© */
+typedef s16b SLEEP_DEGREE;		/*!< ¥â¥ó¥¹¥¿¡¼¤Î¿çÌ²ÅÙ¤Î·¿ÄêµÁ */
 
-typedef s16b PLAYER_LEVEL;		/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¬ãƒ™ãƒ«ã®å‹ã‚’å®šç¾© */
-typedef int DIRECTION;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®æ–¹è§’ã®å‹å®šç¾© */
-typedef s32b EXP;				/*!< ã‚²ãƒ¼ãƒ ä¸­ã®ä¸»çµŒé¨“å€¤ã®å‹å®šç¾© */
-typedef s16b SUB_EXP;			/*!< ã‚²ãƒ¼ãƒ ä¸­ã®å‰¯çµŒé¨“å€¤ã®å‹å®šç¾© */
-typedef s16b TERM_COLOR;		/*!< ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºè‰²ã®å‹å®šç¾© */
+typedef s16b PLAYER_LEVEL;		/*!< ¥²¡¼¥àÃæ¤Î¥×¥ì¥¤¥ä¡¼¥ì¥Ù¥ë¤Î·¿¤òÄêµÁ */
+typedef int DIRECTION;			/*!< ¥²¡¼¥àÃæ¤ÎÊı³Ñ¤Î·¿ÄêµÁ */
+typedef s32b EXP;				/*!< ¥²¡¼¥àÃæ¤Î¼ç·Ğ¸³ÃÍ¤Î·¿ÄêµÁ */
+typedef s16b SUB_EXP;			/*!< ¥²¡¼¥àÃæ¤ÎÉû·Ğ¸³ÃÍ¤Î·¿ÄêµÁ */
+typedef s16b TERM_COLOR;		/*!< ¥Æ¥­¥¹¥ÈÉ½¼¨¿§¤Î·¿ÄêµÁ */
 
-typedef s32b OBJECT_TYPE_VALUE;    /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ä¸»åˆ†é¡ã®å‹å®šç¾© */
-typedef s32b OBJECT_SUBTYPE_VALUE; /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ å‰¯åˆ†é¡ã®å‹å®šç¾© */
-typedef s16b PARAMETER_VALUE;      /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ èƒ½åŠ›å€¤ã®å‹å®šç¾© */
-typedef s32b WEIGHT;               /*!< ã‚²ãƒ¼ãƒ ä¸­ã®é‡é‡ã®å‹å®šç¾©(ãƒãƒ³ãƒ‰) */
+typedef s32b OBJECT_TYPE_VALUE;    /*!< ¥²¡¼¥àÃæ¤Î¥¢¥¤¥Æ¥à¼çÊ¬Îà¤Î·¿ÄêµÁ */
+typedef s32b OBJECT_SUBTYPE_VALUE; /*!< ¥²¡¼¥àÃæ¤Î¥¢¥¤¥Æ¥àÉûÊ¬Îà¤Î·¿ÄêµÁ */
+typedef s16b PARAMETER_VALUE;      /*!< ¥²¡¼¥àÃæ¤Î¥¢¥¤¥Æ¥àÇ½ÎÏÃÍ¤Î·¿ÄêµÁ */
+typedef s32b WEIGHT;               /*!< ¥²¡¼¥àÃæ¤Î½ÅÎÌ¤Î·¿ÄêµÁ(¥İ¥ó¥É) */
 
-typedef int DICE_NUMBER; /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ€ã‚¤ã‚¹æ•°ã®å‹å®šç¾© */
-typedef int DICE_SID;    /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ€ã‚¤ã‚¹é¢ã®å‹å®šç¾© */
-typedef s32b PRICE;      /*!< ã‚²ãƒ¼ãƒ ä¸­ã®é‡‘é¡ä¾¡å€¤ã®å‹å®šç¾© */
-typedef s16b FEED;       /*!< ã‚²ãƒ¼ãƒ ä¸­ã®æ»‹é¤Šåº¦ã®å‹å®šç¾© */
+typedef int DICE_NUMBER; /*!< ¥²¡¼¥àÃæ¤Î¥À¥¤¥¹¿ô¤Î·¿ÄêµÁ */
+typedef int DICE_SID;    /*!< ¥²¡¼¥àÃæ¤Î¥À¥¤¥¹ÌÌ¤Î·¿ÄêµÁ */
+typedef s32b PRICE;      /*!< ¥²¡¼¥àÃæ¤Î¶â³Û²ÁÃÍ¤Î·¿ÄêµÁ */
+typedef s16b FEED;       /*!< ¥²¡¼¥àÃæ¤Î¼¢ÍÜÅÙ¤Î·¿ÄêµÁ */
 
-typedef u32b STR_OFFSET;      /*!< ãƒ†ã‚­ã‚¹ãƒˆã‚ªãƒ•ã‚»ãƒƒãƒˆã®å‹å®šç¾© */
+typedef u32b STR_OFFSET;      /*!< ¥Æ¥­¥¹¥È¥ª¥Õ¥»¥Ã¥È¤Î·¿ÄêµÁ */
 
-typedef s32b DEPTH;     /*!< ã‚²ãƒ¼ãƒ ä¸­ã®éšå±¤ãƒ¬ãƒ™ãƒ«ã®å‹å®šç¾© */
-typedef byte RARITY;    /*!< ã‚²ãƒ¼ãƒ ä¸­ã®å¸Œå°‘åº¦ã®å‹å®šç¾© */
+typedef s32b DEPTH;     /*!< ¥²¡¼¥àÃæ¤Î³¬ÁØ¥ì¥Ù¥ë¤Î·¿ÄêµÁ */
+typedef byte RARITY;    /*!< ¥²¡¼¥àÃæ¤Î´õ¾¯ÅÙ¤Î·¿ÄêµÁ */
 
-typedef s32b GAME_TURN;     /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ã‚¿ãƒ¼ãƒ³ã®å‹å®šç¾© */
-typedef u32b REAL_TIME;     /*!< å®Ÿæ™‚åˆ»ã®å‹å®šç¾© */
+typedef s32b GAME_TURN;     /*!< ¥²¡¼¥àÃæ¤Î¥¿¡¼¥ó¤Î·¿ÄêµÁ */
+typedef u32b REAL_TIME;     /*!< ¼Â»ş¹ï¤Î·¿ÄêµÁ */
 
-typedef s16b PERCENTAGE;    /*!< ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆè¡¨è¨˜ã®å‹å®šç¾©(/100å€) */
-typedef s16b MULTIPLY;      /*!< ã‚²ãƒ¼ãƒ ä¸­ã®å€ç‡ã®å‹å®šç¾©(/10å€) */
+typedef s16b PERCENTAGE;    /*!< ¥²¡¼¥àÃæ¤Î¥Ñ¡¼¥»¥ó¥ÈÉ½µ­¤Î·¿ÄêµÁ(/100ÇÜ) */
+typedef s16b MULTIPLY;      /*!< ¥²¡¼¥àÃæ¤ÎÇÜÎ¨¤Î·¿ÄêµÁ(/10ÇÜ) */
 
-typedef u32b BIT_FLAGS;     /*!< 32ãƒ“ãƒƒãƒˆã®ãƒ•ãƒ©ã‚°é…åˆ—ã®å‹å®šç¾© */
-typedef u16b BIT_FLAGS16;   /*!< 16ãƒ“ãƒƒãƒˆã®ãƒ•ãƒ©ã‚°é…åˆ—ã®å‹å®šç¾© */
-typedef byte BIT_FLAGS8;    /*!< 8ãƒ“ãƒƒãƒˆã®ãƒ•ãƒ©ã‚°é…åˆ—ã®å‹å®šç¾© */
+typedef u32b BIT_FLAGS;     /*!< 32¥Ó¥Ã¥È¤Î¥Õ¥é¥°ÇÛÎó¤Î·¿ÄêµÁ */
+typedef u16b BIT_FLAGS16;   /*!< 16¥Ó¥Ã¥È¤Î¥Õ¥é¥°ÇÛÎó¤Î·¿ÄêµÁ */
+typedef byte BIT_FLAGS8;    /*!< 8¥Ó¥Ã¥È¤Î¥Õ¥é¥°ÇÛÎó¤Î·¿ÄêµÁ */
 
-typedef s16b XTRA16;     /*!< æ±ç”¨å¤‰æ•°16ãƒ“ãƒƒãƒˆã®å‹å®šç¾© */
-typedef byte XTRA8;      /*!< æ±ç”¨å¤‰æ•°8ãƒ“ãƒƒãƒˆã®å‹å®šç¾© */
+typedef s16b XTRA16;     /*!< ÈÆÍÑÊÑ¿ô16¥Ó¥Ã¥È¤Î·¿ÄêµÁ */
+typedef byte XTRA8;      /*!< ÈÆÍÑÊÑ¿ô8¥Ó¥Ã¥È¤Î·¿ÄêµÁ */
 
-typedef s16b COMMAND_CODE;   /*!< ã‚³ãƒãƒ³ãƒ‰å†…å®¹ã®å‹å®šç¾© */
-typedef s16b COMMAND_ARG;	 /*!< ã‚³ãƒãƒ³ãƒ‰å¼•æ•°ã®å‹å®šç¾© */
-typedef s16b COMMAND_NUM;	 /*!< ã‚³ãƒãƒ³ãƒ‰æ•°ã®å‹å®šç¾© */
+typedef s16b COMMAND_CODE;   /*!< ¥³¥Ş¥ó¥ÉÆâÍÆ¤Î·¿ÄêµÁ */
+typedef s16b COMMAND_ARG;	 /*!< ¥³¥Ş¥ó¥É°ú¿ô¤Î·¿ÄêµÁ */
+typedef s16b COMMAND_NUM;	 /*!< ¥³¥Ş¥ó¥É¿ô¤Î·¿ÄêµÁ */
 
-typedef int TERM_POSITION;   /*!< ã‚³ãƒ³ã‚½ãƒ¼ãƒ«è¡¨ç¤ºåº§æ¨™ã®å‹å®šç¾© */
-typedef byte SYMBOL_COLOR;    /*!< ã‚­ãƒ£ãƒ©ã®è‰²ã®å‹å®šç¾© */
-typedef byte SYMBOL_CODE;     /*!< ã‚­ãƒ£ãƒ©ã®æ–‡å­—ã®å‹å®šç¾© */
+typedef int TERM_POSITION;   /*!< ¥³¥ó¥½¡¼¥ëÉ½¼¨ºÂÉ¸¤Î·¿ÄêµÁ */
+typedef byte SYMBOL_COLOR;    /*!< ¥­¥ã¥é¤Î¿§¤Î·¿ÄêµÁ */
+typedef byte SYMBOL_CODE;     /*!< ¥­¥ã¥é¤ÎÊ¸»ú¤Î·¿ÄêµÁ */
 
-typedef s32b MAGIC_NUM1;   /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ±ç”¨é­”æ³•æƒ…å ±é…åˆ—1ã®å‹å®šç¾©*/
-typedef byte MAGIC_NUM2;   /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ±ç”¨é­”æ³•æƒ…å ±é…åˆ—2ã®å‹å®šç¾©*/
+typedef s32b MAGIC_NUM1;   /*!< ¥×¥ì¥¤¥ä¡¼¤ÎÈÆÍÑËâË¡¾ğÊóÇÛÎó1¤Î·¿ÄêµÁ*/
+typedef byte MAGIC_NUM2;   /*!< ¥×¥ì¥¤¥ä¡¼¤ÎÈÆÍÑËâË¡¾ğÊóÇÛÎó2¤Î·¿ÄêµÁ*/
 
-typedef s32b SPELL_IDX;    /*!< å„é­”æ³•é ˜åŸŸ/è·æ¥­èƒ½åŠ›ã”ã¨ã®å‘ªæ–‡IDå‹å®šç¾© */
-typedef s16b PROB;         /*!< ç¢ºç‡ã®é‡ã¿ã®å‹å®šç¾© */
-typedef byte FEAT_POWER;   /*!< åœ°å½¢å¼·åº¦ã®å‹å®šç¾© */
+typedef s32b SPELL_IDX;    /*!< ³ÆËâË¡ÎÎ°è/¿¦¶ÈÇ½ÎÏ¤´¤È¤Î¼öÊ¸ID·¿ÄêµÁ */
+typedef s16b PROB;         /*!< ³ÎÎ¨¤Î½Å¤ß¤Î·¿ÄêµÁ */
+typedef byte FEAT_POWER;   /*!< ÃÏ·Á¶¯ÅÙ¤Î·¿ÄêµÁ */
 
-typedef int QUANTITY; /*!< ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ä¸Šã®æŒ‡å®šå€‹æ•° */
+typedef int QUANTITY; /*!< ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¾å¤Î»ØÄê¸Ä¿ô */
 
-typedef byte BLOW_METHOD; /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒæ‰‹æ®µID */
-typedef byte BLOW_EFFECT; /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒåŠ¹æœID */
+typedef byte BLOW_METHOD; /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·â¼êÃÊID */
+typedef byte BLOW_EFFECT; /*!< ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·â¸ú²ÌID */
 
-typedef int EFFECT_ID; /*!< åŠ¹æœå±æ€§ID */
+typedef int EFFECT_ID; /*!< ¸ú²ÌÂ°À­ID */
 
-typedef s16b QUEST_TYPE;   /*!< ã‚¯ã‚¨ã‚¹ãƒˆã®ç¨®åˆ¥ID */
-typedef s16b QUEST_STATUS; /*!< ã‚¯ã‚¨ã‚¹ãƒˆã®çŠ¶æ…‹ID */
+typedef s16b QUEST_TYPE;   /*!< ¥¯¥¨¥¹¥È¤Î¼ïÊÌID */
+typedef s16b QUEST_STATUS; /*!< ¥¯¥¨¥¹¥È¤Î¾õÂÖID */
 
-typedef s16b ACTION_SKILL_POWER; /*!< è¡Œå‹•æŠ€èƒ½å€¤ */
+typedef s16b ACTION_SKILL_POWER; /*!< ¹ÔÆ°µ»Ç½ÃÍ */
 
-typedef int PET_COMMAND_IDX; /*!< ãƒšãƒƒãƒˆã¸ã®æŒ‡ç¤ºID */
-typedef byte FF_FLAGS_IDX;   /*!< åœ°å½¢ç‰¹æ€§ID */
+typedef int PET_COMMAND_IDX; /*!< ¥Ú¥Ã¥È¤Ø¤Î»Ø¼¨ID */
+typedef byte FF_FLAGS_IDX;   /*!< ÃÏ·ÁÆÃÀ­ID */
 
-typedef s16b FEAT_PRIORITY; /*!< åœ°å½¢ã®ç¸®å°è¡¨ç¤ºå„ªå…ˆé †ä½ */
+typedef s16b FEAT_PRIORITY; /*!< ÃÏ·Á¤Î½Ì¾®É½¼¨Í¥Àè½ç°Ì */
 
 /*** Pointers to all the basic types defined above ***/
 

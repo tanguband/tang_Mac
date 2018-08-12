@@ -1,6 +1,6 @@
-ï»¿/*!
+/*!
  * @file streams.c
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆã«åˆ©ç”¨ã™ã‚‹é–¢æ•°ç¾¤ / Used by dungeon generation.
+ * @brief ¥À¥ó¥¸¥ç¥óÀ¸À®¤ËÍøÍÑ¤¹¤ë´Ø¿ô·² / Used by dungeon generation.
  * @date 2014/07/15
  * @author
  * <pre>
@@ -22,16 +22,16 @@
 
 
 /*!
- * @brief å†å¸°ãƒ•ãƒ©ã‚¯ã‚¿ãƒ«ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ ã«ã‚ˆã‚Šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å†…ã«å·ã‚’é…ç½®ã™ã‚‹ /
+ * @brief ºÆµ¢¥Õ¥é¥¯¥¿¥ë¥¢¥ë¥´¥ê¥º¥à¤Ë¤è¤ê¥À¥ó¥¸¥ç¥óÆâ¤ËÀî¤òÇÛÃÖ¤¹¤ë /
  * Recursive fractal algorithm to place water through the dungeon.
- * @param x1 èµ·ç‚¹xåº§æ¨™
- * @param y1 èµ·ç‚¹yåº§æ¨™
- * @param x2 çµ‚ç‚¹xåº§æ¨™
- * @param y2 çµ‚ç‚¹yåº§æ¨™
- * @param feat1 ä¸­å¤®éƒ¨åœ°å½¢ID
- * @param feat2 å¢ƒç•Œéƒ¨åœ°å½¢ID
- * @param width åŸºæœ¬å¹…
- * @return ãªã—
+ * @param x1 µ¯ÅÀxºÂÉ¸
+ * @param y1 µ¯ÅÀyºÂÉ¸
+ * @param x2 ½ªÅÀxºÂÉ¸
+ * @param y2 ½ªÅÀyºÂÉ¸
+ * @param feat1 Ãæ±ûÉôÃÏ·ÁID
+ * @param feat2 ¶­³¦ÉôÃÏ·ÁID
+ * @param width ´ğËÜÉı
+ * @return ¤Ê¤·
  */
 static void recursive_river(int x1, int y1, int x2, int y2, IDX feat1, IDX feat2, int width)
 {
@@ -149,11 +149,11 @@ static void recursive_river(int x1, int y1, int x2, int y2, IDX feat1, IDX feat2
 
 
 /*!
- * @brief ãƒ©ãƒ³ãƒ€ãƒ ã«å·/æº¶å²©æµã‚’ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«é…ç½®ã™ã‚‹ /
+ * @brief ¥é¥ó¥À¥à¤ËÀî/ÍÏ´äÎ®¤ò¥À¥ó¥¸¥ç¥ó¤ËÇÛÃÖ¤¹¤ë /
  * Places water /lava through dungeon.
- * @param feat1 ä¸­å¤®éƒ¨åœ°å½¢ID
- * @param feat2 å¢ƒç•Œéƒ¨åœ°å½¢ID
- * @return ãªã—
+ * @param feat1 Ãæ±ûÉôÃÏ·ÁID
+ * @param feat2 ¶­³¦ÉôÃÏ·ÁID
+ * @return ¤Ê¤·
  */
 void add_river(IDX feat1, IDX feat2)
 {
@@ -213,11 +213,11 @@ void add_river(IDX feat1, IDX feat2)
 
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®å£éƒ¨ã«ã‚¹ãƒˆãƒªãƒ¼ãƒãƒ¼ï¼ˆåœ°è³ªã®å¤‰åŒ–ï¼‰ã‚’ä¸ãˆã‚‹ /
+ * @brief ¥À¥ó¥¸¥ç¥ó¤ÎÊÉÉô¤Ë¥¹¥È¥ê¡¼¥Ş¡¼¡ÊÃÏ¼Á¤ÎÊÑ²½¡Ë¤òÍ¿¤¨¤ë /
  * Places "streamers" of rock through dungeon
- * @param feat ã‚¹ãƒˆãƒªãƒ¼ãƒãƒ¼åœ°å½¢ID
- * @param chance ç”Ÿæˆå¯†åº¦
- * @return ãªã—
+ * @param feat ¥¹¥È¥ê¡¼¥Ş¡¼ÃÏ·ÁID
+ * @param chance À¸À®Ì©ÅÙ
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * Note that their are actually six different terrain features used
@@ -312,7 +312,7 @@ void build_streamer(IDX feat, int chance)
 							char o_name[MAX_NLEN];
 							object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
 #ifdef JP
-							msg_format("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ  (%s) ã¯ã‚¹ãƒˆãƒªãƒ¼ãƒãƒ¼ã«ã‚ˆã‚Šå‰Šé™¤ã•ã‚ŒãŸã€‚", o_name);
+							msg_format("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à (%s) ¤Ï¥¹¥È¥ê¡¼¥Ş¡¼¤Ë¤è¤êºï½ü¤µ¤ì¤¿¡£", o_name);
 #else
 							msg_format("Artifact (%s) was deleted by streamer.", o_name);
 #endif
@@ -321,7 +321,7 @@ void build_streamer(IDX feat, int chance)
 					else if (cheat_peek && o_ptr->art_name)
 					{
 #ifdef JP
-						msg_print("ãƒ©ãƒ³ãƒ€ãƒ ãƒ»ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®1ã¤ã¯ã‚¹ãƒˆãƒªãƒ¼ãƒãƒ¼ã«ã‚ˆã‚Šå‰Šé™¤ã•ã‚ŒãŸã€‚");
+						msg_print("¥é¥ó¥À¥à¡¦¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î1¤Ä¤Ï¥¹¥È¥ê¡¼¥Ş¡¼¤Ë¤è¤êºï½ü¤µ¤ì¤¿¡£");
 #else
 						msg_print("One of the random artifacts was deleted by streamer.");
 #endif
@@ -357,7 +357,7 @@ void build_streamer(IDX feat, int chance)
 
 		if (dummy >= SAFE_MAX_ATTEMPTS)
 		{
-			msg_print_wizard(CHEAT_DUNGEON, _("åœ°å½¢ã®ã‚¹ãƒˆãƒªãƒ¼ãƒãƒ¼å‡¦ç†ã«å¤±æ•—ã—ã¾ã—ãŸã€‚", "Failed to place streamer."));
+			msg_print_wizard(CHEAT_DUNGEON, _("ÃÏ·Á¤Î¥¹¥È¥ê¡¼¥Ş¡¼½èÍı¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£", "Failed to place streamer."));
 			return;
 		}
 
@@ -378,11 +378,11 @@ void build_streamer(IDX feat, int chance)
 
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®æŒ‡å®šä½ç½®è¿‘è¾ºã«æ£®æ—ã‚’é…ç½®ã™ã‚‹ /
+ * @brief ¥À¥ó¥¸¥ç¥ó¤Î»ØÄê°ÌÃÖ¶áÊÕ¤Ë¿¹ÎÓ¤òÇÛÃÖ¤¹¤ë /
  * Places "streamers" of rock through dungeon
- * @param x æŒ‡å®šXåº§æ¨™
- * @param y æŒ‡å®šYåº§æ¨™
- * @return ãªã—
+ * @param x »ØÄêXºÂÉ¸
+ * @param y »ØÄêYºÂÉ¸
+ * @return ¤Ê¤·
  * @details
  * <pre>
  * Put trees near a hole in the dungeon roof  (rubble on ground + up stairway)
@@ -441,16 +441,16 @@ void place_trees(POSITION x, POSITION y)
 
 
 /*!
- * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã«ï¼Šç ´å£Šï¼Šæ¸ˆã¿åœ°å½¢ãƒ©ãƒ³ãƒ€ãƒ ã«æ–½ã™ /
+ * @brief ¥À¥ó¥¸¥ç¥ó¤Ë¡öÇË²õ¡öºÑ¤ßÃÏ·Á¥é¥ó¥À¥à¤Ë»Ü¤¹ /
  * Build a destroyed level
- * @return ãªã—
+ * @return ¤Ê¤·
  */
 void destroy_level(void)
 {
 	int y1, x1, n;
 
 	/* Note destroyed levels */
-	msg_print_wizard(CHEAT_DUNGEON, _("éšã«*ç ´å£Š*ã®ç—•è·¡ã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "Destroyed Level."));
+	msg_print_wizard(CHEAT_DUNGEON, _("³¬¤Ë*ÇË²õ*¤Îº¯À×¤òÀ¸À®¤·¤Ş¤·¤¿¡£", "Destroyed Level."));
 
 	/* Drop a few epi-centers (usually about two) */
 	for (n = 0; n < randint1(5); n++)

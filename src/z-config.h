@@ -1,4 +1,4 @@
-ï»¿/* File: z-config.h */
+/* File: z-config.h */
 
 /*
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
@@ -185,44 +185,44 @@
 #ifdef USE_DEBUG
 
 /*!
- * @brief ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã¸ã®ç§»è¡Œã‚’è¨±å¯ã™ã‚‹ / OPTION: Hack -- Compile in support for "Wizard Commands"
+ * @brief ¥¦¥£¥¶¡¼¥É¥â¡¼¥É¤Ø¤Î°Ü¹Ô¤òµö²Ä¤¹¤ë / OPTION: Hack -- Compile in support for "Wizard Commands"
  */
 #define ALLOW_WIZARD
 
 /*!
- * @brief ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã‚’è¨±å¯ã™ã‚‹ / OPTION: Hack -- Compile in support for "Spoiler Generation"
+ * @brief ¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤òµö²Ä¤¹¤ë / OPTION: Hack -- Compile in support for "Spoiler Generation"
  */
 #define ALLOW_SPOILERS
 
 #endif /* USE_DEBUG */
 
 /*!
- * @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®è‰²å¤‰æ›´æ©Ÿèƒ½ã‚’ä»˜åŠ ã™ã‚‹ / OPTION: Allow "do_cmd_colors" at run-time
+ * @brief ¥­¥ã¥é¥¯¥¿¡¼¤Î¿§ÊÑ¹¹µ¡Ç½¤òÉÕ²Ã¤¹¤ë / OPTION: Allow "do_cmd_colors" at run-time
  */
 #define ALLOW_COLORS
 
 /*!
- * @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚·ãƒ³ãƒœãƒ«å¤‰æ›´æ©Ÿèƒ½ã‚’ä»˜åŠ ã™ã‚‹ / OPTION: Allow "do_cmd_visuals" at run-time
+ * @brief ¥­¥ã¥é¥¯¥¿¡¼¤Î¥·¥ó¥Ü¥ëÊÑ¹¹µ¡Ç½¤òÉÕ²Ã¤¹¤ë / OPTION: Allow "do_cmd_visuals" at run-time
  */
 #define ALLOW_VISUALS
 
 /*!
- * @brief ãƒã‚¯ãƒ­æ©Ÿèƒ½ã‚’ä»˜åŠ ã™ã‚‹ / OPTION: Allow "do_cmd_macros" at run-time
+ * @brief ¥Ş¥¯¥íµ¡Ç½¤òÉÕ²Ã¤¹¤ë / OPTION: Allow "do_cmd_macros" at run-time
  */
 #define ALLOW_MACROS
 
 /*!
- * @brief ã‚ªãƒ¼ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼æ©Ÿèƒ½ã‚’ä»˜åŠ ã™ã‚‹ / OPTION: Allow characteres to be "auto-rolled"
+ * @brief ¥ª¡¼¥È¥í¡¼¥é¡¼µ¡Ç½¤òÉÕ²Ã¤¹¤ë / OPTION: Allow characteres to be "auto-rolled"
  */
 #define ALLOW_AUTOROLLER
 
 /*!
- * @brief ä¸€å®šä»¥ä¸Šã®ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒææ€–ã—ã¦é€ƒèµ°ã™ã‚‹ / OPTION: Allow monsters to "flee" when hit hard
+ * @brief °ìÄê°Ê¾å¤Î¥À¥á¡¼¥¸¤ò¼õ¤±¤¿¥â¥ó¥¹¥¿¡¼¤¬¶²Éİ¤·¤ÆÆ¨Áö¤¹¤ë / OPTION: Allow monsters to "flee" when hit hard
  */
 #define ALLOW_FEAR
 
 /*!
- * @brief ä¸€å®šä»¥ä¸Šã®ãƒ¬ãƒ™ãƒ«ã‚’æŒã£ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç›¸æ‰‹ãªã‚‰ã°ã€å¼±ã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¯é€ƒã’å‡ºã™/ OPTION: Allow monsters to "flee" from strong players
+ * @brief °ìÄê°Ê¾å¤Î¥ì¥Ù¥ë¤ò»ı¤Ã¤¿¥×¥ì¥¤¥ä¡¼¤¬Áê¼ê¤Ê¤é¤Ğ¡¢¼å¤¤¥â¥ó¥¹¥¿¡¼¤ÏÆ¨¤²½Ğ¤¹/ OPTION: Allow monsters to "flee" from strong players
  */
 #define ALLOW_TERROR
 
