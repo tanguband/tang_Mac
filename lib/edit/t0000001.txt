@@ -420,16 +420,11 @@ F:@:FLOOR:3:0:0:0:215
 F:a:BUILDING_0:3
 F:@:FLOOR:3:0:0:0:33
 
-# Quest 27 rewarding (Priest and ForceTrainer
+# Quest 27 rewarding (Priest, Bard and ForceTrainer
 # get The Palantir of Westernesse)
-?:[AND [EQU $QUEST27 3] [EQU $CLASS Priest ForceTrainer] ]
+?:[AND [EQU $QUEST27 3] [EQU $CLASS Priest Bard ForceTrainer] ]
 F:a:BUILDING_0:3
 F:@:FLOOR:3:0:0:0:15
-
-# Quest 27 rewarding (Bard get Harp of Robinton, the masterharper)
-?:[AND [EQU $QUEST27 3] [EQU $CLASS Bard ] ]
-F:a:BUILDING_0:3
-F:@:FLOOR:3:0:0:0:251
 
 # Quest 27 rewarding (Mirror-Master gets The Jewel Encrusted Crown of Numenor)
 ?:[AND [EQU $QUEST27 3] [EQU $CLASS Mirror-Master] ]
@@ -485,7 +480,7 @@ F:a:BUILDING_0:3
 ############### Buildings ###############
 
 B:$0:N:The White Horse Inn:Otick:Human
-B:0:N:旅の宿『白馬亭』:オティック:人間
+B:0:N:宿『＠の溜まり場』:イルリル:クター
 B:$0:A:0:Rest for the night:20:20:r:17:0
 B:0:A:0:一泊する:20:20:r:17:0
 B:$0:A:1:buy Food and drink:1:1:f:18:1
@@ -500,12 +495,57 @@ B:$0:R:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:0:0:0:0:0:1:1:0:1:0:1:1:1:0
 B:0:R:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:1:0:0:0:0:0:1:1:0:1:0:1:1:1:0
 
 B:$1:N:Mayor:Uldrik:Human
-B:1:N:村長:ウルドリック:人間
+B:1:N:村長:ナヴェスン:ハイ=エルフ
 B:$1:A:0:Request quest:0:0:q:6:0
 B:1:A:0:クエスト:0:0:q:6:0
-B:$1:A:1:Identify item:100:100:i:44:0
-B:1:A:1:アイテム鑑定:100:100:i:44:0
+B:$1:A:1:Research item:1000:1000:a:1:0
+B:1:A:1:アイテム調査:300:300:a:1:0
 
+#j
+B:$9:N:Beastmaster:Draxle:Draconian
+B:9:N:魔獣使い:ドラクスル:ホビット
+B:$9:A:0:Research monster:1500:1500:r:20:0
+B:9:A:0:モンスター調査:1500:1500:r:20:0
+B:$9:C:0:0:0:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0
+B:9:C:0:0:0:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0
+
+#k
+B:$10:N:Fighters Hall:Hjolgar:Barbarian
+B:10:N:鍛冶師:ヒョルガー:ダークエルフ
+B:$10:A:0:Enchant weapon:400:800:w:23:0
+B:10:A:0:武器を強化する:400:800:w:23:0
+B:$10:A:1:Enchant armor:300:600:a:24:0
+B:10:A:1:防具を強化する:300:600:a:24:0
+B:$10:A:2:Enchant missiles:20:40:m:30:0
+B:10:A:2:矢や石等を強化する:20:40:m:30:0
+B:$10:A:3:Enchant bow:400:800:b:31:0
+B:10:A:3:弓を強化する:400:800:b:31:0
+B:$10:C:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2:0:0:2:2:2:0:0:0
+B:10:C:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2:0:0:2:2:2:0:0:0
+
+#l
+B:$11:N:Inner Temple:Eldore:Human
+B:11:N:プリースト:ラビエル:アルコン
+B:$11:A:0:Healing prayer:0:100:h:28:0
+B:11:A:0:治療の祈祷:0:100:h:28:0
+B:$11:A:1:Restoration:300:1000:r:29:0
+B:11:A:1:能力回復:300:1000:r:29:0
+#B:$11:C:0:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0
+#B:11:C:0:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0
+
+#m
+B:$12:N:Trump Tower:Pelloi:Amberite
+B:12:N:トランプ魔術師:ペロイ:アンバライト
+B:$12:A:0:Recall to dungeon:100:200:r:33:0
+B:12:A:0:ダンジョンへ帰還:100:200:r:33:0
+B:$12:A:1:Teleport to dungeon-level:100000:1000000:t:34:0
+B:12:A:1:階を指定してテレポート:100000:1000000:t:34:0
+B:$12:A:2:Cure mutation:1000:5000:m:35:0
+B:12:A:2:突然変異を治療:1000:5000:m:35:0
+B:$12:M:0:0:0:0:0:2:0:0:0:0
+B:12:M:0:0:0:0:0:2:0:0:0:0
+
+#n
 B:$13:N:Hunter's office:Kopei:Human
 B:13:N:ハンター事務所:こうぺい:人間
 B:$13:A:0:Today's wanted:0:0:a:38:0
@@ -517,6 +557,27 @@ B:13:A:2:スペシャル・ターゲット:0:0:s:37:0
 B:$13:A:3:Recieve prize:0:0:c:40:0
 B:13:A:3:報酬を受け取る:0:0:c:40:0
 
+#o
+B:$14:N:Tower of Sorcery:Tanistil:Elf
+B:14:N:仙術魔道士:タニスティル:エルフ
+B:$14:A:0:Recharge item:0:0:r:25:0
+B:14:A:0:再充填:0:0:r:25:0
+B:$14:A:1:Recharge all items:0:0:a:45:0
+B:14:A:1:全てのアイテムを再充填:0:0:a:45:0
+B:$14:A:2:Identify possessions:100:800:i:26:0
+B:14:A:2:持ち物全てを鑑定:100:800:i:26:0
+B:$14:M:0:3:0:0:0:0:0:0:0:0
+B:14:M:0:3:0:0:0:0:0:0:0:0
+
+#p
+B:$15:N:Weaponmaster:Garad-Dural:Dwarf
+B:15:N:武器匠:ガラド=ドゥラル:ドワーフ
+B:$15:A:0:Compare weapons:200:200:c:21:0
+B:15:A:0:武器を比較する:200:200:c:21:0
+B:$15:A:1:Evaluate AC:200:200:a:46:0
+B:15:A:1:防御について調べる:200:200:a:46:0
+B:$15:A:2:Repair broken weapon:1000:1000:b:47:0
+B:15:A:2:折れた武器を修復する:1000:1000:b:47:0
 
 ############### Town Layout ###############
 
@@ -543,30 +604,30 @@ D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWWWTTTTTTTTTTTTTTTTTTTTT---.-W####WWWWWWWWWWW
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWWTTTTTTTTTTTTTTTTT---.-W#######################################################################W,......TTTTTTTTTTTTTTTTTTTTTTTTTTTT-----------TTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTTT---.-W###################################w###################################W,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT--------TTTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTT---.-W###.................................................................###W,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT..-----TTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTT---.-WW##..########....#####.......#############................######....##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTT---.-WW##..########....#####.......#############................######....##WW,.----TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTT----.-WW##..###n####....#####.......#############................######....##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWWTTTTTTTTTT--.-WW##..###.........#####.......######b######..........................##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTT---.-WW##..###...........................!................................##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTT---.-WW##.......#########.....#########...................................##WW,.---TTTTTTTTT^^^^^TTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTT---.-WW##..########....#####.......#############...................#####..##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTT---.-WW##..########....#####.......#############...................#####..##WW,.----TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTT----.-WW##..###x####....#####.......#############...................##n##..##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWWTTTTTTTTTT--.-WW##..###............................................................##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTT---.-WW##..###............................................................##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTT---.-WW##.......#########.....#########.....#########.....#########.......##WW,.---TTTTTTTTT^^^^^TTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTT----.-WW##.......#########.....#########.....#########.....#########.......##WW,.---TTTTTTTT^^^^^^^TTTTTTTTTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWW-----WW.WWW##.......#########.....#########.....#########.....#########.......##WW,.----TTTTTT^^^^^^^^TTTTTTTTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTVWV-WW--.-W####......####4####.....####3####.....#########.....####1####......####W,.-----TTTTTT^^>^^^TTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTT.............TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWW----.-W####..................................####2####....................####W,.------TTTTTT,.,TTTTT...............TTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTVWV-WW--.-W####......####4####.....####3####.....####2####.....####1####......####W,.-----TTTTTT^^>^^^TTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTT.............TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWW----.-W####...............................................................####W,.------TTTTTT,.,TTTTT...............TTTTTTTTTTTTTTTTTTTTTTTTT#
 D:#......TTTTTTTTTTT.............TTTT................V..........................................................................................................TTTTTTTTTTTTT..TTTTTTTTTT..............#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTT......TTTTTTTTTTWWWWW---------.-W####...............................................................####W,.------TTTTTTTTTTTTTTTTTTTTTTTTTTTTT............TTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWVTTTTT--------.-W####.......########................................................####W,.-----TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTzTTTTTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTT------.-WW##........########.....................................@...........##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTT-----.-WW##........########.....####5####..................#####a######.....##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTT---.-WW##........#######9.....#########......####6####...############.....##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWWTTTTTTTTTTTTTTT----.-WW##........########.....#########......#########...############.....##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWTTTTTTTTTTTTTTTTTTTT---.,WW##........########.....#########......#########...############.....##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWTTTTTTTTTTTTTTTTTTTTTTTT--.,WW##........########.....#########......#########....................##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTTTTTTTTTTTT----.,WW##....................................#########....................##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##.............###########.........................................##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##....##x##....###########....###0###...................####.......##WW,.----TTTTTTTTTTTTTTTTTT..................TTTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##....#####....#####7#####....#######.....###Aq##.......###8.......##WW,.----TTTTT.............TTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT#
-D:#TTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##....#####...................#######.....###r###.......####.......##WW,..........TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTT-----.-WW##........########.....####5####.....####6####....#####a#####......##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTT---.-WW##........#######9.....#########.....#########....###########......##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWWTTTTTTTTTTTTTTT----.-WW##........########.....#########.....#########....###########......##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWTTTTTTTTTTTTTTTTTTTT---.,WW##........########.....#########.....#########....#p#k#m#l#o#......##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTWWWTTTTTTTTTTTTTTTTTTTTTTTT--.,WW##........########.................................................##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTTTTTTTTTTTT----.,WW##.................................................................##WW,.--TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##...................................................!.............##WW,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##....##j##....###7###....######0######...........###b###...##8##..##WW,.----TTTTTTTTTTTTTTTTTT..................TTTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##....#####....#######....#############...##Aq#...#######...#####..##WW,.----TTTTT.............TTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTTT#
+D:#TTTTTTTTTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,WW##....#####....#######....#############...##r##...#######...#####..##WW,..........TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTTWWWWTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT---.,W###.................................................................###W,.----TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTTTWTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT----.,W#######################################################################W,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTTT#
 D:#TTTTTTTTTTTTTTTTWWTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT--.,W#######################################################################W,.---TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT.TTTTTTTTTTTTTTT#
