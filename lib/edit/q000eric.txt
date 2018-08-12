@@ -5,8 +5,8 @@ Q:$15:N:Eric's Stronghold
 Q:15:N:エリックの要塞
 
 # type:num_mon:cur_num:max_num:level:r_idx:k_idx
-Q:$15:Q:1:0:0:1:18:813:0:0:6
-Q:15:Q:1:0:0:1:18:813:0:0:6
+Q:$15:Q:1:0:0:1:70:813:0:0:6
+Q:15:Q:1:0:0:1:70:813:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST15 2]

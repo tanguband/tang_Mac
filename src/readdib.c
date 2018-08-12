@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file readdib.c
- * @brief WindowsÍÑ¥Ó¥Ã¥È¥Ş¥Ã¥×¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß½èÍı¥Ñ¥Ã¥±¡¼¥¸ /
+ * @brief Windowsç”¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å‡¦ç†ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ /
  * This package provides a routine to read a DIB file and set up the device dependent version of the image.
  * @date 2014/08/08
  * @author
@@ -16,8 +16,8 @@
  *   Microsoft has no warranty obligations or liability for any
  *   Sample Application Files which are modified.
  * @details
- * mind.c¤È¤¢¤ë¤¬¼Âºİ¤Ë¤ÏÄ¶Ç½ÎÏ¼Ô¡¢Îıµ¤½Ñ»Õ¡¢¶¸Àï»Î¡¢¶À»È¤¤¡¢Ç¦¼Ô¤Ş¤Ç¤Î
- * ÆÃ¼ìµ»Ç½¤òÂ·¤¨¤Æ¼ÂÁõ¤·¤Æ¤¤¤ë¡£
+ * mind.cã¨ã‚ã‚‹ãŒå®Ÿéš›ã«ã¯è¶…èƒ½åŠ›è€…ã€ç·´æ°—è¡“å¸«ã€ç‹‚æˆ¦å£«ã€é¡ä½¿ã„ã€å¿è€…ã¾ã§ã®
+ * ç‰¹æ®ŠæŠ€èƒ½ã‚’æƒãˆã¦å®Ÿè£…ã—ã¦ã„ã‚‹ã€‚
  */
 
 #include <windows.h>
@@ -52,18 +52,18 @@
 
 
 /*!
- * °ìÅÙ¤Ë¥Õ¥¡¥¤¥ë¤«¤éÆÉ¤ß¹ş¤à¥Ç¡¼¥¿ÎÌ / Number of bytes to be read during each read operation
+ * ä¸€åº¦ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰èª­ã¿è¾¼ã‚€ãƒ‡ãƒ¼ã‚¿é‡ / Number of bytes to be read during each read operation
  */
 #define MAXREAD  32768
 
 /*!
- * @brief 32KB¤Î¥Ç¡¼¥¿ÆÉ¤ß¼è¤ê¤ò·«¤êÊÖ¤¹¤³¤È¤Ç¡¢64KB°Ê¾å¤Î¥Ç¡¼¥¿¤ò°ìÅÙ¤ËÆÉ¤ß¼è¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @brief 32KBã®ãƒ‡ãƒ¼ã‚¿èª­ã¿å–ã‚Šã‚’ç¹°ã‚Šè¿”ã™ã“ã¨ã§ã€64KBä»¥ä¸Šã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¸€åº¦ã«èª­ã¿å–ã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
  * Private routine to read more than 64K at a time Reads data in steps of 32k till all the data has been read.
- * @param fh ¥Õ¥¡¥¤¥ë¥Ø¥Ã¥À
- * @param pv ÆÉ¤ß¼è¤ê¥İ¥¤¥ó¥¿
- * @param ul ÆÉ¤ß¹ş¤à¥Ğ¥¤¥È¿ô
+ * @param fh ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€
+ * @param pv èª­ã¿å–ã‚Šãƒã‚¤ãƒ³ã‚¿
+ * @param ul èª­ã¿è¾¼ã‚€ãƒã‚¤ãƒˆæ•°
  * @return
- * ¼èÆÀ¤Ç¤­¤¿¥Ç¡¼¥¿ÎÌ¤ò¥Ğ¥¤¥È¤ÇÊÖ¤¹¡£0¤Ê¤é¤Ğ²¿¤é¤«¤Î¥¨¥é¡¼¡£
+ * å–å¾—ã§ããŸãƒ‡ãƒ¼ã‚¿é‡ã‚’ãƒã‚¤ãƒˆã§è¿”ã™ã€‚0ãªã‚‰ã°ä½•ã‚‰ã‹ã®ã‚¨ãƒ©ãƒ¼ã€‚
  * Returns number of bytes requested, or zero if something went wrong.
  */
 static DWORD PASCAL lread(int fh, VOID FAR *pv, DWORD ul)
@@ -84,11 +84,11 @@ static DWORD PASCAL lread(int fh, VOID FAR *pv, DWORD ul)
 }
 
 /*!
- * @brief BITMAPINFOHEADER¤ò¼èÆÀ¤·¤Æ¥«¥é¡¼¥Æ¡¼¥Ö¥ë¤ò´ğËÜ¤È¤·¤¿¥Ñ¥ì¥Ã¥È¤òºîÀ®¤¹¤ë¡£
+ * @brief BITMAPINFOHEADERã‚’å–å¾—ã—ã¦ã‚«ãƒ©ãƒ¼ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åŸºæœ¬ã¨ã—ãŸãƒ‘ãƒ¬ãƒƒãƒˆã‚’ä½œæˆã™ã‚‹ã€‚
  * Given a BITMAPINFOHEADER, create a palette based on the color table.
- * @param lpInfo BITMAPINFOHEADER¤Î¥İ¥¤¥ó¥¿
+ * @param lpInfo BITMAPINFOHEADERã®ãƒã‚¤ãƒ³ã‚¿
  * @return
- * ¥Ñ¥ì¥Ã¥È¤Î»²¾È¤òÊÖ¤¹¡£NULL¤Ê¤é¤Ğ¥¨¥é¡¼¡£
+ * ãƒ‘ãƒ¬ãƒƒãƒˆã®å‚ç…§ã‚’è¿”ã™ã€‚NULLãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ã€‚
  * Returns the handle of a palette, or zero if something went wrong.
  */
 static HPALETTE PASCAL NEAR MakeDIBPalette(LPBITMAPINFOHEADER lpInfo)
@@ -143,15 +143,15 @@ static HPALETTE PASCAL NEAR MakeDIBPalette(LPBITMAPINFOHEADER lpInfo)
 
 /*!
  * @brief
- * ¥Ó¥Ã¥È¥Ş¥Ã¥×¥Õ¥¡¥¤¥ë¤ò¼õ¤±¼è¤ê¡¢²èÁü¤Î¥Ç¥Ğ¥¤¥¹°ÍÂ¸¤ÎÉÁ²è¤Î¤¿¤á¤Ë»È¤ï¤ì¤ë¶¦ÄÌ¥Ñ¥ì¥Ã¥È¤È¥Ó¥Ã¥È¥Ş¥Ã¥×¤òºîÀ®¤¹¤ë
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å—ã‘å–ã‚Šã€ç”»åƒã®ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ã®æç”»ã®ãŸã‚ã«ä½¿ã‚ã‚Œã‚‹å…±é€šãƒ‘ãƒ¬ãƒƒãƒˆã¨ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚’ä½œæˆã™ã‚‹
  * Given a DIB, create a bitmap and corresponding palette to be used for a
  * device-dependent representation of the image.
- * @param hDC ¥Ç¥Ğ¥¤¥¹¥³¥ó¥Æ¥­¥¹¥È¥Ï¥ó¥É¥ë
- * @param hDIB ¥Ó¥Ã¥È¥Ş¥Ã¥×²èÁü¥Ï¥ó¥É¥ë
- * @param phPal ¥Ñ¥ì¥Ã¥È¼èÆÀ¥Ï¥ó¥É¥ë
- * @param phBitmap ¥Ó¥Ã¥È¥Ş¥Ã¥×¼èÆÀ¥Ï¥ó¥É¥ë
+ * @param hDC ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒãƒ³ãƒ‰ãƒ«
+ * @param hDIB ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+ * @param phPal ãƒ‘ãƒ¬ãƒƒãƒˆå–å¾—ãƒãƒ³ãƒ‰ãƒ«
+ * @param phBitmap ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—å–å¾—ãƒãƒ³ãƒ‰ãƒ«
  * @return
- * À®¸ù¤·¤¿¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£¼ºÇÔ¤Î¾ì¹çFALSE¡£
+ * æˆåŠŸã—ãŸãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚å¤±æ•—ã®å ´åˆFALSEã€‚
  * Returns TRUE on success (phPal and phBitmap are filled with appropriate
  * handles.  Caller is responsible for freeing objects) and FALSE on failure
  * (unable to create objects, both pointer are invalid).
@@ -198,14 +198,14 @@ static BOOL NEAR PASCAL MakeBitmapAndPalette(HDC hDC, HANDLE hDIB,
 
 /*!
  * @brief
- * ¥Ó¥Ã¥È¥Ş¥Ã¥×¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹ş¤ß¡¢BITMAPINFO¹½Â¤ÂÎ¤Ë¥Ï¥ó¥É¥ë¤ò¼èÆÀ¤¹¤ë¡£
+ * ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€BITMAPINFOæ§‹é€ ä½“ã«ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
  * Reads a DIB from a file, obtains a handle to its BITMAPINFO struct, and
  * loads the DIB.  Once the DIB is loaded, the function also creates a bitmap
  * and palette out of the DIB for a device-dependent form.
  * device-dependent representation of the image.
- * @param hWnd ¥¦¥£¥ó¥É¥¦¥Ï¥ó¥É¥ë
- * @param lpFileName ÆÉ¤ß¹ş¤à¥Ó¥Ã¥È¥Ş¥Ã¥×¥Õ¥¡¥¤¥ë
- * @param pInfo ¼èÆÀ¾ğÊó¤òÊä´°¤¹¤ë¥Ó¥Ã¥È¥Ş¥Ã¥×¾ğÊó¹½Â¤ÂÎ¥İ¥¤¥ó¥¿
+ * @param hWnd ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
+ * @param lpFileName èª­ã¿è¾¼ã‚€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«
+ * @param pInfo å–å¾—æƒ…å ±ã‚’è£œå®Œã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—æƒ…å ±æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
  * @return
  * Returns TRUE if the DIB is loaded and the bitmap/palette created, in which
  * case, the DIBINIT structure pointed to by pInfo is filled with the appropriate
@@ -273,7 +273,8 @@ BOOL ReadDIB(HWND hWnd, LPSTR lpFileName, DIBINIT *pInfo)
 			goto ErrExit;
 	}
 
-	if (!(nNumColors = (WORD)lpbi->biClrUsed))
+	nNumColors = (WORD)lpbi->biClrUsed;
+	if (!nNumColors)
 	{
 		/* no color table for 24-bit, default size otherwise */
 		if (lpbi->biBitCount != 24)

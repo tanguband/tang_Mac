@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file xtra1.c
- * @brief »¨Â¿¤Ê¤½¤ÎÂ¾¤Î½èÍı1 / misc code
+ * @brief é›‘å¤šãªãã®ä»–ã®å‡¦ç†1 / misc code
  * @date 2014/08/17
  * @author
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke\n
@@ -13,10 +13,10 @@
 #include "angband.h"
 
 /*!
- * @brief ¸½ºß¤Î½¤Àµ¸åÇ½ÎÏÃÍ¤ò317µÚ¤Ó18/xxx·Á¼°¤ËÊÑ´¹¤¹¤ë / Converts stat num into a six-char (right justified) string
- * @param val Ç½ÎÏÃÍ
- * @param out_val ½ĞÎÏÀèÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ç¾åœ¨ã®ä¿®æ­£å¾Œèƒ½åŠ›å€¤ã‚’3ï½17åŠã³18/xxxå½¢å¼ã«å¤‰æ›ã™ã‚‹ / Converts stat num into a six-char (right justified) string
+ * @param val èƒ½åŠ›å€¤
+ * @param out_val å‡ºåŠ›å…ˆæ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void cnv_stat(int val, char *out_val)
 {
@@ -47,11 +47,11 @@ void cnv_stat(int val, char *out_val)
 }
 
 /*!
- * @brief Ç½ÎÏÃÍ¸½ºßÃÍ¤«¤é317µÚ¤Ó18/xxxÍÍ¼°¤Ë´ğ¤Å¤¯²Ã¸º»»¤ò¹Ô¤¦¡£
+ * @brief èƒ½åŠ›å€¤ç¾åœ¨å€¤ã‹ã‚‰3ï½17åŠã³18/xxxæ§˜å¼ã«åŸºã¥ãåŠ æ¸›ç®—ã‚’è¡Œã†ã€‚
  * Modify a stat value by a "modifier", return new value
- * @param value ¸½ºßÃÍ
- * @param amount ²Ã¸º»»ÃÍ
- * @return ²Ã¸º»»¸å¤ÎÃÍ
+ * @param value ç¾åœ¨å€¤
+ * @param amount åŠ æ¸›ç®—å€¤
+ * @return åŠ æ¸›ç®—å¾Œã®å€¤
  * @details
  * <pre>
  * Stats go up: 3,4,...,17,18,18/10,18/20,...,18/220
@@ -96,18 +96,18 @@ s16b modify_stat_value(int value, int amount)
 	}
 
 	/* Return new value */
-	return (value);
+	return (s16b)(value);
 }
 
 
 
 /*!
- * @brief ²èÌÌº¸¤ÎÇ½ÎÏÃÍÉ½¼¨¤ò¹Ô¤¦¤¿¤á¤Ë»ØÄê°ÌÃÖ¤«¤é13¥­¥ã¥éÊ¬¤ò¶õÇò¾Ãµî¸å»ØÄê¤Î¥á¥Ã¥»¡¼¥¸¤òÌÀ¤ë¤¤ÀÄ¤ÇÉÁ²è¤¹¤ë /
+ * @brief ç”»é¢å·¦ã®èƒ½åŠ›å€¤è¡¨ç¤ºã‚’è¡Œã†ãŸã‚ã«æŒ‡å®šä½ç½®ã‹ã‚‰13ã‚­ãƒ£ãƒ©åˆ†ã‚’ç©ºç™½æ¶ˆå»å¾ŒæŒ‡å®šã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æ˜ã‚‹ã„é’ã§æç”»ã™ã‚‹ /
  * Print character info at given row, column in a 13 char field
- * @param info É½¼¨Ê¸»úÎó
- * @param row ÉÁ²èÎó
- * @param col ÉÁ²è¹Ô
- * @return ¤Ê¤·
+ * @param info è¡¨ç¤ºæ–‡å­—åˆ—
+ * @param row æç”»åˆ—
+ * @param col æç”»è¡Œ
+ * @return ãªã—
  */
 static void prt_field(cptr info, int row, int col)
 {
@@ -120,9 +120,9 @@ static void prt_field(cptr info, int row, int col)
 
 
 /*!
- * @brief ¥²¡¼¥à»ş´Ö¤¬ÆüÃæ¤«¤É¤¦¤«¤òÊÖ¤¹ /
+ * @brief ã‚²ãƒ¼ãƒ æ™‚é–“ãŒæ—¥ä¸­ã‹ã©ã†ã‹ã‚’è¿”ã™ /
  * Whether daytime or not
- * @return ÆüÃæ¤Ê¤é¤ĞTRUE¡¢Ìë¤Ê¤é¤ĞFALSE
+ * @return æ—¥ä¸­ãªã‚‰ã°TRUEã€å¤œãªã‚‰ã°FALSE
  */
 bool is_daytime(void)
 {
@@ -134,11 +134,11 @@ bool is_daytime(void)
 }
 
 /*!
- * @brief ¸½ºß¤ÎÆü¿ô¡¢»ş¹ï¤òÊÖ¤¹ /
+ * @brief ç¾åœ¨ã®æ—¥æ•°ã€æ™‚åˆ»ã‚’è¿”ã™ /
  * Extract day, hour, min
- * @param day Æü¿ô¤òÊÖ¤¹¤¿¤á¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param hour »ş¿ô¤òÊÖ¤¹¤¿¤á¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param min Ê¬¿ô¤òÊÖ¤¹¤¿¤á¤Î»²¾È¥İ¥¤¥ó¥¿
+ * @param day æ—¥æ•°ã‚’è¿”ã™ãŸã‚ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param hour æ™‚æ•°ã‚’è¿”ã™ãŸã‚ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param min åˆ†æ•°ã‚’è¿”ã™ãŸã‚ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
  */
 void extract_day_hour_min(int *day, int *hour, int *min)
 {
@@ -162,9 +162,9 @@ void extract_day_hour_min(int *day, int *hour, int *min)
 }
 
 /*!
- * @brief ¥²¡¼¥à»ş¹ï¤òÉ½¼¨¤¹¤ë /
+ * @brief ã‚²ãƒ¼ãƒ æ™‚åˆ»ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Print time
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void prt_time(void)
 {
@@ -176,27 +176,27 @@ void prt_time(void)
 	extract_day_hour_min(&day, &hour, &min);
 
 	/* Dump the info itself */
-	if (day < 1000) c_put_str(TERM_WHITE, format(_("%2dÆüÌÜ", "Day%3d"), day), ROW_DAY, COL_DAY);
-	else c_put_str(TERM_WHITE, _("***ÆüÌÜ", "Day***"), ROW_DAY, COL_DAY);
+	if (day < 1000) c_put_str(TERM_WHITE, format(_("%2dæ—¥ç›®", "Day%3d"), day), ROW_DAY, COL_DAY);
+	else c_put_str(TERM_WHITE, _("***æ—¥ç›®", "Day***"), ROW_DAY, COL_DAY);
 
 	c_put_str(TERM_WHITE, format("%2d:%02d", hour, min), ROW_DAY, COL_DAY+7);
 }
 
 /*!
- * @brief ¸½ºß¤Î¥Ş¥Ã¥×Ì¾¤òÊÖ¤¹ /
- * @return ¥Ş¥Ã¥×Ì¾¤ÎÊ¸»úÎó»²¾È¥İ¥¤¥ó¥¿
+ * @brief ç¾åœ¨ã®ãƒãƒƒãƒ—åã‚’è¿”ã™ /
+ * @return ãƒãƒƒãƒ—åã®æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
  */
 cptr map_name(void)
 {
 	if (p_ptr->inside_quest && is_fixed_quest_idx(p_ptr->inside_quest)
 	    && (quest[p_ptr->inside_quest].flags & QUEST_FLAG_PRESET))
-		return _("¥¯¥¨¥¹¥È", "Quest");
+		return _("ã‚¯ã‚¨ã‚¹ãƒˆ", "Quest");
 	else if (p_ptr->wild_mode)
-		return _("ÃÏ¾å", "Surface");
+		return _("åœ°ä¸Š", "Surface");
 	else if (p_ptr->inside_arena)
-		return _("¥¢¥ê¡¼¥Ê", "Arena");
+		return _("ã‚¢ãƒªãƒ¼ãƒŠ", "Arena");
 	else if (p_ptr->inside_battle)
-		return _("Æ®µ»¾ì", "Monster Arena");
+		return _("é—˜æŠ€å ´", "Monster Arena");
 	else if (!dun_level && p_ptr->town_num)
 		return town[p_ptr->town_num].name;
 	else
@@ -204,8 +204,8 @@ cptr map_name(void)
 }
 
 /*!
- * @brief ¸½ºß¤Î¥Ş¥Ã¥×Ì¾¤òÉÁ²è¤¹¤ë / Print dungeon
- * @return ¤Ê¤·
+ * @brief ç¾åœ¨ã®ãƒãƒƒãƒ—åã‚’æç”»ã™ã‚‹ / Print dungeon
+ * @return ãªã—
  */
 static void prt_dungeon(void)
 {
@@ -227,9 +227,9 @@ static void prt_dungeon(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼Ç½ÎÏÃÍ¤òÉÁ²è¤¹¤ë / Print character stat in given row, column
- * @param stat ÉÁ²è¤¹¤ë¥¹¥Æ¡¼¥¿¥¹¤ÎID
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼èƒ½åŠ›å€¤ã‚’æç”»ã™ã‚‹ / Print character stat in given row, column
+ * @param stat æç”»ã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®ID
+ * @return ãªã—
  */
 static void prt_stat(int stat)
 {
@@ -255,7 +255,7 @@ static void prt_stat(int stat)
 	if (p_ptr->stat_max[stat] == p_ptr->stat_max_max[stat])
 	{
 #ifdef JP
-		/* ÆüËÜ¸ì¤Ë¤«¤Ö¤é¤Ê¤¤¤è¤¦¤ËÉ½¼¨°ÌÃÖ¤òÊÑ¹¹ */
+		/* æ—¥æœ¬èªã«ã‹ã¶ã‚‰ãªã„ã‚ˆã†ã«è¡¨ç¤ºä½ç½®ã‚’å¤‰æ›´ */
 		put_str("!", ROW_STAT + stat, 5);
 #else
 		put_str("!", ROW_STAT + stat, 3);
@@ -266,75 +266,75 @@ static void prt_stat(int stat)
 
 
 /*
- * ²èÌÌ²¼Éô¤ËÉ½¼¨¤¹¤ë¾õÂÖÉ½¼¨ÄêµÁID / Data structure for status bar
+ * ç”»é¢ä¸‹éƒ¨ã«è¡¨ç¤ºã™ã‚‹çŠ¶æ…‹è¡¨ç¤ºå®šç¾©ID / Data structure for status bar
  */
-#define BAR_TSUYOSHI 0      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¥ª¥¯¥ì·»¤µ¤ó¾õÂÖ */
-#define BAR_HALLUCINATION 1 /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¸¸³Ğ */
-#define BAR_BLINDNESS 2     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÌÕÌÜ */
-#define BAR_PARALYZE 3      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Ëãáã */
-#define BAR_CONFUSE 4       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: º®Íğ */
-#define BAR_POISONED 5      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÆÇ */
-#define BAR_AFRAID 6        /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¶²Éİ */
-#define BAR_LEVITATE 7      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÉâÍ· */
-#define BAR_REFLECTION 8    /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: È¿¼Í */
-#define BAR_PASSWALL 9      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÊÉÈ´¤± */
-#define BAR_WRAITH 10       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Í©ÂÎ²½ */
-#define BAR_PROTEVIL 11     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÂĞ¼Ù°­·ë³¦ */
-#define BAR_KAWARIMI 12     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÊÑ¤ï¤ê¿È */
-#define BAR_MAGICDEFENSE 13 /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ËâË¡¤Î³» */
-#define BAR_EXPAND 14       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ²£¿­¤Ó */
-#define BAR_STONESKIN 15    /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÀĞÈ©²½ */
-#define BAR_MULTISHADOW 16  /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ±ÆÊ¬¿È */
-#define BAR_REGMAGIC 17     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ËâË¡ËÉ¸æ */
-#define BAR_ULTIMATE 18     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: µæ¶Ë¤ÎÂÑÀ­ */
-#define BAR_INVULN 19       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÌµÅ¨²½ */
-#define BAR_IMMACID 20      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: »ÀÌÈ±Ö */
-#define BAR_RESACID 21      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: »ÀÂÑÀ­ */
-#define BAR_IMMELEC 22      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÅÅ·âÌÈ±Ö */
-#define BAR_RESELEC 23      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÅÅ·âÂÑÀ­ */
-#define BAR_IMMFIRE 24      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ²Ğ±êÌÈ±Ö */
-#define BAR_RESFIRE 25      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ²Ğ±êÂÑÀ­ */
-#define BAR_IMMCOLD 26      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Îäµ¤ÌÈ±Ö */
-#define BAR_RESCOLD 27      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Îäµ¤ÂÑÀ­ */
-#define BAR_RESPOIS 28      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÆÇÂÑÀ­ */
-#define BAR_RESNETH 29      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÃÏ¹öÂÑÀ­ */
-#define BAR_RESTIME 30      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: »ş´ÖµÕÅ¾ÂÑÀ­ */
-#define BAR_DUSTROBE 31     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÇËÊÒ¥ª¡¼¥é */
-#define BAR_SHFIRE 32       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ²Ğ±ê¥ª¡¼¥é */
-#define BAR_TOUKI 33        /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Æ®µ¤ */
-#define BAR_SHHOLY 34       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: À»¤Ê¤ë¥ª¡¼¥é */
-#define BAR_EYEEYE 35       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÌÜ¤Ë¤ÏÌÜ¤ò */
-#define BAR_BLESSED 36      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ½ËÊ¡ */
-#define BAR_HEROISM 37      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: »Îµ¤¹âÍÈ */
-#define BAR_BERSERK 38      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¶¸Àï»Î²½ */
-#define BAR_ATTKFIRE 39     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¾Æ´ş¥¹¥ì¥¤ */
-#define BAR_ATTKCOLD 40     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÎäÅà¥¹¥ì¥¤ */
-#define BAR_ATTKELEC 41     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÅÅ·â¥¹¥ì¥¤ */
-#define BAR_ATTKACID 42     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÍÏ²ò¥¹¥ì¥¤ */
-#define BAR_ATTKPOIS 43     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÆÇ»¦¥¹¥ì¥¤ */
-#define BAR_ATTKCONF 44     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: º®ÍğÂÇ·â */
-#define BAR_SENSEUNSEEN 45  /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Æ©ÌÀ»ë */
-#define BAR_TELEPATHY 46    /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¥Æ¥ì¥Ñ¥·¡¼ */
-#define BAR_REGENERATION 47 /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: µŞ²óÉü */
-#define BAR_INFRAVISION 48  /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÀÖ³°Àş»ëÎÏ */
-#define BAR_STEALTH 49      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ±£Ì© */
-#define BAR_SUPERSTEALTH 50 /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Ä¶±£Ì© */
-#define BAR_RECALL 51       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: µ¢´ÔÂÔ¤Á */
-#define BAR_ALTER 52        /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¸½¼ÂÊÑÍÆÂÔ¤Á */
-#define BAR_SHCOLD 53       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Îäµ¤¥ª¡¼¥é */
-#define BAR_SHELEC 54       /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÅÅ·â¥ª¡¼¥é */
-#define BAR_SHSHADOW 55     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ±Æ¤Î¥ª¡¼¥é */
-#define BAR_MIGHT 56        /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÏÓÎÏ¶¯²½ */
-#define BAR_BUILD 57        /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ÆùÂÎ¶¯²½ */
-#define BAR_ANTIMULTI 58    /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: È¿Áı¿£ */
-#define BAR_ANTITELE 59     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: È¿¥Æ¥ì¥İ¡¼¥È */
-#define BAR_ANTIMAGIC 60    /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: È¿ËâË¡ */
-#define BAR_PATIENCE 61     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ²æËı */
-#define BAR_REVENGE 62      /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Àë¹ğ */
-#define BAR_RUNESWORD 63    /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: Ëâ·õ²½ */
-#define BAR_VAMPILIC 64     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: µÛ·ì */
-#define BAR_CURE 65         /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ²óÉü */
-#define BAR_ESP_EVIL 66     /*!< ²¼Éô¥¹¥Æ¡¼¥¿¥¹É½¼¨: ¼Ù°­´¶ÃÎ */
+#define BAR_TSUYOSHI 0      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ã‚ªã‚¯ãƒ¬å…„ã•ã‚“çŠ¶æ…‹ */
+#define BAR_HALLUCINATION 1 /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å¹»è¦š */
+#define BAR_BLINDNESS 2     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç›²ç›® */
+#define BAR_PARALYZE 3      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: éº»ç—º */
+#define BAR_CONFUSE 4       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ··ä¹± */
+#define BAR_POISONED 5      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ¯’ */
+#define BAR_AFRAID 6        /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ææ€– */
+#define BAR_LEVITATE 7      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æµ®éŠ */
+#define BAR_REFLECTION 8    /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: åå°„ */
+#define BAR_PASSWALL 9      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å£æŠœã‘ */
+#define BAR_WRAITH 10       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å¹½ä½“åŒ– */
+#define BAR_PROTEVIL 11     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å¯¾é‚ªæ‚ªçµç•Œ */
+#define BAR_KAWARIMI 12     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å¤‰ã‚ã‚Šèº« */
+#define BAR_MAGICDEFENSE 13 /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é­”æ³•ã®é§ */
+#define BAR_EXPAND 14       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ¨ªä¼¸ã³ */
+#define BAR_STONESKIN 15    /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: çŸ³è‚ŒåŒ– */
+#define BAR_MULTISHADOW 16  /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å½±åˆ†èº« */
+#define BAR_REGMAGIC 17     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é­”æ³•é˜²å¾¡ */
+#define BAR_ULTIMATE 18     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç©¶æ¥µã®è€æ€§ */
+#define BAR_INVULN 19       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç„¡æ•µåŒ– */
+#define BAR_IMMACID 20      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é…¸å…ç–« */
+#define BAR_RESACID 21      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é…¸è€æ€§ */
+#define BAR_IMMELEC 22      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é›»æ’ƒå…ç–« */
+#define BAR_RESELEC 23      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é›»æ’ƒè€æ€§ */
+#define BAR_IMMFIRE 24      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç«ç‚å…ç–« */
+#define BAR_RESFIRE 25      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç«ç‚è€æ€§ */
+#define BAR_IMMCOLD 26      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å†·æ°—å…ç–« */
+#define BAR_RESCOLD 27      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å†·æ°—è€æ€§ */
+#define BAR_RESPOIS 28      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ¯’è€æ€§ */
+#define BAR_RESNETH 29      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: åœ°ç„è€æ€§ */
+#define BAR_RESTIME 30      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ™‚é–“é€†è»¢è€æ€§ */
+#define BAR_DUSTROBE 31     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç ´ç‰‡ã‚ªãƒ¼ãƒ© */
+#define BAR_SHFIRE 32       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç«ç‚ã‚ªãƒ¼ãƒ© */
+#define BAR_TOUKI 33        /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é—˜æ°— */
+#define BAR_SHHOLY 34       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: è–ãªã‚‹ã‚ªãƒ¼ãƒ© */
+#define BAR_EYEEYE 35       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç›®ã«ã¯ç›®ã‚’ */
+#define BAR_BLESSED 36      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç¥ç¦ */
+#define BAR_HEROISM 37      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å£«æ°—é«˜æš */
+#define BAR_BERSERK 38      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç‹‚æˆ¦å£«åŒ– */
+#define BAR_ATTKFIRE 39     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç„¼æ£„ã‚¹ãƒ¬ã‚¤ */
+#define BAR_ATTKCOLD 40     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å†·å‡ã‚¹ãƒ¬ã‚¤ */
+#define BAR_ATTKELEC 41     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é›»æ’ƒã‚¹ãƒ¬ã‚¤ */
+#define BAR_ATTKACID 42     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æº¶è§£ã‚¹ãƒ¬ã‚¤ */
+#define BAR_ATTKPOIS 43     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ¯’æ®ºã‚¹ãƒ¬ã‚¤ */
+#define BAR_ATTKCONF 44     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ··ä¹±æ‰“æ’ƒ */
+#define BAR_SENSEUNSEEN 45  /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é€æ˜è¦– */
+#define BAR_TELEPATHY 46    /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼ */
+#define BAR_REGENERATION 47 /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æ€¥å›å¾© */
+#define BAR_INFRAVISION 48  /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: èµ¤å¤–ç·šè¦–åŠ› */
+#define BAR_STEALTH 49      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: éš å¯† */
+#define BAR_SUPERSTEALTH 50 /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: è¶…éš å¯† */
+#define BAR_RECALL 51       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å¸°é‚„å¾…ã¡ */
+#define BAR_ALTER 52        /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: ç¾å®Ÿå¤‰å®¹å¾…ã¡ */
+#define BAR_SHCOLD 53       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å†·æ°—ã‚ªãƒ¼ãƒ© */
+#define BAR_SHELEC 54       /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é›»æ’ƒã‚ªãƒ¼ãƒ© */
+#define BAR_SHSHADOW 55     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å½±ã®ã‚ªãƒ¼ãƒ© */
+#define BAR_MIGHT 56        /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: è…•åŠ›å¼·åŒ– */
+#define BAR_BUILD 57        /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: è‚‰ä½“å¼·åŒ– */
+#define BAR_ANTIMULTI 58    /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: åå¢—æ®– */
+#define BAR_ANTITELE 59     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: åãƒ†ãƒ¬ãƒãƒ¼ãƒˆ */
+#define BAR_ANTIMAGIC 60    /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: åé­”æ³• */
+#define BAR_PATIENCE 61     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: æˆ‘æ…¢ */
+#define BAR_REVENGE 62      /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å®£å‘Š */
+#define BAR_RUNESWORD 63    /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é­”å‰£åŒ– */
+#define BAR_VAMPILIC 64     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å¸è¡€ */
+#define BAR_CURE 65         /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: å›å¾© */
+#define BAR_ESP_EVIL 66     /*!< ä¸‹éƒ¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡¨ç¤º: é‚ªæ‚ªæ„ŸçŸ¥ */
 
 static struct {
 	byte attr;
@@ -343,74 +343,74 @@ static struct {
 } bar[]
 #ifdef JP
 = {
-	{TERM_YELLOW, "¤Ä", "¤Ä¤è¤·"},
-	{TERM_VIOLET, "¸¸", "¸¸³Ğ"},
-	{TERM_L_DARK, "ÌÕ", "ÌÕÌÜ"},
-	{TERM_RED, "áã", "Ëãáã"},
-	{TERM_VIOLET, "Íğ", "º®Íğ"},
-	{TERM_GREEN, "ÆÇ", "ÆÇ"},
-	{TERM_BLUE, "¶²", "¶²Éİ"},
-	{TERM_L_BLUE, "Éâ", "ÉâÍ·"},
-	{TERM_SLATE, "È¿", "È¿¼Í"},
-	{TERM_SLATE, "ÊÉ", "ÊÉÈ´¤±"},
-	{TERM_L_DARK, "Í©", "Í©ÂÎ"},
-	{TERM_SLATE, "¼Ù", "ËÉ¼Ù"},
-	{TERM_VIOLET, "ÊÑ", "ÊÑ¤ï¤ê¿È"},
-	{TERM_YELLOW, "Ëâ", "ËâË¡³»"},
-	{TERM_L_UMBER, "¿­", "¿­¤Ó"},
-	{TERM_WHITE, "ÀĞ", "ÀĞÈ©"},
-	{TERM_L_BLUE, "Ê¬", "Ê¬¿È"},
-	{TERM_SLATE, "ËÉ", "ËâË¡ËÉ¸æ"},
-	{TERM_YELLOW, "µæ", "µæ¶Ë"},
-	{TERM_YELLOW, "Ìµ", "ÌµÅ¨"},
-	{TERM_L_GREEN, "»À", "»ÀÌÈ±Ö"},
-	{TERM_GREEN, "»À", "ÂÑ»À"},
-	{TERM_L_BLUE, "ÅÅ", "ÅÅÌÈ±Ö"},
-	{TERM_BLUE, "ÅÅ", "ÂÑÅÅ"},
-	{TERM_L_RED, "²Ğ", "²ĞÌÈ±Ö"},
-	{TERM_RED, "²Ğ", "ÂÑ²Ğ"},
-	{TERM_WHITE, "Îä", "ÎäÌÈ±Ö"},
-	{TERM_SLATE, "Îä", "ÂÑÎä"},
-	{TERM_GREEN, "ÆÇ", "ÂÑÆÇ"},
-	{TERM_L_DARK, "¹ö", "ÂÑÃÏ¹ö"},
-	{TERM_L_BLUE, "»ş", "ÂÑ»ş´Ö"},
-	{TERM_L_DARK, "¶À", "¶À¥ª¡¼¥é"},
-	{TERM_L_RED, "¥ª", "²Ğ¥ª¡¼¥é"},
-	{TERM_WHITE, "Æ®", "Æ®µ¤"},
-	{TERM_WHITE, "À»", "À»¥ª¡¼¥é"},
-	{TERM_VIOLET, "ÌÜ", "ÌÜ¤Ë¤ÏÌÜ"},
-	{TERM_WHITE, "½Ë", "½ËÊ¡"},
-	{TERM_WHITE, "Í¦", "Í¦"},
-	{TERM_RED, "¶¸", "¶¸Íğ"},
-	{TERM_L_RED, "²Ğ", "Ëâ·õ²Ğ"},
-	{TERM_WHITE, "Îä", "Ëâ·õÎä"},
-	{TERM_L_BLUE, "ÅÅ", "Ëâ·õÅÅ"},
-	{TERM_SLATE, "»À", "Ëâ·õ»À"},
-	{TERM_L_GREEN, "ÆÇ", "Ëâ·õÆÇ"},
-	{TERM_RED, "Íğ", "º®ÍğÂÇ·â"},
-	{TERM_L_BLUE, "»ë", "Æ©ÌÀ»ë"},
-	{TERM_ORANGE, "¥Æ", "¥Æ¥ì¥Ñ¥·"},
-	{TERM_L_BLUE, "²ó", "²óÉü"},
-	{TERM_L_RED, "ÀÖ", "ÀÖ³°"},
-	{TERM_UMBER, "±£", "±£Ì©"},
-	{TERM_YELLOW, "±£", "Ä¶±£Ì©"},
-	{TERM_WHITE, "µ¢", "µ¢´Ô"},
-	{TERM_WHITE, "¸½", "¸½¼ÂÊÑÍÆ"},
+	{TERM_YELLOW, "ã¤", "ã¤ã‚ˆã—"},
+	{TERM_VIOLET, "å¹»", "å¹»è¦š"},
+	{TERM_L_DARK, "ç›²", "ç›²ç›®"},
+	{TERM_RED, "ç—º", "éº»ç—º"},
+	{TERM_VIOLET, "ä¹±", "æ··ä¹±"},
+	{TERM_GREEN, "æ¯’", "æ¯’"},
+	{TERM_BLUE, "æ", "ææ€–"},
+	{TERM_L_BLUE, "æµ®", "æµ®éŠ"},
+	{TERM_SLATE, "å", "åå°„"},
+	{TERM_SLATE, "å£", "å£æŠœã‘"},
+	{TERM_L_DARK, "å¹½", "å¹½ä½“"},
+	{TERM_SLATE, "é‚ª", "é˜²é‚ª"},
+	{TERM_VIOLET, "å¤‰", "å¤‰ã‚ã‚Šèº«"},
+	{TERM_YELLOW, "é­”", "é­”æ³•é§"},
+	{TERM_L_UMBER, "ä¼¸", "ä¼¸ã³"},
+	{TERM_WHITE, "çŸ³", "çŸ³è‚Œ"},
+	{TERM_L_BLUE, "åˆ†", "åˆ†èº«"},
+	{TERM_SLATE, "é˜²", "é­”æ³•é˜²å¾¡"},
+	{TERM_YELLOW, "ç©¶", "ç©¶æ¥µ"},
+	{TERM_YELLOW, "ç„¡", "ç„¡æ•µ"},
+	{TERM_L_GREEN, "é…¸", "é…¸å…ç–«"},
+	{TERM_GREEN, "é…¸", "è€é…¸"},
+	{TERM_L_BLUE, "é›»", "é›»å…ç–«"},
+	{TERM_BLUE, "é›»", "è€é›»"},
+	{TERM_L_RED, "ç«", "ç«å…ç–«"},
+	{TERM_RED, "ç«", "è€ç«"},
+	{TERM_WHITE, "å†·", "å†·å…ç–«"},
+	{TERM_SLATE, "å†·", "è€å†·"},
+	{TERM_GREEN, "æ¯’", "è€æ¯’"},
+	{TERM_L_DARK, "ç„", "è€åœ°ç„"},
+	{TERM_L_BLUE, "æ™‚", "è€æ™‚é–“"},
+	{TERM_L_DARK, "é¡", "é¡ã‚ªãƒ¼ãƒ©"},
+	{TERM_L_RED, "ã‚ª", "ç«ã‚ªãƒ¼ãƒ©"},
+	{TERM_WHITE, "é—˜", "é—˜æ°—"},
+	{TERM_WHITE, "è–", "è–ã‚ªãƒ¼ãƒ©"},
+	{TERM_VIOLET, "ç›®", "ç›®ã«ã¯ç›®"},
+	{TERM_WHITE, "ç¥", "ç¥ç¦"},
+	{TERM_WHITE, "å‹‡", "å‹‡"},
+	{TERM_RED, "ç‹‚", "ç‹‚ä¹±"},
+	{TERM_L_RED, "ç«", "é­”å‰£ç«"},
+	{TERM_WHITE, "å†·", "é­”å‰£å†·"},
+	{TERM_L_BLUE, "é›»", "é­”å‰£é›»"},
+	{TERM_SLATE, "é…¸", "é­”å‰£é…¸"},
+	{TERM_L_GREEN, "æ¯’", "é­”å‰£æ¯’"},
+	{TERM_RED, "ä¹±", "æ··ä¹±æ‰“æ’ƒ"},
+	{TERM_L_BLUE, "è¦–", "é€æ˜è¦–"},
+	{TERM_ORANGE, "ãƒ†", "ãƒ†ãƒ¬ãƒ‘ã‚·"},
+	{TERM_L_BLUE, "å›", "å›å¾©"},
+	{TERM_L_RED, "èµ¤", "èµ¤å¤–"},
+	{TERM_UMBER, "éš ", "éš å¯†"},
+	{TERM_YELLOW, "éš ", "è¶…éš å¯†"},
+	{TERM_WHITE, "å¸°", "å¸°é‚„"},
+	{TERM_WHITE, "ç¾", "ç¾å®Ÿå¤‰å®¹"},
 	/* Hex */
-	{TERM_WHITE, "¥ª", "É¹¥ª¡¼¥é"},
-	{TERM_BLUE, "¥ª", "ÅÅ¥ª¡¼¥é"},
-	{TERM_L_DARK, "¥ª", "±Æ¥ª¡¼¥é"},
-	{TERM_YELLOW, "ÏÓ", "ÏÓÎÏ¶¯²½"},
-	{TERM_RED, "Æù", "ÆùÂÎ¶¯²½"},
-	{TERM_L_DARK, "¿£", "È¿Áı¿£"},
-	{TERM_ORANGE, "¥Æ", "È¿¥Æ¥ì¥İ"},
-	{TERM_RED, "Ëâ", "È¿ËâË¡"},
-	{TERM_SLATE, "²æ", "²æËı"},
-	{TERM_SLATE, "Àë", "Àë¹ğ"},
-	{TERM_L_DARK, "·õ", "Ëâ·õ²½"},
-	{TERM_RED, "µÛ", "µÛ·ìÂÇ·â"},
-	{TERM_WHITE, "²ó", "²óÉü"},
-	{TERM_L_DARK, "´¶", "¼Ù°­´¶ÃÎ"},
+	{TERM_WHITE, "ã‚ª", "æ°·ã‚ªãƒ¼ãƒ©"},
+	{TERM_BLUE, "ã‚ª", "é›»ã‚ªãƒ¼ãƒ©"},
+	{TERM_L_DARK, "ã‚ª", "å½±ã‚ªãƒ¼ãƒ©"},
+	{TERM_YELLOW, "è…•", "è…•åŠ›å¼·åŒ–"},
+	{TERM_RED, "è‚‰", "è‚‰ä½“å¼·åŒ–"},
+	{TERM_L_DARK, "æ®–", "åå¢—æ®–"},
+	{TERM_ORANGE, "ãƒ†", "åãƒ†ãƒ¬ãƒ"},
+	{TERM_RED, "é­”", "åé­”æ³•"},
+	{TERM_SLATE, "æˆ‘", "æˆ‘æ…¢"},
+	{TERM_SLATE, "å®£", "å®£å‘Š"},
+	{TERM_L_DARK, "å‰£", "é­”å‰£åŒ–"},
+	{TERM_RED, "å¸", "å¸è¡€æ‰“æ’ƒ"},
+	{TERM_WHITE, "å›", "å›å¾©"},
+	{TERM_L_DARK, "æ„Ÿ", "é‚ªæ‚ªæ„ŸçŸ¥"},
 	{0, NULL, NULL}
 };
 #else
@@ -488,23 +488,23 @@ static struct {
 #endif
 
 /*!
- * @brief 32¥Ó¥Ã¥ÈÊÑ¿ôÇÛÎó¤Î»ØÄê°ÌÃÖ¤Î¥Ó¥Ã¥È¥Õ¥é¥°¤ò1¤Ë¤¹¤ë¡£
- * @param FLG ¥Õ¥é¥°°ÌÃÖ(¥Ó¥Ã¥È)
- * @return ¤Ê¤·
+ * @brief 32ãƒ“ãƒƒãƒˆå¤‰æ•°é…åˆ—ã®æŒ‡å®šä½ç½®ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’1ã«ã™ã‚‹ã€‚
+ * @param FLG ãƒ•ãƒ©ã‚°ä½ç½®(ãƒ“ãƒƒãƒˆ)
+ * @return ãªã—
  */
 #define ADD_FLG(FLG) (bar_flags[FLG / 32] |= (1L << (FLG % 32)))
 
 /*!
- * @brief 32¥Ó¥Ã¥ÈÊÑ¿ôÇÛÎó¤Î»ØÄê°ÌÃÖ¤Î¥Ó¥Ã¥È¥Õ¥é¥°¤¬1¤«¤É¤¦¤«¤òÊÖ¤¹¡£
- * @param FLG ¥Õ¥é¥°°ÌÃÖ(¥Ó¥Ã¥È)
- * @return 1¤Ê¤é¤Ğ0°Ê³°¤òÊÖ¤¹
+ * @brief 32ãƒ“ãƒƒãƒˆå¤‰æ•°é…åˆ—ã®æŒ‡å®šä½ç½®ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ãŒ1ã‹ã©ã†ã‹ã‚’è¿”ã™ã€‚
+ * @param FLG ãƒ•ãƒ©ã‚°ä½ç½®(ãƒ“ãƒƒãƒˆ)
+ * @return 1ãªã‚‰ã°0ä»¥å¤–ã‚’è¿”ã™
  */
 #define IS_FLG(FLG) (bar_flags[FLG / 32] & (1L << (FLG % 32)))
 
 
 /*!
- * @brief ²¼Éô¤Ë¾õÂÖÉ½¼¨¤ò¹Ô¤¦ / Show status bar
- * @return ¤Ê¤·
+ * @brief ä¸‹éƒ¨ã«çŠ¶æ…‹è¡¨ç¤ºã‚’è¡Œã† / Show status bar
+ * @return ãªã—
  */
 static void prt_status(void)
 {
@@ -674,10 +674,10 @@ static void prt_status(void)
 			hex_spelling(HEX_CURE_SERIOUS) ||
 			hex_spelling(HEX_CURE_CRITICAL)) ADD_FLG(BAR_CURE);
 
-		if (p_ptr->magic_num2[2])
+		if (HEX_REVENGE_TURN(p_ptr))
 		{
-			if (p_ptr->magic_num2[1] == 1) ADD_FLG(BAR_PATIENCE);
-			if (p_ptr->magic_num2[1] == 2) ADD_FLG(BAR_REVENGE);
+			if (HEX_REVENGE_TYPE(p_ptr) == 1) ADD_FLG(BAR_PATIENCE);
+			if (HEX_REVENGE_TYPE(p_ptr) == 2) ADD_FLG(BAR_REVENGE);
 		}
 	}
 
@@ -736,8 +736,8 @@ static void prt_status(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¾Î¹æ¤òÉ½¼¨¤¹¤ë / Prints "title", including "wizard" or "winner" as needed.
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§°å·ã‚’è¡¨ç¤ºã™ã‚‹ / Prints "title", including "wizard" or "winner" as needed.
+ * @return ãªã—
  */
 static void prt_title(void)
 {
@@ -748,8 +748,8 @@ static void prt_title(void)
 	if (p_ptr->wizard)
 	{
 #ifdef JP
-		/* ±ÑÆüÀÚ¤êÂØ¤¨µ¡Ç½ ¾Î¹æ */
-		p = "[¥¦¥£¥¶¡¼¥É]";
+		/* è‹±æ—¥åˆ‡ã‚Šæ›¿ãˆæ©Ÿèƒ½ ç§°å· */
+		p = "[ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰]";
 #else
 		p = "[=-WIZARD-=]";
 #endif
@@ -762,8 +762,8 @@ static void prt_title(void)
 		if (p_ptr->arena_number > MAX_ARENA_MONS + 2)
 		{
 #ifdef JP
-			/* ±ÑÆüÀÚ¤êÂØ¤¨µ¡Ç½ ¾Î¹æ */
-			p = "*¿¿¡¦¾¡Íø¼Ô*";
+			/* è‹±æ—¥åˆ‡ã‚Šæ›¿ãˆæ©Ÿèƒ½ ç§°å· */
+			p = "*çœŸãƒ»å‹åˆ©è€…*";
 #else
 			p = "*TRUEWINNER*";
 #endif
@@ -771,8 +771,8 @@ static void prt_title(void)
 		else
 		{
 #ifdef JP
-			/* ±ÑÆüÀÚ¤êÂØ¤¨µ¡Ç½ ¾Î¹æ */
-			p = "***¾¡Íø¼Ô***";
+			/* è‹±æ—¥åˆ‡ã‚Šæ›¿ãˆæ©Ÿèƒ½ ç§°å· */
+			p = "***å‹åˆ©è€…***";
 #else
 			p = "***WINNER***";
 #endif
@@ -791,8 +791,8 @@ static void prt_title(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥ì¥Ù¥ë¤òÉ½¼¨¤¹¤ë / Prints level
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ¬ãƒ™ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ / Prints level
+ * @return ãªã—
  */
 static void prt_level(void)
 {
@@ -803,7 +803,7 @@ static void prt_level(void)
 	if (p_ptr->lev >= p_ptr->max_plv)
 	{
 #ifdef JP
-		put_str("¥ì¥Ù¥ë ", ROW_LEVEL, 0);
+		put_str("ãƒ¬ãƒ™ãƒ« ", ROW_LEVEL, 0);
 		c_put_str(TERM_L_GREEN, tmp, ROW_LEVEL, COL_LEVEL + 7);
 #else
 		put_str("LEVEL ", ROW_LEVEL, 0);
@@ -814,7 +814,7 @@ static void prt_level(void)
 	else
 	{
 #ifdef JP
-		put_str("x¥ì¥Ù¥ë", ROW_LEVEL, 0);
+		put_str("xãƒ¬ãƒ™ãƒ«", ROW_LEVEL, 0);
 		c_put_str(TERM_YELLOW, tmp, ROW_LEVEL, COL_LEVEL + 7);
 #else
 		put_str("Level ", ROW_LEVEL, 0);
@@ -826,8 +826,8 @@ static void prt_level(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î·Ğ¸³ÃÍ¤òÉ½¼¨¤¹¤ë / Display the experience
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®çµŒé¨“å€¤ã‚’è¡¨ç¤ºã™ã‚‹ / Display the experience
+ * @return ãªã—
  */
 static void prt_exp(void)
 {
@@ -856,8 +856,8 @@ static void prt_exp(void)
 	if (p_ptr->exp >= p_ptr->max_exp)
 	{
 #ifdef JP
-		if (p_ptr->prace == RACE_ANDROID) put_str("¶¯²½ ", ROW_EXP, 0);
-		else put_str("·Ğ¸³ ", ROW_EXP, 0);
+		if (p_ptr->prace == RACE_ANDROID) put_str("å¼·åŒ– ", ROW_EXP, 0);
+		else put_str("çµŒé¨“ ", ROW_EXP, 0);
 		c_put_str(TERM_L_GREEN, out_val, ROW_EXP, COL_EXP + 5);
 #else
 		if (p_ptr->prace == RACE_ANDROID) put_str("Cst ", ROW_EXP, 0);
@@ -869,7 +869,7 @@ static void prt_exp(void)
 	else
 	{
 #ifdef JP
-		put_str("x·Ğ¸³", ROW_EXP, 0);
+		put_str("xçµŒé¨“", ROW_EXP, 0);
 		c_put_str(TERM_YELLOW, out_val, ROW_EXP, COL_EXP + 5);
 #else
 		put_str("Exp ", ROW_EXP, 0);
@@ -880,29 +880,29 @@ static void prt_exp(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î½ê»ı¶â¤òÉ½¼¨¤¹¤ë / Prints current gold
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰€æŒé‡‘ã‚’è¡¨ç¤ºã™ã‚‹ / Prints current gold
+ * @return ãªã—
  */
 static void prt_gold(void)
 {
 	char tmp[32];
-	put_str(_("¡ğ ", "AU "), ROW_GOLD, COL_GOLD);
+	put_str(_("ï¼„ ", "AU "), ROW_GOLD, COL_GOLD);
 	sprintf(tmp, "%9ld", (long)p_ptr->au);
 	c_put_str(TERM_L_GREEN, tmp, ROW_GOLD, COL_GOLD + 3);
 }
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎAC¤òÉ½¼¨¤¹¤ë / Prints current AC
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ACã‚’è¡¨ç¤ºã™ã‚‹ / Prints current AC
+ * @return ãªã—
  */
 static void prt_ac(void)
 {
 	char tmp[32];
 
 #ifdef JP
-/* AC ¤ÎÉ½¼¨Êı¼°¤òÊÑ¹¹¤·¤Æ¤¤¤ë */
-	put_str(" £Á£Ã(     )", ROW_AC, COL_AC);
+/* AC ã®è¡¨ç¤ºæ–¹å¼ã‚’å¤‰æ›´ã—ã¦ã„ã‚‹ */
+	put_str(" ï¼¡ï¼£(     )", ROW_AC, COL_AC);
 	sprintf(tmp, "%5d", p_ptr->dis_ac + p_ptr->dis_to_a);
 	c_put_str(TERM_L_GREEN, tmp, ROW_AC, COL_AC + 6);
 #else
@@ -915,22 +915,22 @@ static void prt_ac(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎHP¤òÉ½¼¨¤¹¤ë / Prints Cur/Max hit points
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®HPã‚’è¡¨ç¤ºã™ã‚‹ / Prints Cur/Max hit points
+ * @return ãªã—
  */
 static void prt_hp(void)
 {
-/* ¥Ò¥Ã¥È¥İ¥¤¥ó¥È¤ÎÉ½¼¨ÊıË¡¤òÊÑ¹¹ */
+/* ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆã®è¡¨ç¤ºæ–¹æ³•ã‚’å¤‰æ›´ */
 	char tmp[32];
   
 	byte color;
   
-	/* ¥¿¥¤¥È¥ë */
-/*	put_str(" £È£Ğ¡¦£Í£Ğ", ROW_HPMP, COL_HPMP); */
+	/* ã‚¿ã‚¤ãƒˆãƒ« */
+/*	put_str(" ï¼¨ï¼°ãƒ»ï¼­ï¼°", ROW_HPMP, COL_HPMP); */
 
 	put_str("HP", ROW_CURHP, COL_CURHP);
 
-	/* ¸½ºß¤Î¥Ò¥Ã¥È¥İ¥¤¥ó¥È */
+	/* ç¾åœ¨ã®ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ */
 	sprintf(tmp, "%4ld", (long int)p_ptr->chp);
 
 	if (p_ptr->chp >= p_ptr->mhp)
@@ -948,10 +948,10 @@ static void prt_hp(void)
 
 	c_put_str(color, tmp, ROW_CURHP, COL_CURHP+3);
 
-	/* ¶èÀÚ¤ê */
+	/* åŒºåˆ‡ã‚Š */
 	put_str( "/", ROW_CURHP, COL_CURHP + 7 );
 
-	/* ºÇÂç¥Ò¥Ã¥È¥İ¥¤¥ó¥È */
+	/* æœ€å¤§ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ */
 	sprintf(tmp, "%4ld", (long int)p_ptr->mhp);
 	color = TERM_L_GREEN;
 
@@ -960,12 +960,12 @@ static void prt_hp(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎMP¤òÉ½¼¨¤¹¤ë / Prints players max/cur spell points
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®MPã‚’è¡¨ç¤ºã™ã‚‹ / Prints players max/cur spell points
+ * @return ãªã—
  */
 static void prt_sp(void)
 {
-/* ¥Ş¥¸¥Ã¥¯¥İ¥¤¥ó¥È¤ÎÉ½¼¨ÊıË¡¤òÊÑ¹¹¤·¤Æ¤¤¤ë */
+/* ãƒã‚¸ãƒƒã‚¯ãƒã‚¤ãƒ³ãƒˆã®è¡¨ç¤ºæ–¹æ³•ã‚’å¤‰æ›´ã—ã¦ã„ã‚‹ */
 	char tmp[32];
 	byte color;
 
@@ -973,11 +973,11 @@ static void prt_sp(void)
 	/* Do not show mana unless it matters */
 	if (!mp_ptr->spell_book) return;
 
-	/* ¥¿¥¤¥È¥ë */
-/*	put_str(" £Í£Ğ / ºÇÂç", ROW_MAXSP, COL_MAXSP); */
+	/* ã‚¿ã‚¤ãƒˆãƒ« */
+/*	put_str(" ï¼­ï¼° / æœ€å¤§", ROW_MAXSP, COL_MAXSP); */
 	put_str(_("MP", "SP"), ROW_CURSP, COL_CURSP);
 
-	/* ¸½ºß¤Î¥Ş¥¸¥Ã¥¯¥İ¥¤¥ó¥È */
+	/* ç¾åœ¨ã®ãƒã‚¸ãƒƒã‚¯ãƒã‚¤ãƒ³ãƒˆ */
 	sprintf(tmp, "%4ld", (long int)p_ptr->csp);
 
 	if (p_ptr->csp >= p_ptr->msp)
@@ -995,10 +995,10 @@ static void prt_sp(void)
 
 	c_put_str(color, tmp, ROW_CURSP, COL_CURSP+3);
 
-	/* ¶èÀÚ¤ê */
+	/* åŒºåˆ‡ã‚Š */
 	put_str( "/", ROW_CURSP, COL_CURSP + 7 );
 
-	/* ºÇÂç¥Ş¥¸¥Ã¥¯¥İ¥¤¥ó¥È */
+	/* æœ€å¤§ãƒã‚¸ãƒƒã‚¯ãƒã‚¤ãƒ³ãƒˆ */
 	sprintf(tmp, "%4ld", (long int)p_ptr->msp);
 	color = TERM_L_GREEN;
 
@@ -1007,8 +1007,8 @@ static void prt_sp(void)
 
 
 /*!
- * @brief ¸½ºß¤Î¥Õ¥í¥¢¤Î¿¼¤µ¤òÉ½¼¨¤¹¤ë / Prints depth in stat area
- * @return ¤Ê¤·
+ * @brief ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã®æ·±ã•ã‚’è¡¨ç¤ºã™ã‚‹ / Prints depth in stat area
+ * @return ãªã—
  */
 static void prt_depth(void)
 {
@@ -1022,16 +1022,16 @@ static void prt_depth(void)
 
 	if (!dun_level)
 	{
-		strcpy(depths, _("ÃÏ¾å", "Surf."));
+		strcpy(depths, _("åœ°ä¸Š", "Surf."));
 	}
 	else if (p_ptr->inside_quest && !dungeon_type)
 	{
-		strcpy(depths, _("ÃÏ¾å", "Quest"));
+		strcpy(depths, _("åœ°ä¸Š", "Quest"));
 	}
 	else
 	{
-		if (depth_in_feet) (void)sprintf(depths, _("%d ft", "%d ft"), dun_level * 50);
-		else (void)sprintf(depths, _("%d ³¬", "Lev %d"), dun_level);
+		if (depth_in_feet) (void)sprintf(depths, _("%d ft", "%d ft"), (int)dun_level * 50);
+		else (void)sprintf(depths, _("%d éš", "Lev %d"), (int)dun_level);
 
 		/* Get color of level based on feeling  -JSV- */
 		switch (p_ptr->feeling)
@@ -1056,8 +1056,8 @@ static void prt_depth(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¶õÊ¢¾õÂÖ¤òÉ½¼¨¤¹¤ë / Prints status of hunger
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç©ºè…¹çŠ¶æ…‹ã‚’è¡¨ç¤ºã™ã‚‹ / Prints status of hunger
+ * @return ãªã—
  */
 static void prt_hunger(void)
 {
@@ -1066,19 +1066,19 @@ static void prt_hunger(void)
 	/* Fainting / Starving */
 	if (p_ptr->food < PY_FOOD_FAINT)
 	{
-		c_put_str(TERM_RED, _("¿ê¼å  ", "Weak  "), ROW_HUNGRY, COL_HUNGRY);
+		c_put_str(TERM_RED, _("è¡°å¼±  ", "Weak  "), ROW_HUNGRY, COL_HUNGRY);
 	}
 
 	/* Weak */
 	else if (p_ptr->food < PY_FOOD_WEAK)
 	{
-		c_put_str(TERM_ORANGE, _("¿ê¼å  ", "Weak  "), ROW_HUNGRY, COL_HUNGRY);
+		c_put_str(TERM_ORANGE, _("è¡°å¼±  ", "Weak  "), ROW_HUNGRY, COL_HUNGRY);
 	}
 
 	/* Hungry */
 	else if (p_ptr->food < PY_FOOD_ALERT)
 	{
-		c_put_str(TERM_YELLOW, _("¶õÊ¢  ", "Hungry"), ROW_HUNGRY, COL_HUNGRY);
+		c_put_str(TERM_YELLOW, _("ç©ºè…¹  ", "Hungry"), ROW_HUNGRY, COL_HUNGRY);
 	}
 
 	/* Normal */
@@ -1090,20 +1090,20 @@ static void prt_hunger(void)
 	/* Full */
 	else if (p_ptr->food < PY_FOOD_MAX)
 	{
-		c_put_str(TERM_L_GREEN, _("ËşÊ¢  ", "Full  "), ROW_HUNGRY, COL_HUNGRY);
+		c_put_str(TERM_L_GREEN, _("æº€è…¹  ", "Full  "), ROW_HUNGRY, COL_HUNGRY);
 	}
 
 	/* Gorged */
 	else
 	{
-		c_put_str(TERM_GREEN, _("¿©²á¤®", "Gorged"), ROW_HUNGRY, COL_HUNGRY);
+		c_put_str(TERM_GREEN, _("é£Ÿéã", "Gorged"), ROW_HUNGRY, COL_HUNGRY);
 	}
 }
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¹ÔÆ°¾õÂÖ¤òÉ½¼¨¤¹¤ë / Prints Searching, Resting, Paralysis, or 'count' status
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¡Œå‹•çŠ¶æ…‹ã‚’è¡¨ç¤ºã™ã‚‹ / Prints Searching, Resting, Paralysis, or 'count' status
+ * @return ãªã—
  * @details
  * Display is always exactly 10 characters wide (see below)
  * This function was a major bottleneck when resting, so a lot of
@@ -1113,7 +1113,7 @@ static void prt_state(void)
 {
 	byte attr = TERM_WHITE;
 
-	char text[5];
+	char text[16];
 
 	/* Repeating */
 	if (command_rep)
@@ -1135,7 +1135,7 @@ static void prt_state(void)
 		{
 			case ACTION_SEARCH:
 			{
-				strcpy(text, _("Ãµº÷", "Sear"));
+				strcpy(text, _("æ¢ç´¢", "Sear"));
 				break;
 			}
 			case ACTION_REST:
@@ -1181,13 +1181,13 @@ static void prt_state(void)
 				}
 
 				/* Rest until healed */
-				else if (resting == -1)
+				else if (resting == COMMAND_ARG_REST_FULL_HEALING)
 				{
 					text[0] = text[1] = text[2] = text[3] = '*';
 				}
 
 				/* Rest until done */
-				else if (resting == -2)
+				else if (resting == COMMAND_ARG_REST_UNTIL_DONE)
 				{
 					text[0] = text[1] = text[2] = text[3] = '&';
 				}
@@ -1195,13 +1195,13 @@ static void prt_state(void)
 			}
 			case ACTION_LEARN:
 			{
-				strcpy(text, _("³Ø½¬", "lear"));
+				strcpy(text, _("å­¦ç¿’", "lear"));
 				if (new_mane) attr = TERM_L_RED;
 				break;
 			}
 			case ACTION_FISH:
 			{
-				strcpy(text, _("Äà¤ê", "fish"));
+				strcpy(text, _("é‡£ã‚Š", "fish"));
 				break;
 			}
 			case ACTION_KAMAE:
@@ -1229,17 +1229,17 @@ static void prt_state(void)
 			}
 			case ACTION_SING:
 			{
-				strcpy(text, _("²Î  ", "Sing"));
+				strcpy(text, _("æ­Œ  ", "Sing"));
 				break;
 			}
 			case ACTION_HAYAGAKE:
 			{
-				strcpy(text, _("Â®¶î", "Fast"));
+				strcpy(text, _("é€Ÿé§†", "Fast"));
 				break;
 			}
 			case ACTION_SPELL:
 			{
-				strcpy(text, _("±Ó¾§", "Spel"));
+				strcpy(text, _("è© å”±", "Spel"));
 				break;
 			}
 			default:
@@ -1256,8 +1256,8 @@ static void prt_state(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¹ÔÆ°Â®ÅÙ¤òÉ½¼¨¤¹¤ë / Prints the speed of a character.			-CJS-
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¡Œå‹•é€Ÿåº¦ã‚’è¡¨ç¤ºã™ã‚‹ / Prints the speed of a character.			-CJS-
+ * @return ãªã—
  */
 static void prt_speed(void)
 {
@@ -1289,7 +1289,7 @@ static void prt_speed(void)
 		else if (p_ptr->slow && !is_fast) attr = TERM_VIOLET;
 		else attr = TERM_L_GREEN;
 #ifdef JP
-		sprintf(buf, "%s(+%d)", (p_ptr->riding ? "¾èÇÏ" : "²ÃÂ®"), (i - 110));
+		sprintf(buf, "%s(+%d)", (p_ptr->riding ? "ä¹—é¦¬" : "åŠ é€Ÿ"), (i - 110));
 #else
 		sprintf(buf, "Fast(+%d)", (i - 110));
 #endif
@@ -1310,7 +1310,7 @@ static void prt_speed(void)
 		else if (p_ptr->slow && !is_fast) attr = TERM_VIOLET;
 		else attr = TERM_L_UMBER;
 #ifdef JP
-		sprintf(buf, "%s(-%d)", (p_ptr->riding ? "¾èÇÏ" : "¸ºÂ®"), (110 - i));
+		sprintf(buf, "%s(-%d)", (p_ptr->riding ? "ä¹—é¦¬" : "æ¸›é€Ÿ"), (110 - i));
 #else
 		sprintf(buf, "Slow(-%d)", (110 - i));
 #endif
@@ -1318,7 +1318,7 @@ static void prt_speed(void)
 	else if (p_ptr->riding)
 	{
 		attr = TERM_GREEN;
-		strcpy(buf, _("¾èÇÏÃæ", "Riding"));
+		strcpy(buf, _("ä¹—é¦¬ä¸­", "Riding"));
 	}
 
 	/* Display the speed */
@@ -1327,8 +1327,8 @@ static void prt_speed(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¼öÊ¸³Ø½¬²ÄÇ½¾õÂÖ¤òÉ½¼¨¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ªæ–‡å­¦ç¿’å¯èƒ½çŠ¶æ…‹ã‚’è¡¨ç¤ºã™ã‚‹
+ * @return ãªã—
  */
 static void prt_study(void)
 {
@@ -1340,7 +1340,7 @@ static void prt_study(void)
 
 	if (p_ptr->new_spells)
 	{
-		put_str(_("³Ø½¬", "Stud"), row_study, col_study);
+		put_str(_("å­¦ç¿’", "Stud"), row_study, col_study);
 	}
 	else
 	{
@@ -1350,8 +1350,8 @@ static void prt_study(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¤â¤Î¤Ş¤Í²ÄÇ½¾õÂÖ¤òÉ½¼¨¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚‚ã®ã¾ã­å¯èƒ½çŠ¶æ…‹ã‚’è¡¨ç¤ºã™ã‚‹
+ * @return ãªã—
  */
 static void prt_imitation(void)
 {
@@ -1368,7 +1368,7 @@ static void prt_imitation(void)
 			byte attr;
 			if (new_mane) attr = TERM_L_RED;
 			else attr = TERM_WHITE;
-			c_put_str(attr, _("¤Ş¤Í", "Imit"), row_study, col_study);
+			c_put_str(attr, _("ã¾ã­", "Imit"), row_study, col_study);
 		}
 		else
 		{
@@ -1378,8 +1378,8 @@ static void prt_imitation(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎÉé½ı¾õÂÖ¤òÉ½¼¨¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è² å‚·çŠ¶æ…‹ã‚’è¡¨ç¤ºã™ã‚‹
+ * @return ãªã—
  */
 static void prt_cut(void)
 {
@@ -1387,31 +1387,31 @@ static void prt_cut(void)
 
 	if (c > 1000)
 	{
-		c_put_str(TERM_L_RED, _("Ã×Ì¿½ı      ", "Mortal wound"), ROW_CUT, COL_CUT);
+		c_put_str(TERM_L_RED, _("è‡´å‘½å‚·      ", "Mortal wound"), ROW_CUT, COL_CUT);
 	}
 	else if (c > 200)
 	{
-		c_put_str(TERM_RED, _("¤Ò¤É¤¤¿¼¼ê  ", "Deep gash   "), ROW_CUT, COL_CUT);
+		c_put_str(TERM_RED, _("ã²ã©ã„æ·±æ‰‹  ", "Deep gash   "), ROW_CUT, COL_CUT);
 	}
 	else if (c > 100)
 	{
-		c_put_str(TERM_RED, _("½Å½ı        ", "Severe cut  "), ROW_CUT, COL_CUT);
+		c_put_str(TERM_RED, _("é‡å‚·        ", "Severe cut  "), ROW_CUT, COL_CUT);
 	}
 	else if (c > 50)
 	{
-		c_put_str(TERM_ORANGE, _("ÂçÊÑ¤Ê½ı    ", "Nasty cut   "), ROW_CUT, COL_CUT);
+		c_put_str(TERM_ORANGE, _("å¤§å¤‰ãªå‚·    ", "Nasty cut   "), ROW_CUT, COL_CUT);
 	}
 	else if (c > 25)
 	{
-		c_put_str(TERM_ORANGE, _("¤Ò¤É¤¤½ı    ", "Bad cut     "), ROW_CUT, COL_CUT);
+		c_put_str(TERM_ORANGE, _("ã²ã©ã„å‚·    ", "Bad cut     "), ROW_CUT, COL_CUT);
 	}
 	else if (c > 10)
 	{
-		c_put_str(TERM_YELLOW, _("·Ú½ı        ", "Light cut   "), ROW_CUT, COL_CUT);
+		c_put_str(TERM_YELLOW, _("è»½å‚·        ", "Light cut   "), ROW_CUT, COL_CUT);
 	}
 	else if (c)
 	{
-		c_put_str(TERM_YELLOW, _("¤«¤¹¤ê½ı    ", "Graze       "), ROW_CUT, COL_CUT);
+		c_put_str(TERM_YELLOW, _("ã‹ã™ã‚Šå‚·    ", "Graze       "), ROW_CUT, COL_CUT);
 	}
 	else
 	{
@@ -1421,8 +1421,8 @@ static void prt_cut(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎÛ¯Û°¾õÂÖ¤òÉ½¼¨¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ¦æœ§çŠ¶æ…‹ã‚’è¡¨ç¤ºã™ã‚‹
+ * @return ãªã—
  */
 static void prt_stun(void)
 {
@@ -1430,15 +1430,15 @@ static void prt_stun(void)
 
 	if (s > 100)
 	{
-		c_put_str(TERM_RED, _("°Õ¼±ÉÔÌÀÎÆ  ", "Knocked out "), ROW_STUN, COL_STUN);
+		c_put_str(TERM_RED, _("æ„è­˜ä¸æ˜ç­  ", "Knocked out "), ROW_STUN, COL_STUN);
 	}
 	else if (s > 50)
 	{
-		c_put_str(TERM_ORANGE, _("¤Ò¤É¤¯Û¯Û°  ", "Heavy stun  "), ROW_STUN, COL_STUN);
+		c_put_str(TERM_ORANGE, _("ã²ã©ãæœ¦æœ§  ", "Heavy stun  "), ROW_STUN, COL_STUN);
 	}
 	else if (s)
 	{
-		c_put_str(TERM_ORANGE, _("Û¯Û°        ", "Stun        "), ROW_STUN, COL_STUN);
+		c_put_str(TERM_ORANGE, _("æœ¦æœ§        ", "Stun        "), ROW_STUN, COL_STUN);
 	}
 	else
 	{
@@ -1449,9 +1449,9 @@ static void prt_stun(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÂÎÎÏ¥²¡¼¥¸¤òÉ½¼¨¤¹¤ë
- * @param riding TRUE¤Ê¤é¤Ğµ³¾èÃæ¤Î¥â¥ó¥¹¥¿¡¼¤ÎÂÎÎÏ¡¢FALSE¤Ê¤é¥¿¡¼¥²¥Ã¥È¥â¥ó¥¹¥¿¡¼¤ÎÂÎÎÏ¤òÉ½¼¨¤¹¤ë¡£É½¼¨°ÌÃÖ¤Ï¸ÇÄê¡£
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½“åŠ›ã‚²ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹
+ * @param riding TRUEãªã‚‰ã°é¨ä¹—ä¸­ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½“åŠ›ã€FALSEãªã‚‰ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä½“åŠ›ã‚’è¡¨ç¤ºã™ã‚‹ã€‚è¡¨ç¤ºä½ç½®ã¯å›ºå®šã€‚
+ * @return ãªã—
  * @details
  * <pre>
  * Redraw the "monster health bar"	-DRS-
@@ -1604,8 +1604,8 @@ static void health_redraw(bool riding)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹¤ò°ì³çÉ½¼¨¤¹¤ë¡Êº¸Â¦ÉôÊ¬¡Ë / Display basic info (mostly left of map)
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ä¸€æ‹¬è¡¨ç¤ºã™ã‚‹ï¼ˆå·¦å´éƒ¨åˆ†ï¼‰ / Display basic info (mostly left of map)
+ * @return ãªã—
  */
 static void prt_frame_basic(void)
 {
@@ -1656,8 +1656,8 @@ static void prt_frame_basic(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥¹¥Æ¡¼¥¿¥¹¤ò°ì³çÉ½¼¨¤¹¤ë¡Ê²¼ÉôÊ¬¡Ë / Display extra info (mostly below map)
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ä¸€æ‹¬è¡¨ç¤ºã™ã‚‹ï¼ˆä¸‹éƒ¨åˆ†ï¼‰ / Display extra info (mostly below map)
+ * @return ãªã—
  */
 static void prt_frame_extra(void)
 {
@@ -1684,8 +1684,8 @@ static void prt_frame_extra(void)
 
 
 /*!
- * @brief ¥µ¥Ö¥¦¥£¥ó¥É¥¦¤Ë½ê»ıÉÊ°ìÍ÷¤òÉ½¼¨¤¹¤ë / Hack -- display inventory in sub-windows
- * @return ¤Ê¤·
+ * @brief ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«æ‰€æŒå“ä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹ / Hack -- display inventory in sub-windows
+ * @return ãªã—
  */
 static void fix_inven(void)
 {
@@ -1718,11 +1718,11 @@ static void fix_inven(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î¸½ºß¿ô¤ò°ì¹Ô¤ÇÉ½¸½¤¹¤ë / Print monster info in line
- * @param x É½¼¨Îó
- * @param y É½¼¨¹Ô
- * @param m_ptr »×¤¤½Ğ¤òÉ½¼¨¤¹¤ë¥â¥ó¥¹¥¿¡¼¾ğÊó¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param n_same ¥â¥ó¥¹¥¿¡¼¤Î¿ô¤Î¸½ºß¿ô
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¾åœ¨æ•°ã‚’ä¸€è¡Œã§è¡¨ç¾ã™ã‚‹ / Print monster info in line
+ * @param x è¡¨ç¤ºåˆ—
+ * @param y è¡¨ç¤ºè¡Œ
+ * @param m_ptr æ€ã„å‡ºã‚’è¡¨ç¤ºã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param n_same ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°ã®ç¾åœ¨æ•°
  * @details
  * <pre>
  * nnn X LV name
@@ -1730,13 +1730,13 @@ static void fix_inven(void)
  *  X   : symbol of monster
  *  LV  : monster lv if known
  *  name: name of monster
- * @return ¤Ê¤·
+ * @return ãªã—
  * </pre>
  */
 static void print_monster_line(int x, int y, monster_type* m_ptr, int n_same){
 	char buf[256];
 	int i;
-	int r_idx = m_ptr->ap_r_idx;
+	MONRACE_IDX r_idx = m_ptr->ap_r_idx;
 	monster_race* r_ptr = &r_info[r_idx];
  
 	Term_gotoxy(x, y);
@@ -1762,7 +1762,7 @@ static void print_monster_line(int x, int y, monster_type* m_ptr, int n_same){
 	Term_add_bigch(r_ptr->x_attr, r_ptr->x_char);
 	//LV
 	if (r_ptr->r_tkills && !(m_ptr->mflag2 & MFLAG2_KAGE)){
-		sprintf(buf, " %2d", r_ptr->level);
+		sprintf(buf, " %2d", (int)r_ptr->level);
 	}else{
 		strcpy(buf, " ??");
 	}
@@ -1775,10 +1775,10 @@ static void print_monster_line(int x, int y, monster_type* m_ptr, int n_same){
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î½Ğ¸½¥ê¥¹¥È¤òÉ½¼¨¤¹¤ë / Print monster info in line
- * @param x É½¼¨Îó
- * @param y É½¼¨¹Ô
- * @param max_lines ºÇÂç²¿¹ÔÉÁ²è¤¹¤ë¤«
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‡ºç¾ãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹ / Print monster info in line
+ * @param x è¡¨ç¤ºåˆ—
+ * @param y è¡¨ç¤ºè¡Œ
+ * @param max_lines æœ€å¤§ä½•è¡Œæç”»ã™ã‚‹ã‹
  */
 void print_monster_list(int x, int y, int max_lines){
 	int line = y;
@@ -1795,24 +1795,24 @@ void print_monster_list(int x, int y, int max_lines){
 		if(!m_ptr->r_idx)continue;//dead?
 		{
 			/*
-			int r_idx = m_ptr->ap_r_idx;
+			MONRACE_IDX r_idx = m_ptr->ap_r_idx;
 			monster_race* r_ptr = &r_info[r_idx];
 			cptr name = (r_name + r_ptr->name);
 			cptr ename = (r_name + r_ptr->name);
-			//¥ß¥ß¥Ã¥¯Îà¤ä¡Ö¤½¤ì¡×Åù¤Ï¡¢°ìÍ÷¤Ë½Ğ¤Æ¤Ï¤¤¤±¤Ê¤¤
+			//ãƒŸãƒŸãƒƒã‚¯é¡ã‚„ã€Œãã‚Œã€ç­‰ã¯ã€ä¸€è¦§ã«å‡ºã¦ã¯ã„ã‘ãªã„
 			if(r_ptr->flags1&RF1_CHAR_CLEAR)continue;
 			if((r_ptr->flags1&RF1_NEVER_MOVE)&&(r_ptr->flags2&RF2_CHAR_MULTI))continue;
-			//¡Ø¥Ì¥ë¡Ù¤Ï¡¢°ìÍ÷¤Ë½Ğ¤Æ¤Ï¤¤¤±¤Ê¤¤
-			if((strcmp(name, "À¸¤±¤ëµõÌµ¡Ø¥Ì¥ë¡Ù")==0)||
+			//ã€ãƒŒãƒ«ã€ã¯ã€ä¸€è¦§ã«å‡ºã¦ã¯ã„ã‘ãªã„
+			if((strcmp(name, "ç”Ÿã‘ã‚‹è™šç„¡ã€ãƒŒãƒ«ã€")==0)||
 			   (strcmp(ename, "Null the Living Void")==0))continue;
-			//"¶âÌµ¹¤¤Î»ØÎØ"¤Ï¡¢°ìÍ÷¤Ë½Ğ¤Æ¤Ï¤¤¤±¤Ê¤¤
-			if((strcmp(name, "¶âÌµ¹¤¤Î»ØÎØ")==0)||
+			//"é‡‘ç„¡å¢ã®æŒ‡è¼ª"ã¯ã€ä¸€è¦§ã«å‡ºã¦ã¯ã„ã‘ãªã„
+			if((strcmp(name, "é‡‘ç„¡å¢ã®æŒ‡è¼ª")==0)||
 				(strcmp(ename, "Plain Gold Ring")==0))continue;
 			*/
 		}
 
-		//¥½¡¼¥ÈºÑ¤ß¤Ê¤Î¤ÇÆ±¤¸¥â¥ó¥¹¥¿¡¼¤ÏÏ¢Â³¤¹¤ë¡¥¤³¤ì¤òÍøÍÑ¤·¤ÆÆ±¤¸¥â¥ó¥¹¥¿¡¼¤ò¥«¥¦¥ó¥È¡¤¤Ş¤È¤á¤ÆÉ½¼¨¤¹¤ë¡¥
-		if(!last_mons){//ÀèÆ¬¥â¥ó¥¹¥¿¡¼
+		//ã‚½ãƒ¼ãƒˆæ¸ˆã¿ãªã®ã§åŒã˜ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¯é€£ç¶šã™ã‚‹ï¼ã“ã‚Œã‚’åˆ©ç”¨ã—ã¦åŒã˜ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ã‚«ã‚¦ãƒ³ãƒˆï¼Œã¾ã¨ã‚ã¦è¡¨ç¤ºã™ã‚‹ï¼
+		if(!last_mons){//å…ˆé ­ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼
 			last_mons = m_ptr;
 			n_same = 1;
 			continue;
@@ -1820,13 +1820,13 @@ void print_monster_list(int x, int y, int max_lines){
 		//same race?
 		if(last_mons->ap_r_idx == m_ptr->ap_r_idx){
 			n_same++;
-			continue;//É½¼¨½èÍı¤ò¼¡¤Ë²ó¤¹
+			continue;//è¡¨ç¤ºå‡¦ç†ã‚’æ¬¡ã«å›ã™
 		}
 		//print last mons info
 		print_monster_line(x, line++, last_mons, n_same);
 		n_same = 1;
 		last_mons = m_ptr;
-		if(line-y-1==max_lines){//»Ä¤ê1¹Ô
+		if(line-y-1==max_lines){//æ®‹ã‚Š1è¡Œ
 			break;
 		}
 	}
@@ -1839,8 +1839,8 @@ void print_monster_list(int x, int y, int max_lines){
 }
 
 /*!
- * @brief ½Ğ¸½Ãæ¥â¥ó¥¹¥¿¡¼¤Î¥ê¥¹¥È¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / Hack -- display monster list in sub-windows
- * @return ¤Ê¤·
+ * @brief å‡ºç¾ä¸­ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒªã‚¹ãƒˆã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / Hack -- display monster list in sub-windows
+ * @return ãªã—
  */
 static void fix_monster_list(void)
 {
@@ -1864,7 +1864,7 @@ static void fix_monster_list(void)
 
 		Term_clear();
 
-		target_set_prepare_look();//¥â¥ó¥¹¥¿¡¼°ìÍ÷¤òÀ¸À®¡¤¥½¡¼¥È
+		target_set_prepare_look();//ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä¸€è¦§ã‚’ç”Ÿæˆï¼Œã‚½ãƒ¼ãƒˆ
 		print_monster_list(0, 0, h);
 
 		/* Fresh */
@@ -1878,9 +1878,9 @@ static void fix_monster_list(void)
 
 
 /*!
- * @brief ¸½ºß¤ÎÁõÈ÷ÉÊ¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ç¾åœ¨ã®è£…å‚™å“ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display equipment in sub-windows
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_equip(void)
 {
@@ -1913,9 +1913,9 @@ static void fix_equip(void)
 
 
 /*!
- * @brief ¸½ºß¤Î½¬ÆÀºÑËâË¡¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ç¾åœ¨ã®ç¿’å¾—æ¸ˆé­”æ³•ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display spells in sub-windows
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_spell(void)
 {
@@ -1948,9 +1948,9 @@ static void fix_spell(void)
 
 
 /*!
- * @brief ¸½ºß¤Î¥×¥ì¥¤¥ä¡¼¥¹¥Æ¡¼¥¿¥¹¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display character in sub-windows
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_player(void)
 {
@@ -1984,10 +1984,10 @@ static void fix_player(void)
 }
 
 /*!
- * @brief ¥²¡¼¥à¥á¥Ã¥»¡¼¥¸ÍúÎò¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ã‚²ãƒ¼ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å±¥æ­´ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display recent messages in sub-windows
  * XXX XXX XXX Adjust for width and split messages
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_message(void)
 {
@@ -2035,10 +2035,10 @@ static void fix_message(void)
 
 
 /*!
- * @brief ´Ê°×¥Ş¥Ã¥×¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ç°¡æ˜“ãƒãƒƒãƒ—ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display overhead view in sub-windows
  * XXX XXX XXX Adjust for width and split messages
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * Note that the "player" symbol does NOT appear on the map.
  */
@@ -2081,9 +2081,9 @@ static void fix_overhead(void)
 
 
 /*!
- * @brief ¥À¥ó¥¸¥ç¥ó¤ÎÃÏ·Á¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®åœ°å½¢ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display dungeon view in sub-windows
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_dungeon(void)
 {
@@ -2116,9 +2116,9 @@ static void fix_dungeon(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display dungeon view in sub-windows
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_monster(void)
 {
@@ -2151,9 +2151,9 @@ static void fix_monster(void)
 
 
 /*!
- * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¾ğÊó¤ò¥µ¥Ö¥¦¥£¥ó¥É¥¦¤ËÉ½¼¨¤¹¤ë / 
+ * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ / 
  * Hack -- display object recall in sub-windows
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void fix_object(void)
 {
@@ -2187,10 +2187,10 @@ static void fix_object(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¸½ºß³Ø½¬²ÄÇ½¤ÊËâË¡¿ô¤ò·×»»¤·¡¢Áı¸º¤Ë±ş¤¸¤ÆËâË¡¤ÎËºµÑ¡¢ºÆ³Ø½¬¤ò½èÃÖ¤¹¤ë¡£ /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨å­¦ç¿’å¯èƒ½ãªé­”æ³•æ•°ã‚’è¨ˆç®—ã—ã€å¢—æ¸›ã«å¿œã˜ã¦é­”æ³•ã®å¿˜å´ã€å†å­¦ç¿’ã‚’å‡¦ç½®ã™ã‚‹ã€‚ /
  * Calculate number of spells player should have, and forget,
  * or remember, spells until that number is properly reflected.
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * Note that this function induces various "status" messages,
  * which must be bypasses until the character is created.
@@ -2202,7 +2202,7 @@ static void calc_spells(void)
 	int         num_boukyaku = 0;
 
 	const magic_type	*s_ptr;
-	int which;
+	REALM_IDX which;
 	int bonus = 0;
 
 
@@ -2331,7 +2331,7 @@ static void calc_spells(void)
 
 			/* Message */
 #ifdef JP
-			msg_format("%s¤Î%s¤òËº¤ì¤Æ¤·¤Ş¤Ã¤¿¡£",
+			msg_format("%sã®%sã‚’å¿˜ã‚Œã¦ã—ã¾ã£ãŸã€‚",
 				   do_spell(which, j%32, SPELL_NAME), p );
 #else
 			msg_format("You have forgotten the %s of %s.", p,
@@ -2391,7 +2391,7 @@ static void calc_spells(void)
 
 			/* Message */
 #ifdef JP
-			msg_format("%s¤Î%s¤òËº¤ì¤Æ¤·¤Ş¤Ã¤¿¡£",
+			msg_format("%sã®%sã‚’å¿˜ã‚Œã¦ã—ã¾ã£ãŸã€‚",
 				   do_spell(which, j%32, SPELL_NAME), p );
 #else
 			msg_format("You have forgotten the %s of %s.", p,
@@ -2467,7 +2467,7 @@ static void calc_spells(void)
 
 			/* Message */
 #ifdef JP
-			msg_format("%s¤Î%s¤ò»×¤¤½Ğ¤·¤¿¡£",
+			msg_format("%sã®%sã‚’æ€ã„å‡ºã—ãŸã€‚",
 				   do_spell(which, j%32, SPELL_NAME), p );
 #else
 			msg_format("You have remembered the %s of %s.",
@@ -2503,7 +2503,11 @@ static void calc_spells(void)
 			k++;
 		}
 		if (k > 32) k = 32;
-		if ((p_ptr->new_spells > k) && ((mp_ptr->spell_book == TV_LIFE_BOOK) || (mp_ptr->spell_book == TV_HISSATSU_BOOK))) p_ptr->new_spells = k;
+		if ((p_ptr->new_spells > k) &&
+			((mp_ptr->spell_book == TV_LIFE_BOOK) || (mp_ptr->spell_book == TV_HISSATSU_BOOK)))
+		{
+			p_ptr->new_spells = (s16b)k;
+		}
 	}
 
 	if (p_ptr->new_spells < 0) p_ptr->new_spells = 0;
@@ -2517,9 +2521,9 @@ static void calc_spells(void)
 			/* Message */
 #ifdef JP
 			if( p_ptr->new_spells < 10 ){
-				msg_format("¤¢¤È %d ¤Ä¤Î%s¤ò³Ø¤Ù¤ë¡£", p_ptr->new_spells, p);
+				msg_format("ã‚ã¨ %d ã¤ã®%sã‚’å­¦ã¹ã‚‹ã€‚", p_ptr->new_spells, p);
 			}else{
-				msg_format("¤¢¤È %d ¸Ä¤Î%s¤ò³Ø¤Ù¤ë¡£", p_ptr->new_spells, p);
+				msg_format("ã‚ã¨ %d å€‹ã®%sã‚’å­¦ã¹ã‚‹ã€‚", p_ptr->new_spells, p);
 			}
 #else
 			msg_format("You can learn %d more %s%s.",
@@ -2541,10 +2545,10 @@ static void calc_spells(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎºÇÂçMP¤ò·×»»¤¹¤ë /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ€å¤§MPã‚’è¨ˆç®—ã™ã‚‹ /
  * Calculate maximum mana.  You do not need to know any spells.
  * Note that mana is lowered by heavy (or inappropriate) armor.
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * This function induces status messages.
  */
@@ -2800,10 +2804,10 @@ static void calc_mana(void)
 		}
 
 #ifdef JP
-		/* ¥ì¥Ù¥ë¥¢¥Ã¥×¤Î»ş¤Ï¾å¾ºÎÌ¤òÉ½¼¨¤¹¤ë */
+		/* ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã®æ™‚ã¯ä¸Šæ˜‡é‡ã‚’è¡¨ç¤ºã™ã‚‹ */
 		if ((level_up == 1) && (msp > p_ptr->msp))
 		{
-			msg_format("ºÇÂç¥Ş¥¸¥Ã¥¯¡¦¥İ¥¤¥ó¥È¤¬ %d Áı²Ã¤·¤¿¡ª",
+			msg_format("æœ€å¤§ãƒã‚¸ãƒƒã‚¯ãƒ»ãƒã‚¤ãƒ³ãƒˆãŒ %d å¢—åŠ ã—ãŸï¼",
 				   (msp - p_ptr->msp));
 		}
 #endif
@@ -2828,11 +2832,11 @@ static void calc_mana(void)
 		/* Message */
 		if (p_ptr->cumber_glove)
 		{
-			msg_print(_("¼ê¤¬Ê¤¤ï¤ì¤Æ¼öÊ¸¤¬¾§¤¨¤Ë¤¯¤¤´¶¤¸¤¬¤¹¤ë¡£", "Your covered hands feel unsuitable for spellcasting."));
+			msg_print(_("æ‰‹ãŒè¦†ã‚ã‚Œã¦å‘ªæ–‡ãŒå”±ãˆã«ãã„æ„Ÿã˜ãŒã™ã‚‹ã€‚", "Your covered hands feel unsuitable for spellcasting."));
 		}
 		else
 		{
-			msg_print(_("¤³¤Î¼ê¤Î¾õÂÖ¤Ê¤é¡¢¤°¤Ã¤È¼öÊ¸¤¬¾§¤¨¤ä¤¹¤¤´¶¤¸¤À¡£", "Your hands feel more suitable for spellcasting."));
+			msg_print(_("ã“ã®æ‰‹ã®çŠ¶æ…‹ãªã‚‰ã€ãã£ã¨å‘ªæ–‡ãŒå”±ãˆã‚„ã™ã„æ„Ÿã˜ã ã€‚", "Your hands feel more suitable for spellcasting."));
 		}
 
 		/* Save it */
@@ -2846,11 +2850,11 @@ static void calc_mana(void)
 		/* Message */
 		if (p_ptr->cumber_armor)
 		{
-			msg_print(_("ÁõÈ÷¤Î½Å¤µ¤ÇÆ°¤­¤¬Æß¤¯¤Ê¤Ã¤Æ¤·¤Ş¤Ã¤Æ¤¤¤ë¡£", "The weight of your equipment encumbers your movement."));
+			msg_print(_("è£…å‚™ã®é‡ã•ã§å‹•ããŒéˆããªã£ã¦ã—ã¾ã£ã¦ã„ã‚‹ã€‚", "The weight of your equipment encumbers your movement."));
 		}
 		else
 		{
-			msg_print(_("¤°¤Ã¤È³Ú¤ËÂÎ¤òÆ°¤«¤»¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡£", "You feel able to move more freely."));
+			msg_print(_("ãã£ã¨æ¥½ã«ä½“ã‚’å‹•ã‹ã›ã‚‹ã‚ˆã†ã«ãªã£ãŸã€‚", "You feel able to move more freely."));
 		}
 
 		/* Save it */
@@ -2861,10 +2865,10 @@ static void calc_mana(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎºÇÂçHP¤ò·×»»¤¹¤ë /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æœ€å¤§HPã‚’è¨ˆç®—ã™ã‚‹ /
  * Calculate the players (maximal) hit points
  * Adjust current hitpoints if necessary
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  */
 static void calc_hitpoints(void)
@@ -2926,10 +2930,10 @@ static void calc_hitpoints(void)
 		}
 
 #ifdef JP
-		/* ¥ì¥Ù¥ë¥¢¥Ã¥×¤Î»ş¤Ï¾å¾ºÎÌ¤òÉ½¼¨¤¹¤ë */
+		/* ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã®æ™‚ã¯ä¸Šæ˜‡é‡ã‚’è¡¨ç¤ºã™ã‚‹ */
 		if ((level_up == 1) && (mhp > p_ptr->mhp))
 		{
-			msg_format("ºÇÂç¥Ò¥Ã¥È¡¦¥İ¥¤¥ó¥È¤¬ %d Áı²Ã¤·¤¿¡ª",
+			msg_format("æœ€å¤§ãƒ’ãƒƒãƒˆãƒ»ãƒã‚¤ãƒ³ãƒˆãŒ %d å¢—åŠ ã—ãŸï¼",
 				   (mhp - p_ptr->mhp) );
 		}
 #endif
@@ -2945,8 +2949,8 @@ static void calc_hitpoints(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¸÷¸»È¾·Â¤ò·×»»¤¹¤ë / Extract and set the current "lite radius"
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å…‰æºåŠå¾„ã‚’è¨ˆç®—ã™ã‚‹ / Extract and set the current "lite radius"
+ * @return ãªã—
  * @details
  * SWD: Experimental modification: multiple light sources have additive effect.
  */
@@ -2990,7 +2994,7 @@ static void calc_torch(void)
 		if (have_flag(flgs, TR_LITE_M1)) rad -= 1;
 		if (have_flag(flgs, TR_LITE_M2)) rad -= 2;
 		if (have_flag(flgs, TR_LITE_M3)) rad -= 3;
-		p_ptr->cur_lite += rad;
+		p_ptr->cur_lite += (s16b)rad;
 	}
 
 	/* max radius is 14 (was 5) without rewriting other code -- */
@@ -3026,16 +3030,16 @@ static void calc_torch(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î½ê»ı½ÅÎÌÀ©¸Â¤ò·×»»¤¹¤ë /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰€æŒé‡é‡åˆ¶é™ã‚’è¨ˆç®—ã™ã‚‹ /
  * Computes current weight limit.
- * @return À©¸Â½ÅÎÌ(¥İ¥ó¥É)
+ * @return åˆ¶é™é‡é‡(ãƒãƒ³ãƒ‰)
  */
-u32b weight_limit(void)
+WEIGHT weight_limit(void)
 {
-	u32b i;
+	WEIGHT i;
 
 	/* Weight limit based only on strength */
-	i = (u32b)adj_str_wgt[p_ptr->stat_ind[A_STR]] * 50; /* Constant was 100 */
+	i = (WEIGHT)adj_str_wgt[p_ptr->stat_ind[A_STR]] * 50; /* Constant was 100 */
 	if (p_ptr->pclass == CLASS_BERSERKER) i = i * 3 / 2;
 
 	/* Return the result */
@@ -3043,9 +3047,9 @@ u32b weight_limit(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤¬¸½ºß±¦¼ê/º¸¼ê¤ËÉğ´ï¤ò»ı¤Ã¤Æ¤¤¤ë¤«È½Äê¤¹¤ë /
- * @param i È½Äê¤¹¤ë¼ê¤ÎID(±¦¼ê:0 º¸¼ê:1)
- * @return »ı¤Ã¤Æ¤¤¤ë¤Ê¤é¤ĞTRUE
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç¾åœ¨å³æ‰‹/å·¦æ‰‹ã«æ­¦å™¨ã‚’æŒã£ã¦ã„ã‚‹ã‹åˆ¤å®šã™ã‚‹ /
+ * @param i åˆ¤å®šã™ã‚‹æ‰‹ã®ID(å³æ‰‹:0 å·¦æ‰‹:1)
+ * @return æŒã£ã¦ã„ã‚‹ãªã‚‰ã°TRUE
  */
 bool buki_motteruka(int i)
 {
@@ -3053,9 +3057,9 @@ bool buki_motteruka(int i)
 }
 
 /*!
- * @brief ¼Í·âÉğ´ï¤¬¥×¥ì¥¤¥ä¡¼¤Ë¤È¤Ã¤Æ½Å¤¹¤®¤ë¤«¤É¤¦¤«¤ÎÈ½Äê /
- * @param o_ptr È½Äê¤¹¤ë¼Í·âÉğ´ï¤Î¥¢¥¤¥Æ¥à¾ğÊó»²¾È¥İ¥¤¥ó¥¿
- * @return ½Å¤¹¤®¤ë¤Ê¤é¤ĞTRUE
+ * @brief å°„æ’ƒæ­¦å™¨ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã¨ã£ã¦é‡ã™ãã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®š /
+ * @param o_ptr åˆ¤å®šã™ã‚‹å°„æ’ƒæ­¦å™¨ã®ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return é‡ã™ãã‚‹ãªã‚‰ã°TRUE
  */
 bool is_heavy_shoot(object_type *o_ptr)
 {
@@ -3065,9 +3069,9 @@ bool is_heavy_shoot(object_type *o_ptr)
 }
 
 /*!
- * @brief ¼Í·âÉğ´ï¤ËÂĞ±ş¤¹¤ëÌğ/ÃÆÌô¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥àID¤òÊÖ¤¹ /
- * @param o_ptr È½Äê¤¹¤ë¼Í·âÉğ´ï¤Î¥¢¥¤¥Æ¥à¾ğÊó»²¾È¥İ¥¤¥ó¥¿
- * @return ÂĞ±ş¤¹¤ëÌğ/ÃÆÌô¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥àID
+ * @brief å°„æ’ƒæ­¦å™¨ã«å¯¾å¿œã™ã‚‹çŸ¢/å¼¾è–¬ã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ IDã‚’è¿”ã™ /
+ * @param o_ptr åˆ¤å®šã™ã‚‹å°„æ’ƒæ­¦å™¨ã®ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return å¯¾å¿œã™ã‚‹çŸ¢/å¼¾è–¬ã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ID
  */
 int bow_tval_ammo(object_type *o_ptr)
 {
@@ -3092,6 +3096,7 @@ int bow_tval_ammo(object_type *o_ptr)
 			return TV_BOLT;
 		}
 		case SV_CRIMSON:
+		case SV_HARP:
 		{
 			return TV_NO_AMMO;
 		}
@@ -3101,17 +3106,17 @@ int bow_tval_ammo(object_type *o_ptr)
 }
 
 /*!
- * @brief ÁõÈ÷Ãæ¤Î¼Í·âÉğ´ï¤Î°ÒÎÏÇÜÎ¨¤òÊÖ¤¹ /
+ * @brief è£…å‚™ä¸­ã®å°„æ’ƒæ­¦å™¨ã®å¨åŠ›å€ç‡ã‚’è¿”ã™ /
  * calcurate the fire rate of target object
- * @param o_ptr ·×»»¤¹¤ë¼Í·âÉğ´ï¤Î¥¢¥¤¥Æ¥à¾ğÊó»²¾È¥İ¥¤¥ó¥¿
- * @return ¼Í·âÇÜÎ¨¤ÎÃÍ(100¤Ç1.00ÇÜ)
+ * @param o_ptr è¨ˆç®—ã™ã‚‹å°„æ’ƒæ­¦å™¨ã®ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return å°„æ’ƒå€ç‡ã®å€¤(100ã§1.00å€)
  */
 s16b calc_num_fire(object_type *o_ptr)
 {
 	int extra_shots = 0;
 	int i;
 	int num = 0;
-	int tval_ammo = bow_tval_ammo(o_ptr);
+	OBJECT_TYPE_VALUE tval_ammo = bow_tval_ammo(o_ptr);
 	object_type *q_ptr;
 	u32b flgs[TR_FLAG_SIZE];
 	
@@ -3179,15 +3184,15 @@ s16b calc_num_fire(object_type *o_ptr)
 			num += (p_ptr->lev * 4);
 		}
 	}
-	return num;
+	return (s16b)num;
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ÎÁ´¥¹¥Æ¡¼¥¿¥¹¤ò¹¹¿·¤¹¤ë / 
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å…¨ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æ›´æ–°ã™ã‚‹ / 
  * Calculate the players current "state", taking into account
  * not only race/class intrinsics, but also objects being worn
  * and temporary spell effects.
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * <pre>
  * See also calc_mana() and calc_hitpoints().
@@ -3245,8 +3250,8 @@ void calc_bonuses(void)
 	bool old_mighty_throw = p_ptr->mighty_throw;
 
 	/* Save the old armor class */
-	bool old_dis_ac = p_ptr->dis_ac;
-	bool old_dis_to_a = p_ptr->dis_to_a;
+	s16b old_dis_ac = p_ptr->dis_ac;
+	s16b old_dis_to_a = p_ptr->dis_to_a;
 
 
 	/* Clear extra blows/shots */
@@ -4357,25 +4362,25 @@ void calc_bonuses(void)
 		/* To Bow and Natural attack */
 
 		/* Apply the bonuses to hit/damage */
-		p_ptr->to_h_b += bonus_to_h;
-		p_ptr->to_h_m += bonus_to_h;
-		p_ptr->to_d_m += bonus_to_d;
+		p_ptr->to_h_b += (s16b)bonus_to_h;
+		p_ptr->to_h_m += (s16b)bonus_to_h;
+		p_ptr->to_d_m += (s16b)bonus_to_d;
 
 		/* Apply the mental bonuses tp hit/damage, if known */
-		if (object_is_known(o_ptr)) p_ptr->dis_to_h_b += bonus_to_h;
+		if (object_is_known(o_ptr)) p_ptr->dis_to_h_b += (s16b)bonus_to_h;
 
 		/* To Melee */
 		if ((i == INVEN_LEFT || i == INVEN_RIGHT) && !p_ptr->ryoute)
 		{
 			/* Apply the bonuses to hit/damage */
-			p_ptr->to_h[i-INVEN_RIGHT] += bonus_to_h;
-			p_ptr->to_d[i-INVEN_RIGHT] += bonus_to_d;
+			p_ptr->to_h[i-INVEN_RIGHT] += (s16b)bonus_to_h;
+			p_ptr->to_d[i-INVEN_RIGHT] += (s16b)bonus_to_d;
 
 			/* Apply the mental bonuses tp hit/damage, if known */
 			if (object_is_known(o_ptr))
 			{
-				p_ptr->dis_to_h[i-INVEN_RIGHT] += bonus_to_h;
-				p_ptr->dis_to_d[i-INVEN_RIGHT] += bonus_to_d;
+				p_ptr->dis_to_h[i-INVEN_RIGHT] += (s16b)bonus_to_h;
+				p_ptr->dis_to_d[i-INVEN_RIGHT] += (s16b)bonus_to_d;
 			}
 		}
 		else if (p_ptr->migite && p_ptr->hidarite)
@@ -4398,14 +4403,14 @@ void calc_bonuses(void)
 		else
 		{
 			/* Apply the bonuses to hit/damage */
-			p_ptr->to_h[default_hand] += bonus_to_h;
-			p_ptr->to_d[default_hand] += bonus_to_d;
+			p_ptr->to_h[default_hand] += (s16b)bonus_to_h;
+			p_ptr->to_d[default_hand] += (s16b)bonus_to_d;
 
 			/* Apply the mental bonuses to hit/damage, if known */
 			if (object_is_known(o_ptr))
 			{
-				p_ptr->dis_to_h[default_hand] += bonus_to_h;
-				p_ptr->dis_to_d[default_hand] += bonus_to_d;
+				p_ptr->dis_to_h[default_hand] += (s16b)bonus_to_h;
+				p_ptr->dis_to_d[default_hand] += (s16b)bonus_to_d;
 			}
 		}
 	}
@@ -4498,7 +4503,7 @@ void calc_bonuses(void)
 	/* Hex bonuses */
 	if (p_ptr->realm1 == REALM_HEX)
 	{
-		if (hex_spelling_any()) p_ptr->skill_stl -= (1 + p_ptr->magic_num2[0]);
+		if (hex_spelling_any()) p_ptr->skill_stl -= (1 + CASTING_HEX_NUM(p_ptr));
 		if (hex_spelling(HEX_DETECT_EVIL)) p_ptr->esp_evil = TRUE;
 		if (hex_spelling(HEX_XTRA_MIGHT)) p_ptr->stat_add[A_STR] += 4;
 		if (hex_spelling(HEX_BUILDING))
@@ -4533,8 +4538,8 @@ void calc_bonuses(void)
 			ac += 5;
 			if (o_ptr->curse_flags & TRC_HEAVY_CURSE) ac += 7;
 			if (o_ptr->curse_flags & TRC_PERMA_CURSE) ac += 13;
-			p_ptr->to_a += ac;
-			p_ptr->dis_to_a += ac;
+			p_ptr->to_a += (s16b)ac;
+			p_ptr->dis_to_a += (s16b)ac;
 		}
 	}
 
@@ -4550,7 +4555,7 @@ void calc_bonuses(void)
 		if (p_ptr->stat_top[i] != top)
 		{
 			/* Save the new value */
-			p_ptr->stat_top[i] = top;
+			p_ptr->stat_top[i] = (s16b)top;
 
 			/* Redisplay the stats later */
 			p_ptr->redraw |= (PR_STATS);
@@ -4576,7 +4581,7 @@ void calc_bonuses(void)
 		if (p_ptr->stat_use[i] != use)
 		{
 			/* Save the new value */
-			p_ptr->stat_use[i] = use;
+			p_ptr->stat_use[i] = (s16b)use;
 
 			/* Redisplay the stats later */
 			p_ptr->redraw |= (PR_STATS);
@@ -4599,7 +4604,7 @@ void calc_bonuses(void)
 		if (p_ptr->stat_ind[i] != ind)
 		{
 			/* Save the new index */
-			p_ptr->stat_ind[i] = ind;
+			p_ptr->stat_ind[i] = (s16b)ind;
 
 			/* Change in CON affects Hitpoints */
 			if (i == A_CON)
@@ -4891,10 +4896,10 @@ void calc_bonuses(void)
 		}
 		if (inventory[INVEN_RARM].tval == TV_POLEARM) penalty1 += 10;
 		if (inventory[INVEN_LARM].tval == TV_POLEARM) penalty2 += 10;
-		p_ptr->to_h[0] -= penalty1;
-		p_ptr->to_h[1] -= penalty2;
-		p_ptr->dis_to_h[0] -= penalty1;
-		p_ptr->dis_to_h[1] -= penalty2;
+		p_ptr->to_h[0] -= (s16b)penalty1;
+		p_ptr->to_h[1] -= (s16b)penalty2;
+		p_ptr->dis_to_h[0] -= (s16b)penalty1;
+		p_ptr->dis_to_h[1] -= (s16b)penalty2;
 	}
 
 	/* Extract the current weight (in tenth pounds) */
@@ -4986,7 +4991,7 @@ void calc_bonuses(void)
 	/* Compute "extra shots" if needed */
 	if (o_ptr->k_idx)
 	{
-		p_ptr->tval_ammo = bow_tval_ammo(o_ptr);
+		p_ptr->tval_ammo = (byte_hack)bow_tval_ammo(o_ptr);
 
 		/* Apply special flags */
 		if (o_ptr->k_idx && !p_ptr->heavy_shoot)
@@ -5004,8 +5009,7 @@ void calc_bonuses(void)
 		}
 	}
 
-	if (p_ptr->ryoute)
-		hold *= 2;
+	if (p_ptr->ryoute) hold *= 2;
 
 	for(i = 0 ; i < 2 ; i++)
 	{
@@ -5164,10 +5168,10 @@ void calc_bonuses(void)
 			p_ptr->num_blow[i] = blows_table[str_index][dex_index];
 
 			/* Maximal value */
-			if (p_ptr->num_blow[i] > num) p_ptr->num_blow[i] = num;
+			if (p_ptr->num_blow[i] > num) p_ptr->num_blow[i] = (s16b)num;
 
 			/* Add in the "bonus blows" */
-			p_ptr->num_blow[i] += extra_blows[i];
+			p_ptr->num_blow[i] += (s16b)extra_blows[i];
 
 
 			if (p_ptr->pclass == CLASS_WARRIOR) p_ptr->num_blow[i] += (p_ptr->lev / 40);
@@ -5283,8 +5287,8 @@ void calc_bonuses(void)
 					penalty += 30;
 					if (penalty < 30) penalty = 30;
 				}
-				p_ptr->to_h[i] -= penalty;
-				p_ptr->dis_to_h[i] -= penalty;
+				p_ptr->to_h[i] -= (s16b)penalty;
+				p_ptr->dis_to_h[i] -= (s16b)penalty;
 
 				/* Riding weapon */
 				p_ptr->riding_wield[i] = TRUE;
@@ -5323,8 +5327,8 @@ void calc_bonuses(void)
 			if (penalty < 30) penalty = 30;
 		}
 		if (p_ptr->tval_ammo == TV_BOLT) penalty *= 2;
-		p_ptr->to_h_b -= penalty;
-		p_ptr->dis_to_h_b -= penalty;
+		p_ptr->to_h_b -= (s16b)penalty;
+		p_ptr->dis_to_h_b -= (s16b)penalty;
 	}
 
 	/* Different calculation for monks with empty hands */
@@ -5340,10 +5344,10 @@ void calc_bonuses(void)
 			if (blow_base > 31) p_ptr->num_blow[0]++;
 			if (blow_base > 44) p_ptr->num_blow[0]++;
 			if (blow_base > 58) p_ptr->num_blow[0]++;
-			if (p_ptr->magic_num1[0])
+			if (P_PTR_KI)
 			{
-				p_ptr->to_d[0] += (p_ptr->magic_num1[0]/5);
-				p_ptr->dis_to_d[0] += (p_ptr->magic_num1[0]/5);
+				p_ptr->to_d[0] += P_PTR_KI / 5;
+				p_ptr->dis_to_d[0] += P_PTR_KI / 5;
 			}
 		}
 		else
@@ -5424,8 +5428,8 @@ void calc_bonuses(void)
 	{
 		if (buki_motteruka(INVEN_RARM+i))
 		{
-			int tval = inventory[INVEN_RARM+i].tval - TV_WEAPON_BEGIN;
-			int sval = inventory[INVEN_RARM+i].sval;
+			OBJECT_TYPE_VALUE tval = inventory[INVEN_RARM+i].tval - TV_WEAPON_BEGIN;
+			OBJECT_SUBTYPE_VALUE sval = inventory[INVEN_RARM+i].sval;
 
 			p_ptr->to_h[i] += (p_ptr->weapon_exp[tval][sval] - WEAPON_EXP_BEGINNER) / 200;
 			p_ptr->dis_to_h[i] += (p_ptr->weapon_exp[tval][sval] - WEAPON_EXP_BEGINNER) / 200;
@@ -5624,15 +5628,15 @@ void calc_bonuses(void)
 		/* Message */
 		if (p_ptr->heavy_shoot)
 		{
-			msg_print(_("¤³¤ó¤Ê½Å¤¤µİ¤òÁõÈ÷¤·¤Æ¤¤¤ë¤Î¤ÏÂçÊÑ¤À¡£", "You have trouble wielding such a heavy bow."));
+			msg_print(_("ã“ã‚“ãªé‡ã„å¼“ã‚’è£…å‚™ã—ã¦ã„ã‚‹ã®ã¯å¤§å¤‰ã ã€‚", "You have trouble wielding such a heavy bow."));
 		}
 		else if (inventory[INVEN_BOW].k_idx)
 		{
-			msg_print(_("¤³¤Îµİ¤Ê¤éÁõÈ÷¤·¤Æ¤¤¤Æ¤â¿É¤¯¤Ê¤¤¡£", "You have no trouble wielding your bow."));
+			msg_print(_("ã“ã®å¼“ãªã‚‰è£…å‚™ã—ã¦ã„ã¦ã‚‚è¾›ããªã„ã€‚", "You have no trouble wielding your bow."));
 		}
 		else
 		{
-			msg_print(_("½Å¤¤µİ¤òÁõÈ÷¤«¤é¤Ï¤º¤·¤ÆÂÎ¤¬³Ú¤Ë¤Ê¤Ã¤¿¡£", "You feel relieved to put down your heavy bow."));
+			msg_print(_("é‡ã„å¼“ã‚’è£…å‚™ã‹ã‚‰ã¯ãšã—ã¦ä½“ãŒæ¥½ã«ãªã£ãŸã€‚", "You feel relieved to put down your heavy bow."));
 		}
 
 		/* Save it */
@@ -5647,19 +5651,19 @@ void calc_bonuses(void)
 			/* Message */
 			if (p_ptr->heavy_wield[i])
 			{
-				msg_print(_("¤³¤ó¤Ê½Å¤¤Éğ´ï¤òÁõÈ÷¤·¤Æ¤¤¤ë¤Î¤ÏÂçÊÑ¤À¡£", "You have trouble wielding such a heavy weapon."));
+				msg_print(_("ã“ã‚“ãªé‡ã„æ­¦å™¨ã‚’è£…å‚™ã—ã¦ã„ã‚‹ã®ã¯å¤§å¤‰ã ã€‚", "You have trouble wielding such a heavy weapon."));
 			}
 			else if (buki_motteruka(INVEN_RARM+i))
 			{
-				msg_print(_("¤³¤ì¤Ê¤éÁõÈ÷¤·¤Æ¤¤¤Æ¤â¿É¤¯¤Ê¤¤¡£", "You have no trouble wielding your weapon."));
+				msg_print(_("ã“ã‚Œãªã‚‰è£…å‚™ã—ã¦ã„ã¦ã‚‚è¾›ããªã„ã€‚", "You have no trouble wielding your weapon."));
 			}
 			else if (p_ptr->heavy_wield[1-i])
 			{
-				msg_print(_("¤Ş¤ÀÉğ´ï¤¬½Å¤¤¡£", "You have still trouble wielding a heavy weapon."));
+				msg_print(_("ã¾ã æ­¦å™¨ãŒé‡ã„ã€‚", "You have still trouble wielding a heavy weapon."));
 			}
 			else
 			{
-				msg_print(_("½Å¤¤Éğ´ï¤òÁõÈ÷¤«¤é¤Ï¤º¤·¤ÆÂÎ¤¬³Ú¤Ë¤Ê¤Ã¤¿¡£", "You feel relieved to put down your heavy weapon."));
+				msg_print(_("é‡ã„æ­¦å™¨ã‚’è£…å‚™ã‹ã‚‰ã¯ãšã—ã¦ä½“ãŒæ¥½ã«ãªã£ãŸã€‚", "You feel relieved to put down your heavy weapon."));
 			}
 
 			/* Save it */
@@ -5672,15 +5676,15 @@ void calc_bonuses(void)
 			/* Message */
 			if (p_ptr->riding_wield[i])
 			{
-				msg_print(_("¤³¤ÎÉğ´ï¤Ï¾èÇÏÃæ¤Ë»È¤¦¤Ë¤Ï¤à¤«¤Ê¤¤¤è¤¦¤À¡£", "This weapon is not suitable for use while riding."));
+				msg_print(_("ã“ã®æ­¦å™¨ã¯ä¹—é¦¬ä¸­ã«ä½¿ã†ã«ã¯ã‚€ã‹ãªã„ã‚ˆã†ã ã€‚", "This weapon is not suitable for use while riding."));
 			}
 			else if (!p_ptr->riding)
 			{
-				msg_print(_("¤³¤ÎÉğ´ï¤ÏÅÌÊâ¤Ç»È¤¤¤ä¤¹¤¤¡£", "This weapon was not suitable for use while riding."));
+				msg_print(_("ã“ã®æ­¦å™¨ã¯å¾’æ­©ã§ä½¿ã„ã‚„ã™ã„ã€‚", "This weapon was not suitable for use while riding."));
 			}
 			else if (buki_motteruka(INVEN_RARM+i))
 			{
-				msg_print(_("¤³¤ì¤Ê¤é¾èÇÏÃæ¤Ë¤Ô¤Ã¤¿¤ê¤À¡£", "This weapon is suitable for use while riding."));
+				msg_print(_("ã“ã‚Œãªã‚‰ä¹—é¦¬ä¸­ã«ã´ã£ãŸã‚Šã ã€‚", "This weapon is suitable for use while riding."));
 			}
 			/* Save it */
 			p_ptr->old_riding_wield[i] = p_ptr->riding_wield[i];
@@ -5692,19 +5696,19 @@ void calc_bonuses(void)
 			/* Message */
 			if (p_ptr->icky_wield[i])
 			{
-				msg_print(_("º£¤ÎÁõÈ÷¤Ï¤É¤¦¤â¼«Ê¬¤Ë¤Õ¤µ¤ï¤·¤¯¤Ê¤¤µ¤¤¬¤¹¤ë¡£", "You do not feel comfortable with your weapon."));
-				if (hack_mind)
+				msg_print(_("ä»Šã®è£…å‚™ã¯ã©ã†ã‚‚è‡ªåˆ†ã«ãµã•ã‚ã—ããªã„æ°—ãŒã™ã‚‹ã€‚", "You do not feel comfortable with your weapon."));
+				if (is_loading_now)
 				{
 					chg_virtue(V_FAITH, -1);
 				}
 			}
 			else if (buki_motteruka(INVEN_RARM+i))
 			{
-				msg_print(_("º£¤ÎÁõÈ÷¤Ï¼«Ê¬¤Ë¤Õ¤µ¤ï¤·¤¤µ¤¤¬¤¹¤ë¡£", "You feel comfortable with your weapon."));
+				msg_print(_("ä»Šã®è£…å‚™ã¯è‡ªåˆ†ã«ãµã•ã‚ã—ã„æ°—ãŒã™ã‚‹ã€‚", "You feel comfortable with your weapon."));
 			}
 			else
 			{
-				msg_print(_("ÁõÈ÷¤ò¤Ï¤º¤·¤¿¤é¿ïÊ¬¤Èµ¤¤¬³Ú¤Ë¤Ê¤Ã¤¿¡£", "You feel more comfortable after removing your weapon."));
+				msg_print(_("è£…å‚™ã‚’ã¯ãšã—ãŸã‚‰éšåˆ†ã¨æ°—ãŒæ¥½ã«ãªã£ãŸã€‚", "You feel more comfortable after removing your weapon."));
 			}
 
 			/* Save it */
@@ -5718,7 +5722,7 @@ void calc_bonuses(void)
 		if (p_ptr->riding_ryoute)
 		{
 #ifdef JP
-			msg_format("%sÇÏ¤òÁà¤ì¤Ê¤¤¡£", (empty_hands(FALSE) == EMPTY_HAND_NONE) ? "Î¾¼ê¤¬¤Õ¤µ¤¬¤Ã¤Æ¤¤¤Æ" : "");
+			msg_format("%sé¦¬ã‚’æ“ã‚Œãªã„ã€‚", (empty_hands(FALSE) == EMPTY_HAND_NONE) ? "ä¸¡æ‰‹ãŒãµã•ãŒã£ã¦ã„ã¦" : "");
 #else
 			msg_print("You are using both hand for fighting, and you can't control a riding pet.");
 #endif
@@ -5726,7 +5730,7 @@ void calc_bonuses(void)
 		else
 		{
 #ifdef JP
-			msg_format("%sÇÏ¤òÁà¤ì¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡£", (empty_hands(FALSE) == EMPTY_HAND_NONE) ? "¼ê¤¬¶õ¤¤¤Æ" : "");
+			msg_format("%sé¦¬ã‚’æ“ã‚Œã‚‹ã‚ˆã†ã«ãªã£ãŸã€‚", (empty_hands(FALSE) == EMPTY_HAND_NONE) ? "æ‰‹ãŒç©ºã„ã¦" : "");
 #else
 			msg_print("You began to control riding pet with one hand.");
 #endif
@@ -5739,15 +5743,15 @@ void calc_bonuses(void)
 	{
 		if (heavy_armor())
 		{
-			msg_print(_("ÁõÈ÷¤¬½Å¤¯¤Æ¥Ğ¥é¥ó¥¹¤ò¼è¤ì¤Ê¤¤¡£", "The weight of your armor disrupts your balance."));
-			if (hack_mind)
+			msg_print(_("è£…å‚™ãŒé‡ãã¦ãƒãƒ©ãƒ³ã‚¹ã‚’å–ã‚Œãªã„ã€‚", "The weight of your armor disrupts your balance."));
+			if (is_loading_now)
 			{
 				chg_virtue(V_HARMONY, -1);
 			}
 		}
 		else
 		{
-			msg_print(_("¥Ğ¥é¥ó¥¹¤¬¤È¤ì¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡£", "You regain your balance."));
+			msg_print(_("ãƒãƒ©ãƒ³ã‚¹ãŒã¨ã‚Œã‚‹ã‚ˆã†ã«ãªã£ãŸã€‚", "You regain your balance."));
 		}
 		
 		monk_notify_aux = monk_armour_aux;
@@ -5762,10 +5766,9 @@ void calc_bonuses(void)
 		if ((inventory[i].tval == TV_NATURE_BOOK) && (inventory[i].sval == 2)) have_sw = TRUE;
 		if ((inventory[i].tval == TV_CRAFT_BOOK) && (inventory[i].sval == 2)) have_kabe = TRUE;
 	}
+
 	for (this_o_idx = cave[p_ptr->y][p_ptr->x].o_idx; this_o_idx; this_o_idx = next_o_idx)
 	{
-		object_type *o_ptr;
-
 		/* Acquire object */
 		o_ptr = &o_list[this_o_idx];
 
@@ -5810,9 +5813,9 @@ void calc_bonuses(void)
 
 
 /*! 
- * @brief p_ptr->notice ¤Î¥Õ¥é¥°¤Ë±ş¤¸¤¿¹¹¿·¤ò¤Ş¤È¤á¤Æ¹Ô¤¦ / Handle "p_ptr->notice"
- * @return ¤Ê¤·
- * @details ¹¹¿·½èÍı¤ÎÂĞ¾İ¤Ï¥¢¥¤¥Æ¥à¤Î¼«Æ°ÇË²õ/¥¢¥¤¥Æ¥à¤Î·ë¹ç/¥¢¥¤¥Æ¥à¤ÎÊÂ¤ÓÂØ¤¨¡£
+ * @brief p_ptr->notice ã®ãƒ•ãƒ©ã‚°ã«å¿œã˜ãŸæ›´æ–°ã‚’ã¾ã¨ã‚ã¦è¡Œã† / Handle "p_ptr->notice"
+ * @return ãªã—
+ * @details æ›´æ–°å‡¦ç†ã®å¯¾è±¡ã¯ã‚¢ã‚¤ãƒ†ãƒ ã®è‡ªå‹•ç ´å£Š/ã‚¢ã‚¤ãƒ†ãƒ ã®çµåˆ/ã‚¢ã‚¤ãƒ†ãƒ ã®ä¸¦ã³æ›¿ãˆã€‚
  */
 void notice_stuff(void)
 {
@@ -5844,9 +5847,9 @@ void notice_stuff(void)
 
 
 /*! 
- * @brief p_ptr->update ¤Î¥Õ¥é¥°¤Ë±ş¤¸¤¿¹¹¿·¤ò¤Ş¤È¤á¤Æ¹Ô¤¦ / Handle "p_ptr->update"
- * @return ¤Ê¤·
- * @details ¹¹¿·½èÍı¤ÎÂĞ¾İ¤Ï¥×¥ì¥¤¥ä¡¼¤ÎÇ½ÎÏ½¤Àµ/¸÷¸»¼÷Ì¿/HP/MP/ËâË¡¤Î³Ø½¬¾õÂÖ¡¢Â¾Â¿¿ô¤Î³°³¦¤Î¾õÂÖÈ½Äê¡£
+ * @brief p_ptr->update ã®ãƒ•ãƒ©ã‚°ã«å¿œã˜ãŸæ›´æ–°ã‚’ã¾ã¨ã‚ã¦è¡Œã† / Handle "p_ptr->update"
+ * @return ãªã—
+ * @details æ›´æ–°å‡¦ç†ã®å¯¾è±¡ã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®èƒ½åŠ›ä¿®æ­£/å…‰æºå¯¿å‘½/HP/MP/é­”æ³•ã®å­¦ç¿’çŠ¶æ…‹ã€ä»–å¤šæ•°ã®å¤–ç•Œã®çŠ¶æ…‹åˆ¤å®šã€‚
  */
 void update_stuff(void)
 {
@@ -5959,9 +5962,9 @@ void update_stuff(void)
 
 
 /*! 
- * @brief p_ptr->redraw ¤Î¥Õ¥é¥°¤Ë±ş¤¸¤¿¹¹¿·¤ò¤Ş¤È¤á¤Æ¹Ô¤¦ / Handle "p_ptr->redraw"
- * @return ¤Ê¤·
- * @details ¹¹¿·½èÍı¤ÎÂĞ¾İ¤Ï¥²¡¼¥àÃæ¤ÎÁ´ÉÁ²è½èÍı
+ * @brief p_ptr->redraw ã®ãƒ•ãƒ©ã‚°ã«å¿œã˜ãŸæ›´æ–°ã‚’ã¾ã¨ã‚ã¦è¡Œã† / Handle "p_ptr->redraw"
+ * @return ãªã—
+ * @details æ›´æ–°å‡¦ç†ã®å¯¾è±¡ã¯ã‚²ãƒ¼ãƒ ä¸­ã®å…¨æç”»å‡¦ç†
  */
 void redraw_stuff(void)
 {
@@ -6154,9 +6157,9 @@ void redraw_stuff(void)
 
 
 /*! 
- * @brief p_ptr->window ¤Î¥Õ¥é¥°¤Ë±ş¤¸¤¿¹¹¿·¤ò¤Ş¤È¤á¤Æ¹Ô¤¦ / Handle "p_ptr->window"
- * @return ¤Ê¤·
- * @details ¹¹¿·½èÍı¤ÎÂĞ¾İ¤Ï¥µ¥Ö¥¦¥£¥ó¥É¥¦Á´ÈÌ
+ * @brief p_ptr->window ã®ãƒ•ãƒ©ã‚°ã«å¿œã˜ãŸæ›´æ–°ã‚’ã¾ã¨ã‚ã¦è¡Œã† / Handle "p_ptr->window"
+ * @return ãªã—
+ * @details æ›´æ–°å‡¦ç†ã®å¯¾è±¡ã¯ã‚µãƒ–ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å…¨èˆ¬
  */
 void window_stuff(void)
 {
@@ -6255,9 +6258,9 @@ void window_stuff(void)
 
 
 /*!
- * @brief Á´¹¹¿·½èÍı¤ò¥Á¥§¥Ã¥¯¤·¤Æ½èÍı¤·¤Æ¤¤¤¯
+ * @brief å…¨æ›´æ–°å‡¦ç†ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦å‡¦ç†ã—ã¦ã„ã
  * Handle "p_ptr->update" and "p_ptr->redraw" and "p_ptr->window"
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void handle_stuff(void)
 {
@@ -6272,9 +6275,9 @@ void handle_stuff(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¸½ºß³«¤¤¤Æ¤¤¤ë¼ê¤Î¾õÂÖ¤òÊÖ¤¹
- * @param riding_control ¾èÇÏÃæ¤Ë¤è¤êÊÒ¼ê¤òÉ¬Í×¤È¤·¤Æ¤¤¤ë¾õÂÖ¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£
- * @return ³«¤¤¤Æ¤¤¤ë¼ê¤Î¥Ó¥Ã¥È¥Õ¥é¥°
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨é–‹ã„ã¦ã„ã‚‹æ‰‹ã®çŠ¶æ…‹ã‚’è¿”ã™
+ * @param riding_control ä¹—é¦¬ä¸­ã«ã‚ˆã‚Šç‰‡æ‰‹ã‚’å¿…è¦ã¨ã—ã¦ã„ã‚‹çŠ¶æ…‹ãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚
+ * @return é–‹ã„ã¦ã„ã‚‹æ‰‹ã®ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°
  */
 s16b empty_hands(bool riding_control)
 {
@@ -6294,12 +6297,12 @@ s16b empty_hands(bool riding_control)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤¬ËÉ¶ñ½ÅÎÌÀ©¸Â¤Î¤¢¤ë¿¦¶È»ş¤Ë¥Ú¥Ê¥ë¥Æ¥£¤ò¼õ¤±¤ë¾õÂÖ¤Ë¤¢¤ë¤«¤É¤¦¤«¤òÊÖ¤¹¡£
- * @return ¥Ú¥Ê¥ë¥Æ¥£¤¬Å¬ÍÑ¤µ¤ì¤ë¤Ê¤é¤ĞTRUE¡£
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒé˜²å…·é‡é‡åˆ¶é™ã®ã‚ã‚‹è·æ¥­æ™‚ã«ãƒšãƒŠãƒ«ãƒ†ã‚£ã‚’å—ã‘ã‚‹çŠ¶æ…‹ã«ã‚ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ã€‚
+ * @return ãƒšãƒŠãƒ«ãƒ†ã‚£ãŒé©ç”¨ã•ã‚Œã‚‹ãªã‚‰ã°TRUEã€‚
  */
 bool heavy_armor(void)
 {
-	u16b monk_arm_wgt = 0;
+	WEIGHT monk_arm_wgt = 0;
 
 	if ((p_ptr->pclass != CLASS_MONK) && (p_ptr->pclass != CLASS_FORCETRAINER) && (p_ptr->pclass != CLASS_NINJA)) return FALSE;
 
@@ -6316,14 +6319,14 @@ bool heavy_armor(void)
 }
 
 /*!
- * @brief ¼Â¥²¡¼¥à¥×¥ì¥¤»ş´Ö¤ò¹¹¿·¤¹¤ë
+ * @brief å®Ÿã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤æ™‚é–“ã‚’æ›´æ–°ã™ã‚‹
  */
 void update_playtime(void)
 {
 	/* Check if the game has started */
 	if (start_time != 0)
 	{
-		u32b tmp = time(NULL);
+		u32b tmp = (u32b)time(NULL);
 		playtime += (tmp - start_time);
 		start_time = tmp;
 	}

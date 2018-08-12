@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file floors.c
- * @brief ÊİÂ¸¤µ¤ì¤¿³¬¤Î´ÉÍı / management of the saved floor
+ * @brief ä¿å­˜ã•ã‚ŒãŸéšã®ç®¡ç† / management of the saved floor
  * @date 2014/01/04
  * @author
  * Copyright (c) 2002  Mogami \n
@@ -14,23 +14,23 @@
 #include "grid.h"
 
 
-static s16b new_floor_id;       /*!<¼¡¤Î¥Õ¥í¥¢¤ÎID / floor_id of the destination */
-static u32b change_floor_mode;  /*!<¥Õ¥í¥¢°Ü¹Ô½èÍı¤Ë´Ø¤¹¤ë¥Õ¥é¥° / Mode flags for changing floor */
-static u32b latest_visit_mark;  /*!<¥Õ¥í¥¢¤òÅÏ¤Ã¤¿²ó¿ô¡©(³ÎÇ§Ãæ) / Max number of visit_mark */
+static s16b new_floor_id;       /*!<æ¬¡ã®ãƒ•ãƒ­ã‚¢ã®ID / floor_id of the destination */
+static u32b change_floor_mode;  /*!<ãƒ•ãƒ­ã‚¢ç§»è¡Œå‡¦ç†ã«é–¢ã™ã‚‹ãƒ•ãƒ©ã‚° / Mode flags for changing floor */
+static u32b latest_visit_mark;  /*!<ãƒ•ãƒ­ã‚¢ã‚’æ¸¡ã£ãŸå›æ•°ï¼Ÿ(ç¢ºèªä¸­) / Max number of visit_mark */
 
 
 /*!
- * @brief ÊİÂ¸¥Õ¥í¥¢ÇÛÎó¤ò½é´ü²½¤¹¤ë / Initialize saved_floors array. 
- * @param force ¥Æ¥ó¥İ¥é¥ê¥Õ¥¡¥¤¥ë¤¬»Ä¤Ã¤Æ¤¤¤¿¾ì¹ç¤â·Ù¹ğ¤Ê¤·¤Ç¶¯À©Åª¤Ëºï½ü¤¹¤ë¡£
+ * @brief ä¿å­˜ãƒ•ãƒ­ã‚¢é…åˆ—ã‚’åˆæœŸåŒ–ã™ã‚‹ / Initialize saved_floors array. 
+ * @param force ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ãŒæ®‹ã£ã¦ã„ãŸå ´åˆã‚‚è­¦å‘Šãªã—ã§å¼·åˆ¶çš„ã«å‰Šé™¤ã™ã‚‹ã€‚
  * @details Make sure that old temporal files are not remaining as gurbages.
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void init_saved_floors(bool force)
 {
 	char floor_savefile[1024];
 	int i;
 	int fd = -1;
-	int mode = 0644;
+	BIT_FLAGS mode = 0644;
 
 #ifdef SET_UID
 # ifdef SECURE
@@ -61,11 +61,11 @@ void init_saved_floors(bool force)
 			if (!force)
 			{
 #ifdef JP
-				msg_print("¥¨¥é¡¼¡§¸Å¤¤¥Æ¥ó¥İ¥é¥ê¡¦¥Õ¥¡¥¤¥ë¤¬»Ä¤Ã¤Æ¤¤¤Ş¤¹¡£");
-				msg_print("Ã»¶òÈÚÅÜ¤òÆó½Å¤Ëµ¯Æ°¤·¤Æ¤¤¤Ê¤¤¤«³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£");
-				msg_print("²áµî¤ËÃ»¶òÈÚÅÜ¤¬¥¯¥é¥Ã¥·¥å¤·¤¿¾ì¹ç¤Ï°ì»ş¥Õ¥¡¥¤¥ë¤ò");
-				msg_print("¶¯À©Åª¤Ëºï½ü¤·¤Æ¼Â¹Ô¤òÂ³¤±¤é¤ì¤Ş¤¹¡£");
-				if (!get_check("¶¯À©Åª¤Ëºï½ü¤·¤Æ¤â¤è¤í¤·¤¤¤Ç¤¹¤«¡©")) quit("¼Â¹ÔÃæ»ß");
+				msg_print("ã‚¨ãƒ©ãƒ¼ï¼šå¤ã„ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒæ®‹ã£ã¦ã„ã¾ã™ã€‚");
+				msg_print("å¤‰æ„šè›®æ€’ã‚’äºŒé‡ã«èµ·å‹•ã—ã¦ã„ãªã„ã‹ç¢ºèªã—ã¦ãã ã•ã„ã€‚");
+				msg_print("éå»ã«å¤‰æ„šè›®æ€’ãŒã‚¯ãƒ©ãƒƒã‚·ãƒ¥ã—ãŸå ´åˆã¯ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã‚’");
+				msg_print("å¼·åˆ¶çš„ã«å‰Šé™¤ã—ã¦å®Ÿè¡Œã‚’ç¶šã‘ã‚‰ã‚Œã¾ã™ã€‚");
+				if (!get_check("å¼·åˆ¶çš„ã«å‰Šé™¤ã—ã¦ã‚‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ")) quit("å®Ÿè¡Œä¸­æ­¢");
 #else
 				msg_print("Error: There are old temporal files.");
 				msg_print("Make sure you are not running two game processes simultaneously.");
@@ -101,7 +101,7 @@ void init_saved_floors(bool force)
 	latest_visit_mark = 1;
 
 	/* A sign to mark temporal files */
-	saved_floor_file_sign = time(NULL);
+	saved_floor_file_sign = (u32b)time(NULL);
 
 	/* No next floor yet */
 	new_floor_id = 0;
@@ -118,9 +118,9 @@ void init_saved_floors(bool force)
 }
 
 /*!
- * @brief ÊİÂ¸¥Õ¥í¥¢ÍÑ¥Æ¥ó¥İ¥é¥ê¥Õ¥¡¥¤¥ë¤òºï½ü¤¹¤ë / Kill temporal files
+ * @brief ä¿å­˜ãƒ•ãƒ­ã‚¢ç”¨ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹ / Kill temporal files
  * @details Should be called just before the game quit.
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void clear_saved_floor_files(void)
 {
@@ -164,9 +164,9 @@ void clear_saved_floor_files(void)
 }
 
 /*!
- * @brief ÊİÂ¸¥Õ¥í¥¢ID¤«¤é»²¾È¥İ¥¤¥ó¥¿¤òÆÀ¤ë / Get a pointer for an item of the saved_floors array.
- * @param floor_id ÊİÂ¸¥Õ¥í¥¢ID
- * @return ID¤ËÂĞ±ş¤¹¤ëÊİÂ¸¥Õ¥í¥¢¤Î¥İ¥¤¥ó¥¿¡¢¤Ê¤¤¾ì¹ç¤ÏNULL¤òÊÖ¤¹¡£
+ * @brief ä¿å­˜ãƒ•ãƒ­ã‚¢IDã‹ã‚‰å‚ç…§ãƒã‚¤ãƒ³ã‚¿ã‚’å¾—ã‚‹ / Get a pointer for an item of the saved_floors array.
+ * @param floor_id ä¿å­˜ãƒ•ãƒ­ã‚¢ID
+ * @return IDã«å¯¾å¿œã™ã‚‹ä¿å­˜ãƒ•ãƒ­ã‚¢ã®ãƒã‚¤ãƒ³ã‚¿ã€ãªã„å ´åˆã¯NULLã‚’è¿”ã™ã€‚
  */
 saved_floor_type *get_sf_ptr(s16b floor_id)
 {
@@ -188,9 +188,9 @@ saved_floor_type *get_sf_ptr(s16b floor_id)
 
 
 /*!
- * @brief »²¾È¥İ¥¤¥ó¥¿Àè¤ÎÊİÂ¸¥Õ¥í¥¢¤òËõ¾Ã¤¹¤ë / kill a saved floor and get an empty space
- * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief å‚ç…§ãƒã‚¤ãƒ³ã‚¿å…ˆã®ä¿å­˜ãƒ•ãƒ­ã‚¢ã‚’æŠ¹æ¶ˆã™ã‚‹ / kill a saved floor and get an empty space
+ * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void kill_saved_floor(saved_floor_type *sf_ptr)
 {
@@ -230,15 +230,15 @@ static void kill_saved_floor(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief ¿·µ¬¤ËÍøÍÑ²ÄÇ½¤ÊÊİÂ¸¥Õ¥í¥¢¤òÊÖ¤¹ / Initialize new saved floor and get its floor id.
- * @return ÍøÍÑ²ÄÇ½¤ÊÊİÂ¸¥Õ¥í¥¢ID
+ * @brief æ–°è¦ã«åˆ©ç”¨å¯èƒ½ãªä¿å­˜ãƒ•ãƒ­ã‚¢ã‚’è¿”ã™ / Initialize new saved floor and get its floor id.
+ * @return åˆ©ç”¨å¯èƒ½ãªä¿å­˜ãƒ•ãƒ­ã‚¢ID
  * @details
  * If number of saved floors are already MAX_SAVED_FLOORS, kill the oldest one.
  */
 s16b get_new_floor_id(void)
 {
 	saved_floor_type *sf_ptr = NULL;
-	int i;
+	s16b i;
 
 	/* Look for empty space */
 	for (i = 0; i < MAX_SAVED_FLOORS; i++)
@@ -251,7 +251,7 @@ s16b get_new_floor_id(void)
 	/* None found */
 	if (i == MAX_SAVED_FLOORS)
 	{
-		int oldest = 0;
+		s16b oldest = 0;
 		u32b oldest_visit = 0xffffffffL;
 
 		/* Search for oldest */
@@ -300,18 +300,18 @@ s16b get_new_floor_id(void)
 
 
 /*!
- * @brief ¥Õ¥í¥¢ÀÚ¤êÂØ¤¨»ş¤Î½èÍı¥Õ¥é¥°¤òÄÉ²Ã¤¹¤ë / Prepare mode flags of changing floor
- * @param mode ÄÉ²Ã¤·¤¿¤¤½ê»ı¥Õ¥é¥°
- * @return ¤Ê¤·
+ * @brief ãƒ•ãƒ­ã‚¢åˆ‡ã‚Šæ›¿ãˆæ™‚ã®å‡¦ç†ãƒ•ãƒ©ã‚°ã‚’è¿½åŠ ã™ã‚‹ / Prepare mode flags of changing floor
+ * @param mode è¿½åŠ ã—ãŸã„æ‰€æŒãƒ•ãƒ©ã‚°
+ * @return ãªã—
  */
-void prepare_change_floor_mode(u32b mode)
+void prepare_change_floor_mode(BIT_FLAGS mode)
 {
 	change_floor_mode |= mode;
 }
 
 /*!
- * @brief ³¬ÃÊ°ÜÆ°Àè¤Î¥Õ¥í¥¢¤¬À¸À®¤Ç¤­¤Ê¤¤»ş¤Ë´ÊÃ±¤Ê¹Ô¤­»ß¤Ş¤ê¥Ş¥Ã¥×¤òºîÀ®¤¹¤ë / Builds the dead end
- * @return ¤Ê¤·
+ * @brief éšæ®µç§»å‹•å…ˆã®ãƒ•ãƒ­ã‚¢ãŒç”Ÿæˆã§ããªã„æ™‚ã«ç°¡å˜ãªè¡Œãæ­¢ã¾ã‚Šãƒãƒƒãƒ—ã‚’ä½œæˆã™ã‚‹ / Builds the dead end
+ * @return ãªã—
  */
 static void build_dead_end(void)
 {
@@ -349,16 +349,17 @@ static void build_dead_end(void)
 
 
 
-#define MAX_PARTY_MON 21 /*!< ¥Õ¥í¥¢°ÜÆ°»ş¤ËÀè¤Î¥Õ¥í¥¢¤ËÏ¢¤ì¤Æ¹Ô¤±¤ë¥Ú¥Ã¥È¤ÎºÇÂç¿ô Maximum number of preservable pets */
-static monster_type party_mon[MAX_PARTY_MON]; /*!< ¥Õ¥í¥¢°ÜÆ°¤ËÊİÂ¸¤¹¤ë¥Ú¥Ã¥È¥â¥ó¥¹¥¿¡¼¤ÎÇÛÎó */
+#define MAX_PARTY_MON 21 /*!< ãƒ•ãƒ­ã‚¢ç§»å‹•æ™‚ã«å…ˆã®ãƒ•ãƒ­ã‚¢ã«é€£ã‚Œã¦è¡Œã‘ã‚‹ãƒšãƒƒãƒˆã®æœ€å¤§æ•° Maximum number of preservable pets */
+static monster_type party_mon[MAX_PARTY_MON]; /*!< ãƒ•ãƒ­ã‚¢ç§»å‹•ã«ä¿å­˜ã™ã‚‹ãƒšãƒƒãƒˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®é…åˆ— */
 
 /*!
- * @brief ¥Õ¥í¥¢°ÜÆ°»ş¤Î¥Ú¥Ã¥ÈÊİÂ¸½èÍı / Preserve_pets
- * @return ¤Ê¤·
+ * @brief ãƒ•ãƒ­ã‚¢ç§»å‹•æ™‚ã®ãƒšãƒƒãƒˆä¿å­˜å‡¦ç† / Preserve_pets
+ * @return ãªã—
  */
 static void preserve_pet(void)
 {
-	int num, i;
+	int num;
+	MONSTER_IDX i;
 
 	for (num = 0; num < MAX_PARTY_MON; num++)
 	{
@@ -475,7 +476,7 @@ static void preserve_pet(void)
 				monster_desc(m_name, m_ptr, 0);
 
 #ifdef JP
-				msg_format("%s¤Ï¾Ã¤¨µî¤Ã¤¿¡ª", m_name);
+				msg_format("%sã¯æ¶ˆãˆå»ã£ãŸï¼", m_name);
 #else
 				msg_format("%^s disappears!", m_name);
 #endif
@@ -489,8 +490,8 @@ static void preserve_pet(void)
 
 
 /*!
- * @brief ¥Õ¥í¥¢°ÜÆ°»ş¤Ë¥Ú¥Ã¥È¤òÈ¼¤Ã¤¿¾ì¹ç¤Î½àÈ÷½èÍı / Pre-calculate the racial counters of preserved pets
- * @return ¤Ê¤·
+ * @brief ãƒ•ãƒ­ã‚¢ç§»å‹•æ™‚ã«ãƒšãƒƒãƒˆã‚’ä¼´ã£ãŸå ´åˆã®æº–å‚™å‡¦ç† / Pre-calculate the racial counters of preserved pets
+ * @return ãªã—
  * @details
  * To prevent multiple generation of unique monster who is the minion of player
  */
@@ -513,8 +514,8 @@ void precalc_cur_num_of_pet(void)
 }
 
 /*!
- * @brief °ÜÆ°Àè¤Î¥Õ¥í¥¢¤ËÈ¼¤Ã¤¿¥Ú¥Ã¥È¤òÇÛÃÖ¤¹¤ë / Place preserved pet monsters on new floor
- * @return ¤Ê¤·
+ * @brief ç§»å‹•å…ˆã®ãƒ•ãƒ­ã‚¢ã«ä¼´ã£ãŸãƒšãƒƒãƒˆã‚’é…ç½®ã™ã‚‹ / Place preserved pet monsters on new floor
+ * @return ãªã—
  */
 static void place_pet(void)
 {
@@ -523,7 +524,8 @@ static void place_pet(void)
 
 	for (i = 0; i < max_num; i++)
 	{
-		int cy = 0, cx = 0, m_idx;
+		POSITION cy = 0, cx = 0;
+		MONSTER_IDX m_idx;
 
 		if (!(party_mon[i].r_idx)) continue;
 
@@ -539,7 +541,8 @@ static void place_pet(void)
 		}
 		else
 		{
-			int j, d;
+			int j;
+			POSITION d;
 
 			for (d = 1; d < 6; d++)
 			{
@@ -609,7 +612,7 @@ static void place_pet(void)
 
 			monster_desc(m_name, m_ptr, 0);
 #ifdef JP
-			msg_format("%s¤È¤Ï¤°¤ì¤Æ¤·¤Ş¤Ã¤¿¡£", m_name);
+			msg_format("%sã¨ã¯ãã‚Œã¦ã—ã¾ã£ãŸã€‚", m_name);
 #else
 			msg_format("You have lost sight of %s.", m_name);
 #endif
@@ -630,9 +633,9 @@ static void place_pet(void)
 
 
 /*!
- * @brief ¥æ¥Ë¡¼¥¯¥â¥ó¥¹¥¿¡¼¤ä¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î½êºß¥Õ¥í¥¢¤ò¹¹¿·¤¹¤ë / Hack -- Update location of unique monsters and artifacts
- * @param cur_floor_id ¸½ºß¤Î¥Õ¥í¥¢ID
- * @return ¤Ê¤·
+ * @brief ãƒ¦ãƒ‹ãƒ¼ã‚¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚„ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®æ‰€åœ¨ãƒ•ãƒ­ã‚¢ã‚’æ›´æ–°ã™ã‚‹ / Hack -- Update location of unique monsters and artifacts
+ * @param cur_floor_id ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ID
+ * @return ãªã—
  * @details 
  * The r_ptr->floor_id and a_ptr->floor_id are not updated correctly\n
  * while new floor creation since dungeons may be re-created by\n
@@ -680,8 +683,8 @@ static void update_unique_artifact(s16b cur_floor_id)
 
 
 /*!
- * @brief ¥Õ¥í¥¢°ÜÆ°»ş¡¢¥×¥ì¥¤¥ä¡¼¤Î°ÜÆ°Àè¥â¥ó¥¹¥¿¡¼¤¬´û¤Ë¤¤¤¿¾ì¹ç¥é¥ó¥À¥à¤Ê¶áÎÙ¤Ë°ÜÆ°¤µ¤»¤ë / When a monster is at a place where player will return,
- * @return ¤Ê¤·
+ * @brief ãƒ•ãƒ­ã‚¢ç§»å‹•æ™‚ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•å…ˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ—¢ã«ã„ãŸå ´åˆãƒ©ãƒ³ãƒ€ãƒ ãªè¿‘éš£ã«ç§»å‹•ã•ã›ã‚‹ / When a monster is at a place where player will return,
+ * @return ãªã—
  */
 static void get_out_monster(void)
 {
@@ -689,7 +692,7 @@ static void get_out_monster(void)
 	int dis = 1;
 	int oy = p_ptr->y;
 	int ox = p_ptr->x;
-	int m_idx = cave[oy][ox].m_idx;
+	MONSTER_IDX m_idx = cave[oy][ox].m_idx;
 
 	/* Nothing to do if no monster */
 	if (!m_idx) return;
@@ -749,15 +752,15 @@ static void get_out_monster(void)
 }
 
 /*!
- * ¥Ş¥¹¹½Â¤ÂÎ¤ÎspecialÍ×ÁÇ¤òÍøÍÑ¤¹¤ëÃÏ·Á¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë¥Ş¥¯¥í / Is this feature has special meaning (except floor_id) with c_ptr->special?
+ * ãƒã‚¹æ§‹é€ ä½“ã®specialè¦ç´ ã‚’åˆ©ç”¨ã™ã‚‹åœ°å½¢ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹ãƒã‚¯ãƒ­ / Is this feature has special meaning (except floor_id) with c_ptr->special?
  */
 #define feat_uses_special(F) (have_flag(f_info[(F)].flags, FF_SPECIAL))
 
 
 /*!
- * @brief ¿·¥Õ¥í¥¢¤Ë°ÜÆ°¸µ¥Õ¥í¥¢¤Ë·Ò¤¬¤ë³¬ÃÊ¤òÇÛÃÖ¤¹¤ë / Virtually teleport onto the stairs that is connecting between two floors.
- * @param sf_ptr °ÜÆ°¸µ¤ÎÊİÂ¸¥Õ¥í¥¢¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief æ–°ãƒ•ãƒ­ã‚¢ã«ç§»å‹•å…ƒãƒ•ãƒ­ã‚¢ã«ç¹‹ãŒã‚‹éšæ®µã‚’é…ç½®ã™ã‚‹ / Virtually teleport onto the stairs that is connecting between two floors.
+ * @param sf_ptr ç§»å‹•å…ƒã®ä¿å­˜ãƒ•ãƒ­ã‚¢æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void locate_connected_stairs(saved_floor_type *sf_ptr)
 {
@@ -853,9 +856,9 @@ static void locate_connected_stairs(saved_floor_type *sf_ptr)
 }
 
 /*!
- * @brief ¸½ºß¤Î¥Õ¥í¥¢¤òÎ¥¤ì¤ë¤ËÈ¼¤Ã¤Æ¹Ô¤Ê¤ï¤ì¤ëÊİÂ¸½èÍı
+ * @brief ç¾åœ¨ã®ãƒ•ãƒ­ã‚¢ã‚’é›¢ã‚Œã‚‹ã«ä¼´ã£ã¦è¡Œãªã‚ã‚Œã‚‹ä¿å­˜å‡¦ç†
  * / Maintain quest monsters, mark next floor_id at stairs, save current floor, and prepare to enter next floor.
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void leave_floor(void)
 {
@@ -863,7 +866,7 @@ void leave_floor(void)
 	feature_type *f_ptr;
 	saved_floor_type *sf_ptr;
 	int quest_r_idx = 0;
-	int i;
+	DUNGEON_IDX i;
 
 	/* Preserve pets and prepare to take these to next floor */
 	preserve_pet();
@@ -887,7 +890,7 @@ void leave_floor(void)
 
 
 	/* Search the quest monster index */
-	for (i = 0; i < max_quests; i++)
+	for (i = 0; i < max_q_idx; i++)
 	{
 		if ((quest[i].status == QUEST_STATUS_TAKEN) &&
 		    ((quest[i].type == QUEST_TYPE_KILL_LEVEL) ||
@@ -1015,8 +1018,6 @@ void leave_floor(void)
 	/* Kill some old saved floors */
 	if (!(change_floor_mode & CFM_SAVE_FLOORS))
 	{
-		int i;
-
 		/* Kill all saved floors */
 		for (i = 0; i < MAX_SAVED_FLOORS; i++)
 			kill_saved_floor(&saved_floors[i]);
@@ -1093,8 +1094,8 @@ void leave_floor(void)
 
 
 /*!
- * @brief ¥Õ¥í¥¢¤ÎÀÚ¤êÂØ¤¨½èÍı / Enter new floor.
- * @return ¤Ê¤·
+ * @brief ãƒ•ãƒ­ã‚¢ã®åˆ‡ã‚Šæ›¿ãˆå‡¦ç† / Enter new floor.
+ * @return ãªã—
  * @details
  * If the floor is an old saved floor, it will be\n
  * restored from the temporal file.  If the floor is new one, new cave\n
@@ -1208,7 +1209,7 @@ void change_floor(void)
 		/* Maintain monsters and artifacts */
 		if (loaded)
 		{
-			int i;
+			IDX i;
 			s32b tmp_last_visit = sf_ptr->last_visit;
 			s32b absence_ticks;
 			int alloc_chance = d_info[dungeon_type].max_m_alloc_chance;
@@ -1302,7 +1303,7 @@ void change_floor(void)
 			{
 				/* Temporal file is broken? */
 #ifdef JP
-				msg_print("³¬ÃÊ¤Ï¹Ô¤­»ß¤Ş¤ê¤À¤Ã¤¿¡£");
+				msg_print("éšæ®µã¯è¡Œãæ­¢ã¾ã‚Šã ã£ãŸã€‚");
 #else
 				msg_print("The staircases come to a dead end...");
 #endif
@@ -1373,7 +1374,7 @@ void change_floor(void)
 			if (!p_ptr->blind)
 			{
 #ifdef JP
-				msg_print("ÆÍÁ³³¬ÃÊ¤¬ºÉ¤¬¤ì¤Æ¤·¤Ş¤Ã¤¿¡£");
+				msg_print("çªç„¶éšæ®µãŒå¡ãŒã‚Œã¦ã—ã¾ã£ãŸã€‚");
 #else
 				msg_print("Suddenly the stairs is blocked!");
 #endif
@@ -1381,7 +1382,7 @@ void change_floor(void)
 			else
 			{
 #ifdef JP
-				msg_print("¥´¥È¥´¥È¤È²¿¤«²»¤¬¤·¤¿¡£");
+				msg_print("ã‚´ãƒˆã‚´ãƒˆã¨ä½•ã‹éŸ³ãŒã—ãŸã€‚");
 #else
 				msg_print("You hear some noises.");
 #endif
@@ -1432,9 +1433,9 @@ void change_floor(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¼ê¤Ë¤è¤ëÇ½Æ°Åª¤Ê³¬ÃÊÀ¸À®½èÍı /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰‹ã«ã‚ˆã‚‹èƒ½å‹•çš„ãªéšæ®µç”Ÿæˆå‡¦ç† /
  * Create stairs at or move previously created stairs into the player location.
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void stair_creation(void)
 {
@@ -1459,7 +1460,7 @@ void stair_creation(void)
 	{
 		/* arena or quest */
 #ifdef JP
-		msg_print("¸ú²Ì¤¬¤¢¤ê¤Ş¤»¤ó¡ª");
+		msg_print("åŠ¹æœãŒã‚ã‚Šã¾ã›ã‚“ï¼");
 #else
 		msg_print("There is no effect!");
 #endif
@@ -1470,7 +1471,7 @@ void stair_creation(void)
 	if (!cave_valid_bold(p_ptr->y, p_ptr->x))
 	{
 #ifdef JP
-		msg_print("¾²¾å¤Î¥¢¥¤¥Æ¥à¤¬¼öÊ¸¤òÄ·¤ÍÊÖ¤·¤¿¡£");
+		msg_print("åºŠä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ãŒå‘ªæ–‡ã‚’è·³ã­è¿”ã—ãŸã€‚");
 #else
 		msg_print("The object resists the spell.");
 #endif
@@ -1552,13 +1553,13 @@ void stair_creation(void)
 	if (up)
 	{
 		cave_set_feat(p_ptr->y, p_ptr->x,
-			(dest_sf_ptr->last_visit && (dest_sf_ptr->dun_level <= dun_level - 1)) ? /* #tang 2 -> 1 */
+			(dest_sf_ptr->last_visit && (dest_sf_ptr->dun_level <= dun_level - 2)) ?
 			feat_state(feat_up_stair, FF_SHAFT) : feat_up_stair);
 	}
 	else
 	{
 		cave_set_feat(p_ptr->y, p_ptr->x,
-			(dest_sf_ptr->last_visit && (dest_sf_ptr->dun_level >= dun_level + 1)) ? /* #tang 2 -> 1 */
+			(dest_sf_ptr->last_visit && (dest_sf_ptr->dun_level >= dun_level + 2)) ?
 			feat_state(feat_down_stair, FF_SHAFT) : feat_down_stair);
 	}
 

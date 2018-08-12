@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file object2.c
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤Î¼ÂÁõ / Object code, part 2
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å®Ÿè£… / Object code, part 2
  * @date 2014/01/11
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -13,14 +13,17 @@
 
 #include "angband.h"
 
+static void one_sustain(object_type *o_ptr);
+
+
 static cptr const kaji_tips[5] =
 {
 #ifdef JP
-	"¸½ºß»ı¤Ã¤Æ¤¤¤ë¥¨¥Ã¥»¥ó¥¹¤Î°ìÍ÷¤òÉ½¼¨¤¹¤ë¡£",
-	"¥¢¥¤¥Æ¥à¤«¤é¥¨¥Ã¥»¥ó¥¹¤ò¼è¤ê½Ğ¤¹¡£¥¨¥Ã¥»¥ó¥¹¤ò¼è¤é¤ì¤¿¥¢¥¤¥Æ¥à¤ÏÁ´¤¯ËâË¡¤¬¤«¤«¤Ã¤Æ¤¤¤Ê¤¤½é´ü¾õÂÖ¤ËÌá¤ë¡£",
-	"´û¤Ë¥¨¥Ã¥»¥ó¥¹¤¬ÉÕ²Ã¤µ¤ì¤¿¥¢¥¤¥Æ¥à¤«¤é¥¨¥Ã¥»¥ó¥¹¤Î¤ß¾Ã¤·µî¤ë¡£¥¨¥Ã¥»¥ó¥¹¤Ï¼ê¤ËÆş¤é¤Ê¤¤¡£",
-	"¥¢¥¤¥Æ¥à¤Ë¥¨¥Ã¥»¥ó¥¹¤òÉÕ²Ã¤¹¤ë¡£´û¤Ë¥¨¥Ã¥»¥ó¥¹¤¬ÉÕ²Ã¤µ¤ì¤¿¥¢¥¤¥Æ¥à¤ä¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Ë¤ÏÉÕ²Ã¤Ç¤­¤Ê¤¤¡£",
-	"Éğ´ï¤äËÉ¶ñ¤ò¶¯²½¤·¤¿¤ê¡¢¹¶·â¤Ç½ı¤Ä¤«¤Ê¤¤¤è¤¦¤Ë¤·¤¿¤ê¤¹¤ë¡£¥¨¥Ã¥»¥ó¥¹¤¬ÉÕ²Ã¤µ¤ì¤¿¥¢¥¤¥Æ¥à¤ä¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ËÂĞ¤·¤Æ¤â»ÈÍÑ¤Ç¤­¤ë¡£",
+	"ç¾åœ¨æŒã£ã¦ã„ã‚‹ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®ä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹ã€‚",
+	"ã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚‰ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’å–ã‚Šå‡ºã™ã€‚ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’å–ã‚‰ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã¯å…¨ãé­”æ³•ãŒã‹ã‹ã£ã¦ã„ãªã„åˆæœŸçŠ¶æ…‹ã«æˆ»ã‚‹ã€‚",
+	"æ—¢ã«ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒä»˜åŠ ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚‰ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®ã¿æ¶ˆã—å»ã‚‹ã€‚ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã¯æ‰‹ã«å…¥ã‚‰ãªã„ã€‚",
+	"ã‚¢ã‚¤ãƒ†ãƒ ã«ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’ä»˜åŠ ã™ã‚‹ã€‚æ—¢ã«ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒä»˜åŠ ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‚„ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã«ã¯ä»˜åŠ ã§ããªã„ã€‚",
+	"æ­¦å™¨ã‚„é˜²å…·ã‚’å¼·åŒ–ã—ãŸã‚Šã€æ”»æ’ƒã§å‚·ã¤ã‹ãªã„ã‚ˆã†ã«ã—ãŸã‚Šã™ã‚‹ã€‚ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒä»˜åŠ ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‚„ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã«å¯¾ã—ã¦ã‚‚ä½¿ç”¨ã§ãã‚‹ã€‚",
 #else
 	"Display essences you have.",
 	"Extract essences from an item. The item become non magical.",
@@ -31,9 +34,28 @@ static cptr const kaji_tips[5] =
 };
 
 /*!
- * @brief ¾²¾å¡¢¥â¥ó¥¹¥¿¡¼½ê»ı¤Ç¥¹¥¿¥Ã¥¯¤µ¤ì¤¿¥¢¥¤¥Æ¥à¤òºï½ü¤·¥¹¥¿¥Ã¥¯¤òÊä´°¤¹¤ë / Excise a dungeon object from any stacks
- * @param o_idx ºï½üÂĞ¾İ¤Î¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ©ãƒ³ãƒ€ãƒ ãªèƒ½åŠ›ç¶­æŒã‚’ä¸€ã¤ä»˜åŠ ã™ã‚‹ã€‚/ Choose one random sustain
+ * @details é‡è¤‡ã®æŠ‘æ­¢ã¯ãªã„ã€‚
+ * @param o_ptr å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
+ */
+static void one_sustain(object_type *o_ptr)
+{
+	switch (randint0(6))
+	{
+	case 0: add_flag(o_ptr->art_flags, TR_SUST_STR); break;
+	case 1: add_flag(o_ptr->art_flags, TR_SUST_INT); break;
+	case 2: add_flag(o_ptr->art_flags, TR_SUST_WIS); break;
+	case 3: add_flag(o_ptr->art_flags, TR_SUST_DEX); break;
+	case 4: add_flag(o_ptr->art_flags, TR_SUST_CON); break;
+	case 5: add_flag(o_ptr->art_flags, TR_SUST_CHR); break;
+	}
+}
+
+/*!
+ * @brief åºŠä¸Šã€ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰€æŒã§ã‚¹ã‚¿ãƒƒã‚¯ã•ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’å‰Šé™¤ã—ã‚¹ã‚¿ãƒƒã‚¯ã‚’è£œå®Œã™ã‚‹ / Excise a dungeon object from any stacks
+ * @param o_idx å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void excise_object_idx(int o_idx)
 {
@@ -158,10 +180,10 @@ void excise_object_idx(int o_idx)
 }
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤òºï½ü¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã™ã‚‹ /
  * Delete a dungeon object
- * @param o_idx ºï½üÂĞ¾İ¤Î¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_idx å‰Šé™¤å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * @details
  * Handle "stacks" of objects correctly.
  */
@@ -197,11 +219,11 @@ void delete_object_idx(int o_idx)
 
 
 /*!
- * @brief ¥Õ¥í¥¢¤Ë¥Ş¥¹¤ËÍî¤Á¤Æ¤¤¤ë¥ª¥Ö¥¸¥§¥¯¥È¤òÁ´¤Æºï½ü¤¹¤ë / Deletes all objects at given location
+ * @brief ãƒ•ãƒ­ã‚¢ã«ãƒã‚¹ã«è½ã¡ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å…¨ã¦å‰Šé™¤ã™ã‚‹ / Deletes all objects at given location
  * Delete a dungeon object
- * @param y ºï½ü¤·¤¿¥Õ¥í¥¢¥Ş¥¹¤ÎYºÂÉ¸
- * @param x ºï½ü¤·¤¿¥Õ¥í¥¢¥Ş¥¹¤ÎXºÂÉ¸
- * @return ¤Ê¤·
+ * @param y å‰Šé™¤ã—ãŸãƒ•ãƒ­ã‚¢ãƒã‚¹ã®Yåº§æ¨™
+ * @param x å‰Šé™¤ã—ãŸãƒ•ãƒ­ã‚¢ãƒã‚¹ã®Xåº§æ¨™
+ * @return ãªã—
  */
 void delete_object(int y, int x)
 {
@@ -244,20 +266,17 @@ void delete_object(int y, int x)
 
 
 /*!
- * @brief ¥°¥í¡¼¥Ğ¥ë¥ª¥Ö¥¸¥§¥¯¥ÈÇÛÎó¤ËÂĞ¤·»ØÄêÈÏ°Ï¤Î¥ª¥Ö¥¸¥§¥¯¥È¤òÀ°Íı¤·¤ÆID¤Î¼ã¤¤½ç¤Ë´ó¤»¤ë /
+ * @brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…åˆ—ã«å¯¾ã—æŒ‡å®šç¯„å›²ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ•´ç†ã—ã¦IDã®è‹¥ã„é †ã«å¯„ã›ã‚‹ /
  * Move an object from index i1 to index i2 in the object list
- * @param i1 À°Íı¤·¤¿¤¤ÇÛÎó¤Î»ÏÅÀ
- * @param i2 À°Íı¤·¤¿¤¤ÇÛÎó¤Î½ªÅÀ
- * @return ¤Ê¤·
+ * @param i1 æ•´ç†ã—ãŸã„é…åˆ—ã®å§‹ç‚¹
+ * @param i2 æ•´ç†ã—ãŸã„é…åˆ—ã®çµ‚ç‚¹
+ * @return ãªã—
  */
-static void compact_objects_aux(int i1, int i2)
+static void compact_objects_aux(IDX i1, IDX i2)
 {
-	int i;
-
+	IDX i;
 	cave_type *c_ptr;
-
 	object_type *o_ptr;
-
 
 	/* Do nothing */
 	if (i1 == i2) return;
@@ -331,12 +350,12 @@ static void compact_objects_aux(int i1, int i2)
 
 
 /*!
- * @brief ¥°¥í¡¼¥Ğ¥ë¥ª¥Ö¥¸¥§¥¯¥ÈÇÛÎó¤«¤éÍ¥ÀèÅÙ¤ÎÄã¤¤¤â¤Î¤òºï½ü¤·¡¢¥Ç¡¼¥¿¤ò°µ½Ì¤¹¤ë¡£ /
+ * @brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…åˆ—ã‹ã‚‰å„ªå…ˆåº¦ã®ä½ã„ã‚‚ã®ã‚’å‰Šé™¤ã—ã€ãƒ‡ãƒ¼ã‚¿ã‚’åœ§ç¸®ã™ã‚‹ã€‚ /
  * Compact and Reorder the object list.
- * @param size ºÇÄã¤Ç¤â¸º¤é¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¿ô¤Î¿å½à
- * @return ¤Ê¤·
+ * @param size æœ€ä½ã§ã‚‚æ¸›ã‚‰ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°ã®æ°´æº–
+ * @return ãªã—
  * @details
- * ¡Ê´í¸±¤Ê¤Î¤Ç»ÈÍÑ¤Ë¤ÏÃí°Õ¤¹¤ë¤³¤È¡Ë
+ * ï¼ˆå±é™ºãªã®ã§ä½¿ç”¨ã«ã¯æ³¨æ„ã™ã‚‹ã“ã¨ï¼‰
  * This function can be very dangerous, use with caution!\n
  *\n
  * When actually "compacting" objects, we base the saving throw on a\n
@@ -348,7 +367,8 @@ static void compact_objects_aux(int i1, int i2)
  */
 void compact_objects(int size)
 {
-	int i, y, x, num, cnt;
+	IDX i;
+	int y, x, num, cnt;
 	int cur_lev, cur_dis, chance;
 	object_type *o_ptr;
 
@@ -357,7 +377,7 @@ void compact_objects(int size)
 	if (size)
 	{
 		/* Message */
-		msg_print(_("¥¢¥¤¥Æ¥à¾ğÊó¤ò°µ½Ì¤·¤Æ¤¤¤Ş¤¹...", "Compacting objects..."));
+		msg_print(_("ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã‚’åœ§ç¸®ã—ã¦ã„ã¾ã™...", "Compacting objects..."));
 
 		/* Redraw map */
 		p_ptr->redraw |= (PR_MAP);
@@ -451,7 +471,7 @@ void compact_objects(int size)
 
 
 /*!
- * @brief ¥°¥í¡¼¥Ğ¥ë¥ª¥Ö¥¸¥§¥¯¥ÈÇÛÎó¤ò½é´ü²½¤¹¤ë /
+ * @brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…åˆ—ã‚’åˆæœŸåŒ–ã™ã‚‹ /
  * Delete all the items when player leaves the level
  * @note we do NOT visually reflect these (irrelevant) changes
  * @details
@@ -460,7 +480,7 @@ void compact_objects(int size)
  * we know we are clearing every object.  Technically, we only
  * clear those fields for grids/monsters containing objects,
  * and we clear it once for every such object.
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void wipe_o_list(void)
 {
@@ -526,16 +546,16 @@ void wipe_o_list(void)
 
 
 /*!
- * @brief ¥°¥í¡¼¥Ğ¥ë¥ª¥Ö¥¸¥§¥¯¥ÈÇÛÎó¤«¤é¶õ¤­¤ò¼èÆÀ¤¹¤ë /
+ * @brief ã‚°ãƒ­ãƒ¼ãƒãƒ«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…åˆ—ã‹ã‚‰ç©ºãã‚’å–å¾—ã™ã‚‹ /
  * Acquires and returns the index of a "free" object.
- * @return ³«¤¤¤Æ¤¤¤ë¥ª¥Ö¥¸¥§¥¯¥ÈÍ×ÁÇ¤ÎID
+ * @return é–‹ã„ã¦ã„ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¦ç´ ã®ID
  * @details
  * This routine should almost never fail, but in case it does,
  * we must be sure to handle "failure" of this routine.
  */
-s16b o_pop(void)
+IDX o_pop(void)
 {
-	int i;
+	IDX i;
 
 
 	/* Initial allocation */
@@ -575,7 +595,7 @@ s16b o_pop(void)
 
 
 	/* Warn the player (except during dungeon creation) */
-	if (character_dungeon) msg_print(_("¥¢¥¤¥Æ¥à¤¬Â¿¤¹¤®¤ë¡ª", "Too many objects!"));
+	if (character_dungeon) msg_print(_("ã‚¢ã‚¤ãƒ†ãƒ ãŒå¤šã™ãã‚‹ï¼", "Too many objects!"));
 
 	/* Oops */
 	return (0);
@@ -583,10 +603,10 @@ s16b o_pop(void)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥ÈÀ¸À®¥Æ¡¼¥Ö¥ë¤ËÀ¸À®À©Ìó¤ò²Ã¤¨¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆãƒ†ãƒ¼ãƒ–ãƒ«ã«ç”Ÿæˆåˆ¶ç´„ã‚’åŠ ãˆã‚‹ /
  * Apply a "object restriction function" to the "object allocation table"
- * @return ¾ï¤Ë0¤òÊÖ¤¹¡£
- * @details À¸À®¤ÎÀ©Ìó¤Ï¥°¥í¡¼¥Ğ¥ë¤Îget_obj_num_hook´Ø¿ô¥İ¥¤¥ó¥¿¤Ç²Ã¤¨¤ë
+ * @return å¸¸ã«0ã‚’è¿”ã™ã€‚
+ * @details ç”Ÿæˆã®åˆ¶ç´„ã¯ã‚°ãƒ­ãƒ¼ãƒãƒ«ã®get_obj_num_hooké–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã§åŠ ãˆã‚‹
  */
 static errr get_obj_num_prep(void)
 {
@@ -619,10 +639,10 @@ static errr get_obj_num_prep(void)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥ÈÀ¸À®¥Æ¡¼¥Ö¥ë¤«¤é¥¢¥¤¥Æ¥à¤ò¼èÆÀ¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å–å¾—ã™ã‚‹ /
  * Choose an object kind that seems "appropriate" to the given level
- * @param level À¸À®³¬
- * @return Áª¤Ğ¤ì¤¿¥ª¥Ö¥¸¥§¥¯¥È¥Ù¡¼¥¹ID
+ * @param level ç”Ÿæˆéš
+ * @return é¸ã°ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ™ãƒ¼ã‚¹ID
  * @details
  * This function uses the "prob2" field of the "object allocation table",\n
  * and various local information, to calculate the "prob3" field of the\n
@@ -759,10 +779,10 @@ s16b get_obj_num(int level)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤ò´ÕÄêºÑ¤Ë¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é‘‘å®šæ¸ˆã«ã™ã‚‹ /
  * Known is true when the "attributes" of an object are "known".
- * @param o_ptr ´ÕÄêºÑ¤Ë¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr é‘‘å®šæ¸ˆã«ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * These include tohit, todam, toac, cost, and pval (charges).\n
  *\n
  * Note that "knowing" an object gives you everything that an "awareness"\n
@@ -792,10 +812,10 @@ void object_known(object_type *o_ptr)
 }
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤ò¡ö´ÕÄê¡öºÑ¤Ë¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ï¼Šé‘‘å®šï¼Šæ¸ˆã«ã™ã‚‹ /
  * The player is now aware of the effects of the given object.
- * @param o_ptr ¡ö´ÕÄê¡öºÑ¤Ë¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ï¼Šé‘‘å®šï¼Šæ¸ˆã«ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void object_aware(object_type *o_ptr)
 {
@@ -823,10 +843,10 @@ void object_aware(object_type *o_ptr)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤ò»î¹ÔºÑ¤Ë¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è©¦è¡Œæ¸ˆã«ã™ã‚‹ /
  * Something has been "sampled"
- * @param o_ptr »î¹ÔºÑ¤Ë¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr è©¦è¡Œæ¸ˆã«ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void object_tried(object_type *o_ptr)
 {
@@ -836,10 +856,10 @@ void object_tried(object_type *o_ptr)
 
 
 /*!
- * @brief Ì¤´ÕÄê¤Ê¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î´ğËÜ²Á³Ê¤òÊÖ¤¹ /
+ * @brief æœªé‘‘å®šãªãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®åŸºæœ¬ä¾¡æ ¼ã‚’è¿”ã™ /
  * Return the "value" of an "unknown" item Make a guess at the value of non-aware items
- * @param o_ptr Ì¤´ÕÄê²Á³Ê¤ò³ÎÇ§¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¥ª¥Ö¥¸¥§¥¯¥È¤ÎÌ¤´ÕÄê²Á³Ê
+ * @param o_ptr æœªé‘‘å®šä¾¡æ ¼ã‚’ç¢ºèªã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœªé‘‘å®šä¾¡æ ¼
  */
 static s32b object_value_base(object_type *o_ptr)
 {
@@ -877,7 +897,7 @@ static s32b object_value_base(object_type *o_ptr)
 		/* Figurines, relative to monster level */
 		case TV_FIGURINE:
 		{
-			int level = r_info[o_ptr->pval].level * 4; /* #tang 0 -> *4 */
+			int level = r_info[o_ptr->pval].level;
 			if (level < 20) return level*50L;
 			else if (level < 30) return 1000+(level-20)*150L;
 			else if (level < 40) return 2500+(level-30)*350L;
@@ -896,11 +916,11 @@ static s32b object_value_base(object_type *o_ptr)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤Î¥Õ¥é¥°Îà¤«¤é²Á³Ê¤ò»»½Ğ¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ãƒ©ã‚°é¡ã‹ã‚‰ä¾¡æ ¼ã‚’ç®—å‡ºã™ã‚‹ /
  * Return the value of the flags the object has...
- * @param o_ptr ¥Õ¥é¥°²Á³Ê¤ò³ÎÇ§¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param plusses ¥Õ¥é¥°¤ËÍ¿¤¨¤ë²Á³Ê¤Î´ğËÜ½Å¤ß
- * @return ¥ª¥Ö¥¸¥§¥¯¥È¤Î¥Õ¥é¥°²Á³Ê
+ * @param o_ptr ãƒ•ãƒ©ã‚°ä¾¡æ ¼ã‚’ç¢ºèªã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param plusses ãƒ•ãƒ©ã‚°ã«ä¸ãˆã‚‹ä¾¡æ ¼ã®åŸºæœ¬é‡ã¿
+ * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ãƒ•ãƒ©ã‚°ä¾¡æ ¼
  */
 s32b flag_cost(object_type *o_ptr, int plusses)
 {
@@ -1110,10 +1130,10 @@ s32b flag_cost(object_type *o_ptr, int plusses)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤Î¿¿¤Î²Á³Ê¤ò»»½Ğ¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®çœŸã®ä¾¡æ ¼ã‚’ç®—å‡ºã™ã‚‹ /
  * Return the value of the flags the object has...
- * @param o_ptr ËÜ²Á³Ê¤ò³ÎÇ§¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¥ª¥Ö¥¸¥§¥¯¥È¤ÎËÜ²Á³Ê
+ * @param o_ptr æœ¬ä¾¡æ ¼ã‚’ç¢ºèªã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æœ¬ä¾¡æ ¼
  * @details
  * Return the "real" price of a "known" item, not including discounts\n
  *\n
@@ -1384,10 +1404,10 @@ s32b object_value_real(object_type *o_ptr)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È²Á³Ê»»½Ğ¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¾¡æ ¼ç®—å‡ºã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Return the price of an item including plusses (and charges)
- * @param o_ptr È½ÌÀ¤·¤Æ¤¤¤ë¸½²Á³Ê¤ò³ÎÇ§¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¥ª¥Ö¥¸¥§¥¯¥È¤ÎÈ½ÌÀ¤·¤Æ¤¤¤ë¸½²Á³Ê
+ * @param o_ptr åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾ä¾¡æ ¼ã‚’ç¢ºèªã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆ¤æ˜ã—ã¦ã„ã‚‹ç¾ä¾¡æ ¼
  * @details
  * This function returns the "value" of the given item (qty one)\n
  *\n
@@ -1440,10 +1460,10 @@ s32b object_value(object_type *o_ptr)
 
 
 /*!
- * @brief ÇË²õ²ÄÇ½¤Ê¥¢¥¤¥Æ¥à¤«¤òÊÖ¤¹ /
+ * @brief ç ´å£Šå¯èƒ½ãªã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚’è¿”ã™ /
  * Determines whether an object can be destroyed, and makes fake inscription.
- * @param o_ptr ÇË²õ²ÄÇ½¤«¤ò³ÎÇ§¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¥ª¥Ö¥¸¥§¥¯¥È¤¬ÇË²õ²ÄÇ½¤Ê¤é¤ĞTRUE¤òÊÖ¤¹
+ * @param o_ptr ç ´å£Šå¯èƒ½ã‹ã‚’ç¢ºèªã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç ´å£Šå¯èƒ½ãªã‚‰ã°TRUEã‚’è¿”ã™
  */
 bool can_player_destroy_object(object_type *o_ptr)
 {
@@ -1480,12 +1500,12 @@ bool can_player_destroy_object(object_type *o_ptr)
 
 
 /*!
- * @brief ËâË¡ËÀ¤ä¥í¥Ã¥É¤Î¥¹¥í¥Ã¥ÈÊ¬³ä»ş¤Ë»ÈÍÑ²ó¿ô¤òÊ¬ÇÛ¤¹¤ë /
+ * @brief é­”æ³•æ£’ã‚„ãƒ­ãƒƒãƒ‰ã®ã‚¹ãƒ­ãƒƒãƒˆåˆ†å‰²æ™‚ã«ä½¿ç”¨å›æ•°ã‚’åˆ†é…ã™ã‚‹ /
  * Distribute charges of rods or wands.
- * @param o_ptr Ê¬³ä¸µ¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿ source item
- * @param q_ptr Ê¬³äÀè¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿ target item, must be of the same type as o_ptr
- * @param amt Ê¬³ä¤·¤¿¤¤²ó¿ôÎÌ number of items that are transfered
- * @return ¤Ê¤·
+ * @param o_ptr åˆ†å‰²å…ƒã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿ source item
+ * @param q_ptr åˆ†å‰²å…ˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿ target item, must be of the same type as o_ptr
+ * @param amt åˆ†å‰²ã—ãŸã„å›æ•°é‡ number of items that are transfered
+ * @return ãªã—
  * @details
  * Hack -- If rods or wands are dropped, the total maximum timeout or\n
  * charges need to be allocated between the two stacks.  If all the items\n
@@ -1516,10 +1536,10 @@ void distribute_charges(object_type *o_ptr, object_type *q_ptr, int amt)
 }
 
 /*!
- * @brief ËâË¡ËÀ¤ä¥í¥Ã¥É¤Î»ÈÍÑ²ó¿ô¤ò¸º¤é¤¹ /
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿ source item
- * @param amt ¸º¤é¤·¤¿¤¤²ó¿ôÎÌ number of items that are transfered
- * @return ¤Ê¤·
+ * @brief é­”æ³•æ£’ã‚„ãƒ­ãƒƒãƒ‰ã®ä½¿ç”¨å›æ•°ã‚’æ¸›ã‚‰ã™ /
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿ source item
+ * @param amt æ¸›ã‚‰ã—ãŸã„å›æ•°é‡ number of items that are transfered
+ * @return ãªã—
  * @details
  * Hack -- If rods or wand are destroyed, the total maximum timeout or\n
  * charges of the stack needs to be reduced, unless all the items are\n
@@ -1562,11 +1582,11 @@ void reduce_charges(object_type *o_ptr, int amt)
 
 
 /*!
- * @brief Î¾¥ª¥Ö¥¸¥§¥¯¥È¤ò¥¹¥í¥Ã¥È¤Ë½Å¤Í¹ç¤ï¤»²ÄÇ½¤ÊºÇÂç¿ô¤òÊÖ¤¹¡£
+ * @brief ä¸¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¹ãƒ­ãƒƒãƒˆã«é‡ã­åˆã‚ã›å¯èƒ½ãªæœ€å¤§æ•°ã‚’è¿”ã™ã€‚
  * Determine if an item can partly absorb a second item. Return maximum number of stack.
- * @param o_ptr ¸¡¾Ú¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿1
- * @param j_ptr ¸¡¾Ú¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿2
- * @return ½Å¤Í¹ç¤ï¤»²ÄÇ½¤Ê¥¢¥¤¥Æ¥à¿ô
+ * @param o_ptr æ¤œè¨¼ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿1
+ * @param j_ptr æ¤œè¨¼ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿2
+ * @return é‡ã­åˆã‚ã›å¯èƒ½ãªã‚¢ã‚¤ãƒ†ãƒ æ•°
  */
 int object_similar_part(object_type *o_ptr, object_type *j_ptr)
 {
@@ -1769,11 +1789,11 @@ int object_similar_part(object_type *o_ptr, object_type *j_ptr)
 }
 
 /*!
- * @brief Î¾¥ª¥Ö¥¸¥§¥¯¥È¤ò¥¹¥í¥Ã¥È¤Ë½Å¤Í¤ë¤³¤È¤¬¤Ç¤­¤ë¤«¤É¤¦¤«¤òÊÖ¤¹¡£
+ * @brief ä¸¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¹ãƒ­ãƒƒãƒˆã«é‡ã­ã‚‹ã“ã¨ãŒã§ãã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ã€‚
  * Determine if an item can absorb a second item.
- * @param o_ptr ¸¡¾Ú¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿1
- * @param j_ptr ¸¡¾Ú¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿2
- * @return ½Å¤Í¹ç¤ï¤»²ÄÇ½¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£
+ * @param o_ptr æ¤œè¨¼ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿1
+ * @param j_ptr æ¤œè¨¼ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿2
+ * @return é‡ã­åˆã‚ã›å¯èƒ½ãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚
  */
 bool object_similar(object_type *o_ptr, object_type *j_ptr)
 {
@@ -1796,11 +1816,11 @@ bool object_similar(object_type *o_ptr, object_type *j_ptr)
 
 
 /*!
- * @brief Î¾¥ª¥Ö¥¸¥§¥¯¥È¤ò¥¹¥í¥Ã¥È¤Ë½Å¤Í¹ç¤ï¤»¤ë¡£
+ * @brief ä¸¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã‚¹ãƒ­ãƒƒãƒˆã«é‡ã­åˆã‚ã›ã‚‹ã€‚
  * Allow one item to "absorb" another, assuming they are similar
- * @param o_ptr ½Å¤Í¹ç¤ï¤»Àè¤Î¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param j_ptr ½Å¤Í¹ç¤ï¤»¸µ¤Î¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr é‡ã­åˆã‚ã›å…ˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param j_ptr é‡ã­åˆã‚ã›å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void object_absorb(object_type *o_ptr, object_type *j_ptr)
 {
@@ -1851,17 +1871,17 @@ void object_absorb(object_type *o_ptr, object_type *j_ptr)
 
 
 /*!
- * @brief tval¤Èsval¤ËÂĞ±ş¤¹¤ë¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎID¤òÊÖ¤¹¡£
+ * @brief tvalã¨svalã«å¯¾å¿œã™ã‚‹ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®IDã‚’è¿”ã™ã€‚
  * Find the index of the object_kind with the given tval and sval
- * @param tval ¸¡º÷¤·¤¿¤¤¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Îtval
- * @param sval ¸¡º÷¤·¤¿¤¤¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Îsval
- * @return ¤Ê¤·
+ * @param tval æ¤œç´¢ã—ãŸã„ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®tval
+ * @param sval æ¤œç´¢ã—ãŸã„ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®sval
+ * @return ãªã—
  */
-s16b lookup_kind(int tval, int sval)
+IDX lookup_kind(OBJECT_TYPE_VALUE tval, OBJECT_SUBTYPE_VALUE sval)
 {
-	int k;
+	IDX k;
 	int num = 0;
-	int bk = 0;
+	IDX bk = 0;
 
 	/* Look for it */
 	for (k = 1; k < max_k_idx; k++)
@@ -1892,7 +1912,7 @@ s16b lookup_kind(int tval, int sval)
 
 #if 0
 	/* Oops */
-	msg_format(_("¥¢¥¤¥Æ¥à¤¬¤Ê¤¤ (%d,%d)", "No object (%d,%d)"), tval, sval);
+	msg_format(_("ã‚¢ã‚¤ãƒ†ãƒ ãŒãªã„ (%d,%d)", "No object (%d,%d)"), tval, sval);
 #endif
 
 
@@ -1902,10 +1922,10 @@ s16b lookup_kind(int tval, int sval)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤ò½é´ü²½¤¹¤ë
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹
  * Wipe an object clean.
- * @param o_ptr ½é´ü²½¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr åˆæœŸåŒ–ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void object_wipe(object_type *o_ptr)
 {
@@ -1915,11 +1935,11 @@ void object_wipe(object_type *o_ptr)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤òÊ£À½¤¹¤ë
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è¤‡è£½ã™ã‚‹
  * Wipe an object clean.
- * @param o_ptr Ê£À½¸µ¤Î¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param j_ptr Ê£À½Àè¤Î¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr è¤‡è£½å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param j_ptr è¤‡è£½å…ˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void object_copy(object_type *o_ptr, object_type *j_ptr)
 {
@@ -1929,13 +1949,13 @@ void object_copy(object_type *o_ptr, object_type *j_ptr)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Ë¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤òºîÀ®¤¹¤ë
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã«ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½œæˆã™ã‚‹
  * Prepare an object based on an object kind.
- * @param o_ptr ÂåÆş¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param k_idx ¿·¤¿¤ËºîÀ®¤·¤¿¤¤¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¾ğÊó¤ÎID
- * @return ¤Ê¤·
+ * @param o_ptr ä»£å…¥ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param k_idx æ–°ãŸã«ä½œæˆã—ãŸã„ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã®ID
+ * @return ãªã—
  */
-void object_prep(object_type *o_ptr, int k_idx)
+void object_prep(object_type *o_ptr, KIND_OBJECT_IDX k_idx)
 {
 	object_kind *k_ptr = &k_info[k_idx];
 
@@ -1969,7 +1989,7 @@ void object_prep(object_type *o_ptr, int k_idx)
 	o_ptr->ds = k_ptr->ds;
 
 	/* Default activation */
-	if (k_ptr->act_idx > 0) o_ptr->xtra2 = k_ptr->act_idx;
+	if (k_ptr->act_idx > 0) o_ptr->xtra2 = (XTRA8)k_ptr->act_idx;
 
 	/* Hack -- worthless items are always "broken" */
 	if (k_info[o_ptr->k_idx].cost <= 0) o_ptr->ident |= (IDENT_BROKEN);
@@ -1985,11 +2005,11 @@ void object_prep(object_type *o_ptr, int k_idx)
 
 
 /*!
- * @brief ¾å¼Á°Ê¾å¤Î¥ª¥Ö¥¸¥§¥¯¥È¤ËÍ¿¤¨¤ë¤¿¤á¤Î³Æ¼ï¥Ü¡¼¥Ê¥¹¤òÀµµ¬Íğ¿ô¤â²Ã¤¨¤Æ»»½Ğ¤¹¤ë¡£
+ * @brief ä¸Šè³ªä»¥ä¸Šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ä¸ãˆã‚‹ãŸã‚ã®å„ç¨®ãƒœãƒ¼ãƒŠã‚¹ã‚’æ­£è¦ä¹±æ•°ã‚‚åŠ ãˆã¦ç®—å‡ºã™ã‚‹ã€‚
  * Help determine an "enchantment bonus" for an object.
- * @param max ¥Ü¡¼¥Ê¥¹ÃÍ¤Î¸ÂÅÙ
- * @param level ¥Ü¡¼¥Ê¥¹ÃÍ¤Ë²ÃÌ£¤¹¤ë´ğ½àÀ¸À®³¬
- * @return »»½Ğ¤µ¤ì¤¿¥Ü¡¼¥Ê¥¹ÃÍ
+ * @param max ãƒœãƒ¼ãƒŠã‚¹å€¤ã®é™åº¦
+ * @param level ãƒœãƒ¼ãƒŠã‚¹å€¤ã«åŠ å‘³ã™ã‚‹åŸºæº–ç”Ÿæˆéš
+ * @return ç®—å‡ºã•ã‚ŒãŸãƒœãƒ¼ãƒŠã‚¹å€¤
  * @details
  * To avoid floating point but still provide a smooth distribution of bonuses,\n
  * we simply round the results of division in such a way as to "average" the\n
@@ -2027,7 +2047,7 @@ void object_prep(object_type *o_ptr, int k_idx)
  * 120    0.03  0.11  0.31  0.46  1.31  2.48  4.60  7.78 11.67 25.53 45.72\n
  * 128    0.02  0.01  0.13  0.33  0.83  1.41  3.24  6.17  9.57 14.22 64.07\n
  */
-s16b m_bonus(int max, int level)
+int m_bonus(int max, DEPTH level)
 {
 	int bonus, stand, extra, value;
 
@@ -2071,43 +2091,30 @@ s16b m_bonus(int max, int level)
 
 
 /*!
- * @brief ¥Ç¥Ğ¥Ã¥°»ş¤Ë¥¢¥¤¥Æ¥àÀ¸À®¾ğÊó¤ò¥á¥Ã¥»¡¼¥¸¤Ë½ĞÎÏ¤¹¤ë / Cheat -- describe a created object for the user
- * @param o_ptr ¥Ç¥Ğ¥Ã¥°½ĞÎÏ¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ‡ãƒãƒƒã‚°æ™‚ã«ã‚¢ã‚¤ãƒ†ãƒ ç”Ÿæˆæƒ…å ±ã‚’ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å‡ºåŠ›ã™ã‚‹ / Cheat -- describe a created object for the user
+ * @param o_ptr ãƒ‡ãƒãƒƒã‚°å‡ºåŠ›ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void object_mention(object_type *o_ptr)
 {
 	char o_name[MAX_NLEN];
 
-	/*!
-	 * @note ¥¢¥¤¥Æ¥àÌ¾¼èÆÀ¸å¥¢¥¤¥Æ¥à¤Î²ÁÃÍ¤Ë±ş¤¸¤¿¥Ç¥Ğ¥Ã¥°¥á¥Ã¥»¡¼¥¸¤ò½ĞÎÏ¤¹¤ë¡£
-	 * Get Describe and view, Artifact, Random Artifact, Ego-item, and Normal item.
-	 */
-	object_desc(o_name, o_ptr, (OD_NAME_ONLY | OD_STORE));
+	object_aware(o_ptr);
+	object_known(o_ptr);
 
-	if (object_is_fixed_artifact(o_ptr))
-	{
-		msg_format(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à (%s)", "Artifact (%s)"), o_name);
-	}
-	else if (o_ptr->art_name)
-	{
-		msg_print(_("¥é¥ó¥À¥à¡¦¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È", "Random artifact"));
-	}
-	else if (object_is_ego(o_ptr))
-	{
-		msg_format(_("Ì¾¤Î¤¢¤ë¥¢¥¤¥Æ¥à (%s)", "Ego-item (%s)"), o_name);
-	}
-	else
-	{
-		msg_format(_("¥¢¥¤¥Æ¥à (%s)", "Object (%s)"), o_name);
-	}
+	/* Mark the item as fully known */
+	o_ptr->ident |= (IDENT_MENTAL);
+
+	/* Description */
+	object_desc(o_name, o_ptr, 0);
+	msg_format_wizard(CHEAT_OBJECT, _("%sã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "%s was generated."), o_name);
 }
 
 /*!
- * @brief INSTA_ART·¿¤Î¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÀ¸À®¤ò³ÎÎ¨¤Ë±ş¤¸¤Æ»î¹Ô¤¹¤ë¡£
+ * @brief INSTA_ARTå‹ã®å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ç”Ÿæˆã‚’ç¢ºç‡ã«å¿œã˜ã¦è©¦è¡Œã™ã‚‹ã€‚
  * Mega-Hack -- Attempt to create one of the "Special Objects"
- * @param o_ptr À¸À®¤Ë³ä¤êÅö¤Æ¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param o_ptr ç”Ÿæˆã«å‰²ã‚Šå½“ã¦ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * We are only called from "make_object()", and we assume that\n
  * "apply_magic()" is called immediately after we return.\n
@@ -2116,29 +2123,29 @@ static void object_mention(object_type *o_ptr)
  */
 static bool make_artifact_special(object_type *o_ptr)
 {
-	int i;
-	int k_idx = 0;
+	IDX i;
+	IDX k_idx = 0;
 
-	/*! @note ÃÏ¾å¤Ç¤Ï¥­¥ã¥ó¥»¥ë¤¹¤ë / No artifacts in the town */
+	/*! @note åœ°ä¸Šã§ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ / No artifacts in the town */
 	if (!dun_level) return (FALSE);
 
-	/*! @note get_obj_num_hook¤Ë¤è¤ë»ØÄê¤¬¤¢¤ë¾ì¹ç¤ÏÀ¸À®¤ò¥­¥ã¥ó¥»¥ë¤¹¤ë / Themed object */
+	/*! @note get_obj_num_hookã«ã‚ˆã‚‹æŒ‡å®šãŒã‚ã‚‹å ´åˆã¯ç”Ÿæˆã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹ / Themed object */
 	if (get_obj_num_hook) return (FALSE);
 
-	/*! @note Á´¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÃæ¤«¤éID¤Î¼ã¤¤½ç¤ËÀ¸À®ÂĞ¾İ¤È¤½¤Î³ÎÎ¨¤òÁöºº¤¹¤ë / Check the artifact list (just the "specials") */
+	/*! @note å…¨å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆä¸­ã‹ã‚‰IDã®è‹¥ã„é †ã«ç”Ÿæˆå¯¾è±¡ã¨ãã®ç¢ºç‡ã‚’èµ°æŸ»ã™ã‚‹ / Check the artifact list (just the "specials") */
 	for (i = 0; i < max_a_idx; i++)
 	{
 		artifact_type *a_ptr = &a_info[i];
 
-		/*! @note ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÌ¾¤¬¶õ¤ÎÉÔÀµ¤Ê¥Ç¡¼¥¿¤Ï½ü³°¤¹¤ë / Skip "empty" artifacts */
+		/*! @note ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆåãŒç©ºã®ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã¯é™¤å¤–ã™ã‚‹ / Skip "empty" artifacts */
 		if (!a_ptr->name) continue;
 
-		/*! @note ´û¤ËÀ¸À®²ó¿ô¤¬¥«¥¦¥ó¥È¤µ¤ì¤¿¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¡¢QUESTITEM¤ÈÈóINSTA_ART¤Ï½ü³° / Cannot make an artifact twice */
+		/*! @note æ—¢ã«ç”Ÿæˆå›æ•°ãŒã‚«ã‚¦ãƒ³ãƒˆã•ã‚ŒãŸã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã€QUESTITEMã¨éINSTA_ARTã¯é™¤å¤– / Cannot make an artifact twice */
 		if (a_ptr->cur_num) continue;
 		if (a_ptr->gen_flags & TRG_QUESTITEM) continue;
 		if (!(a_ptr->gen_flags & TRG_INSTA_ART)) continue;
 
-		/*! @note ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÀ¸À®³¬¤¬¸½ºß¤ËÂĞ¤·¤ÆÂ­¤ê¤Ê¤¤¾ì¹ç¤Ï¹â³ÎÎ¨¤Ç1/(ÉÔÂ­³¬ÁØ*2)¤òËş¤¿¤µ¤Ê¤¤¤ÈÀ¸À®¥ê¥¹¥È¤Ë²Ã¤¨¤é¤ì¤Ê¤¤ /
+		/*! @note ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆç”ŸæˆéšãŒç¾åœ¨ã«å¯¾ã—ã¦è¶³ã‚Šãªã„å ´åˆã¯é«˜ç¢ºç‡ã§1/(ä¸è¶³éšå±¤*2)ã‚’æº€ãŸã•ãªã„ã¨ç”Ÿæˆãƒªã‚¹ãƒˆã«åŠ ãˆã‚‰ã‚Œãªã„ /
 		 *  XXX XXX Enforce minimum "depth" (loosely) */
 		if (a_ptr->level > object_level)
 		{
@@ -2147,10 +2154,10 @@ static bool make_artifact_special(object_type *o_ptr)
 			if (!one_in_(d)) continue;
 		}
 
-		/*! @note 1/(¥ì¥¢ÅÙ)¤Î³ÎÎ¨¤òËş¤¿¤µ¤Ê¤¤¤È½ü³°¤µ¤ì¤ë / Artifact "rarity roll" */
+		/*! @note 1/(ãƒ¬ã‚¢åº¦)ã®ç¢ºç‡ã‚’æº€ãŸã•ãªã„ã¨é™¤å¤–ã•ã‚Œã‚‹ / Artifact "rarity roll" */
 		if (!one_in_(a_ptr->rarity)) continue;
 
-		/*! @note INSTA_ART·¿¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤â¥Á¥§¥Ã¥¯ÂĞ¾İ¤È¤¹¤ë¡£¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÀ¸À®³¬ÁØ¤¬Â­¤ê¤Ê¤¤¾ì¹ç1/(ÉÔÂ­³¬ÁØ*5) ¤òËş¤¿¤µ¤Ê¤¤¤È½ü³°¤µ¤ì¤ë¡£ /
+		/*! @note INSTA_ARTå‹å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã‚‚ãƒã‚§ãƒƒã‚¯å¯¾è±¡ã¨ã™ã‚‹ã€‚ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆéšå±¤ãŒè¶³ã‚Šãªã„å ´åˆ1/(ä¸è¶³éšå±¤*5) ã‚’æº€ãŸã•ãªã„ã¨é™¤å¤–ã•ã‚Œã‚‹ã€‚ /
 		 *  Find the base object. XXX XXX Enforce minimum "object" level (loosely). Acquire the "out-of-depth factor". Roll for out-of-depth creation. */
 		k_idx = lookup_kind(a_ptr->tval, a_ptr->sval);
 		if (k_info[k_idx].level > object_level)
@@ -2159,7 +2166,7 @@ static bool make_artifact_special(object_type *o_ptr)
 			if (!one_in_(d)) continue;
 		}
 
-		/*! @note Á°½Ò¤Î¾ò·ï¤òËş¤¿¤·¤¿¤é¡¢¸å¤ÎID¤Î¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Ï¥Á¥§¥Ã¥¯¤»¤º¤¹¤°³ÎÄê¤·À¸À®½èÍı¤Ë°Ü¤¹ /
+		/*! @note å‰è¿°ã®æ¡ä»¶ã‚’æº€ãŸã—ãŸã‚‰ã€å¾Œã®IDã®ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã¯ãƒã‚§ãƒƒã‚¯ã›ãšã™ãç¢ºå®šã—ç”Ÿæˆå‡¦ç†ã«ç§»ã™ /
 		 * Assign the template. Mega-Hack -- mark the item as an artifact. Hack: Some artifacts get random extra powers. Success. */
 		object_prep(o_ptr, k_idx);
 
@@ -2168,16 +2175,16 @@ static bool make_artifact_special(object_type *o_ptr)
 		return (TRUE);
 	}
 
-	/*! @note Á´INSTA_ART¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ò»î¹Ô¤·¤Æ¤â·è¤Ş¤é¤Ê¤«¤Ã¤¿¾ì¹ç FALSE¤òÊÖ¤¹ / Failure */
+	/*! @note å…¨INSTA_ARTå›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã‚’è©¦è¡Œã—ã¦ã‚‚æ±ºã¾ã‚‰ãªã‹ã£ãŸå ´åˆ FALSEã‚’è¿”ã™ / Failure */
 	return (FALSE);
 }
 
 
 /*!
- * @brief ÈóINSTA_ART·¿¤Î¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÀ¸À®¤ò³ÎÎ¨¤Ë±ş¤¸¤Æ»î¹Ô¤¹¤ë¡£
+ * @brief éINSTA_ARTå‹ã®å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ç”Ÿæˆã‚’ç¢ºç‡ã«å¿œã˜ã¦è©¦è¡Œã™ã‚‹ã€‚
  * Mega-Hack -- Attempt to create one of the "Special Objects"
- * @param o_ptr À¸À®¤Ë³ä¤êÅö¤Æ¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param o_ptr ç”Ÿæˆã«å‰²ã‚Šå½“ã¦ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * Attempt to change an object into an artifact\n
  * This routine should only be called by "apply_magic()"\n
@@ -2185,7 +2192,7 @@ static bool make_artifact_special(object_type *o_ptr)
  */
 static bool make_artifact(object_type *o_ptr)
 {
-	int i;
+	IDX i;
 
 
 	/* No artifacts in the town */
@@ -2242,11 +2249,11 @@ static bool make_artifact(object_type *o_ptr)
 
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¤Î¥¨¥´¤ò¥ì¥¢ÅÙ¤Î½Å¤ß¤Ë¹ç¤ï¤»¤Æ¥é¥ó¥À¥à¤ËÁªÂò¤¹¤ë
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¨ã‚´ã‚’ãƒ¬ã‚¢åº¦ã®é‡ã¿ã«åˆã‚ã›ã¦ãƒ©ãƒ³ãƒ€ãƒ ã«é¸æŠã™ã‚‹
  * Choose random ego type
- * @param slot ¼èÆÀ¤·¤¿¤¤¥¨¥´¤ÎÁõÈ÷Éô°Ì
- * @param good TRUE¤Ê¤é¤ĞÄÌ¾ï¤Î¥¨¥´¡¢FALSE¤Ê¤é¤Ğ¼ö¤¤¤Î¥¨¥´¤¬ÁªÂòÂĞ¾İ¤È¤Ê¤ë¡£
- * @return ÁªÂò¤µ¤ì¤¿¥¨¥´¾ğÊó¤ÎID¡¢Ëü°ìÁªÂò¤Ç¤­¤Ê¤«¤Ã¤¿¾ì¹ç¤Ïmax_e_idx¤¬ÊÖ¤ë¡£
+ * @param slot å–å¾—ã—ãŸã„ã‚¨ã‚´ã®è£…å‚™éƒ¨ä½
+ * @param good TRUEãªã‚‰ã°é€šå¸¸ã®ã‚¨ã‚´ã€FALSEãªã‚‰ã°å‘ªã„ã®ã‚¨ã‚´ãŒé¸æŠå¯¾è±¡ã¨ãªã‚‹ã€‚
+ * @return é¸æŠã•ã‚ŒãŸã‚¨ã‚´æƒ…å ±ã®IDã€ä¸‡ä¸€é¸æŠã§ããªã‹ã£ãŸå ´åˆã¯max_e_idxãŒè¿”ã‚‹ã€‚
  */
 static byte get_random_ego(byte slot, bool good)
 {
@@ -2286,23 +2293,23 @@ static byte get_random_ego(byte slot, bool good)
 
 
 /*!
- * @brief Éğ´ï·Ï¥ª¥Ö¥¸¥§¥¯¥È¤ËÀ¸À®¥é¥ó¥¯¤´¤È¤Î¶¯²½¤òÍ¿¤¨¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @brief æ­¦å™¨ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç”Ÿæˆãƒ©ãƒ³ã‚¯ã”ã¨ã®å¼·åŒ–ã‚’ä¸ãˆã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
  * Apply magic to an item known to be a "weapon"
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param level À¸À®´ğ½à³¬
- * @param power À¸À®¥é¥ó¥¯
- * @return ¤Ê¤·
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param level ç”ŸæˆåŸºæº–éš
+ * @param power ç”Ÿæˆãƒ©ãƒ³ã‚¯
+ * @return ãªã—
  * @details
  * Hack -- note special base damage dice boosting\n
  * Hack -- note special processing for weapon/digger\n
  */
-static void a_m_aux_1(object_type *o_ptr, int level, int power)
+static void a_m_aux_1(object_type *o_ptr, DEPTH level, int power)
 {
-	int tohit1 = randint1(5) + m_bonus(5, level);
-	int todam1 = randint1(5) + m_bonus(5, level);
+	HIT_PROB tohit1 = randint1(5) + (HIT_PROB)m_bonus(5, level);
+	HIT_POINT todam1 = randint1(5) + (HIT_POINT)m_bonus(5, level);
 
-	int tohit2 = m_bonus(10, level);
-	int todam2 = m_bonus(10, level);
+	HIT_PROB tohit2 = (HIT_PROB)m_bonus(10, level);
+	HIT_POINT todam2 = (HIT_POINT)m_bonus(10, level);
 
 	if ((o_ptr->tval == TV_BOLT) || (o_ptr->tval == TV_ARROW) || (o_ptr->tval == TV_SHOT))
 	{
@@ -2467,13 +2474,13 @@ static void a_m_aux_1(object_type *o_ptr, int level, int power)
 						add_flag(o_ptr->art_flags, TR_RES_FEAR);
 					break;
 				case EGO_SHARPNESS:
-					o_ptr->pval = m_bonus(5, level) + 1;
+					o_ptr->pval = (PARAMETER_VALUE)m_bonus(5, level) + 1;
 					break;
 				case EGO_EARTHQUAKES:
 					if (one_in_(3) && (level > 60))
 						add_flag(o_ptr->art_flags, TR_BLOWS);
 					else
-						o_ptr->pval = m_bonus(3, level);
+						o_ptr->pval = (PARAMETER_VALUE)m_bonus(3, level);
 					break;
 				case EGO_VAMPIRIC:
 					if (one_in_(5))
@@ -2603,9 +2610,9 @@ static void a_m_aux_1(object_type *o_ptr, int level, int power)
 }
 
 /*!
- * @brief ¥É¥é¥´¥óÁõÈ÷¤Ë¥é¥ó¥À¥à¤ÊÂÑÀ­¤òÍ¿¤¨¤ë
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ‰ãƒ©ã‚´ãƒ³è£…å‚™ã«ãƒ©ãƒ³ãƒ€ãƒ ãªè€æ€§ã‚’ä¸ãˆã‚‹
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void dragon_resist(object_type * o_ptr)
 {
@@ -2620,9 +2627,9 @@ static void dragon_resist(object_type * o_ptr)
 }
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤Ë¥é¥ó¥À¥à¤Ê¶¯¤¤ESP¤òÍ¿¤¨¤ë
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ©ãƒ³ãƒ€ãƒ ãªå¼·ã„ESPã‚’ä¸ãˆã‚‹
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static bool add_esp_strong(object_type *o_ptr)
 {
@@ -2639,10 +2646,10 @@ static bool add_esp_strong(object_type *o_ptr)
 }
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤Ë¥é¥ó¥À¥à¤Ê¼å¤¤ESP¤òÍ¿¤¨¤ë
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param extra TRUE¤Ê¤é¤ĞESP¤ÎºÇÂçÉÕÍ¿¿ô¤¬Áı¤¨¤ë(TRUE -> 3+1d6 / FALSE -> 1d3)
- * @return ¤Ê¤·
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ãƒ©ãƒ³ãƒ€ãƒ ãªå¼±ã„ESPã‚’ä¸ãˆã‚‹
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param extra TRUEãªã‚‰ã°ESPã®æœ€å¤§ä»˜ä¸æ•°ãŒå¢—ãˆã‚‹(TRUE -> 3+1d6 / FALSE -> 1d3)
+ * @return ãªã—
  */
 static void add_esp_weak(object_type *o_ptr, bool extra)
 {
@@ -2674,21 +2681,20 @@ static void add_esp_weak(object_type *o_ptr, bool extra)
 
 
 /*!
- * @brief ËÉ¶ñ·Ï¥ª¥Ö¥¸¥§¥¯¥È¤ËÀ¸À®¥é¥ó¥¯¤´¤È¤Î¶¯²½¤òÍ¿¤¨¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @brief é˜²å…·ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç”Ÿæˆãƒ©ãƒ³ã‚¯ã”ã¨ã®å¼·åŒ–ã‚’ä¸ãˆã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
  * Apply magic to an item known to be "armor"
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param level À¸À®´ğ½à³¬
- * @param power À¸À®¥é¥ó¥¯
- * @return ¤Ê¤·
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param level ç”ŸæˆåŸºæº–éš
+ * @param power ç”Ÿæˆãƒ©ãƒ³ã‚¯
+ * @return ãªã—
  * @details
  * Hack -- note special processing for crown/helm\n
  * Hack -- note special processing for robe of permanence\n
  */
 static void a_m_aux_2(object_type *o_ptr, int level, int power)
 {
-	int toac1 = randint1(5) + m_bonus(5, level);
-
-	int toac2 = m_bonus(10, level);
+	ARMOUR_CLASS toac1 = (ARMOUR_CLASS)randint1(5) + m_bonus(5, level);
+	ARMOUR_CLASS toac2 = (ARMOUR_CLASS)m_bonus(10, level);
 
 	/* Good */
 	if (power > 0)
@@ -2729,10 +2735,6 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 		{
 			if (one_in_(50) || (power > 2)) /* power > 2 is debug only */
 				create_artifact(o_ptr, FALSE);
-
-			/* Mention the item */
-			if (cheat_peek) object_mention(o_ptr);
-
 			break;
 		}
 
@@ -2776,24 +2778,23 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 
 					switch (o_ptr->name2)
 					{
-					  case EGO_DWARVEN:
-						if (o_ptr->tval != TV_HARD_ARMOR)
-						{
-							okay_flag = FALSE;
-							break;
-						}
-					  case EGO_DRUID:
-						if (o_ptr->tval != TV_SOFT_ARMOR)
-						{
-							okay_flag = FALSE;
-							break;
-						}
-					  default:
+						case EGO_DWARVEN:
+							if (o_ptr->tval != TV_HARD_ARMOR)
+							{
+								okay_flag = FALSE;
+							}
+						break;
+						case EGO_DRUID:
+							if (o_ptr->tval != TV_SOFT_ARMOR)
+							{
+								okay_flag = FALSE;
+							}
+						break;
+						default:
 						break;
 					}
 
-					if (okay_flag)
-						break;
+					if (okay_flag) break;
 				}
 				switch (o_ptr->name2)
 				{
@@ -2844,8 +2845,6 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 
 			if (o_ptr->sval == SV_DRAGON_SHIELD)
 			{
-				/* Mention the item */
-				if (cheat_peek) object_mention(o_ptr);
 				dragon_resist(o_ptr);
 				if (!one_in_(3)) break;
 			}
@@ -2894,8 +2893,6 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 		{
 			if (o_ptr->sval == SV_SET_OF_DRAGON_GLOVES)
 			{
-				/* Mention the item */
-				if (cheat_peek) object_mention(o_ptr);
 				dragon_resist(o_ptr);
 				if (!one_in_(3)) break;
 			}
@@ -2922,8 +2919,6 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 		{
 			if (o_ptr->sval == SV_PAIR_OF_DRAGON_GREAVE)
 			{
-				/* Mention the item */
-				if (cheat_peek) object_mention(o_ptr);
 				dragon_resist(o_ptr);
 				if (!one_in_(3)) break;
 			}
@@ -3030,8 +3025,6 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 		{
 			if (o_ptr->sval == SV_DRAGON_HELM)
 			{
-				/* Mention the item */
-				if (cheat_peek) object_mention(o_ptr);
 				dragon_resist(o_ptr);
 				if (!one_in_(3)) break;
 			}
@@ -3151,16 +3144,17 @@ static void a_m_aux_2(object_type *o_ptr, int level, int power)
 			break;
 		}
 	}
+
 }
 
 
 /*!
- * @brief Áõ¾şÉÊ·Ï¥ª¥Ö¥¸¥§¥¯¥È¤ËÀ¸À®¥é¥ó¥¯¤´¤È¤Î¶¯²½¤òÍ¿¤¨¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @brief è£…é£¾å“ç³»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç”Ÿæˆãƒ©ãƒ³ã‚¯ã”ã¨ã®å¼·åŒ–ã‚’ä¸ãˆã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
  * Apply magic to an item known to be a "ring" or "amulet"
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param level À¸À®´ğ½à³¬
- * @param power À¸À®¥é¥ó¥¯
- * @return ¤Ê¤·
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param level ç”ŸæˆåŸºæº–éš
+ * @param power ç”Ÿæˆãƒ©ãƒ³ã‚¯
+ * @return ãªã—
  * @details
  * Hack -- note special "pval boost" code for ring of speed\n
  * Hack -- note that some items must be cursed (or blessed)\n
@@ -3178,7 +3172,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_ATTACKS:
 				{
 					/* Stat bonus */
-					o_ptr->pval = 1 + m_bonus(2, level); /* #tang m_bonus(2, level) -> 1 + m_bonus(2, level) */
+					o_ptr->pval = (PARAMETER_VALUE)m_bonus(2, level);
 					if (one_in_(15)) o_ptr->pval++;
 					if (o_ptr->pval < 1) o_ptr->pval = 1;
 
@@ -3192,7 +3186,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 						o_ptr->curse_flags |= TRC_CURSED;
 
 						/* Reverse pval */
-						/*o_ptr->pval = 0 - (o_ptr->pval); /* #tang -> del */
+						o_ptr->pval = 0 - (o_ptr->pval);
 					}
 
 					break;
@@ -3209,7 +3203,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_DEX:
 				{
 					/* Stat bonus */
-					o_ptr->pval = 1 + m_bonus(5, level);
+					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(5, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3231,7 +3225,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_SPEED:
 				{
 					/* Base speed (1 to 10) */
-					o_ptr->pval = 2 + randint1(5) + m_bonus(5, level); /* #tang randint1(5) -> 2 + randint1(5) */
+					o_ptr->pval = randint1(5) + (PARAMETER_VALUE)m_bonus(5, level);
 
 					/* Super-charge the ring */
 					while (randint0(100) < 50) o_ptr->pval++;
@@ -3251,9 +3245,6 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 						break;
 					}
 
-					/* Mention the item */
-					if (cheat_peek) object_mention(o_ptr);
-
 					break;
 				}
 
@@ -3266,7 +3257,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 					while (one_in_(4));
 
 					/* Bonus to armor class */
-					o_ptr->to_a = 10 + randint1(5) + m_bonus(10, level);
+					o_ptr->to_a = 10 + randint1(5) + (ARMOUR_CLASS)m_bonus(10, level);
 				}
 				break;
 
@@ -3280,7 +3271,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_SEARCHING:
 				{
 					/* Bonus to searching */
-					o_ptr->pval = 1 + m_bonus(5, level);
+					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(5, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3305,7 +3296,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_ELEC:
 				{
 					/* Bonus to armor class */
-					o_ptr->to_a = 5 + randint1(5) + m_bonus(10, level);
+					o_ptr->to_a = 5 + randint1(5) + (ARMOUR_CLASS)m_bonus(10, level);
 					break;
 				}
 
@@ -3320,7 +3311,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 					o_ptr->curse_flags |= TRC_CURSED;
 
 					/* Penalize */
-					o_ptr->pval = 0 - (1 + m_bonus(5, level));
+					o_ptr->pval = 0 - (1 + (PARAMETER_VALUE)m_bonus(5, level));
 					if (power > 0) power = 0 - power;
 
 					break;
@@ -3336,8 +3327,8 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 					o_ptr->curse_flags |= TRC_CURSED;
 
 					/* Penalize */
-					o_ptr->to_a = 0 - (5 + m_bonus(10, level));
-					o_ptr->pval = 0 - (1 + m_bonus(5, level));
+					o_ptr->to_a = 0 - (5 + (ARMOUR_CLASS)m_bonus(10, level));
+					o_ptr->pval = 0 - (1 + (PARAMETER_VALUE)m_bonus(5, level));
 					if (power > 0) power = 0 - power;
 
 					break;
@@ -3347,7 +3338,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_DAMAGE:
 				{
 					/* Bonus to damage */
-					o_ptr->to_d = 5 + randint1(9) + m_bonus(16, level); /* #tang 1 + randint1(5) -> 5 + randint1(9) */
+					o_ptr->to_d = 1 + randint1(5) + (HIT_POINT)m_bonus(16, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3369,7 +3360,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_ACCURACY:
 				{
 					/* Bonus to hit */
-					o_ptr->to_h = 15 + randint1(9) + m_bonus(16, level); /* #tang 1 + randint1(5) -> 15 + randint1(9) */
+					o_ptr->to_h = 1 + randint1(5) + (HIT_PROB)m_bonus(16, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3391,7 +3382,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_PROTECTION:
 				{
 					/* Bonus to armor class */
-					o_ptr->to_a = 5 + randint1(8) + m_bonus(10, level);
+					o_ptr->to_a = 5 + randint1(8) + (ARMOUR_CLASS)m_bonus(10, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3413,8 +3404,8 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_SLAYING:
 				{
 					/* Bonus to damage and to hit */
-					o_ptr->to_d = 4 + randint1(9) + m_bonus(12, level); /* #tang randint1(5) -> 4 + randint1(9) */
-					o_ptr->to_h = 4 + randint1(9) + m_bonus(12, level); /* #tang randint1(5) -> 4 + randint1(9) */
+					o_ptr->to_d = randint1(5) + (HIT_POINT)m_bonus(12, level);
+					o_ptr->to_h = randint1(5) + (HIT_PROB)m_bonus(12, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3435,7 +3426,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 
 				case SV_RING_MUSCLE:
 				{
-					o_ptr->pval = 2 + m_bonus(3, level); /* #tang 1 -> 2 */
+					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(3, level);
 					if (one_in_(4)) o_ptr->pval++;
 
 					/* Cursed */
@@ -3672,7 +3663,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_AMULET_WISDOM:
 				case SV_AMULET_CHARISMA:
 				{
-					o_ptr->pval = 1 + m_bonus(5, level);
+					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(5, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3731,7 +3722,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				/* Amulet of searching */
 				case SV_AMULET_SEARCHING:
 				{
-					o_ptr->pval = randint1(2) + m_bonus(4, level);
+					o_ptr->pval = randint1(2) + (PARAMETER_VALUE)m_bonus(4, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3752,14 +3743,11 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				/* Amulet of the Magi -- never cursed */
 				case SV_AMULET_THE_MAGI:
 				{
-					o_ptr->pval = randint1(5) + m_bonus(5, level);
-					o_ptr->to_a = randint1(5) + m_bonus(5, level);
+					o_ptr->pval = randint1(5) + (PARAMETER_VALUE)m_bonus(5, level);
+					o_ptr->to_a = randint1(5) + (ARMOUR_CLASS)m_bonus(5, level);
 
 					/* gain one low ESP */
 					add_esp_weak(o_ptr, FALSE);
-
-					/* Mention the item */
-					if (cheat_peek) object_mention(o_ptr);
 
 					break;
 				}
@@ -3774,8 +3762,8 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 					o_ptr->curse_flags |= (TRC_CURSED);
 
 					/* Penalize */
-					o_ptr->pval = 0 - (randint1(5) + m_bonus(5, level));
-					o_ptr->to_a = 0 - (randint1(5) + m_bonus(5, level));
+					o_ptr->pval = 0 - (randint1(5) + (PARAMETER_VALUE)m_bonus(5, level));
+					o_ptr->to_a = 0 - (randint1(5) + (ARMOUR_CLASS)m_bonus(5, level));
 					if (power > 0) power = 0 - power;
 
 					break;
@@ -3783,7 +3771,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 
 				case SV_AMULET_MAGIC_MASTERY:
 				{
-					o_ptr->pval = 1 + m_bonus(4, level);
+					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(4, level);
 
 					/* Cursed */
 					if (power < 0)
@@ -3951,11 +3939,11 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬¿Í·Á¤Î¥Ù¡¼¥¹¤Ë¤Ç¤­¤ë¤«¤òÊÖ¤¹
- * @param r_idx ¥Á¥§¥Ã¥¯¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID
- * @return ¿Í·Á¤Ë¤Ç¤­¤ë¤Ê¤éTRUE¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒäººå½¢ã®ãƒ™ãƒ¼ã‚¹ã«ã§ãã‚‹ã‹ã‚’è¿”ã™
+ * @param r_idx ãƒã‚§ãƒƒã‚¯ã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID
+ * @return äººå½¢ã«ã§ãã‚‹ãªã‚‰TRUEã‚’è¿”ã™
  */
-static bool item_monster_okay(int r_idx)
+static bool item_monster_okay(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 
@@ -3973,12 +3961,12 @@ static bool item_monster_okay(int r_idx)
 
 
 /*!
- * @brief ¤½¤ÎÂ¾»¨Â¿¤Î¥ª¥Ö¥¸¥§¥¯¥È¤ËÀ¸À®¥é¥ó¥¯¤´¤È¤Î¶¯²½¤òÍ¿¤¨¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
+ * @brief ãã®ä»–é›‘å¤šã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç”Ÿæˆãƒ©ãƒ³ã‚¯ã”ã¨ã®å¼·åŒ–ã‚’ä¸ãˆã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
  * Apply magic to an item known to be "boring"
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param level À¸À®´ğ½à³¬
- * @param power À¸À®¥é¥ó¥¯
- * @return ¤Ê¤·
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param level ç”ŸæˆåŸºæº–éš
+ * @param power ç”Ÿæˆãƒ©ãƒ³ã‚¯
+ * @return ãªã—
  * @details
  * Hack -- note the special code for various items
  */
@@ -4109,7 +4097,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 
 		case TV_FIGURINE:
 		{
-			int i = 1;
+			PARAMETER_VALUE i = 1;
 			int check;
 
 			monster_race *r_ptr;
@@ -4143,19 +4131,12 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 			/* Some figurines are cursed */
 			if (one_in_(6)) o_ptr->curse_flags |= TRC_CURSED;
 
-			if (cheat_peek)
-			{
-				msg_format(_("%s¤Î¿Í·Á, ¿¼¤µ +%d%s", "Figurine of %s, depth +%d%s"),
-							  r_name + r_ptr->name, check - 1,
-							  !object_is_cursed(o_ptr) ? "" : " {cursed}");
-			}
-
 			break;
 		}
 
 		case TV_CORPSE:
 		{
-			int i = 1;
+			PARAMETER_VALUE i = 1;
 			int check;
 
 			u32b match = 0;
@@ -4197,11 +4178,6 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 
 			o_ptr->pval = i;
 
-			if (cheat_peek)
-			{
-				msg_format(_("%s¤Î»àÂÎ, ¿¼¤µ +%d", "Corpse of %s, depth +%d"),
-							  r_name + r_ptr->name, check - 1);
-			}
 
 			object_aware(o_ptr);
 			object_known(o_ptr);
@@ -4210,7 +4186,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 
 		case TV_STATUE:
 		{
-			int i = 1;
+			PARAMETER_VALUE i = 1;
 
 			monster_race *r_ptr;
 
@@ -4231,7 +4207,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 
 			if (cheat_peek)
 			{
-				msg_format(_("%s¤ÎÁü", "Statue of %s"), r_name + r_ptr->name);
+				msg_format(_("%sã®åƒ", "Statue of %s"), r_name + r_ptr->name);
 			}
 			object_aware(o_ptr);
 			object_known(o_ptr);
@@ -4241,7 +4217,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 
 		case TV_CHEST:
 		{
-			byte obj_level = k_info[o_ptr->k_idx].level;
+			DEPTH obj_level = k_info[o_ptr->k_idx].level;
 
 			/* Hack -- skip ruined chests */
 			if (obj_level <= 0) break;
@@ -4261,12 +4237,12 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
 }
 
 /*!
- * @brief À¸À®¤µ¤ì¤¿¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ËËâË¡Åª¤Ê¶¯²½¤òÍ¿¤¨¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief ç”Ÿæˆã•ã‚ŒãŸãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã«é­”æ³•çš„ãªå¼·åŒ–ã‚’ä¸ãˆã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Complete the "creation" of an object by applying "magic" to the item
- * @param o_ptr ¶¯²½¤òÍ¿¤¨¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param lev À¸À®´ğ½à³¬
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó
- * @return ¤Ê¤·
+ * @param o_ptr å¼·åŒ–ã‚’ä¸ãˆãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param lev ç”ŸæˆåŸºæº–éš
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return ãªã—
  * @details
  * This includes not only rolling for random bonuses, but also putting the\n
  * finishing touches on ego-items and artifacts, giving charges to wands and\n
@@ -4296,7 +4272,7 @@ static void a_m_aux_4(object_type *o_ptr, int level, int power)
  * "good" and "great" arguments are false.  As a total hack, if "great" is\n
  * true, then the item gets 3 extra "attempts" to become an artifact.\n
  */
-void apply_magic(object_type *o_ptr, int lev, u32b mode)
+void apply_magic(object_type *o_ptr, DEPTH lev, BIT_FLAGS mode)
 {
 	int i, rolls, f1, f2, power;
 
@@ -4306,13 +4282,13 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 	if (lev > MAX_DEPTH - 1) lev = MAX_DEPTH - 1;
 
 	/* Base chance of being "good" */
-	f1 = lev + 10; /* #tang 10 -> 40 */
+	f1 = lev + 10;
 
 	/* Maximal chance of being "good" */
 	if (f1 > d_info[dungeon_type].obj_good) f1 = d_info[dungeon_type].obj_good;
 
 	/* Base chance of being "great" */
-	f2 = f1 * 2 / 3; /* #tang 2 -> 4 */
+	f2 = f1 * 2 / 3;
 
 	/* Maximal chance of being "great" */
 	if ((p_ptr->pseikaku != SEIKAKU_MUNCHKIN) && (f2 > d_info[dungeon_type].obj_great))
@@ -4320,8 +4296,8 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 
 	if (p_ptr->muta3 & MUT3_GOOD_LUCK)
 	{
-		f1 += 5; /* #tang 5 -> 10 */
-		f2 += 2; /* #tang 2 -> 6 */
+		f1 += 5;
+		f2 += 2;
 	}
 	else if(p_ptr->muta3 & MUT3_BAD_LUCK)
 	{
@@ -4341,7 +4317,7 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 		/* Roll for "great" */
 		if ((mode & AM_GREAT) || magik(f2))
 		{
-			power = (randint0(100) > 80 ? 3 : 2); /* #tang 2 -> (randint0(100) > 80 ? 3 : 2) */
+			power = 2;
 
 			/* Roll for "special" */
 			if (mode & AM_SPECIAL) power = 3;
@@ -4438,10 +4414,6 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 		if (a_ptr->gen_flags & (TRG_RANDOM_CURSE0)) o_ptr->curse_flags |= get_curse(0, o_ptr);
 		if (a_ptr->gen_flags & (TRG_RANDOM_CURSE1)) o_ptr->curse_flags |= get_curse(1, o_ptr);
 		if (a_ptr->gen_flags & (TRG_RANDOM_CURSE2)) o_ptr->curse_flags |= get_curse(2, o_ptr);
-
-
-		/* Cheat -- peek at the item */
-		if (cheat_peek) object_mention(o_ptr);
 
 		/* Done */
 		return;
@@ -4565,7 +4537,7 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 		}
 
 		/* Hack -- apply activatin index if needed */
-		if (e_ptr->act_idx) o_ptr->xtra2 = e_ptr->act_idx;
+		if (e_ptr->act_idx) o_ptr->xtra2 = (XTRA8)e_ptr->act_idx;
 
 		/* Hack -- apply extra penalties if needed */
 		if ((object_is_cursed(o_ptr) || object_is_broken(o_ptr)) && !(e_ptr->gen_flags & (TRG_POWERFUL)))
@@ -4636,7 +4608,7 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 				if ((o_ptr->name2 == EGO_HA) && (have_flag(o_ptr->art_flags, TR_BLOWS)))
 				{
 					o_ptr->pval++;
-					if ((lev > 15) && one_in_(3) && ((o_ptr->dd*(o_ptr->ds+1)) < 15)) o_ptr->pval++; /* #tang 60 -> 15 */
+					if ((lev > 60) && one_in_(3) && ((o_ptr->dd*(o_ptr->ds+1)) < 15)) o_ptr->pval++;
 				}
 				else if (o_ptr->name2 == EGO_DEMON)
 				{
@@ -4651,7 +4623,7 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 				}
 				else if (o_ptr->name2 == EGO_ATTACKS)
 				{
-					o_ptr->pval = randint1(e_ptr->max_pval*lev/25+1); /* #tang 100 -> 25 */
+					o_ptr->pval = randint1(e_ptr->max_pval*lev/100+1);
 					if (o_ptr->pval > 3) o_ptr->pval = 3;
 					if ((o_ptr->tval == TV_SWORD) && (o_ptr->sval == SV_HAYABUSA))
 						o_ptr->pval += randint1(2);
@@ -4672,16 +4644,13 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 				
 				
 			}
-			if ((o_ptr->name2 == EGO_SPEED) && (lev < 13)) /* #tang 50 -> 13 */
+			if ((o_ptr->name2 == EGO_SPEED) && (lev < 50))
 			{
 				o_ptr->pval = randint1(o_ptr->pval);
 			}
 			if ((o_ptr->tval == TV_SWORD) && (o_ptr->sval == SV_HAYABUSA) && (o_ptr->pval > 2) && (o_ptr->name2 != EGO_ATTACKS))
 				o_ptr->pval = 2;
 		}
-
-		/* Cheat -- describe the item */
-		if (cheat_peek) object_mention(o_ptr);
 		
 		/* Done */
 		return;
@@ -4703,16 +4672,18 @@ void apply_magic(object_type *o_ptr, int lev, u32b mode)
 		if (k_ptr->gen_flags & (TRG_RANDOM_CURSE1)) o_ptr->curse_flags |= get_curse(1, o_ptr);
 		if (k_ptr->gen_flags & (TRG_RANDOM_CURSE2)) o_ptr->curse_flags |= get_curse(2, o_ptr);
 	}
+
+	
 }
 
 
 /*!
- * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤¬¾å¼Á¤È¤·¤Æ°·¤ï¤ì¤ë¤«¤É¤¦¤«¤òÊÖ¤¹¡£
+ * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ãŒä¸Šè³ªã¨ã—ã¦æ‰±ã‚ã‚Œã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ã€‚
  * Hack -- determine if a template is "good"
- * @param k_idx È½Äê¤·¤¿¤¤¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎID
- * @return ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤¬¾å¼Á¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£
+ * @param k_idx åˆ¤å®šã—ãŸã„ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ID
+ * @return ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ãŒä¸Šè³ªãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚
  */
-static bool kind_is_good(int k_idx)
+static bool kind_is_good(KIND_OBJECT_IDX k_idx)
 {
 	object_kind *k_ptr = &k_info[k_idx];
 
@@ -4793,20 +4764,19 @@ static bool kind_is_good(int k_idx)
 }
 
 /*!
- * @brief À¸À®³¬¤Ë±ş¤¸¤¿¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÀ¸À®¤ò¹Ô¤¦¡£
+ * @brief ç”Ÿæˆéšã«å¿œã˜ãŸãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆã‚’è¡Œã†ã€‚
  * Attempt to make an object (normal or good/great)
- * @param j_ptr À¸À®·ë²Ì¤ò¼ı¤á¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param mode ¥ª¥×¥·¥ç¥ó¥Õ¥é¥°
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param j_ptr ç”Ÿæˆçµæœã‚’åã‚ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param mode ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * This routine plays nasty games to generate the "special artifacts".\n
  * This routine uses "object_level" for the "generation level".\n
  * We assume that the given object has been "wiped".\n
  */
-bool make_object(object_type *j_ptr, u32b mode)
+bool make_object(object_type *j_ptr, BIT_FLAGS mode)
 {
 	int prob, base;
-	byte obj_level;
 
 
 	/* Chance of "special object" */
@@ -4819,7 +4789,7 @@ bool make_object(object_type *j_ptr, u32b mode)
 	/* Generate a special object, or a normal object */
 	if (!one_in_(prob) || !make_artifact_special(j_ptr))
 	{
-		int k_idx;
+		IDX k_idx;
 
 		/* Good objects */
 		if ((mode & AM_GOOD) && !get_obj_num_hook)
@@ -4867,16 +4837,7 @@ bool make_object(object_type *j_ptr, u32b mode)
 		}
 	}
 
-	obj_level = k_info[j_ptr->k_idx].level;
-	if (object_is_fixed_artifact(j_ptr)) obj_level = a_info[j_ptr->name1].level;
-
-	/* Notice "okay" out-of-depth objects */
-	if (!object_is_cursed(j_ptr) && !object_is_broken(j_ptr) &&
-	    (obj_level > dun_level))
-	{
-		/* Cheat -- peek at items */
-		if (cheat_peek) object_mention(j_ptr);
-	}
+	if (cheat_peek) object_mention(j_ptr);
 
 	/* Success */
 	return (TRUE);
@@ -4884,20 +4845,20 @@ bool make_object(object_type *j_ptr, u32b mode)
 
 
 /*!
- * @brief ¥Õ¥í¥¢¤Î»ØÄê°ÌÃÖ¤ËÀ¸À®³¬¤Ë±ş¤¸¤¿¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤ÎÀ¸À®¤ò¹Ô¤¦¡£
+ * @brief ãƒ•ãƒ­ã‚¢ã®æŒ‡å®šä½ç½®ã«ç”Ÿæˆéšã«å¿œã˜ãŸãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆã‚’è¡Œã†ã€‚
  * Attempt to place an object (normal or good/great) at the given location.
- * @param y ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
- * @param x ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
- * @param mode ¥ª¥×¥·¥ç¥ó¥Õ¥é¥°
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param y é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
+ * @param x é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
+ * @param mode ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ•ãƒ©ã‚°
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * This routine plays nasty games to generate the "special artifacts".\n
  * This routine uses "object_level" for the "generation level".\n
  * This routine requires a clean floor grid destination.\n
  */
-void place_object(int y, int x, u32b mode)
+void place_object(POSITION y, POSITION x, BIT_FLAGS mode)
 {
-	s16b o_idx;
+	IDX o_idx;
 
 	/* Acquire grid */
 	cave_type *c_ptr = &cave[y][x];
@@ -4968,10 +4929,10 @@ void place_object(int y, int x, u32b mode)
 
 
 /*!
- * @brief À¸À®³¬¤Ë±ş¤¸¤¿ºâÊõ¥ª¥Ö¥¸¥§¥¯¥È¤ÎÀ¸À®¤ò¹Ô¤¦¡£
+ * @brief ç”Ÿæˆéšã«å¿œã˜ãŸè²¡å®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆã‚’è¡Œã†ã€‚
  * Make a treasure object
- * @param j_ptr À¸À®·ë²Ì¤ò¼ı¤á¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param j_ptr ç”Ÿæˆçµæœã‚’åã‚ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * The location must be a legal, clean, floor grid.
  */
@@ -5012,15 +4973,15 @@ bool make_gold(object_type *j_ptr)
 
 
 /*!
- * @brief ¥Õ¥í¥¢¤Î»ØÄê°ÌÃÖ¤ËÀ¸À®³¬¤Ë±ş¤¸¤¿ºâÊõ¥ª¥Ö¥¸¥§¥¯¥È¤ÎÀ¸À®¤ò¹Ô¤¦¡£
+ * @brief ãƒ•ãƒ­ã‚¢ã®æŒ‡å®šä½ç½®ã«ç”Ÿæˆéšã«å¿œã˜ãŸè²¡å®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆã‚’è¡Œã†ã€‚
  * Places a treasure (Gold or Gems) at given location
- * @param y ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
- * @param x ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param y é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
+ * @param x é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * The location must be a legal, clean, floor grid.
  */
-void place_gold(int y, int x)
+void place_gold(POSITION y, POSITION x)
 {
 	s16b o_idx;
 
@@ -5086,13 +5047,13 @@ void place_gold(int y, int x)
 
 
 /*!
- * @brief À¸À®ºÑ¤Î¥ª¥Ö¥¸¥§¥¯¥È¤ò¥Õ¥í¥¢¤Î½êÄê¤Î°ÌÃÖ¤ËÍî¤È¤¹¡£
+ * @brief ç”Ÿæˆæ¸ˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ•ãƒ­ã‚¢ã®æ‰€å®šã®ä½ç½®ã«è½ã¨ã™ã€‚
  * Let an object fall to the ground at or near a location.
- * @param j_ptr Íî¤È¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param chance ¥É¥í¥Ã¥×¤ÎÀ®¸ùÎ¨(%)
- * @param y ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
- * @param x ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * @param j_ptr è½ã¨ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param chance ãƒ‰ãƒ­ãƒƒãƒ—ã®æˆåŠŸç‡(%)
+ * @param y é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
+ * @param x é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * @details
  * The initial location is assumed to be "in_bounds()".\n
  *\n
@@ -5141,7 +5102,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 	{
 		/* Message */
 #ifdef JP
-		msg_format("%s¤Ï¾Ã¤¨¤¿¡£", o_name);
+		msg_format("%sã¯æ¶ˆãˆãŸã€‚", o_name);
 #else
 		msg_format("The %s disappear%s.",
 			   o_name, (plural ? "" : "s"));
@@ -5149,7 +5110,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 
 
 		/* Debug */
-		if (p_ptr->wizard) msg_print(_("(ÇËÂ»)", "(breakage)"));
+		if (p_ptr->wizard) msg_print(_("(ç ´æ)", "(breakage)"));
 
 		/* Failure */
 		return (0);
@@ -5253,7 +5214,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 	{
 		/* Message */
 #ifdef JP
-		msg_format("%s¤Ï¾Ã¤¨¤¿¡£", o_name);
+		msg_format("%sã¯æ¶ˆãˆãŸã€‚", o_name);
 #else
 		msg_format("The %s disappear%s.",
 			   o_name, (plural ? "" : "s"));
@@ -5261,7 +5222,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 
 
 		/* Debug */
-		if (p_ptr->wizard) msg_print(_("(¾²¥¹¥Ú¡¼¥¹¤¬¤Ê¤¤)", "(no floor space)"));
+		if (p_ptr->wizard) msg_print(_("(åºŠã‚¹ãƒšãƒ¼ã‚¹ãŒãªã„)", "(no floor space)"));
 
 		/* Failure */
 		return (0);
@@ -5308,13 +5269,13 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 		{
 			/* Message */
 #ifdef JP
-			msg_format("%s¤Ï¾Ã¤¨¤¿¡£", o_name);
+			msg_format("%sã¯æ¶ˆãˆãŸã€‚", o_name);
 #else
 			msg_format("The %s disappear%s.", o_name, (plural ? "" : "s"));
 #endif
 
 			/* Debug */
-			if (p_ptr->wizard) msg_print(_("(¾²¥¹¥Ú¡¼¥¹¤¬¤Ê¤¤)", "(no floor space)"));
+			if (p_ptr->wizard) msg_print(_("(åºŠã‚¹ãƒšãƒ¼ã‚¹ãŒãªã„)", "(no floor space)"));
 
 			/* Mega-Hack -- preserve artifacts */
 			if (preserve_mode)
@@ -5391,7 +5352,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 	{
 		/* Message */
 #ifdef JP
-		msg_format("%s¤Ï¾Ã¤¨¤¿¡£", o_name);
+		msg_format("%sã¯æ¶ˆãˆãŸã€‚", o_name);
 #else
 		msg_format("The %s disappear%s.",
 			   o_name, (plural ? "" : "s"));
@@ -5399,7 +5360,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 
 
 		/* Debug */
-		if (p_ptr->wizard) msg_print(_("(¥¢¥¤¥Æ¥à¤¬Â¿²á¤®¤ë)", "(too many objects)"));
+		if (p_ptr->wizard) msg_print(_("(ã‚¢ã‚¤ãƒ†ãƒ ãŒå¤šéãã‚‹)", "(too many objects)"));
 
 		/* Hack -- Preserve artifacts */
 		if (object_is_fixed_artifact(j_ptr))
@@ -5450,7 +5411,7 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 	/* Message when an object falls under the player */
 	if (chance && player_bold(by, bx))
 	{
-		msg_print(_("²¿¤«¤¬Â­²¼¤ËÅ¾¤¬¤Ã¤Æ¤­¤¿¡£", "You feel something roll beneath your feet."));
+		msg_print(_("ä½•ã‹ãŒè¶³ä¸‹ã«è»¢ãŒã£ã¦ããŸã€‚", "You feel something roll beneath your feet."));
 	}
 
 	/* XXX XXX XXX */
@@ -5461,21 +5422,21 @@ s16b drop_near(object_type *j_ptr, int chance, int y, int x)
 
 
 /*!
- * @brief ³ÍÆÀ¥É¥í¥Ã¥×¤ò¹Ô¤¦¡£
+ * @brief ç²å¾—ãƒ‰ãƒ­ãƒƒãƒ—ã‚’è¡Œã†ã€‚
  * Scatter some "great" objects near the player
- * @param y1 ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
- * @param x1 ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
- * @param num ³ÍÆÀ¤Î½èÍı²ó¿ô
- * @param great TRUE¤Ê¤é¤ĞÉ¬¤º¹âµéÉÊ°Ê¾å¤òÍî¤È¤¹
- * @param special TRUE¤Ê¤é¤ĞÉ¬¤ºÆÃÊÌÉÊ¤òÍî¤È¤¹
- * @param known TRUE¤Ê¤é¤Ğ¥ª¥Ö¥¸¥§¥¯¥È¤¬É¬¤º¡ö´ÕÄê¡öºÑ¤Ë¤Ê¤ë
- * @return ¤Ê¤·
+ * @param y1 é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
+ * @param x1 é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
+ * @param num ç²å¾—ã®å‡¦ç†å›æ•°
+ * @param great TRUEãªã‚‰ã°å¿…ãšé«˜ç´šå“ä»¥ä¸Šã‚’è½ã¨ã™
+ * @param special TRUEãªã‚‰ã°å¿…ãšç‰¹åˆ¥å“ã‚’è½ã¨ã™
+ * @param known TRUEãªã‚‰ã°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¿…ãšï¼Šé‘‘å®šï¼Šæ¸ˆã«ãªã‚‹
+ * @return ãªã—
  */
 void acquirement(int y1, int x1, int num, bool great, bool special, bool known)
 {
 	object_type *i_ptr;
 	object_type object_type_body;
-	u32b mode = AM_GOOD | (great || special ? AM_GREAT : 0L) | (special ? AM_SPECIAL : 0L) ;
+	BIT_FLAGS mode = AM_GOOD | (great || special ? AM_GREAT : 0L) | (special ? AM_SPECIAL : 0L) ;
 
 	/* Acquirement */
 	while (num--)
@@ -5512,8 +5473,8 @@ void acquirement(int y1, int x1, int num, bool great, bool special, bool known)
 
 typedef struct
 {
-	int tval;
-	int sval;
+	OBJECT_TYPE_VALUE tval;
+	OBJECT_SUBTYPE_VALUE sval;
 	int prob;
 	byte flag;
 } amuse_type;
@@ -5538,12 +5499,12 @@ amuse_type amuse_info[] =
 };
 
 /*!
- * @brief Ã¯ÆÀ¥É¥í¥Ã¥×¤ò¹Ô¤¦¡£
- * @param y1 ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎYºÂÉ¸
- * @param x1 ÇÛÃÖ¤·¤¿¤¤¥Õ¥í¥¢¤ÎXºÂÉ¸
- * @param num Ã¯ÆÀ¤Î½èÍı²ó¿ô
- * @param known TRUE¤Ê¤é¤Ğ¥ª¥Ö¥¸¥§¥¯¥È¤¬É¬¤º¡ö´ÕÄê¡öºÑ¤Ë¤Ê¤ë
- * @return ¤Ê¤·
+ * @brief èª°å¾—ãƒ‰ãƒ­ãƒƒãƒ—ã‚’è¡Œã†ã€‚
+ * @param y1 é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Yåº§æ¨™
+ * @param x1 é…ç½®ã—ãŸã„ãƒ•ãƒ­ã‚¢ã®Xåº§æ¨™
+ * @param num èª°å¾—ã®å‡¦ç†å›æ•°
+ * @param known TRUEãªã‚‰ã°ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå¿…ãšï¼Šé‘‘å®šï¼Šæ¸ˆã«ãªã‚‹
+ * @return ãªã—
  */
 void amusement(int y1, int x1, int num, bool known)
 {
@@ -5559,7 +5520,8 @@ void amusement(int y1, int x1, int num, bool known)
 	/* Acquirement */
 	while (num)
 	{
-		int i, k_idx, a_idx = 0;
+		int i;
+		IDX k_idx, a_idx = 0;
 		int r = randint0(t);
 		bool insta_art, fixed_art;
 
@@ -5635,8 +5597,8 @@ void amusement(int y1, int x1, int num, bool known)
 static s16b normal_traps[MAX_NORMAL_TRAPS];
 
 /*!
- * @brief ¥¿¥°¤Ë½¾¤Ã¤Æ¡¢´ğËÜ¥È¥é¥Ã¥×¥Æ¡¼¥Ö¥ë¤ò½é´ü²½¤¹¤ë / Initialize arrays for normal traps
- * @return ¤Ê¤·
+ * @brief ã‚¿ã‚°ã«å¾“ã£ã¦ã€åŸºæœ¬ãƒˆãƒ©ãƒƒãƒ—ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹ / Initialize arrays for normal traps
+ * @return ãªã—
  */
 void init_normal_traps(void)
 {
@@ -5663,9 +5625,9 @@ void init_normal_traps(void)
 }
 
 /*!
- * @brief ´ğËÜ¥È¥é¥Ã¥×¤ò¥é¥ó¥À¥à¤ËÁªÂò¤¹¤ë /
+ * @brief åŸºæœ¬ãƒˆãƒ©ãƒƒãƒ—ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«é¸æŠã™ã‚‹ /
  * Get random trap
- * @return ÁªÂò¤·¤¿¥È¥é¥Ã¥×¤ÎID
+ * @return é¸æŠã—ãŸãƒˆãƒ©ãƒƒãƒ—ã®ID
  * @details
  * XXX XXX XXX This routine should be redone to reflect trap "level".\n
  * That is, it does not make sense to have spiked pits at 50 feet.\n
@@ -5698,11 +5660,11 @@ s16b choose_random_trap(void)
 }
 
 /*!
- * @brief ¥Ş¥¹¤ËÂ¸ºß¤¹¤ë¥È¥é¥Ã¥×¤òÈëÆ¿¤¹¤ë /
+ * @brief ãƒã‚¹ã«å­˜åœ¨ã™ã‚‹ãƒˆãƒ©ãƒƒãƒ—ã‚’ç§˜åŒ¿ã™ã‚‹ /
  * Disclose an invisible trap
- * @param y ÈëÆ¿¤·¤¿¤¤¥Ş¥¹¤ÎYºÂÉ¸
- * @param x ÈëÆ¿¤·¤¿¤¤¥Ş¥¹¤ÎXºÂÉ¸
- * @return ¤Ê¤·
+ * @param y ç§˜åŒ¿ã—ãŸã„ãƒã‚¹ã®Yåº§æ¨™
+ * @param x ç§˜åŒ¿ã—ãŸã„ãƒã‚¹ã®Xåº§æ¨™
+ * @return ãªã—
  */
 void disclose_grid(int y, int x)
 {
@@ -5727,10 +5689,10 @@ void disclose_grid(int y, int x)
 }
 
 /*!
- * @brief ¥Ş¥¹¤ò¥È¥é¥Ã¥×¤òÇÛÃÖ¤¹¤ë /
+ * @brief ãƒã‚¹ã‚’ãƒˆãƒ©ãƒƒãƒ—ã‚’é…ç½®ã™ã‚‹ /
  * The location must be a legal, naked, floor grid.
- * @param y ÇÛÃÖ¤·¤¿¤¤¥Ş¥¹¤ÎYºÂÉ¸
- * @param x ÇÛÃÖ¤·¤¿¤¤¥Ş¥¹¤ÎXºÂÉ¸
+ * @param y é…ç½®ã—ãŸã„ãƒã‚¹ã®Yåº§æ¨™
+ * @param x é…ç½®ã—ãŸã„ãƒã‚¹ã®Xåº§æ¨™
  * @return
  * Note that all traps start out as "invisible" and "untyped", and then\n
  * when they are "discovered" (by detecting them or setting them off),\n
@@ -5752,10 +5714,10 @@ void place_trap(int y, int x)
 }
 
 /*!
- * @brief ËâÆ»¶ñ¤Î»ÈÍÑ²ó¿ô¤Î»ÄÎÌ¤ò¼¨¤¹¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë /
+ * @brief é­”é“å…·ã®ä½¿ç”¨å›æ•°ã®æ®‹é‡ã‚’ç¤ºã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Describe the charges on an item in the inventory.
- * @param item »ÄÎÌ¤òÉ½¼¨¤·¤¿¤¤¥×¥ì¥¤¥ä¡¼¤Î¥¢¥¤¥Æ¥à½ê»ı¥¹¥í¥Ã¥È
- * @return ¤Ê¤·
+ * @param item æ®‹é‡ã‚’è¡¨ç¤ºã—ãŸã„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @return ãªã—
  */
 void inven_item_charges(int item)
 {
@@ -5770,11 +5732,11 @@ void inven_item_charges(int item)
 #ifdef JP
 	if (o_ptr->pval <= 0)
 	{
-		msg_print("¤â¤¦ËâÎÏ¤¬»Ä¤Ã¤Æ¤¤¤Ê¤¤¡£");
+		msg_print("ã‚‚ã†é­”åŠ›ãŒæ®‹ã£ã¦ã„ãªã„ã€‚");
 	}
 	else
 	{
-		msg_format("¤¢¤È %d ²óÊ¬¤ÎËâÎÏ¤¬»Ä¤Ã¤Æ¤¤¤ë¡£", o_ptr->pval);
+		msg_format("ã‚ã¨ %d å›åˆ†ã®é­”åŠ›ãŒæ®‹ã£ã¦ã„ã‚‹ã€‚", o_ptr->pval);
 	}
 #else
 	/* Multiple charges */
@@ -5795,10 +5757,10 @@ void inven_item_charges(int item)
 }
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¤Î»Ä¤ê½ê»ı¿ô¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë /
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®æ®‹ã‚Šæ‰€æŒæ•°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Describe an item in the inventory.
- * @param item »ÄÎÌ¤òÉ½¼¨¤·¤¿¤¤¥×¥ì¥¤¥ä¡¼¤Î¥¢¥¤¥Æ¥à½ê»ı¥¹¥í¥Ã¥È
- * @return ¤Ê¤·
+ * @param item æ®‹é‡ã‚’è¡¨ç¤ºã—ãŸã„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @return ãªã—
  */
 void inven_item_describe(int item)
 {
@@ -5810,16 +5772,16 @@ void inven_item_describe(int item)
 
 	/* Print a message */
 #ifdef JP
-	/* "no more" ¤Î¾ì¹ç¤Ï¤³¤Á¤é¤ÇÉ½¼¨¤¹¤ë */
+	/* "no more" ã®å ´åˆã¯ã“ã¡ã‚‰ã§è¡¨ç¤ºã™ã‚‹ */
 	if (o_ptr->number <= 0)
 	{
-		/*FIRST*//*¤³¤³¤Ï¤â¤¦ÄÌ¤é¤Ê¤¤¤«¤â */
-		msg_format("¤â¤¦%s¤ò»ı¤Ã¤Æ¤¤¤Ê¤¤¡£", o_name);
+		/*FIRST*//*ã“ã“ã¯ã‚‚ã†é€šã‚‰ãªã„ã‹ã‚‚ */
+		msg_format("ã‚‚ã†%sã‚’æŒã£ã¦ã„ãªã„ã€‚", o_name);
 	}
 	else
 	{
-		/* ¥¢¥¤¥Æ¥àÌ¾¤ò±ÑÆüÀÚ¤êÂØ¤¨µ¡Ç½ÂĞ±ş */
-		msg_format("¤Ş¤À %s¤ò»ı¤Ã¤Æ¤¤¤ë¡£", o_name);
+		/* ã‚¢ã‚¤ãƒ†ãƒ åã‚’è‹±æ—¥åˆ‡ã‚Šæ›¿ãˆæ©Ÿèƒ½å¯¾å¿œ */
+		msg_format("ã¾ã  %sã‚’æŒã£ã¦ã„ã‚‹ã€‚", o_name);
 	}
 #else
 	msg_format("You have %s.", o_name);
@@ -5828,11 +5790,11 @@ void inven_item_describe(int item)
 }
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¤Î»Ä¤ê½ê»ı¿ô¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë /
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®æ®‹ã‚Šæ‰€æŒæ•°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Increase the "number" of an item in the inventory
- * @param item ½ê»ı¿ô¤òÁı¤ä¤·¤¿¤¤¥×¥ì¥¤¥ä¡¼¤Î¥¢¥¤¥Æ¥à½ê»ı¥¹¥í¥Ã¥È
- * @param num Áı¤ä¤·¤¿¤¤ÎÌ
- * @return ¤Ê¤·
+ * @param item æ‰€æŒæ•°ã‚’å¢—ã‚„ã—ãŸã„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @param num å¢—ã‚„ã—ãŸã„é‡
+ * @return ãªã—
  */
 void inven_item_increase(int item, int num)
 {
@@ -5846,7 +5808,7 @@ void inven_item_increase(int item, int num)
 	else if (num < 0) num = 0;
 
 	/* Un-apply */
-	num -= o_ptr->number;
+	num -= (ITEM_NUMBER)o_ptr->number;
 
 	/* Change the number and weight */
 	if (num)
@@ -5885,10 +5847,10 @@ void inven_item_increase(int item, int num)
 }
 
 /*!
- * @brief ½ê»ı¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¤«¤é½ê»ı¿ô¤Î¤Ê¤¯¤Ê¤Ã¤¿¥¢¥¤¥Æ¥à¤ò¾Ãµî¤¹¤ë /
+ * @brief æ‰€æŒã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆã‹ã‚‰æ‰€æŒæ•°ã®ãªããªã£ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’æ¶ˆå»ã™ã‚‹ /
  * Erase an inventory slot if it has no more items
- * @param item ¾Ãµî¤·¤¿¤¤¥×¥ì¥¤¥ä¡¼¤Î¥¢¥¤¥Æ¥à½ê»ı¥¹¥í¥Ã¥È
- * @return ¤Ê¤·
+ * @param item æ¶ˆå»ã—ãŸã„ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @return ãªã—
  */
 void inven_item_optimize(int item)
 {
@@ -5949,10 +5911,10 @@ void inven_item_optimize(int item)
 }
 
 /*!
- * @brief ¾²¾å¤ÎËâÆ»¶ñ¤Î»Ä¤ê»ÄÎÌ¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë /
+ * @brief åºŠä¸Šã®é­”é“å…·ã®æ®‹ã‚Šæ®‹é‡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Describe the charges on an item on the floor.
- * @param item ¥á¥Ã¥»¡¼¥¸¤ÎÂĞ¾İ¤Ë¤·¤¿¤¤¥¢¥¤¥Æ¥à½ê»ı¥¹¥í¥Ã¥È
- * @return ¤Ê¤·
+ * @param item ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å¯¾è±¡ã«ã—ãŸã„ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @return ãªã—
  */
 void floor_item_charges(int item)
 {
@@ -5967,11 +5929,11 @@ void floor_item_charges(int item)
 #ifdef JP
 	if (o_ptr->pval <= 0)
 	{
-		msg_print("¤³¤Î¾²¾å¤Î¥¢¥¤¥Æ¥à¤Ï¡¢¤â¤¦ËâÎÏ¤¬»Ä¤Ã¤Æ¤¤¤Ê¤¤¡£");
+		msg_print("ã“ã®åºŠä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ã¯ã€ã‚‚ã†é­”åŠ›ãŒæ®‹ã£ã¦ã„ãªã„ã€‚");
 	}
 	else
 	{
-		msg_format("¤³¤Î¾²¾å¤Î¥¢¥¤¥Æ¥à¤Ï¡¢¤¢¤È %d ²óÊ¬¤ÎËâÎÏ¤¬»Ä¤Ã¤Æ¤¤¤ë¡£", o_ptr->pval);
+		msg_format("ã“ã®åºŠä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ã¯ã€ã‚ã¨ %d å›åˆ†ã®é­”åŠ›ãŒæ®‹ã£ã¦ã„ã‚‹ã€‚", o_ptr->pval);
 	}
 #else
 	/* Multiple charges */
@@ -5992,10 +5954,10 @@ void floor_item_charges(int item)
 }
 
 /*!
- * @brief ¾²¾å¤Î¥¢¥¤¥Æ¥à¤Î»Ä¤ê¿ô¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë /
+ * @brief åºŠä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ã®æ®‹ã‚Šæ•°ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Describe the charges on an item on the floor.
- * @param item ¥á¥Ã¥»¡¼¥¸¤ÎÂĞ¾İ¤Ë¤·¤¿¤¤¥¢¥¤¥Æ¥à½ê»ı¥¹¥í¥Ã¥È
- * @return ¤Ê¤·
+ * @param item ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®å¯¾è±¡ã«ã—ãŸã„ã‚¢ã‚¤ãƒ†ãƒ æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @return ãªã—
  */
 void floor_item_describe(int item)
 {
@@ -6007,14 +5969,14 @@ void floor_item_describe(int item)
 
 	/* Print a message */
 #ifdef JP
-	/* "no more" ¤Î¾ì¹ç¤Ï¤³¤Á¤é¤ÇÉ½¼¨¤òÊ¬¤±¤ë */
+	/* "no more" ã®å ´åˆã¯ã“ã¡ã‚‰ã§è¡¨ç¤ºã‚’åˆ†ã‘ã‚‹ */
 	if (o_ptr->number <= 0)
 	{
-		msg_format("¾²¾å¤Ë¤Ï¡¢¤â¤¦%s¤Ï¤Ê¤¤¡£", o_name);
+		msg_format("åºŠä¸Šã«ã¯ã€ã‚‚ã†%sã¯ãªã„ã€‚", o_name);
 	}
 	else
 	{
-		msg_format("¾²¾å¤Ë¤Ï¡¢¤Ş¤À %s¤¬¤¢¤ë¡£", o_name);
+		msg_format("åºŠä¸Šã«ã¯ã€ã¾ã  %sãŒã‚ã‚‹ã€‚", o_name);
 	}
 #else
 	msg_format("You see %s.", o_name);
@@ -6024,11 +5986,11 @@ void floor_item_describe(int item)
 
 
 /*!
- * @brief ¾²¾å¤Î¥¢¥¤¥Æ¥à¤Î¿ô¤òÁı¤ä¤¹ /
+ * @brief åºŠä¸Šã®ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°ã‚’å¢—ã‚„ã™ /
  * Increase the "number" of an item on the floor
- * @param item Áı¤ä¤·¤¿¤¤¥¢¥¤¥Æ¥à¤Î½ê»ı¥¹¥í¥Ã¥È
- * @param num Áı¤ä¤·¤¿¤¤¥¢¥¤¥Æ¥à¤Î¿ô
- * @return ¤Ê¤·
+ * @param item å¢—ã‚„ã—ãŸã„ã‚¢ã‚¤ãƒ†ãƒ ã®æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @param num å¢—ã‚„ã—ãŸã„ã‚¢ã‚¤ãƒ†ãƒ ã®æ•°
+ * @return ãªã—
  */
 void floor_item_increase(int item, int num)
 {
@@ -6042,18 +6004,18 @@ void floor_item_increase(int item, int num)
 	else if (num < 0) num = 0;
 
 	/* Un-apply */
-	num -= o_ptr->number;
+	num -= (int)o_ptr->number;
 
 	/* Change the number */
-	o_ptr->number += num;
+	o_ptr->number += (ITEM_NUMBER)num;
 }
 
 
 /*!
- * @brief ¾²¾å¤Î¿ô¤ÎÌµ¤¯¤Ê¤Ã¤¿¥¢¥¤¥Æ¥à¥¹¥í¥Ã¥È¤ò¾Ãµî¤¹¤ë /
+ * @brief åºŠä¸Šã®æ•°ã®ç„¡ããªã£ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚¹ãƒ­ãƒƒãƒˆã‚’æ¶ˆå»ã™ã‚‹ /
  * Optimize an item on the floor (destroy "empty" items)
- * @param item ¾Ãµî¤·¤¿¤¤¥¢¥¤¥Æ¥à¤Î½ê»ı¥¹¥í¥Ã¥È
- * @return ¤Ê¤·
+ * @param item æ¶ˆå»ã—ãŸã„ã‚¢ã‚¤ãƒ†ãƒ ã®æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆ
+ * @return ãªã—
  */
 void floor_item_optimize(int item)
 {
@@ -6071,10 +6033,10 @@ void floor_item_optimize(int item)
 
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¤ò½¦¤¦ºİ¤Ë¥¶¥Ã¥¯¤«¤é°î¤ì¤º¤ËºÑ¤à¤«¤òÈ½Äê¤¹¤ë /
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‹¾ã†éš›ã«ã‚¶ãƒƒã‚¯ã‹ã‚‰æº¢ã‚Œãšã«æ¸ˆã‚€ã‹ã‚’åˆ¤å®šã™ã‚‹ /
  * Check if we have space for an item in the pack without overflow
- * @param o_ptr ½¦¤¤¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return °î¤ì¤º¤ËºÑ¤à¤Ê¤éTRUE¤òÊÖ¤¹
+ * @param o_ptr æ‹¾ã„ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æº¢ã‚Œãšã«æ¸ˆã‚€ãªã‚‰TRUEã‚’è¿”ã™
  */
 bool inven_carry_okay(object_type *o_ptr)
 {
@@ -6100,12 +6062,12 @@ bool inven_carry_okay(object_type *o_ptr)
 }
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤òÄêµÁ¤µ¤ì¤¿´ğ½à¤Ë½¾¤¤¥½¡¼¥È¤¹¤ë¤¿¤á¤Î´Ø¿ô /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾©ã•ã‚ŒãŸåŸºæº–ã«å¾“ã„ã‚½ãƒ¼ãƒˆã™ã‚‹ãŸã‚ã®é–¢æ•° /
  * Check if we have space for an item in the pack without overflow
- * @param o_ptr Èæ³ÓÂĞ¾İ¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿1
- * @param o_value o_ptr¤Î¥¢¥¤¥Æ¥à²ÁÃÍ¡Ê¼êÆ°¤Ç¤¢¤é¤«¤¸¤áÂåÆş¤¹¤ëÉ¬Í×¤¬¤¢¤ë¡©¡Ë
- * @param j_ptr Èæ³ÓÂĞ¾İ¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿2
- * @return o_ptr¤ÎÊı¤¬¾å°Ì¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£
+ * @param o_ptr æ¯”è¼ƒå¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿1
+ * @param o_value o_ptrã®ã‚¢ã‚¤ãƒ†ãƒ ä¾¡å€¤ï¼ˆæ‰‹å‹•ã§ã‚ã‚‰ã‹ã˜ã‚ä»£å…¥ã™ã‚‹å¿…è¦ãŒã‚ã‚‹ï¼Ÿï¼‰
+ * @param j_ptr æ¯”è¼ƒå¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿2
+ * @return o_ptrã®æ–¹ãŒä¸Šä½ãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚
  */
 bool object_sort_comp(object_type *o_ptr, s32b o_value, object_type *j_ptr)
 {
@@ -6189,10 +6151,10 @@ bool object_sort_comp(object_type *o_ptr, s32b o_value, object_type *j_ptr)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥È¤ò¥×¥ì¥¤¥ä¡¼¤¬½¦¤Ã¤Æ½ê»ı¥¹¥í¥Ã¥È¤ËÇ¼¤á¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ‹¾ã£ã¦æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆã«ç´ã‚ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Add an item to the players inventory, and return the slot used.
- * @param o_ptr ½¦¤¦¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¼ı¤á¤é¤ì¤¿½ê»ı¥¹¥í¥Ã¥È¤ÎID¡¢½¦¤¦¤³¤È¤¬¤Ç¤­¤Ê¤«¤Ã¤¿¾ì¹ç-1¤òÊÖ¤¹¡£
+ * @param o_ptr æ‹¾ã†ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return åã‚ã‚‰ã‚ŒãŸæ‰€æŒã‚¹ãƒ­ãƒƒãƒˆã®IDã€æ‹¾ã†ã“ã¨ãŒã§ããªã‹ã£ãŸå ´åˆ-1ã‚’è¿”ã™ã€‚
  * @details
  * If the new item can combine with an existing item in the inventory,\n
  * it will do so, using "object_similar()" and "object_absorb()", else,\n
@@ -6210,8 +6172,8 @@ bool object_sort_comp(object_type *o_ptr, s32b o_value, object_type *j_ptr)
  */
 s16b inven_carry(object_type *o_ptr)
 {
-	int i, j, k;
-	int n = -1;
+	INVENTORY_IDX i, j, k;
+	INVENTORY_IDX n = -1;
 
 	object_type *j_ptr;
 
@@ -6330,20 +6292,20 @@ s16b inven_carry(object_type *o_ptr)
 
 
 /*!
- * @brief ÁõÈ÷¥¹¥í¥Ã¥È¤«¤é¥ª¥Ö¥¸¥§¥¯¥È¤ò³°¤¹¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief è£…å‚™ã‚¹ãƒ­ãƒƒãƒˆã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤–ã™ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Take off (some of) a non-cursed equipment item
- * @param item ¥ª¥Ö¥¸¥§¥¯¥È¤ò³°¤·¤¿¤¤½ê»ı¥Æ¡¼¥Ö¥ë¤ÎID
- * @param amt ³°¤·¤¿¤¤¸Ä¿ô
- * @return ¼ı¤á¤é¤ì¤¿½ê»ı¥¹¥í¥Ã¥È¤ÎID¡¢½¦¤¦¤³¤È¤¬¤Ç¤­¤Ê¤«¤Ã¤¿¾ì¹ç-1¤òÊÖ¤¹¡£
+ * @param item ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å¤–ã—ãŸã„æ‰€æŒãƒ†ãƒ¼ãƒ–ãƒ«ã®ID
+ * @param amt å¤–ã—ãŸã„å€‹æ•°
+ * @return åã‚ã‚‰ã‚ŒãŸæ‰€æŒã‚¹ãƒ­ãƒƒãƒˆã®IDã€æ‹¾ã†ã“ã¨ãŒã§ããªã‹ã£ãŸå ´åˆ-1ã‚’è¿”ã™ã€‚
  * @details
  * Note that only one item at a time can be wielded per slot.\n
  * Note that taking off an item when "full" may cause that item\n
  * to fall to the ground.\n
  * Return the inventory slot into which the item is placed.\n
  */
-s16b inven_takeoff(int item, int amt)
+INVENTORY_IDX inven_takeoff(INVENTORY_IDX item, ITEM_NUMBER amt)
 {
-	int slot;
+	INVENTORY_IDX slot;
 
 	object_type forge;
 	object_type *q_ptr;
@@ -6380,25 +6342,25 @@ s16b inven_takeoff(int item, int amt)
 	if (((item == INVEN_RARM) || (item == INVEN_LARM)) &&
 	    object_is_melee_weapon(o_ptr))
 	{
-		act = _("¤òÁõÈ÷¤«¤é¤Ï¤º¤·¤¿", "You were wielding");
+		act = _("ã‚’è£…å‚™ã‹ã‚‰ã¯ãšã—ãŸ", "You were wielding");
 	}
 
 	/* Took off bow */
 	else if (item == INVEN_BOW)
 	{
-		act = _("¤òÁõÈ÷¤«¤é¤Ï¤º¤·¤¿", "You were holding");
+		act = _("ã‚’è£…å‚™ã‹ã‚‰ã¯ãšã—ãŸ", "You were holding");
 	}
 
 	/* Took off light */
 	else if (item == INVEN_LITE)
 	{
-		act = _("¤ò¸÷¸»¤«¤é¤Ï¤º¤·¤¿", "You were holding");
+		act = _("ã‚’å…‰æºã‹ã‚‰ã¯ãšã—ãŸ", "You were holding");
 	}
 
 	/* Took off something */
 	else
 	{
-		act = _("¤òÁõÈ÷¤«¤é¤Ï¤º¤·¤¿", "You were wearing");
+		act = _("ã‚’è£…å‚™ã‹ã‚‰ã¯ãšã—ãŸ", "You were wearing");
 	}
 
 	/* Modify, Optimize */
@@ -6410,7 +6372,7 @@ s16b inven_takeoff(int item, int amt)
 
 	/* Message */
 #ifdef JP
-	msg_format("%s(%c)%s¡£", o_name, index_to_label(slot), act);
+	msg_format("%s(%c)%sã€‚", o_name, index_to_label(slot), act);
 #else
 	msg_format("%s %s (%c).", act, o_name, index_to_label(slot));
 #endif
@@ -6422,19 +6384,18 @@ s16b inven_takeoff(int item, int amt)
 
 
 /*!
- * @brief ½ê»ı¥¹¥í¥Ã¥È¤«¤é¾²²¼¤Ë¥ª¥Ö¥¸¥§¥¯¥È¤òÍî¤È¤¹¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆã‹ã‚‰åºŠä¸‹ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’è½ã¨ã™ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Drop (some of) a non-cursed inventory/equipment item
- * @param item ½ê»ı¥Æ¡¼¥Ö¥ë¤ÎID
- * @param amt Íî¤È¤·¤¿¤¤¸Ä¿ô
- * @return ¤Ê¤·
+ * @param item æ‰€æŒãƒ†ãƒ¼ãƒ–ãƒ«ã®ID
+ * @param amt è½ã¨ã—ãŸã„å€‹æ•°
+ * @return ãªã—
  * @details
  * The object will be dropped "near" the current location
  */
-void inven_drop(int item, int amt)
+void inven_drop(INVENTORY_IDX item, ITEM_NUMBER amt)
 {
 	object_type forge;
 	object_type *q_ptr;
-
 	object_type *o_ptr;
 
 	char o_name[MAX_NLEN];
@@ -6477,7 +6438,7 @@ void inven_drop(int item, int amt)
 	object_desc(o_name, q_ptr, 0);
 
 	/* Message */
-	msg_format(_("%s(%c)¤òÍî¤È¤·¤¿¡£", "You drop %s (%c)."), o_name, index_to_label(item));
+	msg_format(_("%s(%c)ã‚’è½ã¨ã—ãŸã€‚", "You drop %s (%c)."), o_name, index_to_label(item));
 
 	/* Drop it near the player */
 	(void)drop_near(q_ptr, 0, p_ptr->y, p_ptr->x);
@@ -6490,9 +6451,9 @@ void inven_drop(int item, int amt)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î½ê»ı¥¹¥í¥Ã¥È¤ËÂ¸ºß¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤ò¤Ş¤È¤á¤Ê¤ª¤¹ /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆã«å­˜åœ¨ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã¾ã¨ã‚ãªãŠã™ /
  * Combine items in the pack
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * Note special handling of the "overflow" slot
  */
@@ -6598,13 +6559,13 @@ void combine_pack(void)
 	while (combined);
 
 	/* Message */
-	if (flag) msg_print(_("¥¶¥Ã¥¯¤ÎÃæ¤Î¥¢¥¤¥Æ¥à¤ò¤Ş¤È¤áÄ¾¤·¤¿¡£", "You combine some items in your pack."));
+	if (flag) msg_print(_("ã‚¶ãƒƒã‚¯ã®ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã¾ã¨ã‚ç›´ã—ãŸã€‚", "You combine some items in your pack."));
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î½ê»ı¥¹¥í¥Ã¥È¤ËÂ¸ºß¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤òÊÂ¤ÓÂØ¤¨¤ë /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰€æŒã‚¹ãƒ­ãƒƒãƒˆã«å­˜åœ¨ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¸¦ã³æ›¿ãˆã‚‹ /
  * Reorder items in the pack
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * Note special handling of the "overflow" slot
  */
@@ -6666,25 +6627,25 @@ void reorder_pack(void)
 	}
 
 	/* Message */
-	if (flag) msg_print(_("¥¶¥Ã¥¯¤ÎÃæ¤Î¥¢¥¤¥Æ¥à¤òÊÂ¤ÙÄ¾¤·¤¿¡£", "You reorder some items in your pack."));
+	if (flag) msg_print(_("ã‚¶ãƒƒã‚¯ã®ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä¸¦ã¹ç›´ã—ãŸã€‚", "You reorder some items in your pack."));
 }
 
 /*!
- * @brief ¸½ºß¥¢¥¯¥Æ¥£¥Ö¤Ë¤Ê¤Ã¤Æ¤¤¤ë¥¦¥£¥ó¥É¥¦¤Ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¾ÜºÙ¤òÉ½¼¨¤¹¤ë /
+ * @brief ç¾åœ¨ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ã«ãªã£ã¦ã„ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è©³ç´°ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Hack -- display an object kind in the current window
- * @param k_idx ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î»²¾ÈID
- * @return ¤Ê¤·
+ * @param k_idx ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å‚ç…§ID
+ * @return ãªã—
  * @details
  * Include list of usable spells for readible books
  */
-void display_koff(int k_idx)
+void display_koff(IDX k_idx)
 {
 	int y;
 
 	object_type forge;
 	object_type *q_ptr;
 	int         sval;
-	int         use_realm;
+	REALM_IDX   use_realm;
 
 	char o_name[MAX_NLEN];
 
@@ -6731,7 +6692,7 @@ void display_koff(int k_idx)
 	{
 		int     spell = -1;
 		int     num = 0;
-		byte    spells[64];
+		SPELL_IDX    spells[64];
 
 		/* Extract spells */
 		for (spell = 0; spell < 32; spell++)
@@ -6750,10 +6711,10 @@ void display_koff(int k_idx)
 }
 
 /*!
- * @brief ·Ù¹ğ¤òÊü¤Ä¥¢¥¤¥Æ¥à¤òÁªÂò¤¹¤ë /
+ * @brief è­¦å‘Šã‚’æ”¾ã¤ã‚¢ã‚¤ãƒ†ãƒ ã‚’é¸æŠã™ã‚‹ /
  * Choose one of items that have warning flag
  * Calculate spell damages
- * @return ·Ù¹ğ¤ò¹Ô¤¦
+ * @return è­¦å‘Šã‚’è¡Œã†
  */
 object_type *choose_warning_item(void)
 {
@@ -6783,15 +6744,15 @@ object_type *choose_warning_item(void)
 }
 
 /*!
- * @brief ·Ù¹ğ´ğ½à¤òÄê¤á¤ë¤¿¤á¤ËËâË¡¤Î¸ú²ÌÂ°À­¤Ë´ğ¤Å¤¤¤ÆºÇÂçËâË¡¥À¥á¡¼¥¸¤ò·×»»¤¹¤ë /
+ * @brief è­¦å‘ŠåŸºæº–ã‚’å®šã‚ã‚‹ãŸã‚ã«é­”æ³•ã®åŠ¹æœå±æ€§ã«åŸºã¥ã„ã¦æœ€å¤§é­”æ³•ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¨ˆç®—ã™ã‚‹ /
  * Calculate spell damages
- * @param m_ptr ËâË¡¤ò¹Ô»È¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param typ ¸ú²ÌÂ°À­¤ÎID
- * @param dam ´ğËÜ¥À¥á¡¼¥¸
- * @param max »»½Ğ¤·¤¿ºÇÂç¥À¥á¡¼¥¸¤òÊÖ¤¹¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param m_ptr é­”æ³•ã‚’è¡Œä½¿ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param typ åŠ¹æœå±æ€§ã®ID
+ * @param dam åŸºæœ¬ãƒ€ãƒ¡ãƒ¼ã‚¸
+ * @param max ç®—å‡ºã—ãŸæœ€å¤§ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
-static void spell_damcalc(monster_type *m_ptr, int typ, int dam, int *max)
+static void spell_damcalc(monster_type *m_ptr, int typ, HIT_POINT dam, int *max)
 {
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
 	int          rlev = r_ptr->level;
@@ -7028,27 +6989,27 @@ static void spell_damcalc(monster_type *m_ptr, int typ, int dam, int *max)
 }
 
 /*!
-* @brief ·Ù¹ğ´ğ½à¤òÄê¤á¤ë¤¿¤á¤ËËâË¡¤Î¸ú²ÌÂ°À­¤Ë´ğ¤Å¤¤¤ÆºÇÂçËâË¡¥À¥á¡¼¥¸¤ò·×»»¤¹¤ë¡£ /
+* @brief è­¦å‘ŠåŸºæº–ã‚’å®šã‚ã‚‹ãŸã‚ã«é­”æ³•ã®åŠ¹æœå±æ€§ã«åŸºã¥ã„ã¦æœ€å¤§é­”æ³•ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¨ˆç®—ã™ã‚‹ã€‚ /
 * Calculate spell damages
-* @param spell_num RF4¤Ê¤éRF4_SPELL_START¤Î¤è¤¦¤Ë32¶èÀÚ¤ê¤Î¥Ù¡¼¥¹¤È¤Ê¤ë¿ôÃÍ
-* @param typ ¸ú²ÌÂ°À­¤ÎID
-* @param m_idx ËâË¡¤ò¹Ô»È¤¹¤ë¥â¥ó¥¹¥¿¡¼¤ÎID
-* @param max »»½Ğ¤·¤¿ºÇÂç¥À¥á¡¼¥¸¤òÊÖ¤¹¥İ¥¤¥ó¥¿
-* @return ¤Ê¤·
+* @param spell_num RF4ãªã‚‰RF4_SPELL_STARTã®ã‚ˆã†ã«32åŒºåˆ‡ã‚Šã®ãƒ™ãƒ¼ã‚¹ã¨ãªã‚‹æ•°å€¤
+* @param typ åŠ¹æœå±æ€§ã®ID
+* @param m_idx é­”æ³•ã‚’è¡Œä½¿ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ID
+* @param max ç®—å‡ºã—ãŸæœ€å¤§ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ãƒã‚¤ãƒ³ã‚¿
+* @return ãªã—
 */
-void spell_damcalc_by_spellnum(int spell_num, int typ, int m_idx, int *max)
+void spell_damcalc_by_spellnum(int spell_num, int typ, MONSTER_IDX m_idx, int *max)
 {
     monster_type *m_ptr = &m_list[m_idx];
-    int dam = monspell_damage((spell_num), m_idx, DAM_MAX);
+    HIT_POINT dam = monspell_damage((spell_num), m_idx, DAM_MAX);
     spell_damcalc(m_ptr, typ, dam, max);
 }
 
 /*!
- * @brief ·Ù¹ğ´ğ½à¤òÄê¤á¤ë¤¿¤á¤Ë¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·âºÇÂç¥À¥á¡¼¥¸¤ò»»½Ğ¤¹¤ë /
+ * @brief è­¦å‘ŠåŸºæº–ã‚’å®šã‚ã‚‹ãŸã‚ã«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒæœ€å¤§ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ç®—å‡ºã™ã‚‹ /
  * Calculate blow damages
- * @param m_ptr ÂÇ·â¤ò¹Ô»È¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param blow_ptr ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·âÇ½ÎÏ¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return »»½Ğ¤µ¤ì¤¿ºÇÂç¥À¥á¡¼¥¸¤òÊÖ¤¹¡£
+ * @param m_ptr æ‰“æ’ƒã‚’è¡Œä½¿ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param blow_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒèƒ½åŠ›ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ç®—å‡ºã•ã‚ŒãŸæœ€å¤§ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’è¿”ã™ã€‚
  */
 static int blow_damcalc(monster_type *m_ptr, monster_blow *blow_ptr)
 {
@@ -7121,11 +7082,11 @@ static int blow_damcalc(monster_type *m_ptr, monster_blow *blow_ptr)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤¬ÆÃÄêÃÏÅÀ¤Ø°ÜÆ°¤·¤¿¾ì¹ç¤Ë·Ù¹ğ¤òÈ¯¤¹¤ë½èÍı /
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç‰¹å®šåœ°ç‚¹ã¸ç§»å‹•ã—ãŸå ´åˆã«è­¦å‘Šã‚’ç™ºã™ã‚‹å‡¦ç† /
  * Examine the grid (xx,yy) and warn the player if there are any danger
- * @param xx ´í¸±À­¤òÄ´ºº¤¹¤ë¥Ş¥¹¤ÎXºÂÉ¸
- * @param yy ´í¸±À­¤òÄ´ºº¤¹¤ë¥Ş¥¹¤ÎYºÂÉ¸
- * @return ·Ù¹ğ¤òÌµ»ë¤·¤Æ¿Ê¤à¤³¤È¤òÁªÂò¤¹¤ë¤«¤«ÌäÂê¤¬Ìµ¤±¤ì¤ĞTRUE¡¢·Ù¹ğ¤Ë½¾¤Ã¤¿¤Ê¤éFALSE¤òÊÖ¤¹¡£
+ * @param xx å±é™ºæ€§ã‚’èª¿æŸ»ã™ã‚‹ãƒã‚¹ã®Xåº§æ¨™
+ * @param yy å±é™ºæ€§ã‚’èª¿æŸ»ã™ã‚‹ãƒã‚¹ã®Yåº§æ¨™
+ * @return è­¦å‘Šã‚’ç„¡è¦–ã—ã¦é€²ã‚€ã“ã¨ã‚’é¸æŠã™ã‚‹ã‹ã‹å•é¡ŒãŒç„¡ã‘ã‚Œã°TRUEã€è­¦å‘Šã«å¾“ã£ãŸãªã‚‰FALSEã‚’è¿”ã™ã€‚
  */
 bool process_warning(int xx, int yy)
 {
@@ -7162,8 +7123,8 @@ bool process_warning(int xx, int yy)
 			if (projectable(my, mx, yy, xx))
             {
 				u32b f4 = r_ptr->flags4;
-				u32b f5 = r_ptr->flags5;
-				u32b f6 = r_ptr->flags6;
+				u32b f5 = r_ptr->a_ability_flags1;
+				u32b f6 = r_ptr->a_ability_flags2;
 
 				if (!(d_info[dungeon_type].flags1 & DF1_NO_MAGIC))
 				{
@@ -7236,11 +7197,11 @@ bool process_warning(int xx, int yy)
 			if (o_ptr)
                 object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
             else 
-                strcpy(o_name, _("ÂÎ", "body")); /* Warning ability without item */
-            msg_format(_("%s¤¬±Ô¤¯¿Ì¤¨¤¿¡ª", "Your %s pulsates sharply!"), o_name);
+                strcpy(o_name, _("ä½“", "body")); /* Warning ability without item */
+            msg_format(_("%sãŒé‹­ãéœ‡ãˆãŸï¼", "Your %s pulsates sharply!"), o_name);
 
 			disturb(0, 1);
-            return get_check(_("ËÜÅö¤Ë¤³¤Î¤Ş¤Ş¿Ê¤à¤«¡©", "Really want to go ahead? "));
+            return get_check(_("æœ¬å½“ã«ã“ã®ã¾ã¾é€²ã‚€ã‹ï¼Ÿ", "Really want to go ahead? "));
 		}
 	}
 	else old_damage = old_damage / 2;
@@ -7254,19 +7215,19 @@ bool process_warning(int xx, int yy)
 		if (o_ptr) 
             object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
         else
-            strcpy(o_name, _("ÂÎ", "body")); /* Warning ability without item */
-        msg_format(_("%s¤¬±Ô¤¯¿Ì¤¨¤¿¡ª", "Your %s pulsates sharply!"), o_name);
+            strcpy(o_name, _("ä½“", "body")); /* Warning ability without item */
+        msg_format(_("%sãŒé‹­ãéœ‡ãˆãŸï¼", "Your %s pulsates sharply!"), o_name);
 		disturb(0, 1);
-        return get_check(_("ËÜÅö¤Ë¤³¤Î¤Ş¤Ş¿Ê¤à¤«¡©", "Really want to go ahead? "));
+        return get_check(_("æœ¬å½“ã«ã“ã®ã¾ã¾é€²ã‚€ã‹ï¼Ÿ", "Really want to go ahead? "));
 	}
 
 	return TRUE;
 }
 
 /*!
- * @brief ¥¨¥Ã¥»¥ó¥¹¤ÎÉÕ²Ã²ÄÇ½¤ÊÉğ´ï¤äÌğÃÆ¤«¤òÊÖ¤¹
- * @param o_ptr ¥Á¥§¥Ã¥¯¤·¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¥¨¥Ã¥»¥ó¥¹¤ÎÉÕ²Ã²ÄÇ½¤ÊÉğ´ï¤«ÌğÃÆ¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£
+ * @brief ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®ä»˜åŠ å¯èƒ½ãªæ­¦å™¨ã‚„çŸ¢å¼¾ã‹ã‚’è¿”ã™
+ * @param o_ptr ãƒã‚§ãƒƒã‚¯ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®ä»˜åŠ å¯èƒ½ãªæ­¦å™¨ã‹çŸ¢å¼¾ãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚
  */
 static bool item_tester_hook_melee_ammo(object_type *o_ptr)
 {
@@ -7292,128 +7253,128 @@ static bool item_tester_hook_melee_ammo(object_type *o_ptr)
 
 
 /*!
- * ¥¨¥Ã¥»¥ó¥¹¾ğÊó¤Î¹½Â¤ÂÎ / A structure for smithing
+ * ã‚¨ãƒƒã‚»ãƒ³ã‚¹æƒ…å ±ã®æ§‹é€ ä½“ / A structure for smithing
  */
 typedef struct {
 	int add;       /* TR flag number or special essence id */
 	cptr add_name; /* Name of this ability */
-	int type;      /* Menu number */
+	ESSENCE_IDX type;      /* Menu number */
 	int essence;   /* Index for carrying essences */
 	int value;     /* Needed value to add this ability */
 } essence_type;
 
 
 /*!
- * ¥¨¥Ã¥»¥ó¥¹¾ğÊó¥Æ¡¼¥Ö¥ë Smithing type data for Weapon smith
+ * ã‚¨ãƒƒã‚»ãƒ³ã‚¹æƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ« Smithing type data for Weapon smith
  */
 #ifdef JP
 static essence_type essence_info[] = 
 {
-	{TR_STR, "ÏÓÎÏ", 4, TR_STR, 20},
-	{TR_INT, "ÃÎÇ½", 4, TR_INT, 20},
-	{TR_WIS, "¸­¤µ", 4, TR_WIS, 20},
-	{TR_DEX, "´ïÍÑ¤µ", 4, TR_DEX, 20},
-	{TR_CON, "ÂÑµ×ÎÏ", 4, TR_CON, 20},
-	{TR_CHR, "Ì¥ÎÏ", 4, TR_CHR, 20},
-	{TR_MAGIC_MASTERY, "ËâÎÏ»ÙÇÛ", 4, TR_MAGIC_MASTERY, 20},
-	{TR_STEALTH, "±£Ì©", 4, TR_STEALTH, 40},
-	{TR_SEARCH, "Ãµº÷", 4, TR_SEARCH, 15},
-	{TR_INFRA, "ÀÖ³°Àş»ëÎÏ", 4, TR_INFRA, 15},
-	{TR_TUNNEL, "ºÎ·¡", 4, TR_TUNNEL, 15},
-	{TR_SPEED, "¥¹¥Ô¡¼¥É", 4, TR_SPEED, 12},
-	{TR_BLOWS, "ÄÉ²Ã¹¶·â", 1, TR_BLOWS, 20},
-	{TR_CHAOTIC, "¥«¥ª¥¹¹¶·â", 1, TR_CHAOTIC, 15},
-	{TR_VAMPIRIC, "µÛ·ì¹¶·â", 1, TR_VAMPIRIC, 60},
-	{TR_IMPACT, "ÃÏ¿ÌÈ¯Æ°", 7, TR_IMPACT, 15},
-	{TR_BRAND_POIS, "ÆÇ»¦", 1, TR_BRAND_POIS, 20},
-	{TR_BRAND_ACID, "ÍÏ²ò", 1, TR_BRAND_ACID, 20},
-	{TR_BRAND_ELEC, "ÅÅ·â", 1, TR_BRAND_ELEC, 20},
-	{TR_BRAND_FIRE, "¾Æ´ş", 1, TR_BRAND_FIRE, 20},
-	{TR_BRAND_COLD, "Åà·ë", 1, TR_BRAND_COLD, 20},
-	{TR_SUST_STR, "ÏÓÎÏ°İ»ı", 3, TR_SUST_STR, 15},
-	{TR_SUST_INT, "ÃÎÇ½°İ»ı", 3, TR_SUST_STR, 15},
-	{TR_SUST_WIS, "¸­¤µ°İ»ı", 3, TR_SUST_STR, 15},
-	{TR_SUST_DEX, "´ïÍÑ¤µ°İ»ı", 3, TR_SUST_STR, 15},
-	{TR_SUST_CON, "ÂÑµ×ÎÏ°İ»ı", 3, TR_SUST_STR, 15},
-	{TR_SUST_CHR, "Ì¥ÎÏ°İ»ı", 3, TR_SUST_STR, 15},
-	{TR_IM_ACID, "»ÀÌÈ±Ö", 2, TR_IM_ACID, 20},
-	{TR_IM_ELEC, "ÅÅ·âÌÈ±Ö", 2, TR_IM_ACID, 20},
-	{TR_IM_FIRE, "²Ğ±êÌÈ±Ö", 2, TR_IM_ACID, 20},
-	{TR_IM_COLD, "Îäµ¤ÌÈ±Ö", 2, TR_IM_ACID, 20},
-	{TR_REFLECT, "È¿¼Í", 2, TR_REFLECT, 20},
-	{TR_FREE_ACT, "ËãáãÃÎ¤é¤º", 3, TR_FREE_ACT, 20},
-	{TR_HOLD_EXP, "·Ğ¸³ÃÍ°İ»ı", 3, TR_HOLD_EXP, 20},
-	{TR_RES_ACID, "ÂÑ»À", 2, TR_RES_ACID, 15},
-	{TR_RES_ELEC, "ÂÑÅÅ·â", 2, TR_RES_ELEC, 15},
-	{TR_RES_FIRE, "ÂÑ²Ğ±ê", 2, TR_RES_FIRE, 15},
-	{TR_RES_COLD, "ÂÑÎäµ¤", 2, TR_RES_COLD, 15},
-	{TR_RES_POIS, "ÂÑÆÇ", 2, TR_RES_POIS, 25},
-	{TR_RES_FEAR, "ÂÑ¶²Éİ", 2, TR_RES_FEAR, 20},
-	{TR_RES_LITE, "ÂÑÁ®¸÷", 2, TR_RES_LITE, 20},
-	{TR_RES_DARK, "ÂÑ°Å¹õ", 2, TR_RES_DARK, 20},
-	{TR_RES_BLIND, "ÂÑÌÕÌÜ", 2, TR_RES_BLIND, 20},
-	{TR_RES_CONF, "ÂÑº®Íğ", 2, TR_RES_CONF, 20},
-	{TR_RES_SOUND, "ÂÑ¹ì²»", 2, TR_RES_SOUND, 20},
-	{TR_RES_SHARDS, "ÂÑÇËÊÒ", 2, TR_RES_SHARDS, 20},
-	{TR_RES_NETHER, "ÂÑÃÏ¹ö", 2, TR_RES_NETHER, 20},
-	{TR_RES_NEXUS, "ÂÑ°ø²Ìº®Íğ", 2, TR_RES_NEXUS, 20},
-	{TR_RES_CHAOS, "ÂÑ¥«¥ª¥¹", 2, TR_RES_CHAOS, 20},
-	{TR_RES_DISEN, "ÂÑÎô²½", 2, TR_RES_DISEN, 20},
+	{TR_STR, "è…•åŠ›", 4, TR_STR, 20},
+	{TR_INT, "çŸ¥èƒ½", 4, TR_INT, 20},
+	{TR_WIS, "è³¢ã•", 4, TR_WIS, 20},
+	{TR_DEX, "å™¨ç”¨ã•", 4, TR_DEX, 20},
+	{TR_CON, "è€ä¹…åŠ›", 4, TR_CON, 20},
+	{TR_CHR, "é­…åŠ›", 4, TR_CHR, 20},
+	{TR_MAGIC_MASTERY, "é­”åŠ›æ”¯é…", 4, TR_MAGIC_MASTERY, 20},
+	{TR_STEALTH, "éš å¯†", 4, TR_STEALTH, 40},
+	{TR_SEARCH, "æ¢ç´¢", 4, TR_SEARCH, 15},
+	{TR_INFRA, "èµ¤å¤–ç·šè¦–åŠ›", 4, TR_INFRA, 15},
+	{TR_TUNNEL, "æ¡æ˜", 4, TR_TUNNEL, 15},
+	{TR_SPEED, "ã‚¹ãƒ”ãƒ¼ãƒ‰", 4, TR_SPEED, 12},
+	{TR_BLOWS, "è¿½åŠ æ”»æ’ƒ", 1, TR_BLOWS, 20},
+	{TR_CHAOTIC, "ã‚«ã‚ªã‚¹æ”»æ’ƒ", 1, TR_CHAOTIC, 15},
+	{TR_VAMPIRIC, "å¸è¡€æ”»æ’ƒ", 1, TR_VAMPIRIC, 60},
+	{TR_IMPACT, "åœ°éœ‡ç™ºå‹•", 7, TR_IMPACT, 15},
+	{TR_BRAND_POIS, "æ¯’æ®º", 1, TR_BRAND_POIS, 20},
+	{TR_BRAND_ACID, "æº¶è§£", 1, TR_BRAND_ACID, 20},
+	{TR_BRAND_ELEC, "é›»æ’ƒ", 1, TR_BRAND_ELEC, 20},
+	{TR_BRAND_FIRE, "ç„¼æ£„", 1, TR_BRAND_FIRE, 20},
+	{TR_BRAND_COLD, "å‡çµ", 1, TR_BRAND_COLD, 20},
+	{TR_SUST_STR, "è…•åŠ›ç¶­æŒ", 3, TR_SUST_STR, 15},
+	{TR_SUST_INT, "çŸ¥èƒ½ç¶­æŒ", 3, TR_SUST_STR, 15},
+	{TR_SUST_WIS, "è³¢ã•ç¶­æŒ", 3, TR_SUST_STR, 15},
+	{TR_SUST_DEX, "å™¨ç”¨ã•ç¶­æŒ", 3, TR_SUST_STR, 15},
+	{TR_SUST_CON, "è€ä¹…åŠ›ç¶­æŒ", 3, TR_SUST_STR, 15},
+	{TR_SUST_CHR, "é­…åŠ›ç¶­æŒ", 3, TR_SUST_STR, 15},
+	{TR_IM_ACID, "é…¸å…ç–«", 2, TR_IM_ACID, 20},
+	{TR_IM_ELEC, "é›»æ’ƒå…ç–«", 2, TR_IM_ACID, 20},
+	{TR_IM_FIRE, "ç«ç‚å…ç–«", 2, TR_IM_ACID, 20},
+	{TR_IM_COLD, "å†·æ°—å…ç–«", 2, TR_IM_ACID, 20},
+	{TR_REFLECT, "åå°„", 2, TR_REFLECT, 20},
+	{TR_FREE_ACT, "éº»ç—ºçŸ¥ã‚‰ãš", 3, TR_FREE_ACT, 20},
+	{TR_HOLD_EXP, "çµŒé¨“å€¤ç¶­æŒ", 3, TR_HOLD_EXP, 20},
+	{TR_RES_ACID, "è€é…¸", 2, TR_RES_ACID, 15},
+	{TR_RES_ELEC, "è€é›»æ’ƒ", 2, TR_RES_ELEC, 15},
+	{TR_RES_FIRE, "è€ç«ç‚", 2, TR_RES_FIRE, 15},
+	{TR_RES_COLD, "è€å†·æ°—", 2, TR_RES_COLD, 15},
+	{TR_RES_POIS, "è€æ¯’", 2, TR_RES_POIS, 25},
+	{TR_RES_FEAR, "è€ææ€–", 2, TR_RES_FEAR, 20},
+	{TR_RES_LITE, "è€é–ƒå…‰", 2, TR_RES_LITE, 20},
+	{TR_RES_DARK, "è€æš—é»’", 2, TR_RES_DARK, 20},
+	{TR_RES_BLIND, "è€ç›²ç›®", 2, TR_RES_BLIND, 20},
+	{TR_RES_CONF, "è€æ··ä¹±", 2, TR_RES_CONF, 20},
+	{TR_RES_SOUND, "è€è½ŸéŸ³", 2, TR_RES_SOUND, 20},
+	{TR_RES_SHARDS, "è€ç ´ç‰‡", 2, TR_RES_SHARDS, 20},
+	{TR_RES_NETHER, "è€åœ°ç„", 2, TR_RES_NETHER, 20},
+	{TR_RES_NEXUS, "è€å› æœæ··ä¹±", 2, TR_RES_NEXUS, 20},
+	{TR_RES_CHAOS, "è€ã‚«ã‚ªã‚¹", 2, TR_RES_CHAOS, 20},
+	{TR_RES_DISEN, "è€åŠ£åŒ–", 2, TR_RES_DISEN, 20},
 	{TR_SH_FIRE, "", 0, -2, 0},
 	{TR_SH_ELEC, "", 0, -2, 0},
 	{TR_SH_COLD, "", 0, -2, 0},
-	{TR_NO_MAGIC, "È¿ËâË¡", 3, TR_NO_MAGIC, 15},
-	{TR_WARNING, "·Ù¹ğ", 3, TR_WARNING, 20},
-	{TR_LEVITATION, "ÉâÍ·", 3, TR_LEVITATION, 20},
-	{TR_LITE_1, "±Êµ×¸÷¸»", 3, TR_LITE_1, 15},
+	{TR_NO_MAGIC, "åé­”æ³•", 3, TR_NO_MAGIC, 15},
+	{TR_WARNING, "è­¦å‘Š", 3, TR_WARNING, 20},
+	{TR_LEVITATION, "æµ®éŠ", 3, TR_LEVITATION, 20},
+	{TR_LITE_1, "æ°¸ä¹…å…‰æº", 3, TR_LITE_1, 15},
 	{TR_LITE_2, "", 0, -2, 0},
 	{TR_LITE_3, "", 0, -2, 0},
-	{TR_SEE_INVIS, "²Ä»ëÆ©ÌÀ", 3, TR_SEE_INVIS, 20},
-	{TR_TELEPATHY, "¥Æ¥ì¥Ñ¥·¡¼", 6, TR_TELEPATHY, 15},
-	{TR_SLOW_DIGEST, "ÃÙ¾Ã²½", 3, TR_SLOW_DIGEST, 15},
-	{TR_REGEN, "µŞÂ®²óÉü", 3, TR_REGEN, 20},
-	{TR_TELEPORT, "¥Æ¥ì¥İ¡¼¥È", 3, TR_TELEPORT, 25},
+	{TR_SEE_INVIS, "å¯è¦–é€æ˜", 3, TR_SEE_INVIS, 20},
+	{TR_TELEPATHY, "ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼", 6, TR_TELEPATHY, 15},
+	{TR_SLOW_DIGEST, "é…æ¶ˆåŒ–", 3, TR_SLOW_DIGEST, 15},
+	{TR_REGEN, "æ€¥é€Ÿå›å¾©", 3, TR_REGEN, 20},
+	{TR_TELEPORT, "ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ", 3, TR_TELEPORT, 25},
 
-	{TR_SLAY_EVIL, "¼Ù°­ÇÜÂÇ", 5, TR_SLAY_EVIL, 100},
-	{TR_KILL_EVIL, "¼Ù°­ÇÜÇÜÂÇ", 0, TR_SLAY_EVIL, 60},
-	{TR_SLAY_ANIMAL, "Æ°ÊªÇÜÂÇ", 5, TR_SLAY_ANIMAL, 20},
-	{TR_KILL_ANIMAL, "Æ°ÊªÇÜÇÜÂÇ", 5, TR_SLAY_ANIMAL, 60},
-	{TR_SLAY_UNDEAD, "ÉÔ»àÇÜÂÇ", 5, TR_SLAY_UNDEAD, 20},
-	{TR_KILL_UNDEAD, "ÉÔ»àÇÜÇÜÂÇ", 5, TR_SLAY_UNDEAD, 60},
-	{TR_SLAY_DEMON, "°­ËâÇÜÂÇ", 5, TR_SLAY_DEMON, 20},
-	{TR_KILL_DEMON, "°­ËâÇÜÇÜÂÇ", 5, TR_SLAY_DEMON, 60},
-	{TR_SLAY_ORC, "¥ª¡¼¥¯ÇÜÂÇ", 5, TR_SLAY_ORC, 15},
-	{TR_KILL_ORC, "¥ª¡¼¥¯ÇÜÇÜÂÇ", 5, TR_SLAY_ORC, 60},
-	{TR_SLAY_TROLL, "¥È¥í¥ëÇÜÂÇ", 5, TR_SLAY_TROLL, 15},
-	{TR_KILL_TROLL, "¥È¥í¥ëÇÜÇÜÂÇ", 5, TR_SLAY_TROLL, 60},
-	{TR_SLAY_GIANT, "µğ¿ÍÇÜÂÇ", 5, TR_SLAY_GIANT, 20},
-	{TR_KILL_GIANT, "µğ¿ÍÇÜÇÜÂÇ", 5, TR_SLAY_GIANT, 60},       
-	{TR_SLAY_DRAGON, "ÎµÇÜÂÇ", 5, TR_SLAY_DRAGON, 20},
-	{TR_KILL_DRAGON, "ÎµÇÜÇÜÂÇ", 5, TR_SLAY_DRAGON, 60},
-	{TR_SLAY_HUMAN, "¿Í´ÖÇÜÂÇ", 5, TR_SLAY_HUMAN, 20},
-	{TR_KILL_HUMAN, "¿Í´ÖÇÜÇÜÂÇ", 5, TR_SLAY_HUMAN, 60},
+	{TR_SLAY_EVIL, "é‚ªæ‚ªå€æ‰“", 5, TR_SLAY_EVIL, 100},
+	{TR_KILL_EVIL, "é‚ªæ‚ªå€å€æ‰“", 0, TR_SLAY_EVIL, 60},
+	{TR_SLAY_ANIMAL, "å‹•ç‰©å€æ‰“", 5, TR_SLAY_ANIMAL, 20},
+	{TR_KILL_ANIMAL, "å‹•ç‰©å€å€æ‰“", 5, TR_SLAY_ANIMAL, 60},
+	{TR_SLAY_UNDEAD, "ä¸æ­»å€æ‰“", 5, TR_SLAY_UNDEAD, 20},
+	{TR_KILL_UNDEAD, "ä¸æ­»å€å€æ‰“", 5, TR_SLAY_UNDEAD, 60},
+	{TR_SLAY_DEMON, "æ‚ªé­”å€æ‰“", 5, TR_SLAY_DEMON, 20},
+	{TR_KILL_DEMON, "æ‚ªé­”å€å€æ‰“", 5, TR_SLAY_DEMON, 60},
+	{TR_SLAY_ORC, "ã‚ªãƒ¼ã‚¯å€æ‰“", 5, TR_SLAY_ORC, 15},
+	{TR_KILL_ORC, "ã‚ªãƒ¼ã‚¯å€å€æ‰“", 5, TR_SLAY_ORC, 60},
+	{TR_SLAY_TROLL, "ãƒˆãƒ­ãƒ«å€æ‰“", 5, TR_SLAY_TROLL, 15},
+	{TR_KILL_TROLL, "ãƒˆãƒ­ãƒ«å€å€æ‰“", 5, TR_SLAY_TROLL, 60},
+	{TR_SLAY_GIANT, "å·¨äººå€æ‰“", 5, TR_SLAY_GIANT, 20},
+	{TR_KILL_GIANT, "å·¨äººå€å€æ‰“", 5, TR_SLAY_GIANT, 60},       
+	{TR_SLAY_DRAGON, "ç«œå€æ‰“", 5, TR_SLAY_DRAGON, 20},
+	{TR_KILL_DRAGON, "ç«œå€å€æ‰“", 5, TR_SLAY_DRAGON, 60},
+	{TR_SLAY_HUMAN, "äººé–“å€æ‰“", 5, TR_SLAY_HUMAN, 20},
+	{TR_KILL_HUMAN, "äººé–“å€å€æ‰“", 5, TR_SLAY_HUMAN, 60},
 
-	{TR_ESP_ANIMAL, "Æ°ÊªESP", 6, TR_SLAY_ANIMAL, 40},
-	{TR_ESP_UNDEAD, "ÉÔ»àESP", 6, TR_SLAY_UNDEAD, 40}, 
-	{TR_ESP_DEMON, "°­ËâESP", 6, TR_SLAY_DEMON, 40},       
-	{TR_ESP_ORC, "¥ª¡¼¥¯ESP", 6, TR_SLAY_ORC, 40},     
-	{TR_ESP_TROLL, "¥È¥í¥ëESP", 6, TR_SLAY_TROLL, 40},   
-	{TR_ESP_GIANT, "µğ¿ÍESP", 6, TR_SLAY_GIANT, 40},       
-	{TR_ESP_DRAGON, "ÎµESP", 6, TR_SLAY_DRAGON, 40},
-	{TR_ESP_HUMAN, "¿Í´ÖESP", 6, TR_SLAY_HUMAN, 40},
+	{TR_ESP_ANIMAL, "å‹•ç‰©ESP", 6, TR_SLAY_ANIMAL, 40},
+	{TR_ESP_UNDEAD, "ä¸æ­»ESP", 6, TR_SLAY_UNDEAD, 40}, 
+	{TR_ESP_DEMON, "æ‚ªé­”ESP", 6, TR_SLAY_DEMON, 40},       
+	{TR_ESP_ORC, "ã‚ªãƒ¼ã‚¯ESP", 6, TR_SLAY_ORC, 40},     
+	{TR_ESP_TROLL, "ãƒˆãƒ­ãƒ«ESP", 6, TR_SLAY_TROLL, 40},   
+	{TR_ESP_GIANT, "å·¨äººESP", 6, TR_SLAY_GIANT, 40},       
+	{TR_ESP_DRAGON, "ç«œESP", 6, TR_SLAY_DRAGON, 40},
+	{TR_ESP_HUMAN, "äººé–“ESP", 6, TR_SLAY_HUMAN, 40},
 
-	{ESSENCE_ATTACK, "¹¶·â", 10, TR_ES_ATTACK, 30},
-	{ESSENCE_AC, "ËÉ¸æ", 10, TR_ES_AC, 15},
-	{ESSENCE_TMP_RES_ACID, "»ÀÂÑÀ­È¯Æ°", 7, TR_RES_ACID, 50},
-	{ESSENCE_TMP_RES_ELEC, "ÅÅ·âÂÑÀ­È¯Æ°", 7, TR_RES_ELEC, 50},
-	{ESSENCE_TMP_RES_FIRE, "²Ğ±êÂÑÀ­È¯Æ°", 7, TR_RES_FIRE, 50},
-	{ESSENCE_TMP_RES_COLD, "Îäµ¤ÂÑÀ­È¯Æ°", 7, TR_RES_COLD, 50},
-	{ESSENCE_SH_FIRE, "²Ğ±ê¥ª¡¼¥é", 7, -1, 50},
-	{ESSENCE_SH_ELEC, "ÅÅ·â¥ª¡¼¥é", 7, -1, 50},
-	{ESSENCE_SH_COLD, "Îäµ¤¥ª¡¼¥é", 7, -1, 50},
-	{ESSENCE_RESISTANCE, "Á´ÂÑÀ­", 2, -1, 150},
-	{ESSENCE_SUSTAIN, "ÁõÈ÷Êİ»ı", 10, -1, 10},
-	{ESSENCE_SLAY_GLOVE, "»¦Ù¤¤Î¾®¼ê", 1, TR_ES_ATTACK, 200},
+	{ESSENCE_ATTACK, "æ”»æ’ƒ", 10, TR_ES_ATTACK, 30},
+	{ESSENCE_AC, "é˜²å¾¡", 10, TR_ES_AC, 15},
+	{ESSENCE_TMP_RES_ACID, "é…¸è€æ€§ç™ºå‹•", 7, TR_RES_ACID, 50},
+	{ESSENCE_TMP_RES_ELEC, "é›»æ’ƒè€æ€§ç™ºå‹•", 7, TR_RES_ELEC, 50},
+	{ESSENCE_TMP_RES_FIRE, "ç«ç‚è€æ€§ç™ºå‹•", 7, TR_RES_FIRE, 50},
+	{ESSENCE_TMP_RES_COLD, "å†·æ°—è€æ€§ç™ºå‹•", 7, TR_RES_COLD, 50},
+	{ESSENCE_SH_FIRE, "ç«ç‚ã‚ªãƒ¼ãƒ©", 7, -1, 50},
+	{ESSENCE_SH_ELEC, "é›»æ’ƒã‚ªãƒ¼ãƒ©", 7, -1, 50},
+	{ESSENCE_SH_COLD, "å†·æ°—ã‚ªãƒ¼ãƒ©", 7, -1, 50},
+	{ESSENCE_RESISTANCE, "å…¨è€æ€§", 2, -1, 150},
+	{ESSENCE_SUSTAIN, "è£…å‚™ä¿æŒ", 10, -1, 10},
+	{ESSENCE_SLAY_GLOVE, "æ®ºæˆ®ã®å°æ‰‹", 1, TR_ES_ATTACK, 200},
 
 	{-1, NULL, 0, -1, 0}
 };
@@ -7532,93 +7493,44 @@ static essence_type essence_info[] =
 
 
 /*!
- * ¥¨¥Ã¥»¥ó¥¹Ì¾¥Æ¡¼¥Ö¥ë / Essense names for Weapon smith
+ * ã‚¨ãƒƒã‚»ãƒ³ã‚¹åãƒ†ãƒ¼ãƒ–ãƒ« / Essense names for Weapon smith
  */
 #ifdef JP
 cptr essence_name[] = 
 {
-	"ÏÓÎÏ",
-	"ÃÎÇ½",
-	"¸­¤µ",
-	"´ïÍÑ¤µ",
-	"ÂÑµ×ÎÏ",
-	"Ì¥ÎÏ",
-	"ËâÎÏ»ÙÇÛ",
+	"è…•åŠ›",
+	"çŸ¥èƒ½",
+	"è³¢ã•",
+	"å™¨ç”¨ã•",
+	"è€ä¹…åŠ›",
+	"é­…åŠ›",
+	"é­”åŠ›æ”¯é…",
 	"",
-	"±£Ì©",
-	"Ãµº÷",
-	"ÀÖ³°Àş»ëÎÏ",
-	"ºÎ·¡",
-	"¥¹¥Ô¡¼¥É",
-	"ÄÉ²Ã¹¶·â",
-	"¥«¥ª¥¹¹¶·â",
-	"µÛ·ì¹¶·â",
-	"Æ°ÊªÇÜÂÇ",
-	"¼Ù°­ÇÜÂÇ",
-	"ÉÔ»àÇÜÂÇ",
-	"°­ËâÇÜÂÇ",
-	"¥ª¡¼¥¯ÇÜÂÇ",
-	"¥È¥í¥ëÇÜÂÇ",
-	"µğ¿ÍÇÜÂÇ",
-	"ÎµÇÜÂÇ",
-	"",
-	"",
-	"ÃÏ¿Ì",
-	"ÆÇ»¦",
-	"ÍÏ²ò",
-	"ÅÅ·â",
-	"¾Æ´ş",
-	"Åà·ë",
-	"Ç½ÎÏ°İ»ı",
+	"éš å¯†",
+	"æ¢ç´¢",
+	"èµ¤å¤–ç·šè¦–åŠ›",
+	"æ¡æ˜",
+	"ã‚¹ãƒ”ãƒ¼ãƒ‰",
+	"è¿½åŠ æ”»æ’ƒ",
+	"ã‚«ã‚ªã‚¹æ”»æ’ƒ",
+	"å¸è¡€æ”»æ’ƒ",
+	"å‹•ç‰©å€æ‰“",
+	"é‚ªæ‚ªå€æ‰“",
+	"ä¸æ­»å€æ‰“",
+	"æ‚ªé­”å€æ‰“",
+	"ã‚ªãƒ¼ã‚¯å€æ‰“",
+	"ãƒˆãƒ­ãƒ«å€æ‰“",
+	"å·¨äººå€æ‰“",
+	"ç«œå€æ‰“",
 	"",
 	"",
-	"",
-	"",
-	"",
-	"",
-	"",
-	"ÌÈ±Ö",
-	"",
-	"",
-	"",
-	"",
-	"È¿¼Í",
-	"ËãáãÃÎ¤é¤º",
-	"·Ğ¸³ÃÍ°İ»ı",
-	"ÂÑ»À",
-	"ÂÑÅÅ·â",
-	"ÂÑ²Ğ±ê",
-	"ÂÑÎäµ¤",
-	"ÂÑÆÇ",
-	"ÂÑ¶²Éİ",
-	"ÂÑÁ®¸÷",
-	"ÂÑ°Å¹õ",
-	"ÂÑÌÕÌÜ",
-	"ÂÑº®Íğ",
-	"ÂÑ¹ì²»",
-	"ÂÑÇËÊÒ",
-	"ÂÑÃÏ¹ö",
-	"ÂÑ°ø²Ìº®Íğ",
-	"ÂÑ¥«¥ª¥¹",
-	"ÂÑÎô²½",
-	"",
-	"",
-	"¿Í´ÖÇÜÂÇ",
-	"",
-	"",
-	"È¿ËâË¡",
-	"",
-	"",
-	"·Ù¹ğ",
-	"",
-	"",
-	"",
-	"ÉâÍ·",
-	"±Êµ×¸÷¸»",
-	"²Ä»ëÆ©ÌÀ",
-	"¥Æ¥ì¥Ñ¥·¡¼",
-	"ÃÙ¾Ã²½",
-	"µŞÂ®²óÉü",
+	"åœ°éœ‡",
+	"æ¯’æ®º",
+	"æº¶è§£",
+	"é›»æ’ƒ",
+	"ç„¼æ£„",
+	"å‡çµ",
+	"èƒ½åŠ›ç¶­æŒ",
 	"",
 	"",
 	"",
@@ -7626,12 +7538,61 @@ cptr essence_name[] =
 	"",
 	"",
 	"",
+	"å…ç–«",
 	"",
-	"¥Æ¥ì¥İ¡¼¥È",
 	"",
 	"",
-	"¹¶·â",
-	"ËÉ¸æ",
+	"",
+	"åå°„",
+	"éº»ç—ºçŸ¥ã‚‰ãš",
+	"çµŒé¨“å€¤ç¶­æŒ",
+	"è€é…¸",
+	"è€é›»æ’ƒ",
+	"è€ç«ç‚",
+	"è€å†·æ°—",
+	"è€æ¯’",
+	"è€ææ€–",
+	"è€é–ƒå…‰",
+	"è€æš—é»’",
+	"è€ç›²ç›®",
+	"è€æ··ä¹±",
+	"è€è½ŸéŸ³",
+	"è€ç ´ç‰‡",
+	"è€åœ°ç„",
+	"è€å› æœæ··ä¹±",
+	"è€ã‚«ã‚ªã‚¹",
+	"è€åŠ£åŒ–",
+	"",
+	"",
+	"äººé–“å€æ‰“",
+	"",
+	"",
+	"åé­”æ³•",
+	"",
+	"",
+	"è­¦å‘Š",
+	"",
+	"",
+	"",
+	"æµ®éŠ",
+	"æ°¸ä¹…å…‰æº",
+	"å¯è¦–é€æ˜",
+	"ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼",
+	"é…æ¶ˆåŒ–",
+	"æ€¥é€Ÿå›å¾©",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"",
+	"ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ",
+	"",
+	"",
+	"æ”»æ’ƒ",
+	"é˜²å¾¡",
 
 	NULL
 };
@@ -7741,8 +7702,8 @@ cptr essence_name[] =
 #endif
 
 /*!
- * @brief ½ê»ı¤·¤Æ¤¤¤ë¥¨¥Ã¥»¥ó¥¹°ìÍ÷¤òÉ½¼¨¤¹¤ë
- * @return ¤Ê¤·
+ * @brief æ‰€æŒã—ã¦ã„ã‚‹ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹
+ * @return ãªã—
  */
 static void display_essence(void)
 {
@@ -7753,7 +7714,7 @@ static void display_essence(void)
 	{
 		prt("",i,0);
 	}
-	prt(_("¥¨¥Ã¥»¥ó¥¹   ¸Ä¿ô     ¥¨¥Ã¥»¥ó¥¹   ¸Ä¿ô     ¥¨¥Ã¥»¥ó¥¹   ¸Ä¿ô", 
+	prt(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹   å€‹æ•°     ã‚¨ãƒƒã‚»ãƒ³ã‚¹   å€‹æ•°     ã‚¨ãƒƒã‚»ãƒ³ã‚¹   å€‹æ•°", 
 		  "Essence      Num      Essence      Num      Essence      Num "), 1, 8);
 	for (i = 0; essence_name[i]; i++)
 	{
@@ -7761,28 +7722,33 @@ static void display_essence(void)
 		prt(format("%-11s %5d", essence_name[i], p_ptr->magic_num1[i]), 2+num%21, 8+num/21*22);
 		num++;
 	}
-	prt(_("¸½ºß½ê»ı¤·¤Æ¤¤¤ë¥¨¥Ã¥»¥ó¥¹", "List of all essences you have."), 0, 0);
+	prt(_("ç¾åœ¨æ‰€æŒã—ã¦ã„ã‚‹ã‚¨ãƒƒã‚»ãƒ³ã‚¹", "List of all essences you have."), 0, 0);
 	(void)inkey();
 	screen_load();
 	return;
 }
 
 /*!
- * @brief ¥¨¥Ã¥»¥ó¥¹¤ÎÃê½Ğ½èÍı
- * @return ¤Ê¤·
+ * @brief ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®æŠ½å‡ºå‡¦ç†
+ * @return ãªã—
  */
 static void drain_essence(void)
 {
 	int drain_value[sizeof(p_ptr->magic_num1) / sizeof(s32b)];
-	int i, item;
+	int i;
+	OBJECT_IDX item;
 	int dec = 4;
 	bool observe = FALSE;
-	int old_ds, old_dd, old_to_h, old_to_d, old_ac, old_to_a, old_pval, old_name2, old_timeout;
-	u32b old_flgs[TR_FLAG_SIZE], new_flgs[TR_FLAG_SIZE];
+	int old_ds, old_dd, old_to_h, old_to_d, old_ac, old_to_a, old_pval, old_name2;
+	TIME_EFFECT old_timeout;
+	BIT_FLAGS old_flgs[TR_FLAG_SIZE], new_flgs[TR_FLAG_SIZE];
 	object_type *o_ptr;
-	cptr            q, s;
-	byte iy, ix, marked, number;
-	s16b next_o_idx, weight;
+	cptr q, s;
+	POSITION iy, ix;
+	byte_hack marked;
+	ITEM_NUMBER number;
+	OBJECT_IDX next_o_idx;
+	WEIGHT weight;
 
 	for (i = 0; i < sizeof(drain_value) / sizeof(int); i++)
 		drain_value[i] = 0;
@@ -7791,8 +7757,8 @@ static void drain_essence(void)
 	item_tester_no_ryoute = TRUE;
 
 	/* Get an item */
-	q = _("¤É¤Î¥¢¥¤¥Æ¥à¤«¤éÃê½Ğ¤·¤Ş¤¹¤«¡©", "Extract from which item? ");
-	s = _("Ãê½Ğ¤Ç¤­¤ë¥¢¥¤¥Æ¥à¤¬¤¢¤ê¤Ş¤»¤ó¡£", "You have nothing you can extract from.");
+	q = _("ã©ã®ã‚¢ã‚¤ãƒ†ãƒ ã‹ã‚‰æŠ½å‡ºã—ã¾ã™ã‹ï¼Ÿ", "Extract from which item? ");
+	s = _("æŠ½å‡ºã§ãã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚Šã¾ã›ã‚“ã€‚", "You have nothing you can extract from.");
 
 	if (!get_item(&item, q, s, (USE_INVEN | USE_FLOOR))) return;
 
@@ -7812,7 +7778,7 @@ static void drain_essence(void)
 	{
 		char o_name[MAX_NLEN];
 		object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-		if (!get_check(format(_("ËÜÅö¤Ë%s¤«¤éÃê½Ğ¤·¤Æ¤è¤í¤·¤¤¤Ç¤¹¤«¡©", "Really extract from %s? "), o_name))) return;
+		if (!get_check(format(_("æœ¬å½“ã«%sã‹ã‚‰æŠ½å‡ºã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "Really extract from %s? "), o_name))) return;
 	}
 
 	p_ptr->energy_use = 100;
@@ -7882,7 +7848,7 @@ static void drain_essence(void)
 	for (i = 0; essence_info[i].add_name; i++)
 	{
 		essence_type *es_ptr = &essence_info[i];
-		int pval = 0;
+		PARAMETER_VALUE pval = 0;
 
 		if (es_ptr->add < TR_FLAG_MAX && is_pval_flag(es_ptr->add) && old_pval)
 			pval = (have_flag(new_flgs, es_ptr->add)) ? old_pval - o_ptr->pval : old_pval;
@@ -7978,11 +7944,11 @@ static void drain_essence(void)
 	}
 	if (!observe)
 	{
-		msg_print(_("¥¨¥Ã¥»¥ó¥¹¤ÏÃê½Ğ¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "You were not able to extract any essence."));
+		msg_print(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã¯æŠ½å‡ºã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "You were not able to extract any essence."));
 	}
 	else
 	{
-		msg_print(_("Ãê½Ğ¤·¤¿¥¨¥Ã¥»¥ó¥¹:", "Extracted essences:"));
+		msg_print(_("æŠ½å‡ºã—ãŸã‚¨ãƒƒã‚»ãƒ³ã‚¹:", "Extracted essences:"));
 
 		for (i = 0; essence_name[i]; i++)
 		{
@@ -7992,7 +7958,7 @@ static void drain_essence(void)
 			p_ptr->magic_num1[i] += drain_value[i];
 			p_ptr->magic_num1[i] = MIN(20000, p_ptr->magic_num1[i]);
 			msg_print(NULL);
-			msg_format("%s...%d%s", essence_name[i], drain_value[i], _("¡£", ". "));
+			msg_format("%s...%d%s", essence_name[i], drain_value[i], _("ã€‚", ". "));
 		}
 	}
 
@@ -8007,24 +7973,24 @@ static void drain_essence(void)
 }
 
 /*!
- * @brief ÉÕ²Ã¤¹¤ë¥¨¥Ã¥»¥ó¥¹¤ÎÂçÊÌ¤òÁªÂò¤¹¤ë
- * @return Áª¤ó¤À¥¨¥Ã¥»¥ó¥¹¤ÎÂçÊÌID
+ * @brief ä»˜åŠ ã™ã‚‹ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®å¤§åˆ¥ã‚’é¸æŠã™ã‚‹
+ * @return é¸ã‚“ã ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®å¤§åˆ¥ID
  */
-static int choose_essence(void)
+static COMMAND_CODE choose_essence(void)
 {
-	int mode = 0;
+	COMMAND_CODE mode = 0;
 	char choice;
-	int menu_line = (use_menu ? 1 : 0);
+	COMMAND_CODE menu_line = (use_menu ? 1 : 0);
 
 #ifdef JP
 	cptr menu_name[] = {
-		"Éğ´ïÂ°À­", 
-		"ÂÑÀ­",
-		"Ç½ÎÏ",
-		"¿ôÃÍ",
-		"¥¹¥ì¥¤",
+		"æ­¦å™¨å±æ€§", 
+		"è€æ€§",
+		"èƒ½åŠ›",
+		"æ•°å€¤",
+		"ã‚¹ãƒ¬ã‚¤",
 		"ESP",
-		"¤½¤ÎÂ¾"
+		"ãã®ä»–"
 	};
 #else
 	cptr menu_name[] = {
@@ -8037,7 +8003,7 @@ static int choose_essence(void)
 		"Others"
 	};
 #endif
-	const int mode_max = 7;
+	const COMMAND_CODE mode_max = 7;
 
 #ifdef ALLOW_REPEAT
 	if (repeat_pull(&mode) && 1 <= mode && mode <= mode_max)
@@ -8054,8 +8020,8 @@ static int choose_essence(void)
 			int i;
 			for (i = 0; i < mode_max; i++)
 #ifdef JP
-				prt(format(" %s %s", (menu_line == 1+i) ? "¡Õ" : "  ", menu_name[i]), 2 + i, 14);
-			prt("¤É¤Î¼ïÎà¤Î¥¨¥Ã¥»¥ó¥¹ÉÕ²Ã¤ò¹Ô¤¤¤Ş¤¹¤«¡©", 0, 0);
+				prt(format(" %s %s", (menu_line == 1+i) ? "ã€‹" : "  ", menu_name[i]), 2 + i, 14);
+			prt("ã©ã®ç¨®é¡ã®ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä»˜åŠ ã‚’è¡Œã„ã¾ã™ã‹ï¼Ÿ", 0, 0);
 #else
 				prt(format(" %s %s", (menu_line == 1+i) ? "> " : "  ", menu_name[i]), 2 + i, 14);
 			prt("Choose from menu.", 0, 0);
@@ -8100,13 +8066,13 @@ static int choose_essence(void)
 			for (i = 0; i < mode_max; i++)
 				prt(format("  %c) %s", 'a' + i, menu_name[i]), 2 + i, 14);
 
-			if (!get_com(_("²¿¤òÉÕ²Ã¤·¤Ş¤¹¤«:", "Command :"), &choice, TRUE))
+			if (!get_com(_("ä½•ã‚’ä»˜åŠ ã—ã¾ã™ã‹:", "Command :"), &choice, TRUE))
 			{
 				screen_load();
 				return 0;
 			}
 
-			if (isupper(choice)) choice = tolower(choice);
+			if (isupper(choice)) choice = (char)tolower(choice);
 
 			if ('a' <= choice && choice <= 'a' + (char)mode_max - 1)
 				mode = (int)choice - 'a' + 1;
@@ -8121,14 +8087,15 @@ static int choose_essence(void)
 }
 
 /*!
- * @brief ¥¨¥Ã¥»¥ó¥¹¤ò¼Âºİ¤ËÉÕ²Ã¤¹¤ë
- * @param mode ¥¨¥Ã¥»¥ó¥¹¤ÎÂçÊÌID
- * @return ¤Ê¤·
+ * @brief ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’å®Ÿéš›ã«ä»˜åŠ ã™ã‚‹
+ * @param mode ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã®å¤§åˆ¥ID
+ * @return ãªã—
  */
-static void add_essence(int mode)
+static void add_essence(ESSENCE_IDX mode)
 {
-	int item, max_num = 0;
-	int i;
+	OBJECT_IDX item;
+	int max_num = 0;
+	COMMAND_CODE i;
 	bool flag,redraw;
 	char choice;
 	cptr            q, s;
@@ -8163,7 +8130,7 @@ static void add_essence(int mode)
 	redraw = FALSE;
 
 	/* Build a prompt */
-	(void) strnfmt(out_val, 78, _("('*'¤Ç°ìÍ÷, ESC¤ÇÃæÃÇ) ¤É¤ÎÇ½ÎÏ¤òÉÕ²Ã¤·¤Ş¤¹¤«¡©", "(*=List, ESC=exit) Add which ability? "));
+	(void) strnfmt(out_val, 78, _("('*'ã§ä¸€è¦§, ESCã§ä¸­æ–­) ã©ã®èƒ½åŠ›ã‚’ä»˜åŠ ã—ã¾ã™ã‹ï¼Ÿ", "(*=List, ESC=exit) Add which ability? "));
 	if (use_menu) screen_save();
 
 	/* Get a spell from the user */
@@ -8171,7 +8138,7 @@ static void add_essence(int mode)
 	choice = (always_show_list || use_menu) ? ESCAPE:1;
 	while (!flag)
 	{
-		bool able[22];
+		bool able[22] = {0};
 		if( choice==ESCAPE ) choice = ' '; 
 		else if( !get_com(out_val, &choice, FALSE) )break; 
 
@@ -8252,7 +8219,7 @@ static void add_essence(int mode)
 
 				/* Print header(s) */
 #ifdef JP
-				prt(format("   %-43s %6s/%s", "Ç½ÎÏ(É¬Í×¥¨¥Ã¥»¥ó¥¹)", "É¬Í×¿ô", "½ê»ı¿ô"), 1, x);
+				prt(format("   %-43s %6s/%s", "èƒ½åŠ›(å¿…è¦ã‚¨ãƒƒã‚»ãƒ³ã‚¹)", "å¿…è¦æ•°", "æ‰€æŒæ•°"), 1, x);
 
 #else
 				prt(format("   %-43s %6s/%s", "Ability (needed essence)", "Needs", "Possess"), 1, x);
@@ -8265,7 +8232,7 @@ static void add_essence(int mode)
 					if (use_menu)
 					{
 						if (ctr == (menu_line-1))
-							strcpy(dummy, _("¡Õ ", ">  "));
+							strcpy(dummy, _("ã€‹ ", ">  "));
 						else strcpy(dummy, "   ");
 						
 					}
@@ -8290,29 +8257,29 @@ static void add_essence(int mode)
 						switch(es_ptr->add)
 						{
 						case ESSENCE_SH_FIRE:
-							strcat(dummy, _("(¾Æ´ş+ÂÑ²Ğ±ê)", "(brand fire + res.fire)"));
+							strcat(dummy, _("(ç„¼æ£„+è€ç«ç‚)", "(brand fire + res.fire)"));
 							if (p_ptr->magic_num1[TR_BRAND_FIRE] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_FIRE] < es_ptr->value) able[ctr] = FALSE;
 							break;
 						case ESSENCE_SH_ELEC:
-							strcat(dummy, _("(ÅÅ·â+ÂÑÅÅ·â)", "(brand elec. + res. elec.)"));
+							strcat(dummy, _("(é›»æ’ƒ+è€é›»æ’ƒ)", "(brand elec. + res. elec.)"));
 							if (p_ptr->magic_num1[TR_BRAND_ELEC] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_ELEC] < es_ptr->value) able[ctr] = FALSE;
 							break;
 						case ESSENCE_SH_COLD:
-							strcat(dummy, _("(Åà·ë+ÂÑÎäµ¤)", "(brand cold + res. cold)"));
+							strcat(dummy, _("(å‡çµ+è€å†·æ°—)", "(brand cold + res. cold)"));
 							if (p_ptr->magic_num1[TR_BRAND_COLD] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_COLD] < es_ptr->value) able[ctr] = FALSE;
 							break;
 						case ESSENCE_RESISTANCE:
-							strcat(dummy, _("(ÂÑ²Ğ±ê+ÂÑÎäµ¤+ÂÑÅÅ·â+ÂÑ»À)", "(r.fire+r.cold+r.elec+r.acid)"));
+							strcat(dummy, _("(è€ç«ç‚+è€å†·æ°—+è€é›»æ’ƒ+è€é…¸)", "(r.fire+r.cold+r.elec+r.acid)"));
 							if (p_ptr->magic_num1[TR_RES_FIRE] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_COLD] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_ELEC] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_ACID] < es_ptr->value) able[ctr] = FALSE;
 							break;
 						case ESSENCE_SUSTAIN:
-							strcat(dummy, _("(ÂÑ²Ğ±ê+ÂÑÎäµ¤+ÂÑÅÅ·â+ÂÑ»À)", "(r.fire+r.cold+r.elec+r.acid)"));
+							strcat(dummy, _("(è€ç«ç‚+è€å†·æ°—+è€é›»æ’ƒ+è€é…¸)", "(r.fire+r.cold+r.elec+r.acid)"));
 							if (p_ptr->magic_num1[TR_RES_FIRE] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_COLD] < es_ptr->value) able[ctr] = FALSE;
 							if (p_ptr->magic_num1[TR_RES_ELEC] < es_ptr->value) able[ctr] = FALSE;
@@ -8356,7 +8323,7 @@ static void add_essence(int mode)
 			ask = (isupper(choice));
 
 			/* Lowercase */
-			if (ask) choice = tolower(choice);
+			if (ask) choice = (char)tolower(choice);
 
 			/* Extract request */
 			i = (islower(choice) ? A2I(choice) : -1);
@@ -8375,7 +8342,7 @@ static void add_essence(int mode)
 			char tmp_val[160];
 
 			/* Prompt */
-			(void) strnfmt(tmp_val, 78, _("%s¤òÉÕ²Ã¤·¤Ş¤¹¤«¡© ", "Add the abilitiy of %s? "), essence_info[num[i]].add_name);
+			(void) strnfmt(tmp_val, 78, _("%sã‚’ä»˜åŠ ã—ã¾ã™ã‹ï¼Ÿ ", "Add the abilitiy of %s? "), essence_info[num[i]].add_name);
 
 			/* Belay that order */
 			if (!get_check(tmp_val)) continue;
@@ -8410,8 +8377,8 @@ static void add_essence(int mode)
 	item_tester_no_ryoute = TRUE;
 
 	/* Get an item */
-	q = _("¤É¤Î¥¢¥¤¥Æ¥à¤ò²şÎÉ¤·¤Ş¤¹¤«¡©", "Improve which item? ");
-	s = _("²şÎÉ¤Ç¤­¤ë¥¢¥¤¥Æ¥à¤¬¤¢¤ê¤Ş¤»¤ó¡£", "You have nothing to improve.");
+	q = _("ã©ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ”¹è‰¯ã—ã¾ã™ã‹ï¼Ÿ", "Improve which item? ");
+	s = _("æ”¹è‰¯ã§ãã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚Šã¾ã›ã‚“ã€‚", "You have nothing to improve.");
 
 	if (!get_item(&item, q, s, (USE_INVEN | USE_FLOOR))) return;
 
@@ -8429,7 +8396,7 @@ static void add_essence(int mode)
 
 	if ((mode != 10) && (object_is_artifact(o_ptr) || object_is_smith(o_ptr)))
 	{
-		msg_print(_("¤½¤Î¥¢¥¤¥Æ¥à¤Ï¤³¤ì°Ê¾å²şÎÉ¤Ç¤­¤Ê¤¤¡£", "This item is no more able to be improved."));
+		msg_print(_("ãã®ã‚¢ã‚¤ãƒ†ãƒ ã¯ã“ã‚Œä»¥ä¸Šæ”¹è‰¯ã§ããªã„ã€‚", "This item is no more able to be improved."));
 		return;
 	}
 
@@ -8440,60 +8407,60 @@ static void add_essence(int mode)
 	if (o_ptr->number > 1)
 	{
 		use_essence *= o_ptr->number;
-		msg_format(_("%d¸Ä¤¢¤ë¤Î¤Ç¥¨¥Ã¥»¥ó¥¹¤Ï%dÉ¬Í×¤Ç¤¹¡£", "It will take %d essences."), o_ptr->number, use_essence);
+		msg_format(_("%då€‹ã‚ã‚‹ã®ã§ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã¯%då¿…è¦ã§ã™ã€‚", "It will take %d essences."), o_ptr->number, use_essence);
 	}
 
 	if (es_ptr->essence != -1)
 	{
 		if (p_ptr->magic_num1[es_ptr->essence] < use_essence)
 		{
-			msg_print(_("¥¨¥Ã¥»¥ó¥¹¤¬Â­¤ê¤Ê¤¤¡£", "You don't have enough essences."));
+			msg_print(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒè¶³ã‚Šãªã„ã€‚", "You don't have enough essences."));
 			return;
 		}
 		if (is_pval_flag(es_ptr->add))
 		{
 			if (o_ptr->pval < 0)
 			{
-				msg_print(_("¤³¤Î¥¢¥¤¥Æ¥à¤ÎÇ½ÎÏ½¤Àµ¤ò¶¯²½¤¹¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡£", "You cannot increase magic number of this item."));
+				msg_print(_("ã“ã®ã‚¢ã‚¤ãƒ†ãƒ ã®èƒ½åŠ›ä¿®æ­£ã‚’å¼·åŒ–ã™ã‚‹ã“ã¨ã¯ã§ããªã„ã€‚", "You cannot increase magic number of this item."));
 				return;
 			}
 			else if (es_ptr->add == TR_BLOWS)
 			{
 				if (o_ptr->pval > 1)
 				{
-					if (!get_check(_("½¤ÀµÃÍ¤Ï1¤Ë¤Ê¤ê¤Ş¤¹¡£¤è¤í¤·¤¤¤Ç¤¹¤«¡©", "The magic number of this weapon will become 1. Are you sure? "))) return;
+					if (!get_check(_("ä¿®æ­£å€¤ã¯1ã«ãªã‚Šã¾ã™ã€‚ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ", "The magic number of this weapon will become 1. Are you sure? "))) return;
 				}
 
 				o_ptr->pval = 1;
-				msg_format(_("¥¨¥Ã¥»¥ó¥¹¤ò%d¸Ä»ÈÍÑ¤·¤Ş¤¹¡£", "It will take %d essences."), use_essence);
+				msg_format(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’%då€‹ä½¿ç”¨ã—ã¾ã™ã€‚", "It will take %d essences."), use_essence);
 			}
 			else if (o_ptr->pval > 0)
 			{
 				use_essence *= o_ptr->pval;
-				msg_format(_("¥¨¥Ã¥»¥ó¥¹¤ò%d¸Ä»ÈÍÑ¤·¤Ş¤¹¡£", "It will take %d essences."), use_essence);
+				msg_format(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’%då€‹ä½¿ç”¨ã—ã¾ã™ã€‚", "It will take %d essences."), use_essence);
 			}
 			else
 			{
 				char tmp[80];
 				char tmp_val[160];
-				int pval;
-				int limit = MIN(5, p_ptr->magic_num1[es_ptr->essence]/es_ptr->value);
+				PARAMETER_VALUE pval;
+				PARAMETER_VALUE limit = MIN(5, p_ptr->magic_num1[es_ptr->essence]/es_ptr->value);
 
-				sprintf(tmp, _("¤¤¤¯¤ÄÉÕ²Ã¤·¤Ş¤¹¤«¡© (1-%d): ", "Enchant how many? (1-%d): "), limit);
+				sprintf(tmp, _("ã„ãã¤ä»˜åŠ ã—ã¾ã™ã‹ï¼Ÿ (1-%d): ", "Enchant how many? (1-%d): "), limit);
 				strcpy(tmp_val, "1");
 
 				if (!get_string(tmp, tmp_val, 1)) return;
-				pval = atoi(tmp_val);
+				pval = (PARAMETER_VALUE)atoi(tmp_val);
 				if (pval > limit) pval = limit;
 				else if (pval < 1) pval = 1;
 				o_ptr->pval += pval;
 				use_essence *= pval;
-				msg_format(_("¥¨¥Ã¥»¥ó¥¹¤ò%d¸Ä»ÈÍÑ¤·¤Ş¤¹¡£", "It will take %d essences."), use_essence);
+				msg_format(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’%då€‹ä½¿ç”¨ã—ã¾ã™ã€‚", "It will take %d essences."), use_essence);
 			}
 
 			if (p_ptr->magic_num1[es_ptr->essence] < use_essence)
 			{
-				msg_print(_("¥¨¥Ã¥»¥ó¥¹¤¬Â­¤ê¤Ê¤¤¡£", "You don't have enough essences."));
+				msg_print(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒè¶³ã‚Šãªã„ã€‚", "You don't have enough essences."));
 				return;
 			}
 		}
@@ -8501,18 +8468,19 @@ static void add_essence(int mode)
 		{
 			char tmp_val[160];
 			int val;
-			int get_to_h, get_to_d;
+			HIT_PROB get_to_h;
+			HIT_POINT get_to_d;
 
 			strcpy(tmp_val, "1");
-			if (!get_string(format(_("¤¤¤¯¤ÄÉÕ²Ã¤·¤Ş¤¹¤«¡© (1-%d):", "Enchant how many? (1-%d):"), p_ptr->lev/7+3), tmp_val, 2)) return;
+			if (!get_string(format(_("ã„ãã¤ä»˜åŠ ã—ã¾ã™ã‹ï¼Ÿ (1-%d):", "Enchant how many? (1-%d):"), p_ptr->lev/7+3), tmp_val, 2)) return;
 			val = atoi(tmp_val);
 			if (val > p_ptr->lev/7+3) val = p_ptr->lev/7+3;
 			else if (val < 1) val = 1;
 			use_essence *= val;
-			msg_format(_("¥¨¥Ã¥»¥ó¥¹¤ò%d¸Ä»ÈÍÑ¤·¤Ş¤¹¡£", "It will take %d essences."), use_essence);
+			msg_format(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’%då€‹ä½¿ç”¨ã—ã¾ã™ã€‚", "It will take %d essences."), use_essence);
 			if (p_ptr->magic_num1[es_ptr->essence] < use_essence)
 			{
-				msg_print(_("¥¨¥Ã¥»¥ó¥¹¤¬Â­¤ê¤Ê¤¤¡£", "You don't have enough essences."));
+				msg_print(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒè¶³ã‚Šãªã„ã€‚", "You don't have enough essences."));
 				return;
 			}
 			get_to_h = ((val+1)/2+randint0(val/2+1));
@@ -8526,7 +8494,7 @@ static void add_essence(int mode)
 		{
 			if ((o_ptr->to_h >= p_ptr->lev/5+5) && (o_ptr->to_d >= p_ptr->lev/5+5))
 			{
-				msg_print(_("²şÎÉ¤Ë¼ºÇÔ¤·¤¿¡£", "You failed to enchant."));
+				msg_print(_("æ”¹è‰¯ã«å¤±æ•—ã—ãŸã€‚", "You failed to enchant."));
 				p_ptr->energy_use = 100;
 				return;
 			}
@@ -8540,7 +8508,7 @@ static void add_essence(int mode)
 		{
 			if (o_ptr->to_a >= p_ptr->lev/5+5)
 			{
-				msg_print(_("²şÎÉ¤Ë¼ºÇÔ¤·¤¿¡£", "You failed to enchant."));
+				msg_print(_("æ”¹è‰¯ã«å¤±æ•—ã—ãŸã€‚", "You failed to enchant."));
 				p_ptr->energy_use = 100;
 				return;
 			}
@@ -8602,7 +8570,7 @@ static void add_essence(int mode)
 		}
 		if (!success)
 		{
-			msg_print(_("¥¨¥Ã¥»¥ó¥¹¤¬Â­¤ê¤Ê¤¤¡£", "You don't have enough essences."));
+			msg_print(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ãŒè¶³ã‚Šãªã„ã€‚", "You don't have enough essences."));
 			return;
 		}
 		if (es_ptr->add == ESSENCE_SUSTAIN)
@@ -8621,7 +8589,7 @@ static void add_essence(int mode)
 	p_ptr->energy_use = 100;
 
 #ifdef JP
-	msg_format("%s¤Ë%s¤ÎÇ½ÎÏ¤òÉÕ²Ã¤·¤Ş¤·¤¿¡£", o_name, es_ptr->add_name);
+	msg_format("%sã«%sã®èƒ½åŠ›ã‚’ä»˜åŠ ã—ã¾ã—ãŸã€‚", o_name, es_ptr->add_name);
 #else
 	msg_format("You have added ability of %s to %s.", es_ptr->add_name, o_name);
 #endif
@@ -8634,22 +8602,22 @@ static void add_essence(int mode)
 }
 
 /*!
- * @brief ¥¨¥Ã¥»¥ó¥¹¤ò¾Ãµî¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’æ¶ˆå»ã™ã‚‹
+ * @return ãªã—
  */
 static void erase_essence(void)
 {
-	int item;
+	OBJECT_IDX item;
 	cptr q, s;
 	object_type *o_ptr;
 	char o_name[MAX_NLEN];
-	u32b flgs[TR_FLAG_SIZE];
+	BIT_FLAGS flgs[TR_FLAG_SIZE];
 
 	item_tester_hook = object_is_smith;
 
 	/* Get an item */
-	q = _("¤É¤Î¥¢¥¤¥Æ¥à¤Î¥¨¥Ã¥»¥ó¥¹¤ò¾Ãµî¤·¤Ş¤¹¤«¡©", "Remove from which item? ");
-	s = _("¥¨¥Ã¥»¥ó¥¹¤òÉÕ²Ã¤·¤¿¥¢¥¤¥Æ¥à¤¬¤¢¤ê¤Ş¤»¤ó¡£", "You have nothing to remove essence.");
+	q = _("ã©ã®ã‚¢ã‚¤ãƒ†ãƒ ã®ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’æ¶ˆå»ã—ã¾ã™ã‹ï¼Ÿ", "Remove from which item? ");
+	s = _("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’ä»˜åŠ ã—ãŸã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚Šã¾ã›ã‚“ã€‚", "You have nothing to remove essence.");
 
 	if (!get_item(&item, q, s, (USE_INVEN | USE_FLOOR))) return;
 
@@ -8666,7 +8634,7 @@ static void erase_essence(void)
 	}
 
 	object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-	if (!get_check(format(_("¤è¤í¤·¤¤¤Ç¤¹¤«¡© [%s]", "Are you sure? [%s]"), o_name))) return;
+	if (!get_check(format(_("ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ [%s]", "Are you sure? [%s]"), o_name))) return;
 
 	p_ptr->energy_use = 100;
 
@@ -8681,7 +8649,7 @@ static void erase_essence(void)
 	o_ptr->xtra3 = 0;
 	object_flags(o_ptr, flgs);
 	if (!(have_pval_flags(flgs))) o_ptr->pval = 0;
-	msg_print(_("¥¨¥Ã¥»¥ó¥¹¤ò¼è¤êµî¤Ã¤¿¡£", "You removed all essence you have added."));
+	msg_print(_("ã‚¨ãƒƒã‚»ãƒ³ã‚¹ã‚’å–ã‚Šå»ã£ãŸã€‚", "You removed all essence you have added."));
 
 	/* Combine the pack */
 	p_ptr->notice |= (PN_COMBINE | PN_REORDER);
@@ -8691,32 +8659,32 @@ static void erase_essence(void)
 }
 
 /*!
- * @brief ÃÃÌê¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
- * @param only_browse TRUE¤Ê¤é¤Ğ¥¨¥Ã¥»¥ó¥¹°ìÍ÷¤ÎÉ½¼¨¤Î¤ß¤ò¹Ô¤¦
- * @return ¤Ê¤·
+ * @brief é›å†¶ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
+ * @param only_browse TRUEãªã‚‰ã°ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä¸€è¦§ã®è¡¨ç¤ºã®ã¿ã‚’è¡Œã†
+ * @return ãªã—
  */
 void do_cmd_kaji(bool only_browse)
 {
-	int mode = 0;
+	COMMAND_CODE mode = 0;
 	char choice;
 
-	int menu_line = (use_menu ? 1 : 0);
+	COMMAND_CODE menu_line = (use_menu ? 1 : 0);
 
 	if (!only_browse)
 	{
 		if (p_ptr->confused)
 		{
-			msg_print(_("º®Íğ¤·¤Æ¤¤¤Æºî¶È¤Ç¤­¤Ê¤¤¡ª", "You are too confused!"));
+			msg_print(_("æ··ä¹±ã—ã¦ã„ã¦ä½œæ¥­ã§ããªã„ï¼", "You are too confused!"));
 			return;
 		}
 		if (p_ptr->blind)
 		{
-			msg_print(_("ÌÜ¤¬¸«¤¨¤Ê¤¯¤Æºî¶È¤Ç¤­¤Ê¤¤¡ª", "You are blind!"));
+			msg_print(_("ç›®ãŒè¦‹ãˆãªãã¦ä½œæ¥­ã§ããªã„ï¼", "You are blind!"));
 			return;
 		}
 		if (p_ptr->image)
 		{
-			msg_print(_("¤¦¤Ş¤¯¸«¤¨¤Ê¤¯¤Æºî¶È¤Ç¤­¤Ê¤¤¡ª", "You are hallucinating!"));
+			msg_print(_("ã†ã¾ãè¦‹ãˆãªãã¦ä½œæ¥­ã§ããªã„ï¼", "You are hallucinating!"));
 			return;
 		}
 	}
@@ -8734,12 +8702,12 @@ void do_cmd_kaji(bool only_browse)
 		while(!mode)
 		{
 #ifdef JP
-			prt(format(" %s ¥¨¥Ã¥»¥ó¥¹°ìÍ÷", (menu_line == 1) ? "¡Õ" : "  "), 2, 14);
-			prt(format(" %s ¥¨¥Ã¥»¥ó¥¹Ãê½Ğ", (menu_line == 2) ? "¡Õ" : "  "), 3, 14);
-			prt(format(" %s ¥¨¥Ã¥»¥ó¥¹¾Ãµî", (menu_line == 3) ? "¡Õ" : "  "), 4, 14);
-			prt(format(" %s ¥¨¥Ã¥»¥ó¥¹ÉÕ²Ã", (menu_line == 4) ? "¡Õ" : "  "), 5, 14);
-			prt(format(" %s Éğ´ï/ËÉ¶ñ¶¯²½", (menu_line == 5) ? "¡Õ" : "  "), 6, 14);
-			prt(format("¤É¤Î¼ïÎà¤Îµ»½Ñ¤ò%s¤Ş¤¹¤«¡©", only_browse ? "Ä´¤Ù" : "»È¤¤"), 0, 0);
+			prt(format(" %s ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä¸€è¦§", (menu_line == 1) ? "ã€‹" : "  "), 2, 14);
+			prt(format(" %s ã‚¨ãƒƒã‚»ãƒ³ã‚¹æŠ½å‡º", (menu_line == 2) ? "ã€‹" : "  "), 3, 14);
+			prt(format(" %s ã‚¨ãƒƒã‚»ãƒ³ã‚¹æ¶ˆå»", (menu_line == 3) ? "ã€‹" : "  "), 4, 14);
+			prt(format(" %s ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä»˜åŠ ", (menu_line == 4) ? "ã€‹" : "  "), 5, 14);
+			prt(format(" %s æ­¦å™¨/é˜²å…·å¼·åŒ–", (menu_line == 5) ? "ã€‹" : "  "), 6, 14);
+			prt(format("ã©ã®ç¨®é¡ã®æŠ€è¡“ã‚’%sã¾ã™ã‹ï¼Ÿ", only_browse ? "èª¿ã¹" : "ä½¿ã„"), 0, 0);
 #else
 			prt(format(" %s List essences", (menu_line == 1) ? "> " : "  "), 2, 14);
 			prt(format(" %s Extract essence", (menu_line == 2) ? "> " : "  "), 3, 14);
@@ -8782,12 +8750,12 @@ void do_cmd_kaji(bool only_browse)
 		while (!mode)
 		{
 #ifdef JP
-			prt("  a) ¥¨¥Ã¥»¥ó¥¹°ìÍ÷", 2, 14);
-			prt("  b) ¥¨¥Ã¥»¥ó¥¹Ãê½Ğ", 3, 14);
-			prt("  c) ¥¨¥Ã¥»¥ó¥¹¾Ãµî", 4, 14);
-			prt("  d) ¥¨¥Ã¥»¥ó¥¹ÉÕ²Ã", 5, 14);
-			prt("  e) Éğ´ï/ËÉ¶ñ¶¯²½", 6, 14);
-			if (!get_com(format("¤É¤ÎÇ½ÎÏ¤ò%s¤Ş¤¹¤«:", only_browse ? "Ä´¤Ù" : "»È¤¤"), &choice, TRUE))
+			prt("  a) ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä¸€è¦§", 2, 14);
+			prt("  b) ã‚¨ãƒƒã‚»ãƒ³ã‚¹æŠ½å‡º", 3, 14);
+			prt("  c) ã‚¨ãƒƒã‚»ãƒ³ã‚¹æ¶ˆå»", 4, 14);
+			prt("  d) ã‚¨ãƒƒã‚»ãƒ³ã‚¹ä»˜åŠ ", 5, 14);
+			prt("  e) æ­¦å™¨/é˜²å…·å¼·åŒ–", 6, 14);
+			if (!get_com(format("ã©ã®èƒ½åŠ›ã‚’%sã¾ã™ã‹:", only_browse ? "èª¿ã¹" : "ä½¿ã„"), &choice, TRUE))
 #else
 			prt("  a) List essences", 2, 14);
 			prt("  b) Extract essence", 3, 14);
@@ -8871,11 +8839,11 @@ void do_cmd_kaji(bool only_browse)
 
 
 /*!
- * @brief ÅêÚ³»ş¤¿¤¤¤Ş¤Ä¤ËÅê¤²¤ä¤¹¤¤/¾Æ´ş/¥¢¥ó¥Ç¥Ã¥É¥¹¥ì¥¤¤ÎÆÃÊÌ¸ú²Ì¤òÊÖ¤¹¡£
+ * @brief æŠ•æ“²æ™‚ãŸã„ã¾ã¤ã«æŠ•ã’ã‚„ã™ã„/ç„¼æ£„/ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰ã‚¹ãƒ¬ã‚¤ã®ç‰¹åˆ¥åŠ¹æœã‚’è¿”ã™ã€‚
  * Torches have special abilities when they are flaming.
- * @param o_ptr ÅêÚ³¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param flgs ÆÃÊÌ¤ËÄÉ²Ã¤¹¤ë¥Õ¥é¥°¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param flgs ç‰¹åˆ¥ã«è¿½åŠ ã™ã‚‹ãƒ•ãƒ©ã‚°ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void torch_flags(object_type *o_ptr, u32b *flgs)
 {
@@ -8891,12 +8859,12 @@ void torch_flags(object_type *o_ptr, u32b *flgs)
 }
 
 /*!
- * @brief ÅêÚ³»ş¤¿¤¤¤Ş¤Ä¤Ë¥À¥¤¥¹¤òÍ¿¤¨¤ë¡£
+ * @brief æŠ•æ“²æ™‚ãŸã„ã¾ã¤ã«ãƒ€ã‚¤ã‚¹ã‚’ä¸ãˆã‚‹ã€‚
  * Torches have special abilities when they are flaming.
- * @param o_ptr ÅêÚ³¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param dd ÆÃÊÌ¤Ê¥À¥¤¥¹¿ô¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param ds ÆÃÊÌ¤Ê¥À¥¤¥¹ÌÌ¿ô¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param dd ç‰¹åˆ¥ãªãƒ€ã‚¤ã‚¹æ•°ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param ds ç‰¹åˆ¥ãªãƒ€ã‚¤ã‚¹é¢æ•°ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void torch_dice(object_type *o_ptr, int *dd, int *ds)
 {
@@ -8911,10 +8879,10 @@ void torch_dice(object_type *o_ptr, int *dd, int *ds)
 }
 
 /*!
- * @brief ÅêÚ³»şÌ¿Ãæ¤·¤¿¤¿¤¤¤Ş¤Ä¤Î¼÷Ì¿¤ò½Ì¤á¤ë¡£
+ * @brief æŠ•æ“²æ™‚å‘½ä¸­ã—ãŸãŸã„ã¾ã¤ã®å¯¿å‘½ã‚’ç¸®ã‚ã‚‹ã€‚
  * Torches have special abilities when they are flaming.
- * @param o_ptr ÅêÚ³¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void torch_lost_fuel(object_type *o_ptr)
 {

@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  *  @file japanese.c
- *  @brief ÆüËÜ¸ì½èÍý´Ø¿ô
+ *  @brief æ—¥æœ¬èªžå‡¦ç†é–¢æ•°
  *  @date 2014/07/07
  */
 
@@ -19,48 +19,48 @@ struct convert_key
 static const convert_key s2j_table[] = {
 	{"mb","nb"}, {"mp","np"}, {"mv","nv"}, {"mm","nm"},
 	{"x","ks"},
-	/* sindar:¥·¥ó¥À¡¼¥ë  parantir:¥Ñ¥é¥ó¥Æ¥£¥¢  feanor:¥Õ¥§¥¢¥Î¡¼¥ë */
+	/* sindar:ã‚·ãƒ³ãƒ€ãƒ¼ãƒ«  parantir:ãƒ‘ãƒ©ãƒ³ãƒ†ã‚£ã‚¢  feanor:ãƒ•ã‚§ã‚¢ãƒŽãƒ¼ãƒ« */
 	{"ar$","a-ru$"}, {"ir$","ia$"}, {"or$","o-ru$"},
-	{"ra","¥é"}, {"ri","¥ê"}, {"ru","¥ë"}, {"re","¥ì"}, {"ro","¥í"},
-	{"ir","ia"}, {"ur","ua"}, {"er","ea"}, {"ar","a¥ë"},
-	{"sha","¥·¥ã"}, {"shi","¥·"}, {"shu","¥·¥å"}, {"she","¥·¥§"}, {"sho","¥·¥ç"},
-	{"tha","¥µ"}, {"thi","¥·"}, {"thu","¥¹"}, {"the","¥»"}, {"tho","¥½"},
-	{"cha","¥Ï"}, {"chi","¥Ò"}, {"chu","¥Õ"}, {"che","¥Ø"}, {"cho","¥Û"},
-	{"dha","¥¶"}, {"dhi","¥¸"}, {"dhu","¥º"}, {"dhe","¥¼"}, {"dho","¥¾"},
-	{"ba","¥Ð"}, {"bi","¥Ó"}, {"bu","¥Ö"}, {"be","¥Ù"}, {"bo","¥Ü"},
-	{"ca","¥«"}, {"ci","¥­"}, {"cu","¥¯"}, {"ce","¥±"}, {"co","¥³"},
-	{"da","¥À"}, {"di","¥Ç¥£"}, {"du","¥É¥¥"}, {"de","¥Ç"}, {"do","¥É"},
-	{"fa","¥Õ¥¡"}, {"fi","¥Õ¥£"}, {"fu","¥Õ"}, {"fe","¥Õ¥§"}, {"fo","¥Õ¥©"},
-	{"ga","¥¬"}, {"gi","¥®"}, {"gu","¥°"}, {"ge","¥²"}, {"go","¥´"},
-	{"ha","¥Ï"}, {"hi","¥Ò"}, {"hu","¥Õ"}, {"he","¥Ø"}, {"ho","¥Û"},
-	{"ja","¥¸¥ã"}, {"ji","¥¸"}, {"ju","¥¸¥å"}, {"je","¥¸¥§"}, {"jo","¥¸¥ç"},
-	{"ka","¥«"}, {"ki","¥­"}, {"ku","¥¯"}, {"ke","¥±"}, {"ko","¥³"},
-	{"la","¥é"}, {"li","¥ê"}, {"lu","¥ë"}, {"le","¥ì"}, {"lo","¥í"},
-	{"ma","¥Þ"}, {"mi","¥ß"}, {"mu","¥à"}, {"me","¥á"}, {"mo","¥â"},
-	{"na","¥Ê"}, {"ni","¥Ë"}, {"nu","¥Ì"}, {"ne","¥Í"}, {"no","¥Î"},
-	{"pa","¥Ñ"}, {"pi","¥Ô"}, {"pu","¥×"}, {"pe","¥Ú"}, {"po","¥Ý"},
-	{"qu","¥¯"},
-	{"sa","¥µ"}, {"si","¥·"}, {"su","¥¹"}, {"se","¥»"}, {"so","¥½"},
-	{"ta","¥¿"}, {"ti","¥Æ¥£"}, {"tu","¥È¥¥"}, {"te","¥Æ"}, {"to","¥È"},
-	{"va","¥ô¥¡"}, {"vi","¥ô¥£"}, {"vu","¥ô"}, {"ve","¥ô¥§"}, {"vo","¥ô¥©"},
-	{"wa","¥ï"}, {"wi","¥¦¥£"}, {"wu","¥¦"}, {"we","¥¦¥§"}, {"wo","¥¦¥©"},
-	{"ya","¥ä"}, {"yu","¥æ"}, {"yo","¥è"},
-	{"za","¥¶"}, {"zi","¥¸"}, {"zu","¥º"}, {"ze","¥¼"}, {"zo","¥¾"},
-	{"dh","¥º"}, {"ch","¥Õ"}, {"th","¥¹"},
-	{"b","¥Ö"}, {"c","¥¯"}, {"d","¥É"}, {"f","¥Õ"}, {"g","¥°"},
-	{"h","¥Õ"}, {"j","¥¸¥å"}, {"k","¥¯"}, {"l","¥ë"}, {"m","¥à"},
-	{"n","¥ó"}, {"p","¥×"}, {"q","¥¯"}, {"r","¥ë"}, {"s","¥¹"},
-	{"t","¥È"}, {"v","¥ô"}, {"w","¥¦"}, {"y","¥¤"},
-	{"a","¥¢"}, {"i","¥¤"}, {"u","¥¦"}, {"e","¥¨"}, {"o","¥ª"},
-	{"-","¡¼"},
+	{"ra","ãƒ©"}, {"ri","ãƒª"}, {"ru","ãƒ«"}, {"re","ãƒ¬"}, {"ro","ãƒ­"},
+	{"ir","ia"}, {"ur","ua"}, {"er","ea"}, {"ar","aãƒ«"},
+	{"sha","ã‚·ãƒ£"}, {"shi","ã‚·"}, {"shu","ã‚·ãƒ¥"}, {"she","ã‚·ã‚§"}, {"sho","ã‚·ãƒ§"},
+	{"tha","ã‚µ"}, {"thi","ã‚·"}, {"thu","ã‚¹"}, {"the","ã‚»"}, {"tho","ã‚½"},
+	{"cha","ãƒ"}, {"chi","ãƒ’"}, {"chu","ãƒ•"}, {"che","ãƒ˜"}, {"cho","ãƒ›"},
+	{"dha","ã‚¶"}, {"dhi","ã‚¸"}, {"dhu","ã‚º"}, {"dhe","ã‚¼"}, {"dho","ã‚¾"},
+	{"ba","ãƒ"}, {"bi","ãƒ“"}, {"bu","ãƒ–"}, {"be","ãƒ™"}, {"bo","ãƒœ"},
+	{"ca","ã‚«"}, {"ci","ã‚­"}, {"cu","ã‚¯"}, {"ce","ã‚±"}, {"co","ã‚³"},
+	{"da","ãƒ€"}, {"di","ãƒ‡ã‚£"}, {"du","ãƒ‰ã‚¥"}, {"de","ãƒ‡"}, {"do","ãƒ‰"},
+	{"fa","ãƒ•ã‚¡"}, {"fi","ãƒ•ã‚£"}, {"fu","ãƒ•"}, {"fe","ãƒ•ã‚§"}, {"fo","ãƒ•ã‚©"},
+	{"ga","ã‚¬"}, {"gi","ã‚®"}, {"gu","ã‚°"}, {"ge","ã‚²"}, {"go","ã‚´"},
+	{"ha","ãƒ"}, {"hi","ãƒ’"}, {"hu","ãƒ•"}, {"he","ãƒ˜"}, {"ho","ãƒ›"},
+	{"ja","ã‚¸ãƒ£"}, {"ji","ã‚¸"}, {"ju","ã‚¸ãƒ¥"}, {"je","ã‚¸ã‚§"}, {"jo","ã‚¸ãƒ§"},
+	{"ka","ã‚«"}, {"ki","ã‚­"}, {"ku","ã‚¯"}, {"ke","ã‚±"}, {"ko","ã‚³"},
+	{"la","ãƒ©"}, {"li","ãƒª"}, {"lu","ãƒ«"}, {"le","ãƒ¬"}, {"lo","ãƒ­"},
+	{"ma","ãƒž"}, {"mi","ãƒŸ"}, {"mu","ãƒ "}, {"me","ãƒ¡"}, {"mo","ãƒ¢"},
+	{"na","ãƒŠ"}, {"ni","ãƒ‹"}, {"nu","ãƒŒ"}, {"ne","ãƒ"}, {"no","ãƒŽ"},
+	{"pa","ãƒ‘"}, {"pi","ãƒ”"}, {"pu","ãƒ—"}, {"pe","ãƒš"}, {"po","ãƒ"},
+	{"qu","ã‚¯"},
+	{"sa","ã‚µ"}, {"si","ã‚·"}, {"su","ã‚¹"}, {"se","ã‚»"}, {"so","ã‚½"},
+	{"ta","ã‚¿"}, {"ti","ãƒ†ã‚£"}, {"tu","ãƒˆã‚¥"}, {"te","ãƒ†"}, {"to","ãƒˆ"},
+	{"va","ãƒ´ã‚¡"}, {"vi","ãƒ´ã‚£"}, {"vu","ãƒ´"}, {"ve","ãƒ´ã‚§"}, {"vo","ãƒ´ã‚©"},
+	{"wa","ãƒ¯"}, {"wi","ã‚¦ã‚£"}, {"wu","ã‚¦"}, {"we","ã‚¦ã‚§"}, {"wo","ã‚¦ã‚©"},
+	{"ya","ãƒ¤"}, {"yu","ãƒ¦"}, {"yo","ãƒ¨"},
+	{"za","ã‚¶"}, {"zi","ã‚¸"}, {"zu","ã‚º"}, {"ze","ã‚¼"}, {"zo","ã‚¾"},
+	{"dh","ã‚º"}, {"ch","ãƒ•"}, {"th","ã‚¹"},
+	{"b","ãƒ–"}, {"c","ã‚¯"}, {"d","ãƒ‰"}, {"f","ãƒ•"}, {"g","ã‚°"},
+	{"h","ãƒ•"}, {"j","ã‚¸ãƒ¥"}, {"k","ã‚¯"}, {"l","ãƒ«"}, {"m","ãƒ "},
+	{"n","ãƒ³"}, {"p","ãƒ—"}, {"q","ã‚¯"}, {"r","ãƒ«"}, {"s","ã‚¹"},
+	{"t","ãƒˆ"}, {"v","ãƒ´"}, {"w","ã‚¦"}, {"y","ã‚¤"},
+	{"a","ã‚¢"}, {"i","ã‚¤"}, {"u","ã‚¦"}, {"e","ã‚¨"}, {"o","ã‚ª"},
+	{"-","ãƒ¼"},
 	{NULL,NULL}
 };
 
 /*!
- * @brief ¥·¥ó¥À¥ê¥ó¤òÆüËÜ¸ì¤ÎÆÉ¤ß¤ËÊÑ´¹¤¹¤ë
- * @param kana ÊÑ´¹¸å¤ÎÆüËÜ¸ìÊ¸»úÎó¥Ý¥¤¥ó¥¿
- * @param sindarin ÊÑ´¹Á°¤Î¥·¥ó¥À¥ê¥óÊ¸»úÎó¥Ý¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ã‚·ãƒ³ãƒ€ãƒªãƒ³ã‚’æ—¥æœ¬èªžã®èª­ã¿ã«å¤‰æ›ã™ã‚‹
+ * @param kana å¤‰æ›å¾Œã®æ—¥æœ¬èªžæ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @param sindarin å¤‰æ›å‰ã®ã‚·ãƒ³ãƒ€ãƒªãƒ³æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * @details
  */
 void sindarin_to_kana(char *kana, const char *sindarin)
@@ -70,7 +70,7 @@ void sindarin_to_kana(char *kana, const char *sindarin)
 
 	sprintf(kana, "%s$", sindarin);
 	for (idx = 0; kana[idx]; idx++)
-		if (isupper(kana[idx])) kana[idx] = tolower(kana[idx]);
+		if (isupper(kana[idx])) kana[idx] = (char)tolower(kana[idx]);
 
 	for (idx = 0; s2j_table[idx].key1 != NULL; idx++)
 	{
@@ -114,51 +114,51 @@ void sindarin_to_kana(char *kana, const char *sindarin)
 }
 
 
-/*! ÆüËÜ¸ìÆ°»ì³èÍÑ (ÂÇ¤Ä¡äÂÇ¤Ã¤Æ,ÂÇ¤Á etc)
- * JVERB_AND: ²¥¤ë,½³¤ë > ²¥¤ê,½³¤ë
- * JVERB_TO:  ²¥¤ë,½³¤ë > ²¥¤Ã¤Æ½³¤ë
- * JVERB_OR:  ²¥¤ë,½³¤ë > ²¥¤Ã¤¿¤ê½³¤Ã¤¿¤ê */
+/*! æ—¥æœ¬èªžå‹•è©žæ´»ç”¨ (æ‰“ã¤ï¼žæ‰“ã£ã¦,æ‰“ã¡ etc)
+ * JVERB_AND: æ®´ã‚‹,è¹´ã‚‹ > æ®´ã‚Š,è¹´ã‚‹
+ * JVERB_TO:  æ®´ã‚‹,è¹´ã‚‹ > æ®´ã£ã¦è¹´ã‚‹
+ * JVERB_OR:  æ®´ã‚‹,è¹´ã‚‹ > æ®´ã£ãŸã‚Šè¹´ã£ãŸã‚Š */
 static const struct jverb_table_t {
 	const char* from;
 	const char* to[3];
 } jverb_table[] = {
-	{ "¤¹¤ë", {"¤·", "¤·¤Æ", "¤·¤¿"}},
-	{ "¤¤¤ë", {"¤¤¤Æ", "¤¤¤Æ", "¤¤¤¿"}},
+	{ "ã™ã‚‹", {"ã—", "ã—ã¦", "ã—ãŸ"}},
+	{ "ã„ã‚‹", {"ã„ã¦", "ã„ã¦", "ã„ãŸ"}},
 
-	{ "¤¨¤ë", {"¤¨", "¤¨¤Æ", "¤¨¤¿"}},
-	{ "¤±¤ë", {"¤±", "¤±¤Æ", "¤±¤¿"}},
-	{ "¤²¤ë", {"¤²", "¤¨¤Æ", "¤²¤¿"}},
-	{ "¤»¤ë", {"¤»", "¤»¤Æ", "¤»¤¿"}},
-	{ "¤¼¤ë", {"¤¼", "¤¼¤Æ", "¤¼¤¿"}},
-	{ "¤Æ¤ë", {"¤Æ", "¤Æ¤Ã¤Æ", "¤Æ¤Ã¤¿"}},
-	{ "¤Ç¤ë", {"¤Ç", "¤Ç¤Æ", "¤Ç¤¿"}},
-	{ "¤Í¤ë", {"¤Í", "¤Í¤Æ", "¤Í¤¿"}},
-	{ "¤Ø¤ë", {"¤Ø", "¤Ø¤Æ", "¤Ø¤¿"}},
-	{ "¤Ù¤ë", {"¤Ù", "¤Ù¤Æ", "¤Ù¤¿"}},
-	{ "¤á¤ë", {"¤á", "¤á¤Æ", "¤á¤¿"}},
-	{ "¤ì¤ë", {"¤ì", "¤ì¤Æ", "¤ì¤¿"}},
+	{ "ãˆã‚‹", {"ãˆ", "ãˆã¦", "ãˆãŸ"}},
+	{ "ã‘ã‚‹", {"ã‘", "ã‘ã¦", "ã‘ãŸ"}},
+	{ "ã’ã‚‹", {"ã’", "ãˆã¦", "ã’ãŸ"}},
+	{ "ã›ã‚‹", {"ã›", "ã›ã¦", "ã›ãŸ"}},
+	{ "ãœã‚‹", {"ãœ", "ãœã¦", "ãœãŸ"}},
+	{ "ã¦ã‚‹", {"ã¦", "ã¦ã£ã¦", "ã¦ã£ãŸ"}},
+	{ "ã§ã‚‹", {"ã§", "ã§ã¦", "ã§ãŸ"}},
+	{ "ã­ã‚‹", {"ã­", "ã­ã¦", "ã­ãŸ"}},
+	{ "ã¸ã‚‹", {"ã¸", "ã¸ã¦", "ã¸ãŸ"}},
+	{ "ã¹ã‚‹", {"ã¹", "ã¹ã¦", "ã¹ãŸ"}},
+	{ "ã‚ã‚‹", {"ã‚", "ã‚ã¦", "ã‚ãŸ"}},
+	{ "ã‚Œã‚‹", {"ã‚Œ", "ã‚Œã¦", "ã‚ŒãŸ"}},
 
-	{ "¤¦", {"¤¤", "¤Ã¤Æ", "¤Ã¤¿"}},
-	{ "¤¯", {"¤­", "¤¤¤Æ", "¤¤¤¿"}},
-	{ "¤°", {"¤®", "¤¤¤Ç", "¤¤¤À"}},
-	{ "¤¹", {"¤·", "¤·¤Æ", "¤·¤¿"}},
-	{ "¤º", {"¤¸", "¤¸¤Æ", "¤¸¤¿"}},
-	{ "¤Ä", {"¤Á", "¤Ã¤Æ", "¤Ã¤¿"}},
-	{ "¤Å", {"¤Â", "¤Ã¤Æ", "¤Ã¤¿"}},
-	{ "¤Ì", {"¤Ë", "¤Í¤Æ", "¤Í¤¿"}},
-	{ "¤Õ", {"¤Ò", "¤Ø¤Æ", "¤Ø¤¿"}},
-	{ "¤Ö", {"¤Ó", "¤ó¤Ç", "¤ó¤À"}},
-	{ "¤à", {"¤ß", "¤ó¤Ç", "¤ó¤À"}},
-	{ "¤ë", {"¤ê", "¤Ã¤Æ", "¤Ã¤¿"}},
-	{ NULL, {"¤½¤·¤Æ", "¤³¤È¤Ë¤è¤ê", "¤³¤È¤ä"}},
+	{ "ã†", {"ã„", "ã£ã¦", "ã£ãŸ"}},
+	{ "ã", {"ã", "ã„ã¦", "ã„ãŸ"}},
+	{ "ã", {"ãŽ", "ã„ã§", "ã„ã "}},
+	{ "ã™", {"ã—", "ã—ã¦", "ã—ãŸ"}},
+	{ "ãš", {"ã˜", "ã˜ã¦", "ã˜ãŸ"}},
+	{ "ã¤", {"ã¡", "ã£ã¦", "ã£ãŸ"}},
+	{ "ã¥", {"ã¢", "ã£ã¦", "ã£ãŸ"}},
+	{ "ã¬", {"ã«", "ã­ã¦", "ã­ãŸ"}},
+	{ "ãµ", {"ã²", "ã¸ã¦", "ã¸ãŸ"}},
+	{ "ã¶", {"ã³", "ã‚“ã§", "ã‚“ã "}},
+	{ "ã‚€", {"ã¿", "ã‚“ã§", "ã‚“ã "}},
+	{ "ã‚‹", {"ã‚Š", "ã£ã¦", "ã£ãŸ"}},
+	{ NULL, {"ãã—ã¦", "ã“ã¨ã«ã‚ˆã‚Š", "ã“ã¨ã‚„"}},
 };
 
 /*!
- * @brief jverb_table_t¤Ë½¾¤Ã¤ÆÆ°»ì¤ò³èÍÑ¤¹¤ë
- * @param in ÊÑ´¹¸µÊ¸»úÎó¥Ý¥¤¥ó¥¿
- * @param out ÊÑ´¹ÀèÊ¸»úÎó¥Ý¥¤¥ó¥¿
- * @param flag ÊÑ´¹¼ïÎà¤ò»ØÄê(JVERB_AND/JVERB_TO/JVERB_OR)
- * @return ¤Ê¤·
+ * @brief jverb_table_tã«å¾“ã£ã¦å‹•è©žã‚’æ´»ç”¨ã™ã‚‹
+ * @param in å¤‰æ›å…ƒæ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @param out å¤‰æ›å…ˆæ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @param flag å¤‰æ›ç¨®é¡žã‚’æŒ‡å®š(JVERB_AND/JVERB_TO/JVERB_OR)
+ * @return ãªã—
  * @details
  */
 void jverb(const char *in, char *out, int flag)
@@ -181,9 +181,9 @@ void jverb(const char *in, char *out, int flag)
 }
 
 /*!
- * @brief Ê¸»ú¥³¡¼¥É¤òSJIS¤«¤éEUC¤ËÊÑ´¹¤¹¤ë / Convert SJIS string to EUC string
- * @param str ÊÑ´¹¤¹¤ëÊ¸»úÎó¤Î¥Ý¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’SJISã‹ã‚‰EUCã«å¤‰æ›ã™ã‚‹ / Convert SJIS string to EUC string
+ * @param str å¤‰æ›ã™ã‚‹æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * @details
  */
 void sjis2euc(char *str)
@@ -227,9 +227,9 @@ void sjis2euc(char *str)
 
 
 /*!
- * @brief Ê¸»ú¥³¡¼¥É¤òEUC¤«¤éSJIS¤ËÊÑ´¹¤¹¤ë / Convert EUC string to SJIS string
- * @param str ÊÑ´¹¤¹¤ëÊ¸»úÎó¤Î¥Ý¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’EUCã‹ã‚‰SJISã«å¤‰æ›ã™ã‚‹ / Convert EUC string to SJIS string
+ * @param str å¤‰æ›ã™ã‚‹æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * @details
  */
 void euc2sjis(char *str)
@@ -274,8 +274,8 @@ void euc2sjis(char *str)
 
 
 /*!
- * @brief str¤ò´Ä¶­¤Ë¹ç¤Ã¤¿Ê¸»ú¥³¡¼¥É¤ËÊÑ´¹¤·¡¢ÊÑ´¹Á°¤ÎÊ¸»ú¥³¡¼¥É¤òÊÖ¤¹¡£str¤ÎÄ¹¤µ¤ËÀ©¸Â¤Ï¤Ê¤¤¡£
- * @param str ÊÑ´¹¤¹¤ëÊ¸»úÎó¤Î¥Ý¥¤¥ó¥¿
+ * @brief strã‚’ç’°å¢ƒã«åˆã£ãŸæ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã—ã€å¤‰æ›å‰ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’è¿”ã™ã€‚strã®é•·ã•ã«åˆ¶é™ã¯ãªã„ã€‚
+ * @param str å¤‰æ›ã™ã‚‹æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
  * @return 
  * 0: Unknown<br>
  * 1: ASCII (Never known to be ASCII in this function.)<br>
@@ -365,10 +365,10 @@ byte codeconv(char *str)
 }
 
 /*!
- * @brief Ê¸»úÎós¤Îx¥Ð¥¤¥ÈÌÜ¤¬´Á»ú¤Î1¥Ð¥¤¥ÈÌÜ¤«¤É¤¦¤«È½Äê¤¹¤ë
- * @param s È½Äê¤¹¤ëÊ¸»úÎó¤Î¥Ý¥¤¥ó¥¿
- * @param x È½Äê¤¹¤ë°ÌÃÖ(¥Ð¥¤¥È)
- * @return ´Á»ú¤Î1¥Ð¥¤¥ÈÌÜ¤Ê¤é¤ÐTRUE
+ * @brief æ–‡å­—åˆ—sã®xãƒã‚¤ãƒˆç›®ãŒæ¼¢å­—ã®1ãƒã‚¤ãƒˆç›®ã‹ã©ã†ã‹åˆ¤å®šã™ã‚‹
+ * @param s åˆ¤å®šã™ã‚‹æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param x åˆ¤å®šã™ã‚‹ä½ç½®(ãƒã‚¤ãƒˆ)
+ * @return æ¼¢å­—ã®1ãƒã‚¤ãƒˆç›®ãªã‚‰ã°TRUE
  */
 bool iskanji2(cptr s, int x)
 {
@@ -384,9 +384,9 @@ bool iskanji2(cptr s, int x)
 }
 
 /*!
- * @brief Ê¸»úÎó¤ÎÊ¸»ú¥³¡¼¥É¤¬ASCII¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë
- * @param str È½Äê¤¹¤ëÊ¸»úÎó¤Ø¤Î¥Ý¥¤¥ó¥¿
- * @return Ê¸»úÎó¤ÎÊ¸»ú¥³¡¼¥É¤¬ASCII¤Ê¤éTRUE¡¢¤½¤¦¤Ç¤Ê¤±¤ì¤ÐFALSE
+ * @brief æ–‡å­—åˆ—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒASCIIã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
+ * @param str åˆ¤å®šã™ã‚‹æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return æ–‡å­—åˆ—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒASCIIãªã‚‰TRUEã€ãã†ã§ãªã‘ã‚Œã°FALSE
  */
 static bool is_ascii_str(cptr str)
 {
@@ -398,9 +398,9 @@ static bool is_ascii_str(cptr str)
 }
 
 /*!
- * @brief Ê¸»úÎó¤ÎÊ¸»ú¥³¡¼¥É¤¬UTF-8¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë
- * @param str È½Äê¤¹¤ëÊ¸»úÎó¤Ø¤Î¥Ý¥¤¥ó¥¿
- * @return Ê¸»úÎó¤ÎÊ¸»ú¥³¡¼¥É¤¬UTF-8¤Ê¤éTRUE¡¢¤½¤¦¤Ç¤Ê¤±¤ì¤ÐFALSE
+ * @brief æ–‡å­—åˆ—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒUTF-8ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
+ * @param str åˆ¤å®šã™ã‚‹æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return æ–‡å­—åˆ—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒUTF-8ãªã‚‰TRUEã€ãã†ã§ãªã‘ã‚Œã°FALSE
  */
 static bool is_utf8_str(cptr str)
 {
@@ -434,9 +434,9 @@ static const struct ms_to_jis_unicode_conv_t {
 };
 
 /*!
- * @brief EUC¤¬¥·¥¹¥Æ¥à¥³¡¼¥É¤Ç¤¢¤ë´Ä¶­²¼¸þ¤±¤ËUTF-8¤«¤éÊÑ´¹½èÍý¤ò¹Ô¤¦¥µ¥Ö¥ë¡¼¥Á¥ó
- * @param str ÊÑ´¹¤¹¤ëÊ¸»úÎó¤Î¥Ý¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief EUCãŒã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ¼ãƒ‰ã§ã‚ã‚‹ç’°å¢ƒä¸‹å‘ã‘ã«UTF-8ã‹ã‚‰å¤‰æ›å‡¦ç†ã‚’è¡Œã†ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
+ * @param str å¤‰æ›ã™ã‚‹æ–‡å­—åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void ms_to_jis_unicode(char* str)
 {
@@ -466,11 +466,11 @@ static void ms_to_jis_unicode(char* str)
 #include <Windows.h>
 #endif
 /*!
- * @brief Ê¸»ú¥³¡¼¥É¤¬UTF-8¤ÎÊ¸»úÎó¤ò¥·¥¹¥Æ¥à¤ÎÊ¸»ú¥³¡¼¥É¤ËÊÑ´¹¤¹¤ë
- * @param utf8_str ÊÑ´¹¤¹¤ëUTF-8¤ÎÊ¸»úÎó¤Ø¤Î¥Ý¥¤¥ó¥¿
- * @param sys_str_buffer ÊÑ´¹¤·¤¿¥·¥¹¥Æ¥à¤ÎÊ¸»ú¥³¡¼¥É¤ÎÊ¸»úÎó¤ò³ÊÇ¼¤¹¤ë¥Ð¥Ã¥Õ¥¡¤Ø¤Î¥Ý¥¤¥ó¥¿
- * @param sys_str_buflen ÊÑ´¹¤·¤¿¥·¥¹¥Æ¥à¤ÎÊ¸»ú¥³¡¼¥É¤ÎÊ¸»úÎó¤ò³ÊÇ¼¤¹¤ë¥Ð¥Ã¥Õ¥¡¤ÎÄ¹¤µ
- * @return ÊÑ´¹¤ËÀ®¸ù¤·¤¿¾ì¹çTRUE¡¢¼ºÇÔ¤·¤¿¾ì¹çFALSE¤òÊÖ¤¹
+ * @brief æ–‡å­—ã‚³ãƒ¼ãƒ‰ãŒUTF-8ã®æ–‡å­—åˆ—ã‚’ã‚·ã‚¹ãƒ†ãƒ ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ›ã™ã‚‹
+ * @param utf8_str å¤‰æ›ã™ã‚‹UTF-8ã®æ–‡å­—åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param sys_str_buffer å¤‰æ›ã—ãŸã‚·ã‚¹ãƒ†ãƒ ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param sys_str_buflen å¤‰æ›ã—ãŸã‚·ã‚¹ãƒ†ãƒ ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®æ–‡å­—åˆ—ã‚’æ ¼ç´ã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®é•·ã•
+ * @return å¤‰æ›ã«æˆåŠŸã—ãŸå ´åˆTRUEã€å¤±æ•—ã—ãŸå ´åˆFALSEã‚’è¿”ã™
  */
 static bool utf8_to_sys(char* utf8_str, char* sys_str_buffer, size_t sys_str_buflen)
 {
@@ -512,12 +512,12 @@ static bool utf8_to_sys(char* utf8_str, char* sys_str_buffer, size_t sys_str_buf
 }
 
 /*!
- * @brief ¼õ¤±¼è¤Ã¤¿Ê¸»úÎó¤ÎÊ¸»ú¥³¡¼¥É¤ò¿äÄê¤·¡¢¥·¥¹¥Æ¥à¤ÎÊ¸»ú¥³¡¼¥É¤ØÊÑ´¹¤¹¤ë
- * @param strbuf ÊÑ´¹¤¹¤ëÊ¸»úÎó¤ò³ÊÇ¼¤·¤¿¥Ð¥Ã¥Õ¥¡¤Ø¤Î¥Ý¥¤¥ó¥¿¡£
- *               ¥Ð¥Ã¥Õ¥¡¤ÏÊÑ´¹¤·¤¿Ê¸»úÎó¤Ç¾å½ñ¤­¤µ¤ì¤ë¡£
- *               UTF-8¤«¤éSJIS¤â¤·¤¯¤ÏEUC¤Ø¤ÎÊÑ´¹¤òÁÛÄê¤·¤Æ¤¤¤ë¤Î¤Ç¥Ð¥Ã¥Õ¥¡¤ÎÄ¹¤µ¤¬Â­¤ê¤Ê¤¯¤Ê¤ë¤³¤È¤Ï¤Ê¤¤¡£
- * @param buflen ¥Ð¥Ã¥Õ¥¡¤ÎÄ¹¤µ¡£
- * @return ¤Ê¤·
+ * @brief å—ã‘å–ã£ãŸæ–‡å­—åˆ—ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŽ¨å®šã—ã€ã‚·ã‚¹ãƒ†ãƒ ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã¸å¤‰æ›ã™ã‚‹
+ * @param strbuf å¤‰æ›ã™ã‚‹æ–‡å­—åˆ—ã‚’æ ¼ç´ã—ãŸãƒãƒƒãƒ•ã‚¡ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
+ *               ãƒãƒƒãƒ•ã‚¡ã¯å¤‰æ›ã—ãŸæ–‡å­—åˆ—ã§ä¸Šæ›¸ãã•ã‚Œã‚‹ã€‚
+ *               UTF-8ã‹ã‚‰SJISã‚‚ã—ãã¯EUCã¸ã®å¤‰æ›ã‚’æƒ³å®šã—ã¦ã„ã‚‹ã®ã§ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ãŒè¶³ã‚Šãªããªã‚‹ã“ã¨ã¯ãªã„ã€‚
+ * @param buflen ãƒãƒƒãƒ•ã‚¡ã®é•·ã•ã€‚
+ * @return ãªã—
  */
 void guess_convert_to_system_encoding(char* strbuf, int buflen)
 {
@@ -528,7 +528,7 @@ void guess_convert_to_system_encoding(char* strbuf, int buflen)
 		C_MAKE(work, buflen, char);
 		my_strcpy(work, strbuf, buflen);
 		if (!utf8_to_sys(work, strbuf, buflen)) {
-			msg_print("·Ù¹ð:Ê¸»ú¥³¡¼¥É¤ÎÊÑ´¹¤Ë¼ºÇÔ¤·¤Þ¤·¤¿");
+			msg_print("è­¦å‘Š:æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®å¤‰æ›ã«å¤±æ•—ã—ã¾ã—ãŸ");
 			msg_print(NULL);
 		}
 		C_KILL(work, buflen, char);

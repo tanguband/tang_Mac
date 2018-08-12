@@ -5,8 +5,8 @@ Q:$4:N:The Vault
 Q:4:N:宝物庫
 
 # Definition
-Q:$4:Q:3:0:0:0:8:0:0:0:6
-Q:4:Q:3:0:0:0:8:0:0:0:6
+Q:$4:Q:3:0:0:0:30:0:0:0:6
+Q:4:Q:3:0:0:0:30:0:0:0:6
 
 # Random Reward (can set less than 30 items)
 Q:$4:R:88:76:90:93:98:101:102:103:105:106:110:113:114:116:118:119:128:136:145:155:167:202:208:213:227:228
@@ -67,7 +67,7 @@ F:a:FLOOR:12:107:0:0:!
 F:b:FLOOR:12:107:!
 
 # Random monster 7 levels out of depth and on no Teleportation grid
-F:*:FLOOR:12:*2
+F:*:FLOOR:12:*8
 
 # Creeping adamantite coins
 F:$:FLOOR:8:423
@@ -91,7 +91,7 @@ F:?:FLOOR:12:352
 F:!:FLOOR:12:557
 
 # Red dragon with Object 5 levels out of depth
-F:3:FLOOR:8:589:*1
+F:3:FLOOR:8:589:*5
 # fire vortex
 F:f:FLOOR:8:354
 # Fire trolls
@@ -102,7 +102,7 @@ F:7:FLOOR:8:510
 
 
 # White dragon with Object 5 levels out of depth
-F:4:FLOOR:8:549:*1
+F:4:FLOOR:8:549:*5
 # Ice trolls
 F:I:FLOOR:8:454
 # cold vortex
@@ -114,7 +114,7 @@ F:8:FLOOR:8:570
 
 
 # Black dragon with Object 5 levels out of depth
-F:5:FLOOR:8:592:*1
+F:5:FLOOR:8:592:*5
 # water vortex
 F:w:FLOOR:8:355
 # Pukelman
@@ -128,7 +128,7 @@ F:9:FLOOR:8:525
 
 
 # Blue dragon with Object 5 levels out of depth
-F:6:FLOOR:8:560:*1
+F:6:FLOOR:8:560:*5
 # young blUe dragon
 F:d:FLOOR:8:459
 # energy vortex

@@ -185,7 +185,7 @@
 /*
  * Cleaning up a couple of things to make these easier to change --AR
  */
-#define PREF_FILE_NAME _("tanguband Preferences", "tanguband-E Preferences")
+#define PREF_FILE_NAME _("Hengband Preferences", "Hengband-E Preferences")
 
 /*
  * Use "malloc()" instead of "NewPtr()"
@@ -195,7 +195,7 @@
 
 /* Default creator signature */
 #ifndef ANGBAND_CREATOR
-# define ANGBAND_CREATOR 'tang'
+# define ANGBAND_CREATOR 'Heng'
 #endif
 
 
@@ -7028,7 +7028,7 @@ static void init_stuff(void)
 		plog_fmt(_("'%s' ファイルをオープン出来ません.", "Unable to open the '%s' file."), path);
 
 		/* Warning */
-		plog(_("tangubandの'lib'フォルダが存在しないか正しく無い可能性があります.", "The Angband 'lib' folder is probably missing or misplaced."));
+		plog(_("Hengbandの'lib'フォルダが存在しないか正しく無い可能性があります.", "The Angband 'lib' folder is probably missing or misplaced."));
 
 		/* Warning */
 		plog(_("Please 'open' any file in any sub-folder of the 'lib' folder.", "Please 'open' any file in any sub-folder of the 'lib' folder."));
@@ -7201,9 +7201,8 @@ int main(void)
 		long response;
 
 		/* Check for existence of Carbon */
-/* #tang
 		err = Gestalt(gestaltCarbonVersion, &response);
-*/
+
 		if (err != noErr) quit("This program requires Carbon API");
 	}
 
@@ -7273,9 +7272,7 @@ int main(void)
 	 * Remember Mac OS version, in case we have to cope with version-specific
 	 * problems
 	 */
-/* #tang
 	(void)Gestalt(gestaltSystemVersion, &mac_os_version);
-*/
 
 #ifdef USE_SFL_CODE
 	/* Obtain a "Universal Procedure Pointer" */
@@ -7337,15 +7334,12 @@ int main(void)
 	quit_aux = hook_quit;
 	core_aux = hook_core;
 
-/* #tang
 	BackColor(blackColor);
 	ForeColor(whiteColor);
-*/
 
 	/* Show the "watch" cursor */
-/* #tang
 	SetCursor(*(GetCursor(watchCursor)));
-*/
+
 	/* Prepare the menubar */
 	init_menubar();
 
@@ -7364,7 +7358,6 @@ int main(void)
 	while (CheckEvents(TRUE)) /* loop */;
 
 	/* Reset the cursor */
-/* #tang
 #if TARGET_API_MAC_CARBON
 	{
 		Cursor	arrow;
@@ -7374,12 +7367,10 @@ int main(void)
 #else
 	SetCursor( &qd.arrow );
 #endif
-*/
+
 
 	/* Mega-Hack -- Allocate a "lifeboat" */
-/* #tang
 	lifeboat = NewPtr(16384);
-*/
 
 #ifdef USE_QT_SOUND
 

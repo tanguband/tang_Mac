@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file melee1.c
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·â½èÍı / Monster attacks
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒå‡¦ç† / Monster attacks
  * @date 2014/01/17
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -15,16 +15,16 @@
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼ÂÇ·â¤Î¥¯¥ê¥Æ¥£¥«¥ë¥é¥ó¥¯¤òÊÖ¤¹ /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰“æ’ƒã®ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãƒ©ãƒ³ã‚¯ã‚’è¿”ã™ /
  * Critical blow. All hits that do 95% of total possible damage,
- * @param dice ¥â¥ó¥¹¥¿¡¼ÂÇ·â¤Î¥À¥¤¥¹¿ô
- * @param sides ¥â¥ó¥¹¥¿¡¼ÂÇ·â¤ÎºÇÂç¥À¥¤¥¹ÌÜ
- * @param dam ¥×¥ì¥¤¥ä¡¼¤ËÍ¿¤¨¤¿¥À¥á¡¼¥¸
+ * @param dice ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰“æ’ƒã®ãƒ€ã‚¤ã‚¹æ•°
+ * @param sides ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰“æ’ƒã®æœ€å¤§ãƒ€ã‚¤ã‚¹ç›®
+ * @param dam ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ä¸ãˆãŸãƒ€ãƒ¡ãƒ¼ã‚¸
  * @details
  * and which also do at least 20 damage, or, sometimes, N damage.
  * This is used only to determine "cuts" and "stuns".
  */
-static int monster_critical(int dice, int sides, int dam)
+static int monster_critical(int dice, int sides, HIT_POINT dam)
 {
 	int max = 0;
 	int total = dice * sides;
@@ -54,12 +54,12 @@ static int monster_critical(int dice, int sides, int dam)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼ÂÇ·â¤ÎÌ¿Ãæ¤òÈ½Äê¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æ‰“æ’ƒã®å‘½ä¸­ã‚’åˆ¤å®šã™ã‚‹ /
  * Determine if a monster attack against the player succeeds.
- * @param power ÂÇ·âÂ°À­Ëè¤Î´ğËÜÌ¿ÃæÃÍ
- * @param level ¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
- * @param stun ¥â¥ó¥¹¥¿¡¼¤ÎÛ¯Û°ÃÍ
- * @return TRUE¤Ê¤é¤ĞÌ¿ÃæÈ½Äê
+ * @param power æ‰“æ’ƒå±æ€§æ¯ã®åŸºæœ¬å‘½ä¸­å€¤
+ * @param level ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
+ * @param stun ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æœ¦æœ§å€¤
+ * @return TRUEãªã‚‰ã°å‘½ä¸­åˆ¤å®š
  * @details
  * Always miss 5% of the time, Always hit 5% of the time.
  * Otherwise, match monster power against player armor.
@@ -77,7 +77,7 @@ static int check_hit(int power, int level, int stun)
 	if (k < 10) return (k < 5);
 
 	/* Calculate the "attack quality" */
-	i = (power + (level * 12)); /* 3 > 12 */
+	i = (power + (level * 3));
 
 	/* Total armor */
 	ac = p_ptr->ac + p_ptr->to_a;
@@ -92,20 +92,20 @@ static int check_hit(int power, int level, int stun)
 
 
 
-/*! ¥â¥ó¥¹¥¿¡¼¤ÎÉî¿«¹Ô°Ù¥á¥Ã¥»¡¼¥¸¥Æ¡¼¥Ö¥ë / Hack -- possible "insult" messages */
+/*! ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ä¾®è¾±è¡Œç‚ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ« / Hack -- possible "insult" messages */
 static cptr desc_insult[] =
 {
 #ifdef JP
-	"¤¬¤¢¤Ê¤¿¤òÉî¿«¤·¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤ÎÊì¤òÉî¿«¤·¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤ò·ÚÊÎ¤·¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤ò¿«¤á¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤ò±ø¤·¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤Î²ó¤ê¤ÇÍÙ¤Ã¤¿¡ª",
-	"¤¬àĞêø¤Ê¿È¤Ö¤ê¤ò¤·¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤ò¤Ü¤ó¤ä¤ê¤È¸«¤¿¡ª¡ª¡ª",
-	"¤¬¤¢¤Ê¤¿¤ò¥Ñ¥é¥µ¥¤¥È¸Æ¤Ğ¤ï¤ê¤·¤¿¡ª",
-	"¤¬¤¢¤Ê¤¿¤ò¥µ¥¤¥Ü¡¼¥°°·¤¤¤·¤¿¡ª"
+	"ãŒã‚ãªãŸã‚’ä¾®è¾±ã—ãŸï¼",
+	"ãŒã‚ãªãŸã®æ¯ã‚’ä¾®è¾±ã—ãŸï¼",
+	"ãŒã‚ãªãŸã‚’è»½è”‘ã—ãŸï¼",
+	"ãŒã‚ãªãŸã‚’è¾±ã‚ãŸï¼",
+	"ãŒã‚ãªãŸã‚’æ±šã—ãŸï¼",
+	"ãŒã‚ãªãŸã®å›ã‚Šã§è¸Šã£ãŸï¼",
+	"ãŒçŒ¥è¤»ãªèº«ã¶ã‚Šã‚’ã—ãŸï¼",
+	"ãŒã‚ãªãŸã‚’ã¼ã‚“ã‚„ã‚Šã¨è¦‹ãŸï¼ï¼ï¼",
+	"ãŒã‚ãªãŸã‚’ãƒ‘ãƒ©ã‚µã‚¤ãƒˆå‘¼ã°ã‚ã‚Šã—ãŸï¼",
+	"ãŒã‚ãªãŸã‚’ã‚µã‚¤ãƒœãƒ¼ã‚°æ‰±ã„ã—ãŸï¼"
 #else
 	"insults you!",
 	"insults your mother!",
@@ -122,14 +122,14 @@ static cptr desc_insult[] =
 };
 
 
-/*! ¥Ş¥´¥Ã¥È¤Î¤Ü¤ä¤­¥á¥Ã¥»¡¼¥¸¥Æ¡¼¥Ö¥ë / Hack -- possible "insult" messages */
+/*! ãƒã‚´ãƒƒãƒˆã®ã¼ã‚„ããƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ãƒ¼ãƒ–ãƒ« / Hack -- possible "insult" messages */
 static cptr desc_moan[] =
 {
 #ifdef JP
-	"¤Ï²¿¤«¤òÈá¤·¤ó¤Ç¤¤¤ë¤è¤¦¤À¡£",
-	"¤¬Èà¤Î»ô¤¤¸¤¤ò¸«¤Ê¤«¤Ã¤¿¤«¤È¿Ò¤Í¤Æ¤¤¤ë¡£",
-	"¤¬ÆìÄ¥¤ê¤«¤é½Ğ¤Æ¹Ô¤±¤È¸À¤Ã¤Æ¤¤¤ë¡£",
-	"¤Ï¥­¥Î¥³¤¬¤É¤¦¤È¤«Òì¤¤¤Æ¤¤¤ë¡£"
+	"ã¯ä½•ã‹ã‚’æ‚²ã—ã‚“ã§ã„ã‚‹ã‚ˆã†ã ã€‚",
+	"ãŒå½¼ã®é£¼ã„çŠ¬ã‚’è¦‹ãªã‹ã£ãŸã‹ã¨å°‹ã­ã¦ã„ã‚‹ã€‚",
+	"ãŒç¸„å¼µã‚Šã‹ã‚‰å‡ºã¦è¡Œã‘ã¨è¨€ã£ã¦ã„ã‚‹ã€‚",
+	"ã¯ã‚­ãƒã‚³ãŒã©ã†ã¨ã‹å‘Ÿã„ã¦ã„ã‚‹ã€‚"
 #else
 	"seems sad about something.",
 	"asks if you have seen his dogs.",
@@ -141,14 +141,13 @@ static cptr desc_moan[] =
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤«¤é¥×¥ì¥¤¥ä¡¼¤Ø¤ÎÂÇ·â½èÍı / Attack the player via physical attacks.
- * @param m_idx ÂÇ·â¤ò¹Ô¤¦¥â¥ó¥¹¥¿¡¼¤ÎID
- * @return ¼Âºİ¤Ë¹¶·â½èÍı¤ò¹Ô¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸ã®æ‰“æ’ƒå‡¦ç† / Attack the player via physical attacks.
+ * @param m_idx æ‰“æ’ƒã‚’è¡Œã†ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ID
+ * @return å®Ÿéš›ã«æ”»æ’ƒå‡¦ç†ã‚’è¡Œã£ãŸå ´åˆTRUEã‚’è¿”ã™
  */
-bool make_attack_normal(int m_idx)
+bool make_attack_normal(MONSTER_IDX m_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
-
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
 
 	int ap_cnt;
@@ -170,7 +169,7 @@ bool make_attack_normal(int m_idx)
 	bool touched = FALSE, fear = FALSE, alive = TRUE;
 	bool explode = FALSE;
 	bool do_silly_attack = (one_in_(2) && p_ptr->image);
-	int get_damage = 0;
+	HIT_POINT get_damage = 0;
 	int abbreviate = 0;
 
 	/* Not allowed to attack */
@@ -193,7 +192,7 @@ bool make_attack_normal(int m_idx)
 
 	if (p_ptr->special_defense & KATA_IAI)
 	{
-		msg_format(_("Áê¼ê¤¬½±¤¤¤«¤«¤ëÁ°¤ËÁÇÁá¤¯Éğ´ï¤ò¿¶¤ë¤Ã¤¿¡£", "You took sen, draw and cut in one motion before %s move."), m_name);
+		msg_format(_("ç›¸æ‰‹ãŒè¥²ã„ã‹ã‹ã‚‹å‰ã«ç´ æ—©ãæ­¦å™¨ã‚’æŒ¯ã‚‹ã£ãŸã€‚", "You took sen, draw and cut in one motion before %s move."), m_name);
 		if (py_attack(m_ptr->fy, m_ptr->fx, HISSATSU_IAI)) return TRUE;
 	}
 
@@ -210,8 +209,8 @@ bool make_attack_normal(int m_idx)
 	{
 		bool obvious = FALSE;
 
-		int power = 0;
-		int damage = 0;
+		HIT_POINT power = 0;
+		HIT_POINT damage = 0;
 
 		cptr act = NULL;
 
@@ -258,7 +257,7 @@ bool make_attack_normal(int m_idx)
 			/* Hack -- Apply "protection from evil" */
 			if ((p_ptr->protevil > 0) &&
 			    (r_ptr->flags3 & RF3_EVIL) &&
-			    (p_ptr->lev >= rlev * 4) && /* #tang rlev -> rlev*4 */
+			    (p_ptr->lev >= rlev) &&
 			    ((randint0(100) + p_ptr->lev) > 50))
 			{
 				/* Remember the Evil-ness */
@@ -267,10 +266,10 @@ bool make_attack_normal(int m_idx)
 				/* Message */
 #ifdef JP
 				if (abbreviate)
-				    msg_format("·âÂà¤·¤¿¡£");
+				    msg_format("æ’ƒé€€ã—ãŸã€‚");
 				else
-				    msg_format("%^s¤Ï·âÂà¤µ¤ì¤¿¡£", m_name);
-				abbreviate = 1;/*£²²óÌÜ°Ê¹ß¤Ï¾ÊÎ¬ */
+				    msg_format("%^sã¯æ’ƒé€€ã•ã‚ŒãŸã€‚", m_name);
+				abbreviate = 1;/*ï¼’å›ç›®ä»¥é™ã¯çœç•¥ */
 #else
 				msg_format("%^s is repelled.", m_name);
 #endif
@@ -289,7 +288,7 @@ bool make_attack_normal(int m_idx)
 			{
 				case RBM_HIT:
 				{
-					act = _("²¥¤é¤ì¤¿¡£", "hits you.");
+					act = _("æ®´ã‚‰ã‚ŒãŸã€‚", "hits you.");
 					do_cut = do_stun = 1;
 					touched = TRUE;
 					sound(SOUND_HIT);
@@ -298,7 +297,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_TOUCH:
 				{
-					act = _("¿¨¤é¤ì¤¿¡£", "touches you.");
+					act = _("è§¦ã‚‰ã‚ŒãŸã€‚", "touches you.");
 					touched = TRUE;
 					sound(SOUND_TOUCH);
 					break;
@@ -306,7 +305,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_PUNCH:
 				{
-					act = _("¥Ñ¥ó¥Á¤µ¤ì¤¿¡£", "punches you.");
+					act = _("ãƒ‘ãƒ³ãƒã•ã‚ŒãŸã€‚", "punches you.");
 					touched = TRUE;
 					do_stun = 1;
 					sound(SOUND_HIT);
@@ -315,7 +314,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_KICK:
 				{
-					act = _("½³¤é¤ì¤¿¡£", "kicks you.");
+					act = _("è¹´ã‚‰ã‚ŒãŸã€‚", "kicks you.");
 					touched = TRUE;
 					do_stun = 1;
 					sound(SOUND_HIT);
@@ -324,7 +323,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_CLAW:
 				{
-					act = _("¤Ò¤Ã¤«¤«¤ì¤¿¡£", "claws you.");
+					act = _("ã²ã£ã‹ã‹ã‚ŒãŸã€‚", "claws you.");
 					touched = TRUE;
 					do_cut = 1;
 					sound(SOUND_CLAW);
@@ -333,7 +332,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_BITE:
 				{
-					act = _("³ú¤Ş¤ì¤¿¡£", "bites you.");
+					act = _("å™›ã¾ã‚ŒãŸã€‚", "bites you.");
 					do_cut = 1;
 					touched = TRUE;
 					sound(SOUND_BITE);
@@ -342,7 +341,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_STING:
 				{
-					act = _("»É¤µ¤ì¤¿¡£", "stings you.");
+					act = _("åˆºã•ã‚ŒãŸã€‚", "stings you.");
 					touched = TRUE;
 					sound(SOUND_STING);
 					break;
@@ -350,7 +349,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_SLASH:
 				{
-					act = _("»Â¤é¤ì¤¿¡£", "slashes you.");
+					act = _("æ–¬ã‚‰ã‚ŒãŸã€‚", "slashes you.");
 					touched = TRUE;
 					do_cut = 1;
 					sound(SOUND_CLAW);
@@ -359,7 +358,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_BUTT:
 				{
-					act = _("³Ñ¤ÇÆÍ¤«¤ì¤¿¡£", "butts you.");
+					act = _("è§’ã§çªã‹ã‚ŒãŸã€‚", "butts you.");
 					do_stun = 1;
 					touched = TRUE;
 					sound(SOUND_HIT);
@@ -368,7 +367,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_CRUSH:
 				{
-					act = _("ÂÎÅö¤¿¤ê¤µ¤ì¤¿¡£", "crushes you.");
+					act = _("ä½“å½“ãŸã‚Šã•ã‚ŒãŸã€‚", "crushes you.");
 					do_stun = 1;
 					touched = TRUE;
 					sound(SOUND_CRUSH);
@@ -377,7 +376,7 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_ENGULF:
 				{
-					act = _("°û¤ß¹ş¤Ş¤ì¤¿¡£", "engulfs you.");
+					act = _("é£²ã¿è¾¼ã¾ã‚ŒãŸã€‚", "engulfs you.");
 					touched = TRUE;
 					sound(SOUND_CRUSH);
 					break;
@@ -386,7 +385,7 @@ bool make_attack_normal(int m_idx)
 				case RBM_CHARGE:
 				{
 					abbreviate = -1;
-					act = _("¤ÏÀÁµá½ñ¤ò¤è¤³¤·¤¿¡£", "charges you.");
+					act = _("ã¯è«‹æ±‚æ›¸ã‚’ã‚ˆã“ã—ãŸã€‚", "charges you.");
 					touched = TRUE;
 					sound(SOUND_BUY); /* Note! This is "charges", not "charges at". */
 					break;
@@ -395,7 +394,7 @@ bool make_attack_normal(int m_idx)
 				case RBM_CRAWL:
 				{
 					abbreviate = -1;
-					act = _("¤¬ÂÎ¤Î¾å¤òÇç¤¤²ó¤Ã¤¿¡£", "crawls on you.");
+					act = _("ãŒä½“ã®ä¸Šã‚’é€™ã„å›ã£ãŸã€‚", "crawls on you.");
 					touched = TRUE;
 					sound(SOUND_SLIME);
 					break;
@@ -403,14 +402,14 @@ bool make_attack_normal(int m_idx)
 
 				case RBM_DROOL:
 				{
-					act = _("¤è¤À¤ì¤ò¤¿¤é¤µ¤ì¤¿¡£", "drools on you.");
+					act = _("ã‚ˆã ã‚Œã‚’ãŸã‚‰ã•ã‚ŒãŸã€‚", "drools on you.");
 					sound(SOUND_SLIME);
 					break;
 				}
 
 				case RBM_SPIT:
 				{
-					act = _("ÂÃ¤òÅÇ¤«¤ì¤¿¡£", "spits on you.");
+					act = _("å”¾ã‚’åã‹ã‚ŒãŸã€‚", "spits on you.");
 					sound(SOUND_SLIME);
 					break;
 				}
@@ -418,27 +417,27 @@ bool make_attack_normal(int m_idx)
 				case RBM_EXPLODE:
 				{
 					abbreviate = -1;
-					act = _("¤ÏÇúÈ¯¤·¤¿¡£", "explodes.");
+					act = _("ã¯çˆ†ç™ºã—ãŸã€‚", "explodes.");
 					explode = TRUE;
 					break;
 				}
 
 				case RBM_GAZE:
 				{
-					act = _("¤Ë¤é¤Ş¤ì¤¿¡£", "gazes at you.");
+					act = _("ã«ã‚‰ã¾ã‚ŒãŸã€‚", "gazes at you.");
 					break;
 				}
 
 				case RBM_WAIL:
 				{
-					act = _("µã¤­¶«¤Ğ¤ì¤¿¡£", "wails at you.");
+					act = _("æ³£ãå«ã°ã‚ŒãŸã€‚", "wails at you.");
 					sound(SOUND_WAIL);
 					break;
 				}
 
 				case RBM_SPORE:
 				{
-					act = _("Ë¦»Ò¤òÈô¤Ğ¤µ¤ì¤¿¡£", "releases spores at you.");
+					act = _("èƒå­ã‚’é£›ã°ã•ã‚ŒãŸã€‚", "releases spores at you.");
 					sound(SOUND_SLIME);
 					break;
 				}
@@ -446,13 +445,13 @@ bool make_attack_normal(int m_idx)
 				case RBM_XXX4:
 				{
 					abbreviate = -1;
-					act = _("¤¬ XXX4 ¤òÈ¯¼Í¤·¤¿¡£", "projects XXX4's at you.");
+					act = _("ãŒ XXX4 ã‚’ç™ºå°„ã—ãŸã€‚", "projects XXX4's at you.");
 					break;
 				}
 
 				case RBM_BEG:
 				{
-					act = _("¶â¤ò¤»¤¬¤Ş¤ì¤¿¡£", "begs you for money.");
+					act = _("é‡‘ã‚’ã›ãŒã¾ã‚ŒãŸã€‚", "begs you for money.");
 					sound(SOUND_MOAN);
 					break;
 				}
@@ -490,43 +489,43 @@ bool make_attack_normal(int m_idx)
 						  case 1:
 						  case 6:
 						  case 11:
-							act = "¡Ö¢ö¤ª¡¼¤ì¤Ï¥¸¥ã¥¤¥¢¥ó¡¼¡¼¥¬¡¼¥­¤À¤¤¤·¤ç¤¦¡¼¡×";
+							act = "ã€Œâ™ªãŠï½ã‚Œã¯ã‚¸ãƒ£ã‚¤ã‚¢ãƒ³ï½ï½ã‚¬ï½ã‚­ã ã„ã—ã‚‡ã†ï½ã€";
 							break;
 						  case 2:
-							act = "¡Ö¢ö¤Æ¡¼¤ó¤«¤à¡¼¤Æ¤­¤Î¤ª¡¼¤È¤³¤À¤¼¡¼¡¼¡×";
+							act = "ã€Œâ™ªã¦ï½ã‚“ã‹ã‚€ï½ã¦ãã®ãŠï½ã¨ã“ã ãœï½ï½ã€";
 							break;
 						  case 3:
-							act = "¡Ö¢ö¤Î¡¼¤ÓÂÀ¥¹¥ÍÉ×¤Ï¥á¤¸¤ã¤Ê¤¤¤è¡¼¡¼¡×";
+							act = "ã€Œâ™ªã®ï½ã³å¤ªã‚¹ãƒå¤«ã¯ãƒ¡ã˜ã‚ƒãªã„ã‚ˆï½ï½ã€";
 							break;
 						  case 4:
-							act = "¡Ö¢ö¤±¡¼¤ó¤«¥¹¥İ¡¼¥Ä¡¼¤É¤ó¤È¤³¤¤¡¼¡×";
+							act = "ã€Œâ™ªã‘ï½ã‚“ã‹ã‚¹ãƒï½ãƒ„ï½ã©ã‚“ã¨ã“ã„ï½ã€";
 							break;
 						  case 5:
-							act = "¡Ö¢ö¤¦¤¿¡¼¤â¡¼¡¼¤¦¡¼¤Ş¤¤¤¼¡¼¤Ş¤«¤·¤È¤±¡¼¡×";
+							act = "ã€Œâ™ªã†ãŸï½ã‚‚ï½ï½ã†ï½ã¾ã„ãœï½ã¾ã‹ã—ã¨ã‘ï½ã€";
 							break;
 						  case 7:
-							act = "¡Ö¢ö¤Ş¡¼¤Á¤¤¤Á¤Ğ¡¼¤ó¤Î¤Ë¡¼¤ó¤­¤â¤Î¡¼¡¼¡×";
+							act = "ã€Œâ™ªã¾ï½ã¡ã„ã¡ã°ï½ã‚“ã®ã«ï½ã‚“ãã‚‚ã®ï½ï½ã€";
 							break;
 						  case 8:
-							act = "¡Ö¢ö¤Ù¤ó¤­¤ç¤¦¤·¤å¤¯¤À¤¤¥á¤¸¤ã¤Ê¤¤¤è¡¼¡¼¡×";
+							act = "ã€Œâ™ªã¹ã‚“ãã‚‡ã†ã—ã‚…ãã ã„ãƒ¡ã˜ã‚ƒãªã„ã‚ˆï½ï½ã€";
 							break;
 						  case 9:
-							act = "¡Ö¢ö¤­¤Ï¤ä¤µ¤·¡¼¤¯¤Æ¡¼¤Á¡¼¤«¤é¤â¤Á¡¼¡×";
+							act = "ã€Œâ™ªãã¯ã‚„ã•ã—ï½ãã¦ï½ã¡ï½ã‹ã‚‰ã‚‚ã¡ï½ã€";
 							break;
 						  case 10:
-							act = "¡Ö¢ö¤«¤ª¡¼¤â¡¼¡¼¥¹¥¿¥¤¥ë¤â¡¼¥Ğ¥Ä¥°¥ó¤µ¡¼¡×";
+							act = "ã€Œâ™ªã‹ãŠï½ã‚‚ï½ï½ã‚¹ã‚¿ã‚¤ãƒ«ã‚‚ï½ãƒãƒ„ã‚°ãƒ³ã•ï½ã€";
 							break;
 						  case 12:
-							act = "¡Ö¢ö¤¬¤Ã¤³¤¦¤¤¡¼¤Á¤Î¡¼¤¢¡¼¤Ğ¤ì¤ó¤Ü¤¦¡¼¡¼¡×";
+							act = "ã€Œâ™ªãŒã£ã“ã†ã„ï½ã¡ã®ï½ã‚ï½ã°ã‚Œã‚“ã¼ã†ï½ï½ã€";
 							break;
 						  case 13:
-							act = "¡Ö¢ö¥É¡¼¥é¤â¥É¥é¥ß¤â¥á¤¸¤ã¤Ê¤¤¤è¡¼¡¼¡×";
+							act = "ã€Œâ™ªãƒ‰ï½ãƒ©ã‚‚ãƒ‰ãƒ©ãƒŸã‚‚ãƒ¡ã˜ã‚ƒãªã„ã‚ˆï½ï½ã€";
 							break;
 						  case 14:
-							act = "¡Ö¢ö¤è¤¸¤²¤ó¤İ¤±¤Ã¤È¡¼¤Ê¡¼¤¯¤¿¤Ã¤Æ¡¼¡×";
+							act = "ã€Œâ™ªã‚ˆã˜ã’ã‚“ã½ã‘ã£ã¨ï½ãªï½ããŸã£ã¦ï½ã€";
 							break;
 						  case 15:
-							act = "¡Ö¢ö¤¢¤·¡¼¤Î¡¼¡¼¤Ê¤¬¤µ¡¼¤Ï¡¼¤Ş¤±¤Ê¤¤¤¼¡¼¡×";
+							act = "ã€Œâ™ªã‚ã—ï½ã®ï½ï½ãªãŒã•ï½ã¯ï½ã¾ã‘ãªã„ãœï½ã€";
 							break;
 						}
 #else
@@ -537,9 +536,9 @@ bool make_attack_normal(int m_idx)
 					{
 						if (one_in_(3))
 #ifdef JP
-							act = "¤Ï¢öËÍ¤é¤Ï³Ú¤·¤¤²ÈÂ²¢ö¤È²Î¤Ã¤Æ¤¤¤ë¡£";
+							act = "ã¯â™ªåƒ•ã‚‰ã¯æ¥½ã—ã„å®¶æ—â™ªã¨æ­Œã£ã¦ã„ã‚‹ã€‚";
 						else
-							act = "¤Ï¢ö¥¢¥¤ ¥é¥Ö ¥æ¡¼¡¢¥æ¡¼ ¥é¥Ö ¥ß¡¼¢ö¤È²Î¤Ã¤Æ¤¤¤ë¡£";
+							act = "ã¯â™ªã‚¢ã‚¤ ãƒ©ãƒ– ãƒ¦ãƒ¼ã€ãƒ¦ãƒ¼ ãƒ©ãƒ– ãƒŸãƒ¼â™ªã¨æ­Œã£ã¦ã„ã‚‹ã€‚";
 #else
 							act = "sings 'We are a happy family.'";
 						else
@@ -564,12 +563,12 @@ bool make_attack_normal(int m_idx)
 				}
 #ifdef JP
 				if (abbreviate == 0)
-				    msg_format("%^s¤Ë%s", m_name, act);
+				    msg_format("%^sã«%s", m_name, act);
 				else if (abbreviate == 1)
 				    msg_format("%s", act);
 				else /* if (abbreviate == -1) */
 				    msg_format("%^s%s", m_name, act);
-				abbreviate = 1;/*£²²óÌÜ°Ê¹ß¤Ï¾ÊÎ¬ */
+				abbreviate = 1;/*ï¼’å›ç›®ä»¥é™ã¯çœç•¥ */
 #else
 				msg_format("%^s %s%s", m_name, act, do_silly_attack ? " you." : "");
 #endif
@@ -603,10 +602,10 @@ bool make_attack_normal(int m_idx)
 
 				case RBE_SUPERHURT:
 				{
-					if (((randint1(rlev*8+300) > (ac+200)) || one_in_(13)) && !CHECK_MULTISHADOW()) /* rlev*2 > rlev8 */
+					if (((randint1(rlev*2+300) > (ac+200)) || one_in_(13)) && !CHECK_MULTISHADOW())
 					{
 						int tmp_damage = damage - (damage * ((ac < 150) ? ac : 150) / 250);
-						msg_print(_("ÄËº¨¤Î°ì·â¡ª", "It was a critical hit!"));
+						msg_print(_("ç—›æ¨ã®ä¸€æ’ƒï¼", "It was a critical hit!"));
 						tmp_damage = MAX(damage, tmp_damage*2);
 
 						/* Take damage */
@@ -635,7 +634,7 @@ bool make_attack_normal(int m_idx)
 					/* Take "poison" effect */
 					if (!(p_ptr->resist_pois || IS_OPPOSE_POIS()) && !CHECK_MULTISHADOW())
 					{
-						if (set_poisoned(p_ptr->poisoned + randint1(rlev * 4) + 5)) /* rlev > rlev*4 */
+						if (set_poisoned(p_ptr->poisoned + randint1(rlev) + 5))
 						{
 							obvious = TRUE;
 						}
@@ -700,7 +699,7 @@ bool make_attack_normal(int m_idx)
 						    (o_ptr->pval))
 						{
 							/* Calculate healed hitpoints */
-							int heal=rlev * 4 * o_ptr->pval; /* rlev > rlev*4 */
+							int heal=rlev * o_ptr->pval;
 							if( o_ptr->tval == TV_STAFF)
 							    heal *=  o_ptr->number;
 
@@ -708,13 +707,13 @@ bool make_attack_normal(int m_idx)
 							heal = MIN(heal, m_ptr->maxhp - m_ptr->hp);
 
 							/* Message */
-							msg_print(_("¥¶¥Ã¥¯¤«¤é¥¨¥Í¥ë¥®¡¼¤¬µÛ¤¤¼è¤é¤ì¤¿¡ª", "Energy drains from your pack!"));
+							msg_print(_("ã‚¶ãƒƒã‚¯ã‹ã‚‰ã‚¨ãƒãƒ«ã‚®ãƒ¼ãŒå¸ã„å–ã‚‰ã‚ŒãŸï¼", "Energy drains from your pack!"));
 
 							/* Obvious */
 							obvious = TRUE;
 
 							/* Heal the monster */
-							m_ptr->hp += heal;
+							m_ptr->hp += (HIT_POINT)heal;
 
 							/* Redraw (later) if needed */
 							if (p_ptr->health_who == m_idx) p_ptr->redraw |= (PR_HEALTH);
@@ -756,7 +755,7 @@ bool make_attack_normal(int m_idx)
 							      p_ptr->lev)))
 					{
 						/* Saving throw message */
-						msg_print(_("¤·¤«¤·ÁÇÁá¤¯ºâÉÛ¤ò¼é¤Ã¤¿¡ª", "You quickly protect your money pouch!"));
+						msg_print(_("ã—ã‹ã—ç´ æ—©ãè²¡å¸ƒã‚’å®ˆã£ãŸï¼", "You quickly protect your money pouch!"));
 
 						/* Occasional blink anyway */
 						if (randint0(3)) blinked = TRUE;
@@ -772,18 +771,18 @@ bool make_attack_normal(int m_idx)
 						p_ptr->au -= gold;
 						if (gold <= 0)
 						{
-							msg_print(_("¤·¤«¤·²¿¤âÅğ¤Ş¤ì¤Ê¤«¤Ã¤¿¡£", "Nothing was stolen."));
+							msg_print(_("ã—ã‹ã—ä½•ã‚‚ç›—ã¾ã‚Œãªã‹ã£ãŸã€‚", "Nothing was stolen."));
 						}
 						else if (p_ptr->au)
 						{
-							msg_print(_("ºâÉÛ¤¬·Ú¤¯¤Ê¤Ã¤¿µ¤¤¬¤¹¤ë¡£", "Your purse feels lighter."));
-							msg_format(_("$%ld ¤Î¤ª¶â¤¬Åğ¤Ş¤ì¤¿¡ª", "%ld coins were stolen!"), (long)gold);
+							msg_print(_("è²¡å¸ƒãŒè»½ããªã£ãŸæ°—ãŒã™ã‚‹ã€‚", "Your purse feels lighter."));
+							msg_format(_("$%ld ã®ãŠé‡‘ãŒç›—ã¾ã‚ŒãŸï¼", "%ld coins were stolen!"), (long)gold);
 							chg_virtue(V_SACRIFICE, 1);
 						}
 						else
 						{
-							msg_print(_("ºâÉÛ¤¬·Ú¤¯¤Ê¤Ã¤¿µ¤¤¬¤¹¤ë¡£", "Your purse feels lighter."));
-							msg_print(_("¤ª¶â¤¬Á´ÉôÅğ¤Ş¤ì¤¿¡ª", "All of your coins were stolen!"));
+							msg_print(_("è²¡å¸ƒãŒè»½ããªã£ãŸæ°—ãŒã™ã‚‹ã€‚", "Your purse feels lighter."));
+							msg_print(_("ãŠé‡‘ãŒå…¨éƒ¨ç›—ã¾ã‚ŒãŸï¼", "All of your coins were stolen!"));
 							chg_virtue(V_SACRIFICE, 2);
 						}
 
@@ -816,7 +815,7 @@ bool make_attack_normal(int m_idx)
 							      p_ptr->lev)))
 					{
 						/* Saving throw message */
-						msg_print(_("¤·¤«¤·¤¢¤ï¤Æ¤Æ¥¶¥Ã¥¯¤ò¼è¤êÊÖ¤·¤¿¡ª", "You grab hold of your backpack!"));
+						msg_print(_("ã—ã‹ã—ã‚ã‚ã¦ã¦ã‚¶ãƒƒã‚¯ã‚’å–ã‚Šè¿”ã—ãŸï¼", "You grab hold of your backpack!"));
 
 						/* Occasional "blink" anyway */
 						blinked = TRUE;
@@ -850,9 +849,9 @@ bool make_attack_normal(int m_idx)
 
 						/* Message */
 #ifdef JP
-						msg_format("%s(%c)¤ò%sÅğ¤Ş¤ì¤¿¡ª",
+						msg_format("%s(%c)ã‚’%sç›—ã¾ã‚ŒãŸï¼",
 							   o_name, index_to_label(i),
-							   ((o_ptr->number > 1) ? "°ì¤Ä" : ""));
+							   ((o_ptr->number > 1) ? "ä¸€ã¤" : ""));
 #else
 						msg_format("%sour %s (%c) was stolen!",
 							   ((o_ptr->number > 1) ? "One of y" : "Y"),
@@ -946,9 +945,9 @@ bool make_attack_normal(int m_idx)
 
 						/* Message */
 #ifdef JP
-						msg_format("%s(%c)¤ò%s¿©¤Ù¤é¤ì¤Æ¤·¤Ş¤Ã¤¿¡ª",
+						msg_format("%s(%c)ã‚’%sé£Ÿã¹ã‚‰ã‚Œã¦ã—ã¾ã£ãŸï¼",
 							  o_name, index_to_label(i),
-							  ((o_ptr->number > 1) ? "°ì¤Ä" : ""));
+							  ((o_ptr->number > 1) ? "ä¸€ã¤" : ""));
 #else
 						msg_format("%sour %s (%c) was eaten!",
 							   ((o_ptr->number > 1) ? "One of y" : "Y"),
@@ -990,7 +989,7 @@ bool make_attack_normal(int m_idx)
 						/* Notice */
 						if (!p_ptr->blind)
 						{
-							msg_print(_("ÌÀ¤«¤ê¤¬°Å¤¯¤Ê¤Ã¤Æ¤·¤Ş¤Ã¤¿¡£", "Your light dims."));
+							msg_print(_("æ˜ã‹ã‚ŠãŒæš—ããªã£ã¦ã—ã¾ã£ãŸã€‚", "Your light dims."));
 							obvious = TRUE;
 						}
 
@@ -1008,7 +1007,7 @@ bool make_attack_normal(int m_idx)
 					obvious = TRUE;
 
 					/* Message */
-					msg_print(_("»À¤òÍá¤Ó¤»¤é¤ì¤¿¡ª", "You are covered in acid!"));
+					msg_print(_("é…¸ã‚’æµ´ã³ã›ã‚‰ã‚ŒãŸï¼", "You are covered in acid!"));
 
 					/* Special damage */
 					get_damage += acid_dam(damage, ddesc, -1, FALSE);
@@ -1029,7 +1028,7 @@ bool make_attack_normal(int m_idx)
 					obvious = TRUE;
 
 					/* Message */
-					msg_print(_("ÅÅ·â¤òÍá¤Ó¤»¤é¤ì¤¿¡ª", "You are struck by electricity!"));
+					msg_print(_("é›»æ’ƒã‚’æµ´ã³ã›ã‚‰ã‚ŒãŸï¼", "You are struck by electricity!"));
 
 					/* Special damage */
 					get_damage += elec_dam(damage, ddesc, -1, FALSE);
@@ -1047,7 +1046,7 @@ bool make_attack_normal(int m_idx)
 					obvious = TRUE;
 
 					/* Message */
-					msg_print(_("Á´¿È¤¬±ê¤ËÊñ¤Ş¤ì¤¿¡ª", "You are enveloped in flames!"));
+					msg_print(_("å…¨èº«ãŒç‚ã«åŒ…ã¾ã‚ŒãŸï¼", "You are enveloped in flames!"));
 
 					/* Special damage */
 					get_damage += fire_dam(damage, ddesc, -1, FALSE);
@@ -1065,7 +1064,7 @@ bool make_attack_normal(int m_idx)
 					obvious = TRUE;
 
 					/* Message */
-					msg_print(_("Á´¿È¤¬Îäµ¤¤ÇÊ¤¤ï¤ì¤¿¡ª", "You are covered with frost!"));
+					msg_print(_("å…¨èº«ãŒå†·æ°—ã§è¦†ã‚ã‚ŒãŸï¼", "You are covered with frost!"));
 
 					/* Special damage */
 					get_damage += cold_dam(damage, ddesc, -1, FALSE);
@@ -1086,10 +1085,10 @@ bool make_attack_normal(int m_idx)
 					/* Increase "blind" */
 					if (!p_ptr->resist_blind && !CHECK_MULTISHADOW())
 					{
-						if (set_blind(p_ptr->blind + 10 + randint1(rlev*4))) /* rlev > rlev*4 */
+						if (set_blind(p_ptr->blind + 10 + randint1(rlev)))
 						{
 #ifdef JP
-							if (m_ptr->r_idx == MON_DIO) msg_print("¤É¤¦¤À¥Ã¡ª¤³¤Î·ì¤ÎÌÜÄÙ¤·¤Ï¥Ã¡ª");
+							if (m_ptr->r_idx == MON_DIO) msg_print("ã©ã†ã ãƒƒï¼ã“ã®è¡€ã®ç›®æ½°ã—ã¯ãƒƒï¼");
 #else
 							/* nanka */
 #endif
@@ -1114,7 +1113,7 @@ bool make_attack_normal(int m_idx)
 					/* Increase "confused" */
 					if (!p_ptr->resist_conf && !CHECK_MULTISHADOW())
 					{
-						if (set_confused(p_ptr->confused + 3 + randint1(rlev*4))) /* rlev > rlev*4 */
+						if (set_confused(p_ptr->confused + 3 + randint1(rlev)))
 						{
 							obvious = TRUE;
 						}
@@ -1140,17 +1139,17 @@ bool make_attack_normal(int m_idx)
 					}
 					else if (p_ptr->resist_fear)
 					{
-						msg_print(_("¤·¤«¤·¶²Éİ¤Ë¿¯¤µ¤ì¤Ê¤«¤Ã¤¿¡ª", "You stand your ground!"));
+						msg_print(_("ã—ã‹ã—ææ€–ã«ä¾µã•ã‚Œãªã‹ã£ãŸï¼", "You stand your ground!"));
 						obvious = TRUE;
 					}
 					else if (randint0(100 + r_ptr->level/2) < p_ptr->skill_sav)
 					{
-						msg_print(_("¤·¤«¤·¶²Éİ¤Ë¿¯¤µ¤ì¤Ê¤«¤Ã¤¿¡ª", "You stand your ground!"));
+						msg_print(_("ã—ã‹ã—ææ€–ã«ä¾µã•ã‚Œãªã‹ã£ãŸï¼", "You stand your ground!"));
 						obvious = TRUE;
 					}
 					else
 					{
-						if (set_afraid(p_ptr->afraid + 3 + randint1(rlev*4))) /* rlev > rlev*4 */
+						if (set_afraid(p_ptr->afraid + 3 + randint1(rlev)))
 						{
 							obvious = TRUE;
 						}
@@ -1176,19 +1175,19 @@ bool make_attack_normal(int m_idx)
 					}
 					else if (p_ptr->free_act)
 					{
-						msg_print(_("¤·¤«¤·¸ú²Ì¤¬¤Ê¤«¤Ã¤¿¡ª", "You are unaffected!"));
+						msg_print(_("ã—ã‹ã—åŠ¹æœãŒãªã‹ã£ãŸï¼", "You are unaffected!"));
 						obvious = TRUE;
 					}
 					else if (randint0(100 + r_ptr->level/2) < p_ptr->skill_sav)
 					{
-						msg_print(_("¤·¤«¤·¸úÎÏ¤òÄ·¤ÍÊÖ¤·¤¿¡ª", "You resist the effects!"));
+						msg_print(_("ã—ã‹ã—åŠ¹åŠ›ã‚’è·³ã­è¿”ã—ãŸï¼", "You resist the effects!"));
 						obvious = TRUE;
 					}
 					else
 					{
 						if (!p_ptr->paralyzed)
 						{
-							if (set_paralyzed(3 + randint1(rlev*4))) /* rlev > rlev*4 */
+							if (set_paralyzed(3 + randint1(rlev)))
 							{
 								obvious = TRUE;
 							}
@@ -1391,7 +1390,7 @@ bool make_attack_normal(int m_idx)
 					/* Take "poison" effect */
 					if (!(p_ptr->resist_pois || IS_OPPOSE_POIS()))
 					{
-						if (set_poisoned(p_ptr->poisoned + randint1(rlev*4) + 5)) /* rlev > rlev*4 */
+						if (set_poisoned(p_ptr->poisoned + randint1(rlev) + 5))
 						{
 							obvious = TRUE;
 						}
@@ -1404,7 +1403,7 @@ bool make_attack_normal(int m_idx)
 						bool perm = one_in_(10);
 						if (dec_stat(A_CON, randint1(10), perm))
 						{
-							msg_print(_("ÉÂ¤¬¤¢¤Ê¤¿¤ò¿ª¤ó¤Ç¤¤¤ëµ¤¤¬¤¹¤ë¡£", "You feel strange sickness."));
+							msg_print(_("ç—…ãŒã‚ãªãŸã‚’è•ã‚“ã§ã„ã‚‹æ°—ãŒã™ã‚‹ã€‚", "You feel strange sickness."));
 							obvious = TRUE;
 						}
 					}
@@ -1421,7 +1420,7 @@ bool make_attack_normal(int m_idx)
 							case 1: case 2: case 3: case 4: case 5:
 							{
 								if (p_ptr->prace == RACE_ANDROID) break;
-								msg_print(_("¿ÍÀ¸¤¬µÕÌá¤ê¤·¤¿µ¤¤¬¤¹¤ë¡£", "You feel life has clocked back."));
+								msg_print(_("äººç”ŸãŒé€†æˆ»ã‚Šã—ãŸæ°—ãŒã™ã‚‹ã€‚", "You feel life has clocked back."));
 								lose_exp(100 + (p_ptr->exp / 100) * MON_DRAIN_LIFE);
 								break;
 							}
@@ -1433,12 +1432,12 @@ bool make_attack_normal(int m_idx)
 								switch (stat)
 								{
 #ifdef JP
-									case A_STR: act = "¶¯¤¯"; break;
-									case A_INT: act = "ÁïÌÀ¤Ç"; break;
-									case A_WIS: act = "¸­ÌÀ¤Ç"; break;
-									case A_DEX: act = "´ïÍÑ¤Ç"; break;
-									case A_CON: act = "·ò¹¯¤Ç"; break;
-									case A_CHR: act = "Èş¤·¤¯"; break;
+									case A_STR: act = "å¼·ã"; break;
+									case A_INT: act = "è¡æ˜ã§"; break;
+									case A_WIS: act = "è³¢æ˜ã§"; break;
+									case A_DEX: act = "å™¨ç”¨ã§"; break;
+									case A_CON: act = "å¥åº·ã§"; break;
+									case A_CHR: act = "ç¾ã—ã"; break;
 #else
 									case A_STR: act = "strong"; break;
 									case A_INT: act = "bright"; break;
@@ -1450,7 +1449,7 @@ bool make_attack_normal(int m_idx)
 
 								}
 
-								msg_format(_("¤¢¤Ê¤¿¤Ï°ÊÁ°¤Û¤É%s¤Ê¤¯¤Ê¤Ã¤Æ¤·¤Ş¤Ã¤¿...¡£", "You're not as %s as you used to be..."), act);
+								msg_format(_("ã‚ãªãŸã¯ä»¥å‰ã»ã©%sãªããªã£ã¦ã—ã¾ã£ãŸ...ã€‚", "You're not as %s as you used to be..."), act);
 								p_ptr->stat_cur[stat] = (p_ptr->stat_cur[stat] * 3) / 4;
 								if (p_ptr->stat_cur[stat] < 3) p_ptr->stat_cur[stat] = 3;
 								p_ptr->update |= (PU_BONUS);
@@ -1459,7 +1458,7 @@ bool make_attack_normal(int m_idx)
 
 							case 10:
 							{
-								msg_print(_("¤¢¤Ê¤¿¤Ï°ÊÁ°¤Û¤ÉÎÏ¶¯¤¯¤Ê¤¯¤Ê¤Ã¤Æ¤·¤Ş¤Ã¤¿...¡£", "You're not as powerful as you used to be..."));
+								msg_print(_("ã‚ãªãŸã¯ä»¥å‰ã»ã©åŠ›å¼·ããªããªã£ã¦ã—ã¾ã£ãŸ...ã€‚", "You're not as powerful as you used to be..."));
 
 								for (k = 0; k < 6; k++)
 								{
@@ -1529,7 +1528,7 @@ bool make_attack_normal(int m_idx)
 						/* Special message */
 						if (m_ptr->ml && did_heal)
 						{
-							msg_format(_("%s¤ÏÂÎÎÏ¤ò²óÉü¤·¤¿¤è¤¦¤À¡£", "%^s appears healthier."), m_name);
+							msg_format(_("%sã¯ä½“åŠ›ã‚’å›å¾©ã—ãŸã‚ˆã†ã ã€‚", "%^s appears healthier."), m_name);
 						}
 					}
 
@@ -1542,7 +1541,7 @@ bool make_attack_normal(int m_idx)
 
 					if (CHECK_MULTISHADOW())
 					{
-						msg_print(_("¹¶·â¤Ï¸¸±Æ¤ËÌ¿Ãæ¤·¡¢¤¢¤Ê¤¿¤Ë¤ÏÆÏ¤«¤Ê¤«¤Ã¤¿¡£", "The attack hits Shadow, you are unharmed!"));
+						msg_print(_("æ”»æ’ƒã¯å¹»å½±ã«å‘½ä¸­ã—ã€ã‚ãªãŸã«ã¯å±Šã‹ãªã‹ã£ãŸã€‚", "The attack hits Shadow, you are unharmed!"));
 					}
 					else
 					{
@@ -1578,7 +1577,7 @@ bool make_attack_normal(int m_idx)
 					}
 					else
 					{
-						if (set_slow((p_ptr->slow + 4 + randint0(rlev * 4 / 10)), FALSE)) /* rlev > rlev*4 */
+						if (set_slow((p_ptr->slow + 4 + randint0(rlev / 10)), FALSE))
 						{
 							obvious = TRUE;
 						}
@@ -1629,7 +1628,7 @@ bool make_attack_normal(int m_idx)
 			/* Handle cut */
 			if (do_cut)
 			{
-				int k = 0;
+				int cut_plus = 0;
 
 				/* Critical hit (zero if non-critical) */
 				tmp = monster_critical(d_dice, d_side, damage);
@@ -1637,24 +1636,24 @@ bool make_attack_normal(int m_idx)
 				/* Roll for damage */
 				switch (tmp)
 				{
-					case 0: k = 0; break;
-					case 1: k = randint1(5); break;
-					case 2: k = randint1(5) + 5; break;
-					case 3: k = randint1(20) + 20; break;
-					case 4: k = randint1(50) + 50; break;
-					case 5: k = randint1(100) + 100; break;
-					case 6: k = 300; break;
-					default: k = 500; break;
+					case 0: cut_plus = 0; break;
+					case 1: cut_plus = randint1(5); break;
+					case 2: cut_plus = randint1(5) + 5; break;
+					case 3: cut_plus = randint1(20) + 20; break;
+					case 4: cut_plus = randint1(50) + 50; break;
+					case 5: cut_plus = randint1(100) + 100; break;
+					case 6: cut_plus = 300; break;
+					default: cut_plus = 500; break;
 				}
 
 				/* Apply the cut */
-				if (k) (void)set_cut(p_ptr->cut + k);
+				if (cut_plus) (void)set_cut(p_ptr->cut + cut_plus);
 			}
 
 			/* Handle stun */
 			if (do_stun)
 			{
-				int k = 0;
+				int stun_plus = 0;
 
 				/* Critical hit (zero if non-critical) */
 				tmp = monster_critical(d_dice, d_side, damage);
@@ -1662,18 +1661,18 @@ bool make_attack_normal(int m_idx)
 				/* Roll for damage */
 				switch (tmp)
 				{
-					case 0: k = 0; break;
-					case 1: k = randint1(5); break;
-					case 2: k = randint1(5) + 10; break;
-					case 3: k = randint1(10) + 20; break;
-					case 4: k = randint1(15) + 30; break;
-					case 5: k = randint1(20) + 40; break;
-					case 6: k = 80; break;
-					default: k = 150; break;
+					case 0: stun_plus = 0; break;
+					case 1: stun_plus = randint1(5); break;
+					case 2: stun_plus = randint1(5) + 10; break;
+					case 3: stun_plus = randint1(10) + 20; break;
+					case 4: stun_plus = randint1(15) + 30; break;
+					case 5: stun_plus = randint1(20) + 40; break;
+					case 6: stun_plus = 80; break;
+					default: stun_plus = 150; break;
 				}
 
 				/* Apply the stun */
-				if (k) (void)set_stun(p_ptr->stun + k);
+				if (stun_plus) (void)set_stun(p_ptr->stun + stun_plus);
 			}
 
 			if (explode)
@@ -1693,15 +1692,15 @@ bool make_attack_normal(int m_idx)
 				{
 					if (!(r_ptr->flagsr & RFR_EFF_IM_FIRE_MASK))
 					{
-						int dam = damroll(2, 6);
+						HIT_POINT dam = damroll(2, 6);
 
 						/* Modify the damage */
 						dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-						msg_format("%^s¤ÏÆÍÁ³Ç®¤¯¤Ê¤Ã¤¿¡ª", m_name);
+						msg_format("%^sã¯çªç„¶ç†±ããªã£ãŸï¼", m_name);
 						if (mon_take_hit(m_idx, dam, &fear,
-						    "¤Ï³¥¤Î»³¤Ë¤Ê¤Ã¤¿¡£"))
+						    "ã¯ç°ã®å±±ã«ãªã£ãŸã€‚"))
 #else
 						msg_format("%^s is suddenly very hot!", m_name);
 
@@ -1725,15 +1724,15 @@ bool make_attack_normal(int m_idx)
 				{
 					if (!(r_ptr->flagsr & RFR_EFF_IM_ELEC_MASK))
 					{
-						int dam = damroll(2, 6);
+						HIT_POINT dam = damroll(2, 6);
 
 						/* Modify the damage */
 						dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-						msg_format("%^s¤ÏÅÅ·â¤ò¤¯¤é¤Ã¤¿¡ª", m_name);
+						msg_format("%^sã¯é›»æ’ƒã‚’ãã‚‰ã£ãŸï¼", m_name);
 						if (mon_take_hit(m_idx, dam, &fear,
-						    "¤ÏÇ³¤¨³Ì¤Î»³¤Ë¤Ê¤Ã¤¿¡£"))
+						    "ã¯ç‡ƒãˆæ®»ã®å±±ã«ãªã£ãŸã€‚"))
 #else
 						msg_format("%^s gets zapped!", m_name);
 
@@ -1757,15 +1756,15 @@ bool make_attack_normal(int m_idx)
 				{
 					if (!(r_ptr->flagsr & RFR_EFF_IM_COLD_MASK))
 					{
-						int dam = damroll(2, 6);
+						HIT_POINT dam = damroll(2, 6);
 
 						/* Modify the damage */
 						dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-						msg_format("%^s¤ÏÎäµ¤¤ò¤¯¤é¤Ã¤¿¡ª", m_name);
+						msg_format("%^sã¯å†·æ°—ã‚’ãã‚‰ã£ãŸï¼", m_name);
 						if (mon_take_hit(m_idx, dam, &fear,
-						    "¤ÏÅà¤ê¤Ä¤¤¤¿¡£"))
+						    "ã¯å‡ã‚Šã¤ã„ãŸã€‚"))
 #else
 						msg_format("%^s is very cold!", m_name);
 
@@ -1790,15 +1789,15 @@ bool make_attack_normal(int m_idx)
 				{
 					if (!(r_ptr->flagsr & RFR_EFF_RES_SHAR_MASK))
 					{
-						int dam = damroll(2, 6);
+						HIT_POINT dam = damroll(2, 6);
 
 						/* Modify the damage */
 						dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-						msg_format("%^s¤Ï¶À¤ÎÇËÊÒ¤ò¤¯¤é¤Ã¤¿¡ª", m_name);
+						msg_format("%^sã¯é¡ã®ç ´ç‰‡ã‚’ãã‚‰ã£ãŸï¼", m_name);
 						if (mon_take_hit(m_idx, dam, &fear,
-						    "¤Ï¥º¥¿¥º¥¿¤Ë¤Ê¤Ã¤¿¡£"))
+						    "ã¯ã‚ºã‚¿ã‚ºã‚¿ã«ãªã£ãŸã€‚"))
 #else
 						msg_format("%^s gets zapped!", m_name);
 
@@ -1828,15 +1827,15 @@ bool make_attack_normal(int m_idx)
 					{
 						if (!(r_ptr->flagsr & RFR_RES_ALL))
 						{
-							int dam = damroll(2, 6);
+							HIT_POINT dam = damroll(2, 6);
 
 							/* Modify the damage */
 							dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-							msg_format("%^s¤ÏÀ»¤Ê¤ë¥ª¡¼¥é¤Ç½ı¤Ä¤¤¤¿¡ª", m_name);
+							msg_format("%^sã¯è–ãªã‚‹ã‚ªãƒ¼ãƒ©ã§å‚·ã¤ã„ãŸï¼", m_name);
 							if (mon_take_hit(m_idx, dam, &fear,
-							    "¤ÏÅİ¤ì¤¿¡£"))
+							    "ã¯å€’ã‚ŒãŸã€‚"))
 #else
 							msg_format("%^s is injured by holy power!", m_name);
 
@@ -1862,15 +1861,15 @@ bool make_attack_normal(int m_idx)
 				{
 					if (!(r_ptr->flagsr & RFR_RES_ALL))
 					{
-						int dam = damroll(2, 6);
+						HIT_POINT dam = damroll(2, 6);
 
 						/* Modify the damage */
 						dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-						msg_format("%^s¤¬±Ô¤¤Æ®µ¤¤Î¥ª¡¼¥é¤Ç½ı¤Ä¤¤¤¿¡ª", m_name);
+						msg_format("%^sãŒé‹­ã„é—˜æ°—ã®ã‚ªãƒ¼ãƒ©ã§å‚·ã¤ã„ãŸï¼", m_name);
 						if (mon_take_hit(m_idx, dam, &fear,
-						    "¤ÏÅİ¤ì¤¿¡£"))
+						    "ã¯å€’ã‚ŒãŸã€‚"))
 #else
 						msg_format("%^s is injured by the Force", m_name);
 
@@ -1892,27 +1891,27 @@ bool make_attack_normal(int m_idx)
 
 				if (hex_spelling(HEX_SHADOW_CLOAK) && alive && !p_ptr->is_dead)
 				{
-					int dam = 1;
-					object_type *o_ptr = &inventory[INVEN_RARM];
+					HIT_POINT dam = 1;
+					object_type *o_armed_ptr = &inventory[INVEN_RARM];
 
 					if (!(r_ptr->flagsr & RFR_RES_ALL || r_ptr->flagsr & RFR_RES_DARK))
 					{
-						if (o_ptr->k_idx)
+						if (o_armed_ptr->k_idx)
 						{
-							int basedam = ((o_ptr->dd + p_ptr->to_dd[0]) * (o_ptr->ds + p_ptr->to_ds[0] + 1));
-							dam = basedam / 2 + o_ptr->to_d + p_ptr->to_d[0];
+							int basedam = ((o_armed_ptr->dd + p_ptr->to_dd[0]) * (o_armed_ptr->ds + p_ptr->to_ds[0] + 1));
+							dam = basedam / 2 + o_armed_ptr->to_d + p_ptr->to_d[0];
 						}
 
 						/* Cursed armor makes damages doubled */
-						o_ptr = &inventory[INVEN_BODY];
-						if ((o_ptr->k_idx) && object_is_cursed(o_ptr)) dam *= 2;
+						o_armed_ptr = &inventory[INVEN_BODY];
+						if ((o_armed_ptr->k_idx) && object_is_cursed(o_armed_ptr)) dam *= 2;
 
 						/* Modify the damage */
 						dam = mon_damage_mod(m_ptr, dam, FALSE);
 
 #ifdef JP
-						msg_format("±Æ¤Î¥ª¡¼¥é¤¬%^s¤ËÈ¿·â¤·¤¿¡ª", m_name);
-						if (mon_take_hit(m_idx, dam, &fear, "¤ÏÅİ¤ì¤¿¡£"))
+						msg_format("å½±ã®ã‚ªãƒ¼ãƒ©ãŒ%^sã«åæ’ƒã—ãŸï¼", m_name);
+						if (mon_take_hit(m_idx, dam, &fear, "ã¯å€’ã‚ŒãŸã€‚"))
 #else
 						msg_format("Enveloped shadows attack %^s.", m_name);
 
@@ -1925,7 +1924,7 @@ bool make_attack_normal(int m_idx)
 						else /* monster does not dead */
 						{
 							int j;
-							int flg = PROJECT_STOP | PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL;
+							BIT_FLAGS flg = PROJECT_STOP | PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL;
 							int typ[4][2] = {
 								{ INVEN_HEAD, GF_OLD_CONF },
 								{ INVEN_LARM,  GF_OLD_SLEEP },
@@ -1936,8 +1935,8 @@ bool make_attack_normal(int m_idx)
 							/* Some cursed armours gives an extra effect */
 							for (j = 0; j < 4; j++)
 							{
-								o_ptr = &inventory[typ[j][0]];
-								if ((o_ptr->k_idx) && object_is_cursed(o_ptr) && object_is_armour(o_ptr))
+								o_armed_ptr = &inventory[typ[j][0]];
+								if ((o_armed_ptr->k_idx) && object_is_cursed(o_armed_ptr) && object_is_armour(o_armed_ptr))
 									project(0, 0, m_ptr->fy, m_ptr->fx, (p_ptr->lev * 2), typ[j][1], flg, -1);
 							}
 						}
@@ -1979,10 +1978,10 @@ bool make_attack_normal(int m_idx)
 					/* Message */
 #ifdef JP
 					if (abbreviate)
-					    msg_format("%s¤«¤ï¤·¤¿¡£", (p_ptr->special_attack & ATTACK_SUIKEN) ? "´ñÌ¯¤ÊÆ°¤­¤Ç" : "");
+					    msg_format("%sã‹ã‚ã—ãŸã€‚", (p_ptr->special_attack & ATTACK_SUIKEN) ? "å¥‡å¦™ãªå‹•ãã§" : "");
 					else
-					    msg_format("%s%^s¤Î¹¶·â¤ò¤«¤ï¤·¤¿¡£", (p_ptr->special_attack & ATTACK_SUIKEN) ? "´ñÌ¯¤ÊÆ°¤­¤Ç" : "", m_name);
-					abbreviate = 1;/*£²²óÌÜ°Ê¹ß¤Ï¾ÊÎ¬ */
+					    msg_format("%s%^sã®æ”»æ’ƒã‚’ã‹ã‚ã—ãŸã€‚", (p_ptr->special_attack & ATTACK_SUIKEN) ? "å¥‡å¦™ãªå‹•ãã§" : "", m_name);
+					abbreviate = 1;/*ï¼’å›ç›®ä»¥é™ã¯çœç•¥ */
 #else
 					msg_format("%^s misses you.", m_name);
 #endif
@@ -2011,11 +2010,11 @@ bool make_attack_normal(int m_idx)
 
 		if (p_ptr->riding && damage)
 		{
-			char m_name[80];
-			monster_desc(m_name, &m_list[p_ptr->riding], 0);
+			char m_steed_name[80];
+			monster_desc(m_steed_name, &m_list[p_ptr->riding], 0);
 			if (rakuba((damage > 200) ? 200 : damage, FALSE))
 			{
-				msg_format(_("%^s¤«¤éÍî¤Á¤Æ¤·¤Ş¤Ã¤¿¡ª", "You have fallen from %s."), m_name);
+				msg_format(_("%^sã‹ã‚‰è½ã¡ã¦ã—ã¾ã£ãŸï¼", "You have fallen from %s."), m_steed_name);
 			}
 		}
 
@@ -2032,7 +2031,7 @@ bool make_attack_normal(int m_idx)
 		&& get_damage > 0 && !p_ptr->is_dead)
 	{
 #ifdef JP
-		msg_format("¹¶·â¤¬%s¼«¿È¤ò½ı¤Ä¤±¤¿¡ª", m_name);
+		msg_format("æ”»æ’ƒãŒ%sè‡ªèº«ã‚’å‚·ã¤ã‘ãŸï¼", m_name);
 #else
 		char m_name_self[80];
 
@@ -2047,11 +2046,11 @@ bool make_attack_normal(int m_idx)
 
 	if ((p_ptr->counter || (p_ptr->special_defense & KATA_MUSOU)) && alive && !p_ptr->is_dead && m_ptr->ml && (p_ptr->csp > 7))
 	{
-		char m_name[80];
-		monster_desc(m_name, m_ptr, 0);
+		char m_target_name[80];
+		monster_desc(m_target_name, m_ptr, 0);
 
 		p_ptr->csp -= 7;
-		msg_format(_("%^s¤ËÈ¿·â¤·¤¿¡ª", "Your counterattack to %s!"), m_name);
+		msg_format(_("%^sã«åæ’ƒã—ãŸï¼", "Your counterattack to %s!"), m_target_name);
 		py_attack(m_ptr->fy, m_ptr->fx, HISSATSU_COUNTER);
 		fear = FALSE;
 
@@ -2064,11 +2063,11 @@ bool make_attack_normal(int m_idx)
 	{
 		if (teleport_barrier(m_idx))
 		{
-			msg_print(_("Å¥ËÀ¤Ï¾Ğ¤Ã¤ÆÆ¨¤²...¤è¤¦¤È¤·¤¿¤¬¥Ğ¥ê¥¢¤ËËÉ¤¬¤ì¤¿¡£", "The thief flees laughing...? But magic barrier obstructs it."));
+			msg_print(_("æ³¥æ£’ã¯ç¬‘ã£ã¦é€ƒã’...ã‚ˆã†ã¨ã—ãŸãŒãƒãƒªã‚¢ã«é˜²ãŒã‚ŒãŸã€‚", "The thief flees laughing...? But magic barrier obstructs it."));
 		}
 		else
 		{
-			msg_print(_("Å¥ËÀ¤Ï¾Ğ¤Ã¤ÆÆ¨¤²¤¿¡ª", "The thief flees laughing!"));
+			msg_print(_("æ³¥æ£’ã¯ç¬‘ã£ã¦é€ƒã’ãŸï¼", "The thief flees laughing!"));
 			teleport_away(m_idx, MAX_SIGHT * 2 + 5, 0L);
 		}
 	}
@@ -2083,7 +2082,7 @@ bool make_attack_normal(int m_idx)
 	if (m_ptr->ml && fear && alive && !p_ptr->is_dead)
 	{
 		sound(SOUND_FLEE);
-		msg_format(_("%^s¤Ï¶²Éİ¤ÇÆ¨¤²½Ğ¤·¤¿¡ª", "%^s flees in terror!"), m_name);
+		msg_format(_("%^sã¯ææ€–ã§é€ƒã’å‡ºã—ãŸï¼", "%^s flees in terror!"), m_name);
 	}
 
 	if (p_ptr->special_defense & KATA_IAI)

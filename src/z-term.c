@@ -1,4 +1,4 @@
-/* File: z-term.c */
+ï»¿/* File: z-term.c */
 
 /*
  * Copyright (c) 1997 Ben Harrison
@@ -24,8 +24,8 @@
 #define AF_KANJI2  0x20
 #define AF_KANJIC  0x0f
 /*
- * Á´³ÑÊ¸»úÂĞ±ş¡£
- * Â°À­¤ËÁ´³ÑÊ¸»ú¤Î£±¥Ğ¥¤¥ÈÌÜ¡¢£²¥Ğ¥¤¥ÈÌÜ¤âµ­²±¡£
+ * å…¨è§’æ–‡å­—å¯¾å¿œã€‚
+ * å±æ€§ã«å…¨è§’æ–‡å­—ã®ï¼‘ãƒã‚¤ãƒˆç›®ã€ï¼’ãƒã‚¤ãƒˆç›®ã‚‚è¨˜æ†¶ã€‚
  * By FIRST
  */
 #endif
@@ -535,12 +535,12 @@ void Term_queue_char(int x, int y, byte a, char c, byte ta, char tc)
 	*scr_tcc = tc;
 
 	/* Check for new min/max row info */
-	if (y < Term->y1) Term->y1 = y;
-	if (y > Term->y2) Term->y2 = y;
+	if (y < Term->y1) Term->y1 = (byte_hack)y;
+	if (y > Term->y2) Term->y2 = (byte_hack)y;
 
 	/* Check for new min/max col info for this row */
-	if (x < Term->x1[y]) Term->x1[y] = x;
-	if (x > Term->x2[y]) Term->x2[y] = x;
+	if (x < Term->x1[y]) Term->x1[y] = (byte_hack)x;
+	if (x > Term->x2[y]) Term->x2[y] = (byte_hack)x;
 
 #ifdef JP
 	if (((scrn->a[y][x] & AF_BIGTILE2) == AF_BIGTILE2) ||
@@ -569,15 +569,15 @@ void Term_queue_bigchar(int x, int y, byte a, char c, byte ta, char tc)
 	 * A table which relates each ascii character to a multibyte
 	 * character.
 	 *
-	 * ¡Ö¢£¡×¤ÏÆóÇÜÉıÆ¦Éå¤ÎÆâÉô¥³¡¼¥É¤Ë»ÈÍÑ¡£
+	 * ã€Œâ– ã€ã¯äºŒå€å¹…è±†è…ã®å†…éƒ¨ã‚³ãƒ¼ãƒ‰ã«ä½¿ç”¨ã€‚
 	 */
 	static char ascii_to_zenkaku[] =
-		"¡¡¡ª¡É¡ô¡ğ¡ó¡õ¡Ç¡Ê¡Ë¡ö¡Ü¡¤¡¼¡¥¡¿"
-		"£°£±£²£³£´£µ£¶£·£¸£¹¡§¡¨¡ã¡á¡ä¡©"
-		"¡÷£Á£Â£Ã£Ä£Å£Æ£Ç£È£É£Ê£Ë£Ì£Í£Î£Ï"
-		"£Ğ£Ñ£Ò£Ó£Ô£Õ£Ö£×£Ø£Ù£Ú¡Î¡À¡Ï¡°¡²"
-		"¡Æ£á£â£ã£ä£å£æ£ç£è£é£ê£ë£ì£í£î£ï"
-		"£ğ£ñ£ò£ó£ô£õ£ö£÷£ø£ù£ú¡Ğ¡Ã¡Ñ¡¼¢£";
+		"ã€€ï¼â€ï¼ƒï¼„ï¼…ï¼†â€™ï¼ˆï¼‰ï¼Šï¼‹ï¼Œï¼ï¼ï¼"
+		"ï¼ï¼‘ï¼’ï¼“ï¼”ï¼•ï¼–ï¼—ï¼˜ï¼™ï¼šï¼›ï¼œï¼ï¼ï¼Ÿ"
+		"ï¼ ï¼¡ï¼¢ï¼£ï¼¤ï¼¥ï¼¦ï¼§ï¼¨ï¼©ï¼ªï¼«ï¼¬ï¼­ï¼®ï¼¯"
+		"ï¼°ï¼±ï¼²ï¼³ï¼´ï¼µï¼¶ï¼·ï¼¸ï¼¹ï¼ºï¼»ï¼¼ï¼½ï¼¾ï¼¿"
+		"â€˜ï½ï½‚ï½ƒï½„ï½…ï½†ï½‡ï½ˆï½‰ï½Šï½‹ï½Œï½ï½ï½"
+		"ï½ï½‘ï½’ï½“ï½”ï½•ï½–ï½—ï½˜ï½™ï½šï½›ï½œï½ï½â– ";
 #endif
 
 	byte a2;
@@ -695,12 +695,12 @@ void Term_queue_line(int x, int y, int n, byte *a, char *c, byte *ta, char *tc)
 	if (x1 >= 0)
 	{
 		/* Check for new min/max row info */
-		if (y < Term->y1) Term->y1 = y;
-		if (y > Term->y2) Term->y2 = y;
+		if (y < Term->y1) Term->y1 = (byte_hack)y;
+		if (y > Term->y2) Term->y2 = (byte_hack)y;
 
 		/* Check for new min/max col info in this row */
-		if (x1 < Term->x1[y]) Term->x1[y] = x1;
-		if (x2 > Term->x2[y]) Term->x2[y] = x2;
+		if (x1 < Term->x1[y]) Term->x1[y] = (byte_hack)x1;
+		if (x2 > Term->x2[y]) Term->x2[y] = (byte_hack)x2;
 	}
 }
 
@@ -733,12 +733,12 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
 
 
 #ifdef JP
-	/* É½¼¨Ê¸»ú¤Ê¤· */
+	/* è¡¨ç¤ºæ–‡å­—ãªã— */
 	if (n == 0 || *s == 0) return;
 	/*
-	 * Á´³ÑÊ¸»ú¤Î±¦È¾Ê¬¤«¤éÊ¸»ú¤òÉ½¼¨¤¹¤ë¾ì¹ç¡¢
-	 * ½Å¤Ê¤Ã¤¿Ê¸»ú¤Îº¸ÉôÊ¬¤ò¾Ãµî¡£
-	 * É½¼¨³«»Ï°ÌÃÖ¤¬º¸Ã¼¤Ç¤Ê¤¤¤È²¾Äê¡£
+	 * å…¨è§’æ–‡å­—ã®å³åŠåˆ†ã‹ã‚‰æ–‡å­—ã‚’è¡¨ç¤ºã™ã‚‹å ´åˆã€
+	 * é‡ãªã£ãŸæ–‡å­—ã®å·¦éƒ¨åˆ†ã‚’æ¶ˆå»ã€‚
+	 * è¡¨ç¤ºé–‹å§‹ä½ç½®ãŒå·¦ç«¯ã§ãªã„ã¨ä»®å®šã€‚
 	 */
 	if ((scr_aa[x] & AF_KANJI2) && (scr_aa[x] & AF_BIGTILE2) != AF_BIGTILE2)
 	{
@@ -751,8 +751,8 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
 	for ( ; n; x++, s++, n--)
 	{
 #ifdef JP
-		/* ÆÃ¼ìÊ¸»ú¤È¤·¤ÆMSB¤¬Î©¤Ã¤Æ¤¤¤ë²ÄÇ½À­¤¬¤¢¤ë */
-		/* ¤½¤Î¾ì¹çattr¤ÎMSB¤âÎ©¤Ã¤Æ¤¤¤ë¤Î¤Ç¤³¤ì¤Ç¼±ÊÌ¤¹¤ë */
+		/* ç‰¹æ®Šæ–‡å­—ã¨ã—ã¦MSBãŒç«‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ */
+		/* ãã®å ´åˆattrã®MSBã‚‚ç«‹ã£ã¦ã„ã‚‹ã®ã§ã“ã‚Œã§è­˜åˆ¥ã™ã‚‹ */
 /* check */
 		if (!(a & AF_TILE1) && iskanji(*s))
 		{
@@ -807,9 +807,9 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
 
 #ifdef JP
 	/*
-	 * Á´³ÑÊ¸»ú¤Îº¸È¾Ê¬¤ÇÉ½¼¨¤ò½ªÎ»¤¹¤ë¾ì¹ç¡¢
-	 * ½Å¤Ê¤Ã¤¿Ê¸»ú¤Î±¦ÉôÊ¬¤ò¾Ãµî¡£
-	 * (¾ò·ïÄÉ²Ã¡§¥¿¥¤¥ë¤Î1Ê¸»úÌÜ¤Ç¤Ê¤¤»ö¤ò³Î¤«¤á¤ë¤è¤¦¤Ë¡£)
+	 * å…¨è§’æ–‡å­—ã®å·¦åŠåˆ†ã§è¡¨ç¤ºã‚’çµ‚äº†ã™ã‚‹å ´åˆã€
+	 * é‡ãªã£ãŸæ–‡å­—ã®å³éƒ¨åˆ†ã‚’æ¶ˆå»ã€‚
+	 * (æ¡ä»¶è¿½åŠ ï¼šã‚¿ã‚¤ãƒ«ã®1æ–‡å­—ç›®ã§ãªã„äº‹ã‚’ç¢ºã‹ã‚ã‚‹ã‚ˆã†ã«ã€‚)
 	 */
 	{
 
@@ -828,12 +828,12 @@ void Term_queue_chars(int x, int y, int n, byte a, cptr s)
 	if (x1 >= 0)
 	{
 		/* Check for new min/max row info */
-		if (y < Term->y1) Term->y1 = y;
-		if (y > Term->y2) Term->y2 = y;
+		if (y < Term->y1) Term->y1 = (byte_hack)y;
+		if (y > Term->y2) Term->y2 = (byte_hack)y;
 
 		/* Check for new min/max col info in this row */
-		if (x1 < Term->x1[y]) Term->x1[y] = x1;
-		if (x2 > Term->x2[y]) Term->x2[y] = x2;
+		if (x1 < Term->x1[y]) Term->x1[y] = (byte_hack)x1;
+		if (x2 > Term->x2[y]) Term->x2[y] = (byte_hack)x2;
 	}
 }
 
@@ -883,7 +883,7 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
 	char nc;
 
 #ifdef JP
-	/* Á´³ÑÊ¸»ú¤Î£²¥Ğ¥¤¥ÈÌÜ¤«¤É¤¦¤« */
+	/* å…¨è§’æ–‡å­—ã®ï¼’ãƒã‚¤ãƒˆç›®ã‹ã©ã†ã‹ */
 	int kanji = 0;
 #endif
 	/* Scan "modified" columns */
@@ -900,15 +900,15 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
 #ifdef JP
 		if (kanji)
 		{
-			/* Á´³ÑÊ¸»ú£²¥Ğ¥¤¥ÈÌÜ */
+			/* å…¨è§’æ–‡å­—ï¼’ãƒã‚¤ãƒˆç›® */
 			kanji = 0;
 			old_aa[x] = na;
 			old_cc[x] = nc;
 			fn++;
 			continue;
 		}
-		/* ÆÃ¼ìÊ¸»ú¤È¤·¤ÆMSB¤¬Î©¤Ã¤Æ¤¤¤ë²ÄÇ½À­¤¬¤¢¤ë */
-		/* ¤½¤Î¾ì¹çattr¤ÎMSB¤âÎ©¤Ã¤Æ¤¤¤ë¤Î¤Ç¤³¤ì¤Ç¼±ÊÌ¤¹¤ë */
+		/* ç‰¹æ®Šæ–‡å­—ã¨ã—ã¦MSBãŒç«‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ */
+		/* ãã®å ´åˆattrã®MSBã‚‚ç«‹ã£ã¦ã„ã‚‹ã®ã§ã“ã‚Œã§è­˜åˆ¥ã™ã‚‹ */
 /* check */
 		kanji = (iskanji(nc) && !(na & AF_TILE1));
 #endif
@@ -942,7 +942,7 @@ static void Term_fresh_row_pict(int y, int x1, int x2)
 			}
 
 #ifdef JP
-			/* Á´³ÑÊ¸»ú¤Î»ş¤ÏºÆ³«°ÌÃÖ¤Ï¡Ü£± */
+			/* å…¨è§’æ–‡å­—ã®æ™‚ã¯å†é–‹ä½ç½®ã¯ï¼‹ï¼‘ */
 			if(kanji)
 			{
 				x++;
@@ -1020,7 +1020,7 @@ static void Term_fresh_row_both(int y, int x1, int x2)
 	char nc;
 
 #ifdef JP
-	/* Á´³ÑÊ¸»ú¤Î£²¥Ğ¥¤¥ÈÌÜ¤«¤É¤¦¤« */
+	/* å…¨è§’æ–‡å­—ã®ï¼’ãƒã‚¤ãƒˆç›®ã‹ã©ã†ã‹ */
 	int kanji = 0;
 #endif
 	/* Scan "modified" columns */
@@ -1037,15 +1037,15 @@ static void Term_fresh_row_both(int y, int x1, int x2)
 #ifdef JP
 		if (kanji)
 		{
-			/* Á´³ÑÊ¸»ú£²¥Ğ¥¤¥ÈÌÜ */
+			/* å…¨è§’æ–‡å­—ï¼’ãƒã‚¤ãƒˆç›® */
 			kanji = 0;
 			old_aa[x] = na;
 			old_cc[x] = nc;
 			fn++;
 			continue;
 		}
-		/* ÆÃ¼ìÊ¸»ú¤È¤·¤ÆMSB¤¬Î©¤Ã¤Æ¤¤¤ë²ÄÇ½À­¤¬¤¢¤ë */
-		/* ¤½¤Î¾ì¹çattr¤ÎMSB¤âÎ©¤Ã¤Æ¤¤¤ë¤Î¤Ç¤³¤ì¤Ç¼±ÊÌ¤¹¤ë */
+		/* ç‰¹æ®Šæ–‡å­—ã¨ã—ã¦MSBãŒç«‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ */
+		/* ãã®å ´åˆattrã®MSBã‚‚ç«‹ã£ã¦ã„ã‚‹ã®ã§ã“ã‚Œã§è­˜åˆ¥ã™ã‚‹ */
 /* check */
 /*		kanji = (iskanji(nc));  */
 		kanji = (iskanji(nc) && !(na & AF_TILE1));
@@ -1088,7 +1088,7 @@ static void Term_fresh_row_both(int y, int x1, int x2)
 			}
 
 #ifdef JP
-			/* Á´³ÑÊ¸»ú¤Î»ş¤ÏºÆ³«°ÌÃÖ¤Ï¡Ü£± */
+			/* å…¨è§’æ–‡å­—ã®æ™‚ã¯å†é–‹ä½ç½®ã¯ï¼‹ï¼‘ */
 			if(kanji)
 			{
 				x++;
@@ -1231,7 +1231,7 @@ static void Term_fresh_row_text(int y, int x1, int x2)
 	char nc;
 
 #ifdef JP
-	/* Á´³ÑÊ¸»ú¤Î£²¥Ğ¥¤¥ÈÌÜ¤«¤É¤¦¤« */
+	/* å…¨è§’æ–‡å­—ã®ï¼’ãƒã‚¤ãƒˆç›®ã‹ã©ã†ã‹ */
 	int kanji = 0;
 
 	for (x = 0; x < x1; x++)
@@ -1260,15 +1260,15 @@ static void Term_fresh_row_text(int y, int x1, int x2)
 #ifdef JP
 		if (kanji)
 		{
-			/* Á´³ÑÊ¸»ú£²¥Ğ¥¤¥ÈÌÜ */
+			/* å…¨è§’æ–‡å­—ï¼’ãƒã‚¤ãƒˆç›® */
 			kanji = 0;
 			old_aa[x] = na;
 			old_cc[x] = nc;
 			fn++;
 			continue;
 		}
-		/* ÆÃ¼ìÊ¸»ú¤È¤·¤ÆMSB¤¬Î©¤Ã¤Æ¤¤¤ë²ÄÇ½À­¤¬¤¢¤ë */
-		/* ¤½¤Î¾ì¹çattr¤ÎMSB¤âÎ©¤Ã¤Æ¤¤¤ë¤Î¤Ç¤³¤ì¤Ç¼±ÊÌ¤¹¤ë */
+		/* ç‰¹æ®Šæ–‡å­—ã¨ã—ã¦MSBãŒç«‹ã£ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ */
+		/* ãã®å ´åˆattrã®MSBã‚‚ç«‹ã£ã¦ã„ã‚‹ã®ã§ã“ã‚Œã§è­˜åˆ¥ã™ã‚‹ */
 /* check */
 		kanji = (iskanji(nc) && !(na & AF_TILE1));
 #endif
@@ -1302,7 +1302,7 @@ static void Term_fresh_row_text(int y, int x1, int x2)
 			}
 
 #ifdef JP
-			/* Á´³ÑÊ¸»ú¤Î»ş¤ÏºÆ³«°ÌÃÖ¤Ï¡Ü£± */
+			/* å…¨è§’æ–‡å­—ã®æ™‚ã¯å†é–‹ä½ç½®ã¯ï¼‹ï¼‘ */
 			if(kanji)
 			{
 				x++;
@@ -1612,9 +1612,9 @@ errr Term_fresh(void)
 			
 			/*
 			 * Hack -- restore the actual character
-			 * ¸µ¤ÎÊ¸»ú¤ÎÉÁ²èÈÏ°Ï¤¬¥«¡¼¥½¥ë¤è¤ê¾®¤µ¤¤¤È¡¢
-			 * ¾å½ñ¤­¤µ¤ì¤Ê¤«¤Ã¤¿ÉôÊ¬¤¬¥´¥ß¤È¤·¤Æ»Ä¤ë¡£
-			 * wipe_hook ¤Ç¥«¡¼¥½¥ë¤ò¾Ãµî¤·¤Æ text_hook ¤Ç½ñ¤­Ä¾¤¹¡£
+			 * å…ƒã®æ–‡å­—ã®æç”»ç¯„å›²ãŒã‚«ãƒ¼ã‚½ãƒ«ã‚ˆã‚Šå°ã•ã„ã¨ã€
+			 * ä¸Šæ›¸ãã•ã‚Œãªã‹ã£ãŸéƒ¨åˆ†ãŒã‚´ãƒŸã¨ã—ã¦æ®‹ã‚‹ã€‚
+			 * wipe_hook ã§ã‚«ãƒ¼ã‚½ãƒ«ã‚’æ¶ˆå»ã—ã¦ text_hook ã§æ›¸ãç›´ã™ã€‚
 			 */
  			else if (old_aa[tx] || Term->always_text)
  			{
@@ -1692,7 +1692,7 @@ errr Term_fresh(void)
 				}
 
 				/* This row is all done */
-				Term->x1[y] = w;
+				Term->x1[y] = (byte_hack)w;
 				Term->x2[y] = 0;
 
 				/* Hack -- Flush that row (if allowed) */
@@ -1701,7 +1701,7 @@ errr Term_fresh(void)
 		}
 
 		/* No rows are invalid */
-		Term->y1 = h;
+		Term->y1 = (byte_hack)h;
 		Term->y2 = 0;
 	}
 
@@ -1796,7 +1796,7 @@ errr Term_set_cursor(int v)
 	if (Term->scr->cv == v) return (1);
 
 	/* Change */
-	Term->scr->cv = v;
+	Term->scr->cv = (bool_hack)v;
 
 	/* Success */
 	return (0);
@@ -1818,8 +1818,8 @@ errr Term_gotoxy(int x, int y)
 	if ((y < 0) || (y >= h)) return (-1);
 
 	/* Remember the cursor */
-	Term->scr->cx = x;
-	Term->scr->cy = y;
+	Term->scr->cx = (byte_hack)x;
+	Term->scr->cy = (byte_hack)y;
 
 	/* The cursor is not useless */
 	Term->scr->cu = 0;
@@ -1975,7 +1975,7 @@ errr Term_addstr(int n, byte a, cptr s)
 	Term_queue_chars(Term->scr->cx, Term->scr->cy, n, a, s);
 
 	/* Advance the cursor */
-	Term->scr->cx += n;
+	Term->scr->cx += (byte_hack)n;
 
 	/* Hack -- Notice "Useless" cursor */
 	if (res) Term->scr->cu = 1;
@@ -2090,8 +2090,8 @@ errr Term_erase(int x, int y, int n)
 
 #ifdef JP
 	/*
-	 * Á´³ÑÊ¸»ú¤Î±¦È¾Ê¬¤«¤éÊ¸»ú¤òÉ½¼¨¤¹¤ë¾ì¹ç¡¢
-	 * ½Å¤Ê¤Ã¤¿Ê¸»ú¤Îº¸ÉôÊ¬¤ò¾Ãµî¡£
+	 * å…¨è§’æ–‡å­—ã®å³åŠåˆ†ã‹ã‚‰æ–‡å­—ã‚’è¡¨ç¤ºã™ã‚‹å ´åˆã€
+	 * é‡ãªã£ãŸæ–‡å­—ã®å·¦éƒ¨åˆ†ã‚’æ¶ˆå»ã€‚
 	 */
 	if (n > 0 && (((scr_aa[x] & AF_KANJI2) && !(scr_aa[x] & AF_TILE1))
 		      || (scr_aa[x] & AF_BIGTILE2) == AF_BIGTILE2))
@@ -2114,18 +2114,18 @@ errr Term_erase(int x, int y, int n)
 
 #ifdef JP
 		/*
-		 * Á´³ÑÊ¸»ú¤Îº¸È¾Ê¬¤ÇÉ½¼¨¤ò½ªÎ»¤¹¤ë¾ì¹ç¡¢
-		 * ½Å¤Ê¤Ã¤¿Ê¸»ú¤Î±¦ÉôÊ¬¤ò¾Ãµî¡£
+		 * å…¨è§’æ–‡å­—ã®å·¦åŠåˆ†ã§è¡¨ç¤ºã‚’çµ‚äº†ã™ã‚‹å ´åˆã€
+		 * é‡ãªã£ãŸæ–‡å­—ã®å³éƒ¨åˆ†ã‚’æ¶ˆå»ã€‚
 		 *
 		 * 2001/04/29 -- Habu
-		 * ¹Ô¤Î±¦Ã¼¤Î¾ì¹ç¤Ï¤³¤Î½èÍı¤ò¤·¤Ê¤¤¤è¤¦¤Ë½¤Àµ¡£
+		 * è¡Œã®å³ç«¯ã®å ´åˆã¯ã“ã®å‡¦ç†ã‚’ã—ãªã„ã‚ˆã†ã«ä¿®æ­£ã€‚
 		 */
 		if ((oa & AF_KANJI1) && (i + 1) == n && x != w - 1)
 			n++;
 #endif
 		/* Save the "literal" information */
-		scr_aa[x] = na;
-		scr_cc[x] = nc;
+		scr_aa[x] = (byte_hack)na;
+		scr_cc[x] = (char)nc;
 
 		scr_taa[x] = 0;
 		scr_tcc[x] = 0;
@@ -2141,12 +2141,12 @@ errr Term_erase(int x, int y, int n)
 	if (x1 >= 0)
 	{
 		/* Check for new min/max row info */
-		if (y < Term->y1) Term->y1 = y;
-		if (y > Term->y2) Term->y2 = y;
+		if (y < Term->y1) Term->y1 = (byte_hack)y;
+		if (y > Term->y2) Term->y2 = (byte_hack)y;
 
 		/* Check for new min/max col info in this row */
-		if (x1 < Term->x1[y]) Term->x1[y] = x1;
-		if (x2 > Term->x2[y]) Term->x2[y] = x2;
+		if (x1 < Term->x1[y]) Term->x1[y] = (byte_hack)x1;
+		if (x2 > Term->x2[y]) Term->x2[y] = (byte_hack)x2;
 	}
 
 	/* Success */
@@ -2246,8 +2246,8 @@ errr Term_redraw_section(int x1, int y1, int x2, int y2)
 	if (x1 < 0) x1 = 0;
 
 	/* Set y limits */
-	Term->y1 = y1;
-	Term->y2 = y2;
+	Term->y1 = (byte_hack)y1;
+	Term->y2 = (byte_hack)y2;
 
 	/* Set the x limits */
 	for (i = Term->y1; i <= Term->y2; i++)
@@ -2266,8 +2266,8 @@ errr Term_redraw_section(int x1, int y1, int x2, int y2)
 			if (Term->scr->a[i][x2j] & AF_KANJI1) x2j++;
 		}
    
-		Term->x1[i] = x1j;
-		Term->x2[i] = x2j;
+		Term->x1[i] = (byte_hack)x1j;
+		Term->x2[i] = (byte_hack)x2j;
    
 		c_ptr = Term->old->c[i];
    
@@ -2320,7 +2320,7 @@ errr Term_get_cursor(int *v)
 /*
  * Extract the current window size
  */
-errr Term_get_size(int *w, int *h)
+errr Term_get_size(TERM_POSITION *w, TERM_POSITION *h)
 {
 	/* Access the cursor */
 	(*w) = Term->wid;
@@ -2401,7 +2401,7 @@ errr Term_keypress(int k)
 	if (!k) return (-1);
 
 	/* Store the char, advance the queue */
-	Term->key_queue[Term->key_head++] = k;
+	Term->key_queue[Term->key_head++] = (char)k;
 
 	/* Circular queue, handle wrap */
 	if (Term->key_head == Term->key_size) Term->key_head = 0;
@@ -2431,7 +2431,7 @@ errr Term_key_push(int k)
 	if (Term->key_tail == 0) Term->key_tail = Term->key_size;
 
 	/* Back up, Store the char */
-	Term->key_queue[--Term->key_tail] = k;
+	Term->key_queue[--Term->key_tail] = (char)k;
 
 	/* Success (unless overflow) */
 	if (Term->key_head != Term->key_tail) return (0);
@@ -2782,8 +2782,8 @@ errr Term_resize(int w, int h)
 	}
 
 	/* Save new size */
-	Term->wid = w;
-	Term->hgt = h;
+	Term->wid = (byte_hack)w;
+	Term->hgt = (byte_hack)h;
 
 	/* Force "total erase" */
 	Term->total_erase = TRUE;
@@ -2940,15 +2940,15 @@ errr term_init(term *t, int w, int h, int k)
 	t->key_head = t->key_tail = 0;
 
 	/* Determine the input queue size */
-	t->key_size = k;
+	t->key_size = (u16b)k;
 
 	/* Allocate the input queue */
 	C_MAKE(t->key_queue, t->key_size, char);
 
 
 	/* Save the size */
-	t->wid = w;
-	t->hgt = h;
+	t->wid = (byte_hack)w;
+	t->hgt = (byte_hack)h;
 
 	/* Allocate change arrays */
 	C_MAKE(t->x1, h, byte);

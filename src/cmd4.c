@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file cmd4.c
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤Ë´Ø¤¹¤ë¥³¥Ş¥ó¥É¤Î¼ÂÁõ / Interface commands
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã«é–¢ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®å®Ÿè£… / Interface commands
  * @date 2014/01/02
  * @author
  * <pre>
@@ -42,6 +42,7 @@
 #include "angband.h"
 
 
+
 /*
  */
 
@@ -60,9 +61,9 @@ static int auto_dump_line_num;
 
 
 /*!
- * @brief prf½ĞÎÏÆâÍÆ¤ò¾Ãµî¤¹¤ë /
+ * @brief prfå‡ºåŠ›å†…å®¹ã‚’æ¶ˆå»ã™ã‚‹ /
  * Remove old lines automatically generated before.
- * @param orig_file ¾Ãµî¤ò¹Ô¤¦¥Õ¥¡¥¤¥ëÌ¾
+ * @param orig_file æ¶ˆå»ã‚’è¡Œã†ãƒ•ã‚¡ã‚¤ãƒ«å
  */
 static void remove_auto_dump(cptr orig_file)
 {
@@ -95,7 +96,7 @@ static void remove_auto_dump(cptr orig_file)
 
 	if (!tmp_fff)
 	{
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), tmp_file);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), tmp_file);
 	    msg_print(NULL);
 	    return;
 	}
@@ -222,9 +223,9 @@ static void remove_auto_dump(cptr orig_file)
 
 
 /*!
- * @brief prf¥Õ¥¡¥¤¥ë¤Î¥Õ¥©¡¼¥Ş¥Ã¥È¤Ë½¾¤Ã¤¿ÆâÍÆ¤ò½ĞÎÏ¤¹¤ë /
+ * @brief prfãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«å¾“ã£ãŸå†…å®¹ã‚’å‡ºåŠ›ã™ã‚‹ /
  * Dump a formatted line, using "vstrnfmt()".
- * @param fmt ½ĞÎÏÆâÍÆ
+ * @param fmt å‡ºåŠ›å†…å®¹
  */
 static void auto_dump_printf(cptr fmt, ...)
 {
@@ -254,11 +255,11 @@ static void auto_dump_printf(cptr fmt, ...)
 
 
 /*!
- * @brief prf¥Õ¥¡¥¤¥ë¤ò¥Õ¥¡¥¤¥ë¥ª¡¼¥×¥ó¤¹¤ë /
+ * @brief prfãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³ã™ã‚‹ /
  * Open file to append auto dump.
- * @param buf ¥Õ¥¡¥¤¥ëÌ¾
- * @param mark ½ĞÎÏ¤¹¤ë¥Ø¥Ã¥À¥Ş¡¼¥¯
- * @return ¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤ò¼èÆÀ¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹
+ * @param buf ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param mark å‡ºåŠ›ã™ã‚‹ãƒ˜ãƒƒãƒ€ãƒãƒ¼ã‚¯
+ * @return ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—ã§ããŸã‚‰TRUEã‚’è¿”ã™
  */
 static bool open_auto_dump(cptr buf, cptr mark)
 {
@@ -279,7 +280,7 @@ static bool open_auto_dump(cptr buf, cptr mark)
 
 	/* Failure */
 	if (!auto_dump_stream) {
-		msg_format(_("%s ¤ò³«¤¯¤³¤È¤¬¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to open %s."), buf);
+		msg_format(_("%s ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to open %s."), buf);
 		msg_print(NULL);
 
 		/* Failed */
@@ -292,18 +293,18 @@ static bool open_auto_dump(cptr buf, cptr mark)
 	/* Initialize counter */
 	auto_dump_line_num = 0;
 
-	auto_dump_printf(_("# *·Ù¹ğ!!* °Ê¹ß¤Î¹Ô¤Ï¼«Æ°À¸À®¤µ¤ì¤¿¤â¤Î¤Ç¤¹¡£\n",
+	auto_dump_printf(_("# *è­¦å‘Š!!* ä»¥é™ã®è¡Œã¯è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸã‚‚ã®ã§ã™ã€‚\n",
 					   "# *Warning!*  The lines below are an automatic dump.\n"));
-	auto_dump_printf(_("# *·Ù¹ğ!!* ¸å¤Ç¼«Æ°Åª¤Ëºï½ü¤µ¤ì¤ë¤Î¤ÇÊÔ½¸¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£\n", 
+	auto_dump_printf(_("# *è­¦å‘Š!!* å¾Œã§è‡ªå‹•çš„ã«å‰Šé™¤ã•ã‚Œã‚‹ã®ã§ç·¨é›†ã—ãªã„ã§ãã ã•ã„ã€‚\n", 
 					   "# Don't edit them; changes will be deleted and replaced automatically.\n"));
 	/* Success */
 	return TRUE;
 }
 
 /*!
- * @brief prf¥Õ¥¡¥¤¥ë¤ò¥Õ¥¡¥¤¥ë¥¯¥í¡¼¥º¤¹¤ë /
+ * @brief prfãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚ºã™ã‚‹ /
  * Append foot part and close auto dump.
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void close_auto_dump(void)
 {
@@ -312,9 +313,9 @@ static void close_auto_dump(void)
 	/* Prepare a footer mark string */
 	sprintf(footer_mark_str, auto_dump_footer, auto_dump_mark);
 
-	auto_dump_printf(_("# *·Ù¹ğ!!* °Ê¹ß¤Î¹Ô¤Ï¼«Æ°À¸À®¤µ¤ì¤¿¤â¤Î¤Ç¤¹¡£\n",
+	auto_dump_printf(_("# *è­¦å‘Š!!* ä»¥é™ã®è¡Œã¯è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸã‚‚ã®ã§ã™ã€‚\n",
 					   "# *Warning!*  The lines below are an automatic dump.\n"));
-	auto_dump_printf(_("# *·Ù¹ğ!!* ¸å¤Ç¼«Æ°Åª¤Ëºï½ü¤µ¤ì¤ë¤Î¤ÇÊÔ½¸¤·¤Ê¤¤¤Ç¤¯¤À¤µ¤¤¡£\n", 
+	auto_dump_printf(_("# *è­¦å‘Š!!* å¾Œã§è‡ªå‹•çš„ã«å‰Šé™¤ã•ã‚Œã‚‹ã®ã§ç·¨é›†ã—ãªã„ã§ãã ã•ã„ã€‚\n", 
 					   "# Don't edit them; changes will be deleted and replaced automatically.\n"));
 	/* End of dump */
 	fprintf(auto_dump_stream, "%s (%d)\n", footer_mark_str, auto_dump_line_num);
@@ -352,12 +353,12 @@ cptr get_ordinal_number_suffix(int num)
 
 
 /*!
- * @brief Æüµ­¤Ë¥á¥Ã¥»¡¼¥¸¤òÄÉ²Ã¤¹¤ë /
+ * @brief æ—¥è¨˜ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿½åŠ ã™ã‚‹ /
  * Take note to the diary.
- * @param type Æüµ­ÆâÍÆ¤ÎID
- * @param num Æüµ­ÆâÍÆ¤ÎID¤Ë±ş¤¸¤¿¿ôÃÍ
- * @param note Æüµ­ÆâÍÆ¤ÎID¤Ë±ş¤¸¤¿Ê¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼ID
+ * @param type æ—¥è¨˜å†…å®¹ã®ID
+ * @param num æ—¥è¨˜å†…å®¹ã®IDã«å¿œã˜ãŸæ•°å€¤
+ * @param note æ—¥è¨˜å†…å®¹ã®IDã«å¿œã˜ãŸæ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ID
  */
 errr do_cmd_write_nikki(int type, int num, cptr note)
 {
@@ -382,7 +383,7 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 	    type == NIKKI_RAND_QUEST_F ||
 	    type == NIKKI_TO_QUEST)
 	{
-		int old_quest;
+		IDX old_quest;
 
 		old_quest = p_ptr->inside_quest;
 		p_ptr->inside_quest = (quest[num].type == QUEST_TYPE_RANDOM) ? 0 : num;
@@ -410,7 +411,7 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 	/* Failure */
 	if (!fff)
 	{
-		msg_format(_("%s ¤ò³«¤¯¤³¤È¤¬¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£¥×¥ì¥¤µ­Ï¿¤ò°ì»şÄä»ß¤·¤Ş¤¹¡£", "Failed to open %s. Play-Record is disabled temporally."), buf);
+		msg_format(_("%s ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ãƒ—ãƒ¬ã‚¤è¨˜éŒ²ã‚’ä¸€æ™‚åœæ­¢ã—ã¾ã™ã€‚", "Failed to open %s. Play-Record is disabled temporally."), buf);
 		msg_format(NULL);
 		disable_nikki=TRUE;
 		return (-1);
@@ -421,18 +422,18 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 	if (write_level)
 	{
 		if (p_ptr->inside_arena)
-			note_level = _("¥¢¥ê¡¼¥Ê:", "Arane:");
+			note_level = _("ã‚¢ãƒªãƒ¼ãƒŠ:", "Arane:");
 		else if (!dun_level)
-			note_level = _("ÃÏ¾å:", "Surface:");
+			note_level = _("åœ°ä¸Š:", "Surface:");
 		else if (q_idx && (is_fixed_quest_idx(q_idx)
 		         && !((q_idx == QUEST_OBERON) || (q_idx == QUEST_SERPENT))))
-			note_level = _("¥¯¥¨¥¹¥È:", "Quest:");
+			note_level = _("ã‚¯ã‚¨ã‚¹ãƒˆ:", "Quest:");
 		else
 		{
 #ifdef JP
-			sprintf(note_level_buf, "%d³¬(%s):", dun_level, d_name+d_info[dungeon_type].name);
+			sprintf(note_level_buf, "%déš(%s):", (int)dun_level, d_name+d_info[dungeon_type].name);
 #else
-			sprintf(note_level_buf, "%s L%d:", d_name+d_info[dungeon_type].name, dun_level);
+			sprintf(note_level_buf, "%s L%d:", d_name+d_info[dungeon_type].name, (int)dun_level);
 #endif
 			note_level = note_level_buf;
 		}
@@ -442,8 +443,8 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 	{
 		case NIKKI_HIGAWARI:
 		{
-			if (day < MAX_DAYS) fprintf(fff, _("%dÆüÌÜ\n", "Day %d\n"), day);
-			else fputs(_("*****ÆüÌÜ\n", "Day *****\n"), fff);
+			if (day < MAX_DAYS) fprintf(fff, _("%dæ—¥ç›®\n", "Day %d\n"), day);
+			else fputs(_("*****æ—¥ç›®\n", "Day *****\n"), fff);
 			do_level = FALSE;
 			break;
 		}
@@ -460,25 +461,30 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 		}
 		case NIKKI_ART:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s¤òÈ¯¸«¤·¤¿¡£\n", " %2d:%02d %20s discovered %s.\n"), hour, min, note_level, note);
+			fprintf(fff, _(" %2d:%02d %20s %sã‚’ç™ºè¦‹ã—ãŸã€‚\n", " %2d:%02d %20s discovered %s.\n"), hour, min, note_level, note);
+			break;
+		}
+		case NIKKI_ART_SCROLL:
+		{
+			fprintf(fff, _(" %2d:%02d %20s å·»ç‰©ã«ã‚ˆã£ã¦%sã‚’ç”Ÿæˆã—ãŸã€‚\n", " %2d:%02d %20s created %s by scroll.\n"), hour, min, note_level, note);
 			break;
 		}
 		case NIKKI_UNIQUE:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s¤òÅİ¤·¤¿¡£\n", " %2d:%02d %20s defeated %s.\n"), hour, min, note_level, note);
+			fprintf(fff, _(" %2d:%02d %20s %sã‚’å€’ã—ãŸã€‚\n", " %2d:%02d %20s defeated %s.\n"), hour, min, note_level, note);
 			break;
 		}
 		case NIKKI_FIX_QUEST_C:
 		{
 			if (quest[num].flags & QUEST_FLAG_SILENT) break;
-			fprintf(fff, _(" %2d:%02d %20s ¥¯¥¨¥¹¥È¡Ö%s¡×¤òÃ£À®¤·¤¿¡£\n",
+			fprintf(fff, _(" %2d:%02d %20s ã‚¯ã‚¨ã‚¹ãƒˆã€Œ%sã€ã‚’é”æˆã—ãŸã€‚\n",
 						   " %2d:%02d %20s completed quest '%s'.\n"), hour, min, note_level, quest[num].name);
 			break;
 		}
 		case NIKKI_FIX_QUEST_F:
 		{
 			if (quest[num].flags & QUEST_FLAG_SILENT) break;
-			fprintf(fff, _(" %2d:%02d %20s ¥¯¥¨¥¹¥È¡Ö%s¡×¤«¤éÌ¿¤«¤é¤¬¤éÆ¨¤²µ¢¤Ã¤¿¡£\n",
+			fprintf(fff, _(" %2d:%02d %20s ã‚¯ã‚¨ã‚¹ãƒˆã€Œ%sã€ã‹ã‚‰å‘½ã‹ã‚‰ãŒã‚‰é€ƒã’å¸°ã£ãŸã€‚\n",
 						   " %2d:%02d %20s run away from quest '%s'.\n"), hour, min, note_level, quest[num].name);
 			break;
 		}
@@ -486,7 +492,7 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 		{
 			char name[80];
 			strcpy(name, r_name+r_info[quest[num].r_idx].name);
-			fprintf(fff, _(" %2d:%02d %20s ¥é¥ó¥À¥à¥¯¥¨¥¹¥È(%s)¤òÃ£À®¤·¤¿¡£\n",
+			fprintf(fff, _(" %2d:%02d %20s ãƒ©ãƒ³ãƒ€ãƒ ã‚¯ã‚¨ã‚¹ãƒˆ(%s)ã‚’é”æˆã—ãŸã€‚\n",
 						   " %2d:%02d %20s completed random quest '%s'\n"), hour, min, note_level, name);
 			break;
 		}
@@ -494,20 +500,24 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 		{
 			char name[80];
 			strcpy(name, r_name+r_info[quest[num].r_idx].name);
-			fprintf(fff, _(" %2d:%02d %20s ¥é¥ó¥À¥à¥¯¥¨¥¹¥È(%s)¤«¤éÆ¨¤²½Ğ¤·¤¿¡£\n",
+			fprintf(fff, _(" %2d:%02d %20s ãƒ©ãƒ³ãƒ€ãƒ ã‚¯ã‚¨ã‚¹ãƒˆ(%s)ã‹ã‚‰é€ƒã’å‡ºã—ãŸã€‚\n",
 						   " %2d:%02d %20s ran away from quest '%s'.\n"), hour, min, note_level, name);
 			break;
 		}
 		case NIKKI_MAXDEAPTH:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s¤ÎºÇ¿¼³¬%d³¬¤ËÅşÃ£¤·¤¿¡£\n",
-						   " %2d:%02d %20s reached level %d of %s for the first time.\n"), hour, min, note_level, d_name+d_info[dungeon_type].name, num);
+			fprintf(fff, _(" %2d:%02d %20s %sã®æœ€æ·±éš%déšã«åˆ°é”ã—ãŸã€‚\n",
+						   " %2d:%02d %20s reached level %d of %s for the first time.\n"), hour, min, note_level,
+						   _(d_name+d_info[dungeon_type].name, num),
+						   _(num, d_name+d_info[dungeon_type].name));
 			break;
 		}
 		case NIKKI_TRUMP:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s%s¤ÎºÇ¿¼³¬¤ò%d³¬¤Ë¥»¥Ã¥È¤·¤¿¡£\n",
-						   " %2d:%02d %20s reset recall level of %s to %d %s.\n"), hour, min, note_level, note, d_name + d_info[num].name, max_dlv[num]);
+			fprintf(fff, _(" %2d:%02d %20s %s%sã®æœ€æ·±éšã‚’%déšã«ã‚»ãƒƒãƒˆã—ãŸã€‚\n",
+						   " %2d:%02d %20s reset recall level of %s to %d %s.\n"), hour, min, note_level, note,
+						   _(d_name + d_info[num].name, (int)max_dlv[num]),
+						   _((int)max_dlv[num], d_name + d_info[num].name));
 			break;
 		}
 		case NIKKI_STAIR:
@@ -516,47 +526,47 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 			if (q_idx && (is_fixed_quest_idx(q_idx)
 			     && !((q_idx == QUEST_OBERON) || (q_idx == QUEST_SERPENT))))
 			{
-				to = _("ÃÏ¾å", "the surface");
+				to = _("åœ°ä¸Š", "the surface");
 			}
 			else
 			{
-				if (!(dun_level+num)) to = _("ÃÏ¾å", "the surface");
-				else to = format(_("%d³¬", "level %d"), dun_level+num);
+				if (!(dun_level+num)) to = _("åœ°ä¸Š", "the surface");
+				else to = format(_("%déš", "level %d"), dun_level+num);
 			}
-			fprintf(fff, _(" %2d:%02d %20s %s¤Ø%s¡£\n", " %2d:%02d %20s %s %s.\n"), hour, min, note_level, _(to, note), _(note, to));
+			fprintf(fff, _(" %2d:%02d %20s %sã¸%sã€‚\n", " %2d:%02d %20s %s %s.\n"), hour, min, note_level, _(to, note), _(note, to));
 			break;
 		}
 		case NIKKI_RECALL:
 		{
 			if (!num)
-			fprintf(fff, _(" %2d:%02d %20s µ¢´Ô¤ò»È¤Ã¤Æ%s¤Î%d³¬¤Ø²¼¤ê¤¿¡£\n", " %2d:%02d %20s recalled to dungeon level %d of %s.\n"), 
-						hour, min, note_level, _(d_name+d_info[dungeon_type].name, max_dlv[dungeon_type]), 
-											   _(max_dlv[dungeon_type], d_name+d_info[dungeon_type].name));
+			fprintf(fff, _(" %2d:%02d %20s å¸°é‚„ã‚’ä½¿ã£ã¦%sã®%déšã¸ä¸‹ã‚ŠãŸã€‚\n", " %2d:%02d %20s recalled to dungeon level %d of %s.\n"), 
+						hour, min, note_level, _(d_name+d_info[dungeon_type].name, (int)max_dlv[dungeon_type]), 
+											   _((int)max_dlv[dungeon_type], d_name+d_info[dungeon_type].name));
 			else
-				fprintf(fff, _(" %2d:%02d %20s µ¢´Ô¤ò»È¤Ã¤ÆÃÏ¾å¤Ø¤ÈÌá¤Ã¤¿¡£\n", " %2d:%02d %20s recalled from dungeon to surface.\n"), hour, min, note_level);
+				fprintf(fff, _(" %2d:%02d %20s å¸°é‚„ã‚’ä½¿ã£ã¦åœ°ä¸Šã¸ã¨æˆ»ã£ãŸã€‚\n", " %2d:%02d %20s recalled from dungeon to surface.\n"), hour, min, note_level);
 			break;
 		}
 		case NIKKI_TO_QUEST:
 		{
 			if (quest[num].flags & QUEST_FLAG_SILENT) break;
-			fprintf(fff, _(" %2d:%02d %20s ¥¯¥¨¥¹¥È¡Ö%s¡×¤Ø¤ÈÆÍÆş¤·¤¿¡£\n", " %2d:%02d %20s entered the quest '%s'.\n"),
+			fprintf(fff, _(" %2d:%02d %20s ã‚¯ã‚¨ã‚¹ãƒˆã€Œ%sã€ã¸ã¨çªå…¥ã—ãŸã€‚\n", " %2d:%02d %20s entered the quest '%s'.\n"),
 						hour, min, note_level, quest[num].name);
 			break;
 		}
 		case NIKKI_TELE_LEV:
 		{
-			fprintf(fff, _(" %2d:%02d %20s ¥ì¥Ù¥ë¡¦¥Æ¥ì¥İ¡¼¥È¤ÇÃ¦½Ğ¤·¤¿¡£\n", " %2d:%02d %20s Got out using teleport level.\n"),
+			fprintf(fff, _(" %2d:%02d %20s ãƒ¬ãƒ™ãƒ«ãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§è„±å‡ºã—ãŸã€‚\n", " %2d:%02d %20s Got out using teleport level.\n"),
 						hour, min, note_level);
 			break;
 		}
 		case NIKKI_BUY:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s¤ò¹ØÆş¤·¤¿¡£\n", " %2d:%02d %20s bought %s.\n"), hour, min, note_level, note);
+			fprintf(fff, _(" %2d:%02d %20s %sã‚’è³¼å…¥ã—ãŸã€‚\n", " %2d:%02d %20s bought %s.\n"), hour, min, note_level, note);
 			break;
 		}
 		case NIKKI_SELL:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s¤òÇäµÑ¤·¤¿¡£\n", " %2d:%02d %20s sold %s.\n"), hour, min, note_level, note);
+			fprintf(fff, _(" %2d:%02d %20s %sã‚’å£²å´ã—ãŸã€‚\n", " %2d:%02d %20s sold %s.\n"), hour, min, note_level, note);
 			break;
 		}
 		case NIKKI_ARENA:
@@ -564,16 +574,16 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 			if (num < 0)
 			{
 				int n = -num;
-				fprintf(fff, _(" %2d:%02d %20s Æ®µ»¾ì¤Î%d%s²óÀï¤Ç¡¢%s¤ÎÁ°¤ËÇÔ¤ìµî¤Ã¤¿¡£\n", " %2d:%02d %20s beaten by %s in the %d%s fight.\n"),
+				fprintf(fff, _(" %2d:%02d %20s é—˜æŠ€å ´ã®%d%så›æˆ¦ã§ã€%sã®å‰ã«æ•—ã‚Œå»ã£ãŸã€‚\n", " %2d:%02d %20s beaten by %s in the %d%s fight.\n"),
 							hour, min, note_level, _(n, note), _("", n), _(note, get_ordinal_number_suffix(n)));
 				break;
 			}
-			fprintf(fff, _(" %2d:%02d %20s Æ®µ»¾ì¤Î%d%s²óÀï(%s)¤Ë¾¡Íø¤·¤¿¡£\n", " %2d:%02d %20s won the %d%s fight (%s).\n"),
+			fprintf(fff, _(" %2d:%02d %20s é—˜æŠ€å ´ã®%d%så›æˆ¦(%s)ã«å‹åˆ©ã—ãŸã€‚\n", " %2d:%02d %20s won the %d%s fight (%s).\n"),
 						hour, min, note_level, num, _("", get_ordinal_number_suffix(num)), note);
 			
 			if (num == MAX_ARENA_MONS)
 			{
-				fprintf(fff, _("                 Æ®µ»¾ì¤Î¤¹¤Ù¤Æ¤ÎÅ¨¤Ë¾¡Íø¤·¡¢¥Á¥ã¥ó¥Ô¥ª¥ó¤È¤Ê¤Ã¤¿¡£\n",
+				fprintf(fff, _("                 é—˜æŠ€å ´ã®ã™ã¹ã¦ã®æ•µã«å‹åˆ©ã—ã€ãƒãƒ£ãƒ³ãƒ”ã‚ªãƒ³ã¨ãªã£ãŸã€‚\n",
 							   "                 won all fight to become a Chanpion.\n"));
 				do_level = FALSE;
 			}
@@ -581,18 +591,18 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 		}
 		case NIKKI_HANMEI:
 		{
-			fprintf(fff, _(" %2d:%02d %20s %s¤ò¼±ÊÌ¤·¤¿¡£\n", " %2d:%02d %20s identified %s.\n"), hour, min, note_level, note);
+			fprintf(fff, _(" %2d:%02d %20s %sã‚’è­˜åˆ¥ã—ãŸã€‚\n", " %2d:%02d %20s identified %s.\n"), hour, min, note_level, note);
 			break;
 		}
 		case NIKKI_WIZ_TELE:
 		{
 			cptr to;
 			if (!dun_level)
-				to = _("ÃÏ¾å", "the surface");
+				to = _("åœ°ä¸Š", "the surface");
 			else
-				to = format(_("%d³¬(%s)", "level %d of %s"), dun_level, d_name+d_info[dungeon_type].name);
+				to = format(_("%déš(%s)", "level %d of %s"), dun_level, d_name+d_info[dungeon_type].name);
 
-			fprintf(fff, _(" %2d:%02d %20s %s¤Ø¤È¥¦¥£¥¶¡¼¥É¡¦¥Æ¥ì¥İ¡¼¥È¤Ç°ÜÆ°¤·¤¿¡£\n",
+			fprintf(fff, _(" %2d:%02d %20s %sã¸ã¨ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ»ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã§ç§»å‹•ã—ãŸã€‚\n",
 						   " %2d:%02d %20s wizard-teleport to %s.\n"), hour, min, note_level, to);
 			break;
 		}
@@ -600,17 +610,17 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 		{
 			cptr to;
 			if (!dun_level)
-				to = _("ÃÏ¾å", "the surface");
+				to = _("åœ°ä¸Š", "the surface");
 			else
-				to = format(_("%d³¬(%s)", "level %d of %s"), dun_level, d_name+d_info[dungeon_type].name);
+				to = format(_("%déš(%s)", "level %d of %s"), dun_level, d_name+d_info[dungeon_type].name);
 
-			fprintf(fff, _(" %2d:%02d %20s %s¤Ø¤È¥Ñ¥¿¡¼¥ó¤ÎÎÏ¤Ç°ÜÆ°¤·¤¿¡£\n",
+			fprintf(fff, _(" %2d:%02d %20s %sã¸ã¨ãƒ‘ã‚¿ãƒ¼ãƒ³ã®åŠ›ã§ç§»å‹•ã—ãŸã€‚\n",
 						   " %2d:%02d %20s used Pattern to teleport to %s.\n"), hour, min, note_level, to);
 			break;
 		}
 		case NIKKI_LEVELUP:
 		{
-			fprintf(fff, _(" %2d:%02d %20s ¥ì¥Ù¥ë¤¬%d¤Ë¾å¤¬¤Ã¤¿¡£\n", " %2d:%02d %20s reached player level %d.\n"), hour, min, note_level, num);
+			fprintf(fff, _(" %2d:%02d %20s ãƒ¬ãƒ™ãƒ«ãŒ%dã«ä¸ŠãŒã£ãŸã€‚\n", " %2d:%02d %20s reached player level %d.\n"), hour, min, note_level, num);
 			break;
 		}
 		case NIKKI_GAMESTART:
@@ -631,56 +641,63 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 			switch (num)
 			{
 				case RECORD_NAMED_PET_NAME:
-					fprintf(fff, _("%s¤òÎ¹¤ÎÍ§¤Ë¤¹¤ë¤³¤È¤Ë·è¤á¤¿¡£\n", "decided to travel together with %s.\n"), note);
+					fprintf(fff, _("%sã‚’æ—…ã®å‹ã«ã™ã‚‹ã“ã¨ã«æ±ºã‚ãŸã€‚\n", "decided to travel together with %s.\n"), note);
 					break;
 				case RECORD_NAMED_PET_UNNAME:
-					fprintf(fff, _("%s¤ÎÌ¾Á°¤ò¾Ã¤·¤¿¡£\n", "unnamed %s.\n"), note);
+					fprintf(fff, _("%sã®åå‰ã‚’æ¶ˆã—ãŸã€‚\n", "unnamed %s.\n"), note);
 					break;
 				case RECORD_NAMED_PET_DISMISS:
-					fprintf(fff, _("%s¤ò²òÊü¤·¤¿¡£\n", "dismissed %s.\n"), note);
+					fprintf(fff, _("%sã‚’è§£æ”¾ã—ãŸã€‚\n", "dismissed %s.\n"), note);
 					break;
 				case RECORD_NAMED_PET_DEATH:
-					fprintf(fff, _("%s¤¬»à¤ó¤Ç¤·¤Ş¤Ã¤¿¡£\n", "%s died.\n"), note);
+					fprintf(fff, _("%sãŒæ­»ã‚“ã§ã—ã¾ã£ãŸã€‚\n", "%s died.\n"), note);
 					break;
 				case RECORD_NAMED_PET_MOVED:
-					fprintf(fff, _("%s¤ò¤ª¤¤¤ÆÊÌ¤Î¥Ş¥Ã¥×¤Ø°ÜÆ°¤·¤¿¡£\n", "moved to another map leaving %s behind.\n"), note);
+					fprintf(fff, _("%sã‚’ãŠã„ã¦åˆ¥ã®ãƒãƒƒãƒ—ã¸ç§»å‹•ã—ãŸã€‚\n", "moved to another map leaving %s behind.\n"), note);
 					break;
 				case RECORD_NAMED_PET_LOST_SIGHT:
-					fprintf(fff, _("%s¤È¤Ï¤°¤ì¤Æ¤·¤Ş¤Ã¤¿¡£\n", "lost sight of %s.\n"), note);
+					fprintf(fff, _("%sã¨ã¯ãã‚Œã¦ã—ã¾ã£ãŸã€‚\n", "lost sight of %s.\n"), note);
 					break;
 				case RECORD_NAMED_PET_DESTROY:
-					fprintf(fff, _("%s¤¬*ÇË²õ*¤Ë¤è¤Ã¤Æ¾Ã¤¨µî¤Ã¤¿¡£\n", "%s was made disappeared by *destruction*.\n"), note);
+					fprintf(fff, _("%sãŒ*ç ´å£Š*ã«ã‚ˆã£ã¦æ¶ˆãˆå»ã£ãŸã€‚\n", "%s was made disappeared by *destruction*.\n"), note);
 					break;
 				case RECORD_NAMED_PET_EARTHQUAKE:
-					fprintf(fff, _("%s¤¬´äÀĞ¤Ë²¡¤·ÄÙ¤µ¤ì¤¿¡£\n", "%s was crushed by falling rocks.\n"), note);
+					fprintf(fff, _("%sãŒå²©çŸ³ã«æŠ¼ã—æ½°ã•ã‚ŒãŸã€‚\n", "%s was crushed by falling rocks.\n"), note);
 					break;
 				case RECORD_NAMED_PET_GENOCIDE:
-					fprintf(fff, _("%s¤¬Ëõ»¦¤Ë¤è¤Ã¤Æ¾Ã¤¨µî¤Ã¤¿¡£\n", "%s was made disappeared by genocide.\n"), note);
+					fprintf(fff, _("%sãŒæŠ¹æ®ºã«ã‚ˆã£ã¦æ¶ˆãˆå»ã£ãŸã€‚\n", "%s was made disappeared by genocide.\n"), note);
 					break;
 				case RECORD_NAMED_PET_WIZ_ZAP:
-					fprintf(fff, _("%s¤¬¥Ç¥Ğ¥Ã¥°¥³¥Ş¥ó¥É¤Ë¤è¤Ã¤Æ¾Ã¤¨µî¤Ã¤¿¡£\n", "%s was removed by debug command.\n"), note);
+					fprintf(fff, _("%sãŒãƒ‡ãƒãƒƒã‚°ã‚³ãƒãƒ³ãƒ‰ã«ã‚ˆã£ã¦æ¶ˆãˆå»ã£ãŸã€‚\n", "%s was removed by debug command.\n"), note);
 					break;
 				case RECORD_NAMED_PET_TELE_LEVEL:
-					fprintf(fff, _("%s¤¬¥Æ¥ì¥İ¡¼¥È¡¦¥ì¥Ù¥ë¤Ë¤è¤Ã¤Æ¾Ã¤¨µî¤Ã¤¿¡£\n", "%s was made disappeared by teleport level.\n"), note);
+					fprintf(fff, _("%sãŒãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ãƒ¬ãƒ™ãƒ«ã«ã‚ˆã£ã¦æ¶ˆãˆå»ã£ãŸã€‚\n", "%s was made disappeared by teleport level.\n"), note);
 					break;
 				case RECORD_NAMED_PET_BLAST:
-					fprintf(fff, _("%s¤òÇúÇË¤·¤¿¡£\n", "blasted %s.\n"), note);
+					fprintf(fff, _("%sã‚’çˆ†ç ´ã—ãŸã€‚\n", "blasted %s.\n"), note);
 					break;
 				case RECORD_NAMED_PET_HEAL_LEPER:
-					fprintf(fff, _("%s¤ÎÉÂµ¤¤¬¼£¤êÎ¹¤«¤é³°¤ì¤¿¡£\n", "%s was healed and left.\n"), note);
+					fprintf(fff, _("%sã®ç—…æ°—ãŒæ²»ã‚Šæ—…ã‹ã‚‰å¤–ã‚ŒãŸã€‚\n", "%s was healed and left.\n"), note);
 					break;
 				case RECORD_NAMED_PET_COMPACT:
-					fprintf(fff, _("%s¤¬¥â¥ó¥¹¥¿¡¼¾ğÊó°µ½Ì¤Ë¤è¤Ã¤Æ¾Ã¤¨µî¤Ã¤¿¡£\n", "%s was made disappeared by compacting monsters.\n"), note);
+					fprintf(fff, _("%sãŒãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±åœ§ç¸®ã«ã‚ˆã£ã¦æ¶ˆãˆå»ã£ãŸã€‚\n", "%s was made disappeared by compacting monsters.\n"), note);
 					break;
 				case RECORD_NAMED_PET_LOSE_PARENT:
-					fprintf(fff, _("%s¤Î¾¤´­¼Ô¤¬´û¤Ë¤¤¤Ê¤¤¤¿¤á¾Ã¤¨µî¤Ã¤¿¡£\n", "%s disappeared because there does not exist summoner.\n"), note);
+					fprintf(fff, _("%sã®å¬å–šè€…ãŒæ—¢ã«ã„ãªã„ãŸã‚æ¶ˆãˆå»ã£ãŸã€‚\n", "%s disappeared because there does not exist summoner.\n"), note);
 					break;
+
+
 				default:
 					fprintf(fff, "\n");
 					break;
 			}
 			break;
 		}
+
+		case NIKKI_WIZARD_LOG:
+			fprintf(fff, "%s\n", note);
+			break;
+
 		default:
 			break;
 	}
@@ -696,10 +713,10 @@ errr do_cmd_write_nikki(int type, int num, cptr note)
 #define MAX_SUBTITLE (sizeof(subtitle)/sizeof(subtitle[0]))
 
 /*!
- * @brief Æüµ­¤Î¥¿¥¤¥È¥ëÉ½µ­¤ÈÆâÍÆ½ĞÎÏ /
- * @return ¤Ê¤·
+ * @brief æ—¥è¨˜ã®ã‚¿ã‚¤ãƒˆãƒ«è¡¨è¨˜ã¨å†…å®¹å‡ºåŠ› /
+ * @return ãªã—
  * @details
- * Æüµ­¤Î¥¿¥¤¥È¥ë¤ÏËÜ´Ø¿ô¤Î subtitle ¥í¡¼¥«¥ëÊÑ¿ô¤ÇÄêµÁ¤µ¤ì¤Æ¤¤¤ë¡£
+ * æ—¥è¨˜ã®ã‚¿ã‚¤ãƒˆãƒ«ã¯æœ¬é–¢æ•°ã® subtitle ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°ã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹ã€‚
  */
 static void do_cmd_disp_nikki(void)
 {
@@ -709,36 +726,36 @@ static void do_cmd_disp_nikki(void)
 	char tmp[80];
 #ifdef JP
 	/*! */
-	static const char subtitle[][30] = {"ºÇ¶¯¤ÎÆùÂÎ¤òµá¤á¤Æ",
-					   "¿ÍÀ¸¤½¤ì¤Ï¤Ï¤«¤Ê¤¤",
-					   "ÌÀÆü¤Ë¸ş¤«¤Ã¤Æ",
-					   "Ãª¤«¤é¤Ü¤¿¤â¤Á",
-					   "¤¢¤È¤Îº×¤ê",
-					   "¤½¤ì¤Ï¤¤¤¤¹Í¤¨¤À",
-					   "²¿¤È¤Ç¤â¸À¤¨",
-					   "ÅÆ¤Ë¤â³Ñ¤Ë¤â",
-					   "¥¦¥½¤À¤±¤É",
-					   "¤â¤Ï¤ä¤³¤ì¤Ş¤Ç",
-					   "¤Ê¤ó¤Ç¤³¤¦¤Ê¤ë¤Î",
-					   "¤½¤ì¤ÏÌµÍı¤À",
-					   "Åİ¤¹¤Ù¤­Å¨¤Ï¥²¡û¥Ä",
-					   "¤ó¡©Ê¹¤³¤¨¤ó¤Ê¤¡",
-					   "¥ª¥ì¤ÎÌ¾¤ò¸À¤Ã¤Æ¤ß¤í",
-					   "Æ¬¤¬ÊÑ¤Ë¤Ê¤Ã¤Á¤ã¤Ã¤¿",
-					   "¸ß´¹¤·¤Ş¤»¤ó",
-					   "¤»¤Ã¤«¤¯¤À¤«¤é",
-					   "¤Ş¤À¤Ş¤À´Å¤¤¤Í",
-					   "¤à¤´¤¤¤à¤´¤¹¤®¤ë",
-					   "¤³¤ó¤Ê¤â¤ó¤¸¤ã¤Ê¤¤",
-					   "¤À¤á¤À¤³¤ê¤ã",
-					   "¼¡¤¤¤Ã¤Æ¤ß¤è¤¦",
-					   "¤Á¤ç¤Ã¤È¤À¤±¤è",
-					   "°¥¤·¤­ËÁ¸±¼Ô",
-					   "ÌîË¾¤Î²Ì¤Æ",
-					   "Ìµ¸ÂÃÏ¹ö",
-					   "¿À¤Ë·ö²Ş¤òÇä¤ë¼Ô",
-					   "Ì¤ÃÎ¤ÎÀ¤³¦¤Ø",
-					   "ºÇ¹â¤ÎÆ¬Ç¾¤òµá¤á¤Æ"};
+	static const char subtitle[][30] = {"æœ€å¼·ã®è‚‰ä½“ã‚’æ±‚ã‚ã¦",
+					   "äººç”Ÿãã‚Œã¯ã¯ã‹ãªã„",
+					   "æ˜æ—¥ã«å‘ã‹ã£ã¦",
+					   "æ£šã‹ã‚‰ã¼ãŸã‚‚ã¡",
+					   "ã‚ã¨ã®ç¥­ã‚Š",
+					   "ãã‚Œã¯ã„ã„è€ƒãˆã ",
+					   "ä½•ã¨ã§ã‚‚è¨€ãˆ",
+					   "å…ã«ã‚‚è§’ã«ã‚‚",
+					   "ã‚¦ã‚½ã ã‘ã©",
+					   "ã‚‚ã¯ã‚„ã“ã‚Œã¾ã§",
+					   "ãªã‚“ã§ã“ã†ãªã‚‹ã®",
+					   "ãã‚Œã¯ç„¡ç†ã ",
+					   "å€’ã™ã¹ãæ•µã¯ã‚²â—‹ãƒ„",
+					   "ã‚“ï½ï¼Ÿèã“ãˆã‚“ãªã",
+					   "ã‚ªãƒ¬ã®åã‚’è¨€ã£ã¦ã¿ã‚",
+					   "é ­ãŒå¤‰ã«ãªã£ã¡ã‚ƒã£ãŸ",
+					   "äº’æ›ã—ã¾ã›ã‚“",
+					   "ã›ã£ã‹ãã ã‹ã‚‰",
+					   "ã¾ã ã¾ã ç”˜ã„ã­",
+					   "ã‚€ã”ã„ã‚€ã”ã™ãã‚‹",
+					   "ã“ã‚“ãªã‚‚ã‚“ã˜ã‚ƒãªã„",
+					   "ã ã‚ã ã“ã‚Šã‚ƒ",
+					   "æ¬¡ã„ã£ã¦ã¿ã‚ˆã†",
+					   "ã¡ã‚‡ã£ã¨ã ã‘ã‚ˆ",
+					   "å“€ã—ãå†’é™ºè€…",
+					   "é‡æœ›ã®æœã¦",
+					   "ç„¡é™åœ°ç„",
+					   "ç¥ã«å–§å˜©ã‚’å£²ã‚‹è€…",
+					   "æœªçŸ¥ã®ä¸–ç•Œã¸",
+					   "æœ€é«˜ã®é ­è„³ã‚’æ±‚ã‚ã¦"};
 #else
 	static const char subtitle[][51] ={"Quest of The World's Toughest Body",
 					   "Attack is the best form of defence.",
@@ -786,8 +803,8 @@ static void do_cmd_disp_nikki(void)
 	else strcpy(tmp,subtitle[randint0(MAX_SUBTITLE-2)+1]);
 
 #ifdef JP
-	sprintf(nikki_title, "¡Ö%s%s%s¤ÎÅÁÀâ -%s-¡×",
-		ap_ptr->title, ap_ptr->no ? "¤Î" : "", p_ptr->name, tmp);
+	sprintf(nikki_title, "ã€Œ%s%s%sã®ä¼èª¬ -%s-ã€",
+		ap_ptr->title, ap_ptr->no ? "ã®" : "", p_ptr->name, tmp);
 #else
 	sprintf(nikki_title, "Legend of %s %s '%s'",
 		ap_ptr->title, p_ptr->name, tmp);
@@ -798,15 +815,15 @@ static void do_cmd_disp_nikki(void)
 }
 
 /*!
- * @brief Æüµ­¤ËÇ¤°Õ¤ÎÆâÍÆ¤òÉ½µ­¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
- * @return ¤Ê¤·
+ * @brief æ—¥è¨˜ã«ä»»æ„ã®å†…å®¹ã‚’è¡¨è¨˜ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @return ãªã—
  */
 static void do_cmd_bunshou(void)
 {
 	char tmp[80] = "\0";
 	char bunshou[80] = "\0";
 
-	if (get_string(_("ÆâÍÆ: ", "diary note: "), tmp, 79))
+	if (get_string(_("å†…å®¹: ", "diary note: "), tmp, 79))
 	{
 		strcpy(bunshou, tmp);
 
@@ -815,8 +832,8 @@ static void do_cmd_bunshou(void)
 }
 
 /*!
- * @brief ºÇ¸å¤Ë¼èÆÀ¤·¤¿¥¢¥¤¥Æ¥à¤Î¾ğÊó¤òÆüµ­¤ËÄÉ²Ã¤¹¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó /
- * @return ¤Ê¤·
+ * @brief æœ€å¾Œã«å–å¾—ã—ãŸã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±ã‚’æ—¥è¨˜ã«è¿½åŠ ã™ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @return ãªã—
  */
 static void do_cmd_last_get(void)
 {
@@ -825,19 +842,19 @@ static void do_cmd_last_get(void)
 
 	if (record_o_name[0] == '\0') return;
 
-	sprintf(buf,_("%s¤ÎÆş¼ê¤òµ­Ï¿¤·¤Ş¤¹¡£", "Do you really want to record getting %s? "),record_o_name);
+	sprintf(buf,_("%sã®å…¥æ‰‹ã‚’è¨˜éŒ²ã—ã¾ã™ã€‚", "Do you really want to record getting %s? "),record_o_name);
 	if (!get_check(buf)) return;
 
 	turn_tmp = turn;
 	turn = record_turn;
-	sprintf(buf,_("%s¤ò¼ê¤ËÆş¤ì¤¿¡£", "descover %s."), record_o_name);
+	sprintf(buf,_("%sã‚’æ‰‹ã«å…¥ã‚ŒãŸã€‚", "descover %s."), record_o_name);
 	do_cmd_write_nikki(NIKKI_BUNSHOU, 0, buf);
 	turn = turn_tmp;
 }
 
 /*!
- * @brief ¥Õ¥¡¥¤¥ëÃæ¤ÎÁ´Æüµ­µ­Ï¿¤ò¾Ãµî¤¹¤ë /
- * @return ¤Ê¤·
+ * @brief ãƒ•ã‚¡ã‚¤ãƒ«ä¸­ã®å…¨æ—¥è¨˜è¨˜éŒ²ã‚’æ¶ˆå»ã™ã‚‹ /
+ * @return ãªã—
  */
 static void do_cmd_erase_nikki(void)
 {
@@ -845,7 +862,7 @@ static void do_cmd_erase_nikki(void)
 	char buf[256];
 	FILE *fff = NULL;
 
-	if (!get_check(_("ËÜÅö¤Ëµ­Ï¿¤ò¾Ãµî¤·¤Ş¤¹¤«¡©", "Do you really want to delete all your record? "))) return;
+	if (!get_check(_("æœ¬å½“ã«è¨˜éŒ²ã‚’æ¶ˆå»ã—ã¾ã™ã‹ï¼Ÿ", "Do you really want to delete all your record? "))) return;
 		sprintf(file_name,_("playrecord-%s.txt", "playrec-%s.txt"),savefile_base);
 
 	/* Build the filename */
@@ -857,16 +874,16 @@ static void do_cmd_erase_nikki(void)
 	fff = my_fopen(buf, "w");
 	if(fff){
 		my_fclose(fff);
-		msg_format(_("µ­Ï¿¤ò¾Ãµî¤·¤Ş¤·¤¿¡£", "deleted record."));
+		msg_format(_("è¨˜éŒ²ã‚’æ¶ˆå»ã—ã¾ã—ãŸã€‚", "deleted record."));
 	}else{
-		msg_format(_("%s ¤Î¾Ãµî¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£", "failed to delete %s."), buf);
+		msg_format(_("%s ã®æ¶ˆå»ã«å¤±æ•—ã—ã¾ã—ãŸã€‚", "failed to delete %s."), buf);
 	}
 	msg_print(NULL);
 }
 
 /*!
- * @brief Æüµ­¥³¥Ş¥ó¥É
- * @return ¤Ê¤·
+ * @brief æ—¥è¨˜ã‚³ãƒãƒ³ãƒ‰
+ * @return ãªã—
  */
 void do_cmd_nikki(void)
 {
@@ -885,18 +902,18 @@ void do_cmd_nikki(void)
 		Term_clear();
 
 		/* Ask for a choice */
-		prt(_("[ µ­Ï¿¤ÎÀßÄê ]", "[ Play Record ]"), 2, 0);
+		prt(_("[ è¨˜éŒ²ã®è¨­å®š ]", "[ Play Record ]"), 2, 0);
 
 		/* Give some choices */
-		prt(_("(1) µ­Ï¿¤ò¸«¤ë", "(1) Display your record"), 4, 5);
-		prt(_("(2) Ê¸¾Ï¤òµ­Ï¿¤¹¤ë", "(2) Add record"), 5, 5);
-		prt(_("(3) Ä¾Á°¤ËÆş¼êËô¤Ï´ÕÄê¤·¤¿¤â¤Î¤òµ­Ï¿¤¹¤ë", "(3) Record item you last get/identify"), 6, 5);
-		prt(_("(4) µ­Ï¿¤ò¾Ãµî¤¹¤ë", "(4) Delete your record"), 7, 5);
+		prt(_("(1) è¨˜éŒ²ã‚’è¦‹ã‚‹", "(1) Display your record"), 4, 5);
+		prt(_("(2) æ–‡ç« ã‚’è¨˜éŒ²ã™ã‚‹", "(2) Add record"), 5, 5);
+		prt(_("(3) ç›´å‰ã«å…¥æ‰‹åˆã¯é‘‘å®šã—ãŸã‚‚ã®ã‚’è¨˜éŒ²ã™ã‚‹", "(3) Record item you last get/identify"), 6, 5);
+		prt(_("(4) è¨˜éŒ²ã‚’æ¶ˆå»ã™ã‚‹", "(4) Delete your record"), 7, 5);
 
-		prt(_("(R) ¥×¥ì¥¤Æ°²è¤òµ­Ï¿¤¹¤ë/Ãæ»ß¤¹¤ë", "(R) Record playing movie / or stop it"), 9, 5);
+		prt(_("(R) ãƒ—ãƒ¬ã‚¤å‹•ç”»ã‚’è¨˜éŒ²ã™ã‚‹/ä¸­æ­¢ã™ã‚‹", "(R) Record playing movie / or stop it"), 9, 5);
 
 		/* Prompt */
-		prt(_("¥³¥Ş¥ó¥É:", "Command: "), 18, 0);
+		prt(_("ã‚³ãƒãƒ³ãƒ‰:", "Command: "), 18, 0);
 
 		/* Prompt */
 		i = inkey();
@@ -935,9 +952,9 @@ void do_cmd_nikki(void)
 }
 
 /*!
- * @brief ²èÌÌ¤òºÆÉÁ²è¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief ç”»é¢ã‚’å†æç”»ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Hack -- redraw the screen
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * <pre>
  * This command performs various low level updates, clears all the "extra"
@@ -1018,9 +1035,9 @@ void do_cmd_redraw(void)
 
 
 /*!
- * @brief Ì¾Á°¤òÊÑ¹¹¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief åå‰ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Hack -- change name
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void do_cmd_change_name(void)
 {
@@ -1051,7 +1068,7 @@ void do_cmd_change_name(void)
 		/* Prompt */
 #ifdef JP
 		Term_putstr(2, 23, -1, TERM_WHITE,
-			    "['c'¤ÇÌ¾Á°ÊÑ¹¹, 'f'¤Ç¥Õ¥¡¥¤¥ë¤Ø½ñ½Ğ, 'h'¤Ç¥â¡¼¥ÉÊÑ¹¹, ESC¤Ç½ªÎ»]");
+			    "['c'ã§åå‰å¤‰æ›´, 'f'ã§ãƒ•ã‚¡ã‚¤ãƒ«ã¸æ›¸å‡º, 'h'ã§ãƒ¢ãƒ¼ãƒ‰å¤‰æ›´, ESCã§çµ‚äº†]");
 #else
 		Term_putstr(2, 23, -1, TERM_WHITE,
 			"['c' to change name, 'f' to file, 'h' to change mode, or ESC]");
@@ -1077,7 +1094,7 @@ void do_cmd_change_name(void)
 		else if (c == 'f')
 		{
 			sprintf(tmp, "%s.txt", player_base);
-			if (get_string(_("¥Õ¥¡¥¤¥ëÌ¾: ", "File name: "), tmp, 80))
+			if (get_string(_("ãƒ•ã‚¡ã‚¤ãƒ«å: ", "File name: "), tmp, 80))
 			{
 				if (tmp[0] && (tmp[0] != ' '))
 				{
@@ -1113,9 +1130,9 @@ void do_cmd_change_name(void)
 
 
 /*!
- * @brief ºÇ¶áÉ½¼¨¤µ¤ì¤¿¥á¥Ã¥»¡¼¥¸¤òºÆÉ½¼¨¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief æœ€è¿‘è¡¨ç¤ºã•ã‚ŒãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å†è¡¨ç¤ºã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Recall the most recent message
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void do_cmd_message_one(void)
 {
@@ -1125,9 +1142,9 @@ void do_cmd_message_one(void)
 
 
 /*!
- * @brief ¥á¥Ã¥»¡¼¥¸¤Î¥í¥°¤òÉ½¼¨¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Recall the most recent message
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * <pre>
  * Show previous messages to the user	-BEN-
@@ -1220,17 +1237,12 @@ void do_cmd_messages(int num_now)
 		}
 
 		/* Display header XXX XXX XXX */
-#ifdef JP
 		/* translation */
-		prt(format("°ÊÁ°¤Î¥á¥Ã¥»¡¼¥¸ %d-%d Á´Éô¤Ç(%d)",
+		prt(format(_("ä»¥å‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ %d-%d å…¨éƒ¨ã§(%d)", "Message Recall (%d-%d of %d)"),
 			   i, i + j - 1, n), 0, 0);
-#else
-		prt(format("Message Recall (%d-%d of %d)",
-			   i, i + j - 1, n), 0, 0);
-#endif
 
 		/* Display prompt (not very informative) */
-		prt(_("[ 'p' ¤Ç¹¹¤Ë¸Å¤¤¤â¤Î, 'n' ¤Ç¹¹¤Ë¿·¤·¤¤¤â¤Î, '/' ¤Ç¸¡º÷, ESC ¤ÇÃæÃÇ ]",
+		prt(_("[ 'p' ã§æ›´ã«å¤ã„ã‚‚ã®, 'n' ã§æ›´ã«æ–°ã—ã„ã‚‚ã®, '/' ã§æ¤œç´¢, ESC ã§ä¸­æ–­ ]",
 			  "[Press 'p' for older, 'n' for newer, ..., or ESCAPE]"), hgt - 1, 0);
 
 		/* Get a command */
@@ -1247,7 +1259,7 @@ void do_cmd_messages(int num_now)
 		/* Hack -- handle show */
 		case '=':
 			/* Prompt */
-			prt(_("¶¯Ä´: ", "Show: "), hgt - 1, 0);
+			prt(_("å¼·èª¿: ", "Show: "), hgt - 1, 0);
 
 			/* Get a "shower" string, or continue */
 			strcpy(back_str, shower_str);
@@ -1268,7 +1280,7 @@ void do_cmd_messages(int num_now)
 				int z;
 
 				/* Prompt */
-				prt(_("¸¡º÷: ", "Find: "), hgt - 1, 0);
+				prt(_("æ¤œç´¢: ", "Find: "), hgt - 1, 0);
 
 				/* Get a "finder" string, or continue */
 				strcpy(back_str, finder_str);
@@ -1373,49 +1385,59 @@ void do_cmd_messages(int num_now)
 
 
 /*!
- * ¥Á¡¼¥È¥ª¥×¥·¥ç¥ó¤ÎºÇÂç¿ô / Number of cheating options
+ * ãƒãƒ¼ãƒˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®æœ€å¤§æ•° / Number of cheating options
  */
-#define CHEAT_MAX 7
+#define CHEAT_MAX 9
 
 /*!
- * ¥Á¡¼¤È¥ª¥×¥·¥ç¥ó¤ÎÄêµÁ¥Æ¡¼¥Ö¥ë / Cheating options
+ * ãƒãƒ¼ã¨ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®å®šç¾©ãƒ†ãƒ¼ãƒ–ãƒ« / Cheating options
  */
 static option_type cheat_info[CHEAT_MAX] =
 {
 	{ &cheat_peek,		FALSE,	255,	0x01, 0x00,
-		"cheat_peek",		_("¥¢¥¤¥Æ¥à¤ÎÀ¸À®¤ò¤Î¤¾¤­¸«¤ë", "Peek into object creation")
+		"cheat_peek",		_("ã‚¢ã‚¤ãƒ†ãƒ ã®ç”Ÿæˆã‚’ã®ããè¦‹ã‚‹", "Peek into object creation")
 	},
 
 	{ &cheat_hear,		FALSE,	255,	0x02, 0x00,
-		"cheat_hear",		_("¥â¥ó¥¹¥¿¡¼¤ÎÀ¸À®¤ò¤Î¤¾¤­¸«¤ë", "Peek into monster creation")
+		"cheat_hear",		_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç”Ÿæˆã‚’ã®ããè¦‹ã‚‹", "Peek into monster creation")
 	},
 
 	{ &cheat_room,		FALSE,	255,	0x04, 0x00,
-		"cheat_room",		_("¥À¥ó¥¸¥ç¥ó¤ÎÀ¸À®¤ò¤Î¤¾¤­¸«¤ë", "Peek into dungeon creation")
+		"cheat_room",		_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ç”Ÿæˆã‚’ã®ããè¦‹ã‚‹", "Peek into dungeon creation")
 	},
 
 	{ &cheat_xtra,		FALSE,	255,	0x08, 0x00,
-		"cheat_xtra",		_("¤½¤ÎÂ¾¤Î»ö¤ò¤Î¤¾¤­¸«¤ë", "Peek into something else")
+		"cheat_xtra",		_("ãã®ä»–ã®äº‹ã‚’ã®ããè¦‹ã‚‹", "Peek into something else")
 	},
 
 	{ &cheat_know,		FALSE,	255,	0x10, 0x00,
-		"cheat_know",		_("´°Á´¤Ê¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤òÃÎ¤ë", "Know complete monster info")
+		"cheat_know",		_("å®Œå…¨ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’çŸ¥ã‚‹", "Know complete monster info")
 	},
 
 	{ &cheat_live,		FALSE,	255,	0x20, 0x00,
-		"cheat_live",		_("»à¤ò²óÈò¤¹¤ë¤³¤È¤ò²ÄÇ½¤Ë¤¹¤ë", "Allow player to avoid death")
+		"cheat_live",		_("æ­»ã‚’å›é¿ã™ã‚‹ã“ã¨ã‚’å¯èƒ½ã«ã™ã‚‹", "Allow player to avoid death")
 	},
 
 	{ &cheat_save,		FALSE,	255,	0x40, 0x00,
-		"cheat_save",		_("»à¤ó¤À»ş¥»¡¼¥Ö¤¹¤ë¤«³ÎÇ§¤¹¤ë", "Ask for saving death")
+		"cheat_save",		_("æ­»ã‚“ã æ™‚ã‚»ãƒ¼ãƒ–ã™ã‚‹ã‹ç¢ºèªã™ã‚‹", "Ask for saving death")
+	},
+
+	{ &cheat_diary_output,	FALSE,	255,	0x80, 0x00,
+		"cheat_diary_output",	_("ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ­ã‚°ã‚’æ—¥è¨˜ã«å‡ºåŠ›ã™ã‚‹", "Output wizard log to diary.")
+	},
+
+	{ &cheat_turn,	FALSE,	255,	0x81, 0x00,
+		"cheat_turn",	_("ã‚²ãƒ¼ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«ã‚¿ãƒ¼ãƒ³è¡¨ç¤ºã‚’è¡Œã†", "Put turn to game message.")
 	}
+
+
 };
 
 /*!
- * @brief ¥Á¡¼¥È¥ª¥×¥·¥ç¥ó¤òÊÑ¹¹¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief ãƒãƒ¼ãƒˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Interact with some options for cheating
- * @param info É½¼¨¥á¥Ã¥»¡¼¥¸
- * @return ¤Ê¤·
+ * @param info è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @return ãªã—
  */
 static void do_cmd_options_cheat(cptr info)
 {
@@ -1435,16 +1457,16 @@ static void do_cmd_options_cheat(cptr info)
 		int dir;
 
 		/* Prompt XXX XXX XXX */
-		sprintf(buf, _("%s ( ¥ê¥¿¡¼¥ó¤Ç¼¡¤Ø, y/n ¤Ç¥»¥Ã¥È, ESC ¤Ç·èÄê )", "%s (RET to advance, y/n to set, ESC to accept) "), info);
+		sprintf(buf, _("%s ( ãƒªã‚¿ãƒ¼ãƒ³ã§æ¬¡ã¸, y/n ã§ã‚»ãƒƒãƒˆ, ESC ã§æ±ºå®š )", "%s (RET to advance, y/n to set, ESC to accept) "), info);
 
 		prt(buf, 0, 0);
 
 #ifdef JP
-		/* º¾µ½¥ª¥×¥·¥ç¥ó¤ò¤¦¤Ã¤«¤ê¤¤¤¸¤Ã¤Æ¤·¤Ş¤¦¿Í¤¬¤¤¤ë¤è¤¦¤Ê¤Î¤ÇÃí°Õ */
-		prt("                                 <<  Ãí°Õ  >>", 11, 0);
-		prt("      º¾µ½¥ª¥×¥·¥ç¥ó¤ò°ìÅÙ¤Ç¤âÀßÄê¤¹¤ë¤È¡¢¥¹¥³¥¢µ­Ï¿¤¬»Ä¤é¤Ê¤¯¤Ê¤ê¤Ş¤¹¡ª", 12, 0);
-		prt("      ¸å¤Ë²ò½ü¤·¤Æ¤â¥À¥á¤Ç¤¹¤Î¤Ç¡¢¾¡Íø¼Ô¤òÌÜ»Ø¤¹Êı¤Ï¤³¤³¤Î¥ª¥×¥·¥ç¥ó¤Ï¤¤", 13, 0);
-		prt("      ¤¸¤é¤Ê¤¤¤è¤¦¤Ë¤·¤Æ²¼¤µ¤¤¡£", 14, 0);
+		/* è©æ¬ºã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ã†ã£ã‹ã‚Šã„ã˜ã£ã¦ã—ã¾ã†äººãŒã„ã‚‹ã‚ˆã†ãªã®ã§æ³¨æ„ */
+		prt("                                 <<  æ³¨æ„  >>", 11, 0);
+		prt("      è©æ¬ºã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ä¸€åº¦ã§ã‚‚è¨­å®šã™ã‚‹ã¨ã€ã‚¹ã‚³ã‚¢è¨˜éŒ²ãŒæ®‹ã‚‰ãªããªã‚Šã¾ã™ï¼", 12, 0);
+		prt("      å¾Œã«è§£é™¤ã—ã¦ã‚‚ãƒ€ãƒ¡ã§ã™ã®ã§ã€å‹åˆ©è€…ã‚’ç›®æŒ‡ã™æ–¹ã¯ã“ã“ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯ã„", 13, 0);
+		prt("      ã˜ã‚‰ãªã„ã‚ˆã†ã«ã—ã¦ä¸‹ã•ã„ã€‚", 14, 0);
 #endif
 		/* Display the options */
 		for (i = 0; i < n; i++)
@@ -1457,7 +1479,7 @@ static void do_cmd_options_cheat(cptr info)
 			/* Display the option text */
 			sprintf(buf, "%-48s: %s (%s)",
 			    cheat_info[i].o_desc,
-			    (*cheat_info[i].o_var ? _("¤Ï¤¤  ", "yes") : _("¤¤¤¤¤¨", "no ")),
+			    (*cheat_info[i].o_var ? _("ã¯ã„  ", "yes") : _("ã„ã„ãˆ", "no ")),
 			    cheat_info[i].o_text);
 			c_prt(a, buf, i + 2, 0);
 		}
@@ -1506,7 +1528,7 @@ static void do_cmd_options_cheat(cptr info)
 			{
 				if(!p_ptr->noscore)
 				do_cmd_write_nikki(NIKKI_BUNSHOU, 0,
-							_("º¾µ½¥ª¥×¥·¥ç¥ó¤òON¤Ë¤·¤Æ¡¢¥¹¥³¥¢¤ò»Ä¤»¤Ê¤¯¤Ê¤Ã¤¿¡£", "give up sending score to use cheating options."));
+							_("è©æ¬ºã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ONã«ã—ã¦ã€ã‚¹ã‚³ã‚¢ã‚’æ®‹ã›ãªããªã£ãŸã€‚", "give up sending score to use cheating options."));
 				p_ptr->noscore |= (cheat_info[k].o_set * 256 + cheat_info[k].o_bit);
 				(*cheat_info[k].o_var) = TRUE;
 				k = (k + 1) % n;
@@ -1543,21 +1565,21 @@ static void do_cmd_options_cheat(cptr info)
 
 
 /*!
- * ¼«Æ°¥»¡¼¥Ö¥ª¥×¥·¥ç¥ó¥Æ¡¼¥Ö¥ë
+ * è‡ªå‹•ã‚»ãƒ¼ãƒ–ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ†ãƒ¼ãƒ–ãƒ«
  */
 static option_type autosave_info[2] =
 {
 	{ &autosave_l,      FALSE, 255, 0x01, 0x00,
-	    "autosave_l",    _("¿·¤·¤¤³¬¤ËÆş¤ëÅÙ¤Ë¼«Æ°¥»¡¼¥Ö¤¹¤ë", "Autosave when entering new levels") },
+	    "autosave_l",    _("æ–°ã—ã„éšã«å…¥ã‚‹åº¦ã«è‡ªå‹•ã‚»ãƒ¼ãƒ–ã™ã‚‹", "Autosave when entering new levels") },
 
 	{ &autosave_t,      FALSE, 255, 0x02, 0x00,
-	    "autosave_t",   _("°ìÄê¥¿¡¼¥óËè¤Ë¼«Æ°¥»¡¼¥Ö¤¹¤ë", "Timed autosave") },
+	    "autosave_t",   _("ä¸€å®šã‚¿ãƒ¼ãƒ³æ¯ã«è‡ªå‹•ã‚»ãƒ¼ãƒ–ã™ã‚‹", "Timed autosave") },
 };
 
 /*!
- * @brief ¥»¡¼¥ÖÉÑÅÙ¥¿¡¼¥ó¤Î¼¡¤ÎÃÍ¤òÊÖ¤¹
- * @param current ¸½ºß¤Î¥»¡¼¥ÖÉÑÅÙ¥¿¡¼¥óÃÍ
- * @return ¼¡¤Î¥»¡¼¥ÖÉÑÅÙ¥¿¡¼¥óÃÍ
+ * @brief ã‚»ãƒ¼ãƒ–é »åº¦ã‚¿ãƒ¼ãƒ³ã®æ¬¡ã®å€¤ã‚’è¿”ã™
+ * @param current ç¾åœ¨ã®ã‚»ãƒ¼ãƒ–é »åº¦ã‚¿ãƒ¼ãƒ³å€¤
+ * @return æ¬¡ã®ã‚»ãƒ¼ãƒ–é »åº¦ã‚¿ãƒ¼ãƒ³å€¤
  */
 static s16b toggle_frequency(s16b current)
 {
@@ -1578,9 +1600,9 @@ static s16b toggle_frequency(s16b current)
 
 
 /*!
- * @brief ¼«Æ°¥»¡¼¥Ö¥ª¥×¥·¥ç¥ó¤òÊÑ¹¹¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
- * @param info É½¼¨¥á¥Ã¥»¡¼¥¸
- * @return ¤Ê¤·
+ * @brief è‡ªå‹•ã‚»ãƒ¼ãƒ–ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
+ * @param info è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @return ãªã—
  */
 static void do_cmd_options_autosave(cptr info)
 {
@@ -1598,7 +1620,7 @@ static void do_cmd_options_autosave(cptr info)
 	while (TRUE)
 	{
 		/* Prompt XXX XXX XXX */
-		sprintf(buf, _("%s ( ¥ê¥¿¡¼¥ó¤Ç¼¡¤Ø, y/n ¤Ç¥»¥Ã¥È, F ¤ÇÉÑÅÙ¤òÆşÎÏ, ESC ¤Ç·èÄê ) ", 
+		sprintf(buf, _("%s ( ãƒªã‚¿ãƒ¼ãƒ³ã§æ¬¡ã¸, y/n ã§ã‚»ãƒƒãƒˆ, F ã§é »åº¦ã‚’å…¥åŠ›, ESC ã§æ±ºå®š ) ", 
 					   "%s (RET to advance, y/n to set, 'F' for frequency, ESC to accept) "), info);
 
 		prt(buf, 0, 0);
@@ -1614,11 +1636,11 @@ static void do_cmd_options_autosave(cptr info)
 			/* Display the option text */
 			sprintf(buf, "%-48s: %s (%s)",
 			    autosave_info[i].o_desc,
-			    (*autosave_info[i].o_var ? _("¤Ï¤¤  ", "yes") : _("¤¤¤¤¤¨", "no ")),
+			    (*autosave_info[i].o_var ? _("ã¯ã„  ", "yes") : _("ã„ã„ãˆ", "no ")),
 			    autosave_info[i].o_text);
 			c_prt(a, buf, i + 2, 0);
 		}
-		prt(format(_("¼«Æ°¥»¡¼¥Ö¤ÎÉÑÅÙ¡§ %d ¥¿¡¼¥óËè", "Timed autosave frequency: every %d turns"),  autosave_freq), 5, 0);
+		prt(format(_("è‡ªå‹•ã‚»ãƒ¼ãƒ–ã®é »åº¦ï¼š %d ã‚¿ãƒ¼ãƒ³æ¯", "Timed autosave frequency: every %d turns"),  autosave_freq), 5, 0);
 
 		/* Hilite current option */
 		move_cursor(k + 2, 50);
@@ -1673,7 +1695,7 @@ static void do_cmd_options_autosave(cptr info)
 			case 'F':
 			{
 				autosave_freq = toggle_frequency(autosave_freq);
-				prt(format(_("¼«Æ°¥»¡¼¥Ö¤ÎÉÑÅÙ¡§ %d ¥¿¡¼¥óËè", "Timed autosave frequency: every %d turns"), autosave_freq), 5, 0);
+				prt(format(_("è‡ªå‹•ã‚»ãƒ¼ãƒ–ã®é »åº¦ï¼š %d ã‚¿ãƒ¼ãƒ³æ¯", "Timed autosave frequency: every %d turns"), autosave_freq), 5, 0);
 				break;
 			}
 
@@ -1695,11 +1717,11 @@ static void do_cmd_options_autosave(cptr info)
 
 
 /*!
- * @brief É¸½à¥ª¥×¥·¥ç¥ó¤òÊÑ¹¹¤¹¤ë¥³¥Ş¥ó¥É¤Î¥µ¥Ö¥ë¡¼¥Á¥ó /
+ * @brief æ¨™æº–ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ /
  * Interact with some options
- * @param page ¥ª¥×¥·¥ç¥ó¥Ú¡¼¥¸ÈÖ¹æ
- * @param info É½¼¨¥á¥Ã¥»¡¼¥¸
- * @return ¤Ê¤·
+ * @param page ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒšãƒ¼ã‚¸ç•ªå·
+ * @param info è¡¨ç¤ºãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @return ãªã—
  */
 void do_cmd_options_aux(int page, cptr info)
 {
@@ -1731,13 +1753,13 @@ void do_cmd_options_aux(int page, cptr info)
 		int dir;
 
 		/* Prompt XXX XXX XXX */
-		sprintf(buf, _("%s (¥ê¥¿¡¼¥ó:¼¡, %sESC:½ªÎ», ?:¥Ø¥ë¥×) ", "%s (RET:next, %s, ?:help) "),
-					info, browse_only ? _("", "ESC:exit") : _("y/n:ÊÑ¹¹, ", "y/n:change, ESC:accept"));
+		sprintf(buf, _("%s (ãƒªã‚¿ãƒ¼ãƒ³:æ¬¡, %sESC:çµ‚äº†, ?:ãƒ˜ãƒ«ãƒ—) ", "%s (RET:next, %s, ?:help) "),
+					info, browse_only ? _("", "ESC:exit") : _("y/n:å¤‰æ›´, ", "y/n:change, ESC:accept"));
 		prt(buf, 0, 0);
 
 		/* HACK -- description for easy-auto-destroy options */
 		if (page == OPT_PAGE_AUTODESTROY) 
-			c_prt(TERM_YELLOW, _("°Ê²¼¤Î¥ª¥×¥·¥ç¥ó¤Ï¡¢´Ê°×¼«Æ°ÇË²õ¤ò»ÈÍÑ¤¹¤ë¤È¤­¤Î¤ßÍ­¸ú", 
+			c_prt(TERM_YELLOW, _("ä»¥ä¸‹ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã¯ã€ç°¡æ˜“è‡ªå‹•ç ´å£Šã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã®ã¿æœ‰åŠ¹", 
 								 "Following options will protect items from easy auto-destroyer."), 6, _(6, 3));
 
 		/* Display the options */
@@ -1751,7 +1773,7 @@ void do_cmd_options_aux(int page, cptr info)
 			/* Display the option text */
 			sprintf(buf, "%-48s: %s (%.19s)",
 				option_info[opt[i]].o_desc,
-				(*option_info[opt[i]].o_var ? _("¤Ï¤¤  ", "yes") : _("¤¤¤¤¤¨", "no ")),
+				(*option_info[opt[i]].o_var ? _("ã¯ã„  ", "yes") : _("ã„ã„ãˆ", "no ")),
 				option_info[opt[i]].o_text);
 			if ((page == OPT_PAGE_AUTODESTROY) && i > 2) c_prt(a, buf, i + 5, 0);
 			else c_prt(a, buf, i + 2, 0);
@@ -1846,21 +1868,17 @@ void do_cmd_options_aux(int page, cptr info)
 
 
 /*!
- * @brief ¥¦¥£¥ó¥É¥¦¥ª¥×¥·¥ç¥ó¤òÊÑ¹¹¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Modify the "window" options
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void do_cmd_options_win(void)
 {
 	int i, j, d;
-
 	int y = 0;
 	int x = 0;
-
 	char ch;
-
 	bool go = TRUE;
-
 	u32b old_flag[8];
 
 
@@ -1879,7 +1897,7 @@ static void do_cmd_options_win(void)
 	while (go)
 	{
 		/* Prompt XXX XXX XXX */
-		prt(_("¥¦¥£¥ó¥É¥¦¡¦¥Õ¥é¥° (<Êı¸ş>¤Ç°ÜÆ°, t¤Ç¥Á¥§¥ó¥¸, y/n ¤Ç¥»¥Ã¥È, ESC)", "Window Flags (<dir>, t, y, n, ESC) "), 0, 0);
+		prt(_("ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»ãƒ•ãƒ©ã‚° (<æ–¹å‘>ã§ç§»å‹•, tã§ãƒã‚§ãƒ³ã‚¸, y/n ã§ã‚»ãƒƒãƒˆ, ESC)", "Window Flags (<dir>, t, y, n, ESC) "), 0, 0);
 
 		/* Display the windows */
 		for (j = 0; j < 8; j++)
@@ -1906,7 +1924,7 @@ static void do_cmd_options_win(void)
 			if (i == y) a = TERM_L_BLUE;
 
 			/* Unused option */
-			if (!str) str = _("(Ì¤»ÈÍÑ)", "(Unused option)");
+			if (!str) str = _("(æœªä½¿ç”¨)", "(Unused option)");
 
 			/* Flag name */
 			Term_putstr(0, i + 5, -1, a, str);
@@ -1914,9 +1932,8 @@ static void do_cmd_options_win(void)
 			/* Display the windows */
 			for (j = 0; j < 8; j++)
 			{
-				byte a = TERM_WHITE;
-
 				char c = '.';
+				a = TERM_WHITE;
 
 				/* Use color */
 				if ((i == y) && (j == x)) a = TERM_L_BLUE;
@@ -2039,23 +2056,23 @@ static struct opts
 option_fields[OPT_NUM] =
 {
 #ifdef JP
-	{ '1', "    ¥­¡¼ÆşÎÏ     ¥ª¥×¥·¥ç¥ó", 3 },
-	{ '2', "   ¥Ş¥Ã¥×²èÌÌ    ¥ª¥×¥·¥ç¥ó", 4 },
-	{ '3', "  ¥Æ¥­¥¹¥ÈÉ½¼¨   ¥ª¥×¥·¥ç¥ó", 5 },
-	{ '4', "  ¥²¡¼¥à¥×¥ì¥¤   ¥ª¥×¥·¥ç¥ó", 6 },
-	{ '5', "  ¹ÔÆ°Ãæ»ß´Ø·¸   ¥ª¥×¥·¥ç¥ó", 7 },
-	{ '6', "  ´Ê°×¼«Æ°ÇË²õ   ¥ª¥×¥·¥ç¥ó", 8 },
-	{ 'r', "   ¥×¥ì¥¤µ­Ï¿    ¥ª¥×¥·¥ç¥ó", 9 },
+	{ '1', "    ã‚­ãƒ¼å…¥åŠ›     ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 3 },
+	{ '2', "   ãƒãƒƒãƒ—ç”»é¢    ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 4 },
+	{ '3', "  ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º   ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 5 },
+	{ '4', "  ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤   ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 6 },
+	{ '5', "  è¡Œå‹•ä¸­æ­¢é–¢ä¿‚   ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 7 },
+	{ '6', "  ç°¡æ˜“è‡ªå‹•ç ´å£Š   ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 8 },
+	{ 'r', "   ãƒ—ãƒ¬ã‚¤è¨˜éŒ²    ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 9 },
 
-	{ 'p', "¼«Æ°½¦¤¤¥¨¥Ç¥£¥¿", 11 },
-	{ 'd', " ´ğËÜ¥¦¥§¥¤¥ÈÎÌ ", 12 },
-	{ 'h', "Äã¥Ò¥Ã¥È¥İ¥¤¥ó¥È", 13 },
-	{ 'm', "  ÄãËâÎÏ¿§ïçÃÍ  ", 14 },
-	{ 'a', "   ¼«Æ°¥»¡¼¥Ö    ¥ª¥×¥·¥ç¥ó", 15 },
-	{ 'w', "¥¦¥¤¥ó¥É¥¦¥Õ¥é¥°", 16 },
+	{ 'p', "è‡ªå‹•æ‹¾ã„ã‚¨ãƒ‡ã‚£ã‚¿", 11 },
+	{ 'd', " åŸºæœ¬ã‚¦ã‚§ã‚¤ãƒˆé‡ ", 12 },
+	{ 'h', "ä½ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆ", 13 },
+	{ 'm', "  ä½é­”åŠ›è‰²é–¾å€¤  ", 14 },
+	{ 'a', "   è‡ªå‹•ã‚»ãƒ¼ãƒ–    ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 15 },
+	{ 'w', "ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°", 16 },
 
-	{ 'b', "      ½é´ü       ¥ª¥×¥·¥ç¥ó (»²¾È¤Î¤ß)", 18 },
-	{ 'c', "      º¾µ½       ¥ª¥×¥·¥ç¥ó", 19 },
+	{ 'b', "      åˆæœŸ       ã‚ªãƒ—ã‚·ãƒ§ãƒ³ (å‚ç…§ã®ã¿)", 18 },
+	{ 'c', "      è©æ¬º       ã‚ªãƒ—ã‚·ãƒ§ãƒ³", 19 },
 #else
 	{ '1', "Input Options", 3 },
 	{ '2', "Map Screen Options", 4 },
@@ -2079,9 +2096,9 @@ option_fields[OPT_NUM] =
 
 
 /*!
- * @brief É¸½à¥ª¥×¥·¥ç¥ó¤òÊÑ¹¹¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief æ¨™æº–ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’å¤‰æ›´ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Set or unset various options.
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * <pre>
  * The user must use the "Ctrl-R" command to "adapt" to changes
@@ -2109,7 +2126,7 @@ void do_cmd_options(void)
 		Term_clear();
 
 		/* Why are we here */
-		prt(_("[ ¥ª¥×¥·¥ç¥ó¤ÎÀßÄê ]", "TinyAngband options"), 1, 0);
+		prt(_("[ ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¨­å®š ]", "TinyAngband options"), 1, 0);
 
 		while(1)
 		{
@@ -2122,7 +2139,7 @@ void do_cmd_options(void)
 					format("(%c) %s", toupper(option_fields[i].key), option_fields[i].name));
 			}
 
-			prt(_("<Êı¸ş>¤Ç°ÜÆ°, Enter¤Ç·èÄê, ESC¤Ç¥­¥ã¥ó¥»¥ë, ?¤Ç¥Ø¥ë¥×: ", "Move to <dir>, Select to Enter, Cancel to ESC, ? to help: "), 21, 0);
+			prt(_("<æ–¹å‘>ã§ç§»å‹•, Enterã§æ±ºå®š, ESCã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«, ?ã§ãƒ˜ãƒ«ãƒ—: ", "Move to <dir>, Select to Enter, Cancel to ESC, ? to help: "), 21, 0);
 
 			/* Get command */
 			skey = inkey_special(TRUE);
@@ -2166,42 +2183,42 @@ void do_cmd_options(void)
 			case '1':
 			{
 				/* Process the general options */
-				do_cmd_options_aux(OPT_PAGE_INPUT, _("¥­¡¼ÆşÎÏ¥ª¥×¥·¥ç¥ó", "Input Options"));
+				do_cmd_options_aux(OPT_PAGE_INPUT, _("ã‚­ãƒ¼å…¥åŠ›ã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Input Options"));
 				break;
 			}
 
 			case '2':
 			{
 				/* Process the general options */
-				do_cmd_options_aux(OPT_PAGE_MAPSCREEN, _("¥Ş¥Ã¥×²èÌÌ¥ª¥×¥·¥ç¥ó", "Map Screen Options"));
+				do_cmd_options_aux(OPT_PAGE_MAPSCREEN, _("ãƒãƒƒãƒ—ç”»é¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Map Screen Options"));
 				break;
 			}
 
 			case '3':
 			{
 				/* Spawn */
-				do_cmd_options_aux(OPT_PAGE_TEXT, _("¥Æ¥­¥¹¥ÈÉ½¼¨¥ª¥×¥·¥ç¥ó", "Text Display Options"));
+				do_cmd_options_aux(OPT_PAGE_TEXT, _("ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤ºã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Text Display Options"));
 				break;
 			}
 
 			case '4':
 			{
 				/* Spawn */
-				do_cmd_options_aux(OPT_PAGE_GAMEPLAY, _("¥²¡¼¥à¥×¥ì¥¤¡¦¥ª¥×¥·¥ç¥ó", "Game-Play Options"));
+				do_cmd_options_aux(OPT_PAGE_GAMEPLAY, _("ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒ»ã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Game-Play Options"));
 				break;
 			}
 
 			case '5':
 			{
 				/* Spawn */
-				do_cmd_options_aux(OPT_PAGE_DISTURBANCE, _("¹ÔÆ°Ãæ»ß´Ø·¸¤Î¥ª¥×¥·¥ç¥ó", "Disturbance Options"));
+				do_cmd_options_aux(OPT_PAGE_DISTURBANCE, _("è¡Œå‹•ä¸­æ­¢é–¢ä¿‚ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Disturbance Options"));
 				break;
 			}
 
 			case '6':
 			{
 				/* Spawn */
-				do_cmd_options_aux(OPT_PAGE_AUTODESTROY, _("´Ê°×¼«Æ°ÇË²õ¥ª¥×¥·¥ç¥ó", "Easy Auto-Destroyer Options"));
+				do_cmd_options_aux(OPT_PAGE_AUTODESTROY, _("ç°¡æ˜“è‡ªå‹•ç ´å£Šã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Easy Auto-Destroyer Options"));
 				break;
 			}
 
@@ -2210,7 +2227,7 @@ void do_cmd_options(void)
 			case 'r':
 			{
 				/* Spawn */
-				do_cmd_options_aux(OPT_PAGE_PLAYRECORD, _("¥×¥ì¥¤µ­Ï¿¥ª¥×¥·¥ç¥ó", "Play-record Options"));
+				do_cmd_options_aux(OPT_PAGE_PLAYRECORD, _("ãƒ—ãƒ¬ã‚¤è¨˜éŒ²ã‚ªãƒ—ã‚·ãƒ§ãƒ³", "Play-record Options"));
 				break;
 			}
 
@@ -2220,8 +2237,8 @@ void do_cmd_options(void)
 			{
 				/* Spawn */
 				do_cmd_options_aux(OPT_PAGE_BIRTH, (!p_ptr->wizard || !allow_debug_opts) ? 
-							_("½é´ü¥ª¥×¥·¥ç¥ó(»²¾È¤Î¤ß)", "Birth Options(browse only)") : 
-							_("½é´ü¥ª¥×¥·¥ç¥ó((*)¤Ï¥¹¥³¥¢¤Ë±Æ¶Á)", "Birth Options((*)s effect score)"));
+							_("åˆæœŸã‚ªãƒ—ã‚·ãƒ§ãƒ³(å‚ç…§ã®ã¿)", "Birth Options(browse only)") : 
+							_("åˆæœŸã‚ªãƒ—ã‚·ãƒ§ãƒ³((*)ã¯ã‚¹ã‚³ã‚¢ã«å½±éŸ¿)", "Birth Options((*)s effect score)"));
 				break;
 			}
 
@@ -2236,14 +2253,14 @@ void do_cmd_options(void)
 				}
 
 				/* Spawn */
-				do_cmd_options_cheat(_("º¾µ½»Õ¤Ï·è¤·¤Æ¾¡Íø¤Ç¤­¤Ê¤¤¡ª", "Cheaters never win"));
+				do_cmd_options_cheat(_("è©æ¬ºå¸«ã¯æ±ºã—ã¦å‹åˆ©ã§ããªã„ï¼", "Cheaters never win"));
 				break;
 			}
 
 			case 'a':
 			case 'A':
 			{
-				do_cmd_options_autosave(_("¼«Æ°¥»¡¼¥Ö", "Autosave"));
+				do_cmd_options_autosave(_("è‡ªå‹•ã‚»ãƒ¼ãƒ–", "Autosave"));
 				break;
 			}
 
@@ -2275,14 +2292,14 @@ void do_cmd_options(void)
 			{
 				/* Prompt */
 				clear_from(18);
-				prt(_("¥³¥Ş¥ó¥É: ´ğËÜ¥¦¥§¥¤¥ÈÎÌ", "Command: Base Delay Factor"), 19, 0);
+				prt(_("ã‚³ãƒãƒ³ãƒ‰: åŸºæœ¬ã‚¦ã‚§ã‚¤ãƒˆé‡", "Command: Base Delay Factor"), 19, 0);
 
 				/* Get a new value */
 				while (1)
 				{
 					int msec = delay_factor * delay_factor * delay_factor;
-					prt(format(_("¸½ºß¤Î¥¦¥§¥¤¥È: %d (%d¥ß¥êÉÃ)", "Current base delay factor: %d (%d msec)"), delay_factor, msec), 22, 0);
-					prt(_("¥¦¥§¥¤¥È (0-9) ESC¤Ç·èÄê: ", "Delay Factor (0-9 or ESC to accept): "), 20, 0);
+					prt(format(_("ç¾åœ¨ã®ã‚¦ã‚§ã‚¤ãƒˆ: %d (%dãƒŸãƒªç§’)", "Current base delay factor: %d (%d msec)"), delay_factor, msec), 22, 0);
+					prt(_("ã‚¦ã‚§ã‚¤ãƒˆ (0-9) ESCã§æ±ºå®š: ", "Delay Factor (0-9 or ESC to accept): "), 20, 0);
 					k = inkey();
 					if (k == ESCAPE) break;
 					else if (k == '?')
@@ -2303,13 +2320,13 @@ void do_cmd_options(void)
 			{
 				/* Prompt */
 				clear_from(18);
-				prt(_("¥³¥Ş¥ó¥É: Äã¥Ò¥Ã¥È¥İ¥¤¥ó¥È·Ù¹ğ", "Command: Hitpoint Warning"), 19, 0);
+				prt(_("ã‚³ãƒãƒ³ãƒ‰: ä½ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆè­¦å‘Š", "Command: Hitpoint Warning"), 19, 0);
 
 				/* Get a new value */
 				while (1)
 				{
-					prt(format(_("¸½ºß¤ÎÄã¥Ò¥Ã¥È¥İ¥¤¥ó¥È·Ù¹ğ: %d0%%", "Current hitpoint warning: %d0%%"), hitpoint_warn), 22, 0);
-					prt(_("Äã¥Ò¥Ã¥È¥İ¥¤¥ó¥È·Ù¹ğ (0-9) ESC¤Ç·èÄê: ", "Hitpoint Warning (0-9 or ESC to accept): "), 20, 0);
+					prt(format(_("ç¾åœ¨ã®ä½ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆè­¦å‘Š: %d0%%", "Current hitpoint warning: %d0%%"), hitpoint_warn), 22, 0);
+					prt(_("ä½ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆè­¦å‘Š (0-9) ESCã§æ±ºå®š: ", "Hitpoint Warning (0-9 or ESC to accept): "), 20, 0);
 					k = inkey();
 					if (k == ESCAPE) break;
 					else if (k == '?')
@@ -2330,13 +2347,13 @@ void do_cmd_options(void)
 			{
 				/* Prompt */
 				clear_from(18);
-				prt(_("¥³¥Ş¥ó¥É: ÄãËâÎÏ¿§ïçÃÍ", "Command: Mana Color Threshold"), 19, 0);
+				prt(_("ã‚³ãƒãƒ³ãƒ‰: ä½é­”åŠ›è‰²é–¾å€¤", "Command: Mana Color Threshold"), 19, 0);
 				
 				/* Get a new value */
 				while (1)
 				{
-					prt(format(_("¸½ºß¤ÎÄãËâÎÏ¿§ïçÃÍ: %d0%%", "Current mana color threshold: %d0%%"), mana_warn), 22, 0);
-					prt(_("ÄãËâÎÏïçÃÍ (0-9) ESC¤Ç·èÄê: ", "Mana color Threshold (0-9 or ESC to accept): "), 20, 0);
+					prt(format(_("ç¾åœ¨ã®ä½é­”åŠ›è‰²é–¾å€¤: %d0%%", "Current mana color threshold: %d0%%"), mana_warn), 22, 0);
+					prt(_("ä½é­”åŠ›é–¾å€¤ (0-9) ESCã§æ±ºå®š: ", "Mana color Threshold (0-9 or ESC to accept): "), 20, 0);
 					k = inkey();
 					if (k == ESCAPE) break;
 					else if (k == '?')
@@ -2380,9 +2397,9 @@ void do_cmd_options(void)
 
 
 /*!
- * @brief pref¥Õ¥¡¥¤¥ë¤òÁªÂò¤·¤Æ½èÍı¤¹¤ë /
+ * @brief prefãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã—ã¦å‡¦ç†ã™ã‚‹ /
  * Ask for a "user pref line" and process it
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * XXX XXX XXX Allow absolute file names?
  */
@@ -2394,19 +2411,19 @@ void do_cmd_pref(void)
 	strcpy(buf, "");
 
 	/* Ask for a "user pref command" */
-	if (!get_string(_("ÀßÄêÊÑ¹¹¥³¥Ş¥ó¥É: ", "Pref: "), buf, 80)) return;
+	if (!get_string(_("è¨­å®šå¤‰æ›´ã‚³ãƒãƒ³ãƒ‰: ", "Pref: "), buf, 80)) return;
 
 	/* Process that pref command */
 	(void)process_pref_file_command(buf);
 }
 
 /*!
- * @brief ¼«Æ°½¦¤¤ÀßÄê¥Õ¥¡¥¤¥ë¤ò¥í¡¼¥É¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
- * @return ¤Ê¤·
+ * @brief è‡ªå‹•æ‹¾ã„è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
+ * @return ãªã—
  */
 void do_cmd_reload_autopick(void)
 {
-	if (!get_check(_("¼«Æ°½¦¤¤ÀßÄê¥Õ¥¡¥¤¥ë¤ò¥í¡¼¥É¤·¤Ş¤¹¤«? ", "Reload auto-pick preference file? "))) return;
+	if (!get_check(_("è‡ªå‹•æ‹¾ã„è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™ã‹? ", "Reload auto-pick preference file? "))) return;
 	/* Load the file with messages */
 	autopick_load_pref(TRUE);
 }
@@ -2414,9 +2431,9 @@ void do_cmd_reload_autopick(void)
 #ifdef ALLOW_MACROS
 
 /*!
- * @brief ¥Ş¥¯¥í¾ğÊó¤òpref¥Õ¥¡¥¤¥ë¤ËÊİÂ¸¤¹¤ë /
- * @param fname ¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @brief ãƒã‚¯ãƒ­æƒ…å ±ã‚’prefãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜ã™ã‚‹ /
+ * @param fname ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 static errr macro_dump(cptr fname)
 {
@@ -2436,7 +2453,7 @@ static errr macro_dump(cptr fname)
 	if (!open_auto_dump(buf, mark)) return (-1);
 
 	/* Start dumping */
-	auto_dump_printf(_("\n# ¼«Æ°¥Ş¥¯¥í¥»¡¼¥Ö\n\n", "\n# Automatic macro dump\n\n"));
+	auto_dump_printf(_("\n# è‡ªå‹•ãƒã‚¯ãƒ­ã‚»ãƒ¼ãƒ–\n\n", "\n# Automatic macro dump\n\n"));
 	
 	/* Dump them */
 	for (i = 0; i < macro__num; i++)
@@ -2466,10 +2483,10 @@ static errr macro_dump(cptr fname)
 
 
 /*!
- * @brief ¥Ş¥¯¥í¤Î¥È¥ê¥¬¡¼¥­¡¼¤ò¼èÆÀ¤¹¤ë /
+ * @brief ãƒã‚¯ãƒ­ã®ãƒˆãƒªã‚¬ãƒ¼ã‚­ãƒ¼ã‚’å–å¾—ã™ã‚‹ /
  * Hack -- ask for a "trigger" (see below)
- * @param buf ¥­¡¼É½µ­¤òÊİ´É¤¹¤ë¥Ğ¥Ã¥Õ¥¡
- * @return ¤Ê¤·
+ * @param buf ã‚­ãƒ¼è¡¨è¨˜ã‚’ä¿ç®¡ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+ * @return ãªã—
  * @details
  * <pre>
  * Note the complex use of the "inkey()" function from "util.c".
@@ -2479,10 +2496,9 @@ static errr macro_dump(cptr fname)
  */
 static void do_cmd_macro_aux(char *buf)
 {
-	int i, n = 0;
-
+	char i;
+	int n = 0;
 	char tmp[1024];
-
 
 	/* Flush */
 	flush();
@@ -2526,10 +2542,10 @@ static void do_cmd_macro_aux(char *buf)
 #endif
 
 /*!
- * @brief ¥Ş¥¯¥í¤Î¥­¡¼É½µ­¤«¤é¥¢¥¹¥­¡¼¥³¡¼¥É¤òÆÀ¤Æ¥¿¡¼¥ß¥Ê¥ë¤ËÉ½¼¨¤¹¤ë /
+ * @brief ãƒã‚¯ãƒ­ã®ã‚­ãƒ¼è¡¨è¨˜ã‹ã‚‰ã‚¢ã‚¹ã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’å¾—ã¦ã‚¿ãƒ¼ãƒŸãƒŠãƒ«ã«è¡¨ç¤ºã™ã‚‹ /
  * Hack -- ask for a keymap "trigger" (see below)
- * @param buf ¥­¡¼É½µ­¤ò¼èÆÀ¤¹¤ë¥Ğ¥Ã¥Õ¥¡
- * @return ¤Ê¤·
+ * @param buf ã‚­ãƒ¼è¡¨è¨˜ã‚’å–å¾—ã™ã‚‹ãƒãƒƒãƒ•ã‚¡
+ * @return ãªã—
  * @details
  * <pre>
  * Note that both "flush()" calls are extremely important.  This may
@@ -2563,10 +2579,10 @@ static void do_cmd_macro_aux_keymap(char *buf)
 
 
 /*!
- * @brief ¥­¡¼¥Ş¥Ã¥×¤òpref¥Õ¥¡¥¤¥ë¤Ë¥À¥ó¥×¤¹¤ë /
+ * @brief ã‚­ãƒ¼ãƒãƒƒãƒ—ã‚’prefãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒ€ãƒ³ãƒ—ã™ã‚‹ /
  * Hack -- append all keymaps to the given file
- * @param fname ¥Õ¥¡¥¤¥ë¥Í¡¼¥à
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param fname ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ¼ãƒ 
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  * @details
  */
 static errr keymap_dump(cptr fname)
@@ -2577,7 +2593,7 @@ static errr keymap_dump(cptr fname)
 	char key[1024];
 	char buf[1024];
 
-	int mode;
+	BIT_FLAGS mode;
 
 	/* Roguelike */
 	if (rogue_like_commands)
@@ -2602,7 +2618,7 @@ static errr keymap_dump(cptr fname)
 	if (!open_auto_dump(buf, mark)) return -1;
 
 	/* Start dumping */
-	auto_dump_printf(_("\n# ¼«Æ°¥­¡¼ÇÛÃÖ¥»¡¼¥Ö\n\n", "\n# Automatic keymap dump\n\n"));
+	auto_dump_printf(_("\n# è‡ªå‹•ã‚­ãƒ¼é…ç½®ã‚»ãƒ¼ãƒ–\n\n", "\n# Automatic keymap dump\n\n"));
 	
 	/* Dump them */
 	for (i = 0; i < 256; i++)
@@ -2616,7 +2632,7 @@ static errr keymap_dump(cptr fname)
 		if (!act) continue;
 
 		/* Encode the key */
-		buf[0] = i;
+		buf[0] = (char)i;
 		buf[1] = '\0';
 		ascii_to_text(key, buf);
 
@@ -2637,9 +2653,9 @@ static errr keymap_dump(cptr fname)
 
 
 /*!
- * @brief ¥Ş¥¯¥í¤òÀßÄê¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒã‚¯ãƒ­ã‚’è¨­å®šã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Interact with "macros"
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * <pre>
  * Note that the macro "action" must be defined before the trigger.
@@ -2655,7 +2671,7 @@ void do_cmd_macros(void)
 
 	char buf[1024];
 
-	int mode;
+	BIT_FLAGS mode;
 
 
 	/* Roguelike */
@@ -2685,10 +2701,10 @@ void do_cmd_macros(void)
 		Term_clear();
 
 		/* Describe */
-		prt(_("[ ¥Ş¥¯¥í¤ÎÀßÄê ]", "Interact with Macros"), 2, 0);
+		prt(_("[ ãƒã‚¯ãƒ­ã®è¨­å®š ]", "Interact with Macros"), 2, 0);
 
 		/* Describe that action */
-		prt(_("¥Ş¥¯¥í¹ÔÆ°¤¬(¤â¤·¤¢¤ì¤Ğ)²¼¤ËÉ½¼¨¤µ¤ì¤Ş¤¹:", "Current action (if any) shown below:"), 20, 0);
+		prt(_("ãƒã‚¯ãƒ­è¡Œå‹•ãŒ(ã‚‚ã—ã‚ã‚Œã°)ä¸‹ã«è¡¨ç¤ºã•ã‚Œã¾ã™:", "Current action (if any) shown below:"), 20, 0);
 
 		/* Analyze the current action */
 		ascii_to_text(buf, macro__buf);
@@ -2698,21 +2714,21 @@ void do_cmd_macros(void)
 
 
 		/* Selections */
-		prt(_("(1) ¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤Î¥í¡¼¥É", "(1) Load a user pref file"), 4, 5);
+		prt(_("(1) ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰", "(1) Load a user pref file"), 4, 5);
 #ifdef ALLOW_MACROS
-		prt(_("(2) ¥Õ¥¡¥¤¥ë¤Ë¥Ş¥¯¥í¤òÄÉ²Ã", "(2) Append macros to a file"), 5, 5);
-		prt(_("(3) ¥Ş¥¯¥í¤Î³ÎÇ§", "(3) Query a macro"), 6, 5);
-		prt(_("(4) ¥Ş¥¯¥í¤ÎºîÀ®", "(4) Create a macro"), 7, 5);
-		prt(_("(5) ¥Ş¥¯¥í¤Îºï½ü", "(5) Remove a macro"), 8, 5);
-		prt(_("(6) ¥Õ¥¡¥¤¥ë¤Ë¥­¡¼ÇÛÃÖ¤òÄÉ²Ã", "(6) Append keymaps to a file"), 9, 5);
-		prt(_("(7) ¥­¡¼ÇÛÃÖ¤Î³ÎÇ§", "(7) Query a keymap"), 10, 5);
-		prt(_("(8) ¥­¡¼ÇÛÃÖ¤ÎºîÀ®", "(8) Create a keymap"), 11, 5);
-		prt(_("(9) ¥­¡¼ÇÛÃÖ¤Îºï½ü", "(9) Remove a keymap"), 12, 5);
-		prt(_("(0) ¥Ş¥¯¥í¹ÔÆ°¤ÎÆşÎÏ", "(0) Enter a new action"), 13, 5);
+		prt(_("(2) ãƒ•ã‚¡ã‚¤ãƒ«ã«ãƒã‚¯ãƒ­ã‚’è¿½åŠ ", "(2) Append macros to a file"), 5, 5);
+		prt(_("(3) ãƒã‚¯ãƒ­ã®ç¢ºèª", "(3) Query a macro"), 6, 5);
+		prt(_("(4) ãƒã‚¯ãƒ­ã®ä½œæˆ", "(4) Create a macro"), 7, 5);
+		prt(_("(5) ãƒã‚¯ãƒ­ã®å‰Šé™¤", "(5) Remove a macro"), 8, 5);
+		prt(_("(6) ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚­ãƒ¼é…ç½®ã‚’è¿½åŠ ", "(6) Append keymaps to a file"), 9, 5);
+		prt(_("(7) ã‚­ãƒ¼é…ç½®ã®ç¢ºèª", "(7) Query a keymap"), 10, 5);
+		prt(_("(8) ã‚­ãƒ¼é…ç½®ã®ä½œæˆ", "(8) Create a keymap"), 11, 5);
+		prt(_("(9) ã‚­ãƒ¼é…ç½®ã®å‰Šé™¤", "(9) Remove a keymap"), 12, 5);
+		prt(_("(0) ãƒã‚¯ãƒ­è¡Œå‹•ã®å…¥åŠ›", "(0) Enter a new action"), 13, 5);
 #endif /* ALLOW_MACROS */
 
 		/* Prompt */
-		prt(_("¥³¥Ş¥ó¥É: ", "Command: "), 16, 0);
+		prt(_("ã‚³ãƒãƒ³ãƒ‰: ", "Command: "), 16, 0);
 
 		/* Get a command */
 		i = inkey();
@@ -2726,10 +2742,10 @@ void do_cmd_macros(void)
 			errr err;
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤Î¥í¡¼¥É", "Command: Load a user pref file"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰", "Command: Load a user pref file"), 16, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 18, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 18, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -2741,16 +2757,16 @@ void do_cmd_macros(void)
 			err = process_pref_file(tmp);
 			if (-2 == err)
 			{
-				msg_format(_("É¸½à¤ÎÀßÄê¥Õ¥¡¥¤¥ë'%s'¤òÆÉ¤ß¹ş¤ß¤Ş¤·¤¿¡£", "Loaded default '%s'."), tmp);
+				msg_format(_("æ¨™æº–ã®è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«'%s'ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸã€‚", "Loaded default '%s'."), tmp);
 			}
 			else if (err)
 			{
 				/* Prompt */
-				msg_format(_("'%s'¤ÎÆÉ¤ß¹ş¤ß¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡ª", "Failed to load '%s'!"), tmp);
+				msg_format(_("'%s'ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸï¼", "Failed to load '%s'!"), tmp);
 			}
 			else
 			{
-				msg_format(_("'%s'¤òÆÉ¤ß¹ş¤ß¤Ş¤·¤¿¡£", "Loaded '%s'."), tmp);
+				msg_format(_("'%s'ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸã€‚", "Loaded '%s'."), tmp);
 			}
 		}
 
@@ -2760,10 +2776,10 @@ void do_cmd_macros(void)
 		else if (i == '2')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥Ş¥¯¥í¤ò¥Õ¥¡¥¤¥ë¤ËÄÉ²Ã¤¹¤ë", "Command: Append macros to a file"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒã‚¯ãƒ­ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«è¿½åŠ ã™ã‚‹", "Command: Append macros to a file"), 16, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 18, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 18, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -2775,7 +2791,7 @@ void do_cmd_macros(void)
 			(void)macro_dump(tmp);
 
 			/* Prompt */
-			msg_print(_("¥Ş¥¯¥í¤òÄÉ²Ã¤·¤Ş¤·¤¿¡£", "Appended macros."));
+			msg_print(_("ãƒã‚¯ãƒ­ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚", "Appended macros."));
 		}
 
 		/* Query a macro */
@@ -2784,11 +2800,11 @@ void do_cmd_macros(void)
 			int k;
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥Ş¥¯¥í¤Î³ÎÇ§", "Command: Query a macro"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒã‚¯ãƒ­ã®ç¢ºèª", "Command: Query a macro"), 16, 0);
 
 
 			/* Prompt */
-			prt(_("¥È¥ê¥¬¡¼¥­¡¼: ", "Trigger: "), 18, 0);
+			prt(_("ãƒˆãƒªã‚¬ãƒ¼ã‚­ãƒ¼: ", "Trigger: "), 18, 0);
 
 			/* Get a macro trigger */
 			do_cmd_macro_aux(buf);
@@ -2800,7 +2816,7 @@ void do_cmd_macros(void)
 			if (k < 0)
 			{
 				/* Prompt */
-				msg_print(_("¤½¤Î¥­¡¼¤Ë¤Ï¥Ş¥¯¥í¤ÏÄêµÁ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£", "Found no macro."));
+				msg_print(_("ãã®ã‚­ãƒ¼ã«ã¯ãƒã‚¯ãƒ­ã¯å®šç¾©ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", "Found no macro."));
 			}
 
 			/* Found one */
@@ -2816,7 +2832,7 @@ void do_cmd_macros(void)
 				prt(buf, 22, 0);
 
 				/* Prompt */
-				msg_print(_("¥Ş¥¯¥í¤ò³ÎÇ§¤·¤Ş¤·¤¿¡£", "Found a macro."));
+				msg_print(_("ãƒã‚¯ãƒ­ã‚’ç¢ºèªã—ã¾ã—ãŸã€‚", "Found a macro."));
 			}
 		}
 
@@ -2824,10 +2840,10 @@ void do_cmd_macros(void)
 		else if (i == '4')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥Ş¥¯¥í¤ÎºîÀ®", "Command: Create a macro"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒã‚¯ãƒ­ã®ä½œæˆ", "Command: Create a macro"), 16, 0);
 
 			/* Prompt */
-			prt(_("¥È¥ê¥¬¡¼¥­¡¼: ", "Trigger: "), 18, 0);
+			prt(_("ãƒˆãƒªã‚¬ãƒ¼ã‚­ãƒ¼: ", "Trigger: "), 18, 0);
 
 			/* Get a macro trigger */
 			do_cmd_macro_aux(buf);
@@ -2836,11 +2852,11 @@ void do_cmd_macros(void)
 			clear_from(20);
 
 			/* Help message */
-			c_prt(TERM_L_RED, _("¥«¡¼¥½¥ë¥­¡¼¤Îº¸±¦¤Ç¥«¡¼¥½¥ë°ÌÃÖ¤ò°ÜÆ°¡£Backspace¤«Delete¤Ç°ìÊ¸»úºï½ü¡£",
+			c_prt(TERM_L_RED, _("ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼ã®å·¦å³ã§ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç§»å‹•ã€‚Backspaceã‹Deleteã§ä¸€æ–‡å­—å‰Šé™¤ã€‚",
 								"Press Left/Right arrow keys to move cursor. Backspace/Delete to delete a char."), 22, 0);
 
 			/* Prompt */
-			prt(_("¥Ş¥¯¥í¹ÔÆ°: ", "Action: "), 20, 0);
+			prt(_("ãƒã‚¯ãƒ­è¡Œå‹•: ", "Action: "), 20, 0);
 
 			/* Convert to text */
 			ascii_to_text(tmp, macro__buf);
@@ -2855,7 +2871,7 @@ void do_cmd_macros(void)
 				macro_add(buf, macro__buf);
 
 				/* Prompt */
-				msg_print(_("¥Ş¥¯¥í¤òÄÉ²Ã¤·¤Ş¤·¤¿¡£", "Added a macro."));
+				msg_print(_("ãƒã‚¯ãƒ­ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚", "Added a macro."));
 			}
 		}
 
@@ -2863,10 +2879,10 @@ void do_cmd_macros(void)
 		else if (i == '5')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥Ş¥¯¥í¤Îºï½ü", "Command: Remove a macro"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒã‚¯ãƒ­ã®å‰Šé™¤", "Command: Remove a macro"), 16, 0);
 
 			/* Prompt */
-			prt(_("¥È¥ê¥¬¡¼¥­¡¼: ", "Trigger: "), 18, 0);
+			prt(_("ãƒˆãƒªã‚¬ãƒ¼ã‚­ãƒ¼: ", "Trigger: "), 18, 0);
 
 			/* Get a macro trigger */
 			do_cmd_macro_aux(buf);
@@ -2875,17 +2891,17 @@ void do_cmd_macros(void)
 			macro_add(buf, buf);
 
 			/* Prompt */
-			msg_print(_("¥Ş¥¯¥í¤òºï½ü¤·¤Ş¤·¤¿¡£", "Removed a macro."));
+			msg_print(_("ãƒã‚¯ãƒ­ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚", "Removed a macro."));
 		}
 
 		/* Save keymaps */
 		else if (i == '6')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥­¡¼ÇÛÃÖ¤ò¥Õ¥¡¥¤¥ë¤ËÄÉ²Ã¤¹¤ë", "Command: Append keymaps to a file"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚­ãƒ¼é…ç½®ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«è¿½åŠ ã™ã‚‹", "Command: Append keymaps to a file"), 16, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 18, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 18, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -2897,7 +2913,7 @@ void do_cmd_macros(void)
 			(void)keymap_dump(tmp);
 
 			/* Prompt */
-			msg_print(_("¥­¡¼ÇÛÃÖ¤òÄÉ²Ã¤·¤Ş¤·¤¿¡£", "Appended keymaps."));
+			msg_print(_("ã‚­ãƒ¼é…ç½®ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚", "Appended keymaps."));
 		}
 
 		/* Query a keymap */
@@ -2906,10 +2922,10 @@ void do_cmd_macros(void)
 			cptr act;
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥­¡¼ÇÛÃÖ¤Î³ÎÇ§", "Command: Query a keymap"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚­ãƒ¼é…ç½®ã®ç¢ºèª", "Command: Query a keymap"), 16, 0);
 
 			/* Prompt */
-			prt(_("²¡¤¹¥­¡¼: ", "Keypress: "), 18, 0);
+			prt(_("æŠ¼ã™ã‚­ãƒ¼: ", "Keypress: "), 18, 0);
 
 			/* Get a keymap trigger */
 			do_cmd_macro_aux_keymap(buf);
@@ -2921,7 +2937,7 @@ void do_cmd_macros(void)
 			if (!act)
 			{
 				/* Prompt */
-				msg_print(_("¥­¡¼ÇÛÃÖ¤ÏÄêµÁ¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£", "Found no keymap."));
+				msg_print(_("ã‚­ãƒ¼é…ç½®ã¯å®šç¾©ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", "Found no keymap."));
 			}
 
 			/* Found one */
@@ -2937,7 +2953,7 @@ void do_cmd_macros(void)
 				prt(buf, 22, 0);
 
 				/* Prompt */
-				msg_print(_("¥­¡¼ÇÛÃÖ¤ò³ÎÇ§¤·¤Ş¤·¤¿¡£", "Found a keymap."));
+				msg_print(_("ã‚­ãƒ¼é…ç½®ã‚’ç¢ºèªã—ã¾ã—ãŸã€‚", "Found a keymap."));
 			}
 		}
 
@@ -2945,10 +2961,10 @@ void do_cmd_macros(void)
 		else if (i == '8')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥­¡¼ÇÛÃÖ¤ÎºîÀ®", "Command: Create a keymap"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚­ãƒ¼é…ç½®ã®ä½œæˆ", "Command: Create a keymap"), 16, 0);
 
 			/* Prompt */
-			prt(_("²¡¤¹¥­¡¼: ", "Keypress: "), 18, 0);
+			prt(_("æŠ¼ã™ã‚­ãƒ¼: ", "Keypress: "), 18, 0);
 
 			/* Get a keymap trigger */
 			do_cmd_macro_aux_keymap(buf);
@@ -2957,11 +2973,11 @@ void do_cmd_macros(void)
 			clear_from(20);
 
 			/* Help message */
-			c_prt(TERM_L_RED, _("¥«¡¼¥½¥ë¥­¡¼¤Îº¸±¦¤Ç¥«¡¼¥½¥ë°ÌÃÖ¤ò°ÜÆ°¡£Backspace¤«Delete¤Ç°ìÊ¸»úºï½ü¡£",
+			c_prt(TERM_L_RED, _("ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼ã®å·¦å³ã§ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç§»å‹•ã€‚Backspaceã‹Deleteã§ä¸€æ–‡å­—å‰Šé™¤ã€‚",
 							    "Press Left/Right arrow keys to move cursor. Backspace/Delete to delete a char."), 22, 0);
 
 			/* Prompt */
-			prt(_("¹ÔÆ°: ", "Action: "), 20, 0);
+			prt(_("è¡Œå‹•: ", "Action: "), 20, 0);
 
 			/* Convert to text */
 			ascii_to_text(tmp, macro__buf);
@@ -2979,7 +2995,7 @@ void do_cmd_macros(void)
 				keymap_act[mode][(byte)(buf[0])] = string_make(macro__buf);
 
 				/* Prompt */
-				msg_print(_("¥­¡¼ÇÛÃÖ¤òÄÉ²Ã¤·¤Ş¤·¤¿¡£", "Added a keymap."));
+				msg_print(_("ã‚­ãƒ¼é…ç½®ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚", "Added a keymap."));
 			}
 		}
 
@@ -2987,10 +3003,10 @@ void do_cmd_macros(void)
 		else if (i == '9')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥­¡¼ÇÛÃÖ¤Îºï½ü", "Command: Remove a keymap"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚­ãƒ¼é…ç½®ã®å‰Šé™¤", "Command: Remove a keymap"), 16, 0);
 
 			/* Prompt */
-			prt(_("²¡¤¹¥­¡¼: ", "Keypress: "), 18, 0);
+			prt(_("æŠ¼ã™ã‚­ãƒ¼: ", "Keypress: "), 18, 0);
 
 			/* Get a keymap trigger */
 			do_cmd_macro_aux_keymap(buf);
@@ -3002,24 +3018,24 @@ void do_cmd_macros(void)
 			keymap_act[mode][(byte)(buf[0])] = NULL;
 
 			/* Prompt */
-			msg_print(_("¥­¡¼ÇÛÃÖ¤òºï½ü¤·¤Ş¤·¤¿¡£", "Removed a keymap."));
+			msg_print(_("ã‚­ãƒ¼é…ç½®ã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚", "Removed a keymap."));
 		}
 
 		/* Enter a new action */
 		else if (i == '0')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥Ş¥¯¥í¹ÔÆ°¤ÎÆşÎÏ", "Command: Enter a new action"), 16, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒã‚¯ãƒ­è¡Œå‹•ã®å…¥åŠ›", "Command: Enter a new action"), 16, 0);
 
 			/* Clear */
 			clear_from(20);
 
 			/* Help message */
-			c_prt(TERM_L_RED, _("¥«¡¼¥½¥ë¥­¡¼¤Îº¸±¦¤Ç¥«¡¼¥½¥ë°ÌÃÖ¤ò°ÜÆ°¡£Backspace¤«Delete¤Ç°ìÊ¸»úºï½ü¡£",
+			c_prt(TERM_L_RED, _("ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼ã®å·¦å³ã§ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’ç§»å‹•ã€‚Backspaceã‹Deleteã§ä¸€æ–‡å­—å‰Šé™¤ã€‚",
 								"Press Left/Right arrow keys to move cursor. Backspace/Delete to delete a char."), 22, 0);
 
 			/* Prompt */
-			prt(_("¥Ş¥¯¥í¹ÔÆ°: ", "Action: "), 20, 0);
+			prt(_("ãƒã‚¯ãƒ­è¡Œå‹•: ", "Action: "), 20, 0);
 
 			/* Hack -- limit the value */
 			tmp[80] = '\0';
@@ -3049,14 +3065,14 @@ void do_cmd_macros(void)
 }
 
 /*!
- * @brief ¥­¥ã¥é¥¯¥¿¿§¤ÎÌÀ°ÅÉ½¸½
+ * @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿è‰²ã®æ˜æš—è¡¨ç¾
  */
 static cptr lighting_level_str[F_LIT_MAX] =
 {
 #ifdef JP
-	"É¸½à¿§",
-	"ÌÀ¿§",
-	"°Å¿§",
+	"æ¨™æº–è‰²",
+	"æ˜è‰²",
+	"æš—è‰²",
 #else
 	"standard",
 	"brightly lit",
@@ -3066,25 +3082,25 @@ static cptr lighting_level_str[F_LIT_MAX] =
 
 
 /*!
- * @brief ¥­¥ã¥é¥¯¥¿¤Î¥Ó¥¸¥å¥¢¥ëID¤òÊÑ¹¹¤¹¤ëºİ¤ÎÂĞ¾İ»ØÄê´Ø¿ô
- * @param i »ØÄêÂĞ¾İ¤È¤Ê¤ë¥­¥ã¥é¥¯¥¿¥³¡¼¥É
- * @param num »ØÄê¤µ¤ì¤¿¥Ó¥¸¥å¥¢¥ëID¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param max ¥Ó¥¸¥å¥¢¥ëID¤ÎºÇÂç¿ô
- * @return »ØÄê¤¬¼Âºİ¤Ë¹Ô¤ï¤ì¤¿¾ì¹çTRUE¡¢¥­¥ã¥ó¥»¥ë¤µ¤ì¤¿¾ì¹çFALSE
+ * @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«IDã‚’å¤‰æ›´ã™ã‚‹éš›ã®å¯¾è±¡æŒ‡å®šé–¢æ•°
+ * @param i æŒ‡å®šå¯¾è±¡ã¨ãªã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚³ãƒ¼ãƒ‰
+ * @param num æŒ‡å®šã•ã‚ŒãŸãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«IDã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param max ãƒ“ã‚¸ãƒ¥ã‚¢ãƒ«IDã®æœ€å¤§æ•°
+ * @return æŒ‡å®šãŒå®Ÿéš›ã«è¡Œã‚ã‚ŒãŸå ´åˆTRUEã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸå ´åˆFALSE
  */
-static bool cmd_visuals_aux(int i, int *num, int max)
+static bool cmd_visuals_aux(int i, IDX *num, IDX max)
 {
 	if (iscntrl(i))
 	{
 		char str[10] = "";
-		int tmp;
+		IDX tmp;
 
 		sprintf(str, "%d", *num);
 
 		if (!get_string(format("Input new number(0-%d): ", max-1), str, 4))
 			return FALSE;
 
-		tmp = strtol(str, NULL, 0);
+		tmp = (IDX)strtol(str, NULL, 0);
 		if (tmp >= 0 && tmp < max)
 			*num = tmp;
 	}
@@ -3097,38 +3113,38 @@ static bool cmd_visuals_aux(int i, int *num, int max)
 }
 
 /*!
- * @brief ¥­¥ã¥é¥¯¥¿¤ÎÊÑ¹¹¥á¥Ë¥å¡¼É½¼¨
- * @param choice_msg ÁªÂò¥á¥Ã¥»¡¼¥¸
- * @return ¤Ê¤·
+ * @brief ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®å¤‰æ›´ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤º
+ * @param choice_msg é¸æŠãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @return ãªã—
  */
 static void print_visuals_menu(cptr choice_msg)
 {
-	prt(_("[ ²èÌÌÉ½¼¨¤ÎÀßÄê ]", "Interact with Visuals"), 1, 0);
+	prt(_("[ ç”»é¢è¡¨ç¤ºã®è¨­å®š ]", "Interact with Visuals"), 1, 0);
 	
 	/* Give some choices */
-	prt(_("(0) ¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤Î¥í¡¼¥É", "(0) Load a user pref file"), 3, 5);
+	prt(_("(0) ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰", "(0) Load a user pref file"), 3, 5);
 	
 #ifdef ALLOW_VISUALS
-	prt(_("(1) ¥â¥ó¥¹¥¿¡¼¤Î ¿§/Ê¸»ú ¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤¹", "(1) Dump monster attr/chars"), 4, 5);
-	prt(_("(2) ¥¢¥¤¥Æ¥à¤Î   ¿§/Ê¸»ú ¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤¹", "(2) Dump object attr/chars"), 5, 5);
-	prt(_("(3) ÃÏ·Á¤Î       ¿§/Ê¸»ú ¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤¹", "(3) Dump feature attr/chars"), 6, 5);
-	prt(_("(4) ¥â¥ó¥¹¥¿¡¼¤Î ¿§/Ê¸»ú ¤òÊÑ¹¹¤¹¤ë (¿ôÃÍÁàºî)", "(4) Change monster attr/chars (numeric operation)"), 7, 5);
-	prt(_("(5) ¥¢¥¤¥Æ¥à¤Î   ¿§/Ê¸»ú ¤òÊÑ¹¹¤¹¤ë (¿ôÃÍÁàºî)", "(5) Change object attr/chars (numeric operation)"), 8, 5);
-	prt(_("(6) ÃÏ·Á¤Î       ¿§/Ê¸»ú ¤òÊÑ¹¹¤¹¤ë (¿ôÃÍÁàºî)", "(6) Change feature attr/chars (numeric operation)"), 9, 5);
-	prt(_("(7) ¥â¥ó¥¹¥¿¡¼¤Î ¿§/Ê¸»ú ¤òÊÑ¹¹¤¹¤ë (¥·¥ó¥Ü¥ë¥¨¥Ç¥£¥¿)", "(7) Change monster attr/chars (visual mode)"), 10, 5);
-	prt(_("(8) ¥¢¥¤¥Æ¥à¤Î   ¿§/Ê¸»ú ¤òÊÑ¹¹¤¹¤ë (¥·¥ó¥Ü¥ë¥¨¥Ç¥£¥¿)", "(8) Change object attr/chars (visual mode)"), 11, 5);
-	prt(_("(9) ÃÏ·Á¤Î       ¿§/Ê¸»ú ¤òÊÑ¹¹¤¹¤ë (¥·¥ó¥Ü¥ë¥¨¥Ç¥£¥¿)", "(9) Change feature attr/chars (visual mode)"), 12, 5);
+	prt(_("(1) ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã® è‰²/æ–‡å­— ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™", "(1) Dump monster attr/chars"), 4, 5);
+	prt(_("(2) ã‚¢ã‚¤ãƒ†ãƒ ã®   è‰²/æ–‡å­— ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™", "(2) Dump object attr/chars"), 5, 5);
+	prt(_("(3) åœ°å½¢ã®       è‰²/æ–‡å­— ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™", "(3) Dump feature attr/chars"), 6, 5);
+	prt(_("(4) ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã® è‰²/æ–‡å­— ã‚’å¤‰æ›´ã™ã‚‹ (æ•°å€¤æ“ä½œ)", "(4) Change monster attr/chars (numeric operation)"), 7, 5);
+	prt(_("(5) ã‚¢ã‚¤ãƒ†ãƒ ã®   è‰²/æ–‡å­— ã‚’å¤‰æ›´ã™ã‚‹ (æ•°å€¤æ“ä½œ)", "(5) Change object attr/chars (numeric operation)"), 8, 5);
+	prt(_("(6) åœ°å½¢ã®       è‰²/æ–‡å­— ã‚’å¤‰æ›´ã™ã‚‹ (æ•°å€¤æ“ä½œ)", "(6) Change feature attr/chars (numeric operation)"), 9, 5);
+	prt(_("(7) ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã® è‰²/æ–‡å­— ã‚’å¤‰æ›´ã™ã‚‹ (ã‚·ãƒ³ãƒœãƒ«ã‚¨ãƒ‡ã‚£ã‚¿)", "(7) Change monster attr/chars (visual mode)"), 10, 5);
+	prt(_("(8) ã‚¢ã‚¤ãƒ†ãƒ ã®   è‰²/æ–‡å­— ã‚’å¤‰æ›´ã™ã‚‹ (ã‚·ãƒ³ãƒœãƒ«ã‚¨ãƒ‡ã‚£ã‚¿)", "(8) Change object attr/chars (visual mode)"), 11, 5);
+	prt(_("(9) åœ°å½¢ã®       è‰²/æ–‡å­— ã‚’å¤‰æ›´ã™ã‚‹ (ã‚·ãƒ³ãƒœãƒ«ã‚¨ãƒ‡ã‚£ã‚¿)", "(9) Change feature attr/chars (visual mode)"), 12, 5);
 #endif /* ALLOW_VISUALS */
 
-	prt(_("(R) ²èÌÌÉ½¼¨ÊıË¡¤Î½é´ü²½", "(R) Reset visuals"), 13, 5);
+	prt(_("(R) ç”»é¢è¡¨ç¤ºæ–¹æ³•ã®åˆæœŸåŒ–", "(R) Reset visuals"), 13, 5);
 
 	/* Prompt */
-	prt(format("¥³¥Ş¥ó¥É: %s", choice_msg ? choice_msg : _("", "")), 15, 0);
+	prt(format("ã‚³ãƒãƒ³ãƒ‰: %s", choice_msg ? choice_msg : _("", "")), 15, 0);
 }
 
-static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int direct_r_idx);
-static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int direct_k_idx);
-static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int direct_f_idx, int *lighting_level);
+static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, IDX direct_r_idx);
+static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, IDX direct_k_idx);
+static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, IDX direct_f_idx, IDX *lighting_level);
 
 /*
  * Interact with "visuals"
@@ -3169,10 +3185,10 @@ void do_cmd_visuals(void)
 		/* Load a 'pref' file */
 		case '0':
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤Î¥í¡¼¥É", "Command: Load a user pref file"), 15, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰", "Command: Load a user pref file"), 15, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 17, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 17, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -3194,10 +3210,10 @@ void do_cmd_visuals(void)
 			static cptr mark = "Monster attr/chars";
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥â¥ó¥¹¥¿¡¼¤Î[¿§/Ê¸»ú]¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤¹", "Command: Dump monster attr/chars"), 15, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®[è‰²/æ–‡å­—]ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã™", "Command: Dump monster attr/chars"), 15, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 17, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 17, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -3212,7 +3228,7 @@ void do_cmd_visuals(void)
 			if (!open_auto_dump(buf, mark)) continue;
 
 			/* Start dumping */
-			auto_dump_printf(_("\n# ¥â¥ó¥¹¥¿¡¼¤Î[¿§/Ê¸»ú]¤ÎÀßÄê\n\n", "\n# Monster attr/char definitions\n\n"));
+			auto_dump_printf(_("\n# ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®[è‰²/æ–‡å­—]ã®è¨­å®š\n\n", "\n# Monster attr/char definitions\n\n"));
 
 			/* Dump monsters */
 			for (i = 0; i < max_r_idx; i++)
@@ -3234,7 +3250,7 @@ void do_cmd_visuals(void)
 			close_auto_dump();
 
 			/* Message */
-			msg_print(_("¥â¥ó¥¹¥¿¡¼¤Î[¿§/Ê¸»ú]¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Dumped monster attr/chars."));
+			msg_print(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®[è‰²/æ–‡å­—]ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Dumped monster attr/chars."));
 
 			break;
 		}
@@ -3243,12 +3259,13 @@ void do_cmd_visuals(void)
 		case '2':
 		{
 			static cptr mark = "Object attr/chars";
+			IDX k_idx;
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥¢¥¤¥Æ¥à¤Î[¿§/Ê¸»ú]¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤¹", "Command: Dump object attr/chars"), 15, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚¢ã‚¤ãƒ†ãƒ ã®[è‰²/æ–‡å­—]ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã™", "Command: Dump object attr/chars"), 15, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 17, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 17, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -3263,13 +3280,13 @@ void do_cmd_visuals(void)
 			if (!open_auto_dump(buf, mark)) continue;
 
 			/* Start dumping */
-			auto_dump_printf(_("\n# ¥¢¥¤¥Æ¥à¤Î[¿§/Ê¸»ú]¤ÎÀßÄê\n\n", "\n# Object attr/char definitions\n\n"));
+			auto_dump_printf(_("\n# ã‚¢ã‚¤ãƒ†ãƒ ã®[è‰²/æ–‡å­—]ã®è¨­å®š\n\n", "\n# Object attr/char definitions\n\n"));
 
 			/* Dump objects */
-			for (i = 0; i < max_k_idx; i++)
+			for (k_idx = 0; k_idx < max_k_idx; k_idx++)
 			{
 				char o_name[80];
-				object_kind *k_ptr = &k_info[i];
+				object_kind *k_ptr = &k_info[k_idx];
 
 				/* Skip non-entries */
 				if (!k_ptr->name) continue;
@@ -3277,14 +3294,14 @@ void do_cmd_visuals(void)
 				if (!k_ptr->flavor)
 				{
 					/* Tidy name */
-					strip_name(o_name, i);
+					strip_name(o_name, k_idx);
 				}
 				else
 				{
 					object_type forge;
 
 					/* Prepare dummy object */
-					object_prep(&forge, i);
+					object_prep(&forge, k_idx);
 
 					/* Get un-shuffled flavor name */
 					object_desc(o_name, &forge, OD_FORCE_FLAVOR);
@@ -3294,7 +3311,7 @@ void do_cmd_visuals(void)
 				auto_dump_printf("# %s\n", o_name);
 
 				/* Dump the object attr/char info */
-				auto_dump_printf("K:%d:0x%02X/0x%02X\n\n", i,
+				auto_dump_printf("K:%d:0x%02X/0x%02X\n\n", (int)k_idx,
 					(byte)(k_ptr->x_attr), (byte)(k_ptr->x_char));
 			}
 
@@ -3302,7 +3319,7 @@ void do_cmd_visuals(void)
 			close_auto_dump();
 
 			/* Message */
-			msg_print(_("¥¢¥¤¥Æ¥à¤Î[¿§/Ê¸»ú]¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Dumped object attr/chars."));
+			msg_print(_("ã‚¢ã‚¤ãƒ†ãƒ ã®[è‰²/æ–‡å­—]ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Dumped object attr/chars."));
 
 			break;
 		}
@@ -3313,10 +3330,10 @@ void do_cmd_visuals(void)
 			static cptr mark = "Feature attr/chars";
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ÃÏ·Á¤Î[¿§/Ê¸»ú]¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤¹", "Command: Dump feature attr/chars"), 15, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: åœ°å½¢ã®[è‰²/æ–‡å­—]ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã™", "Command: Dump feature attr/chars"), 15, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 17, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 17, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -3331,7 +3348,7 @@ void do_cmd_visuals(void)
 			if (!open_auto_dump(buf, mark)) continue;
 
 			/* Start dumping */
-			auto_dump_printf(_("\n# ÃÏ·Á¤Î[¿§/Ê¸»ú]¤ÎÀßÄê\n\n", "\n# Feature attr/char definitions\n\n"));
+			auto_dump_printf(_("\n# åœ°å½¢ã®[è‰²/æ–‡å­—]ã®è¨­å®š\n\n", "\n# Feature attr/char definitions\n\n"));
 
 			/* Dump features */
 			for (i = 0; i < max_f_idx; i++)
@@ -3358,7 +3375,7 @@ void do_cmd_visuals(void)
 			close_auto_dump();
 
 			/* Message */
-			msg_print(_("ÃÏ·Á¤Î[¿§/Ê¸»ú]¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Dumped feature attr/chars."));
+			msg_print(_("åœ°å½¢ã®[è‰²/æ–‡å­—]ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Dumped feature attr/chars."));
 
 			break;
 		}
@@ -3366,17 +3383,17 @@ void do_cmd_visuals(void)
 		/* Modify monster attr/chars (numeric operation) */
 		case '4':
 		{
-			static cptr choice_msg = _("¥â¥ó¥¹¥¿¡¼¤Î[¿§/Ê¸»ú]¤òÊÑ¹¹¤·¤Ş¤¹", "Change monster attr/chars");
-			static int r = 0;
+			static cptr choice_msg = _("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®[è‰²/æ–‡å­—]ã‚’å¤‰æ›´ã—ã¾ã™", "Change monster attr/chars");
+			static IDX r = 0;
 
-			prt(format(_("¥³¥Ş¥ó¥É: %s", "Command: %s"), choice_msg), 15, 0);
+			prt(format(_("ã‚³ãƒãƒ³ãƒ‰: %s", "Command: %s"), choice_msg), 15, 0);
 
 			/* Hack -- query until done */
 			while (1)
 			{
 				monster_race *r_ptr = &r_info[r];
-				char c;
-				int t;
+				int c;
+				IDX t;
 
 				byte da = r_ptr->d_attr;
 				byte dc = r_ptr->d_char;
@@ -3385,25 +3402,25 @@ void do_cmd_visuals(void)
 
 				/* Label the object */
 				Term_putstr(5, 17, -1, TERM_WHITE,
-					 format(_("¥â¥ó¥¹¥¿¡¼ = %d, Ì¾Á° = %-40.40s", "Monster = %d, Name = %-40.40s"), r, (r_name + r_ptr->name)));
+					 format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ = %d, åå‰ = %-40.40s", "Monster = %d, Name = %-40.40s"), r, (r_name + r_ptr->name)));
 
 				/* Label the Default values */
 				Term_putstr(10, 19, -1, TERM_WHITE,
-					format(_("½é´üÃÍ  ¿§ / Ê¸»ú = %3u / %3u", "Default attr/char = %3u / %3u"), da, dc));
+					format(_("åˆæœŸå€¤  è‰² / æ–‡å­— = %3u / %3u", "Default attr/char = %3u / %3u"), da, dc));
 
 				Term_putstr(40, 19, -1, TERM_WHITE, empty_symbol);
 				Term_queue_bigchar(43, 19, da, dc, 0, 0);
 
 				/* Label the Current values */
 				Term_putstr(10, 20, -1, TERM_WHITE,
-					format(_("¸½ºßÃÍ  ¿§ / Ê¸»ú = %3u / %3u", "Current attr/char = %3u / %3u"), ca, cc));
+					format(_("ç¾åœ¨å€¤  è‰² / æ–‡å­— = %3u / %3u", "Current attr/char = %3u / %3u"), ca, cc));
 
 				Term_putstr(40, 20, -1, TERM_WHITE, empty_symbol);
 				Term_queue_bigchar(43, 20, ca, cc, 0, 0);
 
 				/* Prompt */
 				Term_putstr(0, 22, -1, TERM_WHITE, 
-					_("¥³¥Ş¥ó¥É (n/N/^N/a/A/^A/c/C/^C/v/V/^V): ", "Command (n/N/^N/a/A/^A/c/C/^C/v/V/^V): "));
+					_("ã‚³ãƒãƒ³ãƒ‰ (n/N/^N/a/A/^A/c/C/^C/v/V/^V): ", "Command (n/N/^N/a/A/^A/c/C/^C/v/V/^V): "));
 
 				/* Get a command */
 				i = inkey();
@@ -3419,7 +3436,7 @@ void do_cmd_visuals(void)
 				{
 				case 'n':
 					{
-						int prev_r = r;
+						IDX prev_r = r;
 						do
 						{
 							if (!cmd_visuals_aux(i, &r, max_r_idx))
@@ -3459,44 +3476,44 @@ void do_cmd_visuals(void)
 		/* Modify object attr/chars (numeric operation) */
 		case '5':
 		{
-			static cptr choice_msg = _("¥¢¥¤¥Æ¥à¤Î[¿§/Ê¸»ú]¤òÊÑ¹¹¤·¤Ş¤¹", "Change object attr/chars");
-			static int k = 0;
-			prt(format(_("¥³¥Ş¥ó¥É: %s", "Command: %s"), choice_msg), 15, 0);
+			static cptr choice_msg = _("ã‚¢ã‚¤ãƒ†ãƒ ã®[è‰²/æ–‡å­—]ã‚’å¤‰æ›´ã—ã¾ã™", "Change object attr/chars");
+			static IDX k = 0;
+			prt(format(_("ã‚³ãƒãƒ³ãƒ‰: %s", "Command: %s"), choice_msg), 15, 0);
 
 			/* Hack -- query until done */
 			while (1)
 			{
 				object_kind *k_ptr = &k_info[k];
-				char c;
-				int t;
+				int c;
+				IDX t;
 
-				byte da = k_ptr->d_attr;
-				byte dc = k_ptr->d_char;
-				byte ca = k_ptr->x_attr;
-				byte cc = k_ptr->x_char;
+				SYMBOL_COLOR da = k_ptr->d_attr;
+				SYMBOL_CODE dc = k_ptr->d_char;
+				SYMBOL_COLOR ca = k_ptr->x_attr;
+				SYMBOL_CODE cc = k_ptr->x_char;
 
 				/* Label the object */
 				Term_putstr(5, 17, -1, TERM_WHITE,
-					    format(_("¥¢¥¤¥Æ¥à = %d, Ì¾Á° = %-40.40s", "Object = %d, Name = %-40.40s"),
+					    format(_("ã‚¢ã‚¤ãƒ†ãƒ  = %d, åå‰ = %-40.40s", "Object = %d, Name = %-40.40s"),
 						   k, k_name + (!k_ptr->flavor ? k_ptr->name : k_ptr->flavor_name)));
 
 				/* Label the Default values */
 				Term_putstr(10, 19, -1, TERM_WHITE,
-					    format(_("½é´üÃÍ  ¿§ / Ê¸»ú = %3d / %3d", "Default attr/char = %3d / %3d"), da, dc));
+					    format(_("åˆæœŸå€¤  è‰² / æ–‡å­— = %3d / %3d", "Default attr/char = %3d / %3d"), da, dc));
 
 				Term_putstr(40, 19, -1, TERM_WHITE, empty_symbol);
 				Term_queue_bigchar(43, 19, da, dc, 0, 0);
 
 				/* Label the Current values */
 				Term_putstr(10, 20, -1, TERM_WHITE,
-					    format(_("¸½ºßÃÍ  ¿§ / Ê¸»ú = %3d / %3d", "Current attr/char = %3d / %3d"), ca, cc));
+					    format(_("ç¾åœ¨å€¤  è‰² / æ–‡å­— = %3d / %3d", "Current attr/char = %3d / %3d"), ca, cc));
 
 				Term_putstr(40, 20, -1, TERM_WHITE, empty_symbol);
 				Term_queue_bigchar(43, 20, ca, cc, 0, 0);
 
 				/* Prompt */
 				Term_putstr(0, 22, -1, TERM_WHITE,
-					    _("¥³¥Ş¥ó¥É (n/N/^N/a/A/^A/c/C/^C/v/V/^V): ", "Command (n/N/^N/a/A/^A/c/C/^C/v/V/^V): "));
+					    _("ã‚³ãƒãƒ³ãƒ‰ (n/N/^N/a/A/^A/c/C/^C/v/V/^V): ", "Command (n/N/^N/a/A/^A/c/C/^C/v/V/^V): "));
 
 				/* Get a command */
 				i = inkey();
@@ -3512,7 +3529,7 @@ void do_cmd_visuals(void)
 				{
 				case 'n':
 					{
-						int prev_k = k;
+						IDX prev_k = k;
 						do
 						{
 							if (!cmd_visuals_aux(i, &k, max_k_idx))
@@ -3552,17 +3569,17 @@ void do_cmd_visuals(void)
 		/* Modify feature attr/chars (numeric operation) */
 		case '6':
 		{
-			static cptr choice_msg = _("ÃÏ·Á¤Î[¿§/Ê¸»ú]¤òÊÑ¹¹¤·¤Ş¤¹", "Change feature attr/chars");
-			static int f = 0;
-			static int lighting_level = F_LIT_STANDARD;
-			prt(format(_("¥³¥Ş¥ó¥É: %s", "Command: %s"), choice_msg), 15, 0);
+			static cptr choice_msg = _("åœ°å½¢ã®[è‰²/æ–‡å­—]ã‚’å¤‰æ›´ã—ã¾ã™", "Change feature attr/chars");
+			static IDX f = 0;
+			static IDX lighting_level = F_LIT_STANDARD;
+			prt(format(_("ã‚³ãƒãƒ³ãƒ‰: %s", "Command: %s"), choice_msg), 15, 0);
 
 			/* Hack -- query until done */
 			while (1)
 			{
 				feature_type *f_ptr = &f_info[f];
-				char c;
-				int t;
+				int c;
+				IDX t;
 
 				byte da = f_ptr->d_attr[lighting_level];
 				byte dc = f_ptr->d_char[lighting_level];
@@ -3572,12 +3589,12 @@ void do_cmd_visuals(void)
 				/* Label the object */
 				prt("", 17, 5);
 				Term_putstr(5, 17, -1, TERM_WHITE,
-					    format(_("ÃÏ·Á = %d, Ì¾Á° = %s, ÌÀÅÙ = %s", "Terrain = %d, Name = %s, Lighting = %s"),
+					    format(_("åœ°å½¢ = %d, åå‰ = %s, æ˜åº¦ = %s", "Terrain = %d, Name = %s, Lighting = %s"),
 						   f, (f_name + f_ptr->name), lighting_level_str[lighting_level]));
 
 				/* Label the Default values */
 				Term_putstr(10, 19, -1, TERM_WHITE,
-					    format(_("½é´üÃÍ  ¿§ / Ê¸»ú = %3d / %3d", "Default attr/char = %3d / %3d"), da, dc));
+					    format(_("åˆæœŸå€¤  è‰² / æ–‡å­— = %3d / %3d", "Default attr/char = %3d / %3d"), da, dc));
 
 				Term_putstr(40, 19, -1, TERM_WHITE, empty_symbol);
 				Term_queue_bigchar(43, 19, da, dc, 0, 0);
@@ -3585,7 +3602,7 @@ void do_cmd_visuals(void)
 				/* Label the Current values */
 #ifdef JP
 				Term_putstr(10, 20, -1, TERM_WHITE,
-					    format("¸½ºßÃÍ  ¿§ / Ê¸»ú = %3d / %3d", ca, cc));
+					    format("ç¾åœ¨å€¤  è‰² / æ–‡å­— = %3d / %3d", ca, cc));
 #else
 				Term_putstr(10, 20, -1, TERM_WHITE,
 					    format("Current attr/char = %3d / %3d", ca, cc));
@@ -3597,7 +3614,7 @@ void do_cmd_visuals(void)
 				/* Prompt */
 #ifdef JP
 				Term_putstr(0, 22, -1, TERM_WHITE,
-					    "¥³¥Ş¥ó¥É (n/N/^N/a/A/^A/c/C/^C/l/L/^L/d/D/^D/v/V/^V): ");
+					    "ã‚³ãƒãƒ³ãƒ‰ (n/N/^N/a/A/^A/c/C/^C/l/L/^L/d/D/^D/v/V/^V): ");
 #else
 				Term_putstr(0, 22, -1, TERM_WHITE,
 					    "Command (n/N/^N/a/A/^A/c/C/^C/l/L/^L/d/D/^D/v/V/^V): ");
@@ -3617,7 +3634,7 @@ void do_cmd_visuals(void)
 				{
 				case 'n':
 					{
-						int prev_f = f;
+						IDX prev_f = f;
 						do
 						{
 							if (!cmd_visuals_aux(i, &f, max_f_idx))
@@ -3674,7 +3691,7 @@ void do_cmd_visuals(void)
 		/* Modify feature attr/chars (visual mode) */
 		case '9':
 		{
-			int lighting_level = F_LIT_STANDARD;
+			IDX lighting_level = F_LIT_STANDARD;
 			do_cmd_knowledge_features(&need_redraw, TRUE, -1, &lighting_level);
 			break;
 		}
@@ -3688,7 +3705,7 @@ void do_cmd_visuals(void)
 			reset_visuals();
 
 			/* Message */
-			msg_print(_("²èÌÌ¾å¤Î[¿§/Ê¸»ú]¤ò½é´üÃÍ¤Ë¥ê¥»¥Ã¥È¤·¤Ş¤·¤¿¡£", "Visual attr/char tables reset."));
+			msg_print(_("ç”»é¢ä¸Šã®[è‰²/æ–‡å­—]ã‚’åˆæœŸå€¤ã«ãƒªã‚»ãƒƒãƒˆã—ã¾ã—ãŸã€‚", "Visual attr/char tables reset."));
 			need_redraw = TRUE;
 			break;
 
@@ -3736,18 +3753,18 @@ void do_cmd_colors(void)
 		Term_clear();
 
 		/* Ask for a choice */
-		prt(_("[ ¥«¥é¡¼¤ÎÀßÄê ]", "Interact with Colors"), 2, 0);
+		prt(_("[ ã‚«ãƒ©ãƒ¼ã®è¨­å®š ]", "Interact with Colors"), 2, 0);
 
 		/* Give some choices */
-		prt(_("(1) ¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤Î¥í¡¼¥É", "(1) Load a user pref file"), 4, 5);
+		prt(_("(1) ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰", "(1) Load a user pref file"), 4, 5);
 
 #ifdef ALLOW_COLORS
-		prt(_("(2) ¥«¥é¡¼¤ÎÀßÄê¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤¹", "(2) Dump colors"), 5, 5);
-		prt(_("(3) ¥«¥é¡¼¤ÎÀßÄê¤òÊÑ¹¹¤¹¤ë", "(3) Modify colors"), 6, 5);
+		prt(_("(2) ã‚«ãƒ©ãƒ¼ã®è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã™", "(2) Dump colors"), 5, 5);
+		prt(_("(3) ã‚«ãƒ©ãƒ¼ã®è¨­å®šã‚’å¤‰æ›´ã™ã‚‹", "(3) Modify colors"), 6, 5);
 #endif
 
 		/* Prompt */
-		prt(_("¥³¥Ş¥ó¥É: ", "Command: "), 8, 0);
+		prt(_("ã‚³ãƒãƒ³ãƒ‰: ", "Command: "), 8, 0);
 		/* Prompt */
 		i = inkey();
 
@@ -3758,10 +3775,10 @@ void do_cmd_colors(void)
 		if (i == '1')
 		{
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤ò¥í¡¼¥É¤·¤Ş¤¹", "Command: Load a user pref file"), 8, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã™", "Command: Load a user pref file"), 8, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 10, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 10, 0);
 
 			/* Default file */
 			sprintf(tmp, "%s.prf", player_base);
@@ -3787,10 +3804,10 @@ void do_cmd_colors(void)
 			static cptr mark = "Colors";
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥«¥é¡¼¤ÎÀßÄê¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤¹", "Command: Dump colors"), 8, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚«ãƒ©ãƒ¼ã®è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã™", "Command: Dump colors"), 8, 0);
 
 			/* Prompt */
-			prt(_("¥Õ¥¡¥¤¥ë: ", "File: "), 10, 0);
+			prt(_("ãƒ•ã‚¡ã‚¤ãƒ«: ", "File: "), 10, 0);
 
 			/* Default filename */
 			sprintf(tmp, "%s.prf", player_base);
@@ -3805,7 +3822,7 @@ void do_cmd_colors(void)
 			if (!open_auto_dump(buf, mark)) continue;
 
 			/* Start dumping */
-			auto_dump_printf(_("\n# ¥«¥é¡¼¤ÎÀßÄê\n\n", "\n# Color redefinitions\n\n"));
+			auto_dump_printf(_("\n# ã‚«ãƒ©ãƒ¼ã®è¨­å®š\n\n", "\n# Color redefinitions\n\n"));
 			
 			/* Dump colors */
 			for (i = 0; i < 256; i++)
@@ -3815,7 +3832,7 @@ void do_cmd_colors(void)
 				int gv = angband_color_table[i][2];
 				int bv = angband_color_table[i][3];
 
-				cptr name = _("Ì¤ÃÎ", "unknown");
+				cptr name = _("æœªçŸ¥", "unknown");
 
 				/* Skip non-entries */
 				if (!kv && !rv && !gv && !bv) continue;
@@ -3824,7 +3841,7 @@ void do_cmd_colors(void)
 				if (i < 16) name = color_names[i];
 
 				/* Dump a comment */
-				auto_dump_printf(_("# ¥«¥é¡¼ '%s'\n", "# Color '%s'\n"), name);
+				auto_dump_printf(_("# ã‚«ãƒ©ãƒ¼ '%s'\n", "# Color '%s'\n"), name);
 				
 				/* Dump the monster attr/char info */
 				auto_dump_printf("V:%d:0x%02X:0x%02X:0x%02X:0x%02X\n\n",
@@ -3835,7 +3852,7 @@ void do_cmd_colors(void)
 			close_auto_dump();
 
 			/* Message */
-			msg_print(_("¥«¥é¡¼¤ÎÀßÄê¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Dumped color redefinitions."));
+			msg_print(_("ã‚«ãƒ©ãƒ¼ã®è¨­å®šã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Dumped color redefinitions."));
 		}
 
 		/* Edit colors */
@@ -3844,7 +3861,7 @@ void do_cmd_colors(void)
 			static byte a = 0;
 
 			/* Prompt */
-			prt(_("¥³¥Ş¥ó¥É: ¥«¥é¡¼¤ÎÀßÄê¤òÊÑ¹¹¤·¤Ş¤¹", "Command: Modify colors"), 8, 0);
+			prt(_("ã‚³ãƒãƒ³ãƒ‰: ã‚«ãƒ©ãƒ¼ã®è¨­å®šã‚’å¤‰æ›´ã—ã¾ã™", "Command: Modify colors"), 8, 0);
 
 			/* Hack -- query until done */
 			while (1)
@@ -3866,11 +3883,11 @@ void do_cmd_colors(void)
 				}
 
 				/* Describe the color */
-				name = ((a < 16) ? color_names[a] : _("Ì¤ÄêµÁ", "undefined"));
+				name = ((a < 16) ? color_names[a] : _("æœªå®šç¾©", "undefined"));
 
 				/* Describe the color */
 				Term_putstr(5, 10, -1, TERM_WHITE,
-					    format(_("¥«¥é¡¼ = %d, Ì¾Á° = %s", "Color = %d, Name = %s"), a, name));
+					    format(_("ã‚«ãƒ©ãƒ¼ = %d, åå‰ = %s", "Color = %d, Name = %s"), a, name));
 
 				/* Label the Current values */
 				Term_putstr(5, 12, -1, TERM_WHITE,
@@ -3882,7 +3899,7 @@ void do_cmd_colors(void)
 
 				/* Prompt */
 				Term_putstr(0, 14, -1, TERM_WHITE,
-					_("¥³¥Ş¥ó¥É (n/N/k/K/r/R/g/G/b/B): ", "Command (n/N/k/K/r/R/g/G/b/B): "));
+					_("ã‚³ãƒãƒ³ãƒ‰ (n/N/k/K/r/R/g/G/b/B): ", "Command (n/N/k/K/r/R/g/G/b/B): "));
 
 
 				/* Get a command */
@@ -3940,13 +3957,13 @@ void do_cmd_note(void)
 	strcpy(buf, "");
 
 	/* Input */
-	if (!get_string(_("¥á¥â: ", "Note: "), buf, 60)) return;
+	if (!get_string(_("ãƒ¡ãƒ¢: ", "Note: "), buf, 60)) return;
 
 	/* Ignore empty notes */
 	if (!buf[0] || (buf[0] == ' ')) return;
 
 	/* Add the note to the message recall */
-	msg_format(_("¥á¥â: %s", "Note: %s"), buf);
+	msg_format(_("ãƒ¡ãƒ¢: %s", "Note: %s"), buf);
 }
 
 
@@ -3956,8 +3973,14 @@ void do_cmd_note(void)
 void do_cmd_version(void)
 {
 	/* Silly message */
-	msg_format(_("Ã»¶òÈÚÅÜ(tanguband) %d.%d.%d", "You are playing tanguband %d.%d.%d."),
-				FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
+
+#if FAKE_VER_EXTRA > 0
+	msg_format(_("å¤‰æ„šè›®æ€’(Hengband) %d.%d.%d.%d", "You are playing Hengband %d.%d.%d.%d."),
+		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH, FAKE_VER_EXTRA);
+#else
+	msg_format(_("å¤‰æ„šè›®æ€’(Hengband) %d.%d.%d", "You are playing Hengband %d.%d.%d."),
+		FAKE_VER_MAJOR - 10, FAKE_VER_MINOR, FAKE_VER_PATCH);
+#endif
 }
 
 
@@ -3967,47 +3990,47 @@ void do_cmd_version(void)
  */
 static cptr do_cmd_feeling_text[11] =
 {
-	_("¤³¤Î³¬¤ÎÊ·°Ïµ¤¤ò´¶¤¸¤È¤ì¤Ê¤«¤Ã¤¿...", "Looks like any other level."),
-	_("¤³¤Î³¬¤Ë¤Ï²¿¤«ÆÃÊÌ¤Ê¤â¤Î¤¬¤¢¤ë¤è¤¦¤Êµ¤¤¬¤¹¤ë¡£", "You feel there is something special about this level."),
-	_("¶²¤í¤·¤¤»à¤Î¸¸¤¬ÌÜ¤ËÉâ¤«¤Ó¡¢µ¤Àä¤·¤½¤¦¤Ë¤Ê¤Ã¤¿¡ª", "You nearly faint as horrible visions of death fill your mind!"),
-	_("¤³¤Î³¬¤Ï¤È¤Æ¤â´í¸±¤Ê¤è¤¦¤À¡£", "This level looks very dangerous."),
-	_("¤È¤Æ¤â°­¤¤Í½´¶¤¬¤¹¤ë...", "You have a very bad feeling..."),
-	_("°­¤¤Í½´¶¤¬¤¹¤ë...", "You have a bad feeling..."),
-	_("²¿¤«¶ÛÄ¥¤¹¤ë¡£", "You feel nervous."),
-	_("¾¯¤·ÉÔ±¿¤Êµ¤¤¬¤¹¤ë...", "You feel your luck is turning..."),
-	_("¤³¤Î¾ì½ê¤Ï¹¥¤­¤Ë¤Ê¤ì¤Ê¤¤¡£", "You don't like the look of this place."),
-	_("¤³¤Î³¬¤Ï¤½¤ì¤Ê¤ê¤Ë°ÂÁ´¤Ê¤è¤¦¤À¡£", "This level looks reasonably safe."),
-	_("¤Ê¤ó¤ÆÂà¶ş¤Ê¤È¤³¤í¤À...", "What a boring place...")
+	_("ã“ã®éšã®é›°å›²æ°—ã‚’æ„Ÿã˜ã¨ã‚Œãªã‹ã£ãŸ...", "Looks like any other level."),
+	_("ã“ã®éšã«ã¯ä½•ã‹ç‰¹åˆ¥ãªã‚‚ã®ãŒã‚ã‚‹ã‚ˆã†ãªæ°—ãŒã™ã‚‹ã€‚", "You feel there is something special about this level."),
+	_("æã‚ã—ã„æ­»ã®å¹»ãŒç›®ã«æµ®ã‹ã³ã€æ°—çµ¶ã—ãã†ã«ãªã£ãŸï¼", "You nearly faint as horrible visions of death fill your mind!"),
+	_("ã“ã®éšã¯ã¨ã¦ã‚‚å±é™ºãªã‚ˆã†ã ã€‚", "This level looks very dangerous."),
+	_("ã¨ã¦ã‚‚æ‚ªã„äºˆæ„ŸãŒã™ã‚‹...", "You have a very bad feeling..."),
+	_("æ‚ªã„äºˆæ„ŸãŒã™ã‚‹...", "You have a bad feeling..."),
+	_("ä½•ã‹ç·Šå¼µã™ã‚‹ã€‚", "You feel nervous."),
+	_("å°‘ã—ä¸é‹ãªæ°—ãŒã™ã‚‹...", "You feel your luck is turning..."),
+	_("ã“ã®å ´æ‰€ã¯å¥½ãã«ãªã‚Œãªã„ã€‚", "You don't like the look of this place."),
+	_("ã“ã®éšã¯ãã‚Œãªã‚Šã«å®‰å…¨ãªã‚ˆã†ã ã€‚", "This level looks reasonably safe."),
+	_("ãªã‚“ã¦é€€å±ˆãªã¨ã“ã‚ã ...", "What a boring place...")
 };
 
 static cptr do_cmd_feeling_text_combat[11] =
 {
-	_("¤³¤Î³¬¤ÎÊ·°Ïµ¤¤ò´¶¤¸¤È¤ì¤Ê¤«¤Ã¤¿...", "Looks like any other level."),
-	_("¤³¤Î³¬¤Ë¤Ï²¿¤«ÆÃÊÌ¤Ê¤â¤Î¤¬¤¢¤ë¤è¤¦¤Êµ¤¤¬¤¹¤ë¡£", "You feel there is something special about this level."),
-	_("º£Ìë¤â¤Ş¤¿¡¢Ã¯¤«¤¬Ì¿¤òÍî¤È¤¹...", "You nearly faint as horrible visions of death fill your mind!"),
-	_("¤³¤Î³¬¤Ï¤È¤Æ¤â´í¸±¤Ê¤è¤¦¤À¡£", "This level looks very dangerous."),
-	_("¤È¤Æ¤â°­¤¤Í½´¶¤¬¤¹¤ë...", "You have a very bad feeling..."),
-	_("°­¤¤Í½´¶¤¬¤¹¤ë...", "You have a bad feeling..."),
-	_("²¿¤«¶ÛÄ¥¤¹¤ë¡£", "You feel nervous."),
-	_("¾¯¤·ÉÔ±¿¤Êµ¤¤¬¤¹¤ë...", "You feel your luck is turning..."),
-	_("¤³¤Î¾ì½ê¤Ï¹¥¤­¤Ë¤Ê¤ì¤Ê¤¤¡£", "You don't like the look of this place."),
-	_("¤³¤Î³¬¤Ï¤½¤ì¤Ê¤ê¤Ë°ÂÁ´¤Ê¤è¤¦¤À¡£", "This level looks reasonably safe."),
-	_("¤Ê¤ó¤ÆÂà¶ş¤Ê¤È¤³¤í¤À...", "What a boring place...")
+	_("ã“ã®éšã®é›°å›²æ°—ã‚’æ„Ÿã˜ã¨ã‚Œãªã‹ã£ãŸ...", "Looks like any other level."),
+	_("ã“ã®éšã«ã¯ä½•ã‹ç‰¹åˆ¥ãªã‚‚ã®ãŒã‚ã‚‹ã‚ˆã†ãªæ°—ãŒã™ã‚‹ã€‚", "You feel there is something special about this level."),
+	_("ä»Šå¤œã‚‚ã¾ãŸã€èª°ã‹ãŒå‘½ã‚’è½ã¨ã™...", "You nearly faint as horrible visions of death fill your mind!"),
+	_("ã“ã®éšã¯ã¨ã¦ã‚‚å±é™ºãªã‚ˆã†ã ã€‚", "This level looks very dangerous."),
+	_("ã¨ã¦ã‚‚æ‚ªã„äºˆæ„ŸãŒã™ã‚‹...", "You have a very bad feeling..."),
+	_("æ‚ªã„äºˆæ„ŸãŒã™ã‚‹...", "You have a bad feeling..."),
+	_("ä½•ã‹ç·Šå¼µã™ã‚‹ã€‚", "You feel nervous."),
+	_("å°‘ã—ä¸é‹ãªæ°—ãŒã™ã‚‹...", "You feel your luck is turning..."),
+	_("ã“ã®å ´æ‰€ã¯å¥½ãã«ãªã‚Œãªã„ã€‚", "You don't like the look of this place."),
+	_("ã“ã®éšã¯ãã‚Œãªã‚Šã«å®‰å…¨ãªã‚ˆã†ã ã€‚", "This level looks reasonably safe."),
+	_("ãªã‚“ã¦é€€å±ˆãªã¨ã“ã‚ã ...", "What a boring place...")
 };
 
 static cptr do_cmd_feeling_text_lucky[11] =
 {
-	_("¤³¤Î³¬¤ÎÊ·°Ïµ¤¤ò´¶¤¸¤È¤ì¤Ê¤«¤Ã¤¿...", "Looks like any other level."),
-	_("¤³¤Î³¬¤Ë¤Ï²¿¤«ÆÃÊÌ¤Ê¤â¤Î¤¬¤¢¤ë¤è¤¦¤Êµ¤¤¬¤¹¤ë¡£", "You feel there is something special about this level."),
-	_("¤³¤Î³¬¤Ï¤³¤Î¾å¤Ê¤¯ÁÇÀ²¤é¤·¤¤´¶¤¸¤¬¤¹¤ë¡£", "You have a superb feeling about this level."),
-	_("ÁÇÀ²¤é¤·¤¤´¶¤¸¤¬¤¹¤ë...", "You have an excellent feeling..."),
-	_("¤È¤Æ¤âÎÉ¤¤´¶¤¸¤¬¤¹¤ë...", "You have a very good feeling..."),
-	_("ÎÉ¤¤´¶¤¸¤¬¤¹¤ë...", "You have a good feeling..."),
-	_("¤Á¤ç¤Ã¤È¹¬±¿¤Ê´¶¤¸¤¬¤¹¤ë...", "You feel strangely lucky..."),
-	_("Â¿¾¯¤Ï±¿¤¬¸ş¤¤¤Æ¤­¤¿¤«...", "You feel your luck is turning..."),
-	_("¸«¤¿´¶¤¸°­¤¯¤Ï¤Ê¤¤...", "You like the look of this place..."),
-	_("Á´Á³ÂÌÌÜ¤È¤¤¤¦¤³¤È¤Ï¤Ê¤¤¤¬...", "This level can't be all bad..."),
-	_("¤Ê¤ó¤ÆÂà¶ş¤Ê¤È¤³¤í¤À...", "What a boring place...")
+	_("ã“ã®éšã®é›°å›²æ°—ã‚’æ„Ÿã˜ã¨ã‚Œãªã‹ã£ãŸ...", "Looks like any other level."),
+	_("ã“ã®éšã«ã¯ä½•ã‹ç‰¹åˆ¥ãªã‚‚ã®ãŒã‚ã‚‹ã‚ˆã†ãªæ°—ãŒã™ã‚‹ã€‚", "You feel there is something special about this level."),
+	_("ã“ã®éšã¯ã“ã®ä¸Šãªãç´ æ™´ã‚‰ã—ã„æ„Ÿã˜ãŒã™ã‚‹ã€‚", "You have a superb feeling about this level."),
+	_("ç´ æ™´ã‚‰ã—ã„æ„Ÿã˜ãŒã™ã‚‹...", "You have an excellent feeling..."),
+	_("ã¨ã¦ã‚‚è‰¯ã„æ„Ÿã˜ãŒã™ã‚‹...", "You have a very good feeling..."),
+	_("è‰¯ã„æ„Ÿã˜ãŒã™ã‚‹...", "You have a good feeling..."),
+	_("ã¡ã‚‡ã£ã¨å¹¸é‹ãªæ„Ÿã˜ãŒã™ã‚‹...", "You feel strangely lucky..."),
+	_("å¤šå°‘ã¯é‹ãŒå‘ã„ã¦ããŸã‹...", "You feel your luck is turning..."),
+	_("è¦‹ãŸæ„Ÿã˜æ‚ªãã¯ãªã„...", "You like the look of this place..."),
+	_("å…¨ç„¶é§„ç›®ã¨ã„ã†ã“ã¨ã¯ãªã„ãŒ...", "This level can't be all bad..."),
+	_("ãªã‚“ã¦é€€å±ˆãªã¨ã“ã‚ã ...", "What a boring place...")
 };
 
 
@@ -4020,21 +4043,21 @@ void do_cmd_feeling(void)
 	/* No useful feeling in quests */
 	if (p_ptr->inside_quest && !random_quest_number(dun_level))
 	{
-		msg_print(_("Åµ·¿Åª¤Ê¥¯¥¨¥¹¥È¤Î¥À¥ó¥¸¥ç¥ó¤Î¤è¤¦¤À¡£", "Looks like a typical quest level."));
+		msg_print(_("å…¸å‹çš„ãªã‚¯ã‚¨ã‚¹ãƒˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ã‚ˆã†ã ã€‚", "Looks like a typical quest level."));
 		return;
 	}
 
 	/* No useful feeling in town */
 	else if (p_ptr->town_num && !dun_level)
 	{
-		if (!strcmp(town[p_ptr->town_num].name, _("¹ÓÌî", "wilderness")))
+		if (!strcmp(town[p_ptr->town_num].name, _("è’é‡", "wilderness")))
 		{
-			msg_print(_("²¿¤«¤¢¤ê¤½¤¦¤Ê¹ÓÌî¤Î¤è¤¦¤À¡£", "Looks like a strange wilderness."));
+			msg_print(_("ä½•ã‹ã‚ã‚Šãã†ãªè’é‡ã®ã‚ˆã†ã ã€‚", "Looks like a strange wilderness."));
 			return;
 		}
 		else
 		{
-			msg_print(_("Åµ·¿Åª¤ÊÄ®¤Î¤è¤¦¤À¡£", "Looks like a typical town."));
+			msg_print(_("å…¸å‹çš„ãªç”ºã®ã‚ˆã†ã ã€‚", "Looks like a typical town."));
 			return;
 		}
 	}
@@ -4042,7 +4065,7 @@ void do_cmd_feeling(void)
 	/* No useful feeling in the wilderness */
 	else if (!dun_level)
 	{
-		msg_print(_("Åµ·¿Åª¤Ê¹ÓÌî¤Î¤è¤¦¤À¡£", "Looks like a typical wilderness."));
+		msg_print(_("å…¸å‹çš„ãªè’é‡ã®ã‚ˆã†ã ã€‚", "Looks like a typical wilderness."));
 		return;
 	}
 
@@ -4064,66 +4087,66 @@ void do_cmd_feeling(void)
 static cptr monster_group_text[] = 
 {
 #ifdef JP
-	"¥æ¥Ë¡¼¥¯",	/* "Uniques" */
-	"¾èÇÏ²ÄÇ½¤Ê¥â¥ó¥¹¥¿¡¼",	/* "Riding" */
-	"¾Ş¶â¼ó", /* "Wanted */
-	"¥¢¥ó¥Ğ¡¼¤Î²¦Â²", /* "Ambertite" */
-	"¥¢¥ê",
-	"¥³¥¦¥â¥ê",
-	"¥à¥«¥Ç",
-	"¥É¥é¥´¥ó",
-	"ÌÜ¶Ì",
-	"¥Í¥³",
-	"¥´¡¼¥ì¥à",
-	"É¸½à¿Í´Ö·¿À¸Êª",
-	"¥Ù¥È¥Ù¥È",
-	"¥¼¥ê¡¼",
-	"¥³¥Ü¥ë¥É",
-	"¿åÀ³À¸Êª",
-	"¥â¥ë¥É",
-	"¥Ê¡¼¥¬",
-	"¥ª¡¼¥¯",
-	"¿Í´Ö",
-	"»ÍÂ­½Ã",
-	"¥Í¥º¥ß",
-	"¥¹¥±¥ë¥È¥ó",
-	"¥Ç¡¼¥â¥ó",
-	"¥Ü¥ë¥Æ¥Ã¥¯¥¹",
-	"¥¤¥â¥à¥·/Âç·²",
+	"ãƒ¦ãƒ‹ãƒ¼ã‚¯",	/* "Uniques" */
+	"ä¹—é¦¬å¯èƒ½ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼",	/* "Riding" */
+	"è³é‡‘é¦–", /* "Wanted */
+	"ã‚¢ãƒ³ãƒãƒ¼ã®ç‹æ—", /* "Ambertite" */
+	"ã‚¢ãƒª",
+	"ã‚³ã‚¦ãƒ¢ãƒª",
+	"ãƒ ã‚«ãƒ‡",
+	"ãƒ‰ãƒ©ã‚´ãƒ³",
+	"ç›®ç‰",
+	"ãƒã‚³",
+	"ã‚´ãƒ¼ãƒ¬ãƒ ",
+	"æ¨™æº–äººé–“å‹ç”Ÿç‰©",
+	"ãƒ™ãƒˆãƒ™ãƒˆ",
+	"ã‚¼ãƒªãƒ¼",
+	"ã‚³ãƒœãƒ«ãƒ‰",
+	"æ°´æ£²ç”Ÿç‰©",
+	"ãƒ¢ãƒ«ãƒ‰",
+	"ãƒŠãƒ¼ã‚¬",
+	"ã‚ªãƒ¼ã‚¯",
+	"äººé–“",
+	"å››è¶³ç£",
+	"ãƒã‚ºãƒŸ",
+	"ã‚¹ã‚±ãƒ«ãƒˆãƒ³",
+	"ãƒ‡ãƒ¼ãƒ¢ãƒ³",
+	"ãƒœãƒ«ãƒ†ãƒƒã‚¯ã‚¹",
+	"ã‚¤ãƒ¢ãƒ ã‚·/å¤§ç¾¤",
 	/* "unused", */
-	"¥¤¡¼¥¯",
-	"¥¾¥ó¥Ó/¥ß¥¤¥é",
-	"Å·»È",
-	"Ä»",
-	"¸¤",
-	/* "¸ÅÂå¥É¥é¥´¥ó/¥ï¥¤¥¢¡¼¥à", */
-	"¥¨¥ì¥á¥ó¥¿¥ë",
-	"¥È¥ó¥Ü",
-	"¥´¡¼¥¹¥È",
-	"»¨¼ï",
-	"º«Ãî",
-	"¥Ø¥Ó",
-	"¥­¥é¡¼¡¦¥Ó¡¼¥È¥ë",
-	"¥ê¥Ã¥Á",
-	"Â¿¼ó¤Îà¨ÃîÎà",
-	"Ææ¤ÎÀ¸Êª",
-	"¥ª¡¼¥¬",
-	"µğÂç¿Í´Ö·¿À¸Êª",
-	"¥¯¥¤¥ë¥¹¥ë¥°",
-	"à¨ÃîÎà/Î¾À¸Îà",
-	"ÃØéá/¥µ¥½¥ê/¥À¥Ë",
-	"¥È¥í¥ë",
-	/* "¾åµé¥Ç¡¼¥â¥ó", */
-	"¥Ğ¥ó¥Ñ¥¤¥¢",
-	"¥ï¥¤¥È/¥ì¥¤¥¹/Åù",
-	"¥¾¡¼¥ó/¥¶¥ì¥ó/Åù",
-	"¥¤¥¨¥Æ¥£",
-	"¥Ï¥¦¥ó¥É",
-	"¥ß¥ß¥Ã¥¯",
-	"ÊÉ/¿¢Êª/µ¤ÂÎ",
-	"¤ª¤Ğ¤±¥­¥Î¥³",
-	"µåÂÎ",
-	"¥×¥ì¥¤¥ä¡¼",
+	"ã‚¤ãƒ¼ã‚¯",
+	"ã‚¾ãƒ³ãƒ“/ãƒŸã‚¤ãƒ©",
+	"å¤©ä½¿",
+	"é³¥",
+	"çŠ¬",
+	/* "å¤ä»£ãƒ‰ãƒ©ã‚´ãƒ³/ãƒ¯ã‚¤ã‚¢ãƒ¼ãƒ ", */
+	"ã‚¨ãƒ¬ãƒ¡ãƒ³ã‚¿ãƒ«",
+	"ãƒˆãƒ³ãƒœ",
+	"ã‚´ãƒ¼ã‚¹ãƒˆ",
+	"é›‘ç¨®",
+	"æ˜†è™«",
+	"ãƒ˜ãƒ“",
+	"ã‚­ãƒ©ãƒ¼ãƒ»ãƒ“ãƒ¼ãƒˆãƒ«",
+	"ãƒªãƒƒãƒ",
+	"å¤šé¦–ã®çˆ¬è™«é¡",
+	"è¬ã®ç”Ÿç‰©",
+	"ã‚ªãƒ¼ã‚¬",
+	"å·¨å¤§äººé–“å‹ç”Ÿç‰©",
+	"ã‚¯ã‚¤ãƒ«ã‚¹ãƒ«ã‚°",
+	"çˆ¬è™«é¡/ä¸¡ç”Ÿé¡",
+	"èœ˜è››/ã‚µã‚½ãƒª/ãƒ€ãƒ‹",
+	"ãƒˆãƒ­ãƒ«",
+	/* "ä¸Šç´šãƒ‡ãƒ¼ãƒ¢ãƒ³", */
+	"ãƒãƒ³ãƒ‘ã‚¤ã‚¢",
+	"ãƒ¯ã‚¤ãƒˆ/ãƒ¬ã‚¤ã‚¹/ç­‰",
+	"ã‚¾ãƒ¼ãƒ³/ã‚¶ãƒ¬ãƒ³/ç­‰",
+	"ã‚¤ã‚¨ãƒ†ã‚£",
+	"ãƒã‚¦ãƒ³ãƒ‰",
+	"ãƒŸãƒŸãƒƒã‚¯",
+	"å£/æ¤ç‰©/æ°—ä½“",
+	"ãŠã°ã‘ã‚­ãƒã‚³",
+	"çƒä½“",
+	"ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼",
 #else
 	"Uniques",
 	"Ridable monsters",
@@ -4291,9 +4314,10 @@ static bool ang_sort_comp_monster_level(vptr u, vptr v, int a, int b)
  * mode & 0x01 : check for non-empty group
  * mode & 0x02 : visual operation only
  */
-static int collect_monsters(int grp_cur, s16b mon_idx[], byte mode)
+static IDX collect_monsters(IDX grp_cur, IDX mon_idx[], BIT_FLAGS8 mode)
 {
-	int i, mon_cnt = 0;
+	IDX i;
+	IDX mon_cnt = 0;
 	int dummy_why;
 
 	/* Get a list of x_char in this group */
@@ -4389,48 +4413,48 @@ static int collect_monsters(int grp_cur, s16b mon_idx[], byte mode)
 static cptr object_group_text[] = 
 {
 #ifdef JP
-	"¥­¥Î¥³",	/* "Mushrooms" */
-	"Ìô",		/* "Potions" */
-	"Ìı¤Ä¤Ü",	/* "Flasks" */
-	"´¬Êª",		/* "Scrolls" */
-	"»ØÎØ",		/* "Rings" */
-	"¥¢¥ß¥å¥ì¥Ã¥È",	/* "Amulets" */
-	"Å«",		/* "Whistle" */
-	"¸÷¸»",		/* "Lanterns" */
-	"ËâË¡ËÀ",	/* "Wands" */
-	"¾ó",		/* "Staffs" */
-	"¥í¥Ã¥É",	/* "Rods" */
-	"¥«¡¼¥É",	/* "Cards" */
-	"¥­¥ã¥×¥Á¥ã¡¼¡¦¥Ü¡¼¥ë",
-	"ÍÓÈé»æ",	
-	"¤¯¤µ¤Ó",
-	"È¢",
-	"¿Í·Á",
-	"Áü",
-	"¥´¥ß",
-	"¶õ¤Î¥Ó¥ó",
-	"¹ü",
-	"»àÂÎ",
-	"Åá·õÎà",	/* "Swords" */
-	"Æß´ï",		/* "Blunt Weapons" */
-	"Ä¹ÊÁÉğ´ï",	/* "Polearms" */
-	"ºÎ·¡Æ»¶ñ",	/* "Diggers" */
-	"Èô¤ÓÆ»¶ñ",	/* "Bows" */
-	"ÃÆ",
-	"Ìğ",
-	"¥Ü¥ë¥È",
-	"·ÚÁõ³»",	/* "Soft Armor" */
-	"½ÅÁõ³»",	/* "Hard Armor" */
-	"¥É¥é¥´¥ó³»",	/* "Dragon Armor" */
-	"½â",	/* "Shields" */
-	"¥¯¥í¡¼¥¯",	/* "Cloaks" */
-	"äÆ¼ê",	/* "Gloves" */
-	"¥Ø¥ë¥á¥Ã¥È",	/* "Helms" */
-	"´§",	/* "Crowns" */
-	"¥Ö¡¼¥Ä",	/* "Boots" */
-	"ËâË¡½ñ",
-	"ºâÊõ",
-	"²¿¤«",
+	"ã‚­ãƒã‚³",	/* "Mushrooms" */
+	"è–¬",		/* "Potions" */
+	"æ²¹ã¤ã¼",	/* "Flasks" */
+	"å·»ç‰©",		/* "Scrolls" */
+	"æŒ‡è¼ª",		/* "Rings" */
+	"ã‚¢ãƒŸãƒ¥ãƒ¬ãƒƒãƒˆ",	/* "Amulets" */
+	"ç¬›",		/* "Whistle" */
+	"å…‰æº",		/* "Lanterns" */
+	"é­”æ³•æ£’",	/* "Wands" */
+	"æ–",		/* "Staffs" */
+	"ãƒ­ãƒƒãƒ‰",	/* "Rods" */
+	"ã‚«ãƒ¼ãƒ‰",	/* "Cards" */
+	"ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ»ãƒœãƒ¼ãƒ«",
+	"ç¾Šçš®ç´™",	
+	"ãã•ã³",
+	"ç®±",
+	"äººå½¢",
+	"åƒ",
+	"ã‚´ãƒŸ",
+	"ç©ºã®ãƒ“ãƒ³",
+	"éª¨",
+	"æ­»ä½“",
+	"åˆ€å‰£é¡",	/* "Swords" */
+	"éˆå™¨",		/* "Blunt Weapons" */
+	"é•·æŸ„æ­¦å™¨",	/* "Polearms" */
+	"æ¡æ˜é“å…·",	/* "Diggers" */
+	"é£›ã³é“å…·",	/* "Bows" */
+	"å¼¾",
+	"çŸ¢",
+	"ãƒœãƒ«ãƒˆ",
+	"è»½è£…é§",	/* "Soft Armor" */
+	"é‡è£…é§",	/* "Hard Armor" */
+	"ãƒ‰ãƒ©ã‚´ãƒ³é§",	/* "Dragon Armor" */
+	"ç›¾",	/* "Shields" */
+	"ã‚¯ãƒ­ãƒ¼ã‚¯",	/* "Cloaks" */
+	"ç± æ‰‹",	/* "Gloves" */
+	"ãƒ˜ãƒ«ãƒ¡ãƒƒãƒˆ",	/* "Helms" */
+	"å† ",	/* "Crowns" */
+	"ãƒ–ãƒ¼ãƒ„",	/* "Boots" */
+	"é­”æ³•æ›¸",
+	"è²¡å®",
+	"ä½•ã‹",
 #else
 	"Mushrooms",
 	"Potions",
@@ -4537,9 +4561,10 @@ static byte object_group_tval[] =
  * mode & 0x01 : check for non-empty group
  * mode & 0x02 : visual operation only
  */
-static int collect_objects(int grp_cur, int object_idx[], byte mode)
+static int collect_objects(int grp_cur, IDX object_idx[], BIT_FLAGS8 mode)
 {
-	int i, j, k, object_cnt = 0;
+	IDX i;
+	int j, k, object_cnt = 0;
 
 	/* Get a list of x_char in this group */
 	byte group_tval = object_group_tval[grp_cur];
@@ -4619,9 +4644,10 @@ static cptr feature_group_text[] =
  *
  * mode & 0x01 : check for non-empty group
  */
-static int collect_features(int grp_cur, int *feat_idx, byte mode)
+static int collect_features(int grp_cur, IDX *feat_idx, BIT_FLAGS8 mode)
 {
-	int i, feat_cnt = 0;
+	IDX i;
+	int feat_cnt = 0;
 
 	/* Unused;  There is a single group. */
 	(void)grp_cur;
@@ -4728,7 +4754,7 @@ void do_cmd_load_screen(void)
 
 	/* Oops */
 	if (!fff) {
-		msg_format(_("%s ¤ò³«¤¯¤³¤È¤¬¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to open %s."), buf);
+		msg_format(_("%s ã‚’é–‹ãã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to open %s."), buf);
 		msg_print(NULL);
 		return;
 	}
@@ -4789,7 +4815,7 @@ void do_cmd_load_screen(void)
 			for (i = 0; i < 16; i++)
 			{
 				/* Use attr matches */
-				if (hack[i] == buf[x]) a = i;
+				if (hack[i] == buf[x]) a = (byte_hack)i;
 			}
 
 			/* Put the attr/char */
@@ -4803,7 +4829,7 @@ void do_cmd_load_screen(void)
 
 
 	/* Message */
-	prt(_("¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤µ¤ì¤¿²èÌÌ(µ­Ç°»£±Æ)¤ò¥í¡¼¥É¤·¤Ş¤·¤¿¡£", "Screen dump loaded."), 0, 0);
+	prt(_("ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã•ã‚ŒãŸç”»é¢(è¨˜å¿µæ’®å½±)ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸã€‚", "Screen dump loaded."), 0, 0);
 
 	flush();
 	inkey();
@@ -4816,13 +4842,13 @@ void do_cmd_load_screen(void)
 
 
 
-cptr inven_res_label = _("                               »ÀÅÅ²ĞÎäÆÇ¸÷°ÇÇË¹ì¹ö°øÆÙÎô ÌÕÉİÍğáãÆ©Ì¿´¶¾ÃÉüÉâ",
+cptr inven_res_label = _("                               é…¸é›»ç«å†·æ¯’å…‰é—‡ç ´è½Ÿç„å› æ²ŒåŠ£ ç›²æ€–ä¹±ç—ºé€å‘½æ„Ÿæ¶ˆå¾©æµ®",
 						 "                               AcElFiCoPoLiDkShSoNtNxCaDi BlFeCfFaSeHlEpSdRgLv");
 
 
-#define IM_FLAG_STR  _("¡ö", "* ")
-#define HAS_FLAG_STR _("¡Ü", "+ ")
-#define NO_FLAG_STR  _("¡¦", ". ")
+#define IM_FLAG_STR  _("ï¼Š", "* ")
+#define HAS_FLAG_STR _("ï¼‹", "+ ")
+#define NO_FLAG_STR  _("ãƒ»", ". ")
 
 #define print_im_or_res_flag(IM, RES) \
 { \
@@ -4885,7 +4911,7 @@ static void do_cmd_knowledge_inven_aux(FILE *fff, object_type *o_ptr, int *j, by
 
 		if (!(o_ptr->ident & (IDENT_MENTAL)))
 		{
-			fputs(_("-------ÉÔÌÀ--------------- -------ÉÔÌÀ---------\n", 
+			fputs(_("-------ä¸æ˜--------------- -------ä¸æ˜---------\n", 
 					"-------unknown------------ -------unknown------\n"), fff);
 		}
 		else
@@ -4951,7 +4977,7 @@ static void do_cmd_knowledge_inven(void)
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff)
 	{
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -4965,19 +4991,19 @@ static void do_cmd_knowledge_inven(void)
 			j = 0;
 			fprintf(fff, "%s\n", inven_res_label);
 		}
-		strcpy(where, _("Áõ", "E "));
+		strcpy(where, _("è£…", "E "));
 		for (i = INVEN_RARM; i < INVEN_TOTAL; i++)
 		{
 			do_cmd_knowledge_inven_aux(fff, &inventory[i], &j, tval, where);
 		}
-		strcpy(where, _("»ı", "I "));
+		strcpy(where, _("æŒ", "I "));
 		for (i = 0; i < INVEN_PACK; i++)
 		{
 			do_cmd_knowledge_inven_aux(fff, &inventory[i], &j, tval, where);
 		}
 
 		st_ptr = &town[1].store[STORE_HOME];
-		strcpy(where, _("²È", "H "));
+		strcpy(where, _("å®¶", "H "));
 		for (i = 0; i < st_ptr->stock_num; i++)
 		{
 			do_cmd_knowledge_inven_aux(fff, &st_ptr->stock[i], &j, tval, where);
@@ -4988,7 +5014,7 @@ static void do_cmd_knowledge_inven(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("*´ÕÄê*ºÑ¤ßÉğ´ï/ËÉ¶ñ¤ÎÂÑÀ­¥ê¥¹¥È", "Resistances of *identified* equipment"), 0, 0);
+	show_file(TRUE, file_name, _("*é‘‘å®š*æ¸ˆã¿æ­¦å™¨/é˜²å…·ã®è€æ€§ãƒªã‚¹ãƒˆ", "Resistances of *identified* equipment"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -5037,7 +5063,7 @@ void do_cmd_save_screen_html_aux(char *filename, int message)
 	/* Oops */
 	if (!fff) {
 		if (message) {
-		    msg_format(_("¥Õ¥¡¥¤¥ë %s ¤ò³«¤±¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to open file %s."), filename);
+		    msg_format(_("ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to open file %s."), filename);
 		    msg_print(NULL);
 		}
 		
@@ -5142,7 +5168,7 @@ void do_cmd_save_screen_html_aux(char *filename, int message)
 
 	/* Message */
 	if (message) {
-		msg_print(_("²èÌÌ(µ­Ç°»£±Æ)¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Screen dump saved."));
+		msg_print(_("ç”»é¢(è¨˜å¿µæ’®å½±)ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Screen dump saved."));
 		msg_print(NULL);
 	}
 
@@ -5158,7 +5184,7 @@ static void do_cmd_save_screen_html(void)
 {
 	char buf[1024], tmp[256] = "screen.html";
 
-	if (!get_string(_("¥Õ¥¡¥¤¥ëÌ¾: ", "File name: "), tmp, 80))
+	if (!get_string(_("ãƒ•ã‚¡ã‚¤ãƒ«å: ", "File name: "), tmp, 80))
 		return;
 
 	/* Build the filename */
@@ -5186,7 +5212,7 @@ void do_cmd_save_screen(void)
 
 	int wid, hgt;
 
-	prt(_("µ­Ç°»£±Æ¤·¤Ş¤¹¤«¡© [(y)es/(h)tml/(n)o] ", "Save screen dump? [(y)es/(h)tml/(n)o] "), 0, 0);
+	prt(_("è¨˜å¿µæ’®å½±ã—ã¾ã™ã‹ï¼Ÿ [(y)es/(h)tml/(n)o] ", "Save screen dump? [(y)es/(h)tml/(n)o] "), 0, 0);
 	while(TRUE)
 	{
 		char c = inkey();
@@ -5253,7 +5279,7 @@ void do_cmd_save_screen(void)
 		/* Oops */
 		if (!fff)
 		{
-			msg_format(_("¥Õ¥¡¥¤¥ë %s ¤ò³«¤±¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to open file %s."), buf);
+			msg_format(_("ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to open file %s."), buf);
 			msg_print(NULL);
 			return;
 		}
@@ -5315,7 +5341,7 @@ void do_cmd_save_screen(void)
 		my_fclose(fff);
 
 		/* Message */
-		msg_print(_("²èÌÌ(µ­Ç°»£±Æ)¤ò¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ğ¤·¤Ş¤·¤¿¡£", "Screen dump saved."));
+		msg_print(_("ç”»é¢(è¨˜å¿µæ’®å½±)ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—ã¾ã—ãŸã€‚", "Screen dump saved."));
 		msg_print(NULL);
 
 		/* Restore the screen */
@@ -5424,9 +5450,12 @@ static void ang_sort_art_swap(vptr u, vptr v, int a, int b)
  */
 static void do_cmd_knowledge_artifacts(void)
 {
-	int i, k, z, x, y, n = 0;
+	IDX i;
+	IDX k;
+	int x, y, n = 0;
+	IDX z;
 	u16b why = 3;
-	s16b *who;
+	IDX *who;
 
 	FILE *fff;
 
@@ -5440,7 +5469,7 @@ static void do_cmd_knowledge_artifacts(void)
 	fff = my_fopen_temp(file_name, 1024);
 
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -5537,7 +5566,7 @@ static void do_cmd_knowledge_artifacts(void)
 		artifact_type *a_ptr = &a_info[who[k]];
 
 		/* Paranoia */
-		strcpy(base_name, _("Ì¤ÃÎ¤ÎÅÁÀâ¤Î¥¢¥¤¥Æ¥à", "Unknown Artifact"));
+		strcpy(base_name, _("æœªçŸ¥ã®ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ", "Unknown Artifact"));
 
 		/* Obtain the base object type */
 		z = lookup_kind(a_ptr->tval, a_ptr->sval);
@@ -5578,7 +5607,7 @@ static void do_cmd_knowledge_artifacts(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("´ûÃÎ¤ÎÅÁÀâ¤Î¥¢¥¤¥Æ¥à", "Artifacts Seen"), 0, 0);
+	show_file(TRUE, file_name, _("æ—¢çŸ¥ã®ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ", "Artifacts Seen"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -5591,9 +5620,10 @@ static void do_cmd_knowledge_artifacts(void)
  */
 static void do_cmd_knowledge_uniques(void)
 {
-	int i, k, n = 0;
+	IDX i;
+	int k, n = 0;
 	u16b why = 2;
-	s16b *who;
+	IDX *who;
 
 	FILE *fff;
 
@@ -5612,7 +5642,7 @@ static void do_cmd_knowledge_uniques(void)
 
 	if (!fff)
 	{
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -5665,28 +5695,28 @@ static void do_cmd_knowledge_uniques(void)
 
 	if (n_alive_surface)
 	{
-		fprintf(fff, _("     ÃÏ¾å  À¸Â¸: %3dÂÎ\n", "      Surface  alive: %3d\n"), n_alive_surface);
+		fprintf(fff, _("     åœ°ä¸Š  ç”Ÿå­˜: %3dä½“\n", "      Surface  alive: %3d\n"), n_alive_surface);
 		n_alive_total += n_alive_surface;
 	}
 	for (i = 0; i <= max_lev; i++)
 	{
-		fprintf(fff, _("%3d-%3d³¬  À¸Â¸: %3dÂÎ\n", "Level %3d-%3d  alive: %3d\n"), 1 + i * 10, 10 + i * 10, n_alive[i]);
+		fprintf(fff, _("%3d-%3déš  ç”Ÿå­˜: %3dä½“\n", "Level %3d-%3d  alive: %3d\n"), 1 + i * 10, 10 + i * 10, n_alive[i]);
 		n_alive_total += n_alive[i];
 	}
 	if (n_alive_over100)
 	{
-		fprintf(fff, _("101-   ³¬  À¸Â¸: %3dÂÎ\n", "Level 101-     alive: %3d\n"), n_alive_over100);
+		fprintf(fff, _("101-   éš  ç”Ÿå­˜: %3dä½“\n", "Level 101-     alive: %3d\n"), n_alive_over100);
 		n_alive_total += n_alive_over100;
 	}
 
 	if (n_alive_total)
 	{
 		fputs(_("---------  -----------\n", "-------------  ----------\n"), fff);
-		fprintf(fff, _("     ¹ç·×  À¸Â¸: %3dÂÎ\n\n", "        Total  alive: %3d\n\n"), n_alive_total);
+		fprintf(fff, _("     åˆè¨ˆ  ç”Ÿå­˜: %3dä½“\n\n", "        Total  alive: %3d\n\n"), n_alive_total);
 	}
 	else
 	{
-		fputs(_("¸½ºß¤Ï´ûÃÎ¤ÎÀ¸Â¸¥æ¥Ë¡¼¥¯¤Ï¤¤¤Ş¤»¤ó¡£\n", "No known uniques alive.\n"), fff);
+		fputs(_("ç¾åœ¨ã¯æ—¢çŸ¥ã®ç”Ÿå­˜ãƒ¦ãƒ‹ãƒ¼ã‚¯ã¯ã„ã¾ã›ã‚“ã€‚\n", "No known uniques alive.\n"), fff);
 	}
 
 	/* Scan the monster races */
@@ -5695,7 +5725,7 @@ static void do_cmd_knowledge_uniques(void)
 		monster_race *r_ptr = &r_info[who[k]];
 
 		/* Print a message */
-		fprintf(fff, _("     %s (¥ì¥Ù¥ë%d)\n", "     %s (level %d)\n"), r_name + r_ptr->name, r_ptr->level);
+		fprintf(fff, _("     %s (ãƒ¬ãƒ™ãƒ«%d)\n", "     %s (level %d)\n"), r_name + r_ptr->name, (int)r_ptr->level);
 	}
 
 	/* Free the "who" array */
@@ -5705,7 +5735,7 @@ static void do_cmd_knowledge_uniques(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("¤Ş¤ÀÀ¸¤­¤Æ¤¤¤ë¥æ¥Ë¡¼¥¯¡¦¥â¥ó¥¹¥¿¡¼", "Alive Uniques"), 0, 0);
+	show_file(TRUE, file_name, _("ã¾ã ç”Ÿãã¦ã„ã‚‹ãƒ¦ãƒ‹ãƒ¼ã‚¯ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼", "Alive Uniques"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -5717,7 +5747,8 @@ static void do_cmd_knowledge_uniques(void)
  */
 static void do_cmd_knowledge_weapon_exp(void)
 {
-	int i, j, num, weapon_exp;
+	int i, num, weapon_exp;
+	KIND_OBJECT_IDX j;
 
 	FILE *fff;
 
@@ -5727,7 +5758,7 @@ static void do_cmd_knowledge_weapon_exp(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -5742,7 +5773,7 @@ static void do_cmd_knowledge_weapon_exp(void)
 
 				if ((k_ptr->tval == TV_SWORD - i) && (k_ptr->sval == num))
 				{
-					if ((k_ptr->tval == TV_BOW) && (k_ptr->sval == SV_CRIMSON)) continue;
+					if ((k_ptr->tval == TV_BOW) && (k_ptr->sval == SV_CRIMSON || k_ptr->sval == SV_HARP)) continue;
 
 					weapon_exp = p_ptr->weapon_exp[4 - i][num];
 					strip_name(tmp, j);
@@ -5762,7 +5793,7 @@ static void do_cmd_knowledge_weapon_exp(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("Éğ´ï¤Î·Ğ¸³ÃÍ", "Weapon Proficiency"), 0, 0);
+	show_file(TRUE, file_name, _("æ­¦å™¨ã®çµŒé¨“å€¤", "Weapon Proficiency"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -5770,13 +5801,14 @@ static void do_cmd_knowledge_weapon_exp(void)
 
 
 /*!
- * @brief ËâË¡¤Î·Ğ¸³ÃÍ¤òÉ½¼¨¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief é­”æ³•ã®çµŒé¨“å€¤ã‚’è¡¨ç¤ºã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Display spell-exp
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void do_cmd_knowledge_spell_exp(void)
 {
-	int i = 0, spell_exp, exp_level;
+	SPELL_IDX i = 0;
+	int spell_exp, exp_level;
 
 	FILE *fff;
 	const magic_type *s_ptr;
@@ -5786,14 +5818,14 @@ static void do_cmd_knowledge_spell_exp(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
 
 	if (p_ptr->realm1 != REALM_NONE)
 	{
-		fprintf(fff, _("%s¤ÎËâË¡½ñ\n", "%s Spellbook\n"), realm_names[p_ptr->realm1]);
+		fprintf(fff, _("%sã®é­”æ³•æ›¸\n", "%s Spellbook\n"), realm_names[p_ptr->realm1]);
 		for (i = 0; i < 32; i++)
 		{
 			if (!is_magic(p_ptr->realm1))
@@ -5823,7 +5855,7 @@ static void do_cmd_knowledge_spell_exp(void)
 
 	if (p_ptr->realm2 != REALM_NONE)
 	{
-		fprintf(fff, _("%s¤ÎËâË¡½ñ\n", "\n%s Spellbook\n"), realm_names[p_ptr->realm2]);
+		fprintf(fff, _("%sã®é­”æ³•æ›¸\n", "\n%s Spellbook\n"), realm_names[p_ptr->realm2]);
 		for (i = 0; i < 32; i++)
 		{
 			if (!is_magic(p_ptr->realm1))
@@ -5851,7 +5883,7 @@ static void do_cmd_knowledge_spell_exp(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("ËâË¡¤Î·Ğ¸³ÃÍ", "Spell Proficiency"), 0, 0);
+	show_file(TRUE, file_name, _("é­”æ³•ã®çµŒé¨“å€¤", "Spell Proficiency"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -5859,9 +5891,9 @@ static void do_cmd_knowledge_spell_exp(void)
 
 
 /*!
- * @brief ¥¹¥­¥ë¾ğÊó¤òÉ½¼¨¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ã‚¹ã‚­ãƒ«æƒ…å ±ã‚’è¡¨ç¤ºã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Display skill-exp
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void do_cmd_knowledge_skill_exp(void)
 {
@@ -5870,14 +5902,14 @@ static void do_cmd_knowledge_skill_exp(void)
 	FILE *fff;
 
 	char file_name[1024];
-	char skill_name[3][20]={_("¥Ş¡¼¥·¥ã¥ë¥¢¡¼¥Ä", "Martial Arts    "),
-							_("ÆóÅáÎ®          ", "Dual Wielding   "), 
-							_("¾èÇÏ            ", "Riding          ")};
+	char skill_name[3][20]={_("ãƒãƒ¼ã‚·ãƒ£ãƒ«ã‚¢ãƒ¼ãƒ„", "Martial Arts    "),
+							_("äºŒåˆ€æµ          ", "Dual Wielding   "), 
+							_("ä¹—é¦¬            ", "Riding          ")};
 
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -5897,7 +5929,7 @@ static void do_cmd_knowledge_skill_exp(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("µ»Ç½¤Î·Ğ¸³ÃÍ", "Miscellaneous Proficiency"), 0, 0);
+	show_file(TRUE, file_name, _("æŠ€èƒ½ã®çµŒé¨“å€¤", "Miscellaneous Proficiency"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -5905,9 +5937,9 @@ static void do_cmd_knowledge_skill_exp(void)
 
 
 /*!
- * @brief ±ÑÃ±¸ì¡¢¶ç¡¢Àâ¤òÊ£¿ô·Á¤òÊÑ´¹¤¹¤ë / Pluralize a monster name
- * @param Name ÊÑ´¹¤·¤¿¤¤Ê¸»úÎó¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief è‹±å˜èªã€å¥ã€èª¬ã‚’è¤‡æ•°å½¢ã‚’å¤‰æ›ã™ã‚‹ / Pluralize a monster name
+ * @param Name å¤‰æ›ã—ãŸã„æ–‡å­—åˆ—ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void plural_aux(char *Name)
 {
@@ -6030,9 +6062,9 @@ void plural_aux(char *Name)
 }
 
 /*!
- * @brief ¸½ºß¤Î¥Ú¥Ã¥È¤òÉ½¼¨¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ç¾åœ¨ã®ãƒšãƒƒãƒˆã‚’è¡¨ç¤ºã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Display current pets
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void do_cmd_knowledge_pets(void)
 {
@@ -6048,7 +6080,7 @@ static void do_cmd_knowledge_pets(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -6075,8 +6107,8 @@ static void do_cmd_knowledge_pets(void)
 
 	fprintf(fff, "----------------------------------------------\n");
 #ifdef JP
-	fprintf(fff, "    ¹ç·×: %d ÂÎ¤Î¥Ú¥Ã¥È\n", t_friends);
-	fprintf(fff, " °İ»ı¥³¥¹¥È: %d%% MP\n", show_upkeep);
+	fprintf(fff, "    åˆè¨ˆ: %d ä½“ã®ãƒšãƒƒãƒˆ\n", t_friends);
+	fprintf(fff, " ç¶­æŒã‚³ã‚¹ãƒˆ: %d%% MP\n", show_upkeep);
 #else
 	fprintf(fff, "   Total: %d pet%s.\n",
 		t_friends, (t_friends == 1 ? "" : "s"));
@@ -6089,7 +6121,7 @@ static void do_cmd_knowledge_pets(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("¸½ºß¤Î¥Ú¥Ã¥È", "Current Pets"), 0, 0);
+	show_file(TRUE, file_name, _("ç¾åœ¨ã®ãƒšãƒƒãƒˆ", "Current Pets"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -6097,16 +6129,17 @@ static void do_cmd_knowledge_pets(void)
 
 
 /*!
- * @brief ¸½ºß¤Î¥Ú¥Ã¥È¤òÉ½¼¨¤¹¤ë¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ç¾åœ¨ã®ãƒšãƒƒãƒˆã‚’è¡¨ç¤ºã™ã‚‹ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Total kill count
- * @return ¤Ê¤·
+ * @return ãªã—
  * @note the player ghosts are ignored.  XXX XXX XXX
  */
 static void do_cmd_knowledge_kill_count(void)
 {
-	int i, k, n = 0;
+	IDX i;
+	int k, n = 0;
 	u16b why = 2;
-	s16b *who;
+	IDX *who;
 
 	FILE *fff;
 
@@ -6119,7 +6152,7 @@ static void do_cmd_knowledge_kill_count(void)
 	fff = my_fopen_temp(file_name, 1024);
 
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -6146,7 +6179,7 @@ static void do_cmd_knowledge_kill_count(void)
 			}
 			else
 			{
-				s16b This = r_ptr->r_pkills;
+				MONSTER_NUMBER This = r_ptr->r_pkills;
 
 				if (This > 0)
 				{
@@ -6156,10 +6189,10 @@ static void do_cmd_knowledge_kill_count(void)
 		}
 
 		if (Total < 1)
-			fprintf(fff,_("¤¢¤Ê¤¿¤Ï¤Ş¤ÀÅ¨¤òÅİ¤·¤Æ¤¤¤Ê¤¤¡£\n\n", "You have defeated no enemies yet.\n\n"));
+			fprintf(fff,_("ã‚ãªãŸã¯ã¾ã æ•µã‚’å€’ã—ã¦ã„ãªã„ã€‚\n\n", "You have defeated no enemies yet.\n\n"));
 		else
 #ifdef JP
-			fprintf(fff,"¤¢¤Ê¤¿¤Ï%ldÂÎ¤ÎÅ¨¤òÅİ¤·¤Æ¤¤¤ë¡£\n\n", (long int)Total);
+			fprintf(fff,"ã‚ãªãŸã¯%ldä½“ã®æ•µã‚’å€’ã—ã¦ã„ã‚‹ã€‚\n\n", (long int)Total);
 #else
 			fprintf(fff,"You have defeated %ld %s.\n\n", (long int)Total, (Total == 1) ? "enemy" : "enemies");
 #endif
@@ -6202,16 +6235,16 @@ static void do_cmd_knowledge_kill_count(void)
 		}
 		else
 		{
-			s16b This = r_ptr->r_pkills;
+			MONSTER_NUMBER This = r_ptr->r_pkills;
 
 			if (This > 0)
 			{
 #ifdef JP
-				/* p,t¤Ï¿Í¤È¿ô¤¨¤ë by ita */
+				/* p,tã¯äººã¨æ•°ãˆã‚‹ by ita */
 				if (my_strchr("pt", r_ptr->d_char))
-					fprintf(fff, "     %3d ¿Í¤Î %s\n", This, r_name + r_ptr->name);
+					fprintf(fff, "     %3d äººã® %s\n", (int)This, r_name + r_ptr->name);
 				else
-					fprintf(fff, "     %3d ÂÎ¤Î %s\n", This, r_name + r_ptr->name);
+					fprintf(fff, "     %3d ä½“ã® %s\n", (int)This, r_name + r_ptr->name);
 #else
 				if (This < 2)
 				{
@@ -6241,7 +6274,7 @@ static void do_cmd_knowledge_kill_count(void)
 
 	fprintf(fff,"----------------------------------------------\n");
 #ifdef JP
-	fprintf(fff,"    ¹ç·×: %lu ÂÎ¤òÅİ¤·¤¿¡£\n", (unsigned long int)Total);
+	fprintf(fff,"    åˆè¨ˆ: %lu ä½“ã‚’å€’ã—ãŸã€‚\n", (unsigned long int)Total);
 #else
 	fprintf(fff,"   Total: %lu creature%s killed.\n",
 		(unsigned long int)Total, (Total == 1 ? "" : "s"));
@@ -6255,7 +6288,7 @@ static void do_cmd_knowledge_kill_count(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("Åİ¤·¤¿Å¨¤Î¿ô", "Kill Count"), 0, 0);
+	show_file(TRUE, file_name, _("å€’ã—ãŸæ•µã®æ•°", "Kill Count"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -6263,20 +6296,20 @@ static void do_cmd_knowledge_kill_count(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¾ğÊó¥ê¥¹¥ÈÃæ¤Î¥°¥ë¡¼¥×¤òÉ½¼¨¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ãƒªã‚¹ãƒˆä¸­ã®ã‚°ãƒ«ãƒ¼ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Display the object groups.
- * @param col ³«»Ï¹Ô
- * @param row ³«»ÏÎó
- * @param wid É½¼¨Ê¸»ú¿ôÉı
- * @param per_page ¥ê¥¹¥È¤ÎÉ½¼¨¹Ô
- * @param grp_idx ¥°¥ë¡¼¥×¤ÎIDÇÛÎó
- * @param group_text ¥°¥ë¡¼¥×Ì¾¤ÎÊ¸»úÎóÇÛÎó
- * @param grp_cur ¸½ºß¤ÎÁªÂòID
- * @param grp_top ¸½ºß¤ÎÁªÂò¥ê¥¹¥ÈºÇ¾åÉôID
- * @return ¤Ê¤·
+ * @param col é–‹å§‹è¡Œ
+ * @param row é–‹å§‹åˆ—
+ * @param wid è¡¨ç¤ºæ–‡å­—æ•°å¹…
+ * @param per_page ãƒªã‚¹ãƒˆã®è¡¨ç¤ºè¡Œ
+ * @param grp_idx ã‚°ãƒ«ãƒ¼ãƒ—ã®IDé…åˆ—
+ * @param group_text ã‚°ãƒ«ãƒ¼ãƒ—åã®æ–‡å­—åˆ—é…åˆ—
+ * @param grp_cur ç¾åœ¨ã®é¸æŠID
+ * @param grp_top ç¾åœ¨ã®é¸æŠãƒªã‚¹ãƒˆæœ€ä¸Šéƒ¨ID
+ * @return ãªã—
  */
 static void display_group_list(int col, int row, int wid, int per_page,
-	int grp_idx[], cptr group_text[], int grp_cur, int grp_top)
+	IDX grp_idx[], cptr group_text[], int grp_cur, int grp_top)
 {
 	int i;
 
@@ -6301,13 +6334,13 @@ static void display_group_list(int col, int row, int wid, int per_page,
 /* 
  * Move the cursor in a browser window 
  */
-static void browser_cursor(char ch, int *column, int *grp_cur, int grp_cnt, 
-						   int *list_cur, int list_cnt)
+static void browser_cursor(char ch, int *column, IDX *grp_cur, int grp_cnt, 
+						   IDX *list_cur, int list_cnt)
 {
 	int d;
 	int col = *column;
-	int grp = *grp_cur;
-	int list = *list_cur;
+	IDX grp = *grp_cur;
+	IDX list = *list_cur;
 
 	/* Extract direction */
 	if (ch == ' ')
@@ -6638,7 +6671,7 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
 		byte attr;
 
 		/* Get the race index */
-		int r_idx = mon_idx[mon_top + i] ;
+		MONRACE_IDX r_idx = mon_idx[mon_top + i] ;
 
 		/* Access the race */
 		monster_race *r_ptr = &r_info[r_idx];
@@ -6672,7 +6705,7 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
 				put_str(format("%5d", r_ptr->r_pkills), row + i, 73);
 			else 
 				c_put_str((r_ptr->max_num == 0 ? TERM_L_DARK : TERM_WHITE), 
-						  (r_ptr->max_num == 0 ? _("»àË´", " dead") : _("À¸Â¸", "alive")), row + i, 74);
+						  (r_ptr->max_num == 0 ? _("æ­»äº¡", " dead") : _("ç”Ÿå­˜", "alive")), row + i, 74);
 		}
 	}
 
@@ -6687,14 +6720,15 @@ static void display_monster_list(int col, int row, int per_page, s16b mon_idx[],
 /*
  * Display known monsters.
  */
-static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int direct_r_idx)
+static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, IDX direct_r_idx)
 {
-	int i, len, max;
-	int grp_cur, grp_top, old_grp_cur;
-	int mon_cur, mon_top;
-	int grp_cnt, grp_idx[100];
-	int mon_cnt;
-	s16b *mon_idx;
+	IDX i;
+	int len, max;
+	IDX grp_cur, grp_top, old_grp_cur;
+	IDX mon_cur, mon_top;
+	IDX grp_cnt, grp_idx[100];
+	IDX mon_cnt;
+	IDX *mon_idx;
 
 	int column = 0;
 	bool flag;
@@ -6704,9 +6738,9 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
 	byte attr_top = 0, char_left = 0;
 
 	int browser_rows;
-	int wid, hgt;
+	TERM_POSITION wid, hgt;
 
-	byte mode;
+	BIT_FLAGS8 mode;
 
 	/* Get size */
 	Term_get_size(&wid, &hgt);
@@ -6776,12 +6810,12 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
 			clear_from(0);
 
 #ifdef JP
-			prt(format("%s - ¥â¥ó¥¹¥¿¡¼", !visual_only ? "ÃÎ¼±" : "É½¼¨"), 2, 0);
-			if (direct_r_idx < 0) prt("¥°¥ë¡¼¥×", 4, 0);
-			prt("Ì¾Á°", 4, max + 3);
+			prt(format("%s - ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼", !visual_only ? "çŸ¥è­˜" : "è¡¨ç¤º"), 2, 0);
+			if (direct_r_idx < 0) prt("ã‚°ãƒ«ãƒ¼ãƒ—", 4, 0);
+			prt("åå‰", 4, max + 3);
 			if (p_ptr->wizard || visual_only) prt("Idx", 4, 62);
-			prt("Ê¸»ú", 4, 67);
-			if (!visual_only) prt("»¦³²¿ô", 4, 72);
+			prt("æ–‡å­—", 4, 67);
+			if (!visual_only) prt("æ®ºå®³æ•°", 4, 72);
 #else
 			prt(format("%s - monsters", !visual_only ? "Knowledge" : "Visuals"), 2, 0);
 			if (direct_r_idx < 0) prt("Group", 4, 0);
@@ -6849,10 +6883,10 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
 
 		/* Prompt */
 #ifdef JP
-		prt(format("<Êı¸ş>%s%s%s, ESC",
-			(!visual_list && !visual_only) ? ", 'r'¤Ç»×¤¤½Ğ¤ò¸«¤ë" : "",
-			visual_list ? ", ENTER¤Ç·èÄê" : ", 'v'¤Ç¥·¥ó¥Ü¥ëÊÑ¹¹",
-			(attr_idx || char_idx) ? ", 'c', 'p'¤Ç¥Ú¡¼¥¹¥È" : ", 'c'¤Ç¥³¥Ô¡¼"),
+		prt(format("<æ–¹å‘>%s%s%s, ESC",
+			(!visual_list && !visual_only) ? ", 'r'ã§æ€ã„å‡ºã‚’è¦‹ã‚‹" : "",
+			visual_list ? ", ENTERã§æ±ºå®š" : ", 'v'ã§ã‚·ãƒ³ãƒœãƒ«å¤‰æ›´",
+			(attr_idx || char_idx) ? ", 'c', 'p'ã§ãƒšãƒ¼ã‚¹ãƒˆ" : ", 'c'ã§ã‚³ãƒ”ãƒ¼"),
 			hgt - 1, 0);
 #else
 		prt(format("<dir>%s%s%s, ESC",
@@ -6947,7 +6981,7 @@ static void do_cmd_knowledge_monsters(bool *need_redraw, bool visual_only, int d
 /*
  * Display the objects in a group.
  */
-static void display_object_list(int col, int row, int per_page, int object_idx[],
+static void display_object_list(int col, int row, int per_page, IDX object_idx[],
 	int object_cur, int object_top, bool visual_only)
 {
 	int i;
@@ -6960,7 +6994,7 @@ static void display_object_list(int col, int row, int per_page, int object_idx[]
 		object_kind *flavor_k_ptr;
 
 		/* Get the object index */
-		int k_idx = object_idx[object_top + i];
+		KIND_OBJECT_IDX k_idx = object_idx[object_top + i];
 
 		/* Access the object */
 		object_kind *k_ptr = &k_info[k_idx];
@@ -7026,7 +7060,7 @@ static void display_object_list(int col, int row, int per_page, int object_idx[]
 /*
  * Describe fake object
  */
-static void desc_obj_fake(int k_idx)
+static void desc_obj_fake(IDX k_idx)
 {
 	object_type *o_ptr;
 	object_type object_type_body;
@@ -7054,7 +7088,7 @@ static void desc_obj_fake(int k_idx)
 
 	if (!screen_object(o_ptr, SCROBJ_FAKE_OBJECT | SCROBJ_FORCE_DETAIL))
 	{
-		msg_print(_("ÆÃ¤ËÊÑ¤ï¤Ã¤¿¤È¤³¤í¤Ï¤Ê¤¤¤è¤¦¤À¡£", "You see nothing special."));
+		msg_print(_("ç‰¹ã«å¤‰ã‚ã£ãŸã¨ã“ã‚ã¯ãªã„ã‚ˆã†ã ã€‚", "You see nothing special."));
 		msg_print(NULL);
 	}
 }
@@ -7064,14 +7098,16 @@ static void desc_obj_fake(int k_idx)
 /*
  * Display known objects
  */
-static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int direct_k_idx)
+static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, IDX direct_k_idx)
 {
-	int i, len, max;
-	int grp_cur, grp_top, old_grp_cur;
-	int object_old, object_cur, object_top;
-	int grp_cnt, grp_idx[100];
+	IDX i;
+	int len, max;
+	IDX grp_cur, grp_top, old_grp_cur;
+	IDX object_old, object_cur, object_top;
+	int grp_cnt;
+	IDX grp_idx[100];
 	int object_cnt;
-	int *object_idx;
+	IDX *object_idx;
 
 	int column = 0;
 	bool flag;
@@ -7091,7 +7127,7 @@ static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int di
 	browser_rows = hgt - 8;
 
 	/* Allocate the "object_idx" array */
-	C_MAKE(object_idx, max_k_idx, int);
+	C_MAKE(object_idx, max_k_idx, IDX);
 
 	max = 0;
 	grp_cnt = 0;
@@ -7169,11 +7205,11 @@ static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int di
 			clear_from(0);
 
 #ifdef JP
-			prt(format("%s - ¥¢¥¤¥Æ¥à", !visual_only ? "ÃÎ¼±" : "É½¼¨"), 2, 0);
-			if (direct_k_idx < 0) prt("¥°¥ë¡¼¥×", 4, 0);
-			prt("Ì¾Á°", 4, max + 3);
+			prt(format("%s - ã‚¢ã‚¤ãƒ†ãƒ ", !visual_only ? "çŸ¥è­˜" : "è¡¨ç¤º"), 2, 0);
+			if (direct_k_idx < 0) prt("ã‚°ãƒ«ãƒ¼ãƒ—", 4, 0);
+			prt("åå‰", 4, max + 3);
 			if (p_ptr->wizard || visual_only) prt("Idx", 4, 70);
-			prt("Ê¸»ú", 4, 74);
+			prt("æ–‡å­—", 4, 74);
 #else
 			prt(format("%s - objects", !visual_only ? "Knowledge" : "Visuals"), 2, 0);
 			if (direct_k_idx < 0) prt("Group", 4, 0);
@@ -7254,10 +7290,10 @@ static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int di
 
 		/* Prompt */
 #ifdef JP
-		prt(format("<Êı¸ş>%s%s%s, ESC",
-			(!visual_list && !visual_only) ? ", 'r'¤Ç¾ÜºÙ¤ò¸«¤ë" : "",
-			visual_list ? ", ENTER¤Ç·èÄê" : ", 'v'¤Ç¥·¥ó¥Ü¥ëÊÑ¹¹",
-			(attr_idx || char_idx) ? ", 'c', 'p'¤Ç¥Ú¡¼¥¹¥È" : ", 'c'¤Ç¥³¥Ô¡¼"),
+		prt(format("<æ–¹å‘>%s%s%s, ESC",
+			(!visual_list && !visual_only) ? ", 'r'ã§è©³ç´°ã‚’è¦‹ã‚‹" : "",
+			visual_list ? ", ENTERã§æ±ºå®š" : ", 'v'ã§ã‚·ãƒ³ãƒœãƒ«å¤‰æ›´",
+			(attr_idx || char_idx) ? ", 'c', 'p'ã§ãƒšãƒ¼ã‚¹ãƒˆ" : ", 'c'ã§ã‚³ãƒ”ãƒ¼"),
 			hgt - 1, 0);
 #else
 		prt(format("<dir>%s%s%s, ESC",
@@ -7345,15 +7381,15 @@ static void do_cmd_knowledge_objects(bool *need_redraw, bool visual_only, int di
 	}
 
 	/* Free the "object_idx" array */
-	C_KILL(object_idx, max_k_idx, int);
+	C_KILL(object_idx, max_k_idx, IDX);
 }
 
 
 /*
  * Display the features in a group.
  */
-static void display_feature_list(int col, int row, int per_page, int *feat_idx,
-	int feat_cur, int feat_top, bool visual_only, int lighting_level)
+static void display_feature_list(int col, int row, int per_page, FEAT_IDX *feat_idx,
+	FEAT_IDX feat_cur, FEAT_IDX feat_top, bool visual_only, int lighting_level)
 {
 	int lit_col[F_LIT_MAX], i, j;
 	int f_idx_col = use_bigtile ? 62 : 64;
@@ -7369,7 +7405,7 @@ static void display_feature_list(int col, int row, int per_page, int *feat_idx,
 		byte attr;
 
 		/* Get the index */
-		int f_idx = feat_idx[feat_top + i];
+		FEAT_IDX f_idx = feat_idx[feat_top + i];
 
 		/* Access the index */
 		feature_type *f_ptr = &f_info[f_idx];
@@ -7423,14 +7459,16 @@ static void display_feature_list(int col, int row, int per_page, int *feat_idx,
 /*
  * Interact with feature visuals.
  */
-static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int direct_f_idx, int *lighting_level)
+static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, IDX direct_f_idx, IDX *lighting_level)
 {
-	int i, len, max;
-	int grp_cur, grp_top, old_grp_cur;
-	int feat_cur, feat_top;
-	int grp_cnt, grp_idx[100];
+	IDX i;
+	int len, max;
+	IDX grp_cur, grp_top, old_grp_cur;
+	IDX feat_cur, feat_top;
+	int grp_cnt;
+	IDX grp_idx[100];
 	int feat_cnt;
-	int *feat_idx;
+	IDX *feat_idx;
 
 	int column = 0;
 	bool flag;
@@ -7455,7 +7493,7 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
 	browser_rows = hgt - 8;
 
 	/* Allocate the "feat_idx" array */
-	C_MAKE(feat_idx, max_f_idx, int);
+	C_MAKE(feat_idx, max_f_idx, IDX);
 
 	max = 0;
 	grp_cnt = 0;
@@ -7521,18 +7559,18 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
 			clear_from(0);
 
 #ifdef JP
-			prt("É½¼¨ - ÃÏ·Á", 2, 0);
-			if (direct_f_idx < 0) prt("¥°¥ë¡¼¥×", 4, 0);
-			prt("Ì¾Á°", 4, max + 3);
+			prt("è¡¨ç¤º - åœ°å½¢", 2, 0);
+			if (direct_f_idx < 0) prt("ã‚°ãƒ«ãƒ¼ãƒ—", 4, 0);
+			prt("åå‰", 4, max + 3);
 			if (use_bigtile)
 			{
 				if (p_ptr->wizard || visual_only) prt("Idx", 4, 62);
-				prt("Ê¸»ú ( l/ d)", 4, 66);
+				prt("æ–‡å­— ( l/ d)", 4, 66);
 			}
 			else
 			{
 				if (p_ptr->wizard || visual_only) prt("Idx", 4, 64);
-				prt("Ê¸»ú (l/d)", 4, 68);
+				prt("æ–‡å­— (l/d)", 4, 68);
 			}
 #else
 			prt("Visuals - features", 2, 0);
@@ -7608,9 +7646,9 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
 
 		/* Prompt */
 #ifdef JP
-		prt(format("<Êı¸ş>%s, 'd'¤ÇÉ¸½à¸÷¸»¸ú²Ì%s, ESC",
-			visual_list ? ", ENTER¤Ç·èÄê, 'a'¤ÇÂĞ¾İÌÀÅÙÊÑ¹¹" : ", 'v'¤Ç¥·¥ó¥Ü¥ëÊÑ¹¹",
-			(attr_idx || char_idx) ? ", 'c', 'p'¤Ç¥Ú¡¼¥¹¥È" : ", 'c'¤Ç¥³¥Ô¡¼"),
+		prt(format("<æ–¹å‘>%s, 'd'ã§æ¨™æº–å…‰æºåŠ¹æœ%s, ESC",
+			visual_list ? ", ENTERã§æ±ºå®š, 'a'ã§å¯¾è±¡æ˜åº¦å¤‰æ›´" : ", 'v'ã§ã‚·ãƒ³ãƒœãƒ«å¤‰æ›´",
+			(attr_idx || char_idx) ? ", 'c', 'p'ã§ãƒšãƒ¼ã‚¹ãƒˆ" : ", 'c'ã§ã‚³ãƒ”ãƒ¼"),
 			hgt - 1, 0);
 #else
 		prt(format("<dir>%s, 'd' for default lighting%s, ESC",
@@ -7761,7 +7799,7 @@ static void do_cmd_knowledge_features(bool *need_redraw, bool visual_only, int d
 	}
 
 	/* Free the "feat_idx" array */
-	C_KILL(feat_idx, max_f_idx, int);
+	C_KILL(feat_idx, max_f_idx, IDX);
 }
 
 
@@ -7779,7 +7817,7 @@ static void do_cmd_knowledge_kubi(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -7789,9 +7827,9 @@ static void do_cmd_knowledge_kubi(void)
 		bool listed = FALSE;
 
 #ifdef JP
-		fprintf(fff, "º£Æü¤Î¥¿¡¼¥²¥Ã¥È : %s\n", (p_ptr->today_mon ? r_name + r_info[p_ptr->today_mon].name : "ÉÔÌÀ"));
+		fprintf(fff, "ä»Šæ—¥ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ : %s\n", (p_ptr->today_mon ? r_name + r_info[p_ptr->today_mon].name : "ä¸æ˜"));
 		fprintf(fff, "\n");
-		fprintf(fff, "¾Ş¶â¼ó¥ê¥¹¥È\n");
+		fprintf(fff, "è³é‡‘é¦–ãƒªã‚¹ãƒˆ\n");
 #else
 		fprintf(fff, "Today target : %s\n", (p_ptr->today_mon ? r_name + r_info[p_ptr->today_mon].name : "unknown"));
 		fprintf(fff, "\n");
@@ -7811,7 +7849,7 @@ static void do_cmd_knowledge_kubi(void)
 
 		if (!listed)
 		{
-			fprintf(fff,"\n%s\n", _("¾Ş¶â¼ó¤Ï¤â¤¦»Ä¤Ã¤Æ¤¤¤Ş¤»¤ó¡£", "There is no more wanted monster."));
+			fprintf(fff,"\n%s\n", _("è³é‡‘é¦–ã¯ã‚‚ã†æ®‹ã£ã¦ã„ã¾ã›ã‚“ã€‚", "There is no more wanted monster."));
 		}
 	}
 	
@@ -7819,7 +7857,7 @@ static void do_cmd_knowledge_kubi(void)
 	my_fclose(fff);
 	
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("¾Ş¶â¼ó¤Î°ìÍ÷", "Wanted monsters"), 0, 0);
+	show_file(TRUE, file_name, _("è³é‡‘é¦–ã®ä¸€è¦§", "Wanted monsters"), 0, 0);
 	
 	/* Remove the file */
 	fd_kill(file_name);
@@ -7838,14 +7876,14 @@ static void do_cmd_knowledge_virtues(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
 	
 	if (fff)
 	{
-		fprintf(fff, _("¸½ºß¤ÎÂ°À­ : %s\n\n", "Your alighnment : %s\n\n"), your_alignment());
+		fprintf(fff, _("ç¾åœ¨ã®å±æ€§ : %s\n\n", "Your alighnment : %s\n\n"), your_alignment());
 		dump_virtues(fff);
 	}
 	
@@ -7853,7 +7891,7 @@ static void do_cmd_knowledge_virtues(void)
 	my_fclose(fff);
 	
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("È¬¤Ä¤ÎÆÁ", "Virtues"), 0, 0);
+	show_file(TRUE, file_name, _("å…«ã¤ã®å¾³", "Virtues"), 0, 0);
 	
 	/* Remove the file */
 	fd_kill(file_name);
@@ -7874,7 +7912,7 @@ static void do_cmd_knowledge_dungeon(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -7893,7 +7931,7 @@ static void do_cmd_knowledge_dungeon(void)
 			}
 			else if (max_dlv[i] == d_info[i].maxdepth) seiha = TRUE;
 			
-			fprintf(fff, _("%c%-12s :  %3d ³¬\n", "%c%-16s :  level %3d\n"), seiha ? '!' : ' ', d_name + d_info[i].name, max_dlv[i]);
+			fprintf(fff, _("%c%-12s :  %3d éš\n", "%c%-16s :  level %3d\n"), seiha ? '!' : ' ', d_name + d_info[i].name, (int)max_dlv[i]);
 		}
 	}
 	
@@ -7901,7 +7939,7 @@ static void do_cmd_knowledge_dungeon(void)
 	my_fclose(fff);
 	
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("º£¤Ş¤Ç¤ËÆş¤Ã¤¿¥À¥ó¥¸¥ç¥ó", "Dungeon"), 0, 0);
+	show_file(TRUE, file_name, _("ä»Šã¾ã§ã«å…¥ã£ãŸãƒ€ãƒ³ã‚¸ãƒ§ãƒ³", "Dungeon"), 0, 0);
 	
 	/* Remove the file */
 	fd_kill(file_name);
@@ -7921,7 +7959,7 @@ static void do_cmd_knowledge_stat(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
@@ -7933,9 +7971,9 @@ static void do_cmd_knowledge_stat(void)
 			((PY_MAX_LEVEL - 1+3) * (p_ptr->hitdie + 1))));
 
 #ifdef JP
-		if (p_ptr->knowledge & KNOW_HPRATE) fprintf(fff, "¸½ºß¤ÎÂÎÎÏ¥é¥ó¥¯ : %d/100\n\n", percent);
-		else fprintf(fff, "¸½ºß¤ÎÂÎÎÏ¥é¥ó¥¯ : ???\n\n");
-		fprintf(fff, "Ç½ÎÏ¤ÎºÇÂçÃÍ\n\n");
+		if (p_ptr->knowledge & KNOW_HPRATE) fprintf(fff, "ç¾åœ¨ã®ä½“åŠ›ãƒ©ãƒ³ã‚¯ : %d/100\n\n", percent);
+		else fprintf(fff, "ç¾åœ¨ã®ä½“åŠ›ãƒ©ãƒ³ã‚¯ : ???\n\n");
+		fprintf(fff, "èƒ½åŠ›ã®æœ€å¤§å€¤\n\n");
 #else
 		if (p_ptr->knowledge & KNOW_HPRATE) fprintf(fff, "Your current Life Rating is %d/100.\n\n", percent);
 		else fprintf(fff, "Your current Life Rating is ???.\n\n");
@@ -7954,7 +7992,7 @@ static void do_cmd_knowledge_stat(void)
 	my_fclose(fff);
 	
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("¼«Ê¬¤Ë´Ø¤¹¤ë¾ğÊó", "HP-rate & Max stat"), 0, 0);
+	show_file(TRUE, file_name, _("è‡ªåˆ†ã«é–¢ã™ã‚‹æƒ…å ±", "HP-rate & Max stat"), 0, 0);
 	
 	/* Remove the file */
 	fd_kill(file_name);
@@ -7970,20 +8008,20 @@ static void do_cmd_knowledge_quests_current(FILE *fff)
 	char rand_tmp_str[120] = "\0";
 	char name[80];
 	monster_race *r_ptr;
-	int i;
+	IDX i;
 	int rand_level = 100;
 	int total = 0;
 
-	fprintf(fff, _("¡Ô¿ë¹ÔÃæ¤Î¥¯¥¨¥¹¥È¡Õ\n", "< Current Quest >\n"));
+	fprintf(fff, _("ã€Šé‚è¡Œä¸­ã®ã‚¯ã‚¨ã‚¹ãƒˆã€‹\n", "< Current Quest >\n"));
 
-	for (i = 1; i < max_quests; i++)
+	for (i = 1; i < max_q_idx; i++)
 	{
 		if ((quest[i].status == QUEST_STATUS_TAKEN) ||
 			((quest[i].status == QUEST_STATUS_STAGE_COMPLETED) && (quest[i].type == QUEST_TYPE_TOWER)) ||
 			(quest[i].status == QUEST_STATUS_COMPLETED))
 		{
 			/* Set the quest number temporary */
-			int old_quest = p_ptr->inside_quest;
+			IDX old_quest = p_ptr->inside_quest;
 			int j;
 
 			/* Clear the text */
@@ -8020,16 +8058,16 @@ static void do_cmd_knowledge_quests_current(FILE *fff)
 						if (quest[i].max_num > 1)
 						{
 #ifdef JP
-							sprintf(note," - %d ÂÎ¤Î%s¤òÅİ¤¹¡£(¤¢¤È %d ÂÎ)",
-								quest[i].max_num, name, quest[i].max_num - quest[i].cur_num);
+							sprintf(note," - %d ä½“ã®%sã‚’å€’ã™ã€‚(ã‚ã¨ %d ä½“)",
+								(int)quest[i].max_num, name, (int)(quest[i].max_num - quest[i].cur_num));
 #else
 							plural_aux(name);
 							sprintf(note," - kill %d %s, have killed %d.",
-								quest[i].max_num, name, quest[i].cur_num);
+								(int)quest[i].max_num, name, (int)quest[i].cur_num);
 #endif
 						}
 						else
-							sprintf(note,_(" - %s¤òÅİ¤¹¡£", " - kill %s."),name);
+							sprintf(note,_(" - %sã‚’å€’ã™ã€‚", " - kill %s."),name);
 						break;
 
 					case QUEST_TYPE_FIND_ARTIFACT:
@@ -8038,49 +8076,44 @@ static void do_cmd_knowledge_quests_current(FILE *fff)
 							artifact_type *a_ptr = &a_info[quest[i].k_idx];
 							object_type forge;
 							object_type *q_ptr = &forge;
-							int k_idx = lookup_kind(a_ptr->tval, a_ptr->sval);
+							IDX k_idx = lookup_kind(a_ptr->tval, a_ptr->sval);
 							object_prep(q_ptr, k_idx);
 							q_ptr->name1 = quest[i].k_idx;
 							q_ptr->ident = IDENT_STORE;
 							object_desc(name, q_ptr, OD_NAME_ONLY);
 						}
-						sprintf(note,_("\n   - %s¤ò¸«¤Ä¤±½Ğ¤¹¡£", "\n   - Find out %s."), name);
+						sprintf(note,_("\n   - %sã‚’è¦‹ã¤ã‘å‡ºã™ã€‚", "\n   - Find out %s."), name);
 						break;
 					case QUEST_TYPE_FIND_EXIT:
-						sprintf(note,_(" - ½Ğ¸ı¤ËÅşÃ£¤¹¤ë¡£", " - Reach to Exit."));
+						sprintf(note,_(" - å‡ºå£ã«åˆ°é”ã™ã‚‹ã€‚", " - Reach to Exit."));
 						break;
 
 					case QUEST_TYPE_KILL_NUMBER:
 #ifdef JP
-						sprintf(note," - %d ÂÎ¤Î¥â¥ó¥¹¥¿¡¼¤òÅİ¤¹¡£(¤¢¤È %d ÂÎ)",
-							quest[i].max_num, quest[i].max_num - quest[i].cur_num);
+						sprintf(note," - %d ä½“ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å€’ã™ã€‚(ã‚ã¨ %d ä½“)",
+							(int)quest[i].max_num, (int)(quest[i].max_num - quest[i].cur_num));
 #else
 						sprintf(note," - Kill %d monsters, have killed %d.",
-							quest[i].max_num, quest[i].cur_num);
+							(int)quest[i].max_num, (int)quest[i].cur_num);
 #endif
 						break;
 
 					case QUEST_TYPE_KILL_ALL:
 					case QUEST_TYPE_TOWER:
-						sprintf(note,_(" - Á´¤Æ¤Î¥â¥ó¥¹¥¿¡¼¤òÅİ¤¹¡£", " - Kill all monsters."));
+						sprintf(note,_(" - å…¨ã¦ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å€’ã™ã€‚", " - Kill all monsters."));
 						break;
 					}
 				}
 
 				/* Print the quest info */
-#ifdef JP
-				sprintf(tmp_str, "  %s (´í¸±ÅÙ:%d³¬ÁêÅö)%s\n",
-					quest[i].name, quest[i].level, note);
-#else
-				sprintf(tmp_str, "  %s (Danger level: %d)%s\n",
-					quest[i].name, quest[i].level, note);
-#endif
+				sprintf(tmp_str, _("  %s (å±é™ºåº¦:%déšç›¸å½“)%s\n", "  %s (Danger level: %d)%s\n"),
+					quest[i].name, (int)quest[i].level, note);
 
 				fputs(tmp_str, fff);
 
 				if (quest[i].status == QUEST_STATUS_COMPLETED)
 				{
-					sprintf(tmp_str, _("    ¥¯¥¨¥¹¥ÈÃ£À® - ¤Ş¤ÀÊó½·¤ò¼õ¤±¤È¤Ã¤Æ¤Ê¤¤¡£\n", "    Quest Completed - Unrewarded\n"));
+					sprintf(tmp_str, _("    ã‚¯ã‚¨ã‚¹ãƒˆé”æˆ - ã¾ã å ±é…¬ã‚’å—ã‘ã¨ã£ã¦ãªã„ã€‚\n", "    Quest Completed - Unrewarded\n"));
 					fputs(tmp_str, fff);
 				}
 				else
@@ -8108,26 +8141,21 @@ static void do_cmd_knowledge_quests_current(FILE *fff)
 					if (quest[i].max_num > 1)
 					{
 #ifdef JP
-						sprintf(rand_tmp_str,"  %s (%d ³¬) - %d ÂÎ¤Î%s¤òÅİ¤¹¡£(¤¢¤È %d ÂÎ)\n",
-							quest[i].name, quest[i].level,
-							quest[i].max_num, name, quest[i].max_num - quest[i].cur_num);
+						sprintf(rand_tmp_str,"  %s (%d éš) - %d ä½“ã®%sã‚’å€’ã™ã€‚(ã‚ã¨ %d ä½“)\n",
+							quest[i].name, (int)quest[i].level,
+							(int)quest[i].max_num, name, (int)(quest[i].max_num - quest[i].cur_num));
 #else
 						plural_aux(name);
 
 						sprintf(rand_tmp_str,"  %s (Dungeon level: %d)\n  Kill %d %s, have killed %d.\n",
-							quest[i].name, quest[i].level,
-							quest[i].max_num, name, quest[i].cur_num);
+							quest[i].name, (int)quest[i].level,
+							(int)quest[i].max_num, name, (int)quest[i].cur_num);
 #endif
 					}
 					else
 					{
-#ifdef JP
-						sprintf(rand_tmp_str,"  %s (%d ³¬) - %s¤òÅİ¤¹¡£\n",
-							quest[i].name, quest[i].level, name);
-#else
-						sprintf(rand_tmp_str,"  %s (Dungeon level: %d)\n  Kill %s.\n",
-							quest[i].name, quest[i].level, name);
-#endif
+						sprintf(rand_tmp_str,_("  %s (%d éš) - %sã‚’å€’ã™ã€‚\n", "  %s (Dungeon level: %d)\n  Kill %s.\n"),
+							quest[i].name, (int)quest[i].level, name);
 					}
 				}
 			}
@@ -8137,11 +8165,11 @@ static void do_cmd_knowledge_quests_current(FILE *fff)
 	/* Print the current random quest  */
 	if (rand_tmp_str[0]) fputs(rand_tmp_str, fff);
 
-	if (!total) fprintf(fff, _("  ¤Ê¤·\n", "  Nothing.\n"));
+	if (!total) fprintf(fff, _("  ãªã—\n", "  Nothing.\n"));
 }
 
 
-static bool do_cmd_knowledge_quests_aux(FILE *fff, int q_idx)
+static bool do_cmd_knowledge_quests_aux(FILE *fff, IDX q_idx)
 {
 	char tmp_str[120];
 	char playtime_str[16];
@@ -8150,7 +8178,7 @@ static bool do_cmd_knowledge_quests_aux(FILE *fff, int q_idx)
 	if (is_fixed_quest_idx(q_idx))
 	{
 		/* Set the quest number temporary */
-		int old_quest = p_ptr->inside_quest;
+		IDX old_quest = p_ptr->inside_quest;
 
 		p_ptr->inside_quest = q_idx;
 
@@ -8175,18 +8203,18 @@ static bool do_cmd_knowledge_quests_aux(FILE *fff, int q_idx)
 		if (q_ptr->complev == 0)
 		{
 			sprintf(tmp_str,
-				_("  %-35s (%3d³¬)            -   ÉÔÀï¾¡ - %s\n",
+				_("  %-35s (%3déš)            -   ä¸æˆ¦å‹ - %s\n",
 				  "  %-35s (Dungeon level: %3d) - Unearned - %s\n") ,
 				r_name+r_info[q_ptr->r_idx].name,
-				q_ptr->level, playtime_str);
+				(int)q_ptr->level, playtime_str);
 		}
 		else
 		{
 			sprintf(tmp_str,
-				_("  %-35s (%3d³¬)            - ¥ì¥Ù¥ë%2d - %s\n",
+				_("  %-35s (%3déš)            - ãƒ¬ãƒ™ãƒ«%2d - %s\n",
 				  "  %-35s (Dungeon level: %3d) - level %2d - %s\n") ,
 				r_name+r_info[q_ptr->r_idx].name,
-				q_ptr->level,
+				(int)q_ptr->level,
 				q_ptr->complev,
 				playtime_str);
 		}
@@ -8195,9 +8223,9 @@ static bool do_cmd_knowledge_quests_aux(FILE *fff, int q_idx)
 	{
 		/* Print the quest info */
 		sprintf(tmp_str,
-			_("  %-35s (´í¸±ÅÙ:%3d³¬ÁêÅö) - ¥ì¥Ù¥ë%2d - %s\n",
+			_("  %-35s (å±é™ºåº¦:%3déšç›¸å½“) - ãƒ¬ãƒ™ãƒ«%2d - %s\n",
 			  "  %-35s (Danger  level: %3d) - level %2d - %s\n") ,
-			q_ptr->name, q_ptr->level, q_ptr->complev, playtime_str);
+			q_ptr->name, (int)q_ptr->level, q_ptr->complev, playtime_str);
 	}
 
 	fputs(tmp_str, fff);
@@ -8208,15 +8236,15 @@ static bool do_cmd_knowledge_quests_aux(FILE *fff, int q_idx)
 /*
  * Print all finished quests
  */
-void do_cmd_knowledge_quests_completed(FILE *fff, int quest_num[])
+void do_cmd_knowledge_quests_completed(FILE *fff, IDX quest_num[])
 {
 	int i;
 	int total = 0;
 
-	fprintf(fff, _("¡ÔÃ£À®¤·¤¿¥¯¥¨¥¹¥È¡Õ\n", "< Completed Quest >\n"));
-	for (i = 1; i < max_quests; i++)
+	fprintf(fff, _("ã€Šé”æˆã—ãŸã‚¯ã‚¨ã‚¹ãƒˆã€‹\n", "< Completed Quest >\n"));
+	for (i = 1; i < max_q_idx; i++)
 	{
-		int q_idx = quest_num[i];
+		IDX q_idx = quest_num[i];
 		quest_type* const q_ptr = &quest[q_idx];
 
 		if (q_ptr->status == QUEST_STATUS_FINISHED &&
@@ -8225,22 +8253,22 @@ void do_cmd_knowledge_quests_completed(FILE *fff, int quest_num[])
 			++ total;
 		}
 	}
-	if (!total) fprintf(fff, _("  ¤Ê¤·\n", "  Nothing.\n"));
+	if (!total) fprintf(fff, _("  ãªã—\n", "  Nothing.\n"));
 }
 
 
 /*
  * Print all failed quests
  */
-void do_cmd_knowledge_quests_failed(FILE *fff, int quest_num[])
+void do_cmd_knowledge_quests_failed(FILE *fff, IDX quest_num[])
 {
-	int i;
+	IDX i;
 	int total = 0;
 
-	fprintf(fff, _("¡Ô¼ºÇÔ¤·¤¿¥¯¥¨¥¹¥È¡Õ\n", "< Failed Quest >\n"));
-	for (i = 1; i < max_quests; i++)
+	fprintf(fff, _("ã€Šå¤±æ•—ã—ãŸã‚¯ã‚¨ã‚¹ãƒˆã€‹\n", "< Failed Quest >\n"));
+	for (i = 1; i < max_q_idx; i++)
 	{
-		int q_idx = quest_num[i];
+		IDX q_idx = quest_num[i];
 		quest_type* const q_ptr = &quest[q_idx];
 
 		if (((q_ptr->status == QUEST_STATUS_FAILED_DONE) || (q_ptr->status == QUEST_STATUS_FAILED)) &&
@@ -8249,7 +8277,7 @@ void do_cmd_knowledge_quests_failed(FILE *fff, int quest_num[])
 			++ total;
 		}
 	}
-	if (!total) fprintf(fff, _("  ¤Ê¤·\n", "  Nothing.\n"));
+	if (!total) fprintf(fff, _("  ãªã—\n", "  Nothing.\n"));
 }
 
 
@@ -8262,8 +8290,8 @@ static void do_cmd_knowledge_quests_wiz_random(FILE *fff)
 	int i;
 	int total = 0;
 
-	fprintf(fff, _("¡Ô»Ä¤ê¤Î¥é¥ó¥À¥à¥¯¥¨¥¹¥È¡Õ\n", "< Remaining Random Quest >\n"));
-	for (i = 1; i < max_quests; i++)
+	fprintf(fff, _("ã€Šæ®‹ã‚Šã®ãƒ©ãƒ³ãƒ€ãƒ ã‚¯ã‚¨ã‚¹ãƒˆã€‹\n", "< Remaining Random Quest >\n"));
+	for (i = 1; i < max_q_idx; i++)
 	{
 		/* No info from "silent" quests */
 		if (quest[i].flags & QUEST_FLAG_SILENT) continue;
@@ -8273,36 +8301,33 @@ static void do_cmd_knowledge_quests_wiz_random(FILE *fff)
 			total++;
 
 			/* Print the quest info */
-#ifdef JP
-			sprintf(tmp_str, "  %s (%d³¬, %s)\n",
-				quest[i].name, quest[i].level, r_name+r_info[quest[i].r_idx].name);
-#else
-			sprintf(tmp_str, "  %s (%d, %s)\n",
-				quest[i].name, quest[i].level, r_name+r_info[quest[i].r_idx].name);
-#endif
+			sprintf(tmp_str, _("  %s (%déš, %s)\n", "  %s (%d, %s)\n"),
+				quest[i].name, (int)quest[i].level, r_name+r_info[quest[i].r_idx].name);
 			fputs(tmp_str, fff);
 		}
 	}
-	if (!total) fprintf(fff, _("  ¤Ê¤·\n", "  Nothing.\n"));
+	if (!total) fprintf(fff, _("  ãªã—\n", "  Nothing.\n"));
 }
 
 
 bool ang_sort_comp_quest_num(vptr u, vptr v, int a, int b)
 {
-	int *q_num = (int *)u;
+	QUEST_IDX *q_num = (QUEST_IDX *)u;
 	quest_type *qa = &quest[q_num[a]];
 	quest_type *qb = &quest[q_num[b]];
 
 	/* Unused */
 	(void)v;
 
-	return (qa->comptime <= qb->comptime);
+	return (qa->comptime != qb->comptime) ?
+		(qa->comptime < qb->comptime) :
+		(qa->level <= qb->level);
 }
 
 void ang_sort_swap_quest_num(vptr u, vptr v, int a, int b)
 {
-	int *q_num = (int *)u;
-	int tmp;
+	QUEST_IDX *q_num = (QUEST_IDX *)u;
+	QUEST_IDX tmp;
 
 	/* Unused */
 	(void)v;
@@ -8320,25 +8345,27 @@ static void do_cmd_knowledge_quests(void)
 {
 	FILE *fff;
 	char file_name[1024];
-	int *quest_num, dummy, i;
+	IDX *quest_num;
+	int dummy;
+	IDX i;
 
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff)
 	{
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
 
 	/* Allocate Memory */
-	C_MAKE(quest_num, max_quests, int);
+	C_MAKE(quest_num, max_q_idx, IDX);
 
 	/* Sort by compete level */
-	for (i = 1; i < max_quests; i++) quest_num[i] = i;
+	for (i = 1; i < max_q_idx; i++) quest_num[i] = i;
 	ang_sort_comp = ang_sort_comp_quest_num;
 	ang_sort_swap = ang_sort_swap_quest_num;
-	ang_sort(quest_num, &dummy, max_quests);
+	ang_sort(quest_num, &dummy, max_q_idx);
 
 	/* Dump Quest Information */
 	do_cmd_knowledge_quests_current(fff);
@@ -8356,13 +8383,13 @@ static void do_cmd_knowledge_quests(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("¥¯¥¨¥¹¥ÈÃ£À®¾õ¶·", "Quest status"), 0, 0);
+	show_file(TRUE, file_name, _("ã‚¯ã‚¨ã‚¹ãƒˆé”æˆçŠ¶æ³", "Quest status"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
 
 	/* Free Memory */
-	C_KILL(quest_num, max_quests, int);
+	C_KILL(quest_num, max_q_idx, IDX);
 }
 
 
@@ -8384,7 +8411,7 @@ static void do_cmd_knowledge_home(void)
 	/* Open a new file */
 	fff = my_fopen_temp(file_name, 1024);
 	if (!fff) {
-		msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+		msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 		msg_print(NULL);
 		return;
 	}
@@ -8401,13 +8428,13 @@ static void do_cmd_knowledge_home(void)
 			int x = 1;
 #endif
 			/* Header with name of the town */
-			fprintf(fff, _("  [ ²æ¤¬²È¤Î¥¢¥¤¥Æ¥à ]\n", "  [Home Inventory]\n"));
+			fprintf(fff, _("  [ æˆ‘ãŒå®¶ã®ã‚¢ã‚¤ãƒ†ãƒ  ]\n", "  [Home Inventory]\n"));
 
 			/* Dump all available items */
 			for (i = 0; i < st_ptr->stock_num; i++)
 			{
 #ifdef JP
-				if ((i % 12) == 0) fprintf(fff, "\n ( %d ¥Ú¡¼¥¸ )\n", x++);
+				if ((i % 12) == 0) fprintf(fff, "\n ( %d ãƒšãƒ¼ã‚¸ )\n", x++);
 				object_desc(o_name, &st_ptr->stock[i], 0);
 				if (strlen(o_name) <= 80-3)
 				{
@@ -8419,7 +8446,7 @@ static void do_cmd_knowledge_home(void)
 					char *t;
 					for (n = 0, t = o_name; n < 80-3; n++, t++)
 						if(iskanji(*t)) {t++; n++;}
-					if (n == 81-3) n = 79-3; /* ºÇ¸å¤¬´Á»úÈ¾Ê¬ */
+					if (n == 81-3) n = 79-3; /* æœ€å¾ŒãŒæ¼¢å­—åŠåˆ† */
 
 					fprintf(fff, "%c%s %.*s\n", I2A(i%12), paren, n, o_name);
 					fprintf(fff, "   %.77s\n", o_name+n);
@@ -8440,7 +8467,7 @@ static void do_cmd_knowledge_home(void)
 	my_fclose(fff);
 
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("²æ¤¬²È¤Î¥¢¥¤¥Æ¥à", "Home Inventory"), 0, 0);
+	show_file(TRUE, file_name, _("æˆ‘ãŒå®¶ã®ã‚¢ã‚¤ãƒ†ãƒ ", "Home Inventory"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -8461,18 +8488,18 @@ static void do_cmd_knowledge_autopick(void)
 
 	if (!fff)
 	{
-	    msg_format(_("°ì»ş¥Õ¥¡¥¤¥ë %s ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£", "Failed to create temporary file %s."), file_name);
+	    msg_format(_("ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ« %s ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚", "Failed to create temporary file %s."), file_name);
 	    msg_print(NULL);
 	    return;
 	}
 
 	if (!max_autopick)
 	{
-	    fprintf(fff, _("¼«Æ°ÇË²õ/½¦¤¤¤Ë¤Ï²¿¤âÅĞÏ¿¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£", "No preference for auto picker/destroyer."));
+	    fprintf(fff, _("è‡ªå‹•ç ´å£Š/æ‹¾ã„ã«ã¯ä½•ã‚‚ç™»éŒ²ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚", "No preference for auto picker/destroyer."));
 	}
 	else
 	{
-		fprintf(fff, _("   ¼«Æ°½¦¤¤/ÇË²õ¤Ë¤Ï¸½ºß %d¹ÔÅĞÏ¿¤µ¤ì¤Æ¤¤¤Ş¤¹¡£\n\n",
+		fprintf(fff, _("   è‡ªå‹•æ‹¾ã„/ç ´å£Šã«ã¯ç¾åœ¨ %dè¡Œç™»éŒ²ã•ã‚Œã¦ã„ã¾ã™ã€‚\n\n",
 					   "   There are %d registered lines for auto picker/destroyer.\n\n"), max_autopick);
 	}
 
@@ -8482,19 +8509,19 @@ static void do_cmd_knowledge_autopick(void)
 		byte act = autopick_list[k].action;
 		if (act & DONT_AUTOPICK)
 		{
-			tmp = _("ÊüÃÖ", "Leave");
+			tmp = _("æ”¾ç½®", "Leave");
 		}
 		else if (act & DO_AUTODESTROY)
 		{
-			tmp = _("ÇË²õ", "Destroy");
+			tmp = _("ç ´å£Š", "Destroy");
 		}
 		else if (act & DO_AUTOPICK)
 		{
-			tmp = _("½¦¤¦", "Pickup");
+			tmp = _("æ‹¾ã†", "Pickup");
 		}
 		else /* if (act & DO_QUERY_AUTOPICK) */ /* Obvious */
 		{
-			tmp = _("³ÎÇ§", "Query");
+			tmp = _("ç¢ºèª", "Query");
 		}
 
 		if (act & DO_DISPLAY)
@@ -8510,7 +8537,7 @@ static void do_cmd_knowledge_autopick(void)
 	/* Close the file */
 	my_fclose(fff);
 	/* Display the file contents */
-	show_file(TRUE, file_name, _("¼«Æ°½¦¤¤/ÇË²õ ÀßÄê¥ê¥¹¥È", "Auto-picker/Destroyer"), 0, 0);
+	show_file(TRUE, file_name, _("è‡ªå‹•æ‹¾ã„/ç ´å£Š è¨­å®šãƒªã‚¹ãƒˆ", "Auto-picker/Destroyer"), 0, 0);
 
 	/* Remove the file */
 	fd_kill(file_name);
@@ -8539,8 +8566,8 @@ void do_cmd_knowledge(void)
 
 		/* Ask for a choice */
 #ifdef JP
-		prt(format("%d/2 ¥Ú¡¼¥¸", (p+1)), 2, 65);
-		prt("¸½ºß¤ÎÃÎ¼±¤ò³ÎÇ§¤¹¤ë", 3, 0);
+		prt(format("%d/2 ãƒšãƒ¼ã‚¸", (p+1)), 2, 65);
+		prt("ç¾åœ¨ã®çŸ¥è­˜ã‚’ç¢ºèªã™ã‚‹", 3, 0);
 #else
 		prt(format("page %d/2", (p+1)), 2, 65);
 		prt("Display current knowledge", 3, 0);
@@ -8550,28 +8577,28 @@ void do_cmd_knowledge(void)
 #ifdef JP
 		if (p == 0)
 		{
-			prt("(1) ´ûÃÎ¤ÎÅÁÀâ¤Î¥¢¥¤¥Æ¥à                 ¤Î°ìÍ÷", 6, 5);
-			prt("(2) ´ûÃÎ¤Î¥¢¥¤¥Æ¥à                       ¤Î°ìÍ÷", 7, 5);
-			prt("(3) ´ûÃÎ¤ÎÀ¸¤­¤Æ¤¤¤ë¥æ¥Ë¡¼¥¯¡¦¥â¥ó¥¹¥¿¡¼ ¤Î°ìÍ÷", 8, 5);
-			prt("(4) ´ûÃÎ¤Î¥â¥ó¥¹¥¿¡¼                     ¤Î°ìÍ÷", 9, 5);
-			prt("(5) Åİ¤·¤¿Å¨¤Î¿ô                         ¤Î°ìÍ÷", 10, 5);
-			if (!vanilla_town) prt("(6) ¾Ş¶â¼ó                               ¤Î°ìÍ÷", 11, 5);
-			prt("(7) ¸½ºß¤Î¥Ú¥Ã¥È                         ¤Î°ìÍ÷", 12, 5);
-			prt("(8) ²æ¤¬²È¤Î¥¢¥¤¥Æ¥à                     ¤Î°ìÍ÷", 13, 5);
-			prt("(9) *´ÕÄê*ºÑ¤ßÁõÈ÷¤ÎÂÑÀ­                 ¤Î°ìÍ÷", 14, 5);
-			prt("(0) ÃÏ·Á¤ÎÉ½¼¨Ê¸»ú/¥¿¥¤¥ë                ¤Î°ìÍ÷", 15, 5);
+			prt("(1) æ—¢çŸ¥ã®ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ                  ã®ä¸€è¦§", 6, 5);
+			prt("(2) æ—¢çŸ¥ã®ã‚¢ã‚¤ãƒ†ãƒ                        ã®ä¸€è¦§", 7, 5);
+			prt("(3) æ—¢çŸ¥ã®ç”Ÿãã¦ã„ã‚‹ãƒ¦ãƒ‹ãƒ¼ã‚¯ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ ã®ä¸€è¦§", 8, 5);
+			prt("(4) æ—¢çŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼                     ã®ä¸€è¦§", 9, 5);
+			prt("(5) å€’ã—ãŸæ•µã®æ•°                         ã®ä¸€è¦§", 10, 5);
+			if (!vanilla_town) prt("(6) è³é‡‘é¦–                               ã®ä¸€è¦§", 11, 5);
+			prt("(7) ç¾åœ¨ã®ãƒšãƒƒãƒˆ                         ã®ä¸€è¦§", 12, 5);
+			prt("(8) æˆ‘ãŒå®¶ã®ã‚¢ã‚¤ãƒ†ãƒ                      ã®ä¸€è¦§", 13, 5);
+			prt("(9) *é‘‘å®š*æ¸ˆã¿è£…å‚™ã®è€æ€§                 ã®ä¸€è¦§", 14, 5);
+			prt("(0) åœ°å½¢ã®è¡¨ç¤ºæ–‡å­—/ã‚¿ã‚¤ãƒ«                ã®ä¸€è¦§", 15, 5);
 		}
 		else
 		{
-			prt("(a) ¼«Ê¬¤Ë´Ø¤¹¤ë¾ğÊó                     ¤Î°ìÍ÷", 6, 5);
-			prt("(b) ÆÍÁ³ÊÑ°Û                             ¤Î°ìÍ÷", 7, 5);
-			prt("(c) Éğ´ï¤Î·Ğ¸³ÃÍ                         ¤Î°ìÍ÷", 8, 5);
-			prt("(d) ËâË¡¤Î·Ğ¸³ÃÍ                         ¤Î°ìÍ÷", 9, 5);
-			prt("(e) µ»Ç½¤Î·Ğ¸³ÃÍ                         ¤Î°ìÍ÷", 10, 5);
-			prt("(f) ¥×¥ì¥¤¥ä¡¼¤ÎÆÁ                       ¤Î°ìÍ÷", 11, 5);
-			prt("(g) Æş¤Ã¤¿¥À¥ó¥¸¥ç¥ó                     ¤Î°ìÍ÷", 12, 5);
-			prt("(h) ¼Â¹ÔÃæ¤Î¥¯¥¨¥¹¥È                     ¤Î°ìÍ÷", 13, 5);
-			prt("(i) ¸½ºß¤Î¼«Æ°½¦¤¤/ÇË²õÀßÄê              ¤Î°ìÍ÷", 14, 5);
+			prt("(a) è‡ªåˆ†ã«é–¢ã™ã‚‹æƒ…å ±                     ã®ä¸€è¦§", 6, 5);
+			prt("(b) çªç„¶å¤‰ç•°                             ã®ä¸€è¦§", 7, 5);
+			prt("(c) æ­¦å™¨ã®çµŒé¨“å€¤                         ã®ä¸€è¦§", 8, 5);
+			prt("(d) é­”æ³•ã®çµŒé¨“å€¤                         ã®ä¸€è¦§", 9, 5);
+			prt("(e) æŠ€èƒ½ã®çµŒé¨“å€¤                         ã®ä¸€è¦§", 10, 5);
+			prt("(f) ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¾³                       ã®ä¸€è¦§", 11, 5);
+			prt("(g) å…¥ã£ãŸãƒ€ãƒ³ã‚¸ãƒ§ãƒ³                     ã®ä¸€è¦§", 12, 5);
+			prt("(h) å®Ÿè¡Œä¸­ã®ã‚¯ã‚¨ã‚¹ãƒˆ                     ã®ä¸€è¦§", 13, 5);
+			prt("(i) ç¾åœ¨ã®è‡ªå‹•æ‹¾ã„/ç ´å£Šè¨­å®š              ã®ä¸€è¦§", 14, 5);
 		}
 #else
 		if (p == 0)
@@ -8602,11 +8629,11 @@ void do_cmd_knowledge(void)
 #endif
 		/* Prompt */
 #ifdef JP
-		prt("-Â³¤¯-", 17, 8);
-		prt("ESC) È´¤±¤ë", 21, 1);
-		prt("SPACE) ¼¡¥Ú¡¼¥¸", 21, 30);
-		/*prt("-) Á°¥Ú¡¼¥¸", 21, 60);*/
-		prt("¥³¥Ş¥ó¥É:", 20, 0);
+		prt("-ç¶šã-", 17, 8);
+		prt("ESC) æŠœã‘ã‚‹", 21, 1);
+		prt("SPACE) æ¬¡ãƒšãƒ¼ã‚¸", 21, 30);
+		/*prt("-) å‰ãƒšãƒ¼ã‚¸", 21, 60);*/
+		prt("ã‚³ãƒãƒ³ãƒ‰:", 20, 0);
 #else
 		prt("-more-", 17, 8);
 		prt("ESC) Exit menu", 21, 1);
@@ -8655,7 +8682,7 @@ void do_cmd_knowledge(void)
 			break;
 		case '0': /* Feature list */
 			{
-				int lighting_level = F_LIT_STANDARD;
+				IDX lighting_level = F_LIT_STANDARD;
 				do_cmd_knowledge_features(&need_redraw, FALSE, -1, &lighting_level);
 			}
 			break;
@@ -8743,14 +8770,14 @@ void do_cmd_time(void)
 
 	num = 0;
 
-	strcpy(desc, _("ÊÑ¤Ê»ş¹ï¤À¡£", "It is a strange time."));
+	strcpy(desc, _("å¤‰ãªæ™‚åˆ»ã ã€‚", "It is a strange time."));
 
 	if (day < MAX_DAYS) sprintf(day_buf, "%d", day);
 	else strcpy(day_buf, "*****");
 
 	/* Message */
 #ifdef JP
-	msg_format("%sÆüÌÜ, »ş¹ï¤Ï%d:%02d %s¤Ç¤¹¡£",
+	msg_format("%sæ—¥ç›®, æ™‚åˆ»ã¯%d:%02d %sã§ã™ã€‚",
 		   day_buf, (hour % 12 == 0) ? 12 : (hour % 12),
 		   min, (hour < 12) ? "AM" : "PM");
 #else

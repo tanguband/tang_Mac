@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file monster2.c
- * @brief ¥â¥ó¥¹¥¿¡¼½èÍı / misc code for monsters
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‡¦ç† / misc code for monsters
  * @date 2014/07/08
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
@@ -12,40 +12,40 @@
 
 #include "angband.h"
 
-#define HORDE_NOGOOD 0x01 /*!< (Ì¤¼ÂÁõ¥Õ¥é¥°)HORDEÀ¸À®¤ÇGOOD¤Ê¥â¥ó¥¹¥¿¡¼¤ÎÀ¸À®¤ò¶Ø»ß¤¹¤ë¡© */
-#define HORDE_NOEVIL 0x02 /*!< (Ì¤¼ÂÁõ¥Õ¥é¥°)HORDEÀ¸À®¤ÇEVIL¤Ê¥â¥ó¥¹¥¿¡¼¤ÎÀ¸À®¤ò¶Ø»ß¤¹¤ë¡© */
+#define HORDE_NOGOOD 0x01 /*!< (æœªå®Ÿè£…ãƒ•ãƒ©ã‚°)HORDEç”Ÿæˆã§GOODãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç”Ÿæˆã‚’ç¦æ­¢ã™ã‚‹ï¼Ÿ */
+#define HORDE_NOEVIL 0x02 /*!< (æœªå®Ÿè£…ãƒ•ãƒ©ã‚°)HORDEç”Ÿæˆã§EVILãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç”Ÿæˆã‚’ç¦æ­¢ã™ã‚‹ï¼Ÿ */
 
 
 /*!
  * @var horror_desc
- * @brief ELDRITCH HORROR¸ú²Ì»ş¤Î¥â¥ó¥¹¥¿¡¼¤Î·ÁÍÆ¥á¥Ã¥»¡¼¥¸¡ÊÄÌ¾ï»ş¡Ë
+ * @brief ELDRITCH HORRORåŠ¹æœæ™‚ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å½¢å®¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ï¼ˆé€šå¸¸æ™‚ï¼‰
  */
 cptr horror_desc[MAX_SAN_HORROR] =
 {
 #ifdef JP
-	"´÷¤Ş¤ï¤·¤¤",
-	"ÄìÃÎ¤ì¤Ì",
-	"¤¾¤Ã¤È¤¹¤ë",
-	"ÇËÌÇÅª¤Ê",
-	"ËÁÆÂÅª¤Ê",
+	"å¿Œã¾ã‚ã—ã„",
+	"åº•çŸ¥ã‚Œã¬",
+	"ãã£ã¨ã™ã‚‹",
+	"ç ´æ»…çš„ãª",
+	"å†’æ¶œçš„ãª",
 
-	"¤¤¤ä¤Ê",
-	"¶²¤í¤·¤¤",
-	"ÉÔ·é¤Ê",
-	"ÍÆ¼Ï¤Î¤Ê¤¤",
-	"¤ª¤¾¤Ş¤·¤¤",
+	"ã„ã‚„ãª",
+	"æã‚ã—ã„",
+	"ä¸æ½”ãª",
+	"å®¹èµ¦ã®ãªã„",
+	"ãŠãã¾ã—ã„",
 
-	"ÃÏ¹ö¤Î",
-	"¿È¤ÎÌÓ¤â¤è¤À¤Ä",
-	"ÃÏ¹ö¤Î",
-	"´÷¤Ş¤ï¤·¤¤",
-	"°­Ì´¤Î¤è¤¦¤Ê",
+	"åœ°ç„ã®",
+	"èº«ã®æ¯›ã‚‚ã‚ˆã ã¤",
+	"åœ°ç„ã®",
+	"å¿Œã¾ã‚ã—ã„",
+	"æ‚ªå¤¢ã®ã‚ˆã†ãª",
 
-	"·ù°­¤ò´¶¤¸¤ë",
-	"È³Åö¤¿¤ê¤Ê",
-	"¶²¤¤",
-	"ÉÔ¾ô¤Ê",
-	"¸À¤¦¤â¤ª¤¾¤Ş¤·¤¤",
+	"å«Œæ‚ªã‚’æ„Ÿã˜ã‚‹",
+	"ç½°å½“ãŸã‚Šãª",
+	"æã„",
+	"ä¸æµ„ãª",
+	"è¨€ã†ã‚‚ãŠãã¾ã—ã„",
 #else
 	"abominable",
 	"abysmal",
@@ -76,37 +76,37 @@ cptr horror_desc[MAX_SAN_HORROR] =
 
 /*!
  * @var funny_desc
- * @brief ELDRITCH HORROR¸ú²Ì»ş¤Î¥â¥ó¥¹¥¿¡¼¤Î·ÁÍÆ¥á¥Ã¥»¡¼¥¸(¸¸³Ğ¾õÂÖ»ş)
+ * @brief ELDRITCH HORRORåŠ¹æœæ™‚ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å½¢å®¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(å¹»è¦šçŠ¶æ…‹æ™‚)
  */
 cptr funny_desc[MAX_SAN_FUNNY] =
 {
 #ifdef JP
-	"´ÖÈ´¤±¤Ê",
-	"³ê·Î¤Ê",
-	"¤Ğ¤«¤é¤·¤¤",
-	"ÌµÌ£´¥Áç¤Ê",
-	"ÇÏ¼¯¤²¤¿",
+	"é–“æŠœã‘ãª",
+	"æ»‘ç¨½ãª",
+	"ã°ã‹ã‚‰ã—ã„",
+	"ç„¡å‘³ä¹¾ç‡¥ãª",
+	"é¦¬é¹¿ã’ãŸ",
 
-	"¾Ğ¤¨¤ë",
-	"¤Ğ¤«¤Ğ¤«¤·¤¤",
-	"¤Ö¤Ã¤È¤ó¤À",
-	"¤¤¤«¤·¤¿",
-	"¥İ¥¹¥È¥â¥À¥ó¤Ê",
+	"ç¬‘ãˆã‚‹",
+	"ã°ã‹ã°ã‹ã—ã„",
+	"ã¶ã£ã¨ã‚“ã ",
+	"ã„ã‹ã—ãŸ",
+	"ãƒã‚¹ãƒˆãƒ¢ãƒ€ãƒ³ãª",
 
-	"¥Õ¥¡¥ó¥¿¥¹¥Æ¥£¥Ã¥¯¤Ê",
-	"¥À¥À¥¤¥º¥àÅª¤Ê",
-	"¥­¥å¥Ó¥º¥àÅª¤Ê",
-	"±§ÃèÅª¤Ê",
-	"Âî±Û¤·¤¿",
+	"ãƒ•ã‚¡ãƒ³ã‚¿ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãª",
+	"ãƒ€ãƒ€ã‚¤ã‚ºãƒ çš„ãª",
+	"ã‚­ãƒ¥ãƒ“ã‚ºãƒ çš„ãª",
+	"å®‡å®™çš„ãª",
+	"å“è¶Šã—ãŸ",
 
-	"Íı²òÉÔÇ½¤Ê",
-	"¤â¤Î¤¹¤´¤¤",
-	"¶Ã¤¯¤Ù¤­",
-	"¿®¤¸¤é¤ì¤Ê¤¤",
-	"¥«¥ª¥Æ¥£¥Ã¥¯¤Ê",
+	"ç†è§£ä¸èƒ½ãª",
+	"ã‚‚ã®ã™ã”ã„",
+	"é©šãã¹ã",
+	"ä¿¡ã˜ã‚‰ã‚Œãªã„",
+	"ã‚«ã‚ªãƒ†ã‚£ãƒƒã‚¯ãª",
 
-	"ÌîÀ­Åª¤Ê",
-	"Èó¾ï¼±¤Ê",
+	"é‡æ€§çš„ãª",
+	"éå¸¸è­˜ãª",
 #else
 	"silly",
 	"hilarious",
@@ -140,17 +140,17 @@ cptr funny_desc[MAX_SAN_FUNNY] =
 
 /*!
  * @var funny_comments
- * @brief ELDRITCH HORROR¸ú²Ì»ş¤Î¸¸³Ğ»ş´Ö±äÄ¹¤ò¼¨¤¹ºøÍğÉ½¸½
+ * @brief ELDRITCH HORRORåŠ¹æœæ™‚ã®å¹»è¦šæ™‚é–“å»¶é•·ã‚’ç¤ºã™éŒ¯ä¹±è¡¨ç¾
  */
 cptr funny_comments[MAX_SAN_COMMENT] =
 {
 #ifdef JP
   /* nuke me */
-	"ºÇ¹â¤À¤¼¡ª",
-	"¤¦¤Ò¤ç¡¼¡ª",
-	"¤¤¤«¤¹¤¼¡ª",
-	"¤¹¤ó¤Ğ¤é¤·¤¤¡ª",
-	"¤Ö¤Ã¤È¤Ó¡¼¡ª"
+	"æœ€é«˜ã ãœï¼",
+	"ã†ã²ã‚‡ãƒ¼ï¼",
+	"ã„ã‹ã™ãœï¼",
+	"ã™ã‚“ã°ã‚‰ã—ã„ï¼",
+	"ã¶ã£ã¨ã³ãƒ¼ï¼"
 #else
 	"Wow, cosmic, man!",
 	"Rad!",
@@ -163,11 +163,11 @@ cptr funny_comments[MAX_SAN_COMMENT] =
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÌÜÉ¸ÃÏÅÀ¤ò¥»¥Ã¥È¤¹¤ë / Set the target of counter attack
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param y ÌÜÉ¸yºÂÉ¸
- * @param x ÌÜÉ¸xºÂÉ¸
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç›®æ¨™åœ°ç‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ / Set the target of counter attack
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param y ç›®æ¨™yåº§æ¨™
+ * @param x ç›®æ¨™xåº§æ¨™
+ * @return ãªã—
  */
 void set_target(monster_type *m_ptr, int y, int x)
 {
@@ -177,9 +177,9 @@ void set_target(monster_type *m_ptr, int y, int x)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÌÜÉ¸ÃÏÅÀ¤ò¥ê¥»¥Ã¥È¤¹¤ë / Reset the target of counter attack
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç›®æ¨™åœ°ç‚¹ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ / Reset the target of counter attack
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void reset_target(monster_type *m_ptr)
 {
@@ -188,9 +188,9 @@ void reset_target(monster_type *m_ptr)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î¿¿¤Î¼ïÂ²¤òÊÖ¤¹ / Extract monster race pointer of a monster's true form
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ËÜÅö¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²»²¾È¥İ¥¤¥ó¥¿
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®çœŸã®ç¨®æ—ã‚’è¿”ã™ / Extract monster race pointer of a monster's true form
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æœ¬å½“ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
  */
 monster_race *real_r_ptr(monster_type *m_ptr)
 {
@@ -212,14 +212,14 @@ monster_race *real_r_ptr(monster_type *m_ptr)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼ÇÛÎó¤«¤é¥â¥ó¥¹¥¿¡¼¤ò¾Ãµî¤¹¤ë / Delete a monster by index.
- * @param i ¾Ãµî¤¹¤ë¥â¥ó¥¹¥¿¡¼¤ÎID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…åˆ—ã‹ã‚‰ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’æ¶ˆå»ã™ã‚‹ / Delete a monster by index.
+ * @param i æ¶ˆå»ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ID
+ * @return ãªã—
  * @details
- * ¥â¥ó¥¹¥¿¡¼¤òºï½ü¤¹¤ë¤È¤½¤Î¥â¥ó¥¹¥¿¡¼¤¬½¦¤Ã¤Æ¤¤¤¿¥¢¥¤¥Æ¥à¤âÆ±»ş¤Ëºï½ü¤µ¤ì¤ë¡£ /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹ã¨ãã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ‹¾ã£ã¦ã„ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚‚åŒæ™‚ã«å‰Šé™¤ã•ã‚Œã‚‹ã€‚ /
  * When a monster is deleted, all of its objects are deleted.
  */
-void delete_monster_idx(int i)
+void delete_monster_idx(MONSTER_IDX i)
 {
 	int x, y;
 
@@ -304,12 +304,12 @@ void delete_monster_idx(int i)
 
 
 /*!
- * @brief »ØÄê°ÌÃÖ¤ËÂ¸ºß¤¹¤ë¥â¥ó¥¹¥¿¡¼¤òºï½ü¤¹¤ë / Delete the monster, if any, at a given location
- * @param x ºï½ü°ÌÃÖxºÂÉ¸
- * @param y ºï½ü°ÌÃÖyºÂÉ¸
- * @return ¤Ê¤·
+ * @brief æŒ‡å®šä½ç½®ã«å­˜åœ¨ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å‰Šé™¤ã™ã‚‹ / Delete the monster, if any, at a given location
+ * @param x å‰Šé™¤ä½ç½®xåº§æ¨™
+ * @param y å‰Šé™¤ä½ç½®yåº§æ¨™
+ * @return ãªã—
  */
-void delete_monster(int y, int x)
+void delete_monster(POSITION y, POSITION x)
 {
 	cave_type *c_ptr;
 
@@ -325,12 +325,12 @@ void delete_monster(int y, int x)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¾ğÊó¤òÇÛÎóÆâ°ÜÆ°¤¹¤ë / Move an object from index i1 to index i2 in the object list
- * @param i1 ÇÛÎó°ÜÆ°¸µÅº»ú
- * @param i2 ÇÛÎó°ÜÆ°ÀèÅº»ú
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã‚’é…åˆ—å†…ç§»å‹•ã™ã‚‹ / Move an object from index i1 to index i2 in the object list
+ * @param i1 é…åˆ—ç§»å‹•å…ƒæ·»å­—
+ * @param i2 é…åˆ—ç§»å‹•å…ˆæ·»å­—
+ * @return ãªã—
  */
-static void compact_monsters_aux(int i1, int i2)
+static void compact_monsters_aux(IDX i1, IDX i2)
 {
 	int y, x, i;
 
@@ -413,9 +413,9 @@ static void compact_monsters_aux(int i1, int i2)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¾ğÊóÇÛÎó¤ò°µ½Ì¤¹¤ë / Compact and Reorder the monster list
- * @param size °µ½Ì¸å¤Î¥â¥ó¥¹¥¿¡¼·ï¿ôÌÜÉ¸
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±é…åˆ—ã‚’åœ§ç¸®ã™ã‚‹ / Compact and Reorder the monster list
+ * @param size åœ§ç¸®å¾Œã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä»¶æ•°ç›®æ¨™
+ * @return ãªã—
  * @details
  * This function can be very dangerous, use with caution!
  *
@@ -428,11 +428,12 @@ static void compact_monsters_aux(int i1, int i2)
  */
 void compact_monsters(int size)
 {
-	int		i, num, cnt;
-	int		cur_lev, cur_dis, chance;
+	MONSTER_IDX i;
+	int num, cnt;
+	int cur_lev, cur_dis, chance;
 
 	/* Message (only if compacting) */
-	if (size) msg_print(_("¥â¥ó¥¹¥¿¡¼¾ğÊó¤ò°µ½Ì¤·¤Æ¤¤¤Ş¤¹...", "Compacting monsters..."));
+	if (size) msg_print(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã‚’åœ§ç¸®ã—ã¦ã„ã¾ã™...", "Compacting monsters..."));
 
 
 	/* Compact at least 'size' objects */
@@ -510,8 +511,8 @@ void compact_monsters(int size)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¥Õ¥í¥¢Î¥Ã¦¤ËÈ¼¤¦Á´¥â¥ó¥¹¥¿¡¼ÇÛÎó¤Î¾Ãµî / Delete/Remove all the monsters when the player leaves the level
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ•ãƒ­ã‚¢é›¢è„±ã«ä¼´ã†å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…åˆ—ã®æ¶ˆå» / Delete/Remove all the monsters when the player leaves the level
+ * @return ãªã—
  * @details
  * This is an efficient method of simulating multiple calls to the
  * "delete_monster()" function, with no visual effects.
@@ -587,14 +588,14 @@ void wipe_m_list(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼ÇÛÎó¤Î¶õ¤­¤òÃµ¤¹ / Acquires and returns the index of a "free" monster.
- * @return ÍøÍÑ²ÄÇ½¤Ê¥â¥ó¥¹¥¿¡¼ÇÛÎó¤ÎÅº»ú
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…åˆ—ã®ç©ºãã‚’æ¢ã™ / Acquires and returns the index of a "free" monster.
+ * @return åˆ©ç”¨å¯èƒ½ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…åˆ—ã®æ·»å­—
  * @details
  * This routine should almost never fail, but it *can* happen.
  */
-s16b m_pop(void)
+MONSTER_IDX m_pop(void)
 {
-	int i;
+	MONSTER_IDX i;
 
 
 	/* Normal allocation */
@@ -634,7 +635,7 @@ s16b m_pop(void)
 
 
 	/* Warn the player (except during dungeon creation) */
-	if (character_dungeon) msg_print(_("¥â¥ó¥¹¥¿¡¼¤¬Â¿¤¹¤®¤ë¡ª", "Too many monsters!"));
+	if (character_dungeon) msg_print(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå¤šã™ãã‚‹ï¼", "Too many monsters!"));
 
 	/* Try not to crash */
 	return (0);
@@ -645,32 +646,32 @@ s16b m_pop(void)
 
 /*!
  * @var summon_specific_type
- * @brief ¾¤´­¾ò·ï¤ò»ØÄê¤¹¤ë¥°¥í¡¼¥Ğ¥ëÊÑ¿ô / Hack -- the "type" of the current "summon specific"
- * @todo summon_specific_type¥°¥í¡¼¥Ğ¥ëÊÑ¿ô¤Î½üµî¤È´Ø¿ô°ú¿ô¤Ø¤ÎÂåÂØ¤ò¹Ô¤¦
+ * @brief å¬å–šæ¡ä»¶ã‚’æŒ‡å®šã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° / Hack -- the "type" of the current "summon specific"
+ * @todo summon_specific_typeã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®é™¤å»ã¨é–¢æ•°å¼•æ•°ã¸ã®ä»£æ›¿ã‚’è¡Œã†
  */
 static int summon_specific_type = 0;
 
 
 /*!
  * @var summon_specific_who
- * @brief ¾¤´­¤ò¹Ô¤Ã¤¿¥×¥ì¥¤¥ä¡¼¤¢¤ë¤¤¤Ï¥â¥ó¥¹¥¿¡¼¤ÎID¤ò¼¨¤¹¥°¥í¡¼¥Ğ¥ëÊÑ¿ô / Hack -- the index of the summoning monster
- * @todo summon_specific_who ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô¤Î½üµî¤È´Ø¿ô°ú¿ô¤Ø¤ÎÂåÂØ¤ò¹Ô¤¦
+ * @brief å¬å–šã‚’è¡Œã£ãŸãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ã‚‹ã„ã¯ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®IDã‚’ç¤ºã™ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° / Hack -- the index of the summoning monster
+ * @todo summon_specific_who ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®é™¤å»ã¨é–¢æ•°å¼•æ•°ã¸ã®ä»£æ›¿ã‚’è¡Œã†
  */
 static int summon_specific_who = -1;
 
 /*!
  * @var summon_unique_okay
- * @brief ¾¤´­ÂĞ¾İ¤Ë¥æ¥Ë¡¼¥¯¤ò´Ş¤á¤ë¤«¤ò¼¨¤¹¥°¥í¡¼¥Ğ¥ëÊÑ¿ô / summoning unique enable
- * @todo summon_unique_okay ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô¤Î½üµî¤È´Ø¿ô°ú¿ô¤Ø¤ÎÂåÂØ¤ò¹Ô¤¦
+ * @brief å¬å–šå¯¾è±¡ã«ãƒ¦ãƒ‹ãƒ¼ã‚¯ã‚’å«ã‚ã‚‹ã‹ã‚’ç¤ºã™ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° / summoning unique enable
+ * @todo summon_unique_okay ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã®é™¤å»ã¨é–¢æ•°å¼•æ•°ã¸ã®ä»£æ›¿ã‚’è¡Œã†
  */
 static bool summon_unique_okay = FALSE;
 
 /*!
- * @brief »ØÄê¤µ¤ì¤¿¥â¥ó¥¹¥¿¡¼¼ïÂ²¤¬summon_specific_type¤Ç»ØÄê¤µ¤ì¤¿¾¤´­¾ò·ï¤Ë¹ç¤¦¤«¤É¤¦¤«¤òÊÖ¤¹
- * @return ¾¤´­¾ò·ï¤¬°ìÃ×¤¹¤ë¤Ê¤étrue
+ * @brief æŒ‡å®šã•ã‚ŒãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ãŒsummon_specific_typeã§æŒ‡å®šã•ã‚ŒãŸå¬å–šæ¡ä»¶ã«åˆã†ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @return å¬å–šæ¡ä»¶ãŒä¸€è‡´ã™ã‚‹ãªã‚‰true
  * @details
  */
-static bool summon_specific_aux(int r_idx)
+static bool summon_specific_aux(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 	int okay = FALSE;
@@ -834,7 +835,7 @@ static bool summon_specific_aux(int r_idx)
 			       !(r_ptr->flags3 & (RF3_UNDEAD)) &&
 			       !(r_ptr->flags3 & (RF3_DEMON)) &&
 			       !(r_ptr->flags2 & (RF2_MULTIPLY)) &&
-			       !(r_ptr->flags4 || r_ptr->flags5 || r_ptr->flags6));
+			       !(r_ptr->flags4 || r_ptr->a_ability_flags1 || r_ptr->a_ability_flags2));
 			break;
 		}
 
@@ -968,18 +969,18 @@ static bool summon_specific_aux(int r_idx)
 
 /*!
  * @var chameleon_change_m_idx
- * @brief ¥«¥á¥ì¥ª¥ó¤ÎÊÑ¿ÈÀè¥â¥ó¥¹¥¿¡¼ID¤ò¼õ¤±ÅÏ¤¹¤¿¤á¤Î¥°¥í¡¼¥Ğ¥ëÊÑ¿ô
- * @todo ÊÑ¿ôÅÏ¤·¤ÎÌäÂê¤Ê¤É¤â¤¢¤ë¤¬¤Ç¤­¤ì¤Ğchameleon_change_m_idx¤Î¥°¥í¡¼¥Ğ¥ëÊÑ¿ô¤ò½üµî¤·¡¢´Ø¿ô°ú¤­ÅÏ¤·¤Ë°Ü¹Ô¤¹¤ë¤³¤È
+ * @brief ã‚«ãƒ¡ãƒ¬ã‚ªãƒ³ã®å¤‰èº«å…ˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã‚’å—ã‘æ¸¡ã™ãŸã‚ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+ * @todo å¤‰æ•°æ¸¡ã—ã®å•é¡Œãªã©ã‚‚ã‚ã‚‹ãŒã§ãã‚Œã°chameleon_change_m_idxã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’é™¤å»ã—ã€é–¢æ•°å¼•ãæ¸¡ã—ã«ç§»è¡Œã™ã‚‹ã“ã¨
  */
 static int chameleon_change_m_idx = 0;
 
 
 /*!
- * @brief »ØÄê¤µ¤ì¤¿¥â¥ó¥¹¥¿¡¼¼ïÂ²¤¬¥À¥ó¥¸¥ç¥ó¤ÎÀ©¸Â¤Ë¤«¤«¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯¤¹¤ë / Some dungeon types restrict the possible monsters.
- * @param r_idx ¥Á¥§¥Ã¥¯¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ¾¤´­¾ò·ï¤¬°ìÃ×¤¹¤ë¤Ê¤étrue / Return TRUE is the monster is OK and FALSE otherwise
+ * @brief æŒ‡å®šã•ã‚ŒãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ãŒãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®åˆ¶é™ã«ã‹ã‹ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ / Some dungeon types restrict the possible monsters.
+ * @param r_idx ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return å¬å–šæ¡ä»¶ãŒä¸€è‡´ã™ã‚‹ãªã‚‰true / Return TRUE is the monster is OK and FALSE otherwise
  */
-static bool restrict_monster_to_dungeon(int r_idx)
+static bool restrict_monster_to_dungeon(MONRACE_IDX r_idx)
 {
 	dungeon_info_type *d_ptr = &d_info[dungeon_type];
 	monster_race *r_ptr = &r_info[r_idx];
@@ -994,16 +995,16 @@ static bool restrict_monster_to_dungeon(int r_idx)
 		if (r_idx != MON_CHAMELEON &&
 		    r_ptr->freq_spell && 
 		    !(r_ptr->flags4 & RF4_NOMAGIC_MASK) &&
-		    !(r_ptr->flags5 & RF5_NOMAGIC_MASK) &&
-		    !(r_ptr->flags6 & RF6_NOMAGIC_MASK))
+		    !(r_ptr->a_ability_flags1 & RF5_NOMAGIC_MASK) &&
+		    !(r_ptr->a_ability_flags2 & RF6_NOMAGIC_MASK))
 			return FALSE;
 	}
 	if (d_ptr->flags1 & DF1_NO_MELEE)
 	{
 		if (r_idx == MON_CHAMELEON) return TRUE;
 		if (!(r_ptr->flags4 & (RF4_BOLT_MASK | RF4_BEAM_MASK | RF4_BALL_MASK)) &&
-		    !(r_ptr->flags5 & (RF5_BOLT_MASK | RF5_BEAM_MASK | RF5_BALL_MASK | RF5_CAUSE_1 | RF5_CAUSE_2 | RF5_CAUSE_3 | RF5_CAUSE_4 | RF5_MIND_BLAST | RF5_BRAIN_SMASH)) &&
-		    !(r_ptr->flags6 & (RF6_BOLT_MASK | RF6_BEAM_MASK | RF6_BALL_MASK)))
+		    !(r_ptr->a_ability_flags1 & (RF5_BOLT_MASK | RF5_BEAM_MASK | RF5_BALL_MASK | RF5_CAUSE_1 | RF5_CAUSE_2 | RF5_CAUSE_3 | RF5_CAUSE_4 | RF5_MIND_BLAST | RF5_BRAIN_SMASH)) &&
+		    !(r_ptr->a_ability_flags2 & (RF6_BOLT_MASK | RF6_BEAM_MASK | RF6_BALL_MASK)))
 			return FALSE;
 	}
 	if (d_ptr->flags1 & DF1_BEGINNER)
@@ -1038,14 +1039,14 @@ static bool restrict_monster_to_dungeon(int r_idx)
 			if ((d_ptr->mflags4 & r_ptr->flags4) != d_ptr->mflags4)
 				return FALSE;
 		}
-		if (d_ptr->mflags5)
+		if (d_ptr->m_a_ability_flags1)
 		{
-			if ((d_ptr->mflags5 & r_ptr->flags5) != d_ptr->mflags5)
+			if ((d_ptr->m_a_ability_flags1 & r_ptr->a_ability_flags1) != d_ptr->m_a_ability_flags1)
 				return FALSE;
 		}
-		if (d_ptr->mflags6)
+		if (d_ptr->m_a_ability_flags2)
 		{
-			if ((d_ptr->mflags6 & r_ptr->flags6) != d_ptr->mflags6)
+			if ((d_ptr->m_a_ability_flags2 & r_ptr->a_ability_flags2) != d_ptr->m_a_ability_flags2)
 				return FALSE;
 		}
 		if (d_ptr->mflags7)
@@ -1094,14 +1095,14 @@ static bool restrict_monster_to_dungeon(int r_idx)
 			if ((d_ptr->mflags4 & r_ptr->flags4) != d_ptr->mflags4)
 				return TRUE;
 		}
-		if (d_ptr->mflags5)
+		if (d_ptr->m_a_ability_flags1)
 		{
-			if ((d_ptr->mflags5 & r_ptr->flags5) != d_ptr->mflags5)
+			if ((d_ptr->m_a_ability_flags1 & r_ptr->a_ability_flags1) != d_ptr->m_a_ability_flags1)
 				return TRUE;
 		}
-		if (d_ptr->mflags6)
+		if (d_ptr->m_a_ability_flags2)
 		{
-			if ((d_ptr->mflags6 & r_ptr->flags6) != d_ptr->mflags6)
+			if ((d_ptr->m_a_ability_flags2 & r_ptr->a_ability_flags2) != d_ptr->m_a_ability_flags2)
 				return TRUE;
 		}
 		if (d_ptr->mflags7)
@@ -1134,8 +1135,8 @@ static bool restrict_monster_to_dungeon(int r_idx)
 		if (r_ptr->flags2 & d_ptr->mflags2) return TRUE;
 		if (r_ptr->flags3 & d_ptr->mflags3) return TRUE;
 		if (r_ptr->flags4 & d_ptr->mflags4) return TRUE;
-		if (r_ptr->flags5 & d_ptr->mflags5) return TRUE;
-		if (r_ptr->flags6 & d_ptr->mflags6) return TRUE;
+		if (r_ptr->a_ability_flags1 & d_ptr->m_a_ability_flags1) return TRUE;
+		if (r_ptr->a_ability_flags2 & d_ptr->m_a_ability_flags2) return TRUE;
 		if (r_ptr->flags7 & d_ptr->mflags7) return TRUE;
 		if (r_ptr->flags8 & d_ptr->mflags8) return TRUE;
 		if (r_ptr->flags9 & d_ptr->mflags9) return TRUE;
@@ -1150,8 +1151,8 @@ static bool restrict_monster_to_dungeon(int r_idx)
 		if (r_ptr->flags2 & d_ptr->mflags2) return FALSE;
 		if (r_ptr->flags3 & d_ptr->mflags3) return FALSE;
 		if (r_ptr->flags4 & d_ptr->mflags4) return FALSE;
-		if (r_ptr->flags5 & d_ptr->mflags5) return FALSE;
-		if (r_ptr->flags6 & d_ptr->mflags6) return FALSE;
+		if (r_ptr->a_ability_flags1 & d_ptr->m_a_ability_flags1) return FALSE;
+		if (r_ptr->a_ability_flags2 & d_ptr->m_a_ability_flags2) return FALSE;
 		if (r_ptr->flags7 & d_ptr->mflags7) return FALSE;
 		if (r_ptr->flags8 & d_ptr->mflags8) return FALSE;
 		if (r_ptr->flags9 & d_ptr->mflags9) return FALSE;
@@ -1166,10 +1167,10 @@ static bool restrict_monster_to_dungeon(int r_idx)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼À¸À®À©¸Â´Ø¿ôºÇÂç2¤Ä¤«¤é / Apply a "monster restriction function" to the "monster allocation table"
- * @param monster_hook À©¸Â´Ø¿ô1
- * @param monster_hook2 À©¸Â´Ø¿ô2
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”Ÿæˆåˆ¶é™é–¢æ•°æœ€å¤§2ã¤ã‹ã‚‰ / Apply a "monster restriction function" to the "monster allocation table"
+ * @param monster_hook åˆ¶é™é–¢æ•°1
+ * @param monster_hook2 åˆ¶é™é–¢æ•°2
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr get_mon_num_prep(monster_hook_type monster_hook,
 					  monster_hook_type monster_hook2)
@@ -1230,9 +1231,9 @@ errr get_mon_num_prep(monster_hook_type monster_hook,
 }
 
 /*!
- * @brief Ê¿Êıº¬¤òÀÚ¤ê¼Î¤ÆÀ°¿ô¤ÇÊÖ¤¹
- * @param n ¿ôÃÍ
- * @return Ê¿Êıº¬
+ * @brief å¹³æ–¹æ ¹ã‚’åˆ‡ã‚Šæ¨ã¦æ•´æ•°ã§è¿”ã™
+ * @param n æ•°å€¤
+ * @return å¹³æ–¹æ ¹
  */
 static int mysqrt(int n)
 {
@@ -1272,9 +1273,9 @@ static int mysqrt(int n)
 }
 
 /*!
- * @brief À¸À®¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ò1¼ïÀ¸À®¥Æ¡¼¥Ö¥ë¤«¤éÁªÂò¤¹¤ë
- * @param level À¸À®³¬
- * @return ÁªÂò¤µ¤ì¤¿¥â¥ó¥¹¥¿¡¼À¸À®¼ïÂ²
+ * @brief ç”Ÿæˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã‚’1ç¨®ç”Ÿæˆãƒ†ãƒ¼ãƒ–ãƒ«ã‹ã‚‰é¸æŠã™ã‚‹
+ * @param level ç”Ÿæˆéš
+ * @return é¸æŠã•ã‚ŒãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”Ÿæˆç¨®æ—
  * @details
  * Choose a monster race that seems "appropriate" to the given level
  *
@@ -1297,7 +1298,7 @@ static int mysqrt(int n)
  * Note that if no monsters are "appropriate", then this function will
  * fail, and return zero, but this should *almost* never happen.
  */
-s16b get_mon_num(int level)
+MONRACE_IDX get_mon_num(DEPTH level)
 {
 	int			i, j, p;
 	int			r_idx;
@@ -1306,23 +1307,19 @@ s16b get_mon_num(int level)
 	alloc_entry		*table = alloc_race_table;
 
 	int pls_kakuritu, pls_level;
-	int hoge = mysqrt(level*10000L);
+	int delay = mysqrt(level * 10000L) + 400L;
 
 	if (level > MAX_DEPTH - 1) level = MAX_DEPTH - 1;
 
-	pls_kakuritu = MAX(NASTY_MON_MAX, NASTY_MON_BASE - ((dungeon_turn / (TURNS_PER_TICK * 2500L) - hoge / 10)));
-	pls_level    = MIN(NASTY_MON_PLUS_MAX,  dungeon_turn / (TURNS_PER_TICK * 20000L) - hoge / 40 + MIN(5, level / 10)) ;
-
-	/* #tang ¾¤´­¥ì¥Ù¥ëÄ´À°
-	pls_level    = MIN(NASTY_MON_PLUS_MAX, 3 + dungeon_turn / (TURNS_PER_TICK * 20000L) - hoge / 40 + MIN(5, level / 10)) ;
-	*/
+	pls_kakuritu = MAX(NASTY_MON_MAX, NASTY_MON_BASE - ((dungeon_turn / (TURNS_PER_TICK * 5000L) - delay / 10)));
+	pls_level    = MIN(NASTY_MON_PLUS_MAX, 3 + dungeon_turn / (TURNS_PER_TICK * 40000L) - delay / 40 + MIN(5, level / 10)) ;
 
 	if (d_info[dungeon_type].flags1 & DF1_MAZE)
 	{
-		pls_kakuritu = MIN(pls_kakuritu / 2, pls_kakuritu - 10); /* #tang 2 -> 4 , 10 -> 20 */
-		if (pls_kakuritu < 2) pls_kakuritu = 2; /* #tang 2 -> 4 , 2 -> 0 */
-		pls_level += 1; /* #tang 2 -> 0 */
-		level += 1; /* #tang 3 -> 0 */
+		pls_kakuritu = MIN(pls_kakuritu / 2, pls_kakuritu - 10);
+		if (pls_kakuritu < 2) pls_kakuritu = 2;
+		pls_level += 2;
+		level += 3;
 	}
 
 	/* Boost the level */
@@ -1413,7 +1410,7 @@ s16b get_mon_num(int level)
 	p = randint0(100);
 
 	/* Try for a "harder" monster once (50%) or twice (10%) */
-	if (p < 60) /* 60 > 10*/
+	if (p < 60)
 	{
 		/* Save old */
 		j = i;
@@ -1436,7 +1433,7 @@ s16b get_mon_num(int level)
 	}
 
 	/* Try for a "harder" monster twice (10%) */
-	if (p < 10) /* 10 > 1*/
+	if (p < 10)
 	{
 		/* Save old */
 		j = i;
@@ -1464,11 +1461,11 @@ s16b get_mon_num(int level)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î¸Æ¾Î¤òºîÀ®¤¹¤ë / Build a string describing a monster in some way.
- * @param desc µ­½Ò½ĞÎÏÀè¤ÎÊ¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param mode ¸Æ¾Î¥ª¥×¥·¥ç¥ó
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‘¼ç§°ã‚’ä½œæˆã™ã‚‹ / Build a string describing a monster in some way.
+ * @param desc è¨˜è¿°å‡ºåŠ›å…ˆã®æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param mode å‘¼ç§°ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return ãªã—
  * @details
  * We can correctly describe monsters based on their visibility.
  * We can force all monsters to be treated as visible or invisible.
@@ -1516,7 +1513,7 @@ s16b get_mon_num(int level)
  *  MD_PRON_VISIBLE | MD_POSSESSIVE | MD_OBJECTIVE
  *    --> Reflexive, genderized if visable ("himself") or "itself"
  */
-void monster_desc(char *desc, monster_type *m_ptr, int mode)
+void monster_desc(char *desc, monster_type *m_ptr, BIT_FLAGS mode)
 {
 	cptr            res;
 	monster_race    *r_ptr;
@@ -1581,21 +1578,21 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
 
 		/* Assume simple result */
-		res = _("²¿¤«", "it");
+		res = _("ä½•ã‹", "it");
 
 		/* Brute force: split on the possibilities */
 		switch (kind + (mode & (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE)))
 		{
 			/* Neuter, or unknown */
 #ifdef JP
-			case 0x00:                                                    res = "²¿¤«"; break;
-			case 0x00 + (MD_OBJECTIVE):                                   res = "²¿¤«"; break;
-			case 0x00 + (MD_POSSESSIVE):                                  res = "²¿¤«¤Î"; break;
-			case 0x00 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "²¿¤«¼«¿È"; break;
-			case 0x00 + (MD_INDEF_HIDDEN):                                res = "²¿¤«"; break;
-			case 0x00 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "²¿¤«"; break;
-			case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "²¿¤«"; break;
-			case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "¤½¤ì¼«¿È"; break;
+			case 0x00:                                                    res = "ä½•ã‹"; break;
+			case 0x00 + (MD_OBJECTIVE):                                   res = "ä½•ã‹"; break;
+			case 0x00 + (MD_POSSESSIVE):                                  res = "ä½•ã‹ã®"; break;
+			case 0x00 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "ä½•ã‹è‡ªèº«"; break;
+			case 0x00 + (MD_INDEF_HIDDEN):                                res = "ä½•ã‹"; break;
+			case 0x00 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "ä½•ã‹"; break;
+			case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "ä½•ã‹"; break;
+			case 0x00 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "ãã‚Œè‡ªèº«"; break;
 #else
 			case 0x00:                                                    res = "it"; break;
 			case 0x00 + (MD_OBJECTIVE):                                   res = "it"; break;
@@ -1610,14 +1607,14 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
 			/* Male (assume human if vague) */
 #ifdef JP
-			case 0x10:                                                    res = "Èà"; break;
-			case 0x10 + (MD_OBJECTIVE):                                   res = "Èà"; break;
-			case 0x10 + (MD_POSSESSIVE):                                  res = "Èà¤Î"; break;
-			case 0x10 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "Èà¼«¿È"; break;
-			case 0x10 + (MD_INDEF_HIDDEN):                                res = "Ã¯¤«"; break;
-			case 0x10 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "Ã¯¤«"; break;
-			case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "Ã¯¤«¤Î"; break;
-			case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "Èà¼«¿È"; break;
+			case 0x10:                                                    res = "å½¼"; break;
+			case 0x10 + (MD_OBJECTIVE):                                   res = "å½¼"; break;
+			case 0x10 + (MD_POSSESSIVE):                                  res = "å½¼ã®"; break;
+			case 0x10 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "å½¼è‡ªèº«"; break;
+			case 0x10 + (MD_INDEF_HIDDEN):                                res = "èª°ã‹"; break;
+			case 0x10 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "èª°ã‹"; break;
+			case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "èª°ã‹ã®"; break;
+			case 0x10 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "å½¼è‡ªèº«"; break;
 #else
 			case 0x10:                                                    res = "he"; break;
 			case 0x10 + (MD_OBJECTIVE):                                   res = "him"; break;
@@ -1632,14 +1629,14 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
 			/* Female (assume human if vague) */
 #ifdef JP
-			case 0x20:                                                    res = "Èà½÷"; break;
-			case 0x20 + (MD_OBJECTIVE):                                   res = "Èà½÷"; break;
-			case 0x20 + (MD_POSSESSIVE):                                  res = "Èà½÷¤Î"; break;
-			case 0x20 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "Èà½÷¼«¿È"; break;
-			case 0x20 + (MD_INDEF_HIDDEN):                                res = "Ã¯¤«"; break;
-			case 0x20 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "Ã¯¤«"; break;
-			case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "Ã¯¤«¤Î"; break;
-			case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "Èà½÷¼«¿È"; break;
+			case 0x20:                                                    res = "å½¼å¥³"; break;
+			case 0x20 + (MD_OBJECTIVE):                                   res = "å½¼å¥³"; break;
+			case 0x20 + (MD_POSSESSIVE):                                  res = "å½¼å¥³ã®"; break;
+			case 0x20 + (MD_POSSESSIVE | MD_OBJECTIVE):                   res = "å½¼å¥³è‡ªèº«"; break;
+			case 0x20 + (MD_INDEF_HIDDEN):                                res = "èª°ã‹"; break;
+			case 0x20 + (MD_INDEF_HIDDEN | MD_OBJECTIVE):                 res = "èª°ã‹"; break;
+			case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE):                res = "èª°ã‹ã®"; break;
+			case 0x20 + (MD_INDEF_HIDDEN | MD_POSSESSIVE | MD_OBJECTIVE): res = "å½¼å¥³è‡ªèº«"; break;
 #else
 			case 0x20:                                                    res = "she"; break;
 			case 0x20 + (MD_OBJECTIVE):                                   res = "her"; break;
@@ -1662,9 +1659,9 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 	{
 		/* The monster is visible, so use its gender */
 #ifdef JP
-		if (r_ptr->flags1 & (RF1_FEMALE)) strcpy(desc, "Èà½÷¼«¿È");
-		else if (r_ptr->flags1 & (RF1_MALE)) strcpy(desc, "Èà¼«¿È");
-		else strcpy(desc, "¤½¤ì¼«¿È");
+		if (r_ptr->flags1 & (RF1_FEMALE)) strcpy(desc, "å½¼å¥³è‡ªèº«");
+		else if (r_ptr->flags1 & (RF1_MALE)) strcpy(desc, "å½¼è‡ªèº«");
+		else strcpy(desc, "ãã‚Œè‡ªèº«");
 #else
 		if (r_ptr->flags1 & RF1_FEMALE) strcpy(desc, "herself");
 		else if (r_ptr->flags1 & RF1_MALE) strcpy(desc, "himself");
@@ -1683,14 +1680,14 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 			char *t;
 			strcpy(buf, name);
 			t = buf;
-			while(strncmp(t, "¡Ù", 2) && *t) t++;
+			while(strncmp(t, "ã€", 2) && *t) t++;
 			if (*t)
 			{
 				*t = '\0';
-				(void)sprintf(desc, "%s¡©¡Ù", buf);
+				(void)sprintf(desc, "%sï¼Ÿã€", buf);
 			}
 			else
-				(void)sprintf(desc, "%s¡©", name);
+				(void)sprintf(desc, "%sï¼Ÿ", name);
 #else
 			(void)sprintf(desc, "%s?", name);
 #endif
@@ -1707,14 +1704,14 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 				char *t;
 				strcpy(buf, name);
 				t = buf;
-				while (strncmp(t, "¡Ù", 2) && *t) t++;
+				while (strncmp(t, "ã€", 2) && *t) t++;
 				if (*t)
 				{
 					*t = '\0';
-					(void)sprintf(desc, "%s¡©¡Ù", buf);
+					(void)sprintf(desc, "%sï¼Ÿã€", buf);
 				}
 				else
-					(void)sprintf(desc, "%s¡©", name);
+					(void)sprintf(desc, "%sï¼Ÿ", name);
 #else
 				(void)sprintf(desc, "%s?", name);
 #endif
@@ -1725,7 +1722,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 				 !(p_ptr->riding && (&m_list[p_ptr->riding] == m_ptr)))
 			{
 				/* It is a fake unique monster */
-				(void)sprintf(desc, _("%s¤â¤É¤­", "fake %s"), name);
+				(void)sprintf(desc, _("%sã‚‚ã©ã", "fake %s"), name);
 			}
 
 			else
@@ -1754,7 +1751,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 		{
 			/* Definite monsters need a definite article */
 			if (is_pet(m_ptr))
-				(void)strcpy(desc, _("¤¢¤Ê¤¿¤Î", "your "));
+				(void)strcpy(desc, _("ã‚ãªãŸã®", "your "));
 			else
 				(void)strcpy(desc, _("", "the "));
 
@@ -1763,24 +1760,24 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
 		if (m_ptr->nickname)
 		{
-			sprintf(buf,_("¡Ö%s¡×", " called %s"),quark_str(m_ptr->nickname));
+			sprintf(buf,_("ã€Œ%sã€", " called %s"),quark_str(m_ptr->nickname));
 			strcat(desc,buf);
 		}
 
 		if (p_ptr->riding && (&m_list[p_ptr->riding] == m_ptr))
 		{
-			strcat(desc,_("(¾èÇÏÃæ)", "(riding)"));
+			strcat(desc,_("(ä¹—é¦¬ä¸­)", "(riding)"));
 		}
 
 		if ((mode & MD_IGNORE_HALLU) && (m_ptr->mflag2 & MFLAG2_CHAMELEON))
 		{
 			if (r_ptr->flags1 & RF1_UNIQUE)
 			{
-				strcat(desc,_("(¥«¥á¥ì¥ª¥ó¤Î²¦)", "(Chameleon Lord)"));
+				strcat(desc,_("(ã‚«ãƒ¡ãƒ¬ã‚ªãƒ³ã®ç‹)", "(Chameleon Lord)"));
 			}
 			else
 			{
-				strcat(desc,_("(¥«¥á¥ì¥ª¥ó)", "(Chameleon)"));
+				strcat(desc,_("(ã‚«ãƒ¡ãƒ¬ã‚ªãƒ³)", "(Chameleon)"));
 			}
 		}
 
@@ -1795,7 +1792,7 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 			/* XXX Check for trailing "s" */
 			
 			/* Simply append "apostrophe" and "s" */
-			(void)strcat(desc, _("¤Î", "'s"));
+			(void)strcat(desc, _("ã®", "'s"));
 		}
 	}
 }
@@ -1803,13 +1800,13 @@ void monster_desc(char *desc, monster_type *m_ptr, int mode)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÄ´ºº¤Ë¤è¤ë»×¤¤½ĞÊä´°½èÍı / Learn about a monster (by "probing" it)
- * @param r_idx Êä´°¤µ¤ì¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ÌÀ¤é¤«¤Ë¤Ê¤Ã¤¿¾ğÊó¤ÎÅÙ¿ô
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®èª¿æŸ»ã«ã‚ˆã‚‹æ€ã„å‡ºè£œå®Œå‡¦ç† / Learn about a monster (by "probing" it)
+ * @param r_idx è£œå®Œã•ã‚Œã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return æ˜ã‚‰ã‹ã«ãªã£ãŸæƒ…å ±ã®åº¦æ•°
  * @details
  * Return the number of new flags learnt.  -Mogami-
  */
-int lore_do_probe(int r_idx)
+int lore_do_probe(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 	int i, n = 0;
@@ -1869,9 +1866,9 @@ int lore_do_probe(int r_idx)
 		if (!(r_ptr->r_flags4 & (1L << i)) &&
 		    (r_ptr->flags4 & (1L << i))) n++;
 		if (!(r_ptr->r_flags5 & (1L << i)) &&
-		    (r_ptr->flags5 & (1L << i))) n++;
+		    (r_ptr->a_ability_flags1 & (1L << i))) n++;
 		if (!(r_ptr->r_flags6 & (1L << i)) &&
-		    (r_ptr->flags6 & (1L << i))) n++;
+		    (r_ptr->a_ability_flags2 & (1L << i))) n++;
 		if (!(r_ptr->r_flagsr & (1L << i)) &&
 		    (r_ptr->flagsr & (1L << i))) n++;
 
@@ -1887,8 +1884,8 @@ int lore_do_probe(int r_idx)
 	r_ptr->r_flags2 = r_ptr->flags2;
 	r_ptr->r_flags3 = r_ptr->flags3;
 	r_ptr->r_flags4 = r_ptr->flags4;
-	r_ptr->r_flags5 = r_ptr->flags5;
-	r_ptr->r_flags6 = r_ptr->flags6;
+	r_ptr->r_flags5 = r_ptr->a_ability_flags1;
+	r_ptr->r_flags6 = r_ptr->a_ability_flags2;
 	r_ptr->r_flagsr = r_ptr->flagsr;
 
 	/* r_flags7 is actually unused */
@@ -1911,11 +1908,11 @@ int lore_do_probe(int r_idx)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î·âÇË¤ËÈ¼¤¦¥É¥í¥Ã¥×¾ğÊó¤ÎÊİ´É½èÍı / Take note that the given monster just dropped some treasure
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¾ğÊó¤ÎID
- * @param num_item ¼ê¤ËÆş¤ì¤¿¥¢¥¤¥Æ¥à¿ô
- * @param num_gold ¼ê¤ËÆş¤ì¤¿ºâÊõ¤ÎÃ±°Ì¿ô
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ’ƒç ´ã«ä¼´ã†ãƒ‰ãƒ­ãƒƒãƒ—æƒ…å ±ã®ä¿ç®¡å‡¦ç† / Take note that the given monster just dropped some treasure
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã®ID
+ * @param num_item æ‰‹ã«å…¥ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ æ•°
+ * @param num_gold æ‰‹ã«å…¥ã‚ŒãŸè²¡å®ã®å˜ä½æ•°
+ * @return ãªã—
  * @details
  * Note that learning the "GOOD"/"GREAT" flags gives information
  * about the treasure (even when the monster is killed for the first
@@ -1927,7 +1924,7 @@ int lore_do_probe(int r_idx)
  * gold and items are dropped, and remembers that information to be
  * described later by the monster recall code.
  */
-void lore_treasure(int m_idx, int num_item, int num_gold)
+void lore_treasure(MONSTER_IDX m_idx, ITEM_NUMBER num_item, ITEM_NUMBER num_gold)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 
@@ -1954,24 +1951,23 @@ void lore_treasure(int m_idx, int num_item, int num_gold)
 
 
 /*!
- * @brief ELDRITCH_HORROR¤Ë¤è¤ë¥×¥ì¥¤¥ä¡¼¤ÎÀº¿ÀÇË²õ½èÍı
- * @param m_ptr ELDRITCH_HORROR¤ò°ú¤­µ¯¤³¤·¤¿¥â¥ó¥¹¥¿¡¼¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param necro °Å¹õÎÎ°èËâË¡¤Î±Ó¾§¼ºÇÔ¤Ë¤è¤ë¤â¤Î¤Ê¤é¤ĞTRUE¤òÊÖ¤¹
- * @return ¤Ê¤·
+ * @brief ELDRITCH_HORRORã«ã‚ˆã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç²¾ç¥ç ´å£Šå‡¦ç†
+ * @param m_ptr ELDRITCH_HORRORã‚’å¼•ãèµ·ã“ã—ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param necro æš—é»’é ˜åŸŸé­”æ³•ã®è© å”±å¤±æ•—ã«ã‚ˆã‚‹ã‚‚ã®ãªã‚‰ã°TRUEã‚’è¿”ã™
+ * @return ãªã—
  */
 void sanity_blast(monster_type *m_ptr, bool necro)
 {
-	bool happened = FALSE;
 	int power = 100;
 
 	if (p_ptr->inside_battle || !character_dungeon) return;
 
 	if (!necro && m_ptr)
 	{
-		char            m_name[80];
-		monster_race    *r_ptr = &r_info[m_ptr->ap_r_idx];
+		char m_name[80];
+		monster_race *r_ptr = &r_info[m_ptr->ap_r_idx];
 
-		power = r_ptr->level * 2; /* #tang /2 -> *2 */
+		power = r_ptr->level / 2;
 
 		monster_desc(m_name, m_ptr, 0);
 
@@ -1982,7 +1978,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 		}
 		else power *= 2;
 
-		if (!hack_mind)
+		if (!is_loading_now)
 			return; /* No effect yet, just loaded... */
 
 		if (!m_ptr->ml)
@@ -1990,8 +1986,6 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 
 		if (!(r_ptr->flags2 & RF2_ELDRITCH_HORROR))
 			return; /* oops */
-
-
 
 		if (is_pet(m_ptr))
 			return; /* Pet eldritch horrors are safe most of the time */
@@ -2007,13 +2001,12 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 		{
 			/* Something silly happens... */
 #ifdef JP
-			msg_format("%s%s¤Î´é¤ò¸«¤Æ¤·¤Ş¤Ã¤¿¡ª",
+			msg_format("%s%sã®é¡”ã‚’è¦‹ã¦ã—ã¾ã£ãŸï¼",
 				funny_desc[randint0(MAX_SAN_FUNNY)], m_name);
 #else
 			msg_format("You behold the %s visage of %s!",
 				funny_desc[randint0(MAX_SAN_FUNNY)], m_name);
 #endif
-
 
 			if (one_in_(3))
 			{
@@ -2026,7 +2019,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 
 		/* Something frightening happens... */
 #ifdef JP
-		msg_format("%s%s¤Î´é¤ò¸«¤Æ¤·¤Ş¤Ã¤¿¡ª",
+		msg_format("%s%sã®é¡”ã‚’è¦‹ã¦ã—ã¾ã£ãŸï¼",
 			horror_desc[randint0(MAX_SAN_HORROR)], m_name);
 #else
 		msg_format("You behold the %s visage of %s!",
@@ -2050,7 +2043,6 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 	else if(!necro)
 	{
 		monster_race *r_ptr;
-		int power;
 		char m_name[80];
 		cptr desc;
 
@@ -2078,7 +2070,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 
 		if (saving_throw(p_ptr->skill_sav * 100 / power))
 		{
-			msg_format(_("Ì´¤ÎÃæ¤Ç%s¤ËÄÉ¤¤¤«¤±¤é¤ì¤¿¡£", "%^s chases you through your dreams."), m_name);
+			msg_format(_("å¤¢ã®ä¸­ã§%sã«è¿½ã„ã‹ã‘ã‚‰ã‚ŒãŸã€‚", "%^s chases you through your dreams."), m_name);
 			/* Safe */
 			return;
 		}
@@ -2086,7 +2078,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 		if (p_ptr->image)
 		{
 			/* Something silly happens... */
-			msg_format(_("%s%s¤Î´é¤ò¸«¤Æ¤·¤Ş¤Ã¤¿¡ª", "You behold the %s visage of %s!"),
+			msg_format(_("%s%sã®é¡”ã‚’è¦‹ã¦ã—ã¾ã£ãŸï¼", "You behold the %s visage of %s!"),
 						funny_desc[randint0(MAX_SAN_FUNNY)], m_name);
 
 			if (one_in_(3))
@@ -2100,7 +2092,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 		}
 
 		/* Something frightening happens... */
-		msg_format(_("%s%s¤Î´é¤ò¸«¤Æ¤·¤Ş¤Ã¤¿¡ª", "You behold the %s visage of %s!"),
+		msg_format(_("%s%sã®é¡”ã‚’è¦‹ã¦ã—ã¾ã£ãŸï¼", "You behold the %s visage of %s!"),
 				  horror_desc[randint0(MAX_SAN_HORROR)], desc);
 
 		r_ptr->r_flags2 |= RF2_ELDRITCH_HORROR;
@@ -2139,31 +2131,86 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 	}
 	else
 	{
-		msg_print(_("¥Í¥¯¥í¥Î¥ß¥³¥ó¤òÆÉ¤ó¤ÇÀµµ¤¤ò¼º¤Ã¤¿¡ª", "Your sanity is shaken by reading the Necronomicon!"));
+		msg_print(_("ãƒã‚¯ãƒ­ãƒãƒŸã‚³ãƒ³ã‚’èª­ã‚“ã§æ­£æ°—ã‚’å¤±ã£ãŸï¼", "Your sanity is shaken by reading the Necronomicon!"));
 	}
 
-	if (!saving_throw(p_ptr->skill_sav - power)) /* Mind blast */
+	if (saving_throw(p_ptr->skill_sav - power))
 	{
-		if (!p_ptr->resist_conf)
-		{
-			(void)set_confused(p_ptr->confused + randint0(4) + 4);
-		}
-		if (!p_ptr->resist_chaos && one_in_(3))
-		{
-			(void)set_image(p_ptr->image + randint0(250) + 150);
-		}
 		return;
 	}
 
-	if (!saving_throw(p_ptr->skill_sav - power)) /* Lose int & wis */
-	{
-		do_dec_stat(A_INT);
-		do_dec_stat(A_WIS);
-		return;
-	}
+	do {
+		(void)do_dec_stat(A_INT);
+	} while (randint0(100) > p_ptr->skill_sav && one_in_(2));
 
-	if (!saving_throw(p_ptr->skill_sav - power)) /* Brain smash */
+	do {
+		(void)do_dec_stat(A_WIS);
+	} while (randint0(100) > p_ptr->skill_sav && one_in_(2));
+
+	switch (randint1(21))
 	{
+	case 1:
+		if (!(p_ptr->muta3 & MUT3_MORONIC) && one_in_(5))
+		{
+			if ((p_ptr->stat_use[A_INT] < 4) && (p_ptr->stat_use[A_WIS] < 4))
+			{
+				msg_print(_("ã‚ãªãŸã¯å®Œç’§ãªé¦¬é¹¿ã«ãªã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸã€‚ã—ã‹ã—ãã‚Œã¯å…ƒã€…ã ã£ãŸã€‚", "You turn into an utter moron!"));
+			}
+			else
+			{
+				msg_print(_("ã‚ãªãŸã¯å®Œç’§ãªé¦¬é¹¿ã«ãªã£ãŸï¼", "You turn into an utter moron!"));
+			}
+
+			if (p_ptr->muta3 & MUT3_HYPER_INT)
+			{
+				msg_print(_("ã‚ãªãŸã®è„³ã¯ç”Ÿä½“ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã§ã¯ãªããªã£ãŸã€‚", "Your brain is no longer a living computer."));
+				p_ptr->muta3 &= ~(MUT3_HYPER_INT);
+			}
+			p_ptr->muta3 |= MUT3_MORONIC;
+		}
+		break;
+	case 2:
+	case 3:
+	case 4:
+		if (!(p_ptr->muta2 & MUT2_COWARDICE) && !p_ptr->resist_fear)
+		{
+			msg_print(_("ã‚ãªãŸã¯ãƒ‘ãƒ©ãƒã‚¤ã‚¢ã«ãªã£ãŸï¼", "You become paranoid!"));
+
+			/* Duh, the following should never happen, but anyway... */
+			if (p_ptr->muta3 & MUT3_FEARLESS)
+			{
+				msg_print(_("ã‚ãªãŸã¯ã‚‚ã†æã‚ŒçŸ¥ã‚‰ãšã§ã¯ãªããªã£ãŸã€‚", "You are no longer fearless."));
+				p_ptr->muta3 &= ~(MUT3_FEARLESS);
+			}
+
+			p_ptr->muta2 |= MUT2_COWARDICE;
+		}
+		break;
+	case 5:
+	case 6:
+	case 7:
+		if (!(p_ptr->muta2 & MUT2_HALLU) && !p_ptr->resist_chaos)
+		{
+			msg_print(_("å¹»è¦šã‚’ã²ãèµ·ã“ã™ç²¾ç¥éŒ¯ä¹±ã«é™¥ã£ãŸï¼", "You are afflicted by a hallucinatory insanity!"));
+			p_ptr->muta2 |= MUT2_HALLU;
+		}
+		break;
+	case 8:
+	case 9:
+	case 10:
+		if (!(p_ptr->muta2 & MUT2_BERS_RAGE))
+		{
+			msg_print(_("æ¿€çƒˆãªæ„Ÿæƒ…ã®ç™ºä½œã«ãŠãã‚ã‚Œã‚‹ã‚ˆã†ã«ãªã£ãŸï¼", "You become subject to fits of berserk rage!"));
+			p_ptr->muta2 |= MUT2_BERS_RAGE;
+		}
+		break;
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
+	case 16:
+		/* Brain smash */
 		if (!p_ptr->resist_conf)
 		{
 			(void)set_confused(p_ptr->confused + randint0(4) + 4);
@@ -2172,116 +2219,20 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 		{
 			(void)set_paralyzed(p_ptr->paralyzed + randint0(4) + 4);
 		}
-		while (randint0(100) > p_ptr->skill_sav)
-			(void)do_dec_stat(A_INT);
-		while (randint0(100) > p_ptr->skill_sav)
-			(void)do_dec_stat(A_WIS);
 		if (!p_ptr->resist_chaos)
 		{
 			(void)set_image(p_ptr->image + randint0(250) + 150);
 		}
-		return;
-	}
-
-	if (!saving_throw(p_ptr->skill_sav - power)) /* Amnesia */
-	{
-
+		break;
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+		/* Amnesia */
 		if (lose_all_info())
-			msg_print(_("¤¢¤Ş¤ê¤Î¶²Éİ¤ËÁ´¤Æ¤Î¤³¤È¤òËº¤ì¤Æ¤·¤Ş¤Ã¤¿¡ª", "You forget everything in your utmost terror!"));
-
-		return;
-	}
-
-	if (saving_throw(p_ptr->skill_sav - power))
-	{
-		return;
-	}
-
-	/* Else gain permanent insanity */
-	if ((p_ptr->muta3 & MUT3_MORONIC) && /*(p_ptr->muta2 & MUT2_BERS_RAGE) &&*/
-		((p_ptr->muta2 & MUT2_COWARDICE) || (p_ptr->resist_fear)) &&
-		((p_ptr->muta2 & MUT2_HALLU) || (p_ptr->resist_chaos)))
-	{
-		/* The poor bastard already has all possible insanities! */
-		return;
-	}
-
-	while (!happened)
-	{
-		switch (randint1(21))
-		{
-			case 1:
-				if (!(p_ptr->muta3 & MUT3_MORONIC) && one_in_(5))
-				{
-					if ((p_ptr->stat_use[A_INT] < 4) && (p_ptr->stat_use[A_WIS] < 4))
-					{
-						msg_print(_("¤¢¤Ê¤¿¤Ï´°àú¤ÊÇÏ¼¯¤Ë¤Ê¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡£¤·¤«¤·¤½¤ì¤Ï¸µ¡¹¤À¤Ã¤¿¡£", "You turn into an utter moron!"));
-					}
-					else
-					{
-						msg_print(_("¤¢¤Ê¤¿¤Ï´°àú¤ÊÇÏ¼¯¤Ë¤Ê¤Ã¤¿¡ª", "You turn into an utter moron!"));
-					}
-
-					if (p_ptr->muta3 & MUT3_HYPER_INT)
-					{
-						msg_print(_("¤¢¤Ê¤¿¤ÎÇ¾¤ÏÀ¸ÂÎ¥³¥ó¥Ô¥å¡¼¥¿¤Ç¤Ï¤Ê¤¯¤Ê¤Ã¤¿¡£", "Your brain is no longer a living computer."));
-						p_ptr->muta3 &= ~(MUT3_HYPER_INT);
-					}
-					p_ptr->muta3 |= MUT3_MORONIC;
-					happened = TRUE;
-				}
-				break;
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-				if (!(p_ptr->muta2 & MUT2_COWARDICE) && !p_ptr->resist_fear)
-				{
-					msg_print(_("¤¢¤Ê¤¿¤Ï¥Ñ¥é¥Î¥¤¥¢¤Ë¤Ê¤Ã¤¿¡ª", "You become paranoid!"));
-
-					/* Duh, the following should never happen, but anyway... */
-					if (p_ptr->muta3 & MUT3_FEARLESS)
-					{
-						msg_print(_("¤¢¤Ê¤¿¤Ï¤â¤¦¶²¤ìÃÎ¤é¤º¤Ç¤Ï¤Ê¤¯¤Ê¤Ã¤¿¡£", "You are no longer fearless."));
-						p_ptr->muta3 &= ~(MUT3_FEARLESS);
-					}
-
-					p_ptr->muta2 |= MUT2_COWARDICE;
-					happened = TRUE;
-				}
-				break;
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-			case 16:
-			case 17:
-			case 18:
-			case 19:
-			case 20:
-			case 21:
-				if (!(p_ptr->muta2 & MUT2_HALLU) && !p_ptr->resist_chaos)
-				{
-					msg_print(_("¸¸³Ğ¤ò¤Ò¤­µ¯¤³¤¹Àº¿ÀºøÍğ¤Ë´Ù¤Ã¤¿¡ª", "You are afflicted by a hallucinatory insanity!"));
-					p_ptr->muta2 |= MUT2_HALLU;
-					happened = TRUE;
-				}
-				break;
-			default:
-				if (!(p_ptr->muta2 & MUT2_BERS_RAGE))
-				{
-					msg_print(_("·ãÎõ¤Ê´¶¾ğ¤ÎÈ¯ºî¤Ë¤ª¤½¤ï¤ì¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡ª", "You become subject to fits of berserk rage!"));
-					p_ptr->muta2 |= MUT2_BERS_RAGE;
-					happened = TRUE;
-				}
-				break;
-		}
+			msg_print(_("ã‚ã¾ã‚Šã®ææ€–ã«å…¨ã¦ã®ã“ã¨ã‚’å¿˜ã‚Œã¦ã—ã¾ã£ãŸï¼", "You forget everything in your utmost terror!"));
+		break;
 	}
 
 	p_ptr->update |= PU_BONUS;
@@ -2289,10 +2240,10 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î³Æ¾ğÊó¤ò¹¹¿·¤¹¤ë / This function updates the monster record of the given monster
- * @param m_idx ¹¹¿·¤¹¤ë¥â¥ó¥¹¥¿¡¼¾ğÊó¤ÎID
- * @param full ¥×¥ì¥¤¥ä¡¼¤È¤Îµ÷Î¥¹¹¿·¤ò¹Ô¤¦¤Ê¤é¤Ğtrue
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å„æƒ…å ±ã‚’æ›´æ–°ã™ã‚‹ / This function updates the monster record of the given monster
+ * @param m_idx æ›´æ–°ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã®ID
+ * @param full ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã®è·é›¢æ›´æ–°ã‚’è¡Œã†ãªã‚‰ã°true
+ * @return ãªã—
  * @details
  * This involves extracting the distance to the player (if requested),
  * and then checking for visibility (natural, infravision, see-invis,
@@ -2350,7 +2301,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
  * "disturb_near" (monster which is "easily" viewable moves in some
  * way).  Note that "moves" includes "appears" and "disappears".
  */
-void update_mon(int m_idx, bool full)
+void update_mon(MONSTER_IDX m_idx, bool full)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 
@@ -2739,13 +2690,13 @@ void update_mon(int m_idx, bool full)
 
 
 /*!
- * @brief Ã±½ã¤ËÀ¸Â¸¤·¤Æ¤¤¤ëÁ´¥â¥ó¥¹¥¿¡¼¤Î¹¹¿·½èÍı¤ò¹Ô¤¦ / This function simply updates all the (non-dead) monsters (see above).
- * @param full µ÷Î¥¹¹¿·¤ò¹Ô¤¦¤Ê¤étrue
- * @return ¤Ê¤·
+ * @brief å˜ç´”ã«ç”Ÿå­˜ã—ã¦ã„ã‚‹å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ›´æ–°å‡¦ç†ã‚’è¡Œã† / This function simply updates all the (non-dead) monsters (see above).
+ * @param full è·é›¢æ›´æ–°ã‚’è¡Œã†ãªã‚‰true
+ * @return ãªã—
  */
 void update_monsters(bool full)
 {
-	int i;
+	IDX i;
 
 	/* Update each (live) monster */
 	for (i = 1; i < m_max; i++)
@@ -2762,11 +2713,11 @@ void update_monsters(bool full)
 
 
 /*!
- * @brief ¥«¥á¥ì¥ª¥ó¤Î²¦¤ÎÊÑ¿ÈÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¤«¤É¤¦¤«È½Äê¤¹¤ë / Hack -- the index of the summoning monster
- * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ÂĞ¾İ¤Ë¤Ç¤­¤ë¤Ê¤étrue¤òÊÖ¤¹
+ * @brief ã‚«ãƒ¡ãƒ¬ã‚ªãƒ³ã®ç‹ã®å¤‰èº«å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã©ã†ã‹åˆ¤å®šã™ã‚‹ / Hack -- the index of the summoning monster
+ * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return å¯¾è±¡ã«ã§ãã‚‹ãªã‚‰trueã‚’è¿”ã™
  */
-static bool monster_hook_chameleon_lord(int r_idx)
+static bool monster_hook_chameleon_lord(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 	monster_type *m_ptr = &m_list[chameleon_change_m_idx];
@@ -2798,11 +2749,11 @@ static bool monster_hook_chameleon_lord(int r_idx)
 }
 
 /*!
- * @brief ¥«¥á¥ì¥ª¥ó¤ÎÊÑ¿ÈÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¤«¤É¤¦¤«È½Äê¤¹¤ë / Hack -- the index of the summoning monster
- * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ÂĞ¾İ¤Ë¤Ç¤­¤ë¤Ê¤étrue¤òÊÖ¤¹
+ * @brief ã‚«ãƒ¡ãƒ¬ã‚ªãƒ³ã®å¤‰èº«å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã©ã†ã‹åˆ¤å®šã™ã‚‹ / Hack -- the index of the summoning monster
+ * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return å¯¾è±¡ã«ã§ãã‚‹ãªã‚‰trueã‚’è¿”ã™
  */
-static bool monster_hook_chameleon(int r_idx)
+static bool monster_hook_chameleon(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 	monster_type *m_ptr = &m_list[chameleon_change_m_idx];
@@ -2835,13 +2786,13 @@ static bool monster_hook_chameleon(int r_idx)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÊÑ¿È½èÍı
- * @param m_idx ÊÑ¿È½èÍı¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼¾ğÊó¤ÎID
- * @param born À¸À®»ş¤Î½éÊÑ¿ÈÀè»ØÄê¤Ê¤é¤Ğtrue
- * @param r_idx µì¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å¤‰èº«å‡¦ç†
+ * @param m_idx å¤‰èº«å‡¦ç†ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ã®ID
+ * @param born ç”Ÿæˆæ™‚ã®åˆå¤‰èº«å…ˆæŒ‡å®šãªã‚‰ã°true
+ * @param r_idx æ—§ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID
+ * @return ãªã—
  */
-void choose_new_monster(int m_idx, bool born, int r_idx)
+void choose_new_monster(MONSTER_IDX m_idx, bool born, MONRACE_IDX r_idx)
 {
 	int oldmaxhp;
 	monster_type *m_ptr = &m_list[m_idx];
@@ -2914,9 +2865,9 @@ void choose_new_monster(int m_idx, bool born, int r_idx)
 	{
 		char m_name[80];
 		monster_desc(m_name, m_ptr, 0);
-		msg_format(_("ÆÍÁ³%s¤¬ÊÑ¿È¤·¤¿¡£", "Suddenly, %s transforms!"), old_m_name);
+		msg_format(_("çªç„¶%sãŒå¤‰èº«ã—ãŸã€‚", "Suddenly, %s transforms!"), old_m_name);
 		if (!(r_ptr->flags7 & RF7_RIDING))
-			if (rakuba(0, TRUE)) msg_format(_("ÃÏÌÌ¤ËÍî¤È¤µ¤ì¤¿¡£", "You have fallen from %s."), m_name);
+			if (rakuba(0, TRUE)) msg_format(_("åœ°é¢ã«è½ã¨ã•ã‚ŒãŸã€‚", "You have fallen from %s."), m_name);
 	}
 
 	/* Extract the monster base speed */
@@ -2937,7 +2888,7 @@ void choose_new_monster(int m_idx, bool born, int r_idx)
 	if (ironman_nightmare)
 	{
 		u32b hp = m_ptr->max_maxhp * 2L;
-		m_ptr->max_maxhp = (s16b)MIN(30000, hp);
+		m_ptr->max_maxhp = (HIT_POINT)MIN(30000, hp);
 	}
 
 	m_ptr->maxhp = (long)(m_ptr->maxhp * m_ptr->max_maxhp) / oldmaxhp;
@@ -2950,11 +2901,11 @@ void choose_new_monster(int m_idx, bool born, int r_idx)
 
 
 /*!
- * @brief ¤¿¤Ì¤­¤ÎÊÑ¿ÈÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¤«¤É¤¦¤«È½Äê¤¹¤ë / Hook for Tanuki
- * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ÂĞ¾İ¤Ë¤Ç¤­¤ë¤Ê¤étrue¤òÊÖ¤¹
+ * @brief ãŸã¬ãã®å¤‰èº«å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã©ã†ã‹åˆ¤å®šã™ã‚‹ / Hook for Tanuki
+ * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return å¯¾è±¡ã«ã§ãã‚‹ãªã‚‰trueã‚’è¿”ã™
  */
-static bool monster_hook_tanuki(int r_idx)
+static bool monster_hook_tanuki(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 
@@ -2971,16 +2922,16 @@ static bool monster_hook_tanuki(int r_idx)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÉ½ÁØID¤òÀßÄê¤¹¤ë / Set initial racial appearance of a monster
- * @param r_idx ¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎÉ½ÁØID
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®è¡¨å±¤IDã‚’è¨­å®šã™ã‚‹ / Set initial racial appearance of a monster
+ * @param r_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®è¡¨å±¤ID
  */
-static int initial_r_appearance(int r_idx)
+static IDX initial_r_appearance(MONRACE_IDX r_idx)
 {
 	int attempts = 1000;
 
-	int ap_r_idx;
-	int min = MIN(base_level-5, 50);
+	IDX ap_r_idx;
+	DEPTH min = MIN(base_level-5, 50);
 
 	if (!(r_info[r_idx].flags7 & RF7_TANUKI))
 		return r_idx;
@@ -2998,9 +2949,9 @@ static int initial_r_appearance(int r_idx)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î¸ÄÂÎ²ÃÂ®¤òÀßÄê¤¹¤ë / Get initial monster speed
- * @param r_ptr ¥â¥ó¥¹¥¿¡¼¼ïÂ²¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ²ÃÂ®ÃÍ
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å€‹ä½“åŠ é€Ÿã‚’è¨­å®šã™ã‚‹ / Get initial monster speed
+ * @param r_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return åŠ é€Ÿå€¤
  */
 byte get_mspeed(monster_race *r_ptr)
 {
@@ -3022,13 +2973,13 @@ byte get_mspeed(monster_race *r_ptr)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ò°ìÂÎÀ¸À®¤¹¤ë / Attempt to place a monster of the given race at the given location.
- * @param who ¾¤´­¤ò¹Ô¤Ã¤¿¥â¥ó¥¹¥¿¡¼ID
- * @param y À¸À®°ÌÃÖyºÂÉ¸
- * @param x À¸À®°ÌÃÖxºÂÉ¸
- * @param r_idx À¸À®¥â¥ó¥¹¥¿¡¼¼ïÂ²
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó
- * @return À®¸ù¤·¤¿¤étrue
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ä¸€ä½“ç”Ÿæˆã™ã‚‹ / Attempt to place a monster of the given race at the given location.
+ * @param who å¬å–šã‚’è¡Œã£ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+ * @param y ç”Ÿæˆä½ç½®yåº§æ¨™
+ * @param x ç”Ÿæˆä½ç½®xåº§æ¨™
+ * @param r_idx ç”Ÿæˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return æˆåŠŸã—ãŸã‚‰true
  * @details 
  * To give the player a sporting chance, any monster that appears in
  * line-of-sight and is extremely dangerous can be marked as
@@ -3046,15 +2997,12 @@ byte get_mspeed(monster_race *r_ptr)
  * This is the only function which may place a monster in the dungeon,
  * except for the savefile loading code.
  */
-static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
+static bool place_monster_one(MONSTER_IDX who, POSITION y, POSITION x, MONRACE_IDX r_idx, BIT_FLAGS mode)
 {
 	/* Access the location */
 	cave_type		*c_ptr = &cave[y][x];
-
 	monster_type	*m_ptr;
-
 	monster_race	*r_ptr = &r_info[r_idx];
-
 	cptr		name = (r_name + r_ptr->name);
 
 	int cmi;
@@ -3141,7 +3089,7 @@ static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
 			/* Describe observable breakage */
 			if (c_ptr->info & CAVE_MARK)
 			{
-				msg_print(_("¼é¤ê¤Î¥ë¡¼¥ó¤¬²õ¤ì¤¿¡ª", "The rune of protection is broken!"));
+				msg_print(_("å®ˆã‚Šã®ãƒ«ãƒ¼ãƒ³ãŒå£Šã‚ŒãŸï¼", "The rune of protection is broken!"));
 			}
 
 			/* Forget the rune */
@@ -3157,30 +3105,7 @@ static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
 		else return FALSE;
 	}
 
-	/* Powerful monster */
-	if (r_ptr->level > dun_level)
-	{
-		/* Unique monsters */
-		if (r_ptr->flags1 & (RF1_UNIQUE))
-		{
-			/* Message for cheaters */
-			if (cheat_hear) msg_format(_("¿¼ÁØ¤Î¥æ¥Ë¡¼¥¯¡¦¥â¥ó¥¹¥¿¡¼ (%s)¡£", "Deep Unique (%s)."), name);
-		}
-
-		/* Normal monsters */
-		else
-		{
-			/* Message for cheaters */
-			if (cheat_hear) msg_format(_("¿¼ÁØ¤Î¥â¥ó¥¹¥¿¡¼ (%s)¡£", "Deep Monster (%s)."), name);
-		}
-	}
-
-	/* Note the monster */
-	else if (r_ptr->flags1 & (RF1_UNIQUE))
-	{
-		/* Unique monsters induce message */
-		if (cheat_hear) msg_format(_("¥æ¥Ë¡¼¥¯¡¦¥â¥ó¥¹¥¿¡¼ (%s)¡£", "Unique (%s)."), name);
-	}
+	msg_format_wizard(CHEAT_MONSTER, _("%s(Lv%d)ã‚’ç”Ÿæˆã—ã¾ã—ãŸã€‚", "%s(Lv%d) was generated."), name, r_ptr->level);
 
 	if ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_NAZGUL) || (r_ptr->level < 10)) mode &= ~PM_KAGE;
 
@@ -3309,7 +3234,7 @@ static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
 	{
 		u32b hp = m_ptr->max_maxhp * 2L;
 
-		m_ptr->max_maxhp = (s16b)MIN(30000, hp);
+		m_ptr->max_maxhp = (HIT_POINT)MIN(30000, hp);
 	}
 
 	m_ptr->maxhp = m_ptr->max_maxhp;
@@ -3397,27 +3322,27 @@ static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
 			char o_name[MAX_NLEN];
 
 			if (r_ptr->level > p_ptr->lev + 30)
-				color = _("¹õ¤¯", "black");
+				color = _("é»’ã", "black");
 			else if (r_ptr->level > p_ptr->lev + 15)
-				color = _("»ç¿§¤Ë", "purple");
+				color = _("ç´«è‰²ã«", "purple");
 			else if (r_ptr->level > p_ptr->lev + 5)
-				color = _("¥ë¥Ó¡¼¿§¤Ë", "deep red");
+				color = _("ãƒ«ãƒ“ãƒ¼è‰²ã«", "deep red");
 			else if (r_ptr->level > p_ptr->lev - 5)
-				color = _("ÀÖ¤¯", "red");
+				color = _("èµ¤ã", "red");
 			else if (r_ptr->level > p_ptr->lev - 15)
-				color = _("¥Ô¥ó¥¯¿§¤Ë", "pink");
+				color = _("ãƒ”ãƒ³ã‚¯è‰²ã«", "pink");
 			else
-				color = _("Çò¤¯", "white");
+				color = _("ç™½ã", "white");
 
 			o_ptr = choose_warning_item();
 			if (o_ptr)
 			{
 				object_desc(o_name, o_ptr, (OD_OMIT_PREFIX | OD_NAME_ONLY));
-				msg_format(_("%s¤Ï%s¸÷¤Ã¤¿¡£", "%s glows %s."), o_name, color);
+				msg_format(_("%sã¯%så…‰ã£ãŸã€‚", "%s glows %s."), o_name, color);
 			}
 			else
 			{
-				msg_format(_("%s¸÷¤ëÊª¤¬Æ¬¤ËÉâ¤«¤ó¤À¡£", "An %s image forms in your mind."), color);
+				msg_format(_("%så…‰ã‚‹ç‰©ãŒé ­ã«æµ®ã‹ã‚“ã ã€‚", "An %s image forms in your mind."), color);
 			}
 		}
 	}
@@ -3430,13 +3355,13 @@ static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
 			/* Describe observable breakage */
 			if (c_ptr->info & CAVE_MARK)
 			{
-				msg_print(_("¥ë¡¼¥ó¤¬ÇúÈ¯¤·¤¿¡ª", "The rune explodes!"));
+				msg_print(_("ãƒ«ãƒ¼ãƒ³ãŒçˆ†ç™ºã—ãŸï¼", "The rune explodes!"));
 				project(0, 2, y, x, 2 * (p_ptr->lev + damroll(7, 7)), GF_MANA, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP | PROJECT_NO_HANGEKI), -1);
 			}
 		}
 		else
 		{
-			msg_print(_("ÇúÈ¯¤Î¥ë¡¼¥ó¤Ï²ò½ü¤µ¤ì¤¿¡£", "An explosive rune was disarmed."));
+			msg_print(_("çˆ†ç™ºã®ãƒ«ãƒ¼ãƒ³ã¯è§£é™¤ã•ã‚ŒãŸã€‚", "An explosive rune was disarmed."));
 		}
 
 		/* Forget the rune */
@@ -3456,20 +3381,20 @@ static bool place_monster_one(int who, int y, int x, int r_idx, u32b mode)
 
 
 
-#define MON_SCAT_MAXD 10 /*!< mon_scatter()´Ø¿ô¤Ë¤è¤ë¥â¥ó¥¹¥¿¡¼ÇÛÃÖ¤Çµö¤µ¤ì¤ëÃæ¿´¤«¤é¤ÎºÇÂçµ÷Î¥ */
+#define MON_SCAT_MAXD 10 /*!< mon_scatter()é–¢æ•°ã«ã‚ˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…ç½®ã§è¨±ã•ã‚Œã‚‹ä¸­å¿ƒã‹ã‚‰ã®æœ€å¤§è·é›¢ */
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼1ÂÎ¤òÌÜÉ¸ÃÏÅÀ¤Ë²ÄÇ½¤Ê¤¬¤ê¶á¤¤°ÌÃÖ¤ËÀ¸À®¤¹¤ë / improved version of scatter() for place monster
- * @param r_idx À¸À®¥â¥ó¥¹¥¿¡¼¼ïÂ²
- * @param yp ·ë²ÌÀ¸À®°ÌÃÖyºÂÉ¸
- * @param xp ·ë²ÌÀ¸À®°ÌÃÖxºÂÉ¸
- * @param y Ãæ¿´À¸À®°ÌÃÖyºÂÉ¸
- * @param x Ãæ¿´À¸À®°ÌÃÖxºÂÉ¸
- * @param max_dist À¸À®°ÌÃÖ¤ÎºÇÂçÈ¾·Â
- * @return À®¸ù¤·¤¿¤étrue
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼1ä½“ã‚’ç›®æ¨™åœ°ç‚¹ã«å¯èƒ½ãªãŒã‚Šè¿‘ã„ä½ç½®ã«ç”Ÿæˆã™ã‚‹ / improved version of scatter() for place monster
+ * @param r_idx ç”Ÿæˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—
+ * @param yp çµæœç”Ÿæˆä½ç½®yåº§æ¨™
+ * @param xp çµæœç”Ÿæˆä½ç½®xåº§æ¨™
+ * @param y ä¸­å¿ƒç”Ÿæˆä½ç½®yåº§æ¨™
+ * @param x ä¸­å¿ƒç”Ÿæˆä½ç½®xåº§æ¨™
+ * @param max_dist ç”Ÿæˆä½ç½®ã®æœ€å¤§åŠå¾„
+ * @return æˆåŠŸã—ãŸã‚‰true
  *  
  */
-static bool mon_scatter(int r_idx, int *yp, int *xp, int y, int x, int max_dist)
+static bool mon_scatter(MONRACE_IDX r_idx, POSITION *yp, POSITION *xp, POSITION y, POSITION x, POSITION max_dist)
 {
 	int place_x[MON_SCAT_MAXD];
 	int place_y[MON_SCAT_MAXD];
@@ -3538,18 +3463,18 @@ static bool mon_scatter(int r_idx, int *yp, int *xp, int y, int x, int max_dist)
 	return TRUE;
 }
 
-#define GROUP_MAX 32 /*!< place_monster_group() ´Ø¿ô¤Ë¤è¤ë¥â¥ó¥¹¥¿¡¼¤ÎGROUPÀ¸À®»ş¤ÎÇÛÃÖºÇÂç¿ô / Maximum size of a group of monsters */
+#define GROUP_MAX 32 /*!< place_monster_group() é–¢æ•°ã«ã‚ˆã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®GROUPç”Ÿæˆæ™‚ã®é…ç½®æœ€å¤§æ•° / Maximum size of a group of monsters */
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤òÌÜÉ¸ÃÏÅÀ¤Ë½¸ÃÄÀ¸À®¤¹¤ë / Attempt to place a "group" of monsters around the given location
- * @param who ¾¤´­¼ç¤Î¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param y Ãæ¿´À¸À®°ÌÃÖyºÂÉ¸
- * @param x Ãæ¿´À¸À®°ÌÃÖxºÂÉ¸
- * @param r_idx À¸À®¥â¥ó¥¹¥¿¡¼¼ïÂ²
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó
- * @return À®¸ù¤·¤¿¤étrue
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ç›®æ¨™åœ°ç‚¹ã«é›†å›£ç”Ÿæˆã™ã‚‹ / Attempt to place a "group" of monsters around the given location
+ * @param who å¬å–šä¸»ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param y ä¸­å¿ƒç”Ÿæˆä½ç½®yåº§æ¨™
+ * @param x ä¸­å¿ƒç”Ÿæˆä½ç½®xåº§æ¨™
+ * @param r_idx ç”Ÿæˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return æˆåŠŸã—ãŸã‚‰true
  */
-static bool place_monster_group(int who, int y, int x, int r_idx, u32b mode)
+static bool place_monster_group(IDX who, POSITION y, POSITION x, MONRACE_IDX r_idx, BIT_FLAGS mode)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 
@@ -3558,8 +3483,8 @@ static bool place_monster_group(int who, int y, int x, int r_idx, u32b mode)
 
 	int hack_n = 0;
 
-	byte hack_y[GROUP_MAX];
-	byte hack_x[GROUP_MAX];
+	POSITION hack_y[GROUP_MAX];
+	POSITION hack_x[GROUP_MAX];
 
 
 	/* Pick a group size */
@@ -3601,13 +3526,13 @@ static bool place_monster_group(int who, int y, int x, int r_idx, u32b mode)
 	for (n = 0; (n < hack_n) && (hack_n < total); n++)
 	{
 		/* Grab the location */
-		int hx = hack_x[n];
-		int hy = hack_y[n];
+		POSITION hx = hack_x[n];
+		POSITION hy = hack_y[n];
 
 		/* Check each direction, up to total */
 		for (i = 0; (i < 8) && (hack_n < total); i++)
 		{
-			int mx, my;
+			POSITION mx, my;
 
 			scatter(&my, &mx, hy, hx, 4, 0);
 
@@ -3632,24 +3557,24 @@ static bool place_monster_group(int who, int y, int x, int r_idx, u32b mode)
 
 /*!
  * @var place_monster_idx
- * @brief ¸î±ÒÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²ID¤òÅÏ¤¹¥°¥í¡¼¥Ğ¥ëÊÑ¿ô / Hack -- help pick an escort type
- * @todo ´Ø¿ô¥İ¥¤¥ó¥¿¤ÎÅÔ¹ç¤òÇÛÎ¸¤·¤Ê¤¬¤é¡¢¥°¥í¡¼¥Ğ¥ëÊÑ¿ôplace_monster_idx¤ò½üµî¤·¡¢´Ø¿ô°ú¿ô²½¤¹¤ë
+ * @brief è­·è¡›å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—IDã‚’æ¸¡ã™ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° / Hack -- help pick an escort type
+ * @todo é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã®éƒ½åˆã‚’é…æ…®ã—ãªãŒã‚‰ã€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°place_monster_idxã‚’é™¤å»ã—ã€é–¢æ•°å¼•æ•°åŒ–ã™ã‚‹
  */
-static int place_monster_idx = 0;
+static IDX place_monster_idx = 0;
 
 /*!
  * @var place_monster_m_idx
- * @brief ¸î±ÒÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼ID¤òÅÏ¤¹¥°¥í¡¼¥Ğ¥ëÊÑ¿ô / Hack -- help pick an escort type
- * @todo ´Ø¿ô¥İ¥¤¥ó¥¿¤ÎÅÔ¹ç¤òÇÛÎ¸¤·¤Ê¤¬¤é¡¢¥°¥í¡¼¥Ğ¥ëÊÑ¿ôplace_monster_m_idx¤ò½üµî¤·¡¢´Ø¿ô°ú¿ô²½¤¹¤ë
+ * @brief è­·è¡›å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼IDã‚’æ¸¡ã™ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° / Hack -- help pick an escort type
+ * @todo é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ã®éƒ½åˆã‚’é…æ…®ã—ãªãŒã‚‰ã€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°place_monster_m_idxã‚’é™¤å»ã—ã€é–¢æ•°å¼•æ•°åŒ–ã™ã‚‹
  */
-static int place_monster_m_idx = 0;
+static IDX place_monster_m_idx = 0;
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¼ïÂ²¤¬¾¤´­¼ç¤Î¸î±Ò¤È¤Ê¤ì¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯¤¹¤ë / Hack -- help pick an escort type
- * @param r_idx ¥Á¥§¥Ã¥¯¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎID
- * @return ¸î±Ò¤Ë¤Ç¤­¤ë¤Ê¤é¤Ğtrue
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ãŒå¬å–šä¸»ã®è­·è¡›ã¨ãªã‚Œã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ / Hack -- help pick an escort type
+ * @param r_idx ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®ID
+ * @return è­·è¡›ã«ã§ãã‚‹ãªã‚‰ã°true
  */
-static bool place_monster_okay(int r_idx)
+static bool place_monster_can_escort(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[place_monster_idx];
 	monster_type *m_ptr = &m_list[place_monster_m_idx];
@@ -3688,13 +3613,13 @@ static bool place_monster_okay(int r_idx)
 
 
 /*!
- * @brief °ìÈÌÅª¤Ê¥â¥ó¥¹¥¿¡¼À¸À®½èÍı¤Î¥µ¥Ö¥ë¡¼¥Á¥ó / Attempt to place a monster of the given race at the given location
- * @param who ¾¤´­¼ç¤Î¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param y À¸À®ÃÏÅÀyºÂÉ¸
- * @param x À¸À®ÃÏÅÀxºÂÉ¸
- * @param r_idx À¸À®¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î¼ïÂ²ID
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤étrue
+ * @brief ä¸€èˆ¬çš„ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”Ÿæˆå‡¦ç†ã®ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ / Attempt to place a monster of the given race at the given location
+ * @param who å¬å–šä¸»ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param y ç”Ÿæˆåœ°ç‚¹yåº§æ¨™
+ * @param x ç”Ÿæˆåœ°ç‚¹xåº§æ¨™
+ * @param r_idx ç”Ÿæˆã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¨®æ—ID
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰true
  * @details
  * Note that certain monsters are now marked as requiring "friends".
  * These monsters, if successfully placed, and if the "grp" parameter
@@ -3711,7 +3636,7 @@ static bool place_monster_okay(int r_idx)
  * Note the use of the new "monster allocation table" code to restrict
  * the "get_mon_num()" function to "legal" escort types.
  */
-bool place_monster_aux(int who, int y, int x, int r_idx, u32b mode)
+bool place_monster_aux(MONSTER_IDX who, POSITION y, POSITION x, MONRACE_IDX r_idx, BIT_FLAGS mode)
 {
 	int             i, j, n;
 	monster_race    *r_ptr = &r_info[r_idx];
@@ -3734,7 +3659,7 @@ bool place_monster_aux(int who, int y, int x, int r_idx, u32b mode)
 		n = damroll(r_ptr->reinforce_dd[i], r_ptr->reinforce_ds[i]);
 		for(j = 0; j < n; j++)
 		{
-			int nx, ny, d = 7;
+			POSITION nx, ny, d = 7;
 			scatter(&ny, &nx, y, x, d, 0);
 			(void)place_monster_one(place_monster_m_idx, ny, nx, r_ptr->reinforce_id[i], mode);
 		}
@@ -3756,7 +3681,8 @@ bool place_monster_aux(int who, int y, int x, int r_idx, u32b mode)
 		/* Try to place several "escorts" */
 		for (i = 0; i < 32; i++)
 		{
-			int nx, ny, z, d = 3;
+			POSITION nx, ny, d = 3;
+			MONRACE_IDX z; 
 
 			/* Pick a location */
 			scatter(&ny, &nx, y, x, d, 0);
@@ -3765,7 +3691,7 @@ bool place_monster_aux(int who, int y, int x, int r_idx, u32b mode)
 			if (!cave_empty_bold2(ny, nx)) continue;
 
 			/* Prepare allocation table */
-			get_mon_num_prep(place_monster_okay, get_monster_hook2(ny, nx));
+			get_mon_num_prep(place_monster_can_escort, get_monster_hook2(ny, nx));
 
 			/* Pick a random race */
 			z = get_mon_num(r_ptr->level);
@@ -3791,15 +3717,15 @@ bool place_monster_aux(int who, int y, int x, int r_idx, u32b mode)
 }
 
 /*!
- * @brief °ìÈÌÅª¤Ê¥â¥ó¥¹¥¿¡¼À¸À®½èÍı¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó / Attempt to place a monster of the given race at the given location
- * @param y À¸À®ÃÏÅÀyºÂÉ¸
- * @param x À¸À®ÃÏÅÀxºÂÉ¸
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤étrue
+ * @brief ä¸€èˆ¬çš„ãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”Ÿæˆå‡¦ç†ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ / Attempt to place a monster of the given race at the given location
+ * @param y ç”Ÿæˆåœ°ç‚¹yåº§æ¨™
+ * @param x ç”Ÿæˆåœ°ç‚¹xåº§æ¨™
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰true
  */
-bool place_monster(int y, int x, u32b mode)
+bool place_monster(POSITION y, POSITION x, BIT_FLAGS mode)
 {
-	int r_idx;
+	MONRACE_IDX r_idx;
 
 	/* Prepare allocation table */
 	get_mon_num_prep(get_monster_hook(), get_monster_hook2(y, x));
@@ -3821,19 +3747,19 @@ bool place_monster(int y, int x, u32b mode)
 #ifdef MONSTER_HORDES
 
 /*!
- * @brief »ØÄêÃÏÅÀ¤Ë1¼ïÎà¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²¤Ë¤è¤ë·²¤ì¤òÀ¸À®¤¹¤ë
- * @param y À¸À®ÃÏÅÀyºÂÉ¸
- * @param x À¸À®ÃÏÅÀxºÂÉ¸
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤étrue
+ * @brief æŒ‡å®šåœ°ç‚¹ã«1ç¨®é¡ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã«ã‚ˆã‚‹ç¾¤ã‚Œã‚’ç”Ÿæˆã™ã‚‹
+ * @param y ç”Ÿæˆåœ°ç‚¹yåº§æ¨™
+ * @param x ç”Ÿæˆåœ°ç‚¹xåº§æ¨™
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰true
  */
-bool alloc_horde(int y, int x)
+bool alloc_horde(POSITION y, POSITION x)
 {
 	monster_race *r_ptr = NULL;
-	int r_idx = 0;
-	int m_idx;
+	MONRACE_IDX r_idx = 0;
+	MONSTER_IDX m_idx;
 	int attempts = 1000;
-	int cy = y;
-	int cx = x;
+	POSITION cy = y;
+	POSITION cx = x;
 
 	/* Prepare allocation table */
 	get_mon_num_prep(get_monster_hook(), get_monster_hook2(y, x));
@@ -3887,13 +3813,13 @@ bool alloc_horde(int y, int x)
 
 
 /*!
- * @brief ¥À¥ó¥¸¥ç¥ó¤Î¼çÀ¸À®¤ò»î¤ß¤ë / Put the Guardian
- * @param def_val ¸½ºß¤Î¼ç¤ÎÀ¸À®¾õÂÖ
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤étrue
+ * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ä¸»ç”Ÿæˆã‚’è©¦ã¿ã‚‹ / Put the Guardian
+ * @param def_val ç¾åœ¨ã®ä¸»ã®ç”ŸæˆçŠ¶æ…‹
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰true
  */
 bool alloc_guardian(bool def_val)
 {
-	int guardian = d_info[dungeon_type].final_guardian;
+	MONRACE_IDX guardian = d_info[dungeon_type].final_guardian;
 
 	if (guardian && (d_info[dungeon_type].maxdepth == dun_level) && (r_info[guardian].cur_num < r_info[guardian].max_num))
 	{
@@ -3927,16 +3853,16 @@ bool alloc_guardian(bool def_val)
 
 
 /*!
- * @brief ¥À¥ó¥¸¥ç¥ó¤Î½é´üÇÛÃÖ¥â¥ó¥¹¥¿¡¼¤òÀ¸À®1²óÀ¸À®¤¹¤ë / Attempt to allocate a random monster in the dungeon.
- * @param dis ¥×¥ì¥¤¥ä¡¼¤«¤éÎ¥¤ì¤ë¤Ù¤­ºÇÄãµ÷Î¥
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤étrue
+ * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®åˆæœŸé…ç½®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’ç”Ÿæˆ1å›ç”Ÿæˆã™ã‚‹ / Attempt to allocate a random monster in the dungeon.
+ * @param dis ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰é›¢ã‚Œã‚‹ã¹ãæœ€ä½è·é›¢
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰true
  * @details
  * Place the monster at least "dis" distance from the player.
  * Use "slp" to choose the initial "sleep" status
  * Use "monster_level" for the monster level
  */
-bool alloc_monster(int dis, u32b mode)
+bool alloc_monster(int dis, BIT_FLAGS mode)
 {
 	int			y = 0, x = 0;
 	int         attempts_left = 10000;
@@ -3969,7 +3895,7 @@ bool alloc_monster(int dis, u32b mode)
 	{
 		if (cheat_xtra || cheat_hear)
 		{
-			msg_print(_("·Ù¹ğ¡ª¿·¤¿¤Ê¥â¥ó¥¹¥¿¡¼¤òÇÛÃÖ¤Ç¤­¤Ş¤»¤ó¡£¾®¤µ¤¤³¬¤Ç¤¹¤«¡©", "Warning! Could not allocate a new monster. Small level?"));
+			msg_print(_("è­¦å‘Šï¼æ–°ãŸãªãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’é…ç½®ã§ãã¾ã›ã‚“ã€‚å°ã•ã„éšã§ã™ã‹ï¼Ÿ", "Warning! Could not allocate a new monster. Small level?"));
 		}
 
 		return (FALSE);
@@ -3981,7 +3907,7 @@ bool alloc_monster(int dis, u32b mode)
 	{
 		if (alloc_horde(y, x))
 		{
-			if (cheat_hear) msg_format(_("¥â¥ó¥¹¥¿¡¼¤ÎÂç·²(%c)", "Monster horde (%c)."), summon_kin_type);
+			if (cheat_hear) msg_format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å¤§ç¾¤(%c)", "Monster horde (%c)."), summon_kin_type);
 			return (TRUE);
 		}
 	}
@@ -4002,11 +3928,11 @@ bool alloc_monster(int dis, u32b mode)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬¾¤´­¤Î´ğËÜ¾ò·ï¤Ë¹ç¤Ã¤Æ¤¤¤ë¤«¤ò¥Á¥§¥Ã¥¯¤¹¤ë / Hack -- help decide if a monster race is "okay" to summon
- * @param r_idx ¥Á¥§¥Ã¥¯¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @return ¾¤´­ÂĞ¾İ¤Ë¤Ç¤­¤ë¤Ê¤é¤ĞTRUE
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒå¬å–šã®åŸºæœ¬æ¡ä»¶ã«åˆã£ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ / Hack -- help decide if a monster race is "okay" to summon
+ * @param r_idx ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @return å¬å–šå¯¾è±¡ã«ã§ãã‚‹ãªã‚‰ã°TRUE
  */
-static bool summon_specific_okay(int r_idx)
+static bool summon_specific_okay(MONRACE_IDX r_idx)
 {
 	monster_race *r_ptr = &r_info[r_idx];
 
@@ -4033,10 +3959,10 @@ static bool summon_specific_okay(int r_idx)
 		}
 	}
 
+	if (!summon_unique_okay && ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_NAZGUL))) return FALSE;
+
 	/* Hack -- no specific type specified */
 	if (!summon_specific_type) return (TRUE);
-
-	if (!summon_unique_okay && ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_NAZGUL))) return FALSE;
 
 	if ((summon_specific_who < 0) &&
 	    ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_NAZGUL)) &&
@@ -4050,14 +3976,14 @@ static bool summon_specific_okay(int r_idx)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ò¾¤´­¤Ë¤è¤êÇÛÃÖ¤¹¤ë / Place a monster (of the specified "type") near the given location. Return TRUE if a monster was actually summoned.
- * @param who ¾¤´­¼ç¤Î¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param y1 ÌÜÉ¸ÃÏÅÀyºÂÉ¸
- * @param x1 ÌÜÉ¸ÃÏÅÀxºÂÉ¸
- * @param lev ÁêÅöÀ¸À®³¬
- * @param type ¾¤´­¼ïÊÌ
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó 
- * @return ¾¤´­¤Ç¤­¤¿¤étrue¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¬å–šã«ã‚ˆã‚Šé…ç½®ã™ã‚‹ / Place a monster (of the specified "type") near the given location. Return TRUE if a monster was actually summoned.
+ * @param who å¬å–šä¸»ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param y1 ç›®æ¨™åœ°ç‚¹yåº§æ¨™
+ * @param x1 ç›®æ¨™åœ°ç‚¹xåº§æ¨™
+ * @param lev ç›¸å½“ç”Ÿæˆéš
+ * @param type å¬å–šç¨®åˆ¥
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ 
+ * @return å¬å–šã§ããŸã‚‰trueã‚’è¿”ã™
  * @details
  *
  * We will attempt to place the monster up to 10 times before giving up.
@@ -4080,9 +4006,10 @@ static bool summon_specific_okay(int r_idx)
  *
  * Note that this function may not succeed, though this is very rare.
  */
-bool summon_specific(int who, int y1, int x1, int lev, int type, u32b mode)
+bool summon_specific(MONSTER_IDX who, POSITION y1, POSITION x1, DEPTH lev, int type, BIT_FLAGS mode)
 {
-	int x, y, r_idx;
+	POSITION x, y;
+	MONRACE_IDX r_idx;
 
 	if (p_ptr->inside_arena) return (FALSE);
 
@@ -4100,13 +4027,7 @@ bool summon_specific(int who, int y1, int x1, int lev, int type, u32b mode)
 	get_mon_num_prep(summon_specific_okay, get_monster_hook2(y, x));
 
 	/* Pick a monster, using the level calculation */
-
-	/*
 	r_idx = get_mon_num((dun_level + lev) / 2 + 5);
-	*/
-	
-	r_idx = get_mon_num( dun_level + 1 ); /* #tang ¾¤´­¥ì¥Ù¥ëÄ´À°*/
-
 
 	/* Handle failure */
 	if (!r_idx)
@@ -4126,22 +4047,23 @@ bool summon_specific(int who, int y1, int x1, int lev, int type, u32b mode)
 
 	summon_specific_type = 0;
 	/* Success */
+	sound(SOUND_SUMMON);
 	return (TRUE);
 }
 
 
 /*!
- * @brief ÆÃÄê¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ò¾¤´­¤Ë¤è¤êÀ¸À®¤¹¤ë / A "dangerous" function, creates a pet of the specified type
- * @param who ¾¤´­¼ç¤Î¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param oy ÌÜÉ¸ÃÏÅÀyºÂÉ¸
- * @param ox ÌÜÉ¸ÃÏÅÀxºÂÉ¸
- * @param r_idx À¸À®¤¹¤ë¥â¥ó¥¹¥¿¡¼¼ïÂ²ID
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó 
- * @return ¾¤´­¤Ç¤­¤¿¤étrue¤òÊÖ¤¹
+ * @brief ç‰¹å®šãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã‚’å¬å–šã«ã‚ˆã‚Šç”Ÿæˆã™ã‚‹ / A "dangerous" function, creates a pet of the specified type
+ * @param who å¬å–šä¸»ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param oy ç›®æ¨™åœ°ç‚¹yåº§æ¨™
+ * @param ox ç›®æ¨™åœ°ç‚¹xåº§æ¨™
+ * @param r_idx ç”Ÿæˆã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ 
+ * @return å¬å–šã§ããŸã‚‰trueã‚’è¿”ã™
  */
-bool summon_named_creature (int who, int oy, int ox, int r_idx, u32b mode)
+bool summon_named_creature (MONSTER_IDX who, POSITION oy, POSITION ox, MONRACE_IDX r_idx, BIT_FLAGS mode)
 {
-	int x, y;
+	POSITION x, y;
 
 	/* Paranoia */
 	/* if (!r_idx) return; */
@@ -4159,19 +4081,19 @@ bool summon_named_creature (int who, int oy, int ox, int r_idx, u32b mode)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤òÁı¿£À¸À®¤¹¤ë / Let the given monster attempt to reproduce.
- * @param m_idx Áı¿£¤¹¤ë¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param clone ¥¯¥í¡¼¥ó¡¦¥â¥ó¥¹¥¿¡¼½èÍı¤Ê¤é¤Ğtrue
- * @param mode À¸À®¥ª¥×¥·¥ç¥ó 
- * @return À¸À®¤Ç¤­¤¿¤étrue¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’å¢—æ®–ç”Ÿæˆã™ã‚‹ / Let the given monster attempt to reproduce.
+ * @param m_idx å¢—æ®–ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param clone ã‚¯ãƒ­ãƒ¼ãƒ³ãƒ»ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‡¦ç†ãªã‚‰ã°true
+ * @param mode ç”Ÿæˆã‚ªãƒ—ã‚·ãƒ§ãƒ³ 
+ * @return ç”Ÿæˆã§ããŸã‚‰trueã‚’è¿”ã™
  * @details
  * Note that "reproduction" REQUIRES empty space.
  */
-bool multiply_monster(int m_idx, bool clone, u32b mode)
+bool multiply_monster(MONSTER_IDX m_idx, bool clone, BIT_FLAGS mode)
 {
 	monster_type	*m_ptr = &m_list[m_idx];
 
-	int y, x;
+	POSITION y, x;
 
 	if (!mon_scatter(m_ptr->r_idx, &y, &x, m_ptr->fy, m_ptr->fx, 1))
 		return FALSE;
@@ -4195,14 +4117,14 @@ bool multiply_monster(int m_idx, bool clone, u32b mode)
 
 
 /*!
- * @brief ¥À¥á¡¼¥¸¤ò¼õ¤±¤¿¥â¥ó¥¹¥¿¡¼¤ÎÍÍ»Ò¤òµ­½Ò¤¹¤ë / Dump a message describing a monster's reaction to damage
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param dam Í¿¤¨¤¿¥À¥á¡¼¥¸
- * @return ¤Ê¤·
+ * @brief ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ§˜å­ã‚’è¨˜è¿°ã™ã‚‹ / Dump a message describing a monster's reaction to damage
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param dam ä¸ãˆãŸãƒ€ãƒ¡ãƒ¼ã‚¸
+ * @return ãªã—
  * @details
  * Technically should attempt to treat "Beholder"'s as jelly's
  */
-void message_pain(int m_idx, int dam)
+void message_pain(MONSTER_IDX m_idx, HIT_POINT dam)
 {
 	long oldhp, newhp, tmp;
 	int percentage;
@@ -4217,7 +4139,7 @@ void message_pain(int m_idx, int dam)
 
 	if(dam == 0) // Notice non-damage
 	{
-		msg_format(_("%^s¤Ï¥À¥á¡¼¥¸¤ò¼õ¤±¤Æ¤¤¤Ê¤¤¡£", "%^s is unharmed."), m_name);
+		msg_format(_("%^sã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã¦ã„ãªã„ã€‚", "%^s is unharmed."), m_name);
 		return;
 	}
 
@@ -4230,13 +4152,13 @@ void message_pain(int m_idx, int dam)
 	if(my_strchr(",ejmvwQ", r_ptr->d_char)) // Mushrooms, Eyes, Jellies, Molds, Vortices, Worms, Quylthulgs
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¤Û¤È¤ó¤Éµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤Ï¤·¤ê¹ş¤ß¤·¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤Ï½Ì¤³¤Ş¤Ã¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤Ë¿Ì¤¨¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¿È¤â¤À¤¨¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ç¿È¤â¤À¤¨¤·¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¤°¤Ë¤ã¤°¤Ë¤ã¤ÈáÛÚ»¤·¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯ã»ã¨ã‚“ã©æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ã—ã‚Šè¾¼ã¿ã—ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ç¸®ã“ã¾ã£ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã«éœ‡ãˆãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯èº«ã‚‚ã ãˆã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§èº«ã‚‚ã ãˆã—ãŸã€‚", m_name);
+		else msg_format("%^sã¯ãã«ã‚ƒãã«ã‚ƒã¨ç—™æ”£ã—ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s barely notices.", m_name);
 		else if(percentage > 75) msg_format("%^s flinches.", m_name);
@@ -4251,13 +4173,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("l", r_ptr->d_char)) // Fish
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¤Û¤È¤ó¤Éµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤Ï¤·¤ê¹ş¤ß¤·¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤Ïí´í°¤·¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤Ë¿Ì¤¨¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¿È¤â¤À¤¨¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ç¿È¤â¤À¤¨¤·¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¤°¤Ë¤ã¤°¤Ë¤ã¤ÈáÛÚ»¤·¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯ã»ã¨ã‚“ã©æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ã—ã‚Šè¾¼ã¿ã—ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯èºŠèº‡ã—ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã«éœ‡ãˆãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯èº«ã‚‚ã ãˆã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§èº«ã‚‚ã ãˆã—ãŸã€‚", m_name);
+		else msg_format("%^sã¯ãã«ã‚ƒãã«ã‚ƒã¨ç—™æ”£ã—ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s barely notices.", m_name);
 		else if(percentage > 75) msg_format("%^s flinches.", m_name);
@@ -4272,13 +4194,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("g#+<>", r_ptr->d_char)) // Golems, Walls, Doors, Stairs
 	{	
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÍëÌÄ¤Î¤è¤¦¤ËËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤Ï¶ì¤·¤²¤ËËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¤¦¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ïí´í°¤·¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¤¯¤·¤ã¤¯¤·¤ã¤Ë¤Ê¤Ã¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯é›·é³´ã®ã‚ˆã†ã«å ãˆãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯è‹¦ã—ã’ã«å ãˆãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯ã†ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯èºŠèº‡ã—ãŸã€‚", m_name);
+		else msg_format("%^sã¯ãã—ã‚ƒãã—ã‚ƒã«ãªã£ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s shrugs off the attack.", m_name);
@@ -4293,13 +4215,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("JMR", r_ptr->d_char) || !isalpha(r_ptr->d_char)) // Snakes, Hydrae, Reptiles, Mimics
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¤Û¤È¤ó¤Éµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤Ï¥·¡¼¥Ã¤ÈÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÅÜ¤Ã¤ÆÆ¬¤ò¾å¤²¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÌÔÁ³¤È°Ò³Å¤·¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¿È¤â¤À¤¨¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ç¿È¤â¤À¤¨¤·¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¤°¤Ë¤ã¤°¤Ë¤ã¤ÈáÛÚ»¤·¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯ã»ã¨ã‚“ã©æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ã‚·ãƒ¼ãƒƒã¨é³´ã„ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯æ€’ã£ã¦é ­ã‚’ä¸Šã’ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯çŒ›ç„¶ã¨å¨åš‡ã—ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯èº«ã‚‚ã ãˆã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§èº«ã‚‚ã ãˆã—ãŸã€‚", m_name);
+		else msg_format("%^sã¯ãã«ã‚ƒãã«ã‚ƒã¨ç—™æ”£ã—ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s barely notices.", m_name);
 		else if(percentage > 75) msg_format("%^s hisses.", m_name);
@@ -4314,13 +4236,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("f", r_ptr->d_char))
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤ÏËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÅÜ¤Ã¤ÆËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤Ç¥·¡¼¥Ã¤ÈÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤ÏÄË¤ß¤Ç¼å¡¹¤·¤¯ÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ë¤¦¤á¤¤¤¿¡£", m_name);
-		else msg_format("%s¤Ï°¥¤ì¤ÊÌÄ¤­À¼¤ò½Ğ¤·¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯å ãˆãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯æ€’ã£ã¦å ãˆãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã§ã‚·ãƒ¼ãƒƒã¨é³´ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯ç—›ã¿ã§å¼±ã€…ã—ãé³´ã„ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã«ã†ã‚ã„ãŸã€‚", m_name);
+		else msg_format("%sã¯å“€ã‚Œãªé³´ãå£°ã‚’å‡ºã—ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s shrugs off the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s roars.", m_name);
@@ -4335,13 +4257,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("acFIKS", r_ptr->d_char)) // Ants, Centipedes, Flies, Insects, Beetles, Spiders
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤Ï¥­¡¼¥­¡¼ÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤Ï¥è¥í¥è¥íÆ¨¤²²ó¤Ã¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤Ï¤¦¤ë¤µ¤¯ÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤ÏÄË¤ß¤ËáÛÚ»¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤ÇáÛÚ»¤·¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¥Ô¥¯¥Ô¥¯¤Ò¤­¤Ä¤Ã¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ã‚­ãƒ¼ã‚­ãƒ¼é³´ã„ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ãƒ¨ãƒ­ãƒ¨ãƒ­é€ƒã’å›ã£ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ã†ã‚‹ã•ãé³´ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯ç—›ã¿ã«ç—™æ”£ã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§ç—™æ”£ã—ãŸã€‚", m_name);
+		else msg_format("%^sã¯ãƒ”ã‚¯ãƒ”ã‚¯ã²ãã¤ã£ãŸã€‚", m_name);
 #else
 		if(percentage > 95)	msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s chitters.", m_name);
@@ -4356,13 +4278,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("B", r_ptr->d_char)) // Birds
 	{		
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¤µ¤¨¤º¤Ã¤¿¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤Ï¥Ô¡¼¥Ô¡¼ÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤Ï¥®¥ã¡¼¥®¥ã¡¼ÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤Ï¥®¥ã¡¼¥®¥ã¡¼ÌÄ¤­¤ï¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¶ì¤·¤ó¤À¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¤Î¤¿¤¦¤Á²ó¤Ã¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¥­¡¼¥­¡¼¤ÈÌÄ¤­¶«¤ó¤À¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯ã•ãˆãšã£ãŸã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ãƒ”ãƒ¼ãƒ”ãƒ¼é³´ã„ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ã‚®ãƒ£ãƒ¼ã‚®ãƒ£ãƒ¼é³´ã„ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ã‚®ãƒ£ãƒ¼ã‚®ãƒ£ãƒ¼é³´ãã‚ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯è‹¦ã—ã‚“ã ã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯ã®ãŸã†ã¡å›ã£ãŸã€‚", m_name);
+		else msg_format("%^sã¯ã‚­ãƒ¼ã‚­ãƒ¼ã¨é³´ãå«ã‚“ã ã€‚", m_name);
 #else
 		if(percentage > 95)	msg_format("%^s chirps.", m_name);
 		else if(percentage > 75) msg_format("%^s twitters.", m_name);
@@ -4377,13 +4299,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("duDLUW", r_ptr->d_char)) // Dragons, Demons, High Undead
 	{	
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤Ï¤·¤ê¹ş¤ß¤·¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÄË¤ß¤Ç¥·¡¼¥Ã¤ÈÌÄ¤¤¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤Ç¤¦¤Ê¤Ã¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤ÏÄË¤ß¤ËËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ì¤·¤²¤Ë¶«¤ó¤À¡£", m_name);
-		else msg_format("%^s¤Ï¼å¡¹¤·¤¯¤¦¤Ê¤Ã¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ã—ã‚Šè¾¼ã¿ã—ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ç—›ã¿ã§ã‚·ãƒ¼ãƒƒã¨é³´ã„ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã§ã†ãªã£ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯ç—›ã¿ã«å ãˆãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ã—ã’ã«å«ã‚“ã ã€‚", m_name);
+		else msg_format("%^sã¯å¼±ã€…ã—ãã†ãªã£ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s flinches.", m_name);
@@ -4398,13 +4320,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("s", r_ptr->d_char)) // Skeletons
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤Ï¥«¥¿¥«¥¿¤È¾Ğ¤Ã¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤Ï¤è¤í¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¥«¥¿¥«¥¿¸À¤Ã¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¤è¤í¤á¤¤¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¥¬¥¿¥¬¥¿¸À¤Ã¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ã‚«ã‚¿ã‚«ã‚¿ã¨ç¬‘ã£ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ã‚ˆã‚ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯ã‚«ã‚¿ã‚«ã‚¿è¨€ã£ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯ã‚ˆã‚ã‚ã„ãŸã€‚", m_name);
+		else msg_format("%^sã¯ã‚¬ã‚¿ã‚¬ã‚¿è¨€ã£ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s shrugs off the attack.", m_name);
@@ -4419,13 +4341,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("z", r_ptr->d_char)) // Zombies
 	{		
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤Ï¤¦¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%s¤Ï¶ì¤·¤²¤Ë¤¦¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ïí´í°¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¤¦¤Ê¤Ã¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¤è¤í¤á¤¤¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ã†ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%sã¯è‹¦ã—ã’ã«ã†ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯èºŠèº‡ã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯ã†ãªã£ãŸã€‚", m_name);
+		else msg_format("%^sã¯ã‚ˆã‚ã‚ã„ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s shrugs off the attack.", m_name);
@@ -4440,13 +4362,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("G", r_ptr->d_char)) // Ghosts
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%s¤Ï¤¦¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤Ïµã¤­¤ï¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤ÏËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%s¤Ï¼å¡¹¤·¤¯¤¦¤á¤¤¤¿¡£", m_name);
-		else msg_format("%^s¤Ï¤«¤¹¤«¤Ë¤¦¤á¤¤¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%sã¯ã†ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯æ³£ãã‚ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯å ãˆãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%sã¯å¼±ã€…ã—ãã†ã‚ã„ãŸã€‚", m_name);
+		else msg_format("%^sã¯ã‹ã™ã‹ã«ã†ã‚ã„ãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s shrugs off the attack.", m_name);
@@ -4461,13 +4383,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("CZ", r_ptr->d_char)) // Dogs and Hounds
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤ÏÄË¤ß¤Ç¤¦¤Ê¤Ã¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÄË¤ß¤Ç¥­¥ã¥ó¥­¥ã¥óËÊ¤¨¤¿¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤ÇÌÄ¤­¤ï¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¶ìÄË¤Î¤¢¤Ş¤êÌÄ¤­¤ï¤á¤¤¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ç¤â¤À¤¨¶ì¤·¤ó¤À¡£", m_name);
-		else msg_format("%^s¤Ï¼å¡¹¤·¤¯ËÊ¤¨¤¿¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ç—›ã¿ã§ã†ãªã£ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ç—›ã¿ã§ã‚­ãƒ£ãƒ³ã‚­ãƒ£ãƒ³å ãˆãŸã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã§é³´ãã‚ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯è‹¦ç—›ã®ã‚ã¾ã‚Šé³´ãã‚ã‚ã„ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§ã‚‚ã ãˆè‹¦ã—ã‚“ã ã€‚", m_name);
+		else msg_format("%^sã¯å¼±ã€…ã—ãå ãˆãŸã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s shrugs off the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s snarls with pain.", m_name);
@@ -4482,13 +4404,13 @@ void message_pain(int m_idx, int dam)
 	else if(my_strchr("Xbilqrt", r_ptr->d_char)) // One type of creatures (ignore,squeal,shriek)
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¹¶·â¤òµ¤¤Ë¤È¤á¤Æ¤¤¤Ê¤¤¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤ÏÄË¤ß¤Ç¤¦¤Ê¤Ã¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÄË¤ß¤Ç¶«¤ó¤À¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤ÇÀä¶«¤·¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¶ìÄË¤Î¤¢¤Ş¤êÀä¶«¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ç¤â¤À¤¨¶ì¤·¤ó¤À¡£", m_name);
-		else msg_format("%^s¤Ï¼å¡¹¤·¤¯¶«¤ó¤À¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯æ”»æ’ƒã‚’æ°—ã«ã¨ã‚ã¦ã„ãªã„ã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ç—›ã¿ã§ã†ãªã£ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ç—›ã¿ã§å«ã‚“ã ã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã§çµ¶å«ã—ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯è‹¦ç—›ã®ã‚ã¾ã‚Šçµ¶å«ã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§ã‚‚ã ãˆè‹¦ã—ã‚“ã ã€‚", m_name);
+		else msg_format("%^sã¯å¼±ã€…ã—ãå«ã‚“ã ã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s ignores the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s grunts with pain.", m_name);
@@ -4503,13 +4425,13 @@ void message_pain(int m_idx, int dam)
 	else // Another type of creatures (shrug,cry,scream)
 	{
 #ifdef JP
-		if(percentage > 95) msg_format("%^s¤Ï¹¶·â¤Ë¸ª¤ò¤¹¤¯¤á¤¿¡£", m_name);
-		else if(percentage > 75) msg_format("%^s¤ÏÄË¤ß¤Ç¤¦¤Ê¤Ã¤¿¡£", m_name);
-		else if(percentage > 50) msg_format("%^s¤ÏÄË¤ß¤Ç¶«¤ó¤À¡£", m_name);
-		else if(percentage > 35) msg_format("%^s¤ÏÄË¤ß¤ÇÀä¶«¤·¤¿¡£", m_name);
-		else if(percentage > 20) msg_format("%^s¤Ï¶ìÄË¤Î¤¢¤Ş¤êÀä¶«¤·¤¿¡£", m_name);
-		else if(percentage > 10) msg_format("%^s¤Ï¶ìÄË¤Ç¤â¤À¤¨¶ì¤·¤ó¤À¡£", m_name);
-		else msg_format("%^s¤Ï¼å¡¹¤·¤¯¶«¤ó¤À¡£", m_name);
+		if(percentage > 95) msg_format("%^sã¯æ”»æ’ƒã«è‚©ã‚’ã™ãã‚ãŸã€‚", m_name);
+		else if(percentage > 75) msg_format("%^sã¯ç—›ã¿ã§ã†ãªã£ãŸã€‚", m_name);
+		else if(percentage > 50) msg_format("%^sã¯ç—›ã¿ã§å«ã‚“ã ã€‚", m_name);
+		else if(percentage > 35) msg_format("%^sã¯ç—›ã¿ã§çµ¶å«ã—ãŸã€‚", m_name);
+		else if(percentage > 20) msg_format("%^sã¯è‹¦ç—›ã®ã‚ã¾ã‚Šçµ¶å«ã—ãŸã€‚", m_name);
+		else if(percentage > 10) msg_format("%^sã¯è‹¦ç—›ã§ã‚‚ã ãˆè‹¦ã—ã‚“ã ã€‚", m_name);
+		else msg_format("%^sã¯å¼±ã€…ã—ãå«ã‚“ã ã€‚", m_name);
 #else
 		if(percentage > 95) msg_format("%^s shrugs off the attack.", m_name);
 		else if(percentage > 75) msg_format("%^s grunts with pain.", m_name);
@@ -4525,12 +4447,12 @@ void message_pain(int m_idx, int dam)
 
 
 /*!
- * @brief SMART(Å¬³Ê¤Ë¹¶·â¤ò¹Ô¤¦)¥â¥ó¥¹¥¿¡¼¤Î³Ø½¬¾õ¶·¤ò¹¹¿·¤¹¤ë / Learn about an "observed" resistance.
- * @param m_idx ¹¹¿·¤ò¹Ô¤¦¡Ö¥â¥ó¥¹¥¿¡¼¾ğÊóID
- * @param what ³Ø½¬ÂĞ¾İID
- * @return ¤Ê¤·
+ * @brief SMART(é©æ ¼ã«æ”»æ’ƒã‚’è¡Œã†)ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å­¦ç¿’çŠ¶æ³ã‚’æ›´æ–°ã™ã‚‹ / Learn about an "observed" resistance.
+ * @param m_idx æ›´æ–°ã‚’è¡Œã†ã€Œãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼æƒ…å ±ID
+ * @param what å­¦ç¿’å¯¾è±¡ID
+ * @return ãªã—
  */
-void update_smart_learn(int m_idx, int what)
+void update_smart_learn(MONSTER_IDX m_idx, int what)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 
@@ -4642,12 +4564,12 @@ void update_smart_learn(int m_idx, int what)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤ò»ØÄêºÂÉ¸¤ËÇÛÃÖ¤¹¤ë / Place the player in the dungeon XXX XXX
- * @param x ÇÛÃÖÀèXºÂÉ¸
- * @param y ÇÛÃÖÀèYºÂÉ¸
- * @return ÇÛÃÖ¤ËÀ®¸ù¤·¤¿¤éTRUE
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’æŒ‡å®šåº§æ¨™ã«é…ç½®ã™ã‚‹ / Place the player in the dungeon XXX XXX
+ * @param x é…ç½®å…ˆXåº§æ¨™
+ * @param y é…ç½®å…ˆYåº§æ¨™
+ * @return é…ç½®ã«æˆåŠŸã—ãŸã‚‰TRUE
  */
-bool player_place(int y, int x)
+bool player_place(POSITION y, POSITION x)
 {
 	/* Paranoia XXX XXX */
 	if (cave[y][x].m_idx != 0) return FALSE;
@@ -4662,9 +4584,9 @@ bool player_place(int y, int x)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬Åğ¤ß¤ä½¦¤¤¤Ç³ÎÊİ¤·¤Æ¤¤¤¿¥¢¥¤¥Æ¥à¤òÁ´¤Æ¥É¥í¥Ã¥×¤µ¤»¤ë / Drop all items carried by a monster
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒç›—ã¿ã‚„æ‹¾ã„ã§ç¢ºä¿ã—ã¦ã„ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¨ã¦ãƒ‰ãƒ­ãƒƒãƒ—ã•ã›ã‚‹ / Drop all items carried by a monster
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void monster_drop_carried_objects(monster_type *m_ptr)
 {

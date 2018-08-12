@@ -7,8 +7,8 @@ Q:$10:N:Node of Sorcery
 Q:10:N:仙術エネルギー特異点
 
 # Definition
-Q:$10:Q:6:0:0:0:16:0:0:0:6
-Q:10:Q:6:0:0:0:16:0:0:0:6
+Q:$10:Q:6:0:0:0:65:0:0:0:6
+Q:10:Q:6:0:0:0:65:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST10 2]

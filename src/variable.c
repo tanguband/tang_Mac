@@ -1,6 +1,6 @@
-/*!
+﻿/*!
  * @file variable.c
- * @brief �������Х��ѿ���� / Angband variables
+ * @brief グローバル変数定義 / Angband variables
  * @date 2014/10/05
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke<br>
@@ -13,7 +13,7 @@
 #include "angband.h"
 
 /*!
- * ���ԡ��饤�Ⱦ��� /
+ * コピーライト情報 /
  * Hack -- Link a copyright message into the executable
  */
 const cptr copyright[5] =
@@ -26,22 +26,22 @@ const cptr copyright[5] =
 };
 
 
-int max_macrotrigger = 0; /*!< ������Ͽ��Υޥ���(�ȥꥬ��)�ο� */
-cptr macro_template = NULL; /*!< Angband����ե������T: �������󤫤��ɤ߹����Ĺ��T�����ɤ�������뤿������Ѥ���ʸ����ݥ��� */
-cptr macro_modifier_chr; /*!< &x# �ǻ��ꤵ���ޥ����ȥꥬ���˴ؤ�������Ͽ����ʸ����ݥ��� */
-cptr macro_modifier_name[MAX_MACRO_MOD]; /*!< �ޥ�����Ǽ�갷���ü쥭����ʸ������ɽ�����뤿��Υե����ޥåȤ�Ͽ����ʸ����ݥ������� */
-cptr macro_trigger_name[MAX_MACRO_TRIG]; /*!< �ޥ����Υȥꥬ�������� */
-cptr macro_trigger_keycode[2][MAX_MACRO_TRIG];  /*!< �ޥ��������� */
+int max_macrotrigger = 0; /*!< 現在登録中のマクロ(トリガー)の数 */
+cptr macro_template = NULL; /*!< Angband設定ファイルのT: タグ情報から読み込んだ長いTコードを処理するために利用する文字列ポインタ */
+cptr macro_modifier_chr; /*!< &x# で指定されるマクロトリガーに関する情報を記録する文字列ポインタ */
+cptr macro_modifier_name[MAX_MACRO_MOD]; /*!< マクロ上で取り扱う特殊キーを文字列上で表現するためのフォーマットを記録した文字列ポインタ配列 */
+cptr macro_trigger_name[MAX_MACRO_TRIG]; /*!< マクロのトリガーコード */
+cptr macro_trigger_keycode[2][MAX_MACRO_TRIG];  /*!< マクロの内容 */
 
-int level_up = 0; /*!< ��٥륢�åפκݤ��ٱ䤷��calc_mana()�ؿ���Ǿ徺�̤�ɽ�����뤫�ɤ�����Ƚ��ե饰 */
+int level_up = 0; /*!< レベルアップの際に遅延してcalc_mana()関数上で上昇量を表示するかどうかの判定フラグ */
 
 
 /* 
- * ��ư����/�˲�����Υꥹ�Ȥ˴ؤ����ѿ� / List for auto-picker/destroyer entries
+ * 自動拾い/破壊設定のリストに関する変数 / List for auto-picker/destroyer entries
  */
-int max_autopick = 0; /*!< ������Ͽ���Ƥ��뼫ư����/�˲�����ο� */
-int max_max_autopick = 0; /*!< ��ư����/�˲�����θ³��� */
-autopick_type *autopick_list = NULL; /*!< ��ư����/�˲����깽¤�ΤΥݥ������� */
+int max_autopick = 0; /*!< 現在登録している自動拾い/破壊設定の数 */
+int max_max_autopick = 0; /*!< 自動拾い/破壊設定の限界数 */
+autopick_type *autopick_list = NULL; /*!< 自動拾い/破壊設定構造体のポインタ配列 */
 
 /*
  * Savefile version
@@ -96,36 +96,39 @@ u32b seed_town;			/* Hack -- consistent town layout */
 
 s16b command_cmd;		/* Current "Angband Command" */
 
-s16b command_arg;		/* Gives argument of current command */
-s16b command_rep;		/* Gives repetition of current command */
-s16b command_dir;		/* Gives direction of current command */
+COMMAND_ARG command_arg;	/*!< 各種コマンドの汎用的な引数として扱う / Gives argument of current command */
+
+COMMAND_NUM command_rep;	/*!< 各種コマンドの汎用的なリピート数として扱う / Gives repetition of current command */
+
+DIRECTION command_dir;		/*!< 各種コマンドの汎用的な方向値処理として扱う/ Gives direction of current command */
 
 s16b command_see;		/* See "object1.c" */
 s16b command_wrk;		/* See "object1.c" */
 
-s16b command_gap = 999;         /* See "object1.c" */
+TERM_POSITION command_gap = 999;         /* See "object1.c" */
 
 s16b command_new;		/* Command chaining from inven/equip view */
 
 bool msg_flag;			/* Used in msg_print() for "buffering" */
 
 s16b running;			/* Current counter for running, if any */
-s16b resting;			/* Current counter for resting, if any */
+GAME_TURN resting;			/* Current counter for resting, if any */
 
-s16b cur_hgt;			/* Current dungeon height */
-s16b cur_wid;			/* Current dungeon width */
-s16b dun_level;			/* Current dungeon level */
+POSITION cur_hgt;		/* Current dungeon height */
+POSITION cur_wid;		/* Current dungeon width */
+DEPTH dun_level;		/*!< 現在の実ダンジョン階層、base_levelの参照元となる / Current dungeon level */
 s16b num_repro;			/* Current reproducer count */
-s16b object_level;		/* Current object creation level */
-s16b monster_level;		/* Current monster creation level */
-s16b base_level;        /* Base dungeon level */
+DEPTH base_level;		/*!< 基本生成レベル、後述のobject_level, monster_levelの参照元となる / Base dungeon level */
+DEPTH object_level;		/*!< アイテムの生成レベル、base_levelを起点に一時変更する時に参照 / Current object creation level */
+DEPTH monster_level;	/*!< モンスターの生成レベル、base_levelを起点に一時変更する時に参照 / Current monster creation level */
+bool invoking_midnight_curse; /*!< 悪夢モード時の真夜中太古の呪い発生処理フラグ */
 
-s32b turn;				/* Current game turn */
-s32b turn_limit;		/* Limit of game turn */
-s32b dungeon_turn;			/* Game turn in dungeon */
-s32b dungeon_turn_limit;	/* Limit of game turn in dungeon */
-s32b old_turn;			/* Turn when level began */
-s32b old_battle;
+GAME_TURN turn;				/*!< 画面表示上のゲーム時間基準となるターン / Current game turn */
+GAME_TURN turn_limit;		/*!< turnの最大値 / Limit of game turn */
+GAME_TURN dungeon_turn;			/*!< NASTY生成の計算に関わる内部ターン値 / Game turn in dungeon */
+GAME_TURN dungeon_turn_limit;	/*!< dungeon_turnの最大値 / Limit of game turn in dungeon */
+GAME_TURN old_turn;			/* Turn when level began */
+GAME_TURN old_battle;
 
 bool use_sound;			/* The "sound" mode is enabled */
 bool use_music;			/* The "music" mode is enabled */
@@ -140,7 +143,7 @@ bool inkey_scan;		/* See the "inkey()" function */
 bool inkey_flag;		/* See the "inkey()" function */
 bool get_com_no_macros = FALSE;	/* Expand macros in "get_com" or not */
 
-s16b coin_type;			/* Hack -- force coin type */
+OBJECT_SUBTYPE_VALUE coin_type;	/* Hack -- force coin type */
 
 bool opening_chest;		/* Hack -- prevent chest generation */
 
@@ -150,8 +153,7 @@ bool shimmer_objects;	/* Hack -- optimize multi-hued objects */
 bool repair_monsters;	/* Hack -- optimize detect monsters */
 bool repair_objects;	/* Hack -- optimize detect objects */
 
-s16b inven_nxt;			/* Hack -- unused */
-bool hack_mind;
+bool is_loading_now;	/*!< ロード直後にcalc_bonus()時の徳変化、及びsanity_blast()による異常を抑止する */
 bool hack_mutation;
 
 s16b inven_cnt;			/* Number of items in inventory */
@@ -160,11 +162,11 @@ s16b equip_cnt;			/* Number of items in equipment */
 s16b o_max = 1;			/* Number of allocated objects */
 s16b o_cnt = 0;			/* Number of live objects */
 
-s16b m_max = 1;			/* Number of allocated monsters */
-s16b m_cnt = 0;			/* Number of live monsters */
+MONSTER_IDX m_max = 1;			/* Number of allocated monsters */
+MONSTER_IDX m_cnt = 0;			/* Number of live monsters */
 
-s16b hack_m_idx = 0;	/* Hack -- see "process_monsters()" */
-s16b hack_m_idx_ii = 0;
+MONSTER_IDX hack_m_idx = 0;	/* Hack -- see "process_monsters()" */
+MONSTER_IDX hack_m_idx_ii = 0;
 bool multi_rew = FALSE;
 char summon_kin_type;   /* Hack, by Julian Lighton: summon 'relatives' */
 
@@ -355,6 +357,8 @@ bool cheat_xtra;	/* Peek into something else */
 bool cheat_know;	/* Know complete monster info */
 bool cheat_live;	/* Allow player to avoid death */
 bool cheat_save;	/* Ask for saving death */
+bool cheat_diary_output; /* Detailed info to diary */
+bool cheat_turn;	/* Peek turn */
 
 
 /* Special options */
@@ -380,17 +384,17 @@ bool closing_flag;		/* Dungeon is closing */
  * Dungeon size info
  */
 
-s16b panel_row_min, panel_row_max;
-s16b panel_col_min, panel_col_max;
-s16b panel_col_prt, panel_row_prt;
+POSITION panel_row_min, panel_row_max;
+POSITION panel_col_min, panel_col_max;
+POSITION panel_col_prt, panel_row_prt;
 
 
 /*
  * Targetting variables
  */
-s16b target_who;
-s16b target_col;
-s16b target_row;
+IDX target_who;
+POSITION target_col;
+POSITION target_row;
 
 
 /*
@@ -416,37 +420,37 @@ char savefile_base[40];
 /*
  * Array of grids lit by player lite (see "cave.c")
  */
-s16b lite_n;
-s16b lite_y[LITE_MAX];
-s16b lite_x[LITE_MAX];
+POSITION_IDX lite_n;
+POSITION lite_y[LITE_MAX];
+POSITION lite_x[LITE_MAX];
 
 /*
  * Array of grids lit by player lite (see "cave.c")
  */
-s16b mon_lite_n;
-s16b mon_lite_y[MON_LITE_MAX];
-s16b mon_lite_x[MON_LITE_MAX];
+POSITION_IDX mon_lite_n;
+POSITION mon_lite_y[MON_LITE_MAX];
+POSITION mon_lite_x[MON_LITE_MAX];
 
 /*
  * Array of grids viewable to the player (see "cave.c")
  */
-s16b view_n;
-byte view_y[VIEW_MAX];
-byte view_x[VIEW_MAX];
+POSITION_IDX view_n;
+POSITION view_y[VIEW_MAX];
+POSITION view_x[VIEW_MAX];
 
 /*
  * Array of grids for use by various functions (see "cave.c")
  */
-s16b temp_n;
-byte temp_y[TEMP_MAX];
-byte temp_x[TEMP_MAX];
+POSITION_IDX temp_n;
+POSITION temp_y[TEMP_MAX];
+POSITION temp_x[TEMP_MAX];
 
 /*
  * Array of grids for delayed visual updating (see "cave.c")
  */
-s16b redraw_n = 0;
-byte redraw_y[REDRAW_MAX];
-byte redraw_x[REDRAW_MAX];
+POSITION_IDX redraw_n = 0;
+POSITION redraw_y[REDRAW_MAX];
+POSITION redraw_x[REDRAW_MAX];
 
 
 /*
@@ -478,7 +482,7 @@ char *macro__buf;
 /*
  * The number of quarks
  */
-s16b quark__num;
+STR_OFFSET quark__num;
 
 /*
  * The pointers to the quarks [QUARK_MAX]
@@ -489,27 +493,27 @@ cptr *quark__str;
 /*
  * The next "free" index to use
  */
-u16b message__next;
+u32b message__next;
 
 /*
  * The index of the oldest message (none yet)
  */
-u16b message__last;
+u32b message__last;
 
 /*
  * The next "free" offset
  */
-u16b message__head;
+u32b message__head;
 
 /*
  * The offset to the oldest used char (none yet)
  */
-u16b message__tail;
+u32b message__tail;
 
 /*
  * The array of offsets, by index [MESSAGE_MAX]
  */
-u16b *message__ptr;
+u32b *message__ptr;
 
 /*
  * The array of chars, by offset [MESSAGE_BUF]
@@ -542,7 +546,7 @@ term *angband_term[8];
  */
 const char angband_term_name[8][16] =
 {
-	"tanguband",
+	"Hengband",
 	"Term-1",
 	"Term-2",
 	"Term-3",
@@ -648,6 +652,7 @@ const cptr angband_sound_name[SOUND_MAX] =
 	"unused",
 	"explode",
 	"glass",
+	"reflect",
 };
 
 /*
@@ -673,6 +678,9 @@ const cptr angband_music_basic_name[MUSIC_BASIC_MAX] =
 	"quest",
 	"arena",
 	"battle",
+	"quest_clear",
+	"final_quest_clear",
+	"ambush",
 };
 
 
@@ -987,7 +995,7 @@ bool item_tester_no_ryoute = FALSE;
  * Here is a "pseudo-hook" used during calls to "get_item()" and
  * "show_inven()" and "show_equip()", and the choice window routines.
  */
-byte item_tester_tval;
+OBJECT_TYPE_VALUE item_tester_tval;
 
 
 /*
@@ -1021,7 +1029,7 @@ monster_hook_type get_mon_num2_hook;
 /*
  * Hack -- function hook to restrict "get_obj_num_prep()" function
  */
-bool (*get_obj_num_hook)(int k_idx);
+bool (*get_obj_num_hook)(KIND_OBJECT_IDX k_idx);
 
 
 /* Hack, monk armour */
@@ -1044,58 +1052,58 @@ building_type building[MAX_BLDG];
 /*
  * Maximum number of quests
  */
-u16b max_quests;
+QUEST_IDX max_q_idx;
 
 /*
  * Maximum number of monsters in r_info.txt
  */
-u16b max_r_idx;
+MONRACE_IDX max_r_idx;
 
 /*
  * Maximum number of items in k_info.txt
  */
-u16b max_k_idx;
+KIND_OBJECT_IDX max_k_idx;
 
 /*
  * Maximum number of vaults in v_info.txt
  */
-u16b max_v_idx;
+IDX max_v_idx;
 
 /*
  * Maximum number of terrain features in f_info.txt
  */
-u16b max_f_idx;
+IDX max_f_idx;
 
 /*
  * Maximum number of artifacts in a_info.txt
  */
-u16b max_a_idx;
+IDX max_a_idx;
 
 /*
  * Maximum number of ego-items in e_info.txt
  */
-u16b max_e_idx;
+IDX max_e_idx;
 
 /*
  * Maximum number of dungeon in e_info.txt
  */
-u16b max_d_idx;
+DUNGEON_IDX max_d_idx;
 
 /*
  * Maximum number of objects in the level
  */
-u16b max_o_idx;
+OBJECT_IDX max_o_idx;
 
 /*
  * Maximum number of monsters in the level
  */
-u16b max_m_idx;
+MONSTER_IDX max_m_idx;
 
 /*
  * Maximum size of the wilderness
  */
-s32b max_wild_x;
-s32b max_wild_y;
+POSITION max_wild_x;
+POSITION max_wild_y;
 
 /*
  * Quest info
@@ -1137,21 +1145,21 @@ bool world_player;
 
 int cap_mon;
 int cap_mspeed;
-int cap_hp;
-int cap_maxhp;
-u16b cap_nickname;
+HIT_POINT cap_hp;
+HIT_POINT cap_maxhp;
+STR_OFFSET cap_nickname;
 
-s16b battle_mon[4];
+MONRACE_IDX battle_mon[4];
 int sel_monster;
 int battle_odds;
-int kakekin;
+PRICE kakekin;
 u32b mon_odds[4];
 
-int pet_t_m_idx;
-int riding_t_m_idx;
+MONSTER_IDX pet_t_m_idx;
+MONSTER_IDX riding_t_m_idx;
 
-s16b kubi_r_idx[MAX_KUBI];
-s16b today_mon;
+MONSTER_IDX kubi_r_idx[MAX_KUBI];
+MONSTER_IDX today_mon;
 
 bool write_level;
 
@@ -1173,91 +1181,91 @@ cptr screen_dump = NULL;
 /*** Terrain feature variables ***/
 
 /* Nothing */
-s16b feat_none;
+FEAT_IDX feat_none;
 
 /* Floor */
-s16b feat_floor;
+FEAT_IDX feat_floor;
 
 /* Objects */
-s16b feat_glyph;
-s16b feat_explosive_rune;
-s16b feat_mirror;
+FEAT_IDX feat_glyph;
+FEAT_IDX feat_explosive_rune;
+FEAT_IDX feat_mirror;
 
 /* Doors */
 door_type feat_door[MAX_DOOR_TYPES];
 
 /* Stairs */
-s16b feat_up_stair;
-s16b feat_down_stair;
-s16b feat_entrance;
+FEAT_IDX feat_up_stair;
+FEAT_IDX feat_down_stair;
+FEAT_IDX feat_entrance;
 
 /* Special traps */
-s16b feat_trap_open;
-s16b feat_trap_armageddon;
-s16b feat_trap_piranha;
+FEAT_IDX feat_trap_open;
+FEAT_IDX feat_trap_armageddon;
+FEAT_IDX feat_trap_piranha;
 
 /* Rubble */
-s16b feat_rubble;
+FEAT_IDX feat_rubble;
 
 /* Seams */
-s16b feat_magma_vein;
-s16b feat_quartz_vein;
+FEAT_IDX feat_magma_vein;
+FEAT_IDX feat_quartz_vein;
 
 /* Walls */
-s16b feat_granite;
-s16b feat_permanent;
+FEAT_IDX feat_granite;
+FEAT_IDX feat_permanent;
 
 /* Glass floor */
-s16b feat_glass_floor;
+FEAT_IDX feat_glass_floor;
 
 /* Glass walls */
-s16b feat_glass_wall;
-s16b feat_permanent_glass_wall;
+FEAT_IDX feat_glass_wall;
+FEAT_IDX feat_permanent_glass_wall;
 
 /* Pattern */
-s16b feat_pattern_start;
-s16b feat_pattern_1;
-s16b feat_pattern_2;
-s16b feat_pattern_3;
-s16b feat_pattern_4;
-s16b feat_pattern_end;
-s16b feat_pattern_old;
-s16b feat_pattern_exit;
-s16b feat_pattern_corrupted;
+FEAT_IDX feat_pattern_start;
+FEAT_IDX feat_pattern_1;
+FEAT_IDX feat_pattern_2;
+FEAT_IDX feat_pattern_3;
+FEAT_IDX feat_pattern_4;
+FEAT_IDX feat_pattern_end;
+FEAT_IDX feat_pattern_old;
+FEAT_IDX feat_pattern_exit;
+FEAT_IDX feat_pattern_corrupted;
 
 /* Various */
-s16b feat_black_market;
-s16b feat_town;
+FEAT_IDX feat_black_market;
+FEAT_IDX feat_town;
 
 /* Terrains */
-s16b feat_deep_water;
-s16b feat_shallow_water;
-s16b feat_deep_lava;
-s16b feat_shallow_lava;
-s16b feat_dirt;
-s16b feat_grass;
-s16b feat_flower;
-s16b feat_brake;
-s16b feat_tree;
-s16b feat_mountain;
-s16b feat_swamp;
+FEAT_IDX feat_deep_water;
+FEAT_IDX feat_shallow_water;
+FEAT_IDX feat_deep_lava;
+FEAT_IDX feat_shallow_lava;
+FEAT_IDX feat_dirt;
+FEAT_IDX feat_grass;
+FEAT_IDX feat_flower;
+FEAT_IDX feat_brake;
+FEAT_IDX feat_tree;
+FEAT_IDX feat_mountain;
+FEAT_IDX feat_swamp;
 
 /* Unknown grid (not detected) */
-s16b feat_undetected;
+FEAT_IDX feat_undetected;
 
 /*
  * Which dungeon ?
  */
-byte dungeon_type;
-s16b *max_dlv;
+DUNGEON_IDX dungeon_type;
+DEPTH *max_dlv;
 
-s16b feat_wall_outer;
-s16b feat_wall_inner;
-s16b feat_wall_solid;
-s16b floor_type[100], fill_type[100];
+FEAT_IDX feat_wall_outer;
+FEAT_IDX feat_wall_inner;
+FEAT_IDX feat_wall_solid;
+FEAT_IDX floor_type[100], fill_type[100];
 
 bool now_damaged;
-s16b now_message;
+COMMAND_CODE now_message;
 bool use_menu;
 
 #ifdef CHUUKEI

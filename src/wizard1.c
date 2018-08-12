@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  *  @file wizard1.c
- *  @brief ¥¦¥£¥¶¡¼¥É¥â¡¼¥É¤Î½èÍı(¥¹¥İ¥¤¥é¡¼½ĞÎÏÃæ¿´) / Spoiler generation -BEN-
+ *  @brief ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®å‡¦ç†(ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ä¸­å¿ƒ) / Spoiler generation -BEN-
  *  @date 2014/02/17
  *  @author
  * Copyright (c) 1997 Ben Harrison, and others
@@ -24,17 +24,17 @@ static FILE *fff = NULL;
 
 
 /*!
- * @brief ¥·¥ó¥Ü¥ë¿¦¤Îµ­½ÒÌ¾¤òÊÖ¤¹ /
+ * @brief ã‚·ãƒ³ãƒœãƒ«è·ã®è¨˜è¿°åã‚’è¿”ã™ /
  * Extract a textual representation of an attribute
- * @param r_ptr ¥â¥ó¥¹¥¿¡¼¼ïÂ²¤Î¹½Â¤ÂÎ¥İ¥¤¥ó¥¿
- * @return ¥·¥ó¥Ü¥ë¿¦¤Îµ­½ÒÌ¾
+ * @param r_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚·ãƒ³ãƒœãƒ«è·ã®è¨˜è¿°å
  */
 static cptr attr_to_text(monster_race *r_ptr)
 {
 #ifdef JP000
-	if (r_ptr->flags1 & RF1_ATTR_CLEAR)    return "Æ©ÌÀ¤Ê";
-	if (r_ptr->flags1 & RF1_ATTR_MULTI)    return "Ëü¿§¤Î";
-	if (r_ptr->flags1 & RF1_ATTR_SEMIRAND) return "½à¥é¥ó¥À¥à¤Ê";
+	if (r_ptr->flags1 & RF1_ATTR_CLEAR)    return "é€æ˜ãª";
+	if (r_ptr->flags1 & RF1_ATTR_MULTI)    return "ä¸‡è‰²ã®";
+	if (r_ptr->flags1 & RF1_ATTR_SEMIRAND) return "æº–ãƒ©ãƒ³ãƒ€ãƒ ãª";
 #else
 	if (r_ptr->flags1 & RF1_ATTR_CLEAR)    return "Clear";
 	if (r_ptr->flags1 & RF1_ATTR_MULTI)    return "Multi";
@@ -44,22 +44,22 @@ static cptr attr_to_text(monster_race *r_ptr)
 	switch (r_ptr->d_attr)
 	{
 #ifdef JP000
-	case TERM_DARK:    return "XXX¤¤";
-	case TERM_WHITE:   return "Çò¤¤";
-	case TERM_SLATE:   return "ÀÄ³¥¿§¤Î";
-	case TERM_ORANGE:  return "¥ª¥ì¥ó¥¸¤Î";
-	case TERM_RED:     return "ÀÖ¤¤";
-	case TERM_GREEN:   return "ÎĞ¤Î";
-	case TERM_BLUE:    return "ÀÄ¤¤";
-	case TERM_UMBER:   return "àèàá¿§¤Î";
-	case TERM_L_DARK:  return "³¥¿§¤Î";
-	case TERM_L_WHITE: return "ÌÀÀÄ³¥¿§¤Î";
-	case TERM_VIOLET:  return "»ç¤Î";
-	case TERM_YELLOW:  return "²«¿§¤¤";
-	case TERM_L_RED:   return "ÌÀ¤¤ÀÖ¤Î";
-	case TERM_L_GREEN: return "ÌÀ¤¤ÎĞ¤Î";
-	case TERM_L_BLUE:  return "ÌÀ¤¤ÀÄ¤Î";
-	case TERM_L_UMBER: return "ÌÀ¤¤àèàá¿§¤Î";
+	case TERM_DARK:    return "XXXã„";
+	case TERM_WHITE:   return "ç™½ã„";
+	case TERM_SLATE:   return "é’ç°è‰²ã®";
+	case TERM_ORANGE:  return "ã‚ªãƒ¬ãƒ³ã‚¸ã®";
+	case TERM_RED:     return "èµ¤ã„";
+	case TERM_GREEN:   return "ç·‘ã®";
+	case TERM_BLUE:    return "é’ã„";
+	case TERM_UMBER:   return "ç¥ç€è‰²ã®";
+	case TERM_L_DARK:  return "ç°è‰²ã®";
+	case TERM_L_WHITE: return "æ˜é’ç°è‰²ã®";
+	case TERM_VIOLET:  return "ç´«ã®";
+	case TERM_YELLOW:  return "é»„è‰²ã„";
+	case TERM_L_RED:   return "æ˜ã„èµ¤ã®";
+	case TERM_L_GREEN: return "æ˜ã„ç·‘ã®";
+	case TERM_L_BLUE:  return "æ˜ã„é’ã®";
+	case TERM_L_UMBER: return "æ˜ã„ç¥ç€è‰²ã®";
 #else
 	case TERM_DARK:    return "xxx";
 	case TERM_WHITE:   return "White";
@@ -82,7 +82,7 @@ static cptr attr_to_text(monster_race *r_ptr)
 
 	/* Oops */
 #ifdef JP000
-	return "ÊÑ¤Ê";
+	return "å¤‰ãª";
 #else
 	return "Icky";
 #endif
@@ -111,18 +111,18 @@ typedef struct
  */
 static grouper group_item[] =
 {
-	{ TV_SHOT,          _("¼Í·âÊª", "Ammo") },
+	{ TV_SHOT,          _("å°„æ’ƒç‰©", "Ammo") },
 	{ TV_ARROW,         NULL },
 	{ TV_BOLT,          NULL },
-	{ TV_BOW,           _("µİ", "Bows") },
-	{ TV_DIGGING,       _("Éğ´ï", "Weapons") },
+	{ TV_BOW,           _("å¼“", "Bows") },
+	{ TV_DIGGING,       _("æ­¦å™¨", "Weapons") },
 	{ TV_POLEARM,       NULL },
 	{ TV_HAFTED,        NULL },
 	{ TV_SWORD,         NULL },
-	{ TV_SOFT_ARMOR,    _("ËÉ¶ñ (ÂÎ)", "Armour (Body)") },
+	{ TV_SOFT_ARMOR,    _("é˜²å…· (ä½“)", "Armour (Body)") },
 	{ TV_HARD_ARMOR,    NULL },
 	{ TV_DRAG_ARMOR,    NULL },
-	{ TV_BOOTS,         _("ËÉ¶ñ (¤½¤ÎÂ¾)", "Armour (Misc)") },
+	{ TV_BOOTS,         _("é˜²å…· (ãã®ä»–)", "Armour (Misc)") },
 	{ TV_GLOVES,        NULL },
 	{ TV_HELM,          NULL },
 	{ TV_CROWN,         NULL },
@@ -130,9 +130,9 @@ static grouper group_item[] =
 	{ TV_CLOAK,         NULL },
 
 #ifdef JP
-	{ TV_LITE,          "¸÷¸»" },
-	{ TV_AMULET,        "¥¢¥ß¥å¥ì¥Ã¥È" },
-	{ TV_RING,          "»ØÎØ" },
+	{ TV_LITE,          "å…‰æº" },
+	{ TV_AMULET,        "ã‚¢ãƒŸãƒ¥ãƒ¬ãƒƒãƒˆ" },
+	{ TV_RING,          "æŒ‡è¼ª" },
 #else
 	{ TV_LITE,          "Light Sources" },
 	{ TV_AMULET,        "Amulets" },
@@ -140,9 +140,9 @@ static grouper group_item[] =
 #endif
 
 #ifdef JP
-	{ TV_STAFF,         "¾ó" },
-	{ TV_WAND,          "ËâË¡ËÀ" },
-	{ TV_ROD,           "¥í¥Ã¥É" },
+	{ TV_STAFF,         "æ–" },
+	{ TV_WAND,          "é­”æ³•æ£’" },
+	{ TV_ROD,           "ãƒ­ãƒƒãƒ‰" },
 #else
 	{ TV_STAFF,         "Staffs" },
 	{ TV_WAND,          "Wands" },
@@ -150,9 +150,9 @@ static grouper group_item[] =
 #endif
 
 #ifdef JP
-	{ TV_SCROLL,        "´¬Êª" },
-	{ TV_POTION,        "Ìô" },
-	{ TV_FOOD,          "¿©ÎÁ" },
+	{ TV_SCROLL,        "å·»ç‰©" },
+	{ TV_POTION,        "è–¬" },
+	{ TV_FOOD,          "é£Ÿæ–™" },
 #else
 	{ TV_SCROLL,        "Scrolls" },
 	{ TV_POTION,        "Potions" },
@@ -160,19 +160,19 @@ static grouper group_item[] =
 #endif
 
 #ifdef JP
-	{ TV_LIFE_BOOK,     "ËâË¡½ñ (À¸Ì¿)" },
-	{ TV_SORCERY_BOOK,  "ËâË¡½ñ (Àç½Ñ)" },
-	{ TV_NATURE_BOOK,   "ËâË¡½ñ (¼«Á³)" },
-	{ TV_CHAOS_BOOK,    "ËâË¡½ñ (¥«¥ª¥¹)" },
-	{ TV_DEATH_BOOK,    "ËâË¡½ñ (°Å¹õ)" },
-	{ TV_TRUMP_BOOK,    "ËâË¡½ñ (¥È¥é¥ó¥×)" },
-	{ TV_ARCANE_BOOK,   "ËâË¡½ñ (Èë½Ñ)" },
-	{ TV_CRAFT_BOOK,    "ËâË¡½ñ (¾¢)" },
-	{ TV_DAEMON_BOOK,   "ËâË¡½ñ (°­Ëâ)" },
-	{ TV_CRUSADE_BOOK,  "ËâË¡½ñ (ÇË¼Ù)" },
-	{ TV_MUSIC_BOOK,    "²Î½¸" },
-	{ TV_HISSATSU_BOOK, "Éğ·İ¤Î½ñ" },
-	{ TV_HEX_BOOK,      "ËâË¡½ñ (¼ö½Ñ)" },
+	{ TV_LIFE_BOOK,     "é­”æ³•æ›¸ (ç”Ÿå‘½)" },
+	{ TV_SORCERY_BOOK,  "é­”æ³•æ›¸ (ä»™è¡“)" },
+	{ TV_NATURE_BOOK,   "é­”æ³•æ›¸ (è‡ªç„¶)" },
+	{ TV_CHAOS_BOOK,    "é­”æ³•æ›¸ (ã‚«ã‚ªã‚¹)" },
+	{ TV_DEATH_BOOK,    "é­”æ³•æ›¸ (æš—é»’)" },
+	{ TV_TRUMP_BOOK,    "é­”æ³•æ›¸ (ãƒˆãƒ©ãƒ³ãƒ—)" },
+	{ TV_ARCANE_BOOK,   "é­”æ³•æ›¸ (ç§˜è¡“)" },
+	{ TV_CRAFT_BOOK,    "é­”æ³•æ›¸ (åŒ )" },
+	{ TV_DAEMON_BOOK,   "é­”æ³•æ›¸ (æ‚ªé­”)" },
+	{ TV_CRUSADE_BOOK,  "é­”æ³•æ›¸ (ç ´é‚ª)" },
+	{ TV_MUSIC_BOOK,    "æ­Œé›†" },
+	{ TV_HISSATSU_BOOK, "æ­¦èŠ¸ã®æ›¸" },
+	{ TV_HEX_BOOK,      "é­”æ³•æ›¸ (å‘ªè¡“)" },
 #else
 	{ TV_LIFE_BOOK,     "Books (Life)" },
 	{ TV_SORCERY_BOOK,  "Books (Sorcery)" },
@@ -190,28 +190,28 @@ static grouper group_item[] =
 #endif
 
 #ifdef JP
-	{ TV_WHISTLE,       "Å«" },
-	{ TV_CAPTURE,       "¥­¥ã¥×¥Á¥ã¡¼¡¦¥Ü¡¼¥ë" },
-	{ TV_CARD,          "¥¨¥¯¥¹¥×¥ì¥¹¥«¡¼¥É" },
+	{ TV_WHISTLE,       "ç¬›" },
+	{ TV_CAPTURE,       "ã‚­ãƒ£ãƒ—ãƒãƒ£ãƒ¼ãƒ»ãƒœãƒ¼ãƒ«" },
+	{ TV_CARD,          "ã‚¨ã‚¯ã‚¹ãƒ—ãƒ¬ã‚¹ã‚«ãƒ¼ãƒ‰" },
 #else
 	{ TV_WHISTLE,       "Whistle" },
 	{ TV_CAPTURE,       "Capture Ball" },
 	{ TV_CARD,          "Express Card" },
 #endif
 
-	{ TV_CHEST,         _("È¢", "Chests") },
+	{ TV_CHEST,         _("ç®±", "Chests") },
 
 #ifdef JP
-	{ TV_FIGURINE,      "¿Í·Á" },
-	{ TV_STATUE,        "Áü" },
-	{ TV_CORPSE,        "»àÂÎ" },
+	{ TV_FIGURINE,      "äººå½¢" },
+	{ TV_STATUE,        "åƒ" },
+	{ TV_CORPSE,        "æ­»ä½“" },
 #else
 	{ TV_FIGURINE,      "Magical Figurines" },
 	{ TV_STATUE,        "Statues" },
 	{ TV_CORPSE,        "Corpses" },
 #endif
 
-	{ TV_SKELETON,      _("¤½¤ÎÂ¾", "Misc") },
+	{ TV_SKELETON,      _("ãã®ä»–", "Misc") },
 	{ TV_BOTTLE,        NULL },
 	{ TV_JUNK,          NULL },
 	{ TV_SPIKE,         NULL },
@@ -223,21 +223,22 @@ static grouper group_item[] =
 
 
 /*!
- * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î³Æ¾ğÊó¤òÊ¸»úÎó²½¤¹¤ë /
+ * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®å„æƒ…å ±ã‚’æ–‡å­—åˆ—åŒ–ã™ã‚‹ /
  * Describe the kind
- * @param buf Ì¾¾Î¤òÊÖ¤¹¥Ğ¥Ã¥Õ¥¡»²¾È¥İ¥¤¥ó¥¿
- * @param dam ¥À¥á¡¼¥¸¥À¥¤¥¹µ­½Ò¤òÊÖ¤¹¥Ğ¥Ã¥Õ¥¡»²¾È¥İ¥¤¥ó¥¿
- * @param wgt ½ÅÎÌµ­½Ò¤òÊÖ¤¹¥Ğ¥Ã¥Õ¥¡»²¾È¥İ¥¤¥ó¥¿
- * @param lev À¸À®³¬µ­½Ò¤òÊÖ¤¹¥Ğ¥Ã¥Õ¥¡»²¾È¥İ¥¤¥ó¥¿
- * @param val ²ÁÃÍ¤òÊÖ¤¹¥Ğ¥Ã¥Õ¥¡»²¾È¥İ¥¤¥ó¥¿
- * @param k ¥Ù¡¼¥¹¥¢¥¤¥Æ¥àID
- * @return ¤Ê¤·
+ * @param buf åç§°ã‚’è¿”ã™ãƒãƒƒãƒ•ã‚¡å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param dam ãƒ€ãƒ¡ãƒ¼ã‚¸ãƒ€ã‚¤ã‚¹è¨˜è¿°ã‚’è¿”ã™ãƒãƒƒãƒ•ã‚¡å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param wgt é‡é‡è¨˜è¿°ã‚’è¿”ã™ãƒãƒƒãƒ•ã‚¡å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param lev ç”Ÿæˆéšè¨˜è¿°ã‚’è¿”ã™ãƒãƒƒãƒ•ã‚¡å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param chance ç”Ÿæˆæ©Ÿä¼šã‚’è¿”ã™ãƒãƒƒãƒ•ã‚¡å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param val ä¾¡å€¤ã‚’è¿”ã™ãƒãƒƒãƒ•ã‚¡å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param k ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ID
+ * @return ãªã—
  */
-static void kind_info(char *buf, char *dam, char *wgt, int *lev, s32b *val, int k)
+static void kind_info(char *buf, char *dam, char *wgt, char *chance, DEPTH *lev, PRICE *val, OBJECT_IDX k)
 {
 	object_type forge;
 	object_type *q_ptr;
-
+	int i;
 
 	/* Get local object */
 	q_ptr = &forge;
@@ -263,7 +264,7 @@ static void kind_info(char *buf, char *dam, char *wgt, int *lev, s32b *val, int 
 
 
 	/* Hack */
-	if (!buf || !dam || !wgt) return;
+	if (!buf || !dam || !chance || !wgt) return;
 
 
 	/* Description (too brief) */
@@ -317,27 +318,41 @@ static void kind_info(char *buf, char *dam, char *wgt, int *lev, s32b *val, int 
 		}
 	}
 
+	/* Chance */
+	strcpy(chance, "");
+	for(i = 0; i < 4; i++)
+	{
+		char chance_aux[20] = "";
+		if(k_info[q_ptr->k_idx].chance[i] > 0)
+		{
+			sprintf(chance_aux, "%s%3dF:%+4d", (i != 0 ? "/" : ""),
+				(int)k_info[q_ptr->k_idx].locale[i], 100/k_info[q_ptr->k_idx].chance[i]);
+			strcat(chance, chance_aux);
+		}
+	}
+
 
 	/* Weight */
-	sprintf(wgt, "%3d.%d", q_ptr->weight / 10, q_ptr->weight % 10);
+	sprintf(wgt, "%3d.%d", (int)(q_ptr->weight / 10), (int)(q_ptr->weight % 10));
 }
 
 
 /*!
- * @brief ³Æ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¤Î¾ğÊó¤ò°ì¹ÔËè¤Ëµ­½Ò¤¹¤ë /
+ * @brief å„ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±ã‚’ä¸€è¡Œæ¯ã«è¨˜è¿°ã™ã‚‹ /
  * Create a spoiler file for items
- * @param fname ¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @param fname ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 static void spoil_obj_desc(cptr fname)
 {
 	int i, k, s, t, n = 0, group_start = 0;
 
-	u16b who[200];
+	OBJECT_IDX who[200];
 
 	char buf[1024];
 
 	char wgt[80];
+	char chance[80];
 	char dam[80];
 
 
@@ -359,15 +374,14 @@ static void spoil_obj_desc(cptr fname)
 
 
 	/* Header */
-	fprintf(fff, "Spoiler File -- Basic Items (tanguband %d.%d.%d)\n\n\n",
-		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
+	fprintf(fff, "Spoiler File -- Basic Items (Hengband %d.%d.%d.%d)\n\n\n",
+		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH, FAKE_VER_EXTRA);
 
 	/* More Header */
-	fprintf(fff, "%-45s     %8s%7s%5s%9s\n",
-		"Description", "Dam/AC", "Wgt", "Lev", "Cost");
-	fprintf(fff, "%-45s     %8s%7s%5s%9s\n",
-		"----------------------------------------",
-		"------", "---", "---", "----");
+	fprintf(fff, "%-37s%8s%7s%5s %40s%9s\n",
+		"Description", "Dam/AC", "Wgt", "Lev", "Chance", "Cost");
+	fprintf(fff, "%-37s%8s%7s%5s %40s%9s\n",
+		"-------------------------------------", "------", "---", "---", "----------------", "----");
 
 	/* List the groups */
 	for (i = 0; TRUE; i++)
@@ -385,18 +399,18 @@ static void spoil_obj_desc(cptr fname)
 						int i1 = t;
 						int i2 = t + 1;
 
-						int e1;
-						int e2;
+						DEPTH e1;
+						DEPTH e2;
 
-						s32b t1;
-						s32b t2;
+						PRICE t1;
+						PRICE t2;
 
-						kind_info(NULL, NULL, NULL, &e1, &t1, who[i1]);
-						kind_info(NULL, NULL, NULL, &e2, &t2, who[i2]);
+						kind_info(NULL, NULL, NULL, NULL, &e1, &t1, who[i1]);
+						kind_info(NULL, NULL, NULL, NULL, &e2, &t2, who[i2]);
 
 						if ((t1 > t2) || ((t1 == t2) && (e1 > e2)))
 						{
-							int tmp = who[i1];
+							u16b tmp = who[i1];
 							who[i1] = who[i2];
 							who[i2] = tmp;
 						}
@@ -408,15 +422,15 @@ static void spoil_obj_desc(cptr fname)
 				/* Spoil each item */
 				for (s = 0; s < n; s++)
 				{
-					int e;
-					s32b v;
+					DEPTH e;
+					PRICE v;
 
 					/* Describe the kind */
-					kind_info(buf, dam, wgt, &e, &v, who[s]);
+					kind_info(buf, dam, wgt, chance, &e, &v, who[s]);
 
 					/* Dump it */
-					fprintf(fff, "     %-45s%8s%7s%5d%9ld\n",
-						buf, dam, wgt, e, (long)(v));
+					fprintf(fff, "  %-35s%8s%7s%5d %-40s%9ld\n",
+						buf, dam, wgt, (int)e, chance, (long)(v));
 				}
 
 				/* Start a new set */
@@ -442,7 +456,7 @@ static void spoil_obj_desc(cptr fname)
 			if (k_ptr->gen_flags & (TRG_INSTA_ART)) continue;
 
 			/* Save the index */
-			who[n++] = k;
+			who[n++] = (u16b)k;
 		}
 	}
 
@@ -494,29 +508,29 @@ static void spoil_obj_desc(cptr fname)
 static grouper group_artifact[] =
 {
 #ifdef JP
-	{ TV_SWORD,             "Åá·õ" },
-	{ TV_POLEARM,           "Áä/Éà" },
-	{ TV_HAFTED,            "Æß´ï" },
-	{ TV_DIGGING,           "¥·¥ã¥Ù¥ë/¤Ä¤ë¤Ï¤·" },
-	{ TV_BOW,               "Èô¤ÓÆ»¶ñ" },
-	{ TV_ARROW,             "Ìğ" },
+	{ TV_SWORD,             "åˆ€å‰£" },
+	{ TV_POLEARM,           "æ§/æ–§" },
+	{ TV_HAFTED,            "éˆå™¨" },
+	{ TV_DIGGING,           "ã‚·ãƒ£ãƒ™ãƒ«/ã¤ã‚‹ã¯ã—" },
+	{ TV_BOW,               "é£›ã³é“å…·" },
+	{ TV_ARROW,             "çŸ¢" },
 	{ TV_BOLT,              NULL },
 
-	{ TV_SOFT_ARMOR,        "³»" },
+	{ TV_SOFT_ARMOR,        "é§" },
 	{ TV_HARD_ARMOR,        NULL },
 	{ TV_DRAG_ARMOR,        NULL },
 
-	{ TV_CLOAK,             "¥¯¥í¡¼¥¯" },
-	{ TV_SHIELD,            "½â" },
+	{ TV_CLOAK,             "ã‚¯ãƒ­ãƒ¼ã‚¯" },
+	{ TV_SHIELD,            "ç›¾" },
 	{ TV_CARD,              NULL },
-	{ TV_HELM,              "³õ/´§" },
+	{ TV_HELM,              "å…œ/å† " },
 	{ TV_CROWN,             NULL },
-	{ TV_GLOVES,            "äÆ¼ê" },
-	{ TV_BOOTS,             "·¤" },
+	{ TV_GLOVES,            "ç± æ‰‹" },
+	{ TV_BOOTS,             "é´" },
 
-	{ TV_LITE,              "¸÷¸»" },
-	{ TV_AMULET,            "¥¢¥ß¥å¥ì¥Ã¥È" },
-	{ TV_RING,              "»ØÎØ" },
+	{ TV_LITE,              "å…‰æº" },
+	{ TV_AMULET,            "ã‚¢ãƒŸãƒ¥ãƒ¬ãƒƒãƒˆ" },
+	{ TV_RING,              "æŒ‡è¼ª" },
 #else
 	{ TV_SWORD,             "Edged Weapons" },
 	{ TV_POLEARM,           "Polearms" },
@@ -578,12 +592,12 @@ struct flag_desc
 static flag_desc stat_flags_desc[] =
 {
 #ifdef JP
-	{ TR_STR,        "ÏÓÎÏ" },
-	{ TR_INT,        "ÃÎÇ½" },
-	{ TR_WIS,        "¸­¤µ" },
-	{ TR_DEX,        "´ïÍÑ¤µ" },
-	{ TR_CON,        "ÂÑµ×ÎÏ" },
-	{ TR_CHR,        "Ì¥ÎÏ" }
+	{ TR_STR,        "è…•åŠ›" },
+	{ TR_INT,        "çŸ¥èƒ½" },
+	{ TR_WIS,        "è³¢ã•" },
+	{ TR_DEX,        "å™¨ç”¨ã•" },
+	{ TR_CON,        "è€ä¹…åŠ›" },
+	{ TR_CHR,        "é­…åŠ›" }
 #else
 	{ TR_STR,        "STR" },
 	{ TR_INT,        "INT" },
@@ -602,13 +616,13 @@ static flag_desc stat_flags_desc[] =
 static flag_desc pval_flags1_desc[] =
 {
 #ifdef JP
-	{ TR_MAGIC_MASTERY,    "ËâË¡Æ»¶ñ»ÈÍÑÇ½ÎÏ" },
-	{ TR_STEALTH,    "±£Ì©" },
-	{ TR_SEARCH,     "Ãµº÷" },
-	{ TR_INFRA,      "ÀÖ³°Àş»ëÎÏ" },
-	{ TR_TUNNEL,     "ºÎ·¡" },
-	{ TR_BLOWS,      "¹¶·â²ó¿ô" },
-	{ TR_SPEED,      "¥¹¥Ô¡¼¥É" }
+	{ TR_MAGIC_MASTERY,    "é­”æ³•é“å…·ä½¿ç”¨èƒ½åŠ›" },
+	{ TR_STEALTH,    "éš å¯†" },
+	{ TR_SEARCH,     "æ¢ç´¢" },
+	{ TR_INFRA,      "èµ¤å¤–ç·šè¦–åŠ›" },
+	{ TR_TUNNEL,     "æ¡æ˜" },
+	{ TR_BLOWS,      "æ”»æ’ƒå›æ•°" },
+	{ TR_SPEED,      "ã‚¹ãƒ”ãƒ¼ãƒ‰" }
 #else
 	{ TR_STEALTH,    "Stealth" },
 	{ TR_SEARCH,     "Searching" },
@@ -626,24 +640,24 @@ static flag_desc pval_flags1_desc[] =
 static flag_desc slay_flags_desc[] =
 {
 #ifdef JP
-	{ TR_SLAY_ANIMAL,        "Æ°Êª" },
-	{ TR_KILL_ANIMAL,        "*Æ°Êª*" },
-	{ TR_SLAY_EVIL,          "¼Ù°­" },
-	{ TR_KILL_EVIL,          "*¼Ù°­*" },
-	{ TR_SLAY_HUMAN,         "¿Í´Ö" },
-	{ TR_KILL_HUMAN,         "*¿Í´Ö*" },
-	{ TR_SLAY_UNDEAD,        "¥¢¥ó¥Ç¥Ã¥É" },
-	{ TR_KILL_UNDEAD,        "*¥¢¥ó¥Ç¥Ã¥É*" },
-	{ TR_SLAY_DEMON,         "°­Ëâ" },
-	{ TR_KILL_DEMON,         "*°­Ëâ*" },
-	{ TR_SLAY_ORC,           "¥ª¡¼¥¯" },
-	{ TR_KILL_ORC,           "*¥ª¡¼¥¯*" },
-	{ TR_SLAY_TROLL,         "¥È¥í¥ë" },
-	{ TR_KILL_TROLL,         "*¥È¥í¥ë*" },
-	{ TR_SLAY_GIANT,         "µğ¿Í" },
-	{ TR_KILL_GIANT,         "*µğ¿Í*" },
-	{ TR_SLAY_DRAGON,        "¥É¥é¥´¥ó" },
-	{ TR_KILL_DRAGON,        "*¥É¥é¥´¥ó*" },
+	{ TR_SLAY_ANIMAL,        "å‹•ç‰©" },
+	{ TR_KILL_ANIMAL,        "*å‹•ç‰©*" },
+	{ TR_SLAY_EVIL,          "é‚ªæ‚ª" },
+	{ TR_KILL_EVIL,          "*é‚ªæ‚ª*" },
+	{ TR_SLAY_HUMAN,         "äººé–“" },
+	{ TR_KILL_HUMAN,         "*äººé–“*" },
+	{ TR_SLAY_UNDEAD,        "ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰" },
+	{ TR_KILL_UNDEAD,        "*ã‚¢ãƒ³ãƒ‡ãƒƒãƒ‰*" },
+	{ TR_SLAY_DEMON,         "æ‚ªé­”" },
+	{ TR_KILL_DEMON,         "*æ‚ªé­”*" },
+	{ TR_SLAY_ORC,           "ã‚ªãƒ¼ã‚¯" },
+	{ TR_KILL_ORC,           "*ã‚ªãƒ¼ã‚¯*" },
+	{ TR_SLAY_TROLL,         "ãƒˆãƒ­ãƒ«" },
+	{ TR_KILL_TROLL,         "*ãƒˆãƒ­ãƒ«*" },
+	{ TR_SLAY_GIANT,         "å·¨äºº" },
+	{ TR_KILL_GIANT,         "*å·¨äºº*" },
+	{ TR_SLAY_DRAGON,        "ãƒ‰ãƒ©ã‚´ãƒ³" },
+	{ TR_KILL_DRAGON,        "*ãƒ‰ãƒ©ã‚´ãƒ³*" },
 #else
 	{ TR_SLAY_ANIMAL,        "Animal" },
 	{ TR_KILL_ANIMAL,        "XAnimal" },
@@ -677,17 +691,17 @@ static flag_desc slay_flags_desc[] =
 static flag_desc brand_flags_desc[] =
 {
 #ifdef JP
-	{ TR_BRAND_ACID,         "ÍÏ²ò" },
-	{ TR_BRAND_ELEC,         "ÅÅ·â" },
-	{ TR_BRAND_FIRE,         "¾Æ´ş" },
-	{ TR_BRAND_COLD,         "Åà·ë" },
-	{ TR_BRAND_POIS,         "ÆÇ»¦" },
+	{ TR_BRAND_ACID,         "æº¶è§£" },
+	{ TR_BRAND_ELEC,         "é›»æ’ƒ" },
+	{ TR_BRAND_FIRE,         "ç„¼æ£„" },
+	{ TR_BRAND_COLD,         "å‡çµ" },
+	{ TR_BRAND_POIS,         "æ¯’æ®º" },
 
-	{ TR_FORCE_WEAPON,       "ÍıÎÏ" },
-	{ TR_CHAOTIC,            "º®ÆÙ" },
-	{ TR_VAMPIRIC,           "µÛ·ì" },
-	{ TR_IMPACT,             "ÃÏ¿Ì" },
-	{ TR_VORPAL,             "ÀÚ¤ìÌ£" },
+	{ TR_FORCE_WEAPON,       "ç†åŠ›" },
+	{ TR_CHAOTIC,            "æ··æ²Œ" },
+	{ TR_VAMPIRIC,           "å¸è¡€" },
+	{ TR_IMPACT,             "åœ°éœ‡" },
+	{ TR_VORPAL,             "åˆ‡ã‚Œå‘³" },
 #else
 	{ TR_BRAND_ACID,         "Acid Brand" },
 	{ TR_BRAND_ELEC,         "Lightning Brand" },
@@ -710,22 +724,22 @@ static flag_desc brand_flags_desc[] =
 static const flag_desc resist_flags_desc[] =
 {
 #ifdef JP
-	{ TR_RES_ACID,   "»À" },
-	{ TR_RES_ELEC,   "ÅÅ·â" },
-	{ TR_RES_FIRE,   "²Ğ±ê" },
-	{ TR_RES_COLD,   "Îäµ¤" },
-	{ TR_RES_POIS,   "ÆÇ" },
-	{ TR_RES_FEAR,   "¶²Éİ"},
-	{ TR_RES_LITE,   "Á®¸÷" },
-	{ TR_RES_DARK,   "°Å¹õ" },
-	{ TR_RES_BLIND,  "ÌÕÌÜ" },
-	{ TR_RES_CONF,   "º®Íğ" },
-	{ TR_RES_SOUND,  "¹ì²»" },
-	{ TR_RES_SHARDS, "ÇËÊÒ" },
-	{ TR_RES_NETHER, "ÃÏ¹ö" },
-	{ TR_RES_NEXUS,  "°ø²Ìº®Íğ" },
-	{ TR_RES_CHAOS,  "¥«¥ª¥¹" },
-	{ TR_RES_DISEN,  "Îô²½" },
+	{ TR_RES_ACID,   "é…¸" },
+	{ TR_RES_ELEC,   "é›»æ’ƒ" },
+	{ TR_RES_FIRE,   "ç«ç‚" },
+	{ TR_RES_COLD,   "å†·æ°—" },
+	{ TR_RES_POIS,   "æ¯’" },
+	{ TR_RES_FEAR,   "ææ€–"},
+	{ TR_RES_LITE,   "é–ƒå…‰" },
+	{ TR_RES_DARK,   "æš—é»’" },
+	{ TR_RES_BLIND,  "ç›²ç›®" },
+	{ TR_RES_CONF,   "æ··ä¹±" },
+	{ TR_RES_SOUND,  "è½ŸéŸ³" },
+	{ TR_RES_SHARDS, "ç ´ç‰‡" },
+	{ TR_RES_NETHER, "åœ°ç„" },
+	{ TR_RES_NEXUS,  "å› æœæ··ä¹±" },
+	{ TR_RES_CHAOS,  "ã‚«ã‚ªã‚¹" },
+	{ TR_RES_DISEN,  "åŠ£åŒ–" },
 #else
 	{ TR_RES_ACID,   "Acid" },
 	{ TR_RES_ELEC,   "Lightning" },
@@ -753,10 +767,10 @@ static const flag_desc resist_flags_desc[] =
 static const flag_desc immune_flags_desc[] =
 {
 #ifdef JP
-	{ TR_IM_ACID,    "»À" },
-	{ TR_IM_ELEC,    "ÅÅ·â" },
-	{ TR_IM_FIRE,    "²Ğ±ê" },
-	{ TR_IM_COLD,    "Îäµ¤" },
+	{ TR_IM_ACID,    "é…¸" },
+	{ TR_IM_ELEC,    "é›»æ’ƒ" },
+	{ TR_IM_FIRE,    "ç«ç‚" },
+	{ TR_IM_COLD,    "å†·æ°—" },
 #else
 	{ TR_IM_ACID,    "Acid" },
 	{ TR_IM_ELEC,    "Lightning" },
@@ -772,12 +786,12 @@ static const flag_desc immune_flags_desc[] =
 static const flag_desc sustain_flags_desc[] =
 {
 #ifdef JP
-	{ TR_SUST_STR,   "ÏÓÎÏ" },
-	{ TR_SUST_INT,   "ÃÎÇ½" },
-	{ TR_SUST_WIS,   "¸­¤µ" },
-	{ TR_SUST_DEX,   "´ïÍÑ¤µ" },
-	{ TR_SUST_CON,   "ÂÑµ×ÎÏ" },
-	{ TR_SUST_CHR,   "Ì¥ÎÏ" },
+	{ TR_SUST_STR,   "è…•åŠ›" },
+	{ TR_SUST_INT,   "çŸ¥èƒ½" },
+	{ TR_SUST_WIS,   "è³¢ã•" },
+	{ TR_SUST_DEX,   "å™¨ç”¨ã•" },
+	{ TR_SUST_CON,   "è€ä¹…åŠ›" },
+	{ TR_SUST_CHR,   "é­…åŠ›" },
 #else
 	{ TR_SUST_STR,   "STR" },
 	{ TR_SUST_INT,   "INT" },
@@ -795,10 +809,10 @@ static const flag_desc sustain_flags_desc[] =
 static const flag_desc misc_flags2_desc[] =
 {
 #ifdef JP
-	{ TR_THROW,      "ÅêÚ³" },
-	{ TR_REFLECT,    "È¿¼Í" },
-	{ TR_FREE_ACT,   "ËãáãÃÎ¤é¤º" },
-	{ TR_HOLD_EXP,   "·Ğ¸³ÃÍ°İ»ı" },
+	{ TR_THROW,      "æŠ•æ“²" },
+	{ TR_REFLECT,    "åå°„" },
+	{ TR_FREE_ACT,   "éº»ç—ºçŸ¥ã‚‰ãš" },
+	{ TR_HOLD_EXP,   "çµŒé¨“å€¤ç¶­æŒ" },
 #else
 	{ TR_THROW,      "Throwing" },
 	{ TR_REFLECT,    "Reflection" },
@@ -817,35 +831,35 @@ static const flag_desc misc_flags2_desc[] =
 static const flag_desc misc_flags3_desc[] =
 {
 #ifdef JP
-	{ TR_SH_FIRE,            "²Ğ±ê¥ª¡¼¥é" },
-	{ TR_SH_ELEC,            "ÅÅ·â¥ª¡¼¥é" },
-	{ TR_SH_COLD,            "Îäµ¤¥ª¡¼¥é" },
-	{ TR_NO_TELE,            "È¿¥Æ¥ì¥İ¡¼¥È" },
-	{ TR_NO_MAGIC,           "È¿ËâË¡" },
-	{ TR_LEVITATION,         "ÉâÍ·" },
-	{ TR_SEE_INVIS,          "²Ä»ëÆ©ÌÀ" },
-	{ TR_TELEPATHY,          "¥Æ¥ì¥Ñ¥·¡¼" },
-	{ TR_ESP_ANIMAL,         "Æ°Êª´¶ÃÎ" },
-	{ TR_ESP_UNDEAD,         "ÉÔ»à´¶ÃÎ" },
-	{ TR_ESP_DEMON,          "°­Ëâ´¶ÃÎ" },
-	{ TR_ESP_ORC,            "¥ª¡¼¥¯´¶ÃÎ" },
-	{ TR_ESP_TROLL,          "¥È¥í¥ë´¶ÃÎ" },
-	{ TR_ESP_GIANT,          "µğ¿Í´¶ÃÎ" },
-	{ TR_ESP_DRAGON,         "¥É¥é¥´¥ó´¶ÃÎ" },
-	{ TR_ESP_HUMAN,          "¿Í´Ö´¶ÃÎ" },
-	{ TR_ESP_EVIL,           "¼Ù°­´¶ÃÎ" },
-	{ TR_ESP_GOOD,           "Á±ÎÉ´¶ÃÎ" },
-	{ TR_ESP_NONLIVING,      "ÌµÀ¸Êª´¶ÃÎ" },
-	{ TR_ESP_UNIQUE,         "¥æ¥Ë¡¼¥¯´¶ÃÎ" },
-	{ TR_SLOW_DIGEST,        "ÃÙ¾Ã²½" },
-	{ TR_REGEN,              "µŞÂ®²óÉü" },
-	{ TR_WARNING,            "·Ù¹ğ" },
-/*	{ TR_XTRA_MIGHT,         "¶¯ÎÏ¼Í·â" }, */
-	{ TR_XTRA_SHOTS,         "ÄÉ²Ã¼Í·â" },        /* always +1? */
-	{ TR_DRAIN_EXP,          "·Ğ¸³ÃÍµÛ¼ı" },
-	{ TR_AGGRAVATE,          "È¿´¶" },
-	{ TR_BLESSED,            "½ËÊ¡" },
-	{ TR_DEC_MANA,           "¾ÃÈñËâÎÏ¸º¾¯" },
+	{ TR_SH_FIRE,            "ç«ç‚ã‚ªãƒ¼ãƒ©" },
+	{ TR_SH_ELEC,            "é›»æ’ƒã‚ªãƒ¼ãƒ©" },
+	{ TR_SH_COLD,            "å†·æ°—ã‚ªãƒ¼ãƒ©" },
+	{ TR_NO_TELE,            "åãƒ†ãƒ¬ãƒãƒ¼ãƒˆ" },
+	{ TR_NO_MAGIC,           "åé­”æ³•" },
+	{ TR_LEVITATION,         "æµ®éŠ" },
+	{ TR_SEE_INVIS,          "å¯è¦–é€æ˜" },
+	{ TR_TELEPATHY,          "ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼" },
+	{ TR_ESP_ANIMAL,         "å‹•ç‰©æ„ŸçŸ¥" },
+	{ TR_ESP_UNDEAD,         "ä¸æ­»æ„ŸçŸ¥" },
+	{ TR_ESP_DEMON,          "æ‚ªé­”æ„ŸçŸ¥" },
+	{ TR_ESP_ORC,            "ã‚ªãƒ¼ã‚¯æ„ŸçŸ¥" },
+	{ TR_ESP_TROLL,          "ãƒˆãƒ­ãƒ«æ„ŸçŸ¥" },
+	{ TR_ESP_GIANT,          "å·¨äººæ„ŸçŸ¥" },
+	{ TR_ESP_DRAGON,         "ãƒ‰ãƒ©ã‚´ãƒ³æ„ŸçŸ¥" },
+	{ TR_ESP_HUMAN,          "äººé–“æ„ŸçŸ¥" },
+	{ TR_ESP_EVIL,           "é‚ªæ‚ªæ„ŸçŸ¥" },
+	{ TR_ESP_GOOD,           "å–„è‰¯æ„ŸçŸ¥" },
+	{ TR_ESP_NONLIVING,      "ç„¡ç”Ÿç‰©æ„ŸçŸ¥" },
+	{ TR_ESP_UNIQUE,         "ãƒ¦ãƒ‹ãƒ¼ã‚¯æ„ŸçŸ¥" },
+	{ TR_SLOW_DIGEST,        "é…æ¶ˆåŒ–" },
+	{ TR_REGEN,              "æ€¥é€Ÿå›å¾©" },
+	{ TR_WARNING,            "è­¦å‘Š" },
+/*	{ TR_XTRA_MIGHT,         "å¼·åŠ›å°„æ’ƒ" }, */
+	{ TR_XTRA_SHOTS,         "è¿½åŠ å°„æ’ƒ" },        /* always +1? */
+	{ TR_DRAIN_EXP,          "çµŒé¨“å€¤å¸å" },
+	{ TR_AGGRAVATE,          "åæ„Ÿ" },
+	{ TR_BLESSED,            "ç¥ç¦" },
+	{ TR_DEC_MANA,           "æ¶ˆè²»é­”åŠ›æ¸›å°‘" },
 #else
 	{ TR_SH_FIRE,            "Fiery Aura" },
 	{ TR_SH_ELEC,            "Electric Aura" },
@@ -960,11 +974,11 @@ typedef struct
 
 
 /*!
- * @brief ¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿Àè¤ËÆ±¤¸Ê¸»ú¤òÊ£¿ô½ĞÎÏ¤¹¤ë /
+ * @brief ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿å…ˆã«åŒã˜æ–‡å­—ã‚’è¤‡æ•°å‡ºåŠ›ã™ã‚‹ /
  * Write out `n' of the character `c' to the spoiler file
- * @param n ½ĞÎÏ¤¹¤ë¿ô
- * @param c ½ĞÎÏ¤¹¤ë¥­¥ã¥é¥¯¥¿
- * @return ¤Ê¤·
+ * @param n å‡ºåŠ›ã™ã‚‹æ•°
+ * @param c å‡ºåŠ›ã™ã‚‹ã‚­ãƒ£ãƒ©ã‚¯ã‚¿
+ * @return ãªã—
  */
 static void spoiler_out_n_chars(int n, char c)
 {
@@ -973,10 +987,10 @@ static void spoiler_out_n_chars(int n, char c)
 
 
 /*!
- * @brief ¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿Àè¤Ë²ş¹Ô¤òÊ£¿ô½ĞÎÏ¤¹¤ë /
+ * @brief ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿å…ˆã«æ”¹è¡Œã‚’è¤‡æ•°å‡ºåŠ›ã™ã‚‹ /
  * Write out `n' blank lines to the spoiler file
- * @param n ²ş¹Ô¤ò½ĞÎÏ¤¹¤ë¿ô
- * @return ¤Ê¤·
+ * @param n æ”¹è¡Œã‚’å‡ºåŠ›ã™ã‚‹æ•°
+ * @return ãªã—
  */
 static void spoiler_blanklines(int n)
 {
@@ -985,10 +999,10 @@ static void spoiler_blanklines(int n)
 
 
 /*!
- * @brief ¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿Àè¤ËÊ£¿ô¤Î¥Ï¥¤¥Õ¥ó¤ÇÁõ¾ş¤·¤¿Ê¸»úÎó¤ò½ĞÎÏ¤¹¤ë /
+ * @brief ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿å…ˆã«è¤‡æ•°ã®ãƒã‚¤ãƒ•ãƒ³ã§è£…é£¾ã—ãŸæ–‡å­—åˆ—ã‚’å‡ºåŠ›ã™ã‚‹ /
  * Write a line to the spoiler file and then "underline" it with hypens
- * @param str ½ĞÎÏ¤·¤¿¤¤Ê¸»úÎó
- * @return ¤Ê¤·
+ * @param str å‡ºåŠ›ã—ãŸã„æ–‡å­—åˆ—
+ * @return ãªã—
  */
 static void spoiler_underline(cptr str)
 {
@@ -1000,13 +1014,13 @@ static void spoiler_underline(cptr str)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÆÃÀ­°ìÍ÷¤ò½ĞÎÏ¤¹¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ç‰¹æ€§ä¸€è¦§ã‚’å‡ºåŠ›ã™ã‚‹ /
  * Write a line to the spoiler file and then "underline" it with hypens
- * @param art_flags ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¥Õ¥é¥°·²
- * @param flag_ptr ¥Õ¥é¥°µ­½Ò¾ğÊó¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param desc_ptr µ­½ÒÆâÍÆ¤òÊÖ¤¹¤¿¤á¤ÎÊ¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @param n_elmnts ¥Õ¥é¥°¤ÎÍ×ÁÇ¿ô
- * @return desc_ptr¤ÈÆ±¤¸¥¢¥É¥ì¥¹
+ * @param art_flags ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ãƒ•ãƒ©ã‚°ç¾¤
+ * @param flag_ptr ãƒ•ãƒ©ã‚°è¨˜è¿°æƒ…å ±ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param desc_ptr è¨˜è¿°å†…å®¹ã‚’è¿”ã™ãŸã‚ã®æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param n_elmnts ãƒ•ãƒ©ã‚°ã®è¦ç´ æ•°
+ * @return desc_ptrã¨åŒã˜ã‚¢ãƒ‰ãƒ¬ã‚¹
  * @details
  * <pre>
  * This function does most of the actual "analysis". Given a set of bit flags
@@ -1037,11 +1051,11 @@ static cptr *spoiler_flag_aux(const u32b art_flags[TR_FLAG_SIZE],
 
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¤ÎÆÃÄêµ­½ÒÆâÍÆ¤òÊÖ¤¹ /
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã®ç‰¹å®šè¨˜è¿°å†…å®¹ã‚’è¿”ã™ /
  * Acquire a "basic" description "The Cloak of Death [1,+10]"
- * @param o_ptr µ­½Ò¤òÆÀ¤¿¤¤¥ª¥Ö¥¸¥§¥¯¥È¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param desc_ptr µ­½ÒÆâÍÆ¤òÊÖ¤¹¤¿¤á¤ÎÊ¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr è¨˜è¿°ã‚’å¾—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param desc_ptr è¨˜è¿°å†…å®¹ã‚’è¿”ã™ãŸã‚ã®æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_general(object_type *o_ptr, char *desc_ptr)
 {
@@ -1051,14 +1065,14 @@ static void analyze_general(object_type *o_ptr, char *desc_ptr)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤¬¥×¥ì¥¤¥ä¡¼¤ËÍ¿¤¨¤ëpval½¤Àµ¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ä¸ãˆã‚‹pvalä¿®æ­£ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * List "player traits" altered by an artifact's pval. These include stats,
  * speed, infravision, tunneling, stealth, searching, and extra attacks.
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param p_ptr pval½¤Àµ¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param p_ptr pvalä¿®æ­£æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
-static void analyze_pval(object_type *o_ptr, pval_info_type *p_ptr)
+static void analyze_pval(object_type *o_ptr, pval_info_type *pi_ptr)
 {
 	u32b flgs[TR_FLAG_SIZE];
 
@@ -1068,24 +1082,24 @@ static void analyze_pval(object_type *o_ptr, pval_info_type *p_ptr)
 	if (!o_ptr->pval)
 	{
 		/* An "empty" pval description indicates that pval == 0 */
-		p_ptr->pval_desc[0] = '\0';
+		pi_ptr->pval_desc[0] = '\0';
 		return;
 	}
 
 	/* Extract the flags */
 	object_flags(o_ptr, flgs);
 
-	affects_list = p_ptr->pval_affects;
+	affects_list = pi_ptr->pval_affects;
 
 	/* Create the "+N" string */
-	sprintf(p_ptr->pval_desc, "%s%d", POSITIZE(o_ptr->pval), o_ptr->pval);
+	sprintf(pi_ptr->pval_desc, "%s%d", POSITIZE(o_ptr->pval), o_ptr->pval);
 
 	/* First, check to see if the pval affects all stats */
 	if (have_flag(flgs, TR_STR) && have_flag(flgs, TR_INT) &&
 	    have_flag(flgs, TR_WIS) && have_flag(flgs, TR_DEX) &&
 	    have_flag(flgs, TR_CON) && have_flag(flgs, TR_CHR))
 	{
-		*affects_list++ = _("Á´Ç½ÎÏ", "All stats");
+		*affects_list++ = _("å…¨èƒ½åŠ›", "All stats");
 	}
 
 	/* Are any stats affected? */
@@ -1108,11 +1122,11 @@ static void analyze_pval(object_type *o_ptr, pval_info_type *p_ptr)
 }
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¼ïÂ²¥¹¥ì¥¤ÆÃÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ç¨®æ—ã‚¹ãƒ¬ã‚¤ç‰¹æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note the slaying specialties of a weapon
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param slay_list ¼ïÂ²¥¹¥ì¥¤¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param slay_list ç¨®æ—ã‚¹ãƒ¬ã‚¤æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_slay(object_type *o_ptr, cptr *slay_list)
 {
@@ -1129,11 +1143,11 @@ static void analyze_slay(object_type *o_ptr, cptr *slay_list)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÂ°À­¥Ö¥é¥ó¥ÉÆÃÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®å±æ€§ãƒ–ãƒ©ãƒ³ãƒ‰ç‰¹æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note an object's elemental brands
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param brand_list Â°À­¥Ö¥é¥ó¥É¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param brand_list å±æ€§ãƒ–ãƒ©ãƒ³ãƒ‰æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_brand(object_type *o_ptr, cptr *brand_list)
 {
@@ -1150,11 +1164,11 @@ static void analyze_brand(object_type *o_ptr, cptr *brand_list)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÄÌ¾ïÂÑÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®é€šå¸¸è€æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note an object's elemental brands
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param resist_list ÄÌ¾ïÂÑÀ­¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param resist_list é€šå¸¸è€æ€§æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_resist(object_type *o_ptr, cptr *resist_list)
 {
@@ -1171,11 +1185,11 @@ static void analyze_resist(object_type *o_ptr, cptr *resist_list)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÌÈ±ÖÆÃÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®å…ç–«ç‰¹æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note the immunities granted by an object
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param immune_list ÌÈ±Ö¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param immune_list å…ç–«æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_immune(object_type *o_ptr, cptr *immune_list)
 {
@@ -1192,11 +1206,11 @@ static void analyze_immune(object_type *o_ptr, cptr *immune_list)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î°İ»ıÆÃÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ç¶­æŒç‰¹æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note which stats an object sustains
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param sustain_list °İ»ıÆÃÀ­¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param sustain_list ç¶­æŒç‰¹æ€§æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_sustains(object_type *o_ptr, cptr *sustain_list)
 {
@@ -1209,7 +1223,7 @@ static void analyze_sustains(object_type *o_ptr, cptr *sustain_list)
 	    have_flag(flgs, TR_SUST_WIS) && have_flag(flgs, TR_SUST_DEX) &&
 	    have_flag(flgs, TR_SUST_CON) && have_flag(flgs, TR_SUST_CHR))
 	{
-		*sustain_list++ = _("Á´Ç½ÎÏ", "All stats");
+		*sustain_list++ = _("å…¨èƒ½åŠ›", "All stats");
 	}
 
 	/* Should we bother? */
@@ -1228,12 +1242,12 @@ static void analyze_sustains(object_type *o_ptr, cptr *sustain_list)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¤½¤ÎÂ¾¤ÎÆÃÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ãã®ä»–ã®ç‰¹æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note miscellaneous powers bestowed by an artifact such as see invisible,
  * free action, permanent light, etc.
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param misc_list ¤½¤ÎÂ¾¤ÎÆÃÀ­¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param misc_list ãã®ä»–ã®ç‰¹æ€§æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_misc_magic(object_type *o_ptr, cptr *misc_list)
 {
@@ -1264,12 +1278,12 @@ static void analyze_misc_magic(object_type *o_ptr, cptr *misc_list)
 
 	if (have_flag(flgs, TR_LITE_FUEL))
 	{
-		if(rad > 0) sprintf(desc, _("¤½¤ì¤ÏÇ³ÎÁÊäµë¤Ë¤è¤Ã¤ÆÌÀ¤«¤ê(È¾·Â %d)¤ò¼ø¤±¤ë¡£", "It provides light (radius %d) when fueled."), rad);	
+		if(rad > 0) sprintf(desc, _("ãã‚Œã¯ç‡ƒæ–™è£œçµ¦ã«ã‚ˆã£ã¦æ˜ã‹ã‚Š(åŠå¾„ %d)ã‚’æˆã‘ã‚‹ã€‚", "It provides light (radius %d) when fueled."), rad);	
 	}
 	else
 	{
-		if(rad > 0) sprintf(desc, _("±Êµ×¸÷¸»(È¾·Â %d)", "Permanent Light(radius %d)"), rad);	
-		if(rad < 0) sprintf(desc, _("±Êµ×¸÷¸»(È¾·Â-%d)¡£", "Permanent Light(radius -%d)"), -rad);
+		if(rad > 0) sprintf(desc, _("æ°¸ä¹…å…‰æº(åŠå¾„ %d)", "Permanent Light(radius %d)"), rad);	
+		if(rad < 0) sprintf(desc, _("æ°¸ä¹…å…‰æº(åŠå¾„-%d)ã€‚", "Permanent Light(radius -%d)"), -rad);
 	}
 
 	if(rad != 0) *misc_list++ = quark_str(quark_add(desc));
@@ -1284,28 +1298,28 @@ static void analyze_misc_magic(object_type *o_ptr, cptr *misc_list)
 	{
 		if (have_flag(flgs, TR_TY_CURSE))
 		{
-			*misc_list++ = _("ÂÀ¸Å¤Î±åÇ°", "Ancient Curse");
+			*misc_list++ = _("å¤ªå¤ã®æ€¨å¿µ", "Ancient Curse");
 		}
 		if (o_ptr->curse_flags & TRC_PERMA_CURSE)
 		{
-			*misc_list++ = _("±Ê±ó¤Î¼ö¤¤", "Permanently Cursed");
+			*misc_list++ = _("æ°¸é ã®å‘ªã„", "Permanently Cursed");
 		}
 		else if (o_ptr->curse_flags & TRC_HEAVY_CURSE)
 		{
-			*misc_list++ = _("¶¯ÎÏ¤Ê¼ö¤¤", "Heavily Cursed");
+			*misc_list++ = _("å¼·åŠ›ãªå‘ªã„", "Heavily Cursed");
 		}
 /*		else */
 		else if (o_ptr->curse_flags & TRC_CURSED)
 		{
-			*misc_list++ = _("¼ö¤¤", "Cursed");
+			*misc_list++ = _("å‘ªã„", "Cursed");
 		}
 		if (have_flag(flgs, TR_ADD_L_CURSE))
 		{
-			*misc_list++ = _("¼ö¤¤¤òÁı¤ä¤¹", "Cursing");
+			*misc_list++ = _("å‘ªã„ã‚’å¢—ã‚„ã™", "Cursing");
 		}
 		if (have_flag(flgs, TR_ADD_H_CURSE))
 		{
-			*misc_list++ = _("¶¯ÎÏ¤Ê¼ö¤¤¤òÁı¤ä¤¹", "Heavily Cursing");
+			*misc_list++ = _("å¼·åŠ›ãªå‘ªã„ã‚’å¢—ã‚„ã™", "Heavily Cursing");
 		}
 	}
 
@@ -1315,11 +1329,11 @@ static void analyze_misc_magic(object_type *o_ptr, cptr *misc_list)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤ÎÄÉ²Ã¥é¥ó¥À¥àÆÃÀ­¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®è¿½åŠ ãƒ©ãƒ³ãƒ€ãƒ ç‰¹æ€§ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Note additional ability and/or resistance of fixed artifacts
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param addition ÄÉ²Ã¥é¥ó¥À¥àÂÑÀ­¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param addition è¿½åŠ ãƒ©ãƒ³ãƒ€ãƒ è€æ€§æ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_addition(object_type *o_ptr, char *addition)
 {
@@ -1329,18 +1343,18 @@ static void analyze_addition(object_type *o_ptr, char *addition)
 	strcpy(addition, "");
 
 #ifdef JP
-	if ((a_ptr->gen_flags & TRG_XTRA_POWER) && (a_ptr->gen_flags & TRG_XTRA_H_RES)) strcat(addition, "Ç½ÎÏandÂÑÀ­");
+	if ((a_ptr->gen_flags & TRG_XTRA_POWER) && (a_ptr->gen_flags & TRG_XTRA_H_RES)) strcat(addition, "èƒ½åŠ›andè€æ€§");
 	else if (a_ptr->gen_flags & TRG_XTRA_POWER)
 	{
-		strcat(addition, "Ç½ÎÏ");
-		if (a_ptr->gen_flags & TRG_XTRA_RES_OR_POWER) strcat(addition, "(1/2¤ÇandÂÑÀ­)");
+		strcat(addition, "èƒ½åŠ›");
+		if (a_ptr->gen_flags & TRG_XTRA_RES_OR_POWER) strcat(addition, "(1/2ã§andè€æ€§)");
 	}
 	else if (a_ptr->gen_flags & TRG_XTRA_H_RES)
 	{
-		strcat(addition, "ÂÑÀ­");
-		if (a_ptr->gen_flags & TRG_XTRA_RES_OR_POWER) strcat(addition, "(1/2¤ÇandÇ½ÎÏ)");
+		strcat(addition, "è€æ€§");
+		if (a_ptr->gen_flags & TRG_XTRA_RES_OR_POWER) strcat(addition, "(1/2ã§andèƒ½åŠ›)");
 	}
-	else if (a_ptr->gen_flags & TRG_XTRA_RES_OR_POWER) strcat(addition, "Ç½ÎÏorÂÑÀ­");
+	else if (a_ptr->gen_flags & TRG_XTRA_RES_OR_POWER) strcat(addition, "èƒ½åŠ›orè€æ€§");
 #else
 	if ((a_ptr->gen_flags & TRG_XTRA_POWER) && (a_ptr->gen_flags & TRG_XTRA_H_RES)) strcat(addition, "Ability and Resistance");
 	else if (a_ptr->gen_flags & TRG_XTRA_POWER)
@@ -1359,36 +1373,36 @@ static void analyze_addition(object_type *o_ptr, char *addition)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î´ğËÜ¾ğÊó¤òÊ¸»úÎó¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®åŸºæœ¬æƒ…å ±ã‚’æ–‡å­—åˆ—ã«åã‚ã‚‹ /
  * Determine the minimum depth an artifact can appear, its rarity, its weight,
  * and its value in gold pieces
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param misc_desc ´ğËÜ¾ğÊó¤ò¼ı¤á¤ëÊ¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param misc_desc åŸºæœ¬æƒ…å ±ã‚’åã‚ã‚‹æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void analyze_misc(object_type *o_ptr, char *misc_desc)
 {
 	artifact_type *a_ptr = &a_info[o_ptr->name1];
 
 #ifdef JP
-	sprintf(misc_desc, "¥ì¥Ù¥ë %u, ´õ¾¯ÅÙ %u, %d.%d kg, ¡ğ%ld",
-		a_ptr->level, a_ptr->rarity,
+	sprintf(misc_desc, "ãƒ¬ãƒ™ãƒ« %d, å¸Œå°‘åº¦ %u, %d.%d kg, ï¼„%ld",
+		(int)a_ptr->level, a_ptr->rarity,
 		lbtokg1(a_ptr->weight), lbtokg2(a_ptr->weight), (long int)a_ptr->cost);
 #else
-	sprintf(misc_desc, "Level %u, Rarity %u, %d.%d lbs, %ld Gold",
-		a_ptr->level, a_ptr->rarity,
+	sprintf(misc_desc, "Level %d, Rarity %u, %d.%d lbs, %ld Gold",
+		(int)a_ptr->level, a_ptr->rarity,
 		a_ptr->weight / 10, a_ptr->weight % 10, a_ptr->cost);
 #endif
 }
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¾ğÊóÁ´ÂÎ¤ò¹½Â¤ÂÎ¤Ë¼ı¤á¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®æƒ…å ±å…¨ä½“ã‚’æ§‹é€ ä½“ã«åã‚ã‚‹ /
  * Fill in an object description structure for a given object
  * and its value in gold pieces
- * @param o_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param desc_ptr Á´¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó¤ò¼ı¤á¤ëÊ¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param desc_ptr å…¨ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±ã‚’åã‚ã‚‹æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void object_analyze(object_type *o_ptr, obj_desc_list *desc_ptr)
 {
@@ -1407,14 +1421,14 @@ static void object_analyze(object_type *o_ptr, obj_desc_list *desc_ptr)
 
 
 /*!
- * @brief ¥Ğ¥Ã¥Õ¥¡¤Ë¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È½ĞÎÏ¾ğÊó¥Ø¥Ã¥À¤ò¼ı¤á¤ë /
- * @return ¤Ê¤·
+ * @brief ãƒãƒƒãƒ•ã‚¡ã«ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆå‡ºåŠ›æƒ…å ±ãƒ˜ãƒƒãƒ€ã‚’åã‚ã‚‹ /
+ * @return ãªã—
  */
 static void print_header(void)
 {
 	char buf[80];
 
-	sprintf(buf, "Artifact Spoilers for tanguband Version %d.%d.%d",
+	sprintf(buf, "Artifact Spoilers for Hengband Version %d.%d.%d",
 		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 	spoiler_underline(buf);
 }
@@ -1462,11 +1476,11 @@ static void print_header(void)
 #endif
 
 /*!
- * @brief ¥Õ¥é¥°Ì¾¾Î¤ò½ĞÎÏ¤¹¤ëÈÆÍÑ´Ø¿ô
- * @param header ¥Ø¥Ã¥À¤Ë½ĞÎÏ¤¹¤ë¥Õ¥é¥°·²¤ÎÌ¾Á°
- * @param list ¥Õ¥é¥°Ì¾¥ê¥¹¥È
- * @param separator ¥Õ¥é¥°É½¼¨¤Î¶èÀÚ¤êµ­¹æ
- * @return ¤Ê¤·
+ * @brief ãƒ•ãƒ©ã‚°åç§°ã‚’å‡ºåŠ›ã™ã‚‹æ±ç”¨é–¢æ•°
+ * @param header ãƒ˜ãƒƒãƒ€ã«å‡ºåŠ›ã™ã‚‹ãƒ•ãƒ©ã‚°ç¾¤ã®åå‰
+ * @param list ãƒ•ãƒ©ã‚°åãƒªã‚¹ãƒˆ
+ * @param separator ãƒ•ãƒ©ã‚°è¡¨ç¤ºã®åŒºåˆ‡ã‚Šè¨˜å·
+ * @return ãªã—
  */
 static void spoiler_outlist(cptr header, cptr *list, char separator)
 {
@@ -1560,10 +1574,10 @@ static void spoiler_outlist(cptr header, cptr *list, char separator)
 }
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È°ì·ï¤ò¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤¹¤ë /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆä¸€ä»¶ã‚’ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã™ã‚‹ /
  * Create a spoiler file entry for an artifact
- * @param art_ptr ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó¤ò¤Ş¤È¤á¤¿¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param art_ptr ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±ã‚’ã¾ã¨ã‚ãŸæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void spoiler_print_art(obj_desc_list *art_ptr)
 {
@@ -1578,18 +1592,18 @@ static void spoiler_print_art(obj_desc_list *art_ptr)
 	if (pval_ptr->pval_desc[0])
 	{
 		/* Mention the effects of pval */
-		sprintf(buf, _("%s¤Î½¤Àµ:", "%s to"), pval_ptr->pval_desc);
+		sprintf(buf, _("%sã®ä¿®æ­£:", "%s to"), pval_ptr->pval_desc);
 		spoiler_outlist(buf, pval_ptr->pval_affects, ITEM_SEP);
 	}
 
 	/* Now deal with the description lists */
 
 #ifdef JP
-	spoiler_outlist("ÂĞ:", art_ptr->slays, ITEM_SEP);
-	spoiler_outlist("Éğ´ïÂ°À­:", art_ptr->brands, LIST_SEP);
-	spoiler_outlist("ÌÈ±Ö:", art_ptr->immunities, ITEM_SEP);
-	spoiler_outlist("ÂÑÀ­:", art_ptr->resistances, ITEM_SEP);
-	spoiler_outlist("°İ»ı:", art_ptr->sustains, ITEM_SEP);
+	spoiler_outlist("å¯¾:", art_ptr->slays, ITEM_SEP);
+	spoiler_outlist("æ­¦å™¨å±æ€§:", art_ptr->brands, LIST_SEP);
+	spoiler_outlist("å…ç–«:", art_ptr->immunities, ITEM_SEP);
+	spoiler_outlist("è€æ€§:", art_ptr->resistances, ITEM_SEP);
+	spoiler_outlist("ç¶­æŒ:", art_ptr->sustains, ITEM_SEP);
 #else
 	spoiler_outlist("Slay", art_ptr->slays, ITEM_SEP);
 	spoiler_outlist("", art_ptr->brands, LIST_SEP);
@@ -1601,13 +1615,13 @@ static void spoiler_print_art(obj_desc_list *art_ptr)
 
 	if (art_ptr->addition[0])
 	{
-		fprintf(fff, _("%sÄÉ²Ã: %s\n", "%sAdditional %s\n"), INDENT1, art_ptr->addition);
+		fprintf(fff, _("%sè¿½åŠ : %s\n", "%sAdditional %s\n"), INDENT1, art_ptr->addition);
 	}
 
 	/* Write out the possible activation at the primary indention level */
 	if (art_ptr->activation)
 	{
-		fprintf(fff, _("%sÈ¯Æ°: %s\n", "%sActivates for %s\n"), INDENT1, art_ptr->activation);
+		fprintf(fff, _("%sç™ºå‹•: %s\n", "%sActivates for %s\n"), INDENT1, art_ptr->activation);
 	}
 
 	/* End with the miscellaneous facts */
@@ -1616,15 +1630,15 @@ static void spoiler_print_art(obj_desc_list *art_ptr)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó¤ò½ĞÎÏ¤¹¤ë¤¿¤á¤Ë¥À¥ß¡¼À¸À®¤ò¹Ô¤¦ /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±ã‚’å‡ºåŠ›ã™ã‚‹ãŸã‚ã«ãƒ€ãƒŸãƒ¼ç”Ÿæˆã‚’è¡Œã† /
  * Hack -- Create a "forged" artifact
- * @param o_ptr °ì»şÀ¸À®Àè¤òÊİ´É¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ
- * @param name1 À¸À®¤¹¤ë¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈID
- * @return À¸À®¤¬À®¸ù¤·¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param o_ptr ä¸€æ™‚ç”Ÿæˆå…ˆã‚’ä¿ç®¡ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“
+ * @param name1 ç”Ÿæˆã™ã‚‹ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆID
+ * @return ç”ŸæˆãŒæˆåŠŸã—ãŸå ´åˆTRUEã‚’è¿”ã™
  */
-static bool make_fake_artifact(object_type *o_ptr, int name1)
+static bool make_fake_artifact(object_type *o_ptr, IDX name1)
 {
-	int i;
+	IDX i;
 
 	artifact_type *a_ptr = &a_info[name1];
 
@@ -1642,7 +1656,7 @@ static bool make_fake_artifact(object_type *o_ptr, int name1)
 	object_prep(o_ptr, i);
 
 	/* Save the name */
-	o_ptr->name1 = name1;
+	o_ptr->name1 = (byte_hack)name1;
 
 	/* Extract the fields */
 	o_ptr->pval = a_ptr->pval;
@@ -1660,14 +1674,15 @@ static bool make_fake_artifact(object_type *o_ptr, int name1)
 
 
 /*!
- * @brief ¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó¤Î¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤ò¹Ô¤¦¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±ã®ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã‚’è¡Œã†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Create a spoiler file for artifacts
- * @param fname À¸À®¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @param fname ç”Ÿæˆãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 static void spoil_artifact(cptr fname)
 {
-	int i, j;
+	int i;
+	IDX j;
 
 	object_type forge;
 	object_type *q_ptr;
@@ -1745,10 +1760,10 @@ static void spoil_artifact(cptr fname)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼´Ê°×¾ğÊó¤Î¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤ò¹Ô¤¦¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç°¡æ˜“æƒ…å ±ã®ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã‚’è¡Œã†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Create a spoiler file for monsters   -BEN-
- * @param fname À¸À®¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @param fname ç”Ÿæˆãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 static void spoil_mon_desc(cptr fname)
 {
@@ -1787,7 +1802,7 @@ static void spoil_mon_desc(cptr fname)
 	C_MAKE(who, max_r_idx, s16b);
 
 	/* Dump the header */
-	fprintf(fff, "Monster Spoilers for tanguband Version %d.%d.%d\n",
+	fprintf(fff, "Monster Spoilers for Hengband Version %d.%d.%d\n",
 		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 	fprintf(fff, "------------------------------------------\n\n");
 
@@ -1804,7 +1819,7 @@ static void spoil_mon_desc(cptr fname)
 		monster_race *r_ptr = &r_info[i];
 
 		/* Use that monster */
-		if (r_ptr->name) who[n++] = i;
+		if (r_ptr->name) who[n++] = (s16b)i;
 	}
 
 	/* Select the sort method */
@@ -1840,10 +1855,10 @@ static void spoil_mon_desc(cptr fname)
 
 
 		/* Level */
-		sprintf(lev, "%d", r_ptr->level);
+		sprintf(lev, "%d", (int)r_ptr->level);
 
 		/* Rarity */
-		sprintf(rar, "%d", r_ptr->rarity);
+		sprintf(rar, "%d", (int)r_ptr->rarity);
 
 		/* Speed */
 		if (r_ptr->speed >= 110)
@@ -1910,11 +1925,11 @@ static void spoil_mon_desc(cptr fname)
 
 
 /*!
- * @brief Ê¸»úÎó¤ò¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤Ë½ĞÎÏ¤¹¤ë /
+ * @brief æ–‡å­—åˆ—ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã«å‡ºåŠ›ã™ã‚‹ /
  * Buffer text to the given file. (-SHAWN-)
  * This is basically c_roff() from mon-desc.c with a few changes.
- * @param str Ê¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param str æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void spoil_out(cptr str)
 {
@@ -1974,7 +1989,7 @@ static void spoil_out(cptr str)
 		bool wrap = (ch == '\n');
 
 #ifdef JP
-		if (!isprint(ch) && !k_flag && !iskanji_flag) ch = ' ';
+		if (!isprint((unsigned char)ch) && !k_flag && !iskanji_flag) ch = ' ';
 		iskanji_flag = k_flag && !iskanji_flag;
 #else
 		if (!isprint(ch)) ch = ' ';
@@ -2013,7 +2028,7 @@ static void spoil_out(cptr str)
 
 #ifdef JP
 					k_flag_local = iskanji((unsigned char)(*tail));
-					if (isprint(*tail) || k_flag_local || iskanji_flag_local) break;
+					if (isprint((unsigned char)*tail) || k_flag_local || iskanji_flag_local) break;
 					iskanji_flag_local = k_flag_local && !iskanji_flag_local;
 #else
 					if (isprint(*tail)) break;
@@ -2061,10 +2076,10 @@ static void spoil_out(cptr str)
 			else
 			{
 				if (iskanji_flag &&
-				    strncmp(str, "¡£", 2) != 0 &&
-				    strncmp(str, "¡¢", 2) != 0 &&
-				    strncmp(str, "¥£", 2) != 0 &&
-				    strncmp(str, "¡¼", 2) != 0) roff_s = roff_p;
+				    strncmp(str, "ã€‚", 2) != 0 &&
+				    strncmp(str, "ã€", 2) != 0 &&
+				    strncmp(str, "ã‚£", 2) != 0 &&
+				    strncmp(str, "ãƒ¼", 2) != 0) roff_s = roff_p;
 			}
 #else
 			if (ch == ' ') roff_s = roff_p;
@@ -2078,11 +2093,11 @@ static void spoil_out(cptr str)
 
 
 /*!
- * @brief ´Ø¿ô¥İ¥¤¥ó¥¿ÍÑ¤Î½ĞÎÏ´Ø¿ô /
+ * @brief é–¢æ•°ãƒã‚¤ãƒ³ã‚¿ç”¨ã®å‡ºåŠ›é–¢æ•° /
  * Hook function used in spoil_mon_info()
- * @param attr Ì¤»ÈÍÑ
- * @param str Ê¸»úÎó»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param attr æœªä½¿ç”¨
+ * @param str æ–‡å­—åˆ—å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void roff_func(byte attr, cptr str)
 {
@@ -2094,10 +2109,10 @@ static void roff_func(byte attr, cptr str)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¾ÜºÙ¾ğÊó¤ò¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤¹¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼è©³ç´°æƒ…å ±ã‚’ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã™ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Create a spoiler file for monsters (-SHAWN-)
- * @param fname ¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @param fname ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 static void spoil_mon_info(cptr fname)
 {
@@ -2126,7 +2141,7 @@ static void spoil_mon_info(cptr fname)
 
 
 	/* Dump the header */
-	sprintf(buf, "Monster Spoilers for tanguband Version %d.%d.%d\n",
+	sprintf(buf, "Monster Spoilers for Hengband Version %d.%d.%d\n",
 	     FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 
 	spoil_out(buf);
@@ -2141,7 +2156,7 @@ static void spoil_mon_info(cptr fname)
 		monster_race *r_ptr = &r_info[i];
 
 		/* Use that monster */
-		if (r_ptr->name) who[n++] = i;
+		if (r_ptr->name) who[n++] = (s16b)i;
 	}
 
 	/* Select the sort method */
@@ -2203,7 +2218,7 @@ static void spoil_mon_info(cptr fname)
 		spoil_out(buf);
 
 		/* Level */
-		sprintf(buf, "Lev:%d  ", r_ptr->level);
+		sprintf(buf, "Lev:%d  ", (int)r_ptr->level);
 		spoil_out(buf);
 
 		/* Rarity */
@@ -2265,12 +2280,12 @@ static void spoil_mon_info(cptr fname)
 
 
 /*!
- * @brief intÇÛÎó¤Çstrncmp()¤È»÷¤¿Èæ³Ó½èÍı¤ò¹Ô¤¦ / 
+ * @brief inté…åˆ—ã§strncmp()ã¨ä¼¼ãŸæ¯”è¼ƒå‡¦ç†ã‚’è¡Œã† / 
  * Compare two int-type array like strncmp() and return TRUE if equals
- * @param a Èæ³Ó¤¹¤ëintÇÛÎó1
- * @param b Èæ³Ó¤¹¤ëintÇÛÎó2
+ * @param a æ¯”è¼ƒã™ã‚‹inté…åˆ—1
+ * @param b æ¯”è¼ƒã™ã‚‹inté…åˆ—2
  * @param length 
- * @return Î¾¼Ô¤ÎÃÍ¤¬Åù¤·¤±¤ì¤ĞTRUE¤òÊÖ¤¹
+ * @return ä¸¡è€…ã®å€¤ãŒç­‰ã—ã‘ã‚Œã°TRUEã‚’è¿”ã™
  */
 static bool int_n_cmp(int *a, int *b, int length)
 {
@@ -2289,11 +2304,11 @@ static bool int_n_cmp(int *a, int *b, int length)
 
 
 /*!
- * @brief ¤¢¤ëÌÚ¤¬»ØÄê¤µ¤ì¤¿ÌÚ¤ÎÉôÊ¬ÌÚ¤«¤É¤¦¤«¤òÊÖ¤¹ / 
+ * @brief ã‚ã‚‹æœ¨ãŒæŒ‡å®šã•ã‚ŒãŸæœ¨ã®éƒ¨åˆ†æœ¨ã‹ã©ã†ã‹ã‚’è¿”ã™ / 
  * Returns TRUE if an evolution tree is "partial tree"
- * @param tree ¸µ¤È¤Ê¤ëÌÚ¹½Â¤¥ê¥¹¥È
- * @param partial_tree ÉôÊ¬ÌÚ¤«¤É¤¦¤«È½Äê¤·¤¿¤¤ÌÚ¹½Â¤¥ê¥¹¥È
- * @return ÉôÊ¬ÌÚ¤Ê¤é¤ĞTRUE¤òÊÖ¤¹
+ * @param tree å…ƒã¨ãªã‚‹æœ¨æ§‹é€ ãƒªã‚¹ãƒˆ
+ * @param partial_tree éƒ¨åˆ†æœ¨ã‹ã©ã†ã‹åˆ¤å®šã—ãŸã„æœ¨æ§‹é€ ãƒªã‚¹ãƒˆ
+ * @return éƒ¨åˆ†æœ¨ãªã‚‰ã°TRUEã‚’è¿”ã™
  */
 static bool is_partial_tree(int *tree, int *partial_tree)
 {
@@ -2315,13 +2330,13 @@ static bool is_partial_tree(int *tree, int *partial_tree)
 
 
 /*!
- * @brief ¿Ê²½¥Ä¥ê¡¼¤ò¥½¡¼¥È¤¹¤ë¤¿¤á¥â¥ó¥¹¥¿¡¼¼ïÂ²¤ÎÈ½Äê´Ø¿ô / 
+ * @brief é€²åŒ–ãƒ„ãƒªãƒ¼ã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹ãŸã‚ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®åˆ¤å®šé–¢æ•° / 
  * Sorting hook -- Comp function
- * @param u ¿Ê²½ÌÚ¹½Â¤¥Ç¡¼¥¿
- * @param v Ì¤»ÈÍÑ
- * @param a Èæ³Ó¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID1
- * @param b Èæ³Ó¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¼ïÂ²ID2
- * @return 2¤¬Âç¤­¤±¤ì¤ĞTRUE¤òÊÖ¤¹
+ * @param u é€²åŒ–æœ¨æ§‹é€ ãƒ‡ãƒ¼ã‚¿
+ * @param v æœªä½¿ç”¨
+ * @param a æ¯”è¼ƒã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID1
+ * @param b æ¯”è¼ƒã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ID2
+ * @return 2ãŒå¤§ãã‘ã‚Œã°TRUEã‚’è¿”ã™
  */
 static bool ang_sort_comp_evol_tree(vptr u, vptr v, int a, int b)
 {
@@ -2352,13 +2367,13 @@ static bool ang_sort_comp_evol_tree(vptr u, vptr v, int a, int b)
 }
 
 /*!
- * @brief ¿Ê²½¥Ä¥ê¡¼¤ò¥½¡¼¥È¤¹¤ë¤¿¤áÌÚ¹½Â¤¤Î¥¹¥ï¥Ã¥×´Ø¿ô / 
+ * @brief é€²åŒ–ãƒ„ãƒªãƒ¼ã‚’ã‚½ãƒ¼ãƒˆã™ã‚‹ãŸã‚æœ¨æ§‹é€ ã®ã‚¹ãƒ¯ãƒƒãƒ—é–¢æ•° / 
  * Sorting hook -- Swap function
- * @param u ¿Ê²½ÌÚ¹½Â¤¥Ç¡¼¥¿
- * @param v Ì¤»ÈÍÑ
- * @param a ¥¹¥ï¥Ã¥×¤·¤¿¤¤ÌÚ¹½Â¤1
- * @param b ¥¹¥ï¥Ã¥×¤·¤¿¤¤ÌÚ¹½Â¤2
- * @return 2¤¬Âç¤­¤±¤ì¤ĞTRUE¤òÊÖ¤¹
+ * @param u é€²åŒ–æœ¨æ§‹é€ ãƒ‡ãƒ¼ã‚¿
+ * @param v æœªä½¿ç”¨
+ * @param a ã‚¹ãƒ¯ãƒƒãƒ—ã—ãŸã„æœ¨æ§‹é€ 1
+ * @param b ã‚¹ãƒ¯ãƒƒãƒ—ã—ãŸã„æœ¨æ§‹é€ 2
+ * @return 2ãŒå¤§ãã‘ã‚Œã°TRUEã‚’è¿”ã™
  */
 static void ang_sort_swap_evol_tree(vptr u, vptr v, int a, int b)
 {
@@ -2375,10 +2390,10 @@ static void ang_sort_swap_evol_tree(vptr u, vptr v, int a, int b)
 }
 
 /*!
- * @brief ¿Ê²½¥Ä¥ê¡¼¤ò¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤¹¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó / 
+ * @brief é€²åŒ–ãƒ„ãƒªãƒ¼ã‚’ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã™ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ / 
  * Print monsters' evolution information to file
- * @param fname ½ĞÎÏ¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @param fname å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 static void spoil_mon_evol(cptr fname)
 {
@@ -2404,7 +2419,7 @@ static void spoil_mon_evol(cptr fname)
 	}
 
 	/* Dump the header */
-	sprintf(buf, "Monster Spoilers for tanguband Version %d.%d.%d\n",
+	sprintf(buf, "Monster Spoilers for Hengband Version %d.%d.%d\n",
 	     FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 
 	spoil_out(buf);
@@ -2478,25 +2493,16 @@ static void spoil_mon_evol(cptr fname)
 
 		/* Trace the evolution tree */
 		r_ptr = &r_info[r_idx];
-#ifdef JP
-		fprintf(fff, "[%d]: %s (¥ì¥Ù¥ë%d, '%c')\n", r_idx,
-			r_name + r_ptr->name, r_ptr->level, r_ptr->d_char);
-#else
-		fprintf(fff, "[%d]: %s (Level %d, '%c')\n", r_idx,
-			r_name + r_ptr->name, r_ptr->level, r_ptr->d_char);
-#endif
+		fprintf(fff, _("[%d]: %s (ãƒ¬ãƒ™ãƒ«%d, '%c')\n", "[%d]: %s (Level %d, '%c')\n"),
+			r_idx, r_name + r_ptr->name, (int)r_ptr->level, r_ptr->d_char);
+
 		for (n = 1; r_ptr->next_exp; n++)
 		{
 			fprintf(fff, "%*s-(%ld)-> ", n * 2, "", (long int)r_ptr->next_exp);
 			fprintf(fff, "[%d]: ", r_ptr->next_r_idx);
 			r_ptr = &r_info[r_ptr->next_r_idx];
-#ifdef JP
-			fprintf(fff, "%s (¥ì¥Ù¥ë%d, '%c')\n",
-				r_name + r_ptr->name, r_ptr->level, r_ptr->d_char);
-#else
-			fprintf(fff, "%s (Level %d, '%c')\n",
-				r_name + r_ptr->name, r_ptr->level, r_ptr->d_char);
-#endif
+			fprintf(fff, _("%s (ãƒ¬ãƒ™ãƒ«%d, '%c')\n", "%s (Level %d, '%c')\n"),
+				r_name + r_ptr->name, (int)r_ptr->level, r_ptr->d_char);
 		}
 
 		/* End of evolution tree */
@@ -2526,9 +2532,9 @@ static void spoil_mon_evol(cptr fname)
 extern void do_cmd_spoilers(void);
 
 /*!
- * @brief ¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤ò¹Ô¤¦¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó / 
+ * @brief ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã‚’è¡Œã†ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ / 
  * Create Spoiler files -BEN-
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void do_cmd_spoilers(void)
 {
@@ -2545,14 +2551,14 @@ void do_cmd_spoilers(void)
 		prt("Create a spoiler file.", 2, 0);
 
 		/* Prompt for a file */
-		prt("(1) Brief Object Info (obj-desc.spo)", 5, 5);
-		prt("(2) Brief Artifact Info (artifact.spo)", 6, 5);
-		prt("(3) Brief Monster Info (mon-desc.spo)", 7, 5);
-		prt("(4) Full Monster Info (mon-info.spo)", 8, 5);
-		prt("(5) Monster Evolution Info (mon-evol.spo)", 9, 5);
+		prt("(1) Brief Object Info (obj-desc.txt)", 5, 5);
+		prt("(2) Brief Artifact Info (artifact.txt)", 6, 5);
+		prt("(3) Brief Monster Info (mon-desc.txt)", 7, 5);
+		prt("(4) Full Monster Info (mon-info.txt)", 8, 5);
+		prt("(5) Monster Evolution Info (mon-evol.txt)", 9, 5);
 
 		/* Prompt */
-		prt(_("¥³¥Ş¥ó¥É:", "Command: "), _(18, 12), 0);
+		prt(_("ã‚³ãƒãƒ³ãƒ‰:", "Command: "), _(18, 12), 0);
 
 		/* Get a choice */
 		switch (inkey())
@@ -2565,27 +2571,27 @@ void do_cmd_spoilers(void)
 
 		/* Option (1) */
 		case '1':
-			spoil_obj_desc("obj-desc.spo");
+			spoil_obj_desc("obj-desc.txt");
 			break;
 
 		/* Option (2) */
 		case '2':
-			spoil_artifact("artifact.spo");
+			spoil_artifact("artifact.txt");
 			break;
 
 		/* Option (3) */
 		case '3':
-			spoil_mon_desc("mon-desc.spo");
+			spoil_mon_desc("mon-desc.txt");
 			break;
 
 		/* Option (4) */
 		case '4':
-			spoil_mon_info("mon-info.spo");
+			spoil_mon_info("mon-info.txt");
 			break;
 
 		/* Option (5) */
 		case '5':
-			spoil_mon_evol("mon-evol.spo");
+			spoil_mon_evol("mon-evol.txt");
 			break;
 
 		/* Oops */
@@ -2600,11 +2606,11 @@ void do_cmd_spoilers(void)
 }
 
 /*!
- * @brief ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È£±·ï¤ò²òÀÏ¤¹¤ë / 
+ * @brief ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆï¼‘ä»¶ã‚’è§£æã™ã‚‹ / 
  * Fill in an object description structure for a given object
- * @param o_ptr ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param desc_ptr µ­½ÒÆâÍÆ¤ò¼ı¤á¤ë¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @param o_ptr ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param desc_ptr è¨˜è¿°å†…å®¹ã‚’åã‚ã‚‹æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void random_artifact_analyze(object_type *o_ptr, obj_desc_list *desc_ptr)
 {
@@ -2618,7 +2624,7 @@ static void random_artifact_analyze(object_type *o_ptr, obj_desc_list *desc_ptr)
 	analyze_misc_magic(o_ptr, desc_ptr->misc_magic);
 	desc_ptr->activation = item_activation(o_ptr);
 #ifdef JP
-	sprintf(desc_ptr->misc_desc, "½Å¤µ %d.%d kg",
+	sprintf(desc_ptr->misc_desc, "é‡ã• %d.%d kg",
 		lbtokg1(o_ptr->weight), lbtokg2(o_ptr->weight));
 #else
 	sprintf(desc_ptr->misc_desc, "Weight %d.%d lbs",
@@ -2627,12 +2633,12 @@ static void random_artifact_analyze(object_type *o_ptr, obj_desc_list *desc_ptr)
 }
 
 /*!
- * @brief ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È£±·ï¤ò¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤¹¤ë / 
+ * @brief ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆï¼‘ä»¶ã‚’ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã™ã‚‹ / 
  * Create a spoiler file entry for an artifact
- * @param o_ptr ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param art_ptr µ­½ÒÆâÍÆ¤ò¼ı¤á¤¿¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
+ * @param o_ptr ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param art_ptr è¨˜è¿°å†…å®¹ã‚’åã‚ãŸæ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
  * Fill in an object description structure for a given object
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void spoiler_print_randart(object_type *o_ptr, obj_desc_list *art_ptr)
 {
@@ -2646,25 +2652,25 @@ static void spoiler_print_randart(object_type *o_ptr, obj_desc_list *art_ptr)
 	/* unidentified */
 	if (!(o_ptr->ident & (IDENT_MENTAL)))
 	{
-		fprintf(fff, _("%sÉÔÌÀ\n", "%sUnknown\n"),INDENT1);
+		fprintf(fff, _("%sä¸æ˜\n", "%sUnknown\n"),INDENT1);
 	}
 	else {
 		/* An "empty" pval description indicates that the pval affects nothing */
 		if (pval_ptr->pval_desc[0])
 		{
 			/* Mention the effects of pval */
-			sprintf(buf, _("%s¤Î½¤Àµ:", "%s to"), pval_ptr->pval_desc);
+			sprintf(buf, _("%sã®ä¿®æ­£:", "%s to"), pval_ptr->pval_desc);
 			spoiler_outlist(buf, pval_ptr->pval_affects, ITEM_SEP);
 		}
 
 		/* Now deal with the description lists */
 
 #ifdef JP
-		spoiler_outlist("ÂĞ:", art_ptr->slays, ITEM_SEP);
-		spoiler_outlist("Éğ´ïÂ°À­:", art_ptr->brands, LIST_SEP);
-		spoiler_outlist("ÌÈ±Ö:", art_ptr->immunities, ITEM_SEP);
-		spoiler_outlist("ÂÑÀ­:", art_ptr->resistances, ITEM_SEP);
-		spoiler_outlist("°İ»ı:", art_ptr->sustains, ITEM_SEP);
+		spoiler_outlist("å¯¾:", art_ptr->slays, ITEM_SEP);
+		spoiler_outlist("æ­¦å™¨å±æ€§:", art_ptr->brands, LIST_SEP);
+		spoiler_outlist("å…ç–«:", art_ptr->immunities, ITEM_SEP);
+		spoiler_outlist("è€æ€§:", art_ptr->resistances, ITEM_SEP);
+		spoiler_outlist("ç¶­æŒ:", art_ptr->sustains, ITEM_SEP);
 #else
 		spoiler_outlist("Slay", art_ptr->slays, ITEM_SEP);
 		spoiler_outlist("", art_ptr->brands, LIST_SEP);
@@ -2677,7 +2683,7 @@ static void spoiler_print_randart(object_type *o_ptr, obj_desc_list *art_ptr)
 		/* Write out the possible activation at the primary indention level */
 		if (art_ptr->activation)
 		{
-			fprintf(fff, _("%sÈ¯Æ°: %s\n", "%sActivates for %s\n"), INDENT1, art_ptr->activation);
+			fprintf(fff, _("%sç™ºå‹•: %s\n", "%sActivates for %s\n"), INDENT1, art_ptr->activation);
 		}
 	}
 	/* End with the miscellaneous facts */
@@ -2686,10 +2692,10 @@ static void spoiler_print_randart(object_type *o_ptr, obj_desc_list *art_ptr)
 
 
 /*!
- * @brief ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÆâÍÆ¤ò¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤¹¤ë¥µ¥Ö¥ë¡¼¥Á¥ó / 
- * @param o_ptr ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¤Î¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param i ½ĞÎÏ¤·¤¿¤¤µ­Ï¿¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈID
- * @return ¤Ê¤·
+ * @brief ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆå†…å®¹ã‚’ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã™ã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ / 
+ * @param o_ptr ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param i å‡ºåŠ›ã—ãŸã„è¨˜éŒ²ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆID
+ * @return ãªã—
  */
 static void spoil_random_artifact_aux(object_type *o_ptr, int i)
 {
@@ -2707,10 +2713,10 @@ static void spoil_random_artifact_aux(object_type *o_ptr, int i)
 }
 
 /*!
- * @brief ¥é¥ó¥À¥à¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÆâÍÆ¤ò¥¹¥İ¥¤¥é¡¼½ĞÎÏ¤¹¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó / 
+ * @brief ãƒ©ãƒ³ãƒ€ãƒ ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆå†…å®¹ã‚’ã‚¹ãƒã‚¤ãƒ©ãƒ¼å‡ºåŠ›ã™ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ / 
  * Create a list file for random artifacts
- * @param fname ½ĞÎÏ¥Õ¥¡¥¤¥ëÌ¾
- * @return ¤Ê¤·
+ * @param fname å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãªã—
  */
 void spoil_random_artifact(cptr fname)
 {

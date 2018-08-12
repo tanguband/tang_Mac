@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file init2.c
- * @brief ¥²¡¼¥à¥Ç¡¼¥¿½é´ü²½2 / Initialization (part 2) -BEN-
+ * @brief ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–2 / Initialization (part 2) -BEN-
  * @date 2014/01/28
  * @author
  * <pre>
@@ -43,14 +43,13 @@
 #endif /* CHECK_MODIFICATION_TIME */
 #endif
 
-
-
+static void put_title(void);
 
 /*!
- * @brief ³Æ¥Ç¡¼¥¿¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¼è¤ë¤¿¤á¤Î¥Ñ¥¹¤ò¼èÆÀ¤¹¤ë
+ * @brief å„ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿å–ã‚‹ãŸã‚ã®ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
  * Find the default paths to all of our important sub-directories.
- * @param path ¥Ñ¥¹Êİ´ÉÀè¤ÎÊ¸»úÎó
- * @return ¤Ê¤·
+ * @param path ãƒ‘ã‚¹ä¿ç®¡å…ˆã®æ–‡å­—åˆ—
+ * @return ãªã—
  * @details
  * <pre>
  * The purpose of each sub-directory is described in "variable.c".
@@ -112,28 +111,6 @@ void init_file_paths(char *path)
 
 	/* Prepare to append to the Base Path */
 	tail = path + strlen(path);
-
-
-#ifdef VM
-
-	/*** Use "flat" paths with VM/ESA ***/
-
-	/* Use "blank" path names */
-	ANGBAND_DIR_APEX = string_make("");
-	ANGBAND_DIR_BONE = string_make("");
-	ANGBAND_DIR_DATA = string_make("");
-	ANGBAND_DIR_EDIT = string_make("");
-	ANGBAND_DIR_SCRIPT = string_make("");
-	ANGBAND_DIR_FILE = string_make("");
-	ANGBAND_DIR_HELP = string_make("");
-	ANGBAND_DIR_INFO = string_make("");
-	ANGBAND_DIR_SAVE = string_make("");
-	ANGBAND_DIR_USER = string_make("");
-	ANGBAND_DIR_XTRA = string_make("");
-
-
-#else /* VM */
-
 
 	/*** Build the sub-directory names ***/
 
@@ -197,8 +174,6 @@ void init_file_paths(char *path)
 	strcpy(tail, "xtra");
 	ANGBAND_DIR_XTRA = string_make(path);
 
-#endif /* VM */
-
 
 #ifdef NeXT
 
@@ -247,27 +222,27 @@ void init_file_paths(char *path)
 /*
  * Hack -- help give useful error messages
  */
-int error_idx; /*!< ¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß/½é´ü²½»ş¤ËÈÆÍÑÅª¤Ë¥¨¥é¡¼¥³¡¼¥É¤òÊİÂ¸¤¹¤ë¥°¥í¡¼¥Ğ¥ëÊÑ¿ô */
-int error_line; /*!< ¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß/½é´ü²½»ş¤ËÈÆÍÑÅª¤Ë¥¨¥é¡¼¹Ô¿ô¤òÊİÂ¸¤¹¤ë¥°¥í¡¼¥Ğ¥ëÊÑ¿ô */
+int error_idx; /*!< ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿/åˆæœŸåŒ–æ™‚ã«æ±ç”¨çš„ã«ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ã‚’ä¿å­˜ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° */
+int error_line; /*!< ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿/åˆæœŸåŒ–æ™‚ã«æ±ç”¨çš„ã«ã‚¨ãƒ©ãƒ¼è¡Œæ•°ã‚’ä¿å­˜ã™ã‚‹ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° */
 
 
 /*!
- * ¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸¤ÎÌ¾¾ÎÄêµÁ / Standard error message text
+ * ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®åç§°å®šç¾© / Standard error message text
  */
 cptr err_str[PARSE_ERROR_MAX] =
 {
 	NULL,
 #ifdef JP
-	"Ê¸Ë¡¥¨¥é¡¼",
-	"¸Å¤¤¥Õ¥¡¥¤¥ë",
-	"µ­Ï¿¥Ø¥Ã¥À¤¬¤Ê¤¤",
-	"ÉÔÏ¢Â³¥ì¥³¡¼¥É",
-	"¤ª¤«¤·¤Ê¥Õ¥é¥°Â¸ºß",
-	"Ì¤ÄêµÁÌ¿Îá",
-	"¥á¥â¥êÉÔÂ­",
-	"ºÂÉ¸ÈÏ°Ï³°",
-	"°ú¿ôÉÔÂ­",
-	"Ì¤ÄêµÁÃÏ·Á¥¿¥°",
+	"æ–‡æ³•ã‚¨ãƒ©ãƒ¼",
+	"å¤ã„ãƒ•ã‚¡ã‚¤ãƒ«",
+	"è¨˜éŒ²ãƒ˜ãƒƒãƒ€ãŒãªã„",
+	"ä¸é€£ç¶šãƒ¬ã‚³ãƒ¼ãƒ‰",
+	"ãŠã‹ã—ãªãƒ•ãƒ©ã‚°å­˜åœ¨",
+	"æœªå®šç¾©å‘½ä»¤",
+	"ãƒ¡ãƒ¢ãƒªä¸è¶³",
+	"åº§æ¨™ç¯„å›²å¤–",
+	"å¼•æ•°ä¸è¶³",
+	"æœªå®šç¾©åœ°å½¢ã‚¿ã‚°",
 #else
 	"parse error",
 	"obsolete file",
@@ -290,24 +265,24 @@ cptr err_str[PARSE_ERROR_MAX] =
 /*
  * File headers
  */
-header v_head; /*!< Vault¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header f_head; /*!< ÃÏ·Á¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header k_head; /*!< ¥Ú¡¼¥¹¥¢¥¤¥Æ¥à¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header a_head; /*!< ¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header e_head; /*!< ¥¢¥¤¥Æ¥à¥¨¥´¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header r_head; /*!< ¥â¥ó¥¹¥¿¡¼¼ïÂ²¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header d_head; /*!< ¥À¥ó¥¸¥ç¥ó¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header s_head; /*!< ¥×¥ì¥¤¥ä¡¼¿¦¶Èµ»Ç½¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
-header m_head; /*!< ¥×¥ì¥¤¥ä¡¼¿¦¶ÈËâË¡¾ğÊó¤Î¥Ø¥Ã¥À¹½Â¤ÂÎ */
+header v_head; /*!< Vaultæƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header f_head; /*!< åœ°å½¢æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header k_head; /*!< ãƒšãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header a_head; /*!< å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header e_head; /*!< ã‚¢ã‚¤ãƒ†ãƒ ã‚¨ã‚´æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header r_head; /*!< ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header d_head; /*!< ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header s_head; /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è·æ¥­æŠ€èƒ½æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
+header m_head; /*!< ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è·æ¥­é­”æ³•æƒ…å ±ã®ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
 
 #ifdef CHECK_MODIFICATION_TIME
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤Èraw¥Õ¥¡¥¤¥ë¤Î¹¹¿·»ş¹ï¤òÈæ³Ó¤¹¤ë
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã¨rawãƒ•ã‚¡ã‚¤ãƒ«ã®æ›´æ–°æ™‚åˆ»ã‚’æ¯”è¼ƒã™ã‚‹
  * Find the default paths to all of our important sub-directories.
- * @param fd ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
- * @param template_file ¥Õ¥¡¥¤¥ëÌ¾
- * @return ¥Æ¥­¥¹¥È¤ÎÊı¤¬¿·¤·¤¤¤«¡¢raw¥Õ¥¡¥¤¥ë¤¬¤Ê¤¯¹¹¿·¤ÎÉ¬Í×¤¬¤¢¤ë¾ì¹ç-1¡¢¹¹¿·¤ÎÉ¬Í×¤¬¤Ê¤¤¾ì¹ç0¡£
+ * @param fd ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+ * @param template_file ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @return ãƒ†ã‚­ã‚¹ãƒˆã®æ–¹ãŒæ–°ã—ã„ã‹ã€rawãƒ•ã‚¡ã‚¤ãƒ«ãŒãªãæ›´æ–°ã®å¿…è¦ãŒã‚ã‚‹å ´åˆ-1ã€æ›´æ–°ã®å¿…è¦ãŒãªã„å ´åˆ0ã€‚
  */
 static errr check_modification_date(int fd, cptr template_file)
 {
@@ -349,11 +324,11 @@ static errr check_modification_date(int fd, cptr template_file)
 
 
 /*!
- * @brief raw¥Õ¥¡¥¤¥ë¤«¤é¤Î¥Ç¡¼¥¿¤ÎÆÉ¤ß¼è¤ê½èÍı
+ * @brief rawãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿å–ã‚Šå‡¦ç†
  * Initialize the "*_info" array, by parsing a binary "image" file
- * @param fd ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
- * @param head raw¥Õ¥¡¥¤¥ë¤Î¥Ø¥Ã¥À
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param fd ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+ * @param head rawãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ˜ãƒƒãƒ€
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_info_raw(int fd, header *head)
 {
@@ -422,14 +397,14 @@ static errr init_info_raw(int fd, header *head)
 
 
 /*!
- * @brief ¥Ø¥Ã¥À¹½Â¤ÂÎ¤Î¹¹¿·
+ * @brief ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã®æ›´æ–°
  * Initialize the header of an *_info.raw file.
- * @param head raw¥Õ¥¡¥¤¥ë¤Î¥Ø¥Ã¥À
- * @param num ¥Ç¡¼¥¿¿ô
- * @param len ¥Ç¡¼¥¿¤ÎÄ¹¤µ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param head rawãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ˜ãƒƒãƒ€
+ * @param num ãƒ‡ãƒ¼ã‚¿æ•°
+ * @param len ãƒ‡ãƒ¼ã‚¿ã®é•·ã•
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
-static void init_header(header *head, int num, int len)
+static void init_header(header *head, IDX num, int len)
 {
 	/* Save the "version" */
 	head->v_major = FAKE_VER_MAJOR;
@@ -438,7 +413,7 @@ static void init_header(header *head, int num, int len)
 	head->v_extra = 0;
 
 	/* Save the "record" information */
-	head->info_num = num;
+	head->info_num = (IDX)num;
 	head->info_len = len;
 
 	/* Save the size of "*_head" and "*_info" */
@@ -448,15 +423,15 @@ static void init_header(header *head, int num, int len)
 
 
 /*!
- * @brief ¥Ø¥Ã¥À¹½Â¤ÂÎ¤Î¹¹¿·
+ * @brief ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ã®æ›´æ–°
  * Initialize the "*_info" array
- * @param filename ¥Õ¥¡¥¤¥ëÌ¾(³ÈÄ¥»Òtxt/raw)
- * @param head ½èÍı¤ËÍÑ¤¤¤ë¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @param info ¥Ç¡¼¥¿Êİ´ÉÀè¤Î¹½Â¤ÂÎ¥İ¥¤¥ó¥¿
- * @param name Ì¾¾ÎÍÑ²ÄÊÑÊ¸»úÎó¤ÎÊİ´ÉÀè
- * @param text ¥Æ¥­¥¹¥ÈÍÑ²ÄÊÑÊ¸»úÎó¤ÎÊİ´ÉÀè
- * @param tag ¥¿¥°ÍÑ²ÄÊÑÊ¸»úÎó¤ÎÊİ´ÉÀè
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param filename ãƒ•ã‚¡ã‚¤ãƒ«å(æ‹¡å¼µå­txt/raw)
+ * @param head å‡¦ç†ã«ç”¨ã„ã‚‹ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @param info ãƒ‡ãƒ¼ã‚¿ä¿ç®¡å…ˆã®æ§‹é€ ä½“ãƒã‚¤ãƒ³ã‚¿
+ * @param name åç§°ç”¨å¯å¤‰æ–‡å­—åˆ—ã®ä¿ç®¡å…ˆ
+ * @param text ãƒ†ã‚­ã‚¹ãƒˆç”¨å¯å¤‰æ–‡å­—åˆ—ã®ä¿ç®¡å…ˆ
+ * @param tag ã‚¿ã‚°ç”¨å¯å¤‰æ–‡å­—åˆ—ã®ä¿ç®¡å…ˆ
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  * @note
  * Note that we let each entry have a unique "name" and "text" string,
  * even if the string happens to be empty (everyone has a unique '\0').
@@ -466,7 +441,7 @@ static errr init_info(cptr filename, header *head,
 {
 	int fd;
 
-	int mode = 0644;
+	BIT_FLAGS mode = 0644;
 
 	errr err = 1;
 
@@ -533,7 +508,7 @@ static errr init_info(cptr filename, header *head,
 		fp = my_fopen(buf, "r");
 
 		/* Parse it */
-		if (!fp) quit(format(_("'%s.txt'¥Õ¥¡¥¤¥ë¤ò¥ª¡¼¥×¥ó¤Ç¤­¤Ş¤»¤ó¡£", "Cannot open '%s.txt' file."), filename));
+		if (!fp) quit(format(_("'%s.txt'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ã§ãã¾ã›ã‚“ã€‚", "Cannot open '%s.txt' file."), filename));
 
 		/* Parse the file */
 		err = init_info_txt(fp, buf, head, head->parse_info_txt);
@@ -548,16 +523,16 @@ static errr init_info(cptr filename, header *head,
 
 #ifdef JP
 			/* Error string */
-			oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "Ì¤ÃÎ¤Î");
+			oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "æœªçŸ¥ã®");
 
 			/* Oops */
-			msg_format("'%s.txt'¥Õ¥¡¥¤¥ë¤Î %d ¹ÔÌÜ¤Ë¥¨¥é¡¼¡£", filename, error_line);
-			msg_format("¥ì¥³¡¼¥É %d ¤Ï '%s' ¥¨¥é¡¼¤¬¤¢¤ê¤Ş¤¹¡£", error_idx, oops);
-			msg_format("¹½Ê¸ '%s'¡£", buf);
+			msg_format("'%s.txt'ãƒ•ã‚¡ã‚¤ãƒ«ã® %d è¡Œç›®ã«ã‚¨ãƒ©ãƒ¼ã€‚", filename, error_line);
+			msg_format("ãƒ¬ã‚³ãƒ¼ãƒ‰ %d ã¯ '%s' ã‚¨ãƒ©ãƒ¼ãŒã‚ã‚Šã¾ã™ã€‚", error_idx, oops);
+			msg_format("æ§‹æ–‡ '%s'ã€‚", buf);
 			msg_print(NULL);
 
 			/* Quit */
-			quit(format("'%s.txt'¥Õ¥¡¥¤¥ë¤Ë¥¨¥é¡¼", filename));
+			quit(format("'%s.txt'ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¨ãƒ©ãƒ¼", filename));
 #else
 			/* Error string */
 			oops = (((err > 0) && (err < PARSE_ERROR_MAX)) ? err_str[err] : "unknown");
@@ -649,7 +624,7 @@ static errr init_info(cptr filename, header *head,
 		fd = fd_open(buf, O_RDONLY);
 
 		/* Process existing "raw" file */
-		if (fd < 0) quit(format(_("'%s_j.raw'¥Õ¥¡¥¤¥ë¤ò¥í¡¼¥É¤Ç¤­¤Ş¤»¤ó¡£", "Cannot load '%s.raw' file."), filename));
+		if (fd < 0) quit(format(_("'%s_j.raw'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã€‚", "Cannot load '%s.raw' file."), filename));
 
 		/* Attempt to parse the "raw" file */
 		err = init_info_raw(fd, head);
@@ -658,7 +633,7 @@ static errr init_info(cptr filename, header *head,
 		(void)fd_close(fd);
 
 		/* Error */
-		if (err) quit(format(_("'%s_j.raw'¥Õ¥¡¥¤¥ë¤ò²òÀÏ¤Ç¤­¤Ş¤»¤ó¡£", "Cannot parse '%s.raw' file."), filename));
+		if (err) quit(format(_("'%s_j.raw'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è§£æã§ãã¾ã›ã‚“ã€‚", "Cannot parse '%s.raw' file."), filename));
 
 #ifdef ALLOW_TEMPLATES
 	}
@@ -675,9 +650,9 @@ static errr init_info(cptr filename, header *head,
 
 
 /*!
- * @brief ÃÏ·Á¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief åœ°å½¢æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "f_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_f_info(void)
 {
@@ -700,9 +675,9 @@ static errr init_f_info(void)
 
 
 /*!
- * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "k_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_k_info(void)
 {
@@ -723,9 +698,9 @@ static errr init_k_info(void)
 
 
 /*!
- * @brief ¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "a_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_a_info(void)
 {
@@ -746,9 +721,9 @@ static errr init_a_info(void)
 
 
 /*!
- * @brief ¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "e_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_e_info(void)
 {
@@ -769,9 +744,9 @@ static errr init_e_info(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¼ïÂ²¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "r_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_r_info(void)
 {
@@ -792,9 +767,9 @@ static errr init_r_info(void)
 
 
 /*!
- * @brief ¥À¥ó¥¸¥ç¥ó¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "d_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_d_info(void)
 {
@@ -814,9 +789,9 @@ static errr init_d_info(void)
 
 
 /*!
- * @brief Vault¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief Vaultæƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "v_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  * @note
  * Note that we let each entry have a unique "name" and "text" string,
  * even if the string happens to be empty (everyone has a unique '\0').
@@ -839,9 +814,9 @@ errr init_v_info(void)
 
 
 /*!
- * @brief ¿¦¶Èµ»Ç½¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief è·æ¥­æŠ€èƒ½æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "s_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_s_info(void)
 {
@@ -861,9 +836,9 @@ static errr init_s_info(void)
 
 
 /*!
- * @brief ¿¦¶ÈËâË¡¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief è·æ¥­é­”æ³•æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize the "m_info" array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_m_info(void)
 {
@@ -886,7 +861,7 @@ static errr init_m_info(void)
 /*** Initialize others ***/
 
 /*!
- * Å¹ÊŞ¤ÇÈÎÇä¤¹¤ë¥ª¥Ö¥¸¥§¥¯¥È¤òÄêµÁ¤¹¤ë / Hack -- Objects sold in the stores -- by tval/sval pair.
+ * åº—èˆ—ã§è²©å£²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å®šç¾©ã™ã‚‹ / Hack -- Objects sold in the stores -- by tval/sval pair.
  */
 static byte store_table[MAX_STORES][STORE_CHOICES][2] =
 {
@@ -1442,9 +1417,9 @@ static byte store_table[MAX_STORES][STORE_CHOICES][2] =
 
 
 /*!
- * @brief ´ğËÜ¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief åŸºæœ¬æƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize misc. values
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_misc(void)
 {
@@ -1456,9 +1431,9 @@ static errr init_misc(void)
 
 
 /*!
- * @brief Ä®¾ğÊóÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ç”ºæƒ…å ±èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize town array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_towns(void)
 {
@@ -1487,9 +1462,9 @@ static errr init_towns(void)
 			/* Assume full stock */
 
 		/*
-		 * ²æ¤¬²È¤¬ 20 ¥Ú¡¼¥¸¤Ş¤Ç»È¤¨¤ë±£¤·µ¡Ç½¤Î¤¿¤á¤Î½àÈ÷¡£
-		 * ¥ª¥×¥·¥ç¥ó¤¬Í­¸ú¤Ç¤â¤½¤¦¤Ç¤Ê¤¯¤Æ¤â°ì±ş¥¹¥Ú¡¼¥¹
-		 * ¤òºî¤Ã¤Æ¤ª¤¯¡£
+		 * æˆ‘ãŒå®¶ãŒ 20 ãƒšãƒ¼ã‚¸ã¾ã§ä½¿ãˆã‚‹éš ã—æ©Ÿèƒ½ã®ãŸã‚ã®æº–å‚™ã€‚
+		 * ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒæœ‰åŠ¹ã§ã‚‚ãã†ã§ãªãã¦ã‚‚ä¸€å¿œã‚¹ãƒšãƒ¼ã‚¹
+		 * ã‚’ä½œã£ã¦ãŠãã€‚
 		 */
 		if (j == STORE_HOME)
 		{
@@ -1520,7 +1495,7 @@ static errr init_towns(void)
 			/* Scan the choices */
 			for (k = 0; k < STORE_CHOICES; k++)
 			{
-				int k_idx;
+				KIND_OBJECT_IDX k_idx;
 
 				/* Extract the tval/sval codes */
 				int tv = store_table[j][k][0];
@@ -1548,9 +1523,9 @@ static errr init_towns(void)
 }
 
 /*!
- * @brief Å¹¾ğÊó½é´ü²½¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief åº—æƒ…å ±åˆæœŸåŒ–ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize buildings
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr init_buildings(void)
 {
@@ -1593,9 +1568,9 @@ errr init_buildings(void)
 
 
 /*!
- * @brief ¥¯¥¨¥¹¥È¾ğÊó½é´ü²½¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±åˆæœŸåŒ–ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Initialize quest array
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_quests(void)
 {
@@ -1604,10 +1579,10 @@ static errr init_quests(void)
 	/*** Prepare the quests ***/
 
 	/* Allocate the quests */
-	C_MAKE(quest, max_quests, quest_type);
+	C_MAKE(quest, max_q_idx, quest_type);
 
 	/* Set all quest to "untaken" */
-	for (i = 0; i < max_quests; i++)
+	for (i = 0; i < max_q_idx; i++)
 	{
 		quest[i].status = QUEST_STATUS_UNTAKEN;
 	}
@@ -1615,13 +1590,13 @@ static errr init_quests(void)
 	return 0;
 }
 
-/*! ÃÏ·Á¥¿¥°¾ğÊó¤«¤éÃÏ·ÁID¤òÆÀ¤é¤ì¤Ê¤«¤Ã¤¿¾ì¹ç¤ËTRUE¤òÊÖ¤¹¥°¥í¡¼¥Ğ¥ëÊÑ¿ô */
+/*! åœ°å½¢ã‚¿ã‚°æƒ…å ±ã‹ã‚‰åœ°å½¢IDã‚’å¾—ã‚‰ã‚Œãªã‹ã£ãŸå ´åˆã«TRUEã‚’è¿”ã™ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•° */
 static bool feat_tag_is_not_found = FALSE;
 
 /*!
- * @brief ÃÏ·Á¥¿¥°¤«¤éID¤òÆÀ¤ë /
+ * @brief åœ°å½¢ã‚¿ã‚°ã‹ã‚‰IDã‚’å¾—ã‚‹ /
  * Initialize quest array
- * @return ÃÏ·ÁID
+ * @return åœ°å½¢ID
  */
 s16b f_tag_to_index_in_init(cptr str)
 {
@@ -1634,13 +1609,13 @@ s16b f_tag_to_index_in_init(cptr str)
 
 
 /*!
- * @brief ÃÏ·Á¤ÎÈÆÍÑÄêµÁ¤ò¥¿¥°¤òÄÌ¤¸¤Æ¼èÆÀ¤¹¤ë /
+ * @brief åœ°å½¢ã®æ±ç”¨å®šç¾©ã‚’ã‚¿ã‚°ã‚’é€šã˜ã¦å–å¾—ã™ã‚‹ /
  * Initialize feature variables
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_feat_variables(void)
 {
-	int i;
+	FEAT_IDX i;
 
 	/* Nothing */
 	feat_none = f_tag_to_index_in_init("NONE");
@@ -1782,9 +1757,9 @@ static errr init_feat_variables(void)
 
 
 /*!
- * @brief ¤½¤ÎÂ¾¤Î½é´ü¾ğÊó¹¹¿· /
+ * @brief ãã®ä»–ã®åˆæœŸæƒ…å ±æ›´æ–° /
  * Initialize some other arrays
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_other(void)
 {
@@ -1806,7 +1781,7 @@ static errr init_other(void)
 	}
 
 	/* Allocate and Wipe the max dungeon level */
-	C_MAKE(max_dlv, max_d_idx, s16b);
+	C_MAKE(max_dlv, max_d_idx, DEPTH);
 
 	/* Allocate and wipe each line of the cave */
 	for (i = 0; i < MAX_HGT; i++)
@@ -1830,7 +1805,7 @@ static errr init_other(void)
 	quark_init();
 
 	/* Message variables */
-	C_MAKE(message__ptr, MESSAGE_MAX, u16b);
+	C_MAKE(message__ptr, MESSAGE_MAX, u32b);
 	C_MAKE(message__buf, MESSAGE_BUF, char);
 
 	/* Hack -- No messages yet */
@@ -1909,9 +1884,9 @@ static errr init_other(void)
 
 
 /*!
- * @brief ¥ª¥Ö¥¸¥§¥¯¥ÈÇÛÎó¤ò½é´ü²½¤¹¤ë /
+ * @brief ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆé…åˆ—ã‚’åˆæœŸåŒ–ã™ã‚‹ /
  * Initialize some other arrays
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_object_alloc(void)
 {
@@ -1967,7 +1942,7 @@ static errr init_object_alloc(void)
 	}
 
 	/* Paranoia */
-	if (!num[0]) quit(_("Ä®¤Î¥¢¥¤¥Æ¥à¤¬¤Ê¤¤¡ª", "No town objects!"));
+	if (!num[0]) quit(_("ç”ºã®ã‚¢ã‚¤ãƒ†ãƒ ãŒãªã„ï¼", "No town objects!"));
 
 	/*** Initialize object allocation info ***/
 
@@ -2003,11 +1978,11 @@ static errr init_object_alloc(void)
 				z = y + aux[x];
 
 				/* Load the entry */
-				table[z].index = i;
-				table[z].level = x;
-				table[z].prob1 = p;
-				table[z].prob2 = p;
-				table[z].prob3 = p;
+				table[z].index = (KIND_OBJECT_IDX)i;
+				table[z].level = (DEPTH)x;
+				table[z].prob1 = (PROB)p;
+				table[z].prob2 = (PROB)p;
+				table[z].prob3 = (PROB)p;
 
 				/* Another entry complete for this locale */
 				aux[x]++;
@@ -2021,9 +1996,9 @@ static errr init_object_alloc(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼ÇÛÎó¤ÈÀ¸À®¥Æ¡¼¥Ö¥ë¤ò½é´ü²½¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…åˆ—ã¨ç”Ÿæˆãƒ†ãƒ¼ãƒ–ãƒ«ã‚’åˆæœŸåŒ–ã™ã‚‹ /
  * Initialize some other arrays
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr init_alloc(void)
 {
@@ -2072,11 +2047,11 @@ static errr init_alloc(void)
 			p = (100 / r_ptr->rarity);
 
 			/* Load the entry */
-			alloc_race_table[i].index = elements[i].index;
-			alloc_race_table[i].level = x;
-			alloc_race_table[i].prob1 = p;
-			alloc_race_table[i].prob2 = p;
-			alloc_race_table[i].prob3 = p;
+			alloc_race_table[i].index = (KIND_OBJECT_IDX)elements[i].index;
+			alloc_race_table[i].level = (DEPTH)x;
+			alloc_race_table[i].prob1 = (PROB)p;
+			alloc_race_table[i].prob2 = (PROB)p;
+			alloc_race_table[i].prob3 = (PROB)p;
 		}
 	}
 
@@ -2126,7 +2101,7 @@ static errr init_alloc(void)
 	}
 
 	/* Paranoia */
-	if (!num[0]) quit(_("Ä®¤Î¥â¥ó¥¹¥¿¡¼¤¬¤Ê¤¤¡ª", "No town monsters!"));
+	if (!num[0]) quit(_("ç”ºã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãªã„ï¼", "No town monsters!"));
 
 	/*** Initialize monster allocation info ***/
 
@@ -2183,9 +2158,9 @@ static errr init_alloc(void)
 
 
 /*!
- * @brief ²èÌÌº¸²¼¤Ë¥·¥¹¥Æ¥à¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë /
+ * @brief ç”»é¢å·¦ä¸‹ã«ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ /
  * Hack -- take notes on line 23
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 static void note(cptr str)
 {
@@ -2197,9 +2172,9 @@ static void note(cptr str)
 
 
 /*!
- * @brief Á´¥²¡¼¥à¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¤Î¥µ¥Ö¥ë¡¼¥Á¥ó /
+ * @brief å…¨ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã®ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³ /
  * Hack -- Explain a broken "lib" folder and quit (see below).
- * @return ¤Ê¤·
+ * @return ãªã—
  * @note
  * <pre>
  * XXX XXX XXX This function is "messy" because various things
@@ -2214,16 +2189,16 @@ static void init_angband_aux(cptr why)
 
 #ifdef JP
 	/* Explain */
-	plog("'lib'¥Ç¥£¥ì¥¯¥È¥ê¤¬Â¸ºß¤·¤Ê¤¤¤«²õ¤ì¤Æ¤¤¤ë¤è¤¦¤Ç¤¹¡£");
+	plog("'lib'ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒå­˜åœ¨ã—ãªã„ã‹å£Šã‚Œã¦ã„ã‚‹ã‚ˆã†ã§ã™ã€‚");
 
 	/* More details */
-	plog("¤Ò¤ç¤Ã¤È¤¹¤ë¤È¥¢¡¼¥«¥¤¥Ö¤¬Àµ¤·¤¯²òÅà¤µ¤ì¤Æ¤¤¤Ê¤¤¤Î¤«¤â¤·¤ì¤Ş¤»¤ó¡£");
+	plog("ã²ã‚‡ã£ã¨ã™ã‚‹ã¨ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ãŒæ­£ã—ãè§£å‡ã•ã‚Œã¦ã„ãªã„ã®ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚");
 
 	/* Explain */
-	plog("³ºÅö¤¹¤ë'README'¥Õ¥¡¥¤¥ë¤òÆÉ¤ó¤Ç³ÎÇ§¤·¤Æ¤ß¤Æ²¼¤µ¤¤¡£");
+	plog("è©²å½“ã™ã‚‹'README'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã‚“ã§ç¢ºèªã—ã¦ã¿ã¦ä¸‹ã•ã„ã€‚");
 
 	/* Quit with error */
-	quit("Ã×Ì¿Åª¤Ê¥¨¥é¡¼¡£");
+	quit("è‡´å‘½çš„ãªã‚¨ãƒ©ãƒ¼ã€‚");
 #else
 	/* Explain */
 	plog("The 'lib' directory is probably missing or broken.");
@@ -2242,9 +2217,9 @@ static void init_angband_aux(cptr why)
 
 
 /*!
- * @brief Á´¥²¡¼¥à¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief å…¨ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Hack -- main Angband initialization entry point
- * @return ¤Ê¤·
+ * @return ãªã—
  * @note
  * <pre>
  * XXX XXX XXX This function is "messy" because various things
@@ -2291,7 +2266,7 @@ void init_angband(void)
 {
 	int fd = -1;
 
-	int mode = 0664;
+	BIT_FLAGS mode = 0664;
 
 	FILE *fp;
 
@@ -2312,7 +2287,7 @@ void init_angband(void)
 		char why[1024];
 
 		/* Message */
-		sprintf(why, _("'%s'¥Õ¥¡¥¤¥ë¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤»¤ó!", "Cannot access the '%s' file!"), buf);
+		sprintf(why, _("'%s'ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“!", "Cannot access the '%s' file!"), buf);
 
 		/* Crash and burn */
 		init_angband_aux(why);
@@ -2382,7 +2357,7 @@ void init_angband(void)
 			char why[1024];
 
 			/* Message */
-			sprintf(why, _("'%s'¥Õ¥¡¥¤¥ë¤òºîÀ®¤Ç¤­¤Ş¤»¤ó!", "Cannot create the '%s' file!"), buf);
+			sprintf(why, _("'%s'ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã§ãã¾ã›ã‚“!", "Cannot create the '%s' file!"), buf);
 
 			/* Crash and burn */
 			init_angband_aux(why);
@@ -2392,18 +2367,19 @@ void init_angband(void)
 	/* Close it */
 	(void)fd_close(fd);
 
+	put_title();
 
 	/*** Initialize some arrays ***/
 
 	/* Initialize misc. values */
-	note(_("[ÊÑ¿ô¤ò½é´ü²½¤·¤Æ¤¤¤Ş¤¹...(¤½¤ÎÂ¾)", "[Initializing values... (misc)]"));
-	if (init_misc()) quit(_("¤½¤ÎÂ¾¤ÎÊÑ¿ô¤ò½é´ü²½¤Ç¤­¤Ş¤»¤ó", "Cannot initialize misc. values"));
+	note(_("[å¤‰æ•°ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™...(ãã®ä»–)", "[Initializing values... (misc)]"));
+	if (init_misc()) quit(_("ãã®ä»–ã®å¤‰æ•°ã‚’åˆæœŸåŒ–ã§ãã¾ã›ã‚“", "Cannot initialize misc. values"));
 
 	/* Initialize feature info */
 #ifdef JP
-	note("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (ÃÏ·Á)]");
-	if (init_f_info()) quit("ÃÏ·Á½é´ü²½ÉÔÇ½");
-	if (init_feat_variables()) quit("ÃÏ·Á½é´ü²½ÉÔÇ½");
+	note("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (åœ°å½¢)]");
+	if (init_f_info()) quit("åœ°å½¢åˆæœŸåŒ–ä¸èƒ½");
+	if (init_feat_variables()) quit("åœ°å½¢åˆæœŸåŒ–ä¸èƒ½");
 #else
 	note("[Initializing arrays... (features)]");
 	if (init_f_info()) quit("Cannot initialize features");
@@ -2412,28 +2388,28 @@ void init_angband(void)
 
 
 	/* Initialize object info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (¥¢¥¤¥Æ¥à)]", "[Initializing arrays... (objects)]"));
-	if (init_k_info()) quit(_("¥¢¥¤¥Æ¥à½é´ü²½ÉÔÇ½", "Cannot initialize objects"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ã‚¢ã‚¤ãƒ†ãƒ )]", "[Initializing arrays... (objects)]"));
+	if (init_k_info()) quit(_("ã‚¢ã‚¤ãƒ†ãƒ åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize objects"));
 
 
 	/* Initialize artifact info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (ÅÁÀâ¤Î¥¢¥¤¥Æ¥à)]", "[Initializing arrays... (artifacts)]"));
-	if (init_a_info()) quit(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à½é´ü²½ÉÔÇ½", "Cannot initialize artifacts"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ )]", "[Initializing arrays... (artifacts)]"));
+	if (init_a_info()) quit(_("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize artifacts"));
 
 
 	/* Initialize ego-item info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (Ì¾¤Î¤¢¤ë¥¢¥¤¥Æ¥à)]", "[Initializing arrays... (ego-items)]"));
-	if (init_e_info()) quit(_("Ì¾¤Î¤¢¤ë¥¢¥¤¥Æ¥à½é´ü²½ÉÔÇ½", "Cannot initialize ego-items"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (åã®ã‚ã‚‹ã‚¢ã‚¤ãƒ†ãƒ )]", "[Initializing arrays... (ego-items)]"));
+	if (init_e_info()) quit(_("åã®ã‚ã‚‹ã‚¢ã‚¤ãƒ†ãƒ åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize ego-items"));
 
 
 	/* Initialize monster info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (¥â¥ó¥¹¥¿¡¼)]", "[Initializing arrays... (monsters)]"));
-	if (init_r_info()) quit(_("¥â¥ó¥¹¥¿¡¼½é´ü²½ÉÔÇ½", "Cannot initialize monsters"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼)]", "[Initializing arrays... (monsters)]"));
+	if (init_r_info()) quit(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize monsters"));
 
 
 	/* Initialize dungeon info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (¥À¥ó¥¸¥ç¥ó)]", "[Initializing arrays... (dungeon)]"));
-	if (init_d_info()) quit(_("¥À¥ó¥¸¥ç¥ó½é´ü²½ÉÔÇ½", "Cannot initialize dungeon"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³)]", "[Initializing arrays... (dungeon)]"));
+	if (init_d_info()) quit(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize dungeon"));
 	{
 		int i;
 		for (i = 1; i < max_d_idx; i++)
@@ -2442,51 +2418,51 @@ void init_angband(void)
 	}
 
 	/* Initialize magic info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (ËâË¡)]", "[Initializing arrays... (magic)]"));
-	if (init_m_info()) quit(_("ËâË¡½é´ü²½ÉÔÇ½", "Cannot initialize magic"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (é­”æ³•)]", "[Initializing arrays... (magic)]"));
+	if (init_m_info()) quit(_("é­”æ³•åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize magic"));
 
 	/* Initialize weapon_exp info */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (½ÏÎıÅÙ)]", "[Initializing arrays... (skill)]"));
-	if (init_s_info()) quit(_("½ÏÎıÅÙ½é´ü²½ÉÔÇ½", "Cannot initialize skill"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ç†Ÿç·´åº¦)]", "[Initializing arrays... (skill)]"));
+	if (init_s_info()) quit(_("ç†Ÿç·´åº¦åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize skill"));
 
 	/* Initialize wilderness array */
-	note(_("[ÇÛÎó¤ò½é´ü²½¤·¤Æ¤¤¤Ş¤¹... (¹ÓÌî)]", "[Initializing arrays... (wilderness)]"));
+	note(_("[é…åˆ—ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™... (è’é‡)]", "[Initializing arrays... (wilderness)]"));
 
-	if (init_wilderness()) quit(_("¹ÓÌî¤ò½é´ü²½¤Ç¤­¤Ş¤»¤ó", "Cannot initialize wilderness"));
+	if (init_wilderness()) quit(_("è’é‡ã‚’åˆæœŸåŒ–ã§ãã¾ã›ã‚“", "Cannot initialize wilderness"));
 
 
 	/* Initialize town array */
-	note(_("[ÇÛÎó¤ò½é´ü²½¤·¤Æ¤¤¤Ş¤¹... (³¹)]", "[Initializing arrays... (towns)]"));
-	if (init_towns()) quit(_("³¹¤ò½é´ü²½¤Ç¤­¤Ş¤»¤ó", "Cannot initialize towns"));
+	note(_("[é…åˆ—ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™... (è¡—)]", "[Initializing arrays... (towns)]"));
+	if (init_towns()) quit(_("è¡—ã‚’åˆæœŸåŒ–ã§ãã¾ã›ã‚“", "Cannot initialize towns"));
 
 
 	/* Initialize building array */
-	note(_("[ÇÛÎó¤ò½é´ü²½¤·¤Æ¤¤¤Ş¤¹... (·úÊª)]", "[Initializing arrays... (buildings)]"));
-	if (init_buildings()) quit(_("·úÊª¤ò½é´ü²½¤Ç¤­¤Ş¤»¤ó", "Cannot initialize buildings"));
+	note(_("[é…åˆ—ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™... (å»ºç‰©)]", "[Initializing arrays... (buildings)]"));
+	if (init_buildings()) quit(_("å»ºç‰©ã‚’åˆæœŸåŒ–ã§ãã¾ã›ã‚“", "Cannot initialize buildings"));
 
 
 	/* Initialize quest array */
-	note(_("[ÇÛÎó¤ò½é´ü²½¤·¤Æ¤¤¤Ş¤¹... (¥¯¥¨¥¹¥È)]", "[Initializing arrays... (quests)]"));
-	if (init_quests()) quit(_("¥¯¥¨¥¹¥È¤ò½é´ü²½¤Ç¤­¤Ş¤»¤ó", "Cannot initialize quests"));
+	note(_("[é…åˆ—ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™... (ã‚¯ã‚¨ã‚¹ãƒˆ)]", "[Initializing arrays... (quests)]"));
+	if (init_quests()) quit(_("ã‚¯ã‚¨ã‚¹ãƒˆã‚’åˆæœŸåŒ–ã§ãã¾ã›ã‚“", "Cannot initialize quests"));
 
 	/* Initialize vault info */
-	if (init_v_info()) quit(_("vault ½é´ü²½ÉÔÇ½", "Cannot initialize vaults"));
+	if (init_v_info()) quit(_("vault åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize vaults"));
 
 	/* Initialize some other arrays */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (¤½¤ÎÂ¾)]", "[Initializing arrays... (other)]"));
-	if (init_other()) quit(_("¤½¤ÎÂ¾¤Î¥Ç¡¼¥¿½é´ü²½ÉÔÇ½", "Cannot initialize other stuff"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ãã®ä»–)]", "[Initializing arrays... (other)]"));
+	if (init_other()) quit(_("ãã®ä»–ã®ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize other stuff"));
 
 
 	/* Initialize some other arrays */
-	note(_("[¥Ç¡¼¥¿¤Î½é´ü²½Ãæ... (¥¢¥í¥±¡¼¥·¥ç¥ó)]", "[Initializing arrays... (alloc)]"));
-	if (init_alloc()) quit(_("¥¢¥í¥±¡¼¥·¥ç¥ó¡¦¥¹¥¿¥Ã¥Õ½é´ü²½ÉÔÇ½", "Cannot initialize alloc stuff"));
+	note(_("[ãƒ‡ãƒ¼ã‚¿ã®åˆæœŸåŒ–ä¸­... (ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³)]", "[Initializing arrays... (alloc)]"));
+	if (init_alloc()) quit(_("ã‚¢ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ»ã‚¹ã‚¿ãƒƒãƒ•åˆæœŸåŒ–ä¸èƒ½", "Cannot initialize alloc stuff"));
 
 
 
 	/*** Load default user pref files ***/
 
 	/* Initialize feature info */
-	note(_("[¥æ¡¼¥¶¡¼ÀßÄê¥Õ¥¡¥¤¥ë¤ò½é´ü²½¤·¤Æ¤¤¤Ş¤¹...]", "[Initializing user pref files...]"));
+	note(_("[ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‚’åˆæœŸåŒ–ã—ã¦ã„ã¾ã™...]", "[Initializing user pref files...]"));
 
 	/* Access the "basic" pref file */
 	strcpy(buf, "pref.prf");
@@ -2501,12 +2477,31 @@ void init_angband(void)
 	process_pref_file(buf);
 
 	/* Done */
-	note(_("[½é´ü²½½ªÎ»]", "[Initialization complete]"));
+	note(_("[åˆæœŸåŒ–çµ‚äº†]", "[Initialization complete]"));
 }
 
 /*!
- * @brief ¥µ¥à¥Á¥§¥Ã¥¯¾ğÊó¤ò½ĞÎÏ / Get check sum in string form
- * @return ¥µ¥à¥Á¥§¥Ã¥¯¾ğÊó¤ÎÊ¸»úÎó
+ * @brief ã‚¿ã‚¤ãƒˆãƒ«è¨˜è¿°
+ * @return ãªã—
+ */
+static void put_title(void)
+{
+	char title[120];
+	int col;
+#if H_VER_EXTRA > 0
+	sprintf(title, _("å¤‰æ„šè›®æ€’ %d.%d.%d.%d(%s)", "Hengband %d.%d.%d.%d(%s)"), H_VER_MAJOR, H_VER_MINOR, H_VER_PATCH, H_VER_EXTRA,
+#else
+	sprintf(title, _("å¤‰æ„šè›®æ€’ %d.%d.%d(%s)", "Hengband %d.%d.%d(%s)"), H_VER_MAJOR, H_VER_MINOR, H_VER_PATCH,
+#endif
+	IS_STABLE_VERSION ? _("å®‰å®šç‰ˆ", "Stable") : _("é–‹ç™ºç‰ˆ", "Developing"));
+	col = (80 - strlen(title)) / 2;
+	col = col < 0 ? 0 : col;
+	prt(title, VER_INFO_ROW, col);
+}
+
+/*!
+ * @brief ã‚µãƒ ãƒã‚§ãƒƒã‚¯æƒ…å ±ã‚’å‡ºåŠ› / Get check sum in string form
+ * @return ã‚µãƒ ãƒã‚§ãƒƒã‚¯æƒ…å ±ã®æ–‡å­—åˆ—
  */
 cptr get_check_sum(void)
 {

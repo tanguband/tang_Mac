@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file grid.c
- * @brief ¥À¥ó¥¸¥ç¥ó¤ÎÀ¸À®½èÍý¤Î´ð´´ÉôÊ¬ / low-level dungeon creation primitives
+ * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ç”Ÿæˆå‡¦ç†ã®åŸºå¹¹éƒ¨åˆ† / low-level dungeon creation primitives
  * @date 2014/01/04
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -9,7 +9,7 @@
  * and not for profit purposes provided that this copyright and statement\n
  * are included in all such copies.  Other copyrights may also apply.\n
  * \n
- * 2014 Deskull Doxygen¸þ¤±¤Î¥³¥á¥ó¥ÈÀ°Íý\n
+ * 2014 Deskull Doxygenå‘ã‘ã®ã‚³ãƒ¡ãƒ³ãƒˆæ•´ç†\n
  */
 
 #include "angband.h"
@@ -18,12 +18,12 @@
 
 
 /*!
- * @brief ¿·µ¬¥Õ¥í¥¢¤ËÆþ¤ê¤¿¤Æ¤Î¥×¥ì¥¤¥ä¡¼¤ò¥é¥ó¥À¥à¤Ê¾ì½ê¤ËÇÛÃÖ¤¹¤ë / Returns random co-ordinates for player/monster/object
- * @return ÇÛÃÖ¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹
+ * @brief æ–°è¦ãƒ•ãƒ­ã‚¢ã«å…¥ã‚ŠãŸã¦ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ãƒ©ãƒ³ãƒ€ãƒ ãªå ´æ‰€ã«é…ç½®ã™ã‚‹ / Returns random co-ordinates for player/monster/object
+ * @return é…ç½®ã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™
  */
 bool new_player_spot(void)
 {
-	int	y = 0, x = 0;
+	POSITION y = 0, x = 0;
 	int max_attempts = 10000;
 
 	cave_type *c_ptr;
@@ -33,8 +33,8 @@ bool new_player_spot(void)
 	while (max_attempts--)
 	{
 		/* Pick a legal spot */
-		y = rand_range(1, cur_hgt - 2);
-		x = rand_range(1, cur_wid - 2);
+		y = (POSITION)rand_range(1, cur_hgt - 2);
+		x = (POSITION)rand_range(1, cur_wid - 2);
 
 		c_ptr = &cave[y][x];
 
@@ -80,10 +80,10 @@ bool new_player_spot(void)
 
 
 /*!
- * @brief ½êÄê¤Î°ÌÃÖ¤Ë¾å¤ê³¬ÃÊ¤«²¼¤ê³¬ÃÊ¤òÇÛÃÖ¤¹¤ë / Place an up/down staircase at given location
- * @param y ÇÛÃÖ¤ò»î¤ß¤¿¤¤¥Þ¥¹¤ÎYºÂÉ¸
- * @param x ÇÛÃÖ¤ò»î¤ß¤¿¤¤¥Þ¥¹¤ÎXºÂÉ¸
- * @return ¤Ê¤·
+ * @brief æ‰€å®šã®ä½ç½®ã«ä¸Šã‚ŠéšŽæ®µã‹ä¸‹ã‚ŠéšŽæ®µã‚’é…ç½®ã™ã‚‹ / Place an up/down staircase at given location
+ * @param y é…ç½®ã‚’è©¦ã¿ãŸã„ãƒžã‚¹ã®Yåº§æ¨™
+ * @param x é…ç½®ã‚’è©¦ã¿ãŸã„ãƒžã‚¹ã®Xåº§æ¨™
+ * @return ãªã—
  */
 void place_random_stairs(int y, int x)
 {
@@ -129,11 +129,11 @@ void place_random_stairs(int y, int x)
 }
 
 /*!
- * @brief ½êÄê¤Î°ÌÃÖ¤Ë¤µ¤Þ¤¶¤Þ¤Ê¾õÂÖ¤ä¼ïÎà¤Î¥É¥¢¤òÇÛÃÖ¤¹¤ë / Place a random type of door at the given location
- * @param y ¥É¥¢¤ÎÇÛÃÖ¤ò»î¤ß¤¿¤¤¥Þ¥¹¤ÎYºÂÉ¸
- * @param x ¥É¥¢¤ÎÇÛÃÖ¤ò»î¤ß¤¿¤¤¥Þ¥¹¤ÎXºÂÉ¸
- * @param room Éô²°¤ËÀÜ¤·¤Æ¤¤¤ë¾ì¹ç¸þ¤±¤Î¥É¥¢À¸À®¤«ÈÝ¤«
- * @return ¤Ê¤·
+ * @brief æ‰€å®šã®ä½ç½®ã«ã•ã¾ã–ã¾ãªçŠ¶æ…‹ã‚„ç¨®é¡žã®ãƒ‰ã‚¢ã‚’é…ç½®ã™ã‚‹ / Place a random type of door at the given location
+ * @param y ãƒ‰ã‚¢ã®é…ç½®ã‚’è©¦ã¿ãŸã„ãƒžã‚¹ã®Yåº§æ¨™
+ * @param x ãƒ‰ã‚¢ã®é…ç½®ã‚’è©¦ã¿ãŸã„ãƒžã‚¹ã®Xåº§æ¨™
+ * @param room éƒ¨å±‹ã«æŽ¥ã—ã¦ã„ã‚‹å ´åˆå‘ã‘ã®ãƒ‰ã‚¢ç”Ÿæˆã‹å¦ã‹
+ * @return ãªã—
  */
 void place_random_door(int y, int x, bool room)
 {
@@ -213,11 +213,11 @@ void place_random_door(int y, int x, bool room)
 }
 
 /*!
- * @brief ½êÄê¤Î°ÌÃÖ¤Ë³Æ¼ï¤ÎÊÄ¤¸¤¿¥É¥¢¤òÇÛÃÖ¤¹¤ë / Place a random type of normal door at the given location.
- * @param y ¥É¥¢¤ÎÇÛÃÖ¤ò»î¤ß¤¿¤¤¥Þ¥¹¤ÎYºÂÉ¸
- * @param x ¥É¥¢¤ÎÇÛÃÖ¤ò»î¤ß¤¿¤¤¥Þ¥¹¤ÎXºÂÉ¸
- * @param type ¥É¥¢¤ÎÃÏ·ÁID
- * @return ¤Ê¤·
+ * @brief æ‰€å®šã®ä½ç½®ã«å„ç¨®ã®é–‰ã˜ãŸãƒ‰ã‚¢ã‚’é…ç½®ã™ã‚‹ / Place a random type of normal door at the given location.
+ * @param y ãƒ‰ã‚¢ã®é…ç½®ã‚’è©¦ã¿ãŸã„ãƒžã‚¹ã®Yåº§æ¨™
+ * @param x ãƒ‰ã‚¢ã®é…ç½®ã‚’è©¦ã¿ãŸã„ãƒžã‚¹ã®Xåº§æ¨™
+ * @param type ãƒ‰ã‚¢ã®åœ°å½¢ID
+ * @return ãªã—
  */
 void place_closed_door(int y, int x, int type)
 {
@@ -268,13 +268,13 @@ void place_closed_door(int y, int x, int type)
 }
 
 /*!
- * @brief Ä¹Êý·Á¤Î¶õÆ¶¤òÀ¸À®¤¹¤ë / Make an empty square floor, for the middle of rooms
- * @param x1 Ä¹Êý·Á¤Îº¸Ã¼XºÂÉ¸(-1)
- * @param x2 Ä¹Êý·Á¤Î±¦Ã¼XºÂÉ¸(+1)
- * @param y1 Ä¹Êý·Á¤Î¾åÃ¼YºÂÉ¸(-1)
- * @param y2 Ä¹Êý·Á¤Î²¼Ã¼YºÂÉ¸(+1)
- * @param light ¾ÈÌÀ¤ÎÍ­Ìµ
- * @return ¤Ê¤·
+ * @brief é•·æ–¹å½¢ã®ç©ºæ´žã‚’ç”Ÿæˆã™ã‚‹ / Make an empty square floor, for the middle of rooms
+ * @param x1 é•·æ–¹å½¢ã®å·¦ç«¯Xåº§æ¨™(-1)
+ * @param x2 é•·æ–¹å½¢ã®å³ç«¯Xåº§æ¨™(+1)
+ * @param y1 é•·æ–¹å½¢ã®ä¸Šç«¯Yåº§æ¨™(-1)
+ * @param y2 é•·æ–¹å½¢ã®ä¸‹ç«¯Yåº§æ¨™(+1)
+ * @param light ç…§æ˜Žã®æœ‰ç„¡
+ * @return ãªã—
  */
 void place_floor(int x1, int x2, int y1, int y2, bool light)
 {
@@ -294,13 +294,13 @@ void place_floor(int x1, int x2, int y1, int y2, bool light)
 
 
 /*!
- * @brief Ä¹Êý·Á¤ÎÉô²°¤òÀ¸À®¤¹¤ë / Make an empty square room, only floor and wall grids
- * @param x1 Ä¹Êý·Á¤Îº¸Ã¼XºÂÉ¸(-1)
- * @param x2 Ä¹Êý·Á¤Î±¦Ã¼XºÂÉ¸(+1)
- * @param y1 Ä¹Êý·Á¤Î¾åÃ¼YºÂÉ¸(-1)
- * @param y2 Ä¹Êý·Á¤Î²¼Ã¼YºÂÉ¸(+1)
- * @param light ¾ÈÌÀ¤ÎÍ­Ìµ
- * @return ¤Ê¤·
+ * @brief é•·æ–¹å½¢ã®éƒ¨å±‹ã‚’ç”Ÿæˆã™ã‚‹ / Make an empty square room, only floor and wall grids
+ * @param x1 é•·æ–¹å½¢ã®å·¦ç«¯Xåº§æ¨™(-1)
+ * @param x2 é•·æ–¹å½¢ã®å³ç«¯Xåº§æ¨™(+1)
+ * @param y1 é•·æ–¹å½¢ã®ä¸Šç«¯Yåº§æ¨™(-1)
+ * @param y2 é•·æ–¹å½¢ã®ä¸‹ç«¯Yåº§æ¨™(+1)
+ * @param light ç…§æ˜Žã®æœ‰ç„¡
+ * @return ãªã—
  */
 void place_room(int x1, int x2, int y1, int y2, bool light)
 {
@@ -323,11 +323,11 @@ void place_room(int x1, int x2, int y1, int y2, bool light)
 
 
 /*!
- * @brief ÆÃ¼ì¤ÊÉô²°¸þ¤±¤Ë³Æ¼ï¥¢¥¤¥Æ¥à¤òÇÛÃÖ¤¹¤ë / Create up to "num" objects near the given coordinates
- * @param y ÇÛÃÖ¤·¤¿¤¤Ãæ¿´¥Þ¥¹¤ÎYºÂÉ¸
- * @param x ÇÛÃÖ¤·¤¿¤¤Ãæ¿´¥Þ¥¹¤ÎXºÂÉ¸
- * @param num ÇÛÃÖ¤·¤¿¤¤¿ô
- * @return ¤Ê¤·
+ * @brief ç‰¹æ®Šãªéƒ¨å±‹å‘ã‘ã«å„ç¨®ã‚¢ã‚¤ãƒ†ãƒ ã‚’é…ç½®ã™ã‚‹ / Create up to "num" objects near the given coordinates
+ * @param y é…ç½®ã—ãŸã„ä¸­å¿ƒãƒžã‚¹ã®Yåº§æ¨™
+ * @param x é…ç½®ã—ãŸã„ä¸­å¿ƒãƒžã‚¹ã®Xåº§æ¨™
+ * @param num é…ç½®ã—ãŸã„æ•°
+ * @return ãªã—
  * @details
  * Only really called by some of the "vault" routines.
  */
@@ -361,7 +361,7 @@ void vault_objects(int y, int x, int num)
 				if (cheat_room)
 				{
 #ifdef JP
-msg_print("·Ù¹ð¡ªÃÏ²¼¼¼¤Î¥¢¥¤¥Æ¥à¤òÇÛÃÖ¤Ç¤­¤Þ¤»¤ó¡ª");
+msg_print("è­¦å‘Šï¼åœ°ä¸‹å®¤ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’é…ç½®ã§ãã¾ã›ã‚“ï¼");
 #else
 					msg_print("Warning! Could not place vault object!");
 #endif
@@ -393,12 +393,12 @@ msg_print("·Ù¹ð¡ªÃÏ²¼¼¼¤Î¥¢¥¤¥Æ¥à¤òÇÛÃÖ¤Ç¤­¤Þ¤»¤ó¡ª");
 }
 
 /*!
- * @brief ÆÃ¼ì¤ÊÉô²°¸þ¤±¤Ë³Æ¼ï¥¢¥¤¥Æ¥à¤òÇÛÃÖ¤¹¤ë(vault_trap¤Î¥µ¥Ö¥»¥Ã¥È) / Place a trap with a given displacement of point
- * @param y ¥È¥é¥Ã¥×¤òÇÛÃÖ¤·¤¿¤¤¥Þ¥¹¤ÎÃæ¿´YºÂÉ¸
- * @param x ¥È¥é¥Ã¥×¤òÇÛÃÖ¤·¤¿¤¤¥Þ¥¹¤ÎÃæ¿´XºÂÉ¸
- * @param yd YÊý¸þ¤ÎÇÛÃÖÊ¬»¶¥Þ¥¹¿ô
- * @param xd XÊý¸þ¤ÎÇÛÃÖÊ¬»¶¥Þ¥¹¿ô
- * @return ¤Ê¤·
+ * @brief ç‰¹æ®Šãªéƒ¨å±‹å‘ã‘ã«å„ç¨®ã‚¢ã‚¤ãƒ†ãƒ ã‚’é…ç½®ã™ã‚‹(vault_trapã®ã‚µãƒ–ã‚»ãƒƒãƒˆ) / Place a trap with a given displacement of point
+ * @param y ãƒˆãƒ©ãƒƒãƒ—ã‚’é…ç½®ã—ãŸã„ãƒžã‚¹ã®ä¸­å¿ƒYåº§æ¨™
+ * @param x ãƒˆãƒ©ãƒƒãƒ—ã‚’é…ç½®ã—ãŸã„ãƒžã‚¹ã®ä¸­å¿ƒXåº§æ¨™
+ * @param yd Yæ–¹å‘ã®é…ç½®åˆ†æ•£ãƒžã‚¹æ•°
+ * @param xd Xæ–¹å‘ã®é…ç½®åˆ†æ•£ãƒžã‚¹æ•°
+ * @return ãªã—
  * @details
  * Only really called by some of the "vault" routines.
  */
@@ -427,7 +427,7 @@ void vault_trap_aux(int y, int x, int yd, int xd)
 			if (cheat_room)
 			{
 #ifdef JP
-msg_print("·Ù¹ð¡ªÃÏ²¼¼¼¤Î¥È¥é¥Ã¥×¤òÇÛÃÖ¤Ç¤­¤Þ¤»¤ó¡ª");
+msg_print("è­¦å‘Šï¼åœ°ä¸‹å®¤ã®ãƒˆãƒ©ãƒƒãƒ—ã‚’é…ç½®ã§ãã¾ã›ã‚“ï¼");
 #else
 				msg_print("Warning! Could not place vault trap!");
 #endif
@@ -448,13 +448,13 @@ msg_print("·Ù¹ð¡ªÃÏ²¼¼¼¤Î¥È¥é¥Ã¥×¤òÇÛÃÖ¤Ç¤­¤Þ¤»¤ó¡ª");
 }
 
 /*!
- * @brief ÆÃ¼ì¤ÊÉô²°¸þ¤±¤Ë³Æ¼ï¥¢¥¤¥Æ¥à¤òÇÛÃÖ¤¹¤ë(¥á¥¤¥ó¥ë¡¼¥Á¥ó) / Place some traps with a given displacement of given location
- * @param y ¥È¥é¥Ã¥×¤òÇÛÃÖ¤·¤¿¤¤¥Þ¥¹¤ÎÃæ¿´YºÂÉ¸
- * @param x ¥È¥é¥Ã¥×¤òÇÛÃÖ¤·¤¿¤¤¥Þ¥¹¤ÎÃæ¿´XºÂÉ¸
- * @param yd YÊý¸þ¤ÎÇÛÃÖÊ¬»¶¥Þ¥¹¿ô
- * @param xd XÊý¸þ¤ÎÇÛÃÖÊ¬»¶¥Þ¥¹¿ô
- * @param num ÇÛÃÖ¤·¤¿¤¤¥È¥é¥Ã¥×¤Î¿ô
- * @return ¤Ê¤·
+ * @brief ç‰¹æ®Šãªéƒ¨å±‹å‘ã‘ã«å„ç¨®ã‚¢ã‚¤ãƒ†ãƒ ã‚’é…ç½®ã™ã‚‹(ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³) / Place some traps with a given displacement of given location
+ * @param y ãƒˆãƒ©ãƒƒãƒ—ã‚’é…ç½®ã—ãŸã„ãƒžã‚¹ã®ä¸­å¿ƒYåº§æ¨™
+ * @param x ãƒˆãƒ©ãƒƒãƒ—ã‚’é…ç½®ã—ãŸã„ãƒžã‚¹ã®ä¸­å¿ƒXåº§æ¨™
+ * @param yd Yæ–¹å‘ã®é…ç½®åˆ†æ•£ãƒžã‚¹æ•°
+ * @param xd Xæ–¹å‘ã®é…ç½®åˆ†æ•£ãƒžã‚¹æ•°
+ * @param num é…ç½®ã—ãŸã„ãƒˆãƒ©ãƒƒãƒ—ã®æ•°
+ * @return ãªã—
  * @details
  * Only really called by some of the "vault" routines.
  */
@@ -469,17 +469,18 @@ void vault_traps(int y, int x, int yd, int xd, int num)
 }
 
 /*!
- * @brief ÆÃ¼ì¤ÊÉô²°ÃÏ·Á¸þ¤±¤Ë¥â¥ó¥¹¥¿¡¼¤òÇÛÃÖ¤¹¤ë / Hack -- Place some sleeping monsters near the given location
- * @param y1 ¥â¥ó¥¹¥¿¡¼¤òÇÛÃÖ¤·¤¿¤¤¥Þ¥¹¤ÎÃæ¿´YºÂÉ¸
- * @param x1 ¥â¥ó¥¹¥¿¡¼¤òÇÛÃÖ¤·¤¿¤¤¥Þ¥¹¤ÎÃæ¿´XºÂÉ¸
- * @param num ÇÛÃÖ¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¤Î¿ô
- * @return ¤Ê¤·
+ * @brief ç‰¹æ®Šãªéƒ¨å±‹åœ°å½¢å‘ã‘ã«ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’é…ç½®ã™ã‚‹ / Hack -- Place some sleeping monsters near the given location
+ * @param y1 ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’é…ç½®ã—ãŸã„ãƒžã‚¹ã®ä¸­å¿ƒYåº§æ¨™
+ * @param x1 ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’é…ç½®ã—ãŸã„ãƒžã‚¹ã®ä¸­å¿ƒXåº§æ¨™
+ * @param num é…ç½®ã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ•°
+ * @return ãªã—
  * @details
  * Only really called by some of the "vault" routines.
  */
 void vault_monsters(int y1, int x1, int num)
 {
-	int k, i, y, x;
+	int k, i;
+	POSITION y, x;
 	cave_type *c_ptr;
 
 	/* Try to summon "num" monsters "near" the given location */
@@ -507,14 +508,14 @@ void vault_monsters(int y1, int x1, int num)
 
 
 /*!
- * @brief build_tunnelÍÑ¤ËÄÌÏ©¤ò·¡¤ë¤¿¤á¤ÎÊý¸þ¤ò°ÌÃÖ´Ø·¸ÄÌ¤ê¤Ë·è¤á¤ë / Always picks a correct direction
- * @param rdir YÊý¸þ¤Ë¼è¤ë¤Ù¤­¥Ù¥¯¥È¥ëÃÍ¤òÊÖ¤¹»²¾È¥Ý¥¤¥ó¥¿
- * @param cdir XÊý¸þ¤Ë¼è¤ë¤Ù¤­¥Ù¥¯¥È¥ëÃÍ¤òÊÖ¤¹»²¾È¥Ý¥¤¥ó¥¿
- * @param y1 »ÏÅÀYºÂÉ¸
- * @param x1 »ÏÅÀXºÂÉ¸
- * @param y2 ½ªÅÀYºÂÉ¸
- * @param x2 ½ªÅÀXºÂÉ¸
- * @return ¤Ê¤·
+ * @brief build_tunnelç”¨ã«é€šè·¯ã‚’æŽ˜ã‚‹ãŸã‚ã®æ–¹å‘ã‚’ä½ç½®é–¢ä¿‚é€šã‚Šã«æ±ºã‚ã‚‹ / Always picks a correct direction
+ * @param rdir Yæ–¹å‘ã«å–ã‚‹ã¹ããƒ™ã‚¯ãƒˆãƒ«å€¤ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param cdir Xæ–¹å‘ã«å–ã‚‹ã¹ããƒ™ã‚¯ãƒˆãƒ«å€¤ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param y1 å§‹ç‚¹Yåº§æ¨™
+ * @param x1 å§‹ç‚¹Xåº§æ¨™
+ * @param y2 çµ‚ç‚¹Yåº§æ¨™
+ * @param x2 çµ‚ç‚¹Xåº§æ¨™
+ * @return ãªã—
  */
 void correct_dir(int *rdir, int *cdir, int y1, int x1, int y2, int x2)
 {
@@ -533,10 +534,10 @@ void correct_dir(int *rdir, int *cdir, int y1, int x1, int y2, int x2)
 }
 
 /*!
- * @brief build_tunnelÍÑ¤ËÄÌÏ©¤ò·¡¤ë¤¿¤á¤ÎÊý¸þ¤ò¥é¥ó¥À¥à¤Ë·è¤á¤ë / Pick a random direction
- * @param rdir YÊý¸þ¤Ë¼è¤ë¤Ù¤­¥Ù¥¯¥È¥ëÃÍ¤òÊÖ¤¹»²¾È¥Ý¥¤¥ó¥¿
- * @param cdir XÊý¸þ¤Ë¼è¤ë¤Ù¤­¥Ù¥¯¥È¥ëÃÍ¤òÊÖ¤¹»²¾È¥Ý¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief build_tunnelç”¨ã«é€šè·¯ã‚’æŽ˜ã‚‹ãŸã‚ã®æ–¹å‘ã‚’ãƒ©ãƒ³ãƒ€ãƒ ã«æ±ºã‚ã‚‹ / Pick a random direction
+ * @param rdir Yæ–¹å‘ã«å–ã‚‹ã¹ããƒ™ã‚¯ãƒˆãƒ«å€¤ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param cdir Xæ–¹å‘ã«å–ã‚‹ã¹ããƒ™ã‚¯ãƒˆãƒ«å€¤ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 void rand_dir(int *rdir, int *cdir)
 {
@@ -549,10 +550,10 @@ void rand_dir(int *rdir, int *cdir)
 }
 
 /*!
- * @brief »ØÄê¤Î¥Þ¥¹¤¬¾²·ÏÃÏ·Á¤Ç¤¢¤ë¤«¤òÊÖ¤¹ / Function that sees if a square is a floor.  (Includes range checking.)
- * @param x ¥Á¥§¥Ã¥¯¤¹¤ë¥Þ¥¹¤ÎXºÂÉ¸
- * @param y ¥Á¥§¥Ã¥¯¤¹¤ë¥Þ¥¹¤ÎYºÂÉ¸
- * @return ¾²·ÏÃÏ·Á¤Ê¤é¤ÐTRUE
+ * @brief æŒ‡å®šã®ãƒžã‚¹ãŒåºŠç³»åœ°å½¢ã§ã‚ã‚‹ã‹ã‚’è¿”ã™ / Function that sees if a square is a floor.  (Includes range checking.)
+ * @param x ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒžã‚¹ã®Xåº§æ¨™
+ * @param y ãƒã‚§ãƒƒã‚¯ã™ã‚‹ãƒžã‚¹ã®Yåº§æ¨™
+ * @return åºŠç³»åœ°å½¢ãªã‚‰ã°TRUE
  */
 bool get_is_floor(int x, int y)
 {
@@ -569,10 +570,10 @@ bool get_is_floor(int x, int y)
 }
 
 /*!
- * @brief »ØÄê¤Î¥Þ¥¹¤ò¾²ÃÏ·Á¤ËÊÑ¤¨¤ë / Set a square to be floor.  (Includes range checking.)
- * @param x ÃÏ·Á¤òÊÑ¤¨¤¿¤¤¥Þ¥¹¤ÎXºÂÉ¸
- * @param y ÃÏ·Á¤òÊÑ¤¨¤¿¤¤¥Þ¥¹¤ÎYºÂÉ¸
- * @return ¤Ê¤·
+ * @brief æŒ‡å®šã®ãƒžã‚¹ã‚’åºŠåœ°å½¢ã«å¤‰ãˆã‚‹ / Set a square to be floor.  (Includes range checking.)
+ * @param x åœ°å½¢ã‚’å¤‰ãˆãŸã„ãƒžã‚¹ã®Xåº§æ¨™
+ * @param y åœ°å½¢ã‚’å¤‰ãˆãŸã„ãƒžã‚¹ã®Yåº§æ¨™
+ * @return ãªã—
  */
 void set_floor(int x, int y)
 {
@@ -595,12 +596,12 @@ void set_floor(int x, int y)
 
 
 /*!
- * @brief Éô²°´Ö¤Î¥È¥ó¥Í¥ë¤òÀ¸À®¤¹¤ë / Constructs a tunnel between two points
- * @param row1 »ÏÅÀYºÂÉ¸
- * @param col1 »ÏÅÀXºÂÉ¸
- * @param row2 ½ªÅÀYºÂÉ¸
- * @param col2 ½ªÅÀXºÂÉ¸
- * @return À¸À®¤ËÀ®¸ù¤·¤¿¤éTRUE¤òÊÖ¤¹
+ * @brief éƒ¨å±‹é–“ã®ãƒˆãƒ³ãƒãƒ«ã‚’ç”Ÿæˆã™ã‚‹ / Constructs a tunnel between two points
+ * @param row1 å§‹ç‚¹Yåº§æ¨™
+ * @param col1 å§‹ç‚¹Xåº§æ¨™
+ * @param row2 çµ‚ç‚¹Yåº§æ¨™
+ * @param col2 çµ‚ç‚¹Xåº§æ¨™
+ * @return ç”Ÿæˆã«æˆåŠŸã—ãŸã‚‰TRUEã‚’è¿”ã™
  * @details
  * This function must be called BEFORE any streamers are created,\n
  * since we use the special "granite wall" sub-types to keep track\n
@@ -629,10 +630,10 @@ void set_floor(int x, int y)
  *   outer -- outer room walls\n
  *   solid -- solid room walls\n
  */
-bool build_tunnel(int row1, int col1, int row2, int col2)
+bool build_tunnel(POSITION row1, POSITION col1, POSITION row2, POSITION col2)
 {
 	int y, x;
-	int tmp_row, tmp_col;
+	POSITION tmp_row, tmp_col;
 	int row_dir, col_dir;
 	int start_row, start_col;
 	int main_loop_count = 0;
@@ -708,8 +709,8 @@ bool build_tunnel(int row1, int col1, int row2, int col2)
 			if (is_solid_bold(y, x)) continue;
 
 			/* Accept this location */
-			row1 = tmp_row;
-			col1 = tmp_col;
+			row1 = (POSITION)tmp_row;
+			col1 = (POSITION)tmp_col;
 
 			/* Save the wall location */
 			if (dun->wall_n < WALL_MAX)
@@ -808,11 +809,11 @@ bool build_tunnel(int row1, int col1, int row2, int col2)
 
 
 /*!
- * @brief ¥È¥ó¥Í¥ëÀ¸À®¤Î¤¿¤á¤Î´ð½àÅÀ¤ò»ØÄê¤¹¤ë¡£
- * @param x ´ð½àÅÀ¤ò»ØÄê¤¹¤ëXºÂÉ¸¤Î»²¾È¥Ý¥¤¥ó¥¿¡¢Å¬»þÃÍ¤¬½¤Àµ¤µ¤ì¤ë¡£
- * @param y ´ð½àÅÀ¤ò»ØÄê¤¹¤ëYºÂÉ¸¤Î»²¾È¥Ý¥¤¥ó¥¿¡¢Å¬»þÃÍ¤¬½¤Àµ¤µ¤ì¤ë¡£
- * @param affectwall (Ä´ººÃæ)
- * @return ¤Ê¤·
+ * @brief ãƒˆãƒ³ãƒãƒ«ç”Ÿæˆã®ãŸã‚ã®åŸºæº–ç‚¹ã‚’æŒ‡å®šã™ã‚‹ã€‚
+ * @param x åŸºæº–ç‚¹ã‚’æŒ‡å®šã™ã‚‹Xåº§æ¨™ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿ã€é©æ™‚å€¤ãŒä¿®æ­£ã•ã‚Œã‚‹ã€‚
+ * @param y åŸºæº–ç‚¹ã‚’æŒ‡å®šã™ã‚‹Yåº§æ¨™ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿ã€é©æ™‚å€¤ãŒä¿®æ­£ã•ã‚Œã‚‹ã€‚
+ * @param affectwall (èª¿æŸ»ä¸­)
+ * @return ãªã—
  * @details
  * This routine adds the square to the tunnel\n
  * It also checks for SOLID walls - and returns a nearby\n
@@ -823,9 +824,9 @@ bool build_tunnel(int row1, int col1, int row2, int col2)
  * "affectwall" toggles whether or not this new square affects\n
  * the boundaries of rooms. - This is used by the catacomb\n
  * routine.\n
- * @todo ÆÃ¤Ë¾ÜºÙ¤Ê½èÍý¤Î°ÕÌ£¤òÄ´ºº¤¹¤Ù¤·
+ * @todo ç‰¹ã«è©³ç´°ãªå‡¦ç†ã®æ„å‘³ã‚’èª¿æŸ»ã™ã¹ã—
  */
-static bool set_tunnel(int *x, int *y, bool affectwall)
+static bool set_tunnel(POSITION *x, POSITION *y, bool affectwall)
 {
 	int i, j, dx, dy;
 
@@ -935,17 +936,17 @@ static bool set_tunnel(int *x, int *y, bool affectwall)
 
 
 /*!
- * @brief ³°ÊÉ¤òºï¤Ã¤Æ¡Ö¥«¥¿¥³¥ó¥Ù¾õ¡×¤ÎÄÌÏ©¤òºîÀ®¤¹¤ë / This routine creates the catacomb-like tunnels by removing extra rock.
- * @param x ´ð½àÅÀ¤ÎXºÂÉ¸
- * @param y ´ð½àÅÀ¤ÎYºÂÉ¸
- * @return ¤Ê¤·
+ * @brief å¤–å£ã‚’å‰Šã£ã¦ã€Œã‚«ã‚¿ã‚³ãƒ³ãƒ™çŠ¶ã€ã®é€šè·¯ã‚’ä½œæˆã™ã‚‹ / This routine creates the catacomb-like tunnels by removing extra rock.
+ * @param x åŸºæº–ç‚¹ã®Xåº§æ¨™
+ * @param y åŸºæº–ç‚¹ã®Yåº§æ¨™
+ * @return ãªã—
  * @details
  * Note that this routine is only called on "even" squares - so it gives
  * a natural checkerboard pattern.
  */
-static void create_cata_tunnel(int x, int y)
+static void create_cata_tunnel(POSITION x, POSITION y)
 {
-	int x1, y1;
+	POSITION x1, y1;
 
 	/* Build tunnel */
 	x1 = x - 1;
@@ -967,9 +968,9 @@ static void create_cata_tunnel(int x, int y)
 
 
 /*!
- * @brief ¥È¥ó¥Í¥ëÀ¸À®½èÍý¡Ê¾ÜºÙÄ´ººÃæ¡Ë/ This routine does the bulk of the work in creating the new types of tunnels.
- * @return ¤Ê¤·
- * @todo ¾ÜºÙÍÑÄ´ºº
+ * @brief ãƒˆãƒ³ãƒãƒ«ç”Ÿæˆå‡¦ç†ï¼ˆè©³ç´°èª¿æŸ»ä¸­ï¼‰/ This routine does the bulk of the work in creating the new types of tunnels.
+ * @return ãªã—
+ * @todo è©³ç´°ç”¨èª¿æŸ»
  * @details
  * It is designed to use very simple algorithms to go from (x1,y1) to (x2,y2)\n
  * It doesn't need to add any complexity - straight lines are fine.\n
@@ -990,7 +991,8 @@ static void create_cata_tunnel(int x, int y)
  */
 static void short_seg_hack(int x1, int y1, int x2, int y2, int type, int count, bool *fail)
 {
-	int i, x, y;
+	int i;
+	POSITION x, y;
 	int length;
 
 	/* Check for early exit */
@@ -1102,9 +1104,9 @@ static void short_seg_hack(int x1, int y1, int x2, int y2, int type, int count, 
 
 
 /*!
- * @brief ÆÃÄê¤ÎÊÉ(±Êµ×ÊÉ¤Ê¤É)¤òÈò¤±¤Ê¤¬¤éÉô²°´Ö¤ÎÄÌÏ©¤òºîÀ®¤¹¤ë / This routine maps a path from (x1, y1) to (x2, y2) avoiding SOLID walls.
- * @return ¤Ê¤·
- * @todo ¾ÜºÙÍÑÄ´ºº
+ * @brief ç‰¹å®šã®å£(æ°¸ä¹…å£ãªã©)ã‚’é¿ã‘ãªãŒã‚‰éƒ¨å±‹é–“ã®é€šè·¯ã‚’ä½œæˆã™ã‚‹ / This routine maps a path from (x1, y1) to (x2, y2) avoiding SOLID walls.
+ * @return ãªã—
+ * @todo è©³ç´°è¦èª¿æŸ»
  * @details
  * Permanent rock is ignored in this path finding- sometimes there is no\n
  * path around anyway -so there will be a crash if we try to find one.\n
@@ -1115,9 +1117,9 @@ static void short_seg_hack(int x1, int y1, int x2, int y2, int type, int count, 
  * Note it is VERY important that the "stop if hit another passage" logic\n
  * stays as is.  Without this the dungeon turns into Swiss Cheese...\n
  */
-bool build_tunnel2(int x1, int y1, int x2, int y2, int type, int cutoff)
+bool build_tunnel2(POSITION x1, POSITION y1, POSITION x2, POSITION y2, int type, int cutoff)
 {
-	int x3, y3, dx, dy;
+	POSITION x3, y3, dx, dy;
 	int changex, changey;
 	int length;
 	int i;
@@ -1136,8 +1138,6 @@ bool build_tunnel2(int x1, int y1, int x2, int y2, int type, int cutoff)
 
 		/* perturbation perpendicular to path */
 		changex = (randint0(abs(dy) + 2) * 2 - abs(dy) - 1) / 2;
-
-		/* perturbation perpendicular to path */
 		changey = (randint0(abs(dx) + 2) * 2 - abs(dx) - 1) / 2;
 
 		/* Work out "mid" ponit */
@@ -1201,8 +1201,8 @@ bool build_tunnel2(int x1, int y1, int x2, int y2, int type, int cutoff)
 					/* Save the door location */
 					if (dun->door_n < DOOR_MAX)
 					{
-						dun->door[dun->door_n].y = y3;
-						dun->door[dun->door_n].x = x3;
+						dun->door[dun->door_n].y = (POSITION)y3;
+						dun->door[dun->door_n].x = (POSITION)x3;
 						dun->door_n++;
 					}
 					else return FALSE;
@@ -1219,9 +1219,9 @@ bool build_tunnel2(int x1, int y1, int x2, int y2, int type, int cutoff)
 		else
 		{
 			/* tunnel through walls */
-			if (build_tunnel2(x1, y1, x3, y3, type, cutoff))
+			if (build_tunnel2(x1, y1, (POSITION)x3, (POSITION)y3, type, cutoff))
 			{
-				retval = build_tunnel2(x3, y3, x2, y2, type, cutoff);
+				retval = build_tunnel2((POSITION)x3, (POSITION)y3, x2, y2, type, cutoff);
 				firstsuccede = TRUE;
 			}
 			else

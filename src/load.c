@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file load.c
- * @brief ¥»¡¼¥Ö¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß½èÍı / Purpose: support for loading savefiles -BEN-
+ * @brief ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å‡¦ç† / Purpose: support for loading savefiles -BEN-
  * @date 2014/07/07
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
@@ -79,12 +79,12 @@ static u32b	x_check = 0L;
 static byte kanji_code = 0;
 
 /*!
- * @brief ÊÑ¶òÈÚÅÜ¤Î¥Ğ¡¼¥¸¥ç¥óÈæ³Ó½èÍı / This function determines if the version of the savefile currently being read is older than version "major.minor.patch.extra".
- * @param major ¥á¥¸¥ã¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
- * @param minor ¥Ş¥¤¥Ê¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
- * @param patch ¥Ñ¥Ã¥Á¥Ğ¡¼¥¸¥ç¥óÃÍ
- * @param extra ¥¨¥¯¥¹¥È¥é¥Ñ¡¼¥¸¥ç¥óÃÍ
- * @return ¸½ºß¤Î¥Ğ¡¼¥¸¥ç¥ó¤è¤êÃÍ¤¬¸Å¤¤¤Ê¤étrue
+ * @brief å¤‰æ„šè›®æ€’ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ¯”è¼ƒå‡¦ç† / This function determines if the version of the savefile currently being read is older than version "major.minor.patch.extra".
+ * @param major ãƒ¡ã‚¸ãƒ£ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @param minor ãƒã‚¤ãƒŠãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @param patch ãƒ‘ãƒƒãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @param extra ã‚¨ã‚¯ã‚¹ãƒˆãƒ©ãƒ‘ãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @return ç¾åœ¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šå€¤ãŒå¤ã„ãªã‚‰true
  */
 static bool h_older_than(byte major, byte minor, byte patch, byte extra)
 {
@@ -110,11 +110,11 @@ static bool h_older_than(byte major, byte minor, byte patch, byte extra)
 
 
 /*!
- * @brief Zangband¤Î¥Ğ¡¼¥¸¥ç¥óÈæ³Ó½èÍı / The above function, adapted for Zangband
- * @param x ¥á¥¸¥ã¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
- * @param y ¥Ş¥¤¥Ê¡¼¥Ğ¡¼¥¸¥ç¥óÃÍ
- * @param z ¥Ñ¥Ã¥Á¥Ğ¡¼¥¸¥ç¥óÃÍ
- * @return ¸½ºß¤Î¥Ğ¡¼¥¸¥ç¥ó¤è¤êÃÍ¤¬¸Å¤¤¤Ê¤étrue
+ * @brief Zangbandã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æ¯”è¼ƒå‡¦ç† / The above function, adapted for Zangband
+ * @param x ãƒ¡ã‚¸ãƒ£ãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @param y ãƒã‚¤ãƒŠãƒ¼ãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @param z ãƒ‘ãƒƒãƒãƒãƒ¼ã‚¸ãƒ§ãƒ³å€¤
+ * @return ç¾åœ¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚ˆã‚Šå€¤ãŒå¤ã„ãªã‚‰true
  */
 static bool z_older_than(byte x, byte y, byte z)
 {
@@ -136,9 +136,9 @@ static bool z_older_than(byte x, byte y, byte z)
 
 
 /*!
- * @brief ¥²¡¼¥à¥¹¥¯¥ê¡¼¥ó¤Ë¥á¥Ã¥»¡¼¥¸¤òÉ½¼¨¤¹¤ë / Hack -- Show information on the screen, one line at a time.
- * @param msg É½¼¨Ê¸»úÎó
- * @return ¤Ê¤·
+ * @brief ã‚²ãƒ¼ãƒ ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ / Hack -- Show information on the screen, one line at a time.
+ * @param msg è¡¨ç¤ºæ–‡å­—åˆ—
+ * @return ãªã—
  * @details
  * Avoid the top two lines, to avoid interference with "msg_print()".
  */
@@ -158,8 +158,8 @@ static void note(cptr msg)
 
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤é1¥Ğ¥¤¥È¤òÆÉ¤ß¹ş¤à
- * @return ÆÉ¤ß¹ş¤ó¤À¥Ğ¥¤¥ÈÃÍ
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰1ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚€
+ * @return èª­ã¿è¾¼ã‚“ã ãƒã‚¤ãƒˆå€¤
  * @details
  * The following functions are used to load the basic building blocks
  * of savefiles.  They also maintain the "checksum" info for 2.7.0+
@@ -182,9 +182,9 @@ static byte sf_get(void)
 }
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤é1¥Ğ¥¤¥È¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
- * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰1ãƒã‚¤ãƒˆã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
+ * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_byte(byte *ip)
 {
@@ -192,9 +192,9 @@ static void rd_byte(byte *ip)
 }
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ê¤·16bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
- * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ãªã—16bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
+ * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_u16b(u16b *ip)
 {
@@ -203,9 +203,9 @@ static void rd_u16b(u16b *ip)
 }
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ä¤­16bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
- * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ã¤ã16bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
+ * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_s16b(s16b *ip)
 {
@@ -213,9 +213,9 @@ static void rd_s16b(s16b *ip)
 }
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ê¤·32bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
- * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ãªã—32bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
+ * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_u32b(u32b *ip)
 {
@@ -226,9 +226,9 @@ static void rd_u32b(u32b *ip)
 }
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÉä¹æ¤Ä¤­32bitÃÍ¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹
- * @param ip ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ç¬¦å·ã¤ã32bitå€¤ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™
+ * @param ip èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_s32b(s32b *ip)
 {
@@ -237,10 +237,10 @@ static void rd_s32b(s32b *ip)
 
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤«¤éÊ¸»úÎó¤òÆÉ¤ß¹ş¤ó¤Ç¥İ¥¤¥ó¥¿¤ËÅÏ¤¹ / Hack -- read a string
- * @param str ÆÉ¤ß¹ş¤ß¥İ¥¤¥ó¥¿
- * @param max ºÇÂçÆÉ¤ß¼è¤ê¥Ğ¥¤¥È¿ô
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰æ–‡å­—åˆ—ã‚’èª­ã¿è¾¼ã‚“ã§ãƒã‚¤ãƒ³ã‚¿ã«æ¸¡ã™ / Hack -- read a string
+ * @param str èª­ã¿è¾¼ã¿ãƒã‚¤ãƒ³ã‚¿
+ * @param max æœ€å¤§èª­ã¿å–ã‚Šãƒã‚¤ãƒˆæ•°
+ * @return ãªã—
  */
 static void rd_string(char *str, int max)
 {
@@ -285,10 +285,10 @@ static void rd_string(char *str, int max)
 
 	case 0:
 	{
-		/* ÉÔÌÀ¤Î´Á»ú¥³¡¼¥É¤«¤é¥·¥¹¥Æ¥à¤Î´Á»ú¥³¡¼¥É¤ËÊÑ´¹ */
+		/* ä¸æ˜ã®æ¼¢å­—ã‚³ãƒ¼ãƒ‰ã‹ã‚‰ã‚·ã‚¹ãƒ†ãƒ ã®æ¼¢å­—ã‚³ãƒ¼ãƒ‰ã«å¤‰æ› */
 		byte code = codeconv(str);
 
-		/* ´Á»ú¥³¡¼¥É¤¬È½ÌÀ¤·¤¿¤é¡¢¤½¤ì¤òµ­Ï¿ */
+		/* æ¼¢å­—ã‚³ãƒ¼ãƒ‰ãŒåˆ¤æ˜ã—ãŸã‚‰ã€ãã‚Œã‚’è¨˜éŒ² */
 		if (code) kanji_code = code;
 
 		break;
@@ -302,9 +302,9 @@ static void rd_string(char *str, int max)
 
 
 /*!
- * @brief ¥í¡¼¥É¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿¤ò»ØÄê¥Ğ¥¤¥ÈÊ¬Èô¤Ğ¤·¤Æ¿Ê¤á¤ë / Hack -- strip some bytes
- * @param n ¥¹¥­¥Ã¥×¥Ğ¥¤¥È¿ô
- * @return ¤Ê¤·
+ * @brief ãƒ­ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’æŒ‡å®šãƒã‚¤ãƒˆåˆ†é£›ã°ã—ã¦é€²ã‚ã‚‹ / Hack -- strip some bytes
+ * @param n ã‚¹ã‚­ãƒƒãƒ—ãƒã‚¤ãƒˆæ•°
+ * @return ãªã—
  */
 static void strip_bytes(int n)
 {
@@ -317,9 +317,9 @@ static void strip_bytes(int n)
 #define OLD_MAX_MANE 22
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È£±·ï¤òÆÉ¤ß¹ş¤à(ÊÑ¶òver1.5.0°ÊÁ°) / Read an object (Old method)
- * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥ÈÆÉ¤ß¼è¤êÀè¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼‘ä»¶ã‚’èª­ã¿è¾¼ã‚€(å¤‰æ„šver1.5.0ä»¥å‰) / Read an object (Old method)
+ * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆèª­ã¿å–ã‚Šå…ˆãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * @details
  * This function attempts to "repair" old savefiles, and to extract
  * the most up to date values for various object fields.
@@ -338,18 +338,24 @@ static void strip_bytes(int n)
 static void rd_item_old(object_type *o_ptr)
 {
 	char buf[128];
+	byte_hack tmp8u;
+	s16b tmp16s;
 
 
 	/* Kind */
 	rd_s16b(&o_ptr->k_idx);
 
 	/* Location */
-	rd_byte(&o_ptr->iy);
-	rd_byte(&o_ptr->ix);
+	rd_byte(&tmp8u);
+	o_ptr->iy = (POSITION)tmp8u;
+	rd_byte(&tmp8u);
+	o_ptr->ix = (POSITION)tmp8u;
 
 	/* Type/Subtype */
-	rd_byte(&o_ptr->tval);
-	rd_byte(&o_ptr->sval);
+	rd_byte(&tmp8u);
+	o_ptr->tval = tmp8u;
+	rd_byte(&tmp8u);
+	o_ptr->sval = tmp8u;
 
 	if (z_older_than(10, 4, 4))
 	{
@@ -362,21 +368,32 @@ static void rd_item_old(object_type *o_ptr)
 	rd_s16b(&o_ptr->pval);
 
 	rd_byte(&o_ptr->discount);
-	rd_byte(&o_ptr->number);
-	rd_s16b(&o_ptr->weight);
+	rd_byte(&tmp8u);
+	o_ptr->number = (ITEM_NUMBER)tmp8u;
 
-	rd_byte(&o_ptr->name1);
-	rd_byte(&o_ptr->name2);
+	rd_s16b(&tmp16s);
+	o_ptr->weight = tmp16s;
+
+	rd_byte(&tmp8u);
+	o_ptr->name1 = tmp8u;
+
+	rd_byte(&tmp8u);
+	o_ptr->name2 = tmp8u;
+
 	rd_s16b(&o_ptr->timeout);
 
 	rd_s16b(&o_ptr->to_h);
-	rd_s16b(&o_ptr->to_d);
+	
+	rd_s16b(&tmp16s);
+	o_ptr->to_d = tmp16s;
 	rd_s16b(&o_ptr->to_a);
 
 	rd_s16b(&o_ptr->ac);
 
-	rd_byte(&o_ptr->dd);
-	rd_byte(&o_ptr->ds);
+	rd_byte(&tmp8u);
+	o_ptr->dd = tmp8u;
+	rd_byte(&tmp8u);
+	o_ptr->ds = tmp8u;
 
 	rd_byte(&o_ptr->ident);
 
@@ -584,15 +601,17 @@ static void rd_item_old(object_type *o_ptr)
 
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤òÆÉ¤ß¹ş¤à(¸½ÈÇ) / Read an object (New method)
- * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥ÈÊİÂ¸Àè¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€(ç¾ç‰ˆ) / Read an object (New method)
+ * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä¿å­˜å…ˆãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_item(object_type *o_ptr)
 {
 	object_kind *k_ptr;
 	u32b flags;
 	char buf[128];
+	byte_hack tmp8u;
+	s16b tmp16s;
 
 	if (h_older_than(1, 5, 0, 0))
 	{
@@ -608,8 +627,10 @@ static void rd_item(object_type *o_ptr)
 	rd_s16b(&o_ptr->k_idx);
 
 	/* Location */
-	rd_byte(&o_ptr->iy);
-	rd_byte(&o_ptr->ix);
+	rd_byte(&tmp8u);
+	o_ptr->iy = (POSITION)tmp8u;
+	rd_byte(&tmp8u);
+	o_ptr->ix = (POSITION)tmp8u;
 
 	/* Type/Subtype */
 	k_ptr = &k_info[o_ptr->k_idx];
@@ -622,21 +643,37 @@ static void rd_item(object_type *o_ptr)
 
 	if (flags & SAVE_ITEM_DISCOUNT) rd_byte(&o_ptr->discount);
 	else o_ptr->discount = 0;
-	if (flags & SAVE_ITEM_NUMBER) rd_byte(&o_ptr->number);
+	if (flags & SAVE_ITEM_NUMBER) {
+		rd_byte(&tmp8u);
+		o_ptr->number = tmp8u;
+	}	
 	else o_ptr->number = 1;
 
-	rd_s16b(&o_ptr->weight);
+	rd_s16b(&tmp16s);
+	o_ptr->weight = tmp16s;
 
-	if (flags & SAVE_ITEM_NAME1) rd_byte(&o_ptr->name1);
+	if (flags & SAVE_ITEM_NAME1)
+	{
+		rd_byte(&tmp8u);
+		o_ptr->name1 = tmp8u;
+	}
 	else o_ptr->name1 = 0;
-	if (flags & SAVE_ITEM_NAME2) rd_byte(&o_ptr->name2);
+	if (flags & SAVE_ITEM_NAME2)
+	{
+		rd_byte(&tmp8u);
+		o_ptr->name2 = tmp8u;
+	}
 	else o_ptr->name2 = 0;
 	if (flags & SAVE_ITEM_TIMEOUT) rd_s16b(&o_ptr->timeout);
 	else o_ptr->timeout = 0;
 
 	if (flags & SAVE_ITEM_TO_H) rd_s16b(&o_ptr->to_h);
 	else o_ptr->to_h = 0;
-	if (flags & SAVE_ITEM_TO_D) rd_s16b(&o_ptr->to_d);
+	if (flags & SAVE_ITEM_TO_D)
+	{
+		rd_s16b(&tmp16s);
+		o_ptr->to_d = tmp16s;
+	}
 	else o_ptr->to_d = 0;
 	if (flags & SAVE_ITEM_TO_A) rd_s16b(&o_ptr->to_a);
 	else o_ptr->to_a = 0;
@@ -644,9 +681,17 @@ static void rd_item(object_type *o_ptr)
 	if (flags & SAVE_ITEM_AC) rd_s16b(&o_ptr->ac);
 	else o_ptr->ac = 0;
 
-	if (flags & SAVE_ITEM_DD) rd_byte(&o_ptr->dd);
+	if (flags & SAVE_ITEM_DD)
+	{
+		 rd_byte(&tmp8u);
+		 o_ptr->dd = tmp8u;
+	}
 	else o_ptr->dd = 0;
-	if (flags & SAVE_ITEM_DS) rd_byte(&o_ptr->ds);
+	if (flags & SAVE_ITEM_DS)
+	{
+		rd_byte(&tmp8u);
+		o_ptr->ds = tmp8u;
+	}
 	else o_ptr->ds = 0;
 
 	if (flags & SAVE_ITEM_IDENT) rd_byte(&o_ptr->ident);
@@ -766,13 +811,15 @@ static void rd_item(object_type *o_ptr)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤òÆÉ¤ß¹ş¤à(ÊÑ¶òver1.5.0°ÊÁ°) / Read a monster (Old method)
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼ÊİÂ¸Àè¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’èª­ã¿è¾¼ã‚€(å¤‰æ„šver1.5.0ä»¥å‰) / Read a monster (Old method)
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä¿å­˜å…ˆãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_monster_old(monster_type *m_ptr)
 {
 	byte tmp8u;
+	s16b tmp16s;
+	u32b tmp32u;
 	char buf[128];
 
 	/* Read the monster race */
@@ -795,17 +842,24 @@ static void rd_monster_old(monster_type *m_ptr)
 		rd_byte(&m_ptr->sub_align);
 
 	/* Read the other information */
-	rd_byte(&m_ptr->fy);
-	rd_byte(&m_ptr->fx);
-	rd_s16b(&m_ptr->hp);
-	rd_s16b(&m_ptr->maxhp);
+	rd_byte(&tmp8u);
+	m_ptr->fy = (POSITION)tmp8u;
+	rd_byte(&tmp8u);
+	m_ptr->fx = (POSITION)tmp8u;
+
+	rd_s16b(&tmp16s);
+	m_ptr->hp = tmp16s;
+	rd_s16b(&tmp16s);
+	m_ptr->maxhp = tmp16s;
+
 	if (z_older_than(11, 0, 5))
 	{
 		m_ptr->max_maxhp = m_ptr->maxhp;
 	}
 	else
 	{
-		rd_s16b(&m_ptr->max_maxhp);
+		rd_s16b(&tmp16s);
+		m_ptr->max_maxhp = (HIT_POINT)tmp16s;
 	}
 	if(h_older_than(2, 1, 2, 1))
 	{
@@ -853,14 +907,15 @@ static void rd_monster_old(monster_type *m_ptr)
 	}
 	else if (z_older_than(10,0,11))
 	{
-		s16b tmp16s;
 		rd_s16b(&tmp16s);
 		reset_target(m_ptr);
 	}
 	else
 	{
-		rd_s16b(&m_ptr->target_y);
-		rd_s16b(&m_ptr->target_x);
+		rd_s16b(&tmp16s);
+		m_ptr->target_y = (POSITION)tmp16s;
+		rd_s16b(&tmp16s);
+		m_ptr->target_x = (POSITION)tmp16s;
 	}
 
 	rd_byte(&tmp8u);
@@ -871,10 +926,12 @@ static void rd_monster_old(monster_type *m_ptr)
 	else
 		m_ptr->smart = 0;
 
-	if (z_older_than(10, 4, 5))
+	if (z_older_than(10, 4, 5)) {
 		m_ptr->exp = 0;
-	else
-		rd_u32b(&m_ptr->exp);
+	} else {
+		rd_u32b(&tmp32u);
+		m_ptr->exp = tmp32u;
+	}
 
 	if (z_older_than(10, 2, 2))
 	{
@@ -910,15 +967,17 @@ static void rd_monster_old(monster_type *m_ptr)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤òÆÉ¤ß¹ş¤à(¸½ÈÇ) / Read a monster (New method)
- * @param m_ptr ¥â¥ó¥¹¥¿¡¼ÊİÂ¸Àè¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‚’èª­ã¿è¾¼ã‚€(ç¾ç‰ˆ) / Read a monster (New method)
+ * @param m_ptr ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ä¿å­˜å…ˆãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  */
 static void rd_monster(monster_type *m_ptr)
 {
 	u32b flags;
 	char buf[128];
 	byte tmp8u;
+	s16b tmp16s;
+	u32b tmp32u;
 
 	if (h_older_than(1, 5, 0, 0))
 	{
@@ -935,11 +994,18 @@ static void rd_monster(monster_type *m_ptr)
 	rd_s16b(&m_ptr->r_idx);
 
 	/* Read the other information */
-	rd_byte(&m_ptr->fy);
-	rd_byte(&m_ptr->fx);
-	rd_s16b(&m_ptr->hp);
-	rd_s16b(&m_ptr->maxhp);
-	rd_s16b(&m_ptr->max_maxhp);
+	rd_byte(&tmp8u);
+	m_ptr->fy = (POSITION)tmp8u;
+	rd_byte(&tmp8u);
+	m_ptr->fx = (POSITION)tmp8u;
+
+	rd_s16b(&tmp16s);
+	m_ptr->hp = (HIT_POINT)tmp16s;
+	rd_s16b(&tmp16s);
+	m_ptr->maxhp = (HIT_POINT)tmp16s;
+	rd_s16b(&tmp16s);
+	m_ptr->max_maxhp = (HIT_POINT)tmp16s;
+
 	if(h_older_than(2, 1, 2, 1))
 	{
 		m_ptr->dealt_damage = 0;
@@ -994,9 +1060,17 @@ static void rd_monster(monster_type *m_ptr)
 	}
 	else m_ptr->mtimed[MTIMED_MONFEAR] = 0;
 
-	if (flags & SAVE_MON_TARGET_Y) rd_s16b(&m_ptr->target_y);
+	if (flags & SAVE_MON_TARGET_Y)
+	{
+		rd_s16b(&tmp16s);
+		m_ptr->target_y = (POSITION)tmp16s;
+	}
 	else m_ptr->target_y = 0;
-	if (flags & SAVE_MON_TARGET_X) rd_s16b(&m_ptr->target_x);
+	if (flags & SAVE_MON_TARGET_X)
+	{
+		rd_s16b(&tmp16s);
+		m_ptr->target_x = (POSITION)tmp16s;
+	}
 	else m_ptr->target_x = 0;
 
 	if (flags & SAVE_MON_INVULNER)
@@ -1009,7 +1083,11 @@ static void rd_monster(monster_type *m_ptr)
 	if (flags & SAVE_MON_SMART) rd_u32b(&m_ptr->smart);
 	else m_ptr->smart = 0;
 
-	if (flags & SAVE_MON_EXP) rd_u32b(&m_ptr->exp);
+	if (flags & SAVE_MON_EXP)
+	{
+		rd_u32b(&tmp32u);
+		m_ptr->exp = (EXP)tmp32u;
+	}
 	else m_ptr->exp = 0;
 
 	m_ptr->mflag = 0; /* Not saved */
@@ -1074,29 +1152,35 @@ static void rd_monster(monster_type *m_ptr)
 #define RF4_BR_WALL         0x04000000  /* Breathe Force */
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤òÆÉ¤ß¹ş¤à / Read the monster lore
- * @param r_idx ÆÉ¤ß¹ş¤ßÀè¥â¥ó¥¹¥¿¡¼ID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’èª­ã¿è¾¼ã‚€ / Read the monster lore
+ * @param r_idx èª­ã¿è¾¼ã¿å…ˆãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+ * @return ãªã—
  */
-static void rd_lore(int r_idx)
+static void rd_lore(MONRACE_IDX r_idx)
 {
 	byte tmp8u;
+	s16b tmp16s;
 
 	monster_race *r_ptr = &r_info[r_idx];
 
 	/* Count sights/deaths/kills */
-	rd_s16b(&r_ptr->r_sights);
-	rd_s16b(&r_ptr->r_deaths);
-	rd_s16b(&r_ptr->r_pkills);
+	rd_s16b(&tmp16s);
+	r_ptr->r_sights = (MONSTER_NUMBER)tmp16s;
+	rd_s16b(&tmp16s);
+	r_ptr->r_deaths = (MONSTER_NUMBER)tmp16s;
+	rd_s16b(&tmp16s);
+	r_ptr->r_pkills = (MONSTER_NUMBER)tmp16s;
 	if (h_older_than(1, 7, 0, 5))
 	{
 		r_ptr->r_akills = r_ptr->r_pkills;
 	}
 	else
 	{
-		rd_s16b(&r_ptr->r_akills);
+		rd_s16b(&tmp16s);
+		r_ptr->r_akills = (MONSTER_NUMBER)tmp16s; 
 	}
-	rd_s16b(&r_ptr->r_tkills);
+	rd_s16b(&tmp16s);
+	r_ptr->r_tkills = (MONSTER_NUMBER)tmp16s;
 
 	/* Count wakes and ignores */
 	rd_byte(&r_ptr->r_wake);
@@ -1107,8 +1191,10 @@ static void rd_lore(int r_idx)
 	rd_byte(&r_ptr->r_xtra2);
 
 	/* Count drops */
-	rd_byte(&r_ptr->r_drop_gold);
-	rd_byte(&r_ptr->r_drop_item);
+	rd_byte(&tmp8u);
+	r_ptr->r_drop_gold = (ITEM_NUMBER)tmp8u;
+	rd_byte(&tmp8u);
+	r_ptr->r_drop_item = (ITEM_NUMBER)tmp8u;
 
 	/* Count spells */
 	rd_byte(&tmp8u);
@@ -1169,7 +1255,8 @@ static void rd_lore(int r_idx)
 	}
 
 	/* Read the "Racial" monster limit per level */
-	rd_byte(&r_ptr->max_num);
+	rd_byte(&tmp8u);
+	r_ptr->max_num = (MONSTER_NUMBER)tmp8u;
 
 	/* Location in saved floor */
 	rd_s16b(&r_ptr->floor_id);
@@ -1182,16 +1269,16 @@ static void rd_lore(int r_idx)
 	r_ptr->r_flags2 &= r_ptr->flags2;
 	r_ptr->r_flags3 &= r_ptr->flags3;
 	r_ptr->r_flags4 &= r_ptr->flags4;
-	r_ptr->r_flags5 &= r_ptr->flags5;
-	r_ptr->r_flags6 &= r_ptr->flags6;
+	r_ptr->r_flags5 &= r_ptr->a_ability_flags1;
+	r_ptr->r_flags6 &= r_ptr->a_ability_flags2;
 	r_ptr->r_flagsr &= r_ptr->flagsr;
 }
 
 /*!
- * @brief Å¹ÃÖ¤­¤Î¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È¤òÆÉ¤ß¹ş¤à / Add the item "o_ptr" to the inventory of the "Home"
- * @param st_ptr Å¹ÊŞ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param o_ptr ¥¢¥¤¥Æ¥à¥ª¥Ö¥¸¥§¥¯¥È»²¾È¥İ¥¤¥ó¥¿
- * @return ¤Ê¤·
+ * @brief åº—ç½®ãã®ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’èª­ã¿è¾¼ã‚€ / Add the item "o_ptr" to the inventory of the "Home"
+ * @param st_ptr åº—èˆ—ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param o_ptr ã‚¢ã‚¤ãƒ†ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return ãªã—
  * @details
  * In all cases, return the slot (or -1) where the object was placed
  *
@@ -1258,10 +1345,10 @@ static void home_carry(store_type *st_ptr, object_type *o_ptr)
 }
 
 /*!
- * @brief Å¹ÊŞ¾ğÊó¤òÆÉ¤ß¹ş¤à / Read a store
- * @param town_number ³¹ID 
- * @param store_number Å¹ÊŞID
- * @return ¥¨¥é¡¼ID
+ * @brief åº—èˆ—æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Read a store
+ * @param town_number è¡—ID 
+ * @param store_number åº—èˆ—ID
+ * @return ã‚¨ãƒ©ãƒ¼ID
  */
 static errr rd_store(int town_number, int store_number)
 {
@@ -1346,8 +1433,8 @@ static errr rd_store(int town_number, int store_number)
 
 
 /*!
- * @brief Íğ¿ô¾õÂÖ¤òÆÉ¤ß¹ş¤à / Read RNG state (added in 2.8.0)
- * @return ¤Ê¤·
+ * @brief ä¹±æ•°çŠ¶æ…‹ã‚’èª­ã¿è¾¼ã‚€ / Read RNG state (added in 2.8.0)
+ * @return ãªã—
  */
 static void rd_randomizer(void)
 {
@@ -1371,8 +1458,8 @@ static void rd_randomizer(void)
 
 
 /*!
- * @brief ¥²¡¼¥à¥ª¥×¥·¥ç¥ó¤òÆÉ¤ß¹ş¤à / Read options (ignore most pre-2.8.0 options)
- * @return ¤Ê¤·
+ * @brief ã‚²ãƒ¼ãƒ ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’èª­ã¿è¾¼ã‚€ / Read options (ignore most pre-2.8.0 options)
+ * @return ãªã—
  * @details
  * Note that the normal options are now stored as a set of 256 bit flags,
  * plus a set of 256 bit masks to indicate which bit flags were defined
@@ -1436,6 +1523,8 @@ static void rd_options(void)
 	cheat_know = (c & 0x1000) ? TRUE : FALSE;
 	cheat_live = (c & 0x2000) ? TRUE : FALSE;
 	cheat_save = (c & 0x4000) ? TRUE : FALSE;
+	cheat_diary_output = (c & 0x8000) ? TRUE : FALSE;
+	cheat_turn = (c & 0x0080) ? TRUE : FALSE;
 
 	rd_byte((byte *)&autosave_l);
 	rd_byte((byte *)&autosave_t);
@@ -1548,8 +1637,8 @@ static void rd_options(void)
 
 
 /*!
- * @brief ¥À¥ß¡¼¾ğÊó¥¹¥­¥Ã¥× / Hack -- strip the "ghost" info
- * @return ¤Ê¤·
+ * @brief ãƒ€ãƒŸãƒ¼æƒ…å ±ã‚¹ã‚­ãƒƒãƒ— / Hack -- strip the "ghost" info
+ * @return ãªã—
  * @details
  * XXX XXX XXX This is such a nasty hack it hurts.
  */
@@ -1566,12 +1655,13 @@ static void rd_ghost(void)
 
 
 /*!
- * @brief ¥¯¥¤¥Ã¥¯¥¹¥¿¡¼¥È¾ğÊó¤òÆÉ¤ß¹ş¤à / Load quick start data
- * @return ¤Ê¤·
+ * @brief ã‚¯ã‚¤ãƒƒã‚¯ã‚¹ã‚¿ãƒ¼ãƒˆæƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Load quick start data
+ * @return ãªã—
  */
 static void load_quick_start(void)
 {
 	byte tmp8u;
+	s16b tmp16s;
 	int i;
 
 	if (z_older_than(11, 0, 13))
@@ -1584,8 +1674,10 @@ static void load_quick_start(void)
 	rd_byte(&previous_char.prace);
 	rd_byte(&previous_char.pclass);
 	rd_byte(&previous_char.pseikaku);
-	rd_byte(&previous_char.realm1);
-	rd_byte(&previous_char.realm2);
+	rd_byte(&tmp8u);
+	previous_char.realm1 = (REALM_IDX)tmp8u;
+	rd_byte(&tmp8u);
+	previous_char.realm2 = (REALM_IDX)tmp8u;
 
 	rd_s16b(&previous_char.age);
 	rd_s16b(&previous_char.ht);
@@ -1596,7 +1688,11 @@ static void load_quick_start(void)
 	for (i = 0; i < 6; i++) rd_s16b(&previous_char.stat_max[i]);
 	for (i = 0; i < 6; i++) rd_s16b(&previous_char.stat_max_max[i]);
 
-	for (i = 0; i < PY_MAX_LEVEL; i++) rd_s16b(&previous_char.player_hp[i]);
+	for (i = 0; i < PY_MAX_LEVEL; i++)
+	{
+		rd_s16b(&tmp16s);
+		previous_char.player_hp[i] = (HIT_POINT)tmp16s;
+	}
 
 	rd_s16b(&previous_char.chaos_patron);
 
@@ -1612,8 +1708,8 @@ static void load_quick_start(void)
 }
 
 /*!
- * @brief ¤½¤ÎÂ¾¤Î¾ğÊó¤òÆÉ¤ß¹ş¤à / Read the "extra" information
- * @return ¤Ê¤·
+ * @brief ãã®ä»–ã®æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Read the "extra" information
+ * @return ãªã—
  */
 static void rd_extra(void)
 {
@@ -1621,6 +1717,7 @@ static void rd_extra(void)
 
 	byte tmp8u;
 	s16b tmp16s;
+	s32b tmp32s;
 	u16b tmp16u;
 
 	rd_string(p_ptr->name, sizeof(p_ptr->name));
@@ -1648,8 +1745,10 @@ static void rd_extra(void)
 	rd_byte(&p_ptr->pclass);
 	rd_byte(&p_ptr->pseikaku);
 	rd_byte(&p_ptr->psex);
-	rd_byte(&p_ptr->realm1);
-	rd_byte(&p_ptr->realm2);
+	rd_byte(&tmp8u);
+	p_ptr->realm1 = (REALM_IDX)tmp8u;
+	rd_byte(&tmp8u);
+	p_ptr->realm2 = (REALM_IDX)tmp8u;
 	rd_byte(&tmp8u); /* oops */
 
 	if (z_older_than(10, 4, 4))
@@ -1661,7 +1760,8 @@ static void rd_extra(void)
 	}
 
 	/* Special Race/Class info */
-	rd_byte(&p_ptr->hitdie);
+	rd_byte(&tmp8u);
+	p_ptr->hitdie = tmp8u;
 	rd_u16b(&p_ptr->expfact);
 
 	/* Age/Height/Weight */
@@ -1704,7 +1804,7 @@ static void rd_extra(void)
 		for (i = 0; i < 5; i++) for (j = 0; j < 60; j++) rd_s16b(&p_ptr->weapon_exp[i][j]);
 	else
 		for (i = 0; i < 5; i++) for (j = 0; j < 64; j++) rd_s16b(&p_ptr->weapon_exp[i][j]);
-	for (i = 0; i < 10; i++) rd_s16b(&p_ptr->skill_exp[i]);
+	for (i = 0; i < GINOU_MAX; i++) rd_s16b(&p_ptr->skill_exp[i]);
 	if (z_older_than(10, 4, 1))
 	{
 		if (p_ptr->pclass != CLASS_BEASTMASTER) p_ptr->skill_exp[GINOU_RIDING] /= 2;
@@ -1742,8 +1842,10 @@ static void rd_extra(void)
 	else
 	{
 		rd_byte(&p_ptr->start_race);
-		rd_s32b(&p_ptr->old_race1);
-		rd_s32b(&p_ptr->old_race2);
+		rd_s32b(&tmp32s);
+		p_ptr->old_race1 = (BIT_FLAGS)tmp32s;
+		rd_s32b(&tmp32s);
+		p_ptr->old_race2 = (BIT_FLAGS)tmp32s;
 		rd_s16b(&p_ptr->old_realm);
 	}
 
@@ -1775,8 +1877,10 @@ static void rd_extra(void)
 	{
 		for (i = 0; i < MAX_MANE; i++)
 		{
-			rd_s16b(&p_ptr->mane_spell[i]);
-			rd_s16b(&p_ptr->mane_dam[i]);
+			rd_s16b(&tmp16s);
+			p_ptr->mane_spell[i] = (SPELL_IDX)tmp16s;
+			rd_s16b(&tmp16s);
+			p_ptr->mane_dam[i] = (SPELL_IDX)tmp16s;
 		}
 		rd_s16b(&p_ptr->mane_num);
 	}
@@ -1838,8 +1942,11 @@ static void rd_extra(void)
 	rd_byte(&p_ptr->exit_bldg);
 	rd_byte(&tmp8u);
 
-	rd_s16b(&p_ptr->oldpx);
-	rd_s16b(&p_ptr->oldpy);
+	rd_s16b(&tmp16s);
+	p_ptr->oldpx = (POSITION)tmp16s;
+	rd_s16b(&tmp16s);
+	p_ptr->oldpy = (POSITION)tmp16s;
+
 	if (z_older_than(10, 3, 13) && !dun_level && !p_ptr->inside_arena) {p_ptr->oldpy = 33;p_ptr->oldpx = 131;}
 
 	/* Was p_ptr->rewards[MAX_BACT] */
@@ -1889,7 +1996,8 @@ static void rd_extra(void)
 	rd_s16b(&p_ptr->max_plv);
 	if (z_older_than(10, 3, 8))
 	{
-		rd_s16b(&max_dlv[DUNGEON_ANGBAND]);
+		rd_s16b(&tmp16s);
+		max_dlv[DUNGEON_ANGBAND] = tmp16s;
 	}
 	else
 	{
@@ -1899,7 +2007,8 @@ static void rd_extra(void)
 
 		for(i = 0; i < max; i++)
 		{
-			rd_s16b(&max_dlv[i]);
+			rd_s16b(&tmp16s);
+			max_dlv[i] = tmp16s;
 			if (max_dlv[i] > d_info[i].maxdepth) max_dlv[i] = d_info[i].maxdepth;
 		}
 	}
@@ -2027,7 +2136,8 @@ static void rd_extra(void)
 		else
 		{
 			rd_s16b(&p_ptr->tim_res_time);
-			rd_byte(&p_ptr->mimic_form);
+			rd_byte(&tmp8u);
+			p_ptr->mimic_form = (IDX)tmp8u;
 			rd_s16b(&p_ptr->tim_mimic);
 			rd_s16b(&p_ptr->tim_sh_fire);
 		}
@@ -2098,7 +2208,8 @@ static void rd_extra(void)
 	p_ptr->autopick_autoregister = tmp8u ? TRUE : FALSE;
 
 	rd_byte(&tmp8u); /* oops */
-	rd_byte(&p_ptr->action);
+	rd_byte(&tmp8u);
+	p_ptr->action = (ACTION_IDX)tmp8u;
 	if (!z_older_than(10, 4, 3))
 	{
 		rd_byte(&tmp8u);
@@ -2244,13 +2355,13 @@ static void rd_extra(void)
 	}
 	else if (z_older_than(10, 3, 10))
 	{
-		s32b tmp32s;
 		rd_s32b(&tmp32s);
 		p_ptr->visit = 1L;
 	}
 	else
 	{
-		rd_s32b(&p_ptr->visit);
+		rd_s32b(&tmp32s);
+		p_ptr->visit = (BIT_FLAGS)tmp32s;
 	}
 	if (!z_older_than(11, 0, 5))
 	{
@@ -2260,8 +2371,8 @@ static void rd_extra(void)
 
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î½ê»ıÉÊ¾ğÊó¤òÆÉ¤ß¹ş¤à / Read the player inventory
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰€æŒå“æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Read the player inventory
+ * @return ãªã—
  * @details
  * Note that the inventory changed in Angband 2.7.4.  Two extra
  * pack slots were added and the equipment was rearranged.  Note
@@ -2328,7 +2439,7 @@ static errr rd_inventory(void)
 		else if (inven_cnt == INVEN_PACK)
 		{
 			/* Oops */
-			note(_("»ı¤ÁÊª¤ÎÃæ¤Î¥¢¥¤¥Æ¥à¤¬Â¿¤¹¤®¤ë¡ª", "Too many items in the inventory!"));
+			note(_("æŒã¡ç‰©ã®ä¸­ã®ã‚¢ã‚¤ãƒ†ãƒ ãŒå¤šã™ãã‚‹ï¼", "Too many items in the inventory!"));
 
 			/* Fail */
 			return (54);
@@ -2360,28 +2471,51 @@ static errr rd_inventory(void)
 
 
 /*!
- * @brief ¥á¥Ã¥»¡¼¥¸¥í¥°¤òÆÉ¤ß¹ş¤à / Read the saved messages
- * @return ¤Ê¤·
+ * @brief ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ­ã‚°ã‚’èª­ã¿è¾¼ã‚€ / Read the saved messages
+ * @return ãªã—
  */
 static void rd_messages(void)
 {
 	int i;
 	char buf[128];
+	int message_max;
 
-	s16b num;
 
-	/* Total */
-	rd_s16b(&num);
-
-	/* Read the messages */
-	for (i = 0; i < num; i++)
+	if (h_older_than(2, 2, 0, 75))
 	{
-		/* Read the message */
-		rd_string(buf, sizeof(buf));
+		u16b num;
+		/* Total */
+		rd_u16b(&num);
+		message_max = (int)num;
 
-		/* Save the message */
-		message_add(buf);
+		/* Read the messages */
+		for (i = 0; i < message_max; i++)
+		{
+			/* Read the message */
+			rd_string(buf, sizeof(buf));
+
+			/* Save the message */
+			message_add(buf);
+		}
 	}
+	else
+	{
+		u32b num;
+		/* Total */
+		rd_u32b(&num);
+		message_max = (int)num;
+
+		/* Read the messages */
+		for (i = 0; i < message_max; i++)
+		{
+			/* Read the message */
+			rd_string(buf, sizeof(buf));
+
+			/* Save the message */
+			message_add(buf);
+		}
+	}
+
 }
 
 
@@ -2406,8 +2540,8 @@ static void rd_messages(void)
 #define QUEST_ROYAL_CRYPT 28
 
 /*!
- * @brief ¥á¥Ã¥»¡¼¥¸¥í¥°¤òÆÉ¤ß¹ş¤à / Read the dungeon (old method)
- * @return ¤Ê¤·
+ * @brief ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ­ã‚°ã‚’èª­ã¿è¾¼ã‚€ / Read the dungeon (old method)
+ * @return ãªã—
  * @details
  * The monsters/objects must be loaded in the same order
  * that they were stored, since the actual indexes matter.
@@ -2426,28 +2560,36 @@ static errr rd_dungeon_old(void)
 	/*** Basic info ***/
 
 	/* Header info */
-	rd_s16b(&dun_level);
+	rd_s16b(&tmp16s);
+	dun_level = (DEPTH)tmp16s;
 	if (z_older_than(10, 3, 8)) dungeon_type = DUNGEON_ANGBAND;
-	else rd_byte(&dungeon_type);
+	else
+	{ 
+		rd_byte(&tmp8u);
+		dungeon_type = (IDX)tmp8u;
+	}
 
 	/* Set the base level for old versions */
 	base_level = dun_level;
 
-	rd_s16b(&base_level);
+	rd_s16b(&tmp16s);
+	base_level = (DEPTH)tmp16s;
 
 	rd_s16b(&num_repro);
 	rd_s16b(&tmp16s);
-	p_ptr->y = (int)tmp16s;
+	p_ptr->y = (POSITION)tmp16s;
 	rd_s16b(&tmp16s);
-	p_ptr->x = (int)tmp16s;
+	p_ptr->x = (POSITION)tmp16s;
 	if (z_older_than(10, 3, 13) && !dun_level && !p_ptr->inside_arena) {p_ptr->y = 33;p_ptr->x = 131;}
-	rd_s16b(&cur_hgt);
-	rd_s16b(&cur_wid);
+	rd_s16b(&tmp16s);
+	cur_hgt = (POSITION)tmp16s;
+	rd_s16b(&tmp16s);
+	cur_wid = (POSITION)tmp16s;
 	rd_s16b(&tmp16s); /* max_panel_rows */
 	rd_s16b(&tmp16s); /* max_panel_cols */
 
 #if 0
-	if (!p_ptr->y || !p_ptr->x) {p_ptr->y = 10;p_ptr->x = 10;}/* ¥À¥ó¥¸¥ç¥óÀ¸À®¤Ë¼ºÇÔ¤·¤Æ¥»¥°¥á¥ó¥Æ¤Ã¤¿¤È¤­¤ÎÉüµìÍÑ */
+	if (!p_ptr->y || !p_ptr->x) {p_ptr->y = 10;p_ptr->x = 10;}/* ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆã«å¤±æ•—ã—ã¦ã‚»ã‚°ãƒ¡ãƒ³ãƒ†ã£ãŸã¨ãã®å¾©æ—§ç”¨ */
 #endif
 
 	/* Maximal size */
@@ -2698,14 +2840,14 @@ static errr rd_dungeon_old(void)
 	/* Verify maximum */
 	if (limit > max_o_idx)
 	{
-		note(format(_("¥¢¥¤¥Æ¥à¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë(%d)¡ª", "Too many (%d) object entries!"), limit));
+		note(format(_("ã‚¢ã‚¤ãƒ†ãƒ ã®é…åˆ—ãŒå¤§ãã™ãã‚‹(%d)ï¼", "Too many (%d) object entries!"), limit));
 		return (151);
 	}
 
 	/* Read the dungeon items */
 	for (i = 1; i < limit; i++)
 	{
-		int o_idx;
+		IDX o_idx;
 
 		object_type *o_ptr;
 
@@ -2716,7 +2858,7 @@ static errr rd_dungeon_old(void)
 		/* Oops */
 		if (i != o_idx)
 		{
-			note(format(_("¥¢¥¤¥Æ¥àÇÛÃÖ¥¨¥é¡¼ (%d <> %d)", "Object allocation error (%d <> %d)"), i, o_idx));
+			note(format(_("ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ã‚¨ãƒ©ãƒ¼ (%d <> %d)", "Object allocation error (%d <> %d)"), i, o_idx));
 			return (152);
 		}
 
@@ -2768,14 +2910,14 @@ static errr rd_dungeon_old(void)
 	/* Hack -- verify */
 	if (limit > max_m_idx)
 	{
-		note(format(_("¥â¥ó¥¹¥¿¡¼¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë(%d)¡ª", "Too many (%d) monster entries!"), limit));
+		note(format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®é…åˆ—ãŒå¤§ãã™ãã‚‹(%d)ï¼", "Too many (%d) monster entries!"), limit));
 		return (161);
 	}
 
 	/* Read the monsters */
 	for (i = 1; i < limit; i++)
 	{
-		int m_idx;
+		MONSTER_IDX m_idx;
 		monster_type *m_ptr;
 
 		/* Get a new record */
@@ -2784,7 +2926,7 @@ static errr rd_dungeon_old(void)
 		/* Oops */
 		if (i != m_idx)
 		{
-			note(format(_("¥â¥ó¥¹¥¿¡¼ÇÛÃÖ¥¨¥é¡¼ (%d <> %d)", "Monster allocation error (%d <> %d)"), i, m_idx));
+			note(format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…ç½®ã‚¨ãƒ©ãƒ¼ (%d <> %d)", "Monster allocation error (%d <> %d)"), i, m_idx));
 			return (162);
 		}
 
@@ -2820,16 +2962,23 @@ static errr rd_dungeon_old(void)
 
 
 /*!
- * @brief ÊİÂ¸¤µ¤ì¤¿¥Õ¥í¥¢¤òÆÉ¤ß¹ş¤à / Read the saved floor
- * @return ¤Ê¤·
+ * @brief ä¿å­˜ã•ã‚ŒãŸãƒ•ãƒ­ã‚¢ã‚’èª­ã¿è¾¼ã‚€ / Read the saved floor
+ * @return infoèª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  * @details
+ * ã“ã®é–¢æ•°ã¯ã€ã‚»ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ã®äº’æ›æ€§ã‚’ä¿ã¤ãŸã‚ã«å¤šãã®ãƒ‡ãƒ¼ã‚¿æ”¹å¤‰å‡¦ç†ã‚’å‚™ãˆã¦ã„ã‚‹ã€‚
+ * ç¾åœ¨ç¢ºèªã—ã¦ã„ã‚‹å‡¦ç†ã¯ä»¥ä¸‹ã®é€šã‚Šã€
+ * <ul>
+ * <li>1.7.0.2ã§8bitã ã£ãŸcave_typeã®feat,mimicã®IDå€¤ã‚’16bitã«æ‹¡å¼µã™ã‚‹å‡¦ç†ã€‚</li>
+ * <li>1.7.0.8ã¾ã§ã«å»ƒæ­¢ã€IDãªã©ã‚’å·®ã—æ›¿ãˆãŸã‚¯ã‚¨ã‚¹ãƒˆç•ªå·ã‚’ç½®æ›ã™ã‚‹å‡¦ç†ã€‚</li>
+ * </ul>
  * The monsters/objects must be loaded in the same order
  * that they were stored, since the actual indexes matter.
  */
 static errr rd_saved_floor(saved_floor_type *sf_ptr)
 {
-	int ymax, xmax;
-	int i, y, x;
+	POSITION ymax, xmax;
+	POSITION y, x;
+	int i;
 	byte count;
 	byte tmp8u;
 	s16b tmp16s;
@@ -2853,7 +3002,8 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 	{
 		/*** Not a saved floor ***/
 
-		rd_s16b(&dun_level);
+		rd_s16b(&tmp16s);
+		dun_level = (DEPTH)tmp16s;
 		base_level = dun_level;
 	}
 	else
@@ -2883,17 +3033,20 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 		if (tmp16s != sf_ptr->lower_floor_id) return 171;
 	}
 
-	rd_s16b(&base_level);
+	rd_s16b(&tmp16s);
+	base_level = (DEPTH)tmp16s;
 	rd_s16b(&num_repro);
 
 	rd_u16b(&tmp16u);
-	p_ptr->y = (int)tmp16u;
+	p_ptr->y = (POSITION)tmp16u;
 
 	rd_u16b(&tmp16u);
-	p_ptr->x = (int)tmp16u;
+	p_ptr->x = (POSITION)tmp16u;
 
-	rd_s16b(&cur_hgt);
-	rd_s16b(&cur_wid);
+	rd_s16b(&tmp16s);
+	cur_hgt = (POSITION)tmp16s;
+	rd_s16b(&tmp16s);
+	cur_wid = (POSITION)tmp16s;
 
 	rd_byte(&p_ptr->feeling);
 
@@ -2913,7 +3066,8 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 		cave_template_type *ct_ptr = &templates[i];
 
 		/* Read it */
-		rd_u16b(&ct_ptr->info);
+		rd_u16b(&tmp16u);
+		ct_ptr->info = (BIT_FLAGS)tmp16u;
 		if (h_older_than(1, 7, 0, 2))
 		{
 			rd_byte(&tmp8u);
@@ -2996,7 +3150,7 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 				}
 			}
 			else if ((c_ptr->feat == OLD_FEAT_QUEST_EXIT) &&
-			         (p_ptr->inside_quest == OLD_QUEST_WATER_CAVE))
+				(p_ptr->inside_quest == OLD_QUEST_WATER_CAVE))
 			{
 				c_ptr->feat = feat_up_stair;
 				c_ptr->special = 0;
@@ -3020,7 +3174,7 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 	/* Read the dungeon items */
 	for (i = 1; i < limit; i++)
 	{
-		int o_idx;
+		IDX o_idx;
 		object_type *o_ptr;
 
 
@@ -3079,7 +3233,7 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 	for (i = 1; i < limit; i++)
 	{
 		cave_type *c_ptr;
-		int m_idx;
+		MONSTER_IDX m_idx;
 		monster_type *m_ptr;
 
 		/* Get a new record */
@@ -3112,8 +3266,8 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief ÊİÂ¸¤µ¤ì¤¿¥Õ¥í¥¢¤òÆÉ¤ß¹ş¤à(¸½ÈÇ) / Read the dungeon (new method)
- * @return ¤Ê¤·
+ * @brief ä¿å­˜ã•ã‚ŒãŸãƒ•ãƒ­ã‚¢ã‚’èª­ã¿è¾¼ã‚€(ç¾ç‰ˆ) / Read the dungeon (new method)
+ * @return ãªã—
  * @details
  * The monsters/objects must be loaded in the same order
  * that they were stored, since the actual indexes matter.
@@ -3121,6 +3275,8 @@ static errr rd_saved_floor(saved_floor_type *sf_ptr)
 static errr rd_dungeon(void)
 {
 	errr err = 0;
+	s16b tmp16s;
+	byte_hack tmp8u;
 	byte num;
 	int i;
 
@@ -3149,8 +3305,8 @@ static errr rd_dungeon(void)
 	rd_s16b(&max_floor_id);
 
 	/* Current dungeon type */
-	rd_byte(&dungeon_type);
-
+	rd_byte(&tmp8u);
+	dungeon_type = (DUNGEON_IDX)tmp8u;
 
 	/* Number of the saved_floors array elements */
 	rd_byte(&num);
@@ -3172,8 +3328,12 @@ static errr rd_dungeon(void)
 			saved_floor_type *sf_ptr = &saved_floors[i];
 
 			rd_s16b(&sf_ptr->floor_id);
-			rd_byte(&sf_ptr->savefile_id);
-			rd_s16b(&sf_ptr->dun_level);
+			rd_byte(&tmp8u);
+			sf_ptr->savefile_id = (s16b)tmp8u;
+
+			rd_s16b(&tmp16s);
+			sf_ptr->dun_level = (DEPTH)tmp16s;
+
 			rd_s32b(&sf_ptr->last_visit);
 			rd_u32b(&sf_ptr->visit_mark);
 			rd_s16b(&sf_ptr->upper_floor_id);
@@ -3185,7 +3345,6 @@ static errr rd_dungeon(void)
 		for (i = 0; i < num; i++)
 		{
 			saved_floor_type *sf_ptr = &saved_floors[i];
-			byte tmp8u;
 
 			/* Unused element */
 			if (!sf_ptr->floor_id) continue;
@@ -3219,27 +3378,27 @@ static errr rd_dungeon(void)
 	switch (err)
 	{
 	case 151:
-		note(_("¥¢¥¤¥Æ¥à¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë¡ª", "Too many object entries!"));
+		note(_("ã‚¢ã‚¤ãƒ†ãƒ ã®é…åˆ—ãŒå¤§ãã™ãã‚‹ï¼", "Too many object entries!"));
 		break;
 
 	case 152:
-		note(_("¥¢¥¤¥Æ¥àÇÛÃÖ¥¨¥é¡¼", "Object allocation error"));
+		note(_("ã‚¢ã‚¤ãƒ†ãƒ é…ç½®ã‚¨ãƒ©ãƒ¼", "Object allocation error"));
 		break;
 
 	case 161:
-		note(_("¥â¥ó¥¹¥¿¡¼¤ÎÇÛÎó¤¬Âç¤­¤¹¤®¤ë¡ª", "Too many monster entries!"));
+		note(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®é…åˆ—ãŒå¤§ãã™ãã‚‹ï¼", "Too many monster entries!"));
 		break;
 
 	case 162:
-		note(_("¥â¥ó¥¹¥¿¡¼ÇÛÃÖ¥¨¥é¡¼", "Monster allocation error"));
+		note(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼é…ç½®ã‚¨ãƒ©ãƒ¼", "Monster allocation error"));
 		break;
 
 	case 171:
-		note(_("ÊİÂ¸¤µ¤ì¤¿¥Õ¥í¥¢¤Î¥À¥ó¥¸¥ç¥ó¥Ç¡¼¥¿¤¬²õ¤ì¤Æ¤¤¤Ş¤¹¡ª", "Dungeon data of saved floors are broken!"));
+		note(_("ä¿å­˜ã•ã‚ŒãŸãƒ•ãƒ­ã‚¢ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿ãŒå£Šã‚Œã¦ã„ã¾ã™ï¼", "Dungeon data of saved floors are broken!"));
 		break;
 
 	case 182:
-		note(_("¥Æ¥ó¥İ¥é¥ê¡¦¥Õ¥¡¥¤¥ë¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¡ª", "Failed to make temporal files!"));
+		note(_("ãƒ†ãƒ³ãƒãƒ©ãƒªãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã§ãã¾ã›ã‚“ï¼", "Failed to make temporal files!"));
 		break;
 
 	case 183:
@@ -3256,8 +3415,8 @@ static errr rd_dungeon(void)
 
 
 /*!
- * @brief ¥í¡¼¥É½èÍıÁ´ÂÎ¤Î¥µ¥Ö´Ø¿ô / Actually read the savefile
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @brief ãƒ­ãƒ¼ãƒ‰å‡¦ç†å…¨ä½“ã®ã‚µãƒ–é–¢æ•° / Actually read the savefile
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr rd_savefile_new_aux(void)
 {
@@ -3269,18 +3428,13 @@ static errr rd_savefile_new_aux(void)
 
 	byte tmp8u;
 	u16b tmp16u;
+	s16b tmp16s;
 	u32b tmp32u;
 
 #ifdef VERIFY_CHECKSUMS
 	u32b n_x_check, n_v_check;
 	u32b o_x_check, o_v_check;
 #endif
-
-
-	/* Mention the savefile version */
-	note(format(
-		     _("¥Ğ¡¼¥¸¥ç¥ó %d.%d.%d ¤Î¥»¡¼¥Ö¡¦¥Õ¥¡¥¤¥ë¤ò¥í¡¼¥ÉÃæ...", "Loading a %d.%d.%d savefile..."),
-		     (z_major > 9) ? z_major - 10 : z_major, z_minor, z_patch));
 
 
 	/* Strip the version bytes */
@@ -3300,6 +3454,12 @@ static errr rd_savefile_new_aux(void)
 	rd_byte(&h_ver_patch);
 	rd_byte(&h_ver_minor);
 	rd_byte(&h_ver_major);
+
+	/* Mention the savefile version */
+	note(format(
+		_("ãƒãƒ¼ã‚¸ãƒ§ãƒ³ %d.%d.%d.%d ã®ã‚»ãƒ¼ãƒ–ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ä¸­...", "Loading a %d.%d.%d.%d savefile..."),
+		(h_ver_major > 9) ? h_ver_major - 10 : h_ver_major, h_ver_minor, h_ver_patch, h_ver_extra));
+
 
 	/* Operating system info */
 	rd_u32b(&sf_system);
@@ -3328,15 +3488,15 @@ static errr rd_savefile_new_aux(void)
 
 	/* Read RNG state */
 	rd_randomizer();
-	if (arg_fiddle) note(_("Íğ¿ô¾ğÊó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Randomizer Info"));
+	if (arg_fiddle) note(_("ä¹±æ•°æƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Randomizer Info"));
 
 	/* Then the options */
 	rd_options();
-	if (arg_fiddle) note(_("¥ª¥×¥·¥ç¥ó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Option Flags"));
+	if (arg_fiddle) note(_("ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Option Flags"));
 
 	/* Then the "messages" */
 	rd_messages();
-	if (arg_fiddle) note(_("¥á¥Ã¥»¡¼¥¸¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Messages"));
+	if (arg_fiddle) note(_("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Messages"));
 
 	for (i = 0; i < max_r_idx; i++)
 	{
@@ -3358,7 +3518,7 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > max_r_idx)
 	{
-		note(format(_("¥â¥ó¥¹¥¿¡¼¤Î¼ïÂ²¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) monster races!"), tmp16u));
+		note(format(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¨®æ—ãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) monster races!"), tmp16u));
 		return (21);
 	}
 
@@ -3366,10 +3526,10 @@ static errr rd_savefile_new_aux(void)
 	for (i = 0; i < tmp16u; i++)
 	{
 		/* Read the lore */
-		rd_lore(i);
+		rd_lore((MONRACE_IDX)i);
 	}
 
-	if (arg_fiddle) note(_("¥â¥ó¥¹¥¿¡¼¤Î»×¤¤½Ğ¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Monster Memory"));
+	if (arg_fiddle) note(_("ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ€ã„å‡ºã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Monster Memory"));
 
 	/* Object Memory */
 	rd_u16b(&tmp16u);
@@ -3377,14 +3537,13 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > max_k_idx)
 	{
-		note(format(_("¥¢¥¤¥Æ¥à¤Î¼ïÎà¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) object kinds!"), tmp16u));
+		note(format(_("ã‚¢ã‚¤ãƒ†ãƒ ã®ç¨®é¡ãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) object kinds!"), tmp16u));
 		return (22);
 	}
 
 	/* Read the object memory */
 	for (i = 0; i < tmp16u; i++)
 	{
-		byte tmp8u;
 		object_kind *k_ptr = &k_info[i];
 
 		rd_byte(&tmp8u);
@@ -3392,7 +3551,7 @@ static errr rd_savefile_new_aux(void)
 		k_ptr->aware = (tmp8u & 0x01) ? TRUE: FALSE;
 		k_ptr->tried = (tmp8u & 0x02) ? TRUE: FALSE;
 	}
-	if (arg_fiddle) note(_("¥¢¥¤¥Æ¥à¤Îµ­Ï¿¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Object Memory"));
+	if (arg_fiddle) note(_("ã‚¢ã‚¤ãƒ†ãƒ ã®è¨˜éŒ²ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Object Memory"));
 
 	/* 2.1.3 or newer version */
 	{
@@ -3407,7 +3566,7 @@ static errr rd_savefile_new_aux(void)
 		/* Incompatible save files */
 		if (max_towns_load > max_towns)
 		{
-			note(format(_("Ä®¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) towns!"), max_towns_load));
+			note(format(_("ç”ºãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) towns!"), max_towns_load));
 			return (23);
 		}
 
@@ -3424,20 +3583,21 @@ static errr rd_savefile_new_aux(void)
 		}
 
 		/* Incompatible save files */
-		if (max_quests_load > max_quests)
+		if (max_quests_load > max_q_idx)
 		{
-			note(format(_("¥¯¥¨¥¹¥È¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) quests!"), max_quests_load));
+			note(format(_("ã‚¯ã‚¨ã‚¹ãƒˆãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) quests!"), max_quests_load));
 			return (23);
 		}
 
 		for (i = 0; i < max_quests_load; i++)
 		{
-			if (i < max_quests)
+			if (i < max_q_idx)
 			{
 				quest_type* const q_ptr = &quest[i];
 				
 				rd_s16b(&q_ptr->status);
-				rd_s16b(&q_ptr->level);
+				rd_s16b(&tmp16s);
+				q_ptr->level = tmp16s;
 
 				if (z_older_than(11, 0, 6))
 				{
@@ -3445,7 +3605,8 @@ static errr rd_savefile_new_aux(void)
 				}
 				else
 				{
-					rd_byte(&q_ptr->complev);
+					rd_byte(&tmp8u);
+					q_ptr->complev = tmp8u;
 				}
 				if(h_older_than(2, 1, 2, 2))
 				{
@@ -3461,8 +3622,10 @@ static errr rd_savefile_new_aux(void)
 				    (!z_older_than(10, 3, 14) && (q_ptr->status == QUEST_STATUS_COMPLETED)) ||
 				    (!z_older_than(11, 0, 7) && (i >= MIN_RANDOM_QUEST) && (i <= (MIN_RANDOM_QUEST + max_rquests_load))))
 				{
-					rd_s16b(&q_ptr->cur_num);
-					rd_s16b(&q_ptr->max_num);
+					rd_s16b(&tmp16s);
+					q_ptr->cur_num = (MONSTER_NUMBER)tmp16s;
+					rd_s16b(&tmp16s);
+					q_ptr->max_num = (MONSTER_NUMBER)tmp16s;
 					rd_s16b(&q_ptr->type);
 
 					/* Load quest monster index */
@@ -3479,7 +3642,8 @@ static errr rd_savefile_new_aux(void)
 					if (q_ptr->k_idx)
 						a_info[q_ptr->k_idx].gen_flags |= TRG_QUESTITEM;
 
-					rd_byte(&q_ptr->flags);
+					rd_byte(&tmp8u);
+					q_ptr->flags = tmp8u;
 
 					if (z_older_than(10, 3, 11))
 					{
@@ -3490,7 +3654,7 @@ static errr rd_savefile_new_aux(void)
 						else
 						{
 							init_flags = INIT_ASSIGN;
-							p_ptr->inside_quest = i;
+							p_ptr->inside_quest = (QUEST_IDX)i;
 
 							process_dungeon_file("q_info.txt", 0, 0, 0, 0);
 							p_ptr->inside_quest = old_inside_quest;
@@ -3498,7 +3662,8 @@ static errr rd_savefile_new_aux(void)
 					}
 					else
 					{
-						rd_byte(&q_ptr->dungeon);
+						rd_byte(&tmp8u);
+						q_ptr->dungeon = tmp8u;
 					}
 					/* Mark uniques */
 					if (q_ptr->status == QUEST_STATUS_TAKEN || q_ptr->status == QUEST_STATUS_UNTAKEN)
@@ -3550,7 +3715,7 @@ static errr rd_savefile_new_aux(void)
 		/* Incompatible save files */
 		if ((wild_x_size > max_wild_x) || (wild_y_size > max_wild_y))
 		{
-			note(format(_("¹ÓÌî¤¬Âç¤­¤¹¤®¤ë(%u/%u)¡ª", "Wilderness is too big (%u/%u)!"), wild_x_size, wild_y_size));
+			note(format(_("è’é‡ãŒå¤§ãã™ãã‚‹(%u/%u)ï¼", "Wilderness is too big (%u/%u)!"), wild_x_size, wild_y_size));
 			return (23);
 		}
 
@@ -3564,7 +3729,7 @@ static errr rd_savefile_new_aux(void)
 		}
 	}
 
-	if (arg_fiddle) note(_("¥¯¥¨¥¹¥È¾ğÊó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Quests"));
+	if (arg_fiddle) note(_("ã‚¯ã‚¨ã‚¹ãƒˆæƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Quests"));
 
 	/* Load the Artifacts */
 	rd_u16b(&tmp16u);
@@ -3572,7 +3737,7 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > max_a_idx)
 	{
-		note(format(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à¤¬Â¿¤¹¤®¤ë(%u)¡ª", "Too many (%u) artifacts!"), tmp16u));
+		note(format(_("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ãŒå¤šã™ãã‚‹(%u)ï¼", "Too many (%u) artifacts!"), tmp16u));
 		return (24);
 	}
 
@@ -3597,13 +3762,13 @@ static errr rd_savefile_new_aux(void)
 			rd_s16b(&a_ptr->floor_id);
 		}
 	}
-	if (arg_fiddle) note(_("ÅÁÀâ¤Î¥¢¥¤¥Æ¥à¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded Artifacts"));
+	if (arg_fiddle) note(_("ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded Artifacts"));
 
 	/* Read the extra stuff */
 	rd_extra();
 	if (p_ptr->energy_need < -999) world_player = TRUE;
 
-	if (arg_fiddle) note(_("ÆÃÊÌ¾ğÊó¤ò¥í¡¼¥É¤·¤Ş¤·¤¿", "Loaded extra information"));
+	if (arg_fiddle) note(_("ç‰¹åˆ¥æƒ…å ±ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¾ã—ãŸ", "Loaded extra information"));
 
 
 	/* Read the player_hp array */
@@ -3612,14 +3777,15 @@ static errr rd_savefile_new_aux(void)
 	/* Incompatible save files */
 	if (tmp16u > PY_MAX_LEVEL)
 	{
-		note(format(_("¥Ò¥Ã¥È¥İ¥¤¥ó¥ÈÇÛÎó¤¬Âç¤­¤¹¤®¤ë(%u)¡ª", "Too many (%u) hitpoint entries!"), tmp16u));
+		note(format(_("ãƒ’ãƒƒãƒˆãƒã‚¤ãƒ³ãƒˆé…åˆ—ãŒå¤§ãã™ãã‚‹(%u)ï¼", "Too many (%u) hitpoint entries!"), tmp16u));
 		return (25);
 	}
 
 	/* Read the player_hp array */
 	for (i = 0; i < tmp16u; i++)
 	{
-		rd_s16b(&p_ptr->player_hp[i]);
+		rd_s16b(&tmp16s);
+		p_ptr->player_hp[i] = (HIT_POINT)tmp16s;
 	}
 
 	/* Important -- Initialize the sex */
@@ -3688,14 +3854,15 @@ static errr rd_savefile_new_aux(void)
 
 	for (i = 0; i < 64; i++)
 	{
-		rd_byte(&p_ptr->spell_order[i]);
+		rd_byte(&tmp8u);
+		p_ptr->spell_order[i] = (SPELL_IDX)tmp8u;
 	}
 
 
 	/* Read the inventory */
 	if (rd_inventory())
 	{
-		note(_("»ı¤ÁÊª¾ğÊó¤òÆÉ¤ß¹ş¤à¤³¤È¤¬¤Ç¤­¤Ş¤»¤ó", "Unable to read inventory"));
+		note(_("æŒã¡ç‰©æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ã“ã¨ãŒã§ãã¾ã›ã‚“", "Unable to read inventory"));
 		return (21);
 	}
 
@@ -3756,7 +3923,7 @@ static errr rd_savefile_new_aux(void)
 
 	if (!z_older_than(11, 0, 9))
 	{
-		char buf[SCREEN_BUF_SIZE];
+		char buf[SCREEN_BUF_MAX_SIZE];
 		rd_string(buf, sizeof(buf));
 		if (buf[0]) screen_dump = string_make(buf);
 	}
@@ -3774,11 +3941,11 @@ static errr rd_savefile_new_aux(void)
 	if (!p_ptr->is_dead)
 	{
 		/* Dead players have no dungeon */
-		note(_("¥À¥ó¥¸¥ç¥óÉü¸µÃæ...", "Restoring Dungeon..."));
+		note(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å¾©å…ƒä¸­...", "Restoring Dungeon..."));
 
 		if (rd_dungeon())
 		{
-			note(_("¥À¥ó¥¸¥ç¥ó¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¼ºÇÔ", "Error reading dungeon data"));
+			note(_("ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿å¤±æ•—", "Error reading dungeon data"));
 			return (34);
 		}
 
@@ -3816,7 +3983,7 @@ static errr rd_savefile_new_aux(void)
 	/* Verify */
 	if (o_v_check != n_v_check)
 	{
-		note(_("¥Á¥§¥Ã¥¯¥µ¥à¤¬¤ª¤«¤·¤¤", "Invalid checksum"));
+		note(_("ãƒã‚§ãƒƒã‚¯ã‚µãƒ ãŒãŠã‹ã—ã„", "Invalid checksum"));
 		return (11);
 	}
 
@@ -3831,7 +3998,7 @@ static errr rd_savefile_new_aux(void)
 	/* Verify */
 	if (o_x_check != n_x_check)
 	{
-		note(_("¥¨¥ó¥³¡¼¥É¤µ¤ì¤¿¥Á¥§¥Ã¥¯¥µ¥à¤¬¤ª¤«¤·¤¤", "Invalid encoded checksum"));
+		note(_("ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã•ã‚ŒãŸãƒã‚§ãƒƒã‚¯ã‚µãƒ ãŒãŠã‹ã—ã„", "Invalid encoded checksum"));
 		return (11);
 	}
 
@@ -3842,8 +4009,8 @@ static errr rd_savefile_new_aux(void)
 }
 
 /*!
- * @brief ¥í¡¼¥É½èÍıÁ´ÂÎ¤Î¥á¥¤¥ó´Ø¿ô / Actually read the savefile
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @brief ãƒ­ãƒ¼ãƒ‰å‡¦ç†å…¨ä½“ã®ãƒ¡ã‚¤ãƒ³é–¢æ•° / Actually read the savefile
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr rd_savefile_new(void)
 {
@@ -3876,9 +4043,9 @@ errr rd_savefile_new(void)
 
 
 /*!
- * @brief ÊİÂ¸¥Õ¥í¥¢ÆÉ¤ß¹ş¤ß¤Î¥µ¥Ö´Ø¿ô / Actually load and verify a floor save data
- * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢ÆÉ¤ß¹ş¤ßÀè
- * @return À®¸ù¤·¤¿¤étrue
+ * @brief ä¿å­˜ãƒ•ãƒ­ã‚¢èª­ã¿è¾¼ã¿ã®ã‚µãƒ–é–¢æ•° / Actually load and verify a floor save data
+ * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢èª­ã¿è¾¼ã¿å…ˆ
+ * @return æˆåŠŸã—ãŸã‚‰true
  */
 static bool load_floor_aux(saved_floor_type *sf_ptr)
 {
@@ -3939,12 +4106,12 @@ static bool load_floor_aux(saved_floor_type *sf_ptr)
 
 
 /*!
- * @brief °ì»şÊİÂ¸¥Õ¥í¥¢¾ğÊó¤òÆÉ¤ß¹ş¤à / Attempt to load the temporally saved-floor data
- * @param sf_ptr ÊİÂ¸¥Õ¥í¥¢ÆÉ¤ß¹ş¤ßÀè
- * @param mode ¥ª¥×¥·¥ç¥ó
- * @return À®¸ù¤·¤¿¤étrue
+ * @brief ä¸€æ™‚ä¿å­˜ãƒ•ãƒ­ã‚¢æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ / Attempt to load the temporally saved-floor data
+ * @param sf_ptr ä¿å­˜ãƒ•ãƒ­ã‚¢èª­ã¿è¾¼ã¿å…ˆ
+ * @param mode ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+ * @return æˆåŠŸã—ãŸã‚‰true
  */
-bool load_floor(saved_floor_type *sf_ptr, u32b mode)
+bool load_floor(saved_floor_type *sf_ptr, BIT_FLAGS mode)
 {
 	FILE *old_fff = NULL;
 	byte old_xor_byte = 0;

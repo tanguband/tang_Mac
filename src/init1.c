@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file init1.c
- * @brief ¥²¡¼¥à¥Ç¡¼¥¿½é´ü²½1 / Initialization (part 1) -BEN-
+ * @brief ã‚²ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–1 / Initialization (part 1) -BEN-
  * @date 2014/01/28
  * @author
  * <pre>
@@ -32,14 +32,14 @@
  * "*.raw" files in "lib/data", and then quit, and recompile without
  * defining ALLOW_TEMPLATES, which will both save 20K and prevent people
  * from changing the ascii template files in potentially dangerous ways.
- * ¥Î¡¼¥È¤È¤·¤Æµ­Ï¿¡§ALLOW_TEMPLATES¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤Ê¤¤¾ì¹ç¡¢
- * ¤³¤Î¥Õ¥¡¥¤¥ë¤Î¥³¡¼¥É¤ÎÂ¿¤¯¤Ï¥³¥ó¥Ñ¥¤¥ë½ĞÎÏ¤µ¤ì¡¢ËÜ¥²¡¼¥à¤Ï
- * Àµµ¬¤Î¡Ö¥Ğ¥¤¥Ê¥ê¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë¡×¤¬lib/data¥Õ¥¡¥¤¥ëÆâ¤Ë
- * Â¸ºß¤·¤Ê¤¤¸Â¤êµ¯Æ°¤·¤Ê¤¯¤Ê¤ë¡£°ìÊıALLOW_TEMPLATES¤¬ÄêµÁ¤µ¤ì¤Æ¤¤¤ë
- * ¤Ê¤é¤Ğ£±ÅÙ¥²¡¼¥à¤¬µ¯Æ°¤¹¤ë¤´¤È¤Ë*.raw¥Õ¥¡¥¤¥ë·²¤¬ºîÀ®¤µ¤ì¡¢½ªÎ»»ş¤Ë¤Ï
- * ALLOW_TEMPLATE¤ÎÄêµÁ¤Ë´Ø·¸¤Ê¤¯¥ê¥³¥ó¥Ñ¥¤¥ë¤µ¤ì¤ë¡£¤³¤ì¤Ë¤è¤ê20K(¥Ğ¥¤¥È¡©)
- * ¤Î¥Ç¡¼¥¿¤¬ÊİÂ¸¤µ¤ì¡¢¥×¥ì¥¤¥ä¡¼¤¬ÀøºßÅª¤Ë´í¸±¤ÊÊıË¡¤ÇasciiÊ¸»ú¤Î
- * ¥Æ¥ó¥×¥ì¡¼¥È¥Õ¥¡¥¤¥ë¤òÊÑ¹¹¤¹¤ë¤³¤È¤òË¸¤²¤ë¤³¤È¤¬¤Ç¤­¤ë¡£
+ * ãƒãƒ¼ãƒˆã¨ã—ã¦è¨˜éŒ²ï¼šALLOW_TEMPLATESãŒå®šç¾©ã•ã‚Œã¦ã„ãªã„å ´åˆã€
+ * ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ¼ãƒ‰ã®å¤šãã¯ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å‡ºåŠ›ã•ã‚Œã€æœ¬ã‚²ãƒ¼ãƒ ã¯
+ * æ­£è¦ã®ã€Œãƒã‚¤ãƒŠãƒªãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã€ãŒlib/dataãƒ•ã‚¡ã‚¤ãƒ«å†…ã«
+ * å­˜åœ¨ã—ãªã„é™ã‚Šèµ·å‹•ã—ãªããªã‚‹ã€‚ä¸€æ–¹ALLOW_TEMPLATESãŒå®šç¾©ã•ã‚Œã¦ã„ã‚‹
+ * ãªã‚‰ã°ï¼‘åº¦ã‚²ãƒ¼ãƒ ãŒèµ·å‹•ã™ã‚‹ã”ã¨ã«*.rawãƒ•ã‚¡ã‚¤ãƒ«ç¾¤ãŒä½œæˆã•ã‚Œã€çµ‚äº†æ™‚ã«ã¯
+ * ALLOW_TEMPLATEã®å®šç¾©ã«é–¢ä¿‚ãªããƒªã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚Œã‚‹ã€‚ã“ã‚Œã«ã‚ˆã‚Š20K(ãƒã‚¤ãƒˆï¼Ÿ)
+ * ã®ãƒ‡ãƒ¼ã‚¿ãŒä¿å­˜ã•ã‚Œã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ½œåœ¨çš„ã«å±é™ºãªæ–¹æ³•ã§asciiæ–‡å­—ã®
+ * ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¤‰æ›´ã™ã‚‹ã“ã¨ã‚’å¦¨ã’ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚
  * The code could actually be removed and placed into a "stand-alone"
  * program, but that feels a little silly, especially considering some
  * of the platforms that we currently support.
@@ -58,7 +58,7 @@
 /*** Helper arrays for parsing ascii template files ***/
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·â¼êÃÊ¥È¡¼¥¯¥ó¤ÎÄêµÁ /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒæ‰‹æ®µãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
  * Monster Blow Methods
  */
 static cptr r_info_blow_method[] =
@@ -94,7 +94,7 @@ static cptr r_info_blow_method[] =
 
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼¤ÎÂÇ·âÂ°À­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ‰“æ’ƒå±æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
  * Monster Blow Effects
  */
 static cptr r_info_blow_effect[] =
@@ -139,7 +139,7 @@ static cptr r_info_blow_effect[] =
 };
 
 /*!
- * ÃÏ·ÁÂ°À­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
+ * åœ°å½¢å±æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
  * Feature info flags
  */
 static cptr f_info_flags[] =
@@ -264,7 +264,7 @@ static cptr f_info_flags[] =
 
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ1 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©1 /
  * Monster race flags
  */
 static cptr r_info_flags1[] =
@@ -304,7 +304,7 @@ static cptr r_info_flags1[] =
 };
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ2 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©2 /
  * Monster race flags
  */
 static cptr r_info_flags2[] =
@@ -344,7 +344,7 @@ static cptr r_info_flags2[] =
 };
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ3 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©3 /
  * Monster race flags
  */
 static cptr r_info_flags3[] =
@@ -384,7 +384,7 @@ static cptr r_info_flags3[] =
 };
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ4 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©4 /
  * Monster race flags
  */
 static cptr r_info_flags4[] =
@@ -424,10 +424,10 @@ static cptr r_info_flags4[] =
 };
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ5 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›1) /
  * Monster race flags
  */
-static cptr r_info_flags5[] =
+static cptr r_a_ability_flags1[] =
 {
 	"BA_ACID",
 	"BA_ELEC",
@@ -464,10 +464,10 @@ static cptr r_info_flags5[] =
 };
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ6 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›2) /
  * Monster race flags
  */
-static cptr r_info_flags6[] =
+static cptr r_a_ability_flags2[] =
 {
 	"HASTE",
 	"HAND_DOOM",
@@ -503,9 +503,93 @@ static cptr r_info_flags6[] =
 	"S_UNIQUE"
 };
 
+#if 0
+/*!
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›3) /
+ * Monster race flags
+ */
+static cptr r_a_ability_flags3[] =
+{
+	"XXXA3X00",
+	"XXXA3X01",
+	"XXXA3X02",
+	"XXXA3X03",
+	"XXXA3X04",
+	"XXXA3X05",
+	"XXXA3X06",
+	"XXXA3X07",
+	"XXXA3X08",
+	"XXXA3X09",
+	"XXXA3X10",
+	"XXXA3X11",
+	"XXXA3X12",
+	"XXXA3X13",
+	"XXXA3X14",
+	"XXXA3X15",
+	"XXXA3X16",
+	"XXXA3X17",
+	"XXXA3X18",
+	"XXXA3X19",
+	"XXXA3X20",
+	"XXXA3X21",
+	"XXXA3X22",
+	"XXXA3X23",
+	"XXXA3X24",
+	"XXXA3X25",
+	"XXXA3X26",
+	"XXXA3X27",
+	"XXXA3X28",
+	"XXXA3X29",
+	"XXXA3X30",
+	"XXXA3X31",
+};
+#endif
+
+#if 0
+/*!
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³(ç™ºå‹•å‹èƒ½åŠ›4) /
+ * Monster race flags
+ */
+static cptr r_a_ability_flags4[] =
+{
+	"XXXA4X00",
+	"XXXA4X01",
+	"XXXA4X02",
+	"XXXA4X03",
+	"XXXA4X04",
+	"XXXA4X05",
+	"XXXA4X06",
+	"XXXA4X07",
+	"XXXA4X08",
+	"XXXA4X09",
+	"XXXA4X10",
+	"XXXA4X11",
+	"XXXA4X12",
+	"XXXA4X13",
+	"XXXA4X14",
+	"XXXA4X15",
+	"XXXA4X16",
+	"XXXA4X17",
+	"XXXA4X18",
+	"XXXA4X19",
+	"XXXA4X20",
+	"XXXA4X21",
+	"XXXA4X22",
+	"XXXA4X23",
+	"XXXA4X24",
+	"XXXA4X25",
+	"XXXA4X26",
+	"XXXA4X27",
+	"XXXA4X28",
+	"XXXA4X29",
+	"XXXA4X30",
+	"XXXA4X31",
+};
+#endif
+
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ7 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©7 /
  * Monster race flags
  */
 static cptr r_info_flags7[] =
@@ -545,7 +629,7 @@ static cptr r_info_flags7[] =
 };
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ8 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©8 /
  * Monster race flags
  */
 static cptr r_info_flags8[] =
@@ -586,7 +670,7 @@ static cptr r_info_flags8[] =
 
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ9 /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©9 /
  * Monster race flags
  */
 static cptr r_info_flags9[] =
@@ -628,7 +712,7 @@ static cptr r_info_flags9[] =
 
 
 /*!
- * ¥â¥ó¥¹¥¿¡¼ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁR(ÂÑÀ­) /
+ * ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾©R(è€æ€§) /
  * Monster race flags
  */
 static cptr r_info_flagsr[] =
@@ -669,7 +753,7 @@ static cptr r_info_flagsr[] =
 
 
 /*!
- * ¥ª¥Ö¥¸¥§¥¯¥È´ğËÜÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆåŸºæœ¬ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
  * Object flags
  */
 static cptr k_info_flags[] =
@@ -820,7 +904,7 @@ static cptr k_info_flags[] =
 };
 
 /*!
- * ¥ª¥Ö¥¸¥§¥¯¥ÈÀ¸À®ÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
+ * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
  * Object flags
  */
 static cptr k_info_gen_flags[] =
@@ -860,7 +944,7 @@ static cptr k_info_gen_flags[] =
 };
 
 /*!
- * ¥À¥ó¥¸¥ç¥óÆÃÀ­¥È¡¼¥¯¥ó¤ÎÄêµÁ /
+ * ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç‰¹æ€§ãƒˆãƒ¼ã‚¯ãƒ³ã®å®šç¾© /
  * Dungeon flags
  */
 static cptr d_info_flags1[] =
@@ -901,14 +985,14 @@ static cptr d_info_flags1[] =
 
 
 /*!
- * @brief ¥Ç¡¼¥¿¤Î²ÄÊÑÊ¸»úÎó¾ğÊó¤ò¥Æ¥­¥¹¥È¤È¤·¤ÆÊİ´É¤¹¤ë /
+ * @brief ãƒ‡ãƒ¼ã‚¿ã®å¯å¤‰æ–‡å­—åˆ—æƒ…å ±ã‚’ãƒ†ã‚­ã‚¹ãƒˆã¨ã—ã¦ä¿ç®¡ã™ã‚‹ /
  * Add a text to the text-storage and store offset to it.
- * @param offset Ê¸»úÎóÊİ´É¥İ¥¤¥ó¥¿¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È
- * @param head ¥Æ¥­¥¹¥ÈÊİ´É¥Ø¥Ã¥À¾ğÊó¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param buf Êİ´ÉÊ¸»úÎó
- * @param normal_text ¥Æ¥­¥¹¥È¤ÎÀµµ¬²½¤ò¹Ô¤¦
+ * @param offset æ–‡å­—åˆ—ä¿ç®¡ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param head ãƒ†ã‚­ã‚¹ãƒˆä¿ç®¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param buf ä¿ç®¡æ–‡å­—åˆ—
+ * @param normal_text ãƒ†ã‚­ã‚¹ãƒˆã®æ­£è¦åŒ–ã‚’è¡Œã†
  * @return
- * Ìµ»öÊİ´É¤¬¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * ç„¡äº‹ä¿ç®¡ãŒã§ããŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * Returns FALSE when there isn't enough space available to store
  * the text.
  */
@@ -964,13 +1048,13 @@ static bool add_text(u32b *offset, header *head, cptr buf, bool normal_text)
 
 
 /*!
- * @brief ¥Ç¡¼¥¿¤Î²ÄÊÑÊ¸»úÎó¾ğÊó¤òÌ¾Á°¤È¤·¤ÆÊİ´É¤¹¤ë /
+ * @brief ãƒ‡ãƒ¼ã‚¿ã®å¯å¤‰æ–‡å­—åˆ—æƒ…å ±ã‚’åå‰ã¨ã—ã¦ä¿ç®¡ã™ã‚‹ /
  * Add a name to the name-storage and return an offset to it.
- * @param offset Ê¸»úÎóÊİ´É¥İ¥¤¥ó¥¿¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È
- * @param head ¥Æ¥­¥¹¥ÈÊİ´É¥Ø¥Ã¥À¾ğÊó¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param buf Êİ´ÉÊ¸»úÎó
+ * @param offset æ–‡å­—åˆ—ä¿ç®¡ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param head ãƒ†ã‚­ã‚¹ãƒˆä¿ç®¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param buf ä¿ç®¡æ–‡å­—åˆ—
  * @return
- * Ìµ»öÊİ´É¤¬¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * ç„¡äº‹ä¿ç®¡ãŒã§ããŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * Returns FALSE when there isn't enough space available to store
  * the text.
  */
@@ -999,17 +1083,17 @@ static bool add_name(u32b *offset, header *head, cptr buf)
 
 
 /*!
- * @brief ¥Ç¡¼¥¿¤Î²ÄÊÑÊ¸»úÎó¾ğÊó¤ò¥¿¥°¤È¤·¤ÆÊİ´É¤¹¤ë /
+ * @brief ãƒ‡ãƒ¼ã‚¿ã®å¯å¤‰æ–‡å­—åˆ—æƒ…å ±ã‚’ã‚¿ã‚°ã¨ã—ã¦ä¿ç®¡ã™ã‚‹ /
  * Add a tag to the tag-storage and return an offset to it.
- * @param offset Ê¸»úÎóÊİ´É¥İ¥¤¥ó¥¿¤«¤é¤Î¥ª¥Õ¥»¥Ã¥È
- * @param head ¥Æ¥­¥¹¥ÈÊİ´É¥Ø¥Ã¥À¾ğÊó¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param buf Êİ´ÉÊ¸»úÎó
+ * @param offset æ–‡å­—åˆ—ä¿ç®¡ãƒã‚¤ãƒ³ã‚¿ã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @param head ãƒ†ã‚­ã‚¹ãƒˆä¿ç®¡ãƒ˜ãƒƒãƒ€æƒ…å ±ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param buf ä¿ç®¡æ–‡å­—åˆ—
  * @return
- * Ìµ»öÊİ´É¤¬¤Ç¤­¤¿¤éTRUE¤òÊÖ¤¹¡£
+ * ç„¡äº‹ä¿ç®¡ãŒã§ããŸã‚‰TRUEã‚’è¿”ã™ã€‚
  * Returns FALSE when there isn't enough space available to store
  * the text.
  */
-static bool add_tag(s16b *offset, header *head, cptr buf)
+static bool add_tag(STR_OFFSET *offset, header *head, cptr buf)
 {
 	u32b i;
 
@@ -1046,11 +1130,11 @@ static bool add_tag(s16b *offset, header *head, cptr buf)
 
 
 /*!
- * @brief ¥·¥ó¥Ü¥ë1Ê¸»ú¤ò¥«¥é¡¼ID¤ËÊÑ¹¹¤¹¤ë /
+ * @brief ã‚·ãƒ³ãƒœãƒ«1æ–‡å­—ã‚’ã‚«ãƒ©ãƒ¼IDã«å¤‰æ›´ã™ã‚‹ /
  * Convert a "color letter" into an "actual" color
  * The colors are: dwsorgbuDWvyRGBU, as shown below
- * @param c ¥·¥ó¥Ü¥ëÊ¸»ú
- * @return ¥«¥é¡¼ID
+ * @param c ã‚·ãƒ³ãƒœãƒ«æ–‡å­—
+ * @return ã‚«ãƒ©ãƒ¼ID
  */
 byte color_char_to_attr(char c)
 {
@@ -1084,13 +1168,13 @@ byte color_char_to_attr(char c)
 
 
 /*!
- * @brief ¥Ñ¡¼¥¹´Ø¿ô¤Ë´ğ¤Å¤¤¤Æ¥Ç¡¼¥¿¥Õ¥¡¥¤¥ë¤«¤é¥Ç¡¼¥¿¤òÆÉ¤ß¼è¤ë /
+ * @brief ãƒ‘ãƒ¼ã‚¹é–¢æ•°ã«åŸºã¥ã„ã¦ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å–ã‚‹ /
  * Initialize an "*_info" array, by parsing an ascii "template" file
- * @param fp ÆÉ¤ß¼è¤ê¤Ë»È¤¦¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿
- * @param buf ÆÉ¤ß¼è¤ê¤Ë»È¤¦¥Ğ¥Ã¥Õ¥¡ÎÎ°è
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @param parse_info_txt_line ¥Ñ¡¼¥¹´Ø¿ô
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param fp èª­ã¿å–ã‚Šã«ä½¿ã†ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+ * @param buf èª­ã¿å–ã‚Šã«ä½¿ã†ãƒãƒƒãƒ•ã‚¡é ˜åŸŸ
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @param parse_info_txt_line ãƒ‘ãƒ¼ã‚¹é–¢æ•°
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr init_info_txt(FILE *fp, char *buf, header *head,
 		   parse_info_txt_func parse_info_txt_line)
@@ -1156,11 +1240,11 @@ errr init_info_txt(FILE *fp, char *buf, header *head,
 
 
 /*!
- * @brief Vault¾ğÊó(v_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief Vaultæƒ…å ±(v_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "v_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_v_info(char *buf, header *head)
 {
@@ -1227,10 +1311,10 @@ errr parse_v_info(char *buf, header *head)
 			&typ, &rat, &hgt, &wid)) return (1);
 
 		/* Save the values */
-		v_ptr->typ = typ;
-		v_ptr->rat = rat;
-		v_ptr->hgt = hgt;
-		v_ptr->wid = wid;
+		v_ptr->typ = (ROOM_IDX)typ;
+		v_ptr->rat = (PROB)rat;
+		v_ptr->hgt = (POSITION)hgt;
+		v_ptr->wid = (POSITION)wid;
 	}
 
 	/* Oops */
@@ -1242,11 +1326,11 @@ errr parse_v_info(char *buf, header *head)
 
 
 /*!
- * @brief ¿¦¶Èµ»Ç½¾ğÊó(s_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief è·æ¥­æŠ€èƒ½æƒ…å ±(s_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "s_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_s_info(char *buf, header *head)
 {
@@ -1313,8 +1397,8 @@ errr parse_s_info(char *buf, header *head)
 			|| max < WEAPON_EXP_UNSKILLED || max > WEAPON_EXP_MASTER) return (8);
 
 		/* Save the values */
-		s_ptr->s_start[num] = start;
-		s_ptr->s_max[num] = max;
+		s_ptr->s_start[num] = (SUB_EXP)start;
+		s_ptr->s_max[num] = (SUB_EXP)max;
 	}
 
 
@@ -1327,11 +1411,11 @@ errr parse_s_info(char *buf, header *head)
 
 
 /*!
- * @brief ¿¦¶ÈËâË¡¾ğÊó(m_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief è·æ¥­é­”æ³•æƒ…å ±(m_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "m_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_m_info(char *buf, header *head)
 {
@@ -1442,10 +1526,10 @@ errr parse_m_info(char *buf, header *head)
 		if (4 != sscanf(buf+2, "%d:%d:%d:%d",
 				&level, &mana, &fail, &exp)) return (1);
 
-		m_ptr->info[realm][magic_idx].slevel = level;
-		m_ptr->info[realm][magic_idx].smana = mana;
-		m_ptr->info[realm][magic_idx].sfail = fail;
-		m_ptr->info[realm][magic_idx].sexp = exp;
+		m_ptr->info[realm][magic_idx].slevel = (PLAYER_LEVEL)level;
+		m_ptr->info[realm][magic_idx].smana = (MANA_POINT)mana;
+		m_ptr->info[realm][magic_idx].sfail = (PERCENTAGE)fail;
+		m_ptr->info[realm][magic_idx].sexp = (EXP)exp;
 		magic_idx ++;
 	}
 
@@ -1459,12 +1543,12 @@ errr parse_m_info(char *buf, header *head)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(ÈÆÍÑ) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(æ±ç”¨) /
  * Grab one flag from a textual string
- * @param flags ¥Ó¥Ã¥È¥Õ¥é¥°¤òÄÉ²Ã¤¹¤ëÀè¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param names ¥È¡¼¥¯¥óÄêµÁÇÛÎó
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param flags ãƒ“ãƒƒãƒˆãƒ•ãƒ©ã‚°ã‚’è¿½åŠ ã™ã‚‹å…ˆã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param names ãƒˆãƒ¼ã‚¯ãƒ³å®šç¾©é…åˆ—
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_flag(u32b *flags, cptr names[], cptr what)
 {
@@ -1485,11 +1569,11 @@ static errr grab_one_flag(u32b *flags, cptr names[], cptr what)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë¡ÊÃÏ·Á¾ğÊó¸ş¤±¡Ë /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹ï¼ˆåœ°å½¢æƒ…å ±å‘ã‘ï¼‰ /
  * Grab one flag in an feature_type from a textual string
- * @param f_ptr ÃÏ·Á¾ğÊó¤òÊİ´É¤¹¤ëÀè¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param f_ptr åœ°å½¢æƒ…å ±ã‚’ä¿ç®¡ã™ã‚‹å…ˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
 {
@@ -1506,7 +1590,7 @@ static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
 	}
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤ÎÃÏ·Á¥Õ¥é¥° '%s'¡£", "Unknown feature flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®åœ°å½¢ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown feature flag '%s'."), what);
 
 	/* Error */
 	return PARSE_ERROR_GENERIC;
@@ -1514,16 +1598,16 @@ static errr grab_one_feat_flag(feature_type *f_ptr, cptr what)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°(¥¹¥Æ¡¼¥È)¤ò°ì¤ÄÆÀ¤ë¡ÊÃÏ·Á¾ğÊó¸ş¤±2¡Ë /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°(ã‚¹ãƒ†ãƒ¼ãƒˆ)ã‚’ä¸€ã¤å¾—ã‚‹ï¼ˆåœ°å½¢æƒ…å ±å‘ã‘2ï¼‰ /
  * Grab an action in an feature_type from a textual string
- * @param f_ptr ÃÏ·Á¾ğÊó¤òÊİ´É¤¹¤ëÀè¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @param count ¥¹¥Æ¡¼¥È¤ÎÊİÂ¸ÀèID
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param f_ptr åœ°å½¢æƒ…å ±ã‚’ä¿ç®¡ã™ã‚‹å…ˆã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @param count ã‚¹ãƒ†ãƒ¼ãƒˆã®ä¿å­˜å…ˆID
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
 {
-	int i;
+	FF_FLAGS_IDX i;
 
 	/* Check flags */
 	for (i = 0; i < FF_FLAG_MAX; i++)
@@ -1536,7 +1620,7 @@ static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
 	}
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤ÎÃÏ·Á¥¢¥¯¥·¥ç¥ó '%s'¡£", "Unknown feature action '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®åœ°å½¢ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ '%s'ã€‚", "Unknown feature action '%s'."), what);
 
 	/* Error */
 	return PARSE_ERROR_GENERIC;
@@ -1544,11 +1628,11 @@ static errr grab_one_feat_action(feature_type *f_ptr, cptr what, int count)
 
 
 /*!
- * @brief ÃÏ·Á¾ğÊó(f_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief åœ°å½¢æƒ…å ±(f_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "f_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_f_info(char *buf, header *head)
 {
@@ -1595,10 +1679,10 @@ errr parse_f_info(char *buf, header *head)
 		}
 
 		/* Default "mimic" */
-		f_ptr->mimic = i;
+		f_ptr->mimic = (FEAT_IDX)i;
 
 		/* Default "destroyed state" -- if not specified */
-		f_ptr->destroyed = i;
+		f_ptr->destroyed = (FEAT_IDX)i;
 
 		/* Default "states" */
 		for (i = 0; i < MAX_FEAT_STATES; i++) f_ptr->state[i].action = FF_FLAG_MAX;
@@ -1638,12 +1722,12 @@ errr parse_f_info(char *buf, header *head)
 	/* Process 'M' for "Mimic" (one line only) */
 	else if (buf[0] == 'M')
 	{
-		s16b offset;
+		STR_OFFSET offset;
 
 		if (!add_tag(&offset, head, buf + 2)) return PARSE_ERROR_OUT_OF_MEMORY;
 
 		/* Record a fake tag index */
-		f_ptr->mimic = -offset;
+		f_ptr->mimic_tag = offset;
 	}
 
 
@@ -1741,7 +1825,7 @@ errr parse_f_info(char *buf, header *head)
 			if (1 == sscanf(s, "SUBTYPE_%d", &i))
 			{
 				/* Extract a "subtype" */
-				f_ptr->subtype =  i;
+				f_ptr->subtype = (FEAT_SUBTYPE)i;
 
 				/* Start at next entry */
 				s = t;
@@ -1754,7 +1838,7 @@ errr parse_f_info(char *buf, header *head)
 			if (1 == sscanf(s, "POWER_%d", &i))
 			{
 				/* Extract a "power" */
-				f_ptr->power =  i;
+				f_ptr->power = (FEAT_POWER)i;
 
 				/* Start at next entry */
 				s = t;
@@ -1780,13 +1864,13 @@ errr parse_f_info(char *buf, header *head)
 		if (1 != sscanf(buf+2, "%d", &priority)) return (PARSE_ERROR_GENERIC);
 
 		/* Save the value */
-		f_ptr->priority = priority;
+		f_ptr->priority = (FEAT_PRIORITY)priority;
 	}
 
 	/* Process 'K' for "States" (up to four lines + default (which cannot be last)) */
 	else if (buf[0] == 'K')
 	{
-		s16b offset;
+		STR_OFFSET offset;
 
 		/* Find the next empty state slot (if any) */
 		for (i = 0; i < MAX_FEAT_STATES; i++) if (f_ptr->state[i].action == FF_FLAG_MAX) break;
@@ -1806,7 +1890,7 @@ errr parse_f_info(char *buf, header *head)
 			if (!add_tag(&offset, head, t)) return PARSE_ERROR_OUT_OF_MEMORY;
 
 			/* Record a fake tag index */
-			f_ptr->destroyed = -offset;
+			f_ptr->destroyed_tag = offset;
 		}
 		else
 		{
@@ -1819,12 +1903,12 @@ errr parse_f_info(char *buf, header *head)
 			if (!add_tag(&offset, head, t)) return PARSE_ERROR_OUT_OF_MEMORY;
 
 			/* Record a fake tag index */
-			f_ptr->state[i].result = -offset;
+			f_ptr->state[i].result_tag = offset;
 		}
 	}
 
 	/* Oops */
-	else	return (6);
+	else return (6);
 
 	/* Success */
 	return (0);
@@ -1832,10 +1916,10 @@ errr parse_f_info(char *buf, header *head)
 
 
 /*!
- * @brief ÃÏ·Á¥¿¥°¤«¤éID¤òÆÀ¤ë /
+ * @brief åœ°å½¢ã‚¿ã‚°ã‹ã‚‰IDã‚’å¾—ã‚‹ /
  * Convert a fake tag to a real feat index
- * @param str ¥¿¥°Ê¸»úÎó
- * @return ÃÏ·ÁID
+ * @param str ã‚¿ã‚°æ–‡å­—åˆ—
+ * @return åœ°å½¢ID
  */
 s16b f_tag_to_index(cptr str)
 {
@@ -1857,39 +1941,42 @@ s16b f_tag_to_index(cptr str)
 
 
 /*!
- * @brief ÃÏ·Á¥¿¥°¤«¤éID¤òÆÀ¤ë /
+ * @brief åœ°å½¢ã‚¿ã‚°ã‹ã‚‰IDã‚’å¾—ã‚‹ /
  * Search for real index corresponding to this fake tag
- * @param feat ¥¿¥°Ê¸»úÎó
- * @return ¤Ê¤·
+ * @param feat ã‚¿ã‚°æ–‡å­—åˆ—ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
+ * @return åœ°å½¢IDã€‚è©²å½“ãŒãªã„ãªã‚‰-1
  */
-static void search_real_feat(s16b *feat)
+static FEAT_IDX search_real_feat(STR_OFFSET feat)
 {
-	int i;
+	FEAT_IDX i;
 
 	/* Don't convert non-fake tag */
-	if (*feat >= 0) return;
+	if (feat <= 0)
+	{
+		return -1;
+	}
 
 	/* Search for real index corresponding to this fake tag */
 	for (i = 0; i < f_head.info_num; i++)
 	{
-		if ((-(*feat)) == f_info[i].tag)
+		if (feat == f_info[i].tag)
 		{
 			/* Record real index */
-			*feat = (s16b)i;
-			return;
+			return i;
 		}
 	}
 
 	/* Undefined tag */
-	msg_format(_("Ì¤ÄêµÁ¤Î¥¿¥° '%s'¡£", "%s is undefined."), f_tag + (-(*feat)));
+	msg_format(_("æœªå®šç¾©ã®ã‚¿ã‚° '%s'ã€‚", "%s is undefined."), f_tag + feat);
+	return -1;
 }
 
 
 /*!
- * @brief ÃÏ·Á¾ğÊó¤Î³Æ¼ï¥¿¥°¤«¤éID¤ØÊÑ´¹¤·¤Æ·ë²Ì¤ò¼ı¤á¤ë /
+ * @brief åœ°å½¢æƒ…å ±ã®å„ç¨®ã‚¿ã‚°ã‹ã‚‰IDã¸å¤‰æ›ã—ã¦çµæœã‚’åã‚ã‚‹ /
  * Retouch fake tags of f_info
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¤Ê¤·
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ãªã—
  */
 void retouch_f_info(header *head)
 {
@@ -1899,23 +1986,27 @@ void retouch_f_info(header *head)
 	for (i = 0; i < head->info_num; i++)
 	{
 		feature_type *f_ptr = &f_info[i];
-		int j;
+		FEAT_IDX j, k;
 
-		search_real_feat(&f_ptr->mimic);
-
-		search_real_feat(&f_ptr->destroyed);
-
-		for (j = 0; j < MAX_FEAT_STATES; j++) search_real_feat(&f_ptr->state[j].result);
+		k = search_real_feat(f_ptr->mimic_tag);
+		f_ptr->mimic = k < 0 ? f_ptr->mimic : k;
+		k = search_real_feat(f_ptr->destroyed_tag);
+		f_ptr->destroyed = k < 0 ? f_ptr->destroyed : k;
+		for (j = 0; j < MAX_FEAT_STATES; j++)
+		{
+			k = search_real_feat(f_ptr->state[j].result_tag);
+			f_ptr->state[j].result = k < 0 ? f_ptr->state[j].result : k;
+		}
 	}
 }
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥Ù¡¼¥¹¥¢¥¤¥Æ¥àÍÑ) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ ç”¨) /
  * Grab one flag in an object_kind from a textual string
- * @param k_ptr Êİ´ÉÀè¤Î¥Ù¡¼¥¹¥¢¥¤¥Æ¥à¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param k_ptr ä¿ç®¡å…ˆã®ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
 {
@@ -1935,17 +2026,17 @@ static errr grab_one_kind_flag(object_kind *k_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤Î¥¢¥¤¥Æ¥à¡¦¥Õ¥é¥° '%s'¡£", "Unknown object flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown object flag '%s'."), what);
 
 	/* Error */
 	return (1);
 }
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(È¯Æ°Ç½ÎÏÍÑ) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ç™ºå‹•èƒ½åŠ›ç”¨) /
  * Grab one activation index flag
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return È¯Æ°Ç½ÎÏID
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ç™ºå‹•èƒ½åŠ›ID
  */
 static byte grab_one_activation_flag(cptr what)
 {
@@ -1968,7 +2059,7 @@ static byte grab_one_activation_flag(cptr what)
 	 }
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤ÎÈ¯Æ°¡¦¥Õ¥é¥° '%s'¡£", "Unknown activation flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ç™ºå‹•ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown activation flag '%s'."), what);
 
 	/* Error */
 	return (0);
@@ -1976,11 +2067,11 @@ static byte grab_one_activation_flag(cptr what)
 
 
 /*!
- * @brief ¥Ù¡¼¥¹¥¢¥¤¥Æ¥à(k_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief ãƒ™ãƒ¼ã‚¹ã‚¢ã‚¤ãƒ†ãƒ (k_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "k_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_k_info(char *buf, header *head)
 {
@@ -2050,8 +2141,8 @@ errr parse_k_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
-	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾¤È¤·¤Æ¤¤¤ë */
+	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
+	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªåã¨ã—ã¦ã„ã‚‹ */
 	else if (buf[0] == 'E')
 	{
 		/* nothing to do */
@@ -2137,9 +2228,9 @@ errr parse_k_info(char *buf, header *head)
 				&tval, &sval, &pval)) return (1);
 
 		/* Save the values */
-		k_ptr->tval = tval;
-		k_ptr->sval = sval;
-		k_ptr->pval = pval;
+		k_ptr->tval = (OBJECT_TYPE_VALUE)tval;
+		k_ptr->sval = (OBJECT_SUBTYPE_VALUE)sval;
+		k_ptr->pval = (PARAMETER_VALUE)pval;
 	}
 
 	/* Process 'W' for "More Info" (one line only) */
@@ -2153,16 +2244,15 @@ errr parse_k_info(char *buf, header *head)
 				&level, &extra, &wgt, &cost)) return (1);
 
 		/* Save the values */
-		k_ptr->level = level;
-		k_ptr->extra = extra;
-		k_ptr->weight = wgt;
-		k_ptr->cost = cost;
+		k_ptr->level = (DEPTH)level;
+		k_ptr->extra = (BIT_FLAGS8)extra;
+		k_ptr->weight = (WEIGHT)wgt;
+		k_ptr->cost = (PRICE)cost;
 	}
 
 	/* Process 'A' for "Allocation" (one line only) */
 	else if (buf[0] == 'A')
 	{
-		int i;
 
 		/* XXX XXX XXX Simply read each number following a colon */
 		for (i = 0, s = buf+1; s && (s[0] == ':') && s[1]; ++i)
@@ -2183,7 +2273,7 @@ errr parse_k_info(char *buf, header *head)
 			if (t && (!s || t < s))
 			{
 				int chance = atoi(t+1);
-				if (chance > 0) k_ptr->chance[i] = chance;
+				if (chance > 0) k_ptr->chance[i] = (PROB)chance;
 			}
 		}
 	}
@@ -2197,12 +2287,12 @@ errr parse_k_info(char *buf, header *head)
 		if (6 != sscanf(buf+2, "%d:%dd%d:%d:%d:%d",
 				&ac, &hd1, &hd2, &th, &td, &ta)) return (1);
 
-		k_ptr->ac = ac;
-		k_ptr->dd = hd1;
-		k_ptr->ds = hd2;
-		k_ptr->to_h = th;
-		k_ptr->to_d = td;
-		k_ptr->to_a =  ta;
+		k_ptr->ac = (ARMOUR_CLASS)ac;
+		k_ptr->dd = (DICE_NUMBER)hd1;
+		k_ptr->ds = (DICE_SID)hd2;
+		k_ptr->to_h = (HIT_PROB)th;
+		k_ptr->to_d = (HIT_POINT)td;
+		k_ptr->to_a = (ARMOUR_CLASS)ta;
 	}
 
 	/* Hack -- Process 'U' for activation index */
@@ -2254,11 +2344,11 @@ errr parse_k_info(char *buf, header *head)
 }
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÍÑ) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆç”¨) /
  * Grab one activation index flag
- * @param a_ptr Êİ´ÉÀè¤Î¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¤¬¤¢¤Ã¤¿¾ì¹ç1¡¢¥¨¥é¡¼¤¬¤Ê¤¤¾ì¹ç0¤òÊÖ¤¹
+ * @param a_ptr ä¿ç®¡å…ˆã®ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ1ã€ã‚¨ãƒ©ãƒ¼ãŒãªã„å ´åˆ0ã‚’è¿”ã™
  */
 static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
 {
@@ -2278,7 +2368,7 @@ static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤ÎÅÁÀâ¤Î¥¢¥¤¥Æ¥à¡¦¥Õ¥é¥° '%s'¡£", "Unknown artifact flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ä¼èª¬ã®ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown artifact flag '%s'."), what);
 
 	/* Error */
 	return (1);
@@ -2286,11 +2376,11 @@ static errr grab_one_artifact_flag(artifact_type *a_ptr, cptr what)
 
 
 /*!
- * @brief ¸ÇÄê¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥È¾ğÊó(a_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief å›ºå®šã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆæƒ…å ±(a_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "a_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_a_info(char *buf, header *head)
 {
@@ -2348,8 +2438,8 @@ errr parse_a_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
-	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾¤È¤·¤Æ¤¤¤ë */
+	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
+	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªåã¨ã—ã¦ã„ã‚‹ */
 	else if (buf[0] == 'E')
 	{
 		/* nothing to do */
@@ -2395,9 +2485,9 @@ errr parse_a_info(char *buf, header *head)
 				&tval, &sval, &pval)) return (1);
 
 		/* Save the values */
-		a_ptr->tval = tval;
-		a_ptr->sval = sval;
-		a_ptr->pval = pval;
+		a_ptr->tval = (OBJECT_TYPE_VALUE)tval;
+		a_ptr->sval = (OBJECT_SUBTYPE_VALUE)sval;
+		a_ptr->pval = (PARAMETER_VALUE)pval;
 	}
 
 	/* Process 'W' for "More Info" (one line only) */
@@ -2411,10 +2501,10 @@ errr parse_a_info(char *buf, header *head)
 				&level, &rarity, &wgt, &cost)) return (1);
 
 		/* Save the values */
-		a_ptr->level = level;
-		a_ptr->rarity = rarity;
-		a_ptr->weight = wgt;
-		a_ptr->cost = cost;
+		a_ptr->level = (DEPTH)level;
+		a_ptr->rarity = (RARITY)rarity;
+		a_ptr->weight = (WEIGHT)wgt;
+		a_ptr->cost = (PRICE)cost;
 	}
 
 	/* Hack -- Process 'P' for "power" and such */
@@ -2426,12 +2516,12 @@ errr parse_a_info(char *buf, header *head)
 		if (6 != sscanf(buf+2, "%d:%dd%d:%d:%d:%d",
 				&ac, &hd1, &hd2, &th, &td, &ta)) return (1);
 
-		a_ptr->ac = ac;
-		a_ptr->dd = hd1;
-		a_ptr->ds = hd2;
-		a_ptr->to_h = th;
-		a_ptr->to_d = td;
-		a_ptr->to_a =  ta;
+		a_ptr->ac = (ARMOUR_CLASS)ac;
+		a_ptr->dd = (DICE_NUMBER)hd1;
+		a_ptr->ds = (DICE_SID)hd2;
+		a_ptr->to_h = (HIT_PROB)th;
+		a_ptr->to_d = (HIT_POINT)td;
+		a_ptr->to_a = (ARMOUR_CLASS)ta;
 	}
 
 	/* Hack -- Process 'U' for activation index */
@@ -2484,11 +2574,11 @@ errr parse_a_info(char *buf, header *head)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥¢¡¼¥Æ¥£¥Õ¥¡¥¯¥ÈÍÑ) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ã‚¢ãƒ¼ãƒ†ã‚£ãƒ•ã‚¡ã‚¯ãƒˆç”¨) /
  * Grab one flag in a ego-item_type from a textual string
- * @param e_ptr Êİ´ÉÀè¤Î¥¨¥´¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¤¬¤¢¤Ã¤¿¾ì¹ç1¡¢¥¨¥é¡¼¤¬¤Ê¤¤¾ì¹ç0¤òÊÖ¤¹
+ * @param e_ptr ä¿ç®¡å…ˆã®ã‚¨ã‚´æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ1ã€ã‚¨ãƒ©ãƒ¼ãŒãªã„å ´åˆ0ã‚’è¿”ã™
  */
 static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 {
@@ -2508,7 +2598,7 @@ static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤ÎÌ¾¤Î¤¢¤ë¥¢¥¤¥Æ¥à¡¦¥Õ¥é¥° '%s'¡£", "Unknown ego-item flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®åã®ã‚ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown ego-item flag '%s'."), what);
 
 	/* Error */
 	return (1);
@@ -2516,11 +2606,11 @@ static bool grab_one_ego_item_flag(ego_item_type *e_ptr, cptr what)
 
 
 /*!
- * @brief ¥¢¥¤¥Æ¥à¥¨¥´¾ğÊó(e_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief ã‚¢ã‚¤ãƒ†ãƒ ã‚¨ã‚´æƒ…å ±(e_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "e_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_e_info(char *buf, header *head)
 {
@@ -2579,8 +2669,8 @@ errr parse_e_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
-	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾ */
+	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
+	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªå */
 	else if (buf[0] == 'E')
 	{
 		/* nothing to do */
@@ -2619,8 +2709,8 @@ errr parse_e_info(char *buf, header *head)
 				&slot, &rating)) return (1);
 
 		/* Save the values */
-		e_ptr->slot = slot;
-		e_ptr->rating = rating;
+		e_ptr->slot = (INVENTORY_IDX)slot;
+		e_ptr->rating = (PRICE)rating;
 	}
 
 	/* Process 'W' for "More Info" (one line only) */
@@ -2635,7 +2725,7 @@ errr parse_e_info(char *buf, header *head)
 
 		/* Save the values */
 		e_ptr->level = level;
-		e_ptr->rarity = rarity;
+		e_ptr->rarity = (RARITY)rarity;
 		/* e_ptr->weight = wgt; */
 		e_ptr->cost = cost;
 	}
@@ -2643,16 +2733,16 @@ errr parse_e_info(char *buf, header *head)
 	/* Hack -- Process 'C' for "creation" */
 	else if (buf[0] == 'C')
 	{
-		int th, td, ta, pv;
+		int th, td, ta, pval;
 
 		/* Scan for the values */
 		if (4 != sscanf(buf+2, "%d:%d:%d:%d",
-				&th, &td, &ta, &pv)) return (1);
+				&th, &td, &ta, &pval)) return (1);
 
-		e_ptr->max_to_h = th;
-		e_ptr->max_to_d = td;
-		e_ptr->max_to_a = ta;
-		e_ptr->max_pval = pv;
+		e_ptr->max_to_h = (HIT_PROB)th;
+		e_ptr->max_to_d = (HIT_POINT)td;
+		e_ptr->max_to_a = (ARMOUR_CLASS)ta;
+		e_ptr->max_pval = (PARAMETER_VALUE)pval;
 	}
 
 	/* Hack -- Process 'U' for activation index */
@@ -2703,11 +2793,11 @@ errr parse_e_info(char *buf, header *head)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼ÍÑ1) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”¨1) /
  * Grab one (basic) flag in a monster_race from a textual string
- * @param r_ptr Êİ´ÉÀè¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param r_ptr ä¿ç®¡å…ˆã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
 {
@@ -2733,7 +2823,7 @@ static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
 
 	/* Failure */
 	return (1);
@@ -2741,25 +2831,25 @@ static errr grab_one_basic_flag(monster_race *r_ptr, cptr what)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼ÍÑ2) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç”¨2) /
  * Grab one (spell) flag in a monster_race from a textual string
- * @param r_ptr Êİ´ÉÀè¤Î¥â¥ó¥¹¥¿¡¼¼ïÂ²¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param r_ptr ä¿ç®¡å…ˆã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_spell_flag(monster_race *r_ptr, cptr what)
 {
 	if (grab_one_flag(&r_ptr->flags4, r_info_flags4, what) == 0)
 		return 0;
 
-	if (grab_one_flag(&r_ptr->flags5, r_info_flags5, what) == 0)
+	if (grab_one_flag(&r_ptr->a_ability_flags1, r_a_ability_flags1, what) == 0)
 		return 0;
 
-	if (grab_one_flag(&r_ptr->flags6, r_info_flags6, what) == 0)
+	if (grab_one_flag(&r_ptr->a_ability_flags2, r_a_ability_flags2, what) == 0)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
 
 	/* Failure */
 	return (1);
@@ -2767,11 +2857,11 @@ static errr grab_one_spell_flag(monster_race *r_ptr, cptr what)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¼ïÂ²¾ğÊó(r_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—æƒ…å ±(r_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "r_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_r_info(char *buf, header *head)
 {
@@ -2823,8 +2913,8 @@ errr parse_r_info(char *buf, header *head)
 
 
 #ifdef JP
-	/* ±Ñ¸ìÌ¾¤òÆÉ¤à¥ë¡¼¥Á¥ó¤òÄÉ²Ã */
-	/* 'E' ¤«¤é»Ï¤Ş¤ë¹Ô¤Ï±Ñ¸ìÌ¾ */
+	/* è‹±èªåã‚’èª­ã‚€ãƒ«ãƒ¼ãƒãƒ³ã‚’è¿½åŠ  */
+	/* 'E' ã‹ã‚‰å§‹ã¾ã‚‹è¡Œã¯è‹±èªå */
 	else if (buf[0] == 'E')
 	{
 		/* Acquire the Text */
@@ -2898,12 +2988,12 @@ errr parse_r_info(char *buf, header *head)
 				&spd, &hp1, &hp2, &aaf, &ac, &slp)) return (1);
 
 		/* Save the values */
-		r_ptr->speed = spd;
-		r_ptr->hdice = MAX(hp1, 1);
-		r_ptr->hside = MAX(hp2, 1);
-		r_ptr->aaf = aaf;
-		r_ptr->ac = ac;
-		r_ptr->sleep = slp;
+		r_ptr->speed = (SPEED)spd;
+		r_ptr->hdice = (DICE_NUMBER)MAX(hp1, 1);
+		r_ptr->hside = (DICE_SID)MAX(hp2, 1);
+		r_ptr->aaf = (POSITION)aaf;
+		r_ptr->ac = (ARMOUR_CLASS)ac;
+		r_ptr->sleep = (SLEEP_DEGREE)slp;
 	}
 
 	/* Process 'W' for "More Info" (one line only) */
@@ -2919,12 +3009,12 @@ errr parse_r_info(char *buf, header *head)
 				&lev, &rar, &pad, &exp, &nextexp, &nextmon)) return (1);
 
 		/* Save the values */
-		r_ptr->level = lev;
-		r_ptr->rarity = rar;
-		r_ptr->extra = pad;
-		r_ptr->mexp = exp;
-		r_ptr->next_exp = nextexp;
-		r_ptr->next_r_idx = nextmon;
+		r_ptr->level = (DEPTH)lev;
+		r_ptr->rarity = (RARITY)rar;
+		r_ptr->extra = (BIT_FLAGS16)pad;
+		r_ptr->mexp = (EXP)exp;
+		r_ptr->next_exp = (EXP)nextexp;
+		r_ptr->next_r_idx = (IDX)nextmon;
 	}
 
 	/* Process 'R' for "Reinforcement" (up to six lines) */
@@ -2939,9 +3029,9 @@ errr parse_r_info(char *buf, header *head)
 
 		/* Scan for the values */
 		if (3 != sscanf(buf+2, "%d:%dd%d", &id, &dd, &ds)) return (1);
-		r_ptr->reinforce_id[i] = id;
-		r_ptr->reinforce_dd[i] = dd;
-		r_ptr->reinforce_ds[i] = ds;
+		r_ptr->reinforce_id[i] = (MONRACE_IDX)id;
+		r_ptr->reinforce_dd[i] = (DICE_NUMBER)dd;
+		r_ptr->reinforce_ds[i] = (DICE_SID)ds;
 	}
 
 	/* Process 'B' for "Blows" (up to four lines) */
@@ -2992,10 +3082,10 @@ errr parse_r_info(char *buf, header *head)
 		if (*t == 'd') *t++ = '\0';
 
 		/* Save the method */
-		r_ptr->blow[i].method = n1;
+		r_ptr->blow[i].method = (BLOW_METHOD)n1;
 
 		/* Save the effect */
-		r_ptr->blow[i].effect = n2;
+		r_ptr->blow[i].effect = (BLOW_EFFECT)n2;
 
 		/* Extract the damage dice and sides */
 		r_ptr->blow[i].d_dice = atoi(s);
@@ -3075,9 +3165,9 @@ errr parse_r_info(char *buf, header *head)
 		if (i == 4) return (1);
 
 		if (3 != sscanf(buf+2, "%d:%d:%d", &id, &rarity, &per)) return (1);
-		r_ptr->artifact_id[i] = id;
-		r_ptr->artifact_rarity[i] = rarity;
-		r_ptr->artifact_percent[i] = per;
+		r_ptr->artifact_id[i] = (ARTIFACT_IDX)id;
+		r_ptr->artifact_rarity[i] = (RARITY)rarity;
+		r_ptr->artifact_percent[i] = (PERCENTAGE)per;
 	}
 
 	/* Process 'V' for "Arena power value ratio" */
@@ -3085,7 +3175,7 @@ errr parse_r_info(char *buf, header *head)
 	{
 		int val;
 		if (3 != sscanf(buf+2, "%d", &val)) return (1);
-		r_ptr->arena_ratio = val;
+		r_ptr->arena_ratio = (PERCENTAGE)val;
 	}
 
 	/* Oops */
@@ -3098,11 +3188,11 @@ errr parse_r_info(char *buf, header *head)
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥À¥ó¥¸¥ç¥óÍÑ) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”¨) /
  * Grab one flag for a dungeon type from a textual string
- * @param d_ptr Êİ´ÉÀè¤Î¥À¥ó¥¸¥ç¥ó¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param d_ptr ä¿ç®¡å…ˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_dungeon_flag(dungeon_info_type *d_ptr, cptr what)
 {
@@ -3110,18 +3200,18 @@ static errr grab_one_dungeon_flag(dungeon_info_type *d_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤Î¥À¥ó¥¸¥ç¥ó¡¦¥Õ¥é¥° '%s'¡£", "Unknown dungeon type flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown dungeon type flag '%s'."), what);
 
 	/* Failure */
 	return (1);
 }
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼¤Î¥À¥ó¥¸¥ç¥ó½Ğ¸½¾ò·ïÍÑ1) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºç¾æ¡ä»¶ç”¨1) /
  * Grab one (basic) flag in a monster_race from a textual string
- * @param d_ptr Êİ´ÉÀè¤Î¥À¥ó¥¸¥ç¥ó¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param d_ptr ä¿ç®¡å…ˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_basic_monster_flag(dungeon_info_type *d_ptr, cptr what)
 {
@@ -3147,43 +3237,43 @@ static errr grab_one_basic_monster_flag(dungeon_info_type *d_ptr, cptr what)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
 	/* Failure */
 	return (1);
 }
 
 
 /*!
- * @brief ¥Æ¥­¥¹¥È¥È¡¼¥¯¥ó¤òÁöºº¤·¤Æ¥Õ¥é¥°¤ò°ì¤ÄÆÀ¤ë(¥â¥ó¥¹¥¿¡¼¤Î¥À¥ó¥¸¥ç¥ó½Ğ¸½¾ò·ïÍÑ2) /
+ * @brief ãƒ†ã‚­ã‚¹ãƒˆãƒˆãƒ¼ã‚¯ãƒ³ã‚’èµ°æŸ»ã—ã¦ãƒ•ãƒ©ã‚°ã‚’ä¸€ã¤å¾—ã‚‹(ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³å‡ºç¾æ¡ä»¶ç”¨2) /
  * Grab one (spell) flag in a monster_race from a textual string
- * @param d_ptr Êİ´ÉÀè¤Î¥À¥ó¥¸¥ç¥ó¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param what »²¾È¸µ¤ÎÊ¸»úÎó¥İ¥¤¥ó¥¿
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param d_ptr ä¿ç®¡å…ˆã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param what å‚ç…§å…ƒã®æ–‡å­—åˆ—ãƒã‚¤ãƒ³ã‚¿
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr grab_one_spell_monster_flag(dungeon_info_type *d_ptr, cptr what)
 {
 	if (grab_one_flag(&d_ptr->mflags4, r_info_flags4, what) == 0)
 		return 0;
 
-	if (grab_one_flag(&d_ptr->mflags5, r_info_flags5, what) == 0)
+	if (grab_one_flag(&d_ptr->m_a_ability_flags1, r_a_ability_flags1, what) == 0)
 		return 0;
 
-	if (grab_one_flag(&d_ptr->mflags6, r_info_flags6, what) == 0)
+	if (grab_one_flag(&d_ptr->m_a_ability_flags2, r_a_ability_flags2, what) == 0)
 		return 0;
 
 	/* Oops */
-	msg_format(_("Ì¤ÃÎ¤Î¥â¥ó¥¹¥¿¡¼¡¦¥Õ¥é¥° '%s'¡£", "Unknown monster flag '%s'."), what);
+	msg_format(_("æœªçŸ¥ã®ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãƒ»ãƒ•ãƒ©ã‚° '%s'ã€‚", "Unknown monster flag '%s'."), what);
 
 	/* Failure */
 	return (1);
 }
 
 /*!
- * @brief ¥À¥ó¥¸¥ç¥ó¾ğÊó(d_info)¤Î¥Ñ¡¼¥¹´Ø¿ô /
+ * @brief ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³æƒ…å ±(d_info)ã®ãƒ‘ãƒ¼ã‚¹é–¢æ•° /
  * Initialize the "d_info" array, by parsing an ascii "template" file
- * @param buf ¥Æ¥­¥¹¥ÈÎó
- * @param head ¥Ø¥Ã¥À¹½Â¤ÂÎ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf ãƒ†ã‚­ã‚¹ãƒˆåˆ—
+ * @param head ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr parse_d_info(char *buf, header *head)
 {
@@ -3276,16 +3366,16 @@ errr parse_d_info(char *buf, header *head)
 				 &min_lev, &max_lev, &min_plev, &mode, &min_alloc, &max_chance, &obj_good, &obj_great, (unsigned int *)&pit, (unsigned int *)&nest)) return (1);
 
 		/* Save the values */
-		d_ptr->mindepth = min_lev;
-		d_ptr->maxdepth = max_lev;
-		d_ptr->min_plev = min_plev;
-		d_ptr->mode = mode;
+		d_ptr->mindepth = (DEPTH)min_lev;
+		d_ptr->maxdepth = (DEPTH)max_lev;
+		d_ptr->min_plev = (PLAYER_LEVEL)min_plev;
+		d_ptr->mode = (BIT_FLAGS8)mode;
 		d_ptr->min_m_alloc_level = min_alloc;
 		d_ptr->max_m_alloc_chance = max_chance;
 		d_ptr->obj_good = obj_good;
 		d_ptr->obj_great = obj_great;
-		d_ptr->pit = pit;
-		d_ptr->nest = nest;
+		d_ptr->pit = (BIT_FLAGS16)pit;
+		d_ptr->nest = (BIT_FLAGS16)nest;
 	}
 
 	/* Process 'P' for "Place Info" */
@@ -3315,7 +3405,7 @@ errr parse_d_info(char *buf, header *head)
 			d_ptr->floor[i].feat = f_tag_to_index(zz[i * 2]);
 			if (d_ptr->floor[i].feat < 0) return PARSE_ERROR_UNDEFINED_TERRAIN_TAG;
 
-			d_ptr->floor[i].percent = atoi(zz[i * 2 + 1]);
+			d_ptr->floor[i].percent = (PERCENTAGE)atoi(zz[i * 2 + 1]);
 		}
 		d_ptr->tunnel_percent = atoi(zz[DUNGEON_FEAT_PROB_NUM * 2]);
 	}
@@ -3334,7 +3424,7 @@ errr parse_d_info(char *buf, header *head)
 			d_ptr->fill[i].feat = f_tag_to_index(zz[i * 2]);
 			if (d_ptr->fill[i].feat < 0) return PARSE_ERROR_UNDEFINED_TERRAIN_TAG;
 
-			d_ptr->fill[i].percent = atoi(zz[i * 2 + 1]);
+			d_ptr->fill[i].percent = (PERCENTAGE)atoi(zz[i * 2 + 1]);
 		}
 
 		d_ptr->outer_wall = f_tag_to_index(zz[DUNGEON_FEAT_PROB_NUM * 2]);
@@ -3372,7 +3462,7 @@ errr parse_d_info(char *buf, header *head)
 			if (1 == sscanf(s, "FINAL_ARTIFACT_%d", &artif))
 			{
 				/* Extract a "Final Artifact" */
-				d_ptr->final_artifact = artif;
+				d_ptr->final_artifact = (ARTIFACT_IDX)artif;
 
 				/* Start at next entry */
 				s = t;
@@ -3385,7 +3475,7 @@ errr parse_d_info(char *buf, header *head)
 			if (1 == sscanf(s, "FINAL_OBJECT_%d", &artif))
 			{
 				/* Extract a "Final Artifact" */
-				d_ptr->final_object = artif;
+				d_ptr->final_object = (KIND_OBJECT_IDX)artif;
 
 				/* Start at next entry */
 				s = t;
@@ -3398,7 +3488,7 @@ errr parse_d_info(char *buf, header *head)
 			if (1 == sscanf(s, "FINAL_GUARDIAN_%d", &monst))
 			{
 				/* Extract a "Artifact Guardian" */
-				d_ptr->final_guardian = monst;
+				d_ptr->final_guardian = (MONRACE_IDX)monst;
 
 				/* Start at next entry */
 				s = t;
@@ -3411,7 +3501,7 @@ errr parse_d_info(char *buf, header *head)
 			if (1 == sscanf(s, "MONSTER_DIV_%d", &monst))
 			{
 				/* Extract a "Special %" */
-				d_ptr->special_div = monst;
+				d_ptr->special_div = (PROB)monst;
 
 				/* Start at next entry */
 				s = t;
@@ -3533,14 +3623,14 @@ typedef struct dungeon_grid dungeon_grid;
 
 struct dungeon_grid
 {
-	int		feature;		/* Terrain feature */
-	int		monster;		/* Monster */
-	int		object;			/* Object */
-	int		ego;			/* Ego-Item */
-	int		artifact;		/* Artifact */
-	int		trap;			/* Trap */
-	int		cave_info;		/* Flags for CAVE_MARK, CAVE_GLOW, CAVE_ICKY, CAVE_ROOM */
-	int		special;		/* Reserved for special terrain info */
+	FEAT_IDX feature;		/* Terrain feature */
+	MONSTER_IDX	monster;		/* Monster */
+	OBJECT_IDX object;			/* Object */
+	EGO_IDX	ego;			/* Ego-Item */
+	ARTIFACT_IDX artifact;		/* Artifact */
+	IDX trap;			/* Trap */
+	BIT_FLAGS cave_info;		/* Flags for CAVE_MARK, CAVE_GLOW, CAVE_ICKY, CAVE_ROOM */
+	s16b special; /* Reserved for special terrain info */
 	int		random;			/* Number of the random effect */
 };
 
@@ -3549,10 +3639,10 @@ static dungeon_grid letter[255];
 
 
 /*!
- * @brief ÃÏ·Á¾ğÊó¤Î¡ÖF:¡×¾ğÊó¤ò¥Ñ¡¼¥¹¤¹¤ë
+ * @brief åœ°å½¢æƒ…å ±ã®ã€ŒF:ã€æƒ…å ±ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
  * Process "F:<letter>:<terrain>:<cave_info>:<monster>:<object>:<ego>:<artifact>:<trap>:<special>" -- info for dungeon grid
- * @param buf ²òÀÏÊ¸»úÎó
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf è§£ææ–‡å­—åˆ—
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr parse_line_feature(char *buf)
 {
@@ -3602,7 +3692,7 @@ static errr parse_line_feature(char *buf)
 				if (zz[6][0] == '*')
 				{
 					letter[index].random |= RANDOM_ARTIFACT;
-					if (zz[6][1]) letter[index].artifact = atoi(zz[6] + 1);
+					if (zz[6][1]) letter[index].artifact = (IDX)atoi(zz[6] + 1);
 				}
 				else if (zz[6][0] == '!')
 				{
@@ -3613,7 +3703,7 @@ static errr parse_line_feature(char *buf)
 				}
 				else
 				{
-					letter[index].artifact = atoi(zz[6]);
+					letter[index].artifact = (IDX)atoi(zz[6]);
 				}
 				/* Fall through */
 			/* Ego-item */
@@ -3621,11 +3711,11 @@ static errr parse_line_feature(char *buf)
 				if (zz[5][0] == '*')
 				{
 					letter[index].random |= RANDOM_EGO;
-					if (zz[5][1]) letter[index].ego = atoi(zz[5] + 1);
+					if (zz[5][1]) letter[index].ego = (IDX)atoi(zz[5] + 1);
 				}
 				else
 				{
-					letter[index].ego = atoi(zz[5]);
+					letter[index].ego = (IDX)atoi(zz[5]);
 				}
 				/* Fall through */
 			/* Object */
@@ -3633,7 +3723,7 @@ static errr parse_line_feature(char *buf)
 				if (zz[4][0] == '*')
 				{
 					letter[index].random |= RANDOM_OBJECT;
-					if (zz[4][1]) letter[index].object = atoi(zz[4] + 1);
+					if (zz[4][1]) letter[index].object = (IDX)atoi(zz[4] + 1);
 				}
 				else if (zz[4][0] == '!')
 				{
@@ -3652,7 +3742,7 @@ static errr parse_line_feature(char *buf)
 				}
 				else
 				{
-					letter[index].object = atoi(zz[4]);
+					letter[index].object = (IDX)atoi(zz[4]);
 				}
 				/* Fall through */
 			/* Monster */
@@ -3660,7 +3750,7 @@ static errr parse_line_feature(char *buf)
 				if (zz[3][0] == '*')
 				{
 					letter[index].random |= RANDOM_MONSTER;
-					if (zz[3][1]) letter[index].monster = atoi(zz[3] + 1);
+					if (zz[3][1]) letter[index].monster = (IDX)atoi(zz[3] + 1);
 				}
 				else if (zz[3][0] == 'c')
 				{
@@ -3669,7 +3759,7 @@ static errr parse_line_feature(char *buf)
 				}
 				else
 				{
-					letter[index].monster = atoi(zz[3]);
+					letter[index].monster = (IDX)atoi(zz[3]);
 				}
 				/* Fall through */
 			/* Cave info */
@@ -3698,10 +3788,10 @@ static errr parse_line_feature(char *buf)
 
 
 /*!
- * @brief ÃÏ·Á¾ğÊó¤Î¡ÖB:¡×¾ğÊó¤ò¥Ñ¡¼¥¹¤¹¤ë
+ * @brief åœ°å½¢æƒ…å ±ã®ã€ŒB:ã€æƒ…å ±ã‚’ãƒ‘ãƒ¼ã‚¹ã™ã‚‹
  * Process "B:<Index>:<Command>:..." -- Building definition
- * @param buf ²òÀÏÊ¸»úÎó
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf è§£ææ–‡å­—åˆ—
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr parse_line_building(char *buf)
 {
@@ -3769,19 +3859,19 @@ static errr parse_line_building(char *buf)
 				strcpy(building[index].act_names[action_index], zz[1]);
 
 				/* Cost of the action for members */
-				building[index].member_costs[action_index] = atoi(zz[2]);
+				building[index].member_costs[action_index] = (PRICE)atoi(zz[2]);
 
 				/* Cost of the action for non-members */
-				building[index].other_costs[action_index] = atoi(zz[3]);
+				building[index].other_costs[action_index] = (PRICE)atoi(zz[3]);
 
 				/* Letter assigned to the action */
 				building[index].letters[action_index] = zz[4][0];
 
 				/* Action code */
-				building[index].actions[action_index] = atoi(zz[5]);
+				building[index].actions[action_index] = (BACT_IDX)atoi(zz[5]);
 
 				/* Action restriction */
-				building[index].action_restr[action_index] = atoi(zz[6]);
+				building[index].action_restr[action_index] = (BACT_RESTRICT_IDX)atoi(zz[6]);
 
 				break;
 			}
@@ -3796,7 +3886,7 @@ static errr parse_line_building(char *buf)
 			{
 				for (i = 0; i < MAX_CLASS; i++)
 				{
-					building[index].member_class[i] = atoi(zz[i]);
+					building[index].member_class[i] = (CLASS_IDX)atoi(zz[i]);
 				}
 
 				break;
@@ -3812,7 +3902,7 @@ static errr parse_line_building(char *buf)
 			{
 				for (i = 0; i < MAX_RACES; i++)
 				{
-					building[index].member_race[i] = atoi(zz[i]);
+					building[index].member_race[i] = (RACE_IDX)atoi(zz[i]);
 				}
 
 				break;
@@ -3828,7 +3918,7 @@ static errr parse_line_building(char *buf)
 			{
 				for (i = 0; i < MAX_MAGIC; i++)
 				{
-					building[index].member_realm[i+1] = atoi(zz[i]);
+					building[index].member_realm[i+1] = (REALM_IDX)atoi(zz[i]);
 				}
 
 				break;
@@ -3854,12 +3944,12 @@ static errr parse_line_building(char *buf)
 
 
 /*!
- * @brief ¥Õ¥í¥¢¤Î½êÄê¤Î¥Ş¥¹¤Ë¥ª¥Ö¥¸¥§¥¯¥È¤òÇÛÃÖ¤¹¤ë
+ * @brief ãƒ•ãƒ­ã‚¢ã®æ‰€å®šã®ãƒã‚¹ã«ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é…ç½®ã™ã‚‹
  * Place the object j_ptr to a grid
- * @param j_ptr ¥ª¥Ö¥¸¥§¥¯¥È¹½Â¤ÂÎ¤Î»²¾È¥İ¥¤¥ó¥¿
- * @param y ÇÛÃÖÀèYºÂÉ¸
- * @param x ÇÛÃÖÀèXºÂÉ¸
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param j_ptr ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ§‹é€ ä½“ã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param y é…ç½®å…ˆYåº§æ¨™
+ * @param x é…ç½®å…ˆXåº§æ¨™
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static void drop_here(object_type *j_ptr, int y, int x)
 {
@@ -3892,16 +3982,16 @@ static void drop_here(object_type *j_ptr, int y, int x)
 
 
 /*!
- * @brief ¥¯¥¨¥¹¥ÈÍÑ¸ÇÄê¥À¥ó¥¸¥ç¥ó¤ò¥Õ¥í¥¢¤ËÀ¸À®¤¹¤ë
+ * @brief ã‚¯ã‚¨ã‚¹ãƒˆç”¨å›ºå®šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã‚’ãƒ•ãƒ­ã‚¢ã«ç”Ÿæˆã™ã‚‹
  * Parse a sub-file of the "extra info"
- * @param buf Ê¸»úÎó
- * @param ymin ¾ÜºÙÉÔÌÀ
- * @param xmin ¾ÜºÙÉÔÌÀ
- * @param ymax ¾ÜºÙÉÔÌÀ
- * @param xmax ¾ÜºÙÉÔÌÀ
- * @param y ¾ÜºÙÉÔÌÀ
- * @param x ¾ÜºÙÉÔÌÀ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param buf æ–‡å­—åˆ—
+ * @param ymin è©³ç´°ä¸æ˜
+ * @param xmin è©³ç´°ä¸æ˜
+ * @param ymax è©³ç´°ä¸æ˜
+ * @param xmax è©³ç´°ä¸æ˜
+ * @param y è©³ç´°ä¸æ˜
+ * @param x è©³ç´°ä¸æ˜
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, int xmax, int *y, int *x)
 {
@@ -3956,10 +4046,10 @@ static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, in
 
 			int idx = s[0];
 
-			int object_index = letter[idx].object;
-			int monster_index = letter[idx].monster;
+			IDX object_index = letter[idx].object;
+			IDX monster_index = letter[idx].monster;
 			int random = letter[idx].random;
-			int artifact_index = letter[idx].artifact;
+			IDX artifact_index = letter[idx].artifact;
 
 			/* Lay down a floor */
 			c_ptr->feat = conv_dungeon_feat(letter[idx].feature);
@@ -4093,7 +4183,7 @@ static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, in
 			{
 				if (a_info[artifact_index].cur_num)
 				{
-					int k_idx = lookup_kind(TV_SCROLL, SV_SCROLL_ACQUIREMENT);
+					IDX k_idx = lookup_kind(TV_SCROLL, SV_SCROLL_ACQUIREMENT);
 					object_type forge;
 					object_type *q_ptr = &forge;
 
@@ -4150,17 +4240,16 @@ static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, in
 
 				if (num < 9) return (PARSE_ERROR_TOO_FEW_ARGUMENTS);
 
-				q_ptr->type    = atoi(zz[2]);
-				q_ptr->num_mon = atoi(zz[3]);
-				q_ptr->cur_num = atoi(zz[4]);
-				q_ptr->max_num = atoi(zz[5]);
-				q_ptr->level   = atoi(zz[6]);
-				q_ptr->r_idx   = atoi(zz[7]);
-				q_ptr->k_idx   = atoi(zz[8]);
-				q_ptr->dungeon = atoi(zz[9]);
+				q_ptr->type    = (QUEST_TYPE)atoi(zz[2]);
+				q_ptr->num_mon = (MONSTER_NUMBER)atoi(zz[3]);
+				q_ptr->cur_num = (MONSTER_NUMBER)atoi(zz[4]);
+				q_ptr->max_num = (MONSTER_NUMBER)atoi(zz[5]);
+				q_ptr->level   = (DEPTH)atoi(zz[6]);
+				q_ptr->r_idx   = (IDX)atoi(zz[7]);
+				q_ptr->k_idx   = (IDX)atoi(zz[8]);
+				q_ptr->dungeon = (DUNGEON_IDX)atoi(zz[9]);
 
-				if (num > 10)
-					q_ptr->flags  = atoi(zz[10]);
+				if (num > 10) q_ptr->flags  = atoi(zz[10]);
 
 				r_ptr = &r_info[q_ptr->r_idx];
 				if (r_ptr->flags1 & RF1_UNIQUE)
@@ -4176,12 +4265,12 @@ static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, in
 		{
 			if (init_flags & INIT_ASSIGN)
 			{
-				int idx, count = 0;
-				int reward_idx = 0;
+				int count = 0;
+				IDX idx, reward_idx = 0;
 
 				for (idx = 2; idx < num; idx++)
 				{
-					int a_idx = atoi(zz[idx]);
+					IDX a_idx = (IDX)atoi(zz[idx]);
 					if (a_idx < 1) continue;
 					if (a_info[a_idx].cur_num > 0) continue;
 					count++;
@@ -4259,16 +4348,16 @@ static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, in
 				/* Place player in a quest level */
 				if (p_ptr->inside_quest)
 				{
-					int y, x;
+					int py, px;
 
 					/* Delete the monster (if any) */
 					delete_monster(p_ptr->y, p_ptr->x);
 
-					y = atoi(zz[0]);
-					x = atoi(zz[1]);
+					py = atoi(zz[0]);
+					px = atoi(zz[1]);
 
-					p_ptr->y = y;
-					p_ptr->x = x;
+					p_ptr->y = py;
+					p_ptr->x = px;
 				}
 				/* Place player in the town */
 				else if (!p_ptr->oldpx && !p_ptr->oldpy)
@@ -4296,67 +4385,67 @@ static errr process_dungeon_file_aux(char *buf, int ymin, int xmin, int ymax, in
 			/* Maximum towns */
 			if (zz[0][0] == 'T')
 			{
-				max_towns = atoi(zz[1]);
+				max_towns = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum quests */
 			else if (zz[0][0] == 'Q')
 			{
-				max_quests = atoi(zz[1]);
+				max_q_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum r_idx */
 			else if (zz[0][0] == 'R')
 			{
-				max_r_idx = atoi(zz[1]);
+				max_r_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum k_idx */
 			else if (zz[0][0] == 'K')
 			{
-				max_k_idx = atoi(zz[1]);
+				max_k_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum v_idx */
 			else if (zz[0][0] == 'V')
 			{
-				max_v_idx = atoi(zz[1]);
+				max_v_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum f_idx */
 			else if (zz[0][0] == 'F')
 			{
-				max_f_idx = atoi(zz[1]);
+				max_f_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum a_idx */
 			else if (zz[0][0] == 'A')
 			{
-				max_a_idx = atoi(zz[1]);
+				max_a_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum e_idx */
 			else if (zz[0][0] == 'E')
 			{
-				max_e_idx = atoi(zz[1]);
+				max_e_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum d_idx */
 			else if (zz[0][0] == 'D')
 			{
-				max_d_idx = atoi(zz[1]); 
+				max_d_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum o_idx */
 			else if (zz[0][0] == 'O')
 			{
-				max_o_idx = atoi(zz[1]);
+				max_o_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Maximum m_idx */
 			else if (zz[0][0] == 'M')
 			{
-				max_m_idx = atoi(zz[1]);
+				max_m_idx = (IDX)atoi(zz[1]);
 			}
 
 			/* Wilderness size */
@@ -4385,11 +4474,11 @@ static cptr variant = "ZANGBAND";
 
 
 /*!
- * @brief ¥¯¥¨¥¹¥ÈÍÑ¸ÇÄê¥À¥ó¥¸¥ç¥óÀ¸À®»ş¤ÎÊ¬´ô½èÍı
+ * @brief ã‚¯ã‚¨ã‚¹ãƒˆç”¨å›ºå®šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆæ™‚ã®åˆ†å²å‡¦ç†
  * Helper function for "process_dungeon_file()"
  * @param sp
  * @param fp
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 static cptr process_dungeon_file_expr(char **sp, char *fp)
 {
@@ -4706,14 +4795,14 @@ static cptr process_dungeon_file_expr(char **sp, char *fp)
 
 
 /*!
- * @brief ¥¯¥¨¥¹¥ÈÍÑ¸ÇÄê¥À¥ó¥¸¥ç¥óÀ¸À®»ş¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
+ * @brief ã‚¯ã‚¨ã‚¹ãƒˆç”¨å›ºå®šãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ç”Ÿæˆæ™‚ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
  * Helper function for "process_dungeon_file()"
- * @param name ¥Õ¥¡¥¤¥ëÌ¾
- * @param ymin ¾ÜºÙÉÔÌÀ
- * @param xmin ¾ÜºÙÉÔÌÀ
- * @param ymax ¾ÜºÙÉÔÌÀ
- * @param xmax ¾ÜºÙÉÔÌÀ
- * @return ¥¨¥é¡¼¥³¡¼¥É
+ * @param name ãƒ•ã‚¡ã‚¤ãƒ«å
+ * @param ymin è©³ç´°ä¸æ˜
+ * @param xmin è©³ç´°ä¸æ˜
+ * @param ymax è©³ç´°ä¸æ˜
+ * @param xmax è©³ç´°ä¸æ˜
+ * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
  */
 errr process_dungeon_file(cptr name, int ymin, int xmin, int ymax, int xmax)
 {
@@ -4797,7 +4886,7 @@ errr process_dungeon_file(cptr name, int ymin, int xmin, int ymax, int xmax)
 
 		/* Oops */
 		msg_format("Error %d (%s) at line %d of '%s'.", err, oops, num, name);
-		msg_format(_("'%s'¤ò²òÀÏÃæ¡£", "Parsing '%s'."), buf);
+		msg_format(_("'%s'ã‚’è§£æä¸­ã€‚", "Parsing '%s'."), buf);
 
 		msg_print(NULL);
 	}
@@ -4831,7 +4920,7 @@ void write_r_info_txt(void)
 
 	cptr desc;
 
-	int mode = -1;
+	BIT_FLAGS mode = -1;
 
 	if (!fff) return;
 
@@ -4882,8 +4971,8 @@ void write_r_info_txt(void)
 		f_ptr[1] = r_ptr->flags2; n_ptr[1] = r_info_flags2;
 		f_ptr[2] = r_ptr->flags3; n_ptr[2] = r_info_flags3;
 		f_ptr[3] = r_ptr->flags4; n_ptr[3] = r_info_flags4;
-		f_ptr[4] = r_ptr->flags5; n_ptr[4] = r_info_flags5;
-		f_ptr[5] = r_ptr->flags6; n_ptr[5] = r_info_flags6;
+		f_ptr[4] = r_ptr->a_ability_flags1; n_ptr[4] = r_a_ability_flags1;
+		f_ptr[5] = r_ptr->a_ability_flags2; n_ptr[5] = r_a_ability_flags2;
 		f_ptr[6] = r_ptr->flags7; n_ptr[6] = r_info_flags7;
 		f_ptr[7] = r_ptr->flags8; n_ptr[7] = r_info_flags8;
 		f_ptr[8] = r_ptr->flags9; n_ptr[8] = r_info_flags9;

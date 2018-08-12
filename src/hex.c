@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file hex.c
- * @brief ¼ö½Ñ¤Î½èÍı¼ÂÁõ / Hex code
+ * @brief å‘ªè¡“ã®å‡¦ç†å®Ÿè£… / Hex code
  * @date 2014/01/14
  * @author
  * 2014 Deskull rearranged comment for Doxygen.\n
@@ -17,11 +17,11 @@
 
 #include "angband.h"
 
-#define MAX_KEEP 4 /*!<¼ö½Ñ¤ÎºÇÂç±Ó¾§¿ô */
+#define MAX_KEEP 4 /*!<å‘ªè¡“ã®æœ€å¤§è© å”±æ•° */
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤¬±Ó¾§Ãæ¤ÎÁ´¼ö½Ñ¤òÄä»ß¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè© å”±ä¸­ã®å…¨å‘ªè¡“ã‚’åœæ­¢ã™ã‚‹
+ * @return ãªã—
  */
 bool stop_hex_spell_all(void)
 {
@@ -29,12 +29,11 @@ bool stop_hex_spell_all(void)
 
 	for (i = 0; i < 32; i++)
 	{
-		u32b spell = 1L << i;
-		if (hex_spelling(spell)) do_spell(REALM_HEX, spell, SPELL_STOP);
+		if (hex_spelling(i)) do_spell(REALM_HEX, i, SPELL_STOP);
 	}
 
-	p_ptr->magic_num1[0] = 0;
-	p_ptr->magic_num2[0] = 0;
+	CASTING_HEX_FLAGS(p_ptr) = 0;
+	CASTING_HEX_NUM(p_ptr) = 0;
 
 	/* Print message */
 	if (p_ptr->action == ACTION_SPELL) set_action(ACTION_NONE);
@@ -47,8 +46,8 @@ bool stop_hex_spell_all(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤¬±Ó¾§Ãæ¤Î¼ö½Ñ¤«¤é°ì¤Ä¤òÁª¤ó¤ÇÄä»ß¤¹¤ë
- * @return ¤Ê¤·
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè© å”±ä¸­ã®å‘ªè¡“ã‹ã‚‰ä¸€ã¤ã‚’é¸ã‚“ã§åœæ­¢ã™ã‚‹
+ * @return ãªã—
  */
 bool stop_hex_spell(void)
 {
@@ -63,7 +62,7 @@ bool stop_hex_spell(void)
 	if (!hex_spelling_any())
 	{
 #ifdef JP
-		msg_print("¼öÊ¸¤ò±Ó¾§¤·¤Æ¤¤¤Ş¤»¤ó¡£");
+		msg_print("å‘ªæ–‡ã‚’è© å”±ã—ã¦ã„ã¾ã›ã‚“ã€‚");
 #else
 		msg_print("You are casting no spell.");
 #endif
@@ -71,18 +70,18 @@ bool stop_hex_spell(void)
 	}
 
 	/* Stop all spells */
-	else if ((p_ptr->magic_num2[0] == 1) || (p_ptr->lev < 35))
+	else if ((CASTING_HEX_NUM(p_ptr) == 1) || (p_ptr->lev < 35))
 	{
 		return stop_hex_spell_all();
 	}
 	else
 	{
 #ifdef JP
-		strnfmt(out_val, 78, "¤É¤Î¼öÊ¸¤Î±Ó¾§¤òÃæÃÇ¤·¤Ş¤¹¤«¡©(¼öÊ¸ %c-%c, 'l'Á´¤Æ, ESC)",
-			I2A(0), I2A(p_ptr->magic_num2[0] - 1));
+		strnfmt(out_val, 78, "ã©ã®å‘ªæ–‡ã®è© å”±ã‚’ä¸­æ–­ã—ã¾ã™ã‹ï¼Ÿ(å‘ªæ–‡ %c-%c, 'l'å…¨ã¦, ESC)",
+			I2A(0), I2A(CASTING_HEX_NUM(p_ptr) - 1));
 #else
 		strnfmt(out_val, 78, "Which spell do you stop casting? (Spell %c-%c, 'l' to all, ESC)",
-			I2A(0), I2A(p_ptr->magic_num2[0] - 1));
+			I2A(0), I2A(CASTING_HEX_NUM(p_ptr) - 1));
 #endif
 
 		screen_save();
@@ -91,7 +90,7 @@ bool stop_hex_spell(void)
 		{
 			int n = 0;
 			Term_erase(x, y, 255);
-			prt("     Ì¾Á°", y, x + 5);
+			prt("     åå‰", y, x + 5);
 			for (spell = 0; spell < 32; spell++)
 			{
 				if (hex_spelling(spell))
@@ -103,14 +102,14 @@ bool stop_hex_spell(void)
 			}
 
 			if (!get_com(out_val, &choice, TRUE)) break;
-			if (isupper(choice)) choice = tolower(choice);
+			if (isupper(choice)) choice = (char)tolower(choice);
 
 			if (choice == 'l')	/* All */
 			{
 				screen_load();
 				return stop_hex_spell_all();
 			}
-			if ((choice < I2A(0)) || (choice > I2A(p_ptr->magic_num2[0] - 1))) continue;
+			if ((choice < I2A(0)) || (choice > I2A(CASTING_HEX_NUM(p_ptr) - 1))) continue;
 			flag = TRUE;
 		}
 	}
@@ -122,8 +121,8 @@ bool stop_hex_spell(void)
 		int n = sp[A2I(choice)];
 
 		do_spell(REALM_HEX, n, SPELL_STOP);
-		p_ptr->magic_num1[0] &= ~(1L << n);
-		p_ptr->magic_num2[0]--;
+		CASTING_HEX_FLAGS(p_ptr) &= ~(1L << n);
+		CASTING_HEX_NUM(p_ptr)--;
 	}
 
 	/* Redraw status */
@@ -135,9 +134,9 @@ bool stop_hex_spell(void)
 
 
 /*!
- * @brief °ìÄê»ş´ÖËè¤Ë¼ö½Ñ¤Ç¾ÃÈñ¤¹¤ëMP¤ò½èÍı¤¹¤ë /
+ * @brief ä¸€å®šæ™‚é–“æ¯ã«å‘ªè¡“ã§æ¶ˆè²»ã™ã‚‹MPã‚’å‡¦ç†ã™ã‚‹ /
  * Upkeeping hex spells Called from dungeon.c
- * @return ¤Ê¤·
+ * @return ãªã—
  */
 void check_hex(void)
 {
@@ -148,7 +147,7 @@ void check_hex(void)
 
 	/* Spells spelled by player */
 	if (p_ptr->realm1 != REALM_HEX) return;
-	if (!p_ptr->magic_num1[0] && !p_ptr->magic_num1[1]) return;
+	if (!CASTING_HEX_FLAGS(p_ptr) && !p_ptr->magic_num1[1]) return;
 
 	if (p_ptr->magic_num1[1])
 	{
@@ -179,7 +178,7 @@ void check_hex(void)
 	/* Culcurates final mana cost */
 	need_mana_frac = 0;
 	s64b_div(&need_mana, &need_mana_frac, 0, 3); /* Divide by 3 */
-	need_mana += (p_ptr->magic_num2[0] - 1);
+	need_mana += (CASTING_HEX_NUM(p_ptr) - 1);
 
 
 	/* Not enough mana */
@@ -198,7 +197,7 @@ void check_hex(void)
 		if (res)
 		{
 #ifdef JP
-			msg_print("±Ó¾§¤òºÆ³«¤·¤¿¡£");
+			msg_print("è© å”±ã‚’å†é–‹ã—ãŸã€‚");
 #else
 			msg_print("You restart spelling.");
 #endif
@@ -248,8 +247,8 @@ void check_hex(void)
 }
 
 /*!
- * @brief ¥×¥ì¥¤¥ä¡¼¤Î¼ö½Ñ±Ó¾§ÏÈ¤¬¤¹¤Ç¤ËºÇÂç¤«¤É¤¦¤«¤òÊÖ¤¹
- * @return ¤¹¤Ç¤ËÁ´ÏÈ¤òÍøÍÑ¤·¤Æ¤¤¤ë¤Ê¤éTRUE¤òÊÖ¤¹
+ * @brief ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ªè¡“è© å”±æ ãŒã™ã§ã«æœ€å¤§ã‹ã©ã†ã‹ã‚’è¿”ã™
+ * @return ã™ã§ã«å…¨æ ã‚’åˆ©ç”¨ã—ã¦ã„ã‚‹ãªã‚‰TRUEã‚’è¿”ã™
  */
 bool hex_spell_fully(void)
 {
@@ -260,46 +259,46 @@ bool hex_spell_fully(void)
 	/* Paranoia */
 	k_max = MIN(k_max, MAX_KEEP);
 
-	if (p_ptr->magic_num2[0] < k_max) return FALSE;
+	if (CASTING_HEX_NUM(p_ptr) < k_max) return FALSE;
 
 	return TRUE;
 }
 
 /*!
- * @brief °ìÄê¥²¡¼¥à¥¿¡¼¥óËè¤ËÉü½²½èÍı¤Î»Ä¤ê´ü´Ö¤ÎÈ½Äê¤ò¹Ô¤¦
- * @return ¤Ê¤·
+ * @brief ä¸€å®šã‚²ãƒ¼ãƒ ã‚¿ãƒ¼ãƒ³æ¯ã«å¾©è®å‡¦ç†ã®æ®‹ã‚ŠæœŸé–“ã®åˆ¤å®šã‚’è¡Œã†
+ * @return ãªã—
  */
 void revenge_spell(void)
 {
 	if (p_ptr->realm1 != REALM_HEX) return;
-	if (p_ptr->magic_num2[2] <= 0) return;
+	if (HEX_REVENGE_TURN(p_ptr) <= 0) return;
 
-	switch(p_ptr->magic_num2[1])
+	switch(HEX_REVENGE_TYPE(p_ptr))
 	{
-	case 1: do_spell(REALM_HEX, HEX_PATIENCE, SPELL_CONT); break;
-	case 2: do_spell(REALM_HEX, HEX_REVENGE, SPELL_CONT); break;
+		case 1: do_spell(REALM_HEX, HEX_PATIENCE, SPELL_CONT); break;
+		case 2: do_spell(REALM_HEX, HEX_REVENGE, SPELL_CONT); break;
 	}
 }
 
 /*!
- * @brief Éü½²¥À¥á¡¼¥¸¤ÎÄÉ²Ã¤ò¹Ô¤¦
- * @param dam ÃßÀÑ¤µ¤ì¤ë¥À¥á¡¼¥¸ÎÌ
- * @return ¤Ê¤·
+ * @brief å¾©è®ãƒ€ãƒ¡ãƒ¼ã‚¸ã®è¿½åŠ ã‚’è¡Œã†
+ * @param dam è“„ç©ã•ã‚Œã‚‹ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
+ * @return ãªã—
  */
-void revenge_store(int dam)
+void revenge_store(HIT_POINT dam)
 {
 	if (p_ptr->realm1 != REALM_HEX) return;
-	if (p_ptr->magic_num2[2] <= 0) return;
+	if (HEX_REVENGE_TURN(p_ptr) <= 0) return;
 
-	p_ptr->magic_num1[2] += dam;
+	HEX_REVENGE_POWER(p_ptr) += dam;
 }
 
 /*!
- * @brief È¿¥Æ¥ì¥İ¡¼¥È·ë³¦¤ÎÈ½Äê
- * @param m_idx È½Äê¤ÎÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼ID
- * @return È¿¥Æ¥ì¥İ¡¼¥È¤Î¸ú²Ì¤¬Å¬ÍÑ¤µ¤ì¤ë¤Ê¤éTRUE¤òÊÖ¤¹
+ * @brief åãƒ†ãƒ¬ãƒãƒ¼ãƒˆçµç•Œã®åˆ¤å®š
+ * @param m_idx åˆ¤å®šã®å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+ * @return åãƒ†ãƒ¬ãƒãƒ¼ãƒˆã®åŠ¹æœãŒé©ç”¨ã•ã‚Œã‚‹ãªã‚‰TRUEã‚’è¿”ã™
  */
-bool teleport_barrier(int m_idx)
+bool teleport_barrier(MONSTER_IDX m_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
@@ -311,11 +310,11 @@ bool teleport_barrier(int m_idx)
 }
 
 /*!
- * @brief È¿ËâË¡·ë³¦¤ÎÈ½Äê
- * @param m_idx È½Äê¤ÎÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼ID
- * @return È¿ËâË¡¤Î¸ú²Ì¤¬Å¬ÍÑ¤µ¤ì¤ë¤Ê¤éTRUE¤òÊÖ¤¹
+ * @brief åé­”æ³•çµç•Œã®åˆ¤å®š
+ * @param m_idx åˆ¤å®šã®å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+ * @return åé­”æ³•ã®åŠ¹æœãŒé©ç”¨ã•ã‚Œã‚‹ãªã‚‰TRUEã‚’è¿”ã™
  */
-bool magic_barrier(int m_idx)
+bool magic_barrier(MONSTER_IDX m_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
@@ -327,11 +326,11 @@ bool magic_barrier(int m_idx)
 }
 
 /*!
- * @brief È¿Áı¿£·ë³¦¤ÎÈ½Äê
- * @param m_idx È½Äê¤ÎÂĞ¾İ¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼ID
- * @return È¿Áı¿£¤Î¸ú²Ì¤¬Å¬ÍÑ¤µ¤ì¤ë¤Ê¤éTRUE¤òÊÖ¤¹
+ * @brief åå¢—æ®–çµç•Œã®åˆ¤å®š
+ * @param m_idx åˆ¤å®šã®å¯¾è±¡ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ID
+ * @return åå¢—æ®–ã®åŠ¹æœãŒé©ç”¨ã•ã‚Œã‚‹ãªã‚‰TRUEã‚’è¿”ã™
  */
-bool multiply_barrier(int m_idx)
+bool multiply_barrier(MONSTER_IDX m_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];

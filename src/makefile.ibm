@@ -50,21 +50,21 @@ GLIBS= -lgrx20
 # Targets
 #
 
-default: tanguband.exe
-	copy tanguband.exe ..
-	del tanguband.exe
+default: hengband.exe
+	copy hengband.exe ..
+	del hengband.exe
 
-install: tanguband.exe
-	copy tanguband.exe ..
+install: hengband.exe
+	copy hengband.exe ..
 
-all: tanguband.exe
+all: hengband.exe
 	@echo All done.  Use 'make install' to install.
 
 #
 # Link Executables
 #
 
-tanguband.exe: $(OBJS)
+hengband.exe: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS)
 
 # Compile source files

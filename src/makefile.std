@@ -260,17 +260,17 @@ LIBS = -L/usr/X11R6/lib -lX11 -lncurses
 # Hack -- "install" as the base target
 #
 
-install: tanguband
-	cp tanguband ..
-#	chmod u+s ../tanguband
+install: hengband
+	cp hengband ..
+#	chmod u+s ../hengband
 
 
 #
 # Build the "Angband" program
 #
 
-tanguband: $(OBJS)
-	$(CC) $(CFLAGS) -o tanguband $(OBJS) $(LDFLAGS) $(LIBS)
+hengband: $(OBJS)
+	$(CC) $(CFLAGS) -o hengband $(OBJS) $(LDFLAGS) $(LIBS)
 
 
 #

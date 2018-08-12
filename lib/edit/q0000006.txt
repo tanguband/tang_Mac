@@ -5,11 +5,11 @@ Q:$6:N:The Tower 2
 Q:6:N:塔
 
 # Definition
-Q:$6:Q:8:0:0:0:10:0:0:0:11
-Q:6:Q:8:0:0:0:10:0:0:0:11
+Q:$6:Q:8:0:0:0:40:0:0:0:11
+Q:6:Q:8:0:0:0:40:0:0:0:11
 
-# Random Monsters Levels +2
-F:1:FLOOR:8:*2
+# Random Monsters Levels +10
+F:1:FLOOR:8:*10
 
 # Nexious fume
 F:2:FLOOR:8:884

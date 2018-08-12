@@ -1,6 +1,6 @@
-/*!
+Ôªø/*!
  * @file mspells4.c
- * @brief •π•⁄•Îº¬π‘ΩËÕ˝ / Spell launch
+ * @brief „Çπ„Éö„É´ÂÆüË°åÂá¶ÁêÜ / Spell launch
  * @date 2014/07/14
  * @author Habu
  */
@@ -9,1961 +9,1962 @@
 #include "angband.h"
 
 /*!
-* @brief •‚•Û•π•ø°ºID§ÚºË§Í°¢•‚•Û•π•ø°ºÃæ§Úm_name§À¬Â∆˛§π§Î /
-* @param m_idx •‚•Û•π•ø°ºID
-* @param m_name •‚•Û•π•ø°ºÃæ§Ú∆˛Œœ§π§Î«€ŒÛ
+* @brief „É¢„É≥„Çπ„Çø„ÉºID„ÇíÂèñ„Çä„ÄÅ„É¢„É≥„Çπ„Çø„ÉºÂêç„Çím_name„Å´‰ª£ÂÖ•„Åô„Çã /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID
+* @param m_name „É¢„É≥„Çπ„Çø„ÉºÂêç„ÇíÂÖ•Âäõ„Åô„ÇãÈÖçÂàó
 */
-void monster_name(int m_idx, char* m_name)
+void monster_name(MONSTER_IDX m_idx, char* m_name)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_desc(m_name, m_ptr, 0x00);
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_desc(m_name, m_ptr, 0x00);
 }
 
 /*!
-* @brief •‚•Û•π•ø°º2¬Œ§¨•◊•Ï•§•‰°º§Œ∂·§Ø§ÀµÔ§Î§´§Œ»ΩƒÍ /
-* @param m_idx •‚•Û•π•ø°ºID∞Ï¬ŒÃ‹
-* @param t_idx •‚•Û•π•ø°ºID∆Û¬ŒÃ‹
-* @return •‚•Û•π•ø°º2¬Œ§Œ§…§¡§È§´§¨•◊•Ï•§•‰°º§Œ∂·§Ø§ÀµÔ§Ï§–TRUE°¢§…§¡§È§‚±Û§±§Ï§–FALSE§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº2‰Ωì„Åå„Éó„É¨„Ç§„É§„Éº„ÅÆËøë„Åè„Å´Â±Ö„Çã„Åã„ÅÆÂà§ÂÆö /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID‰∏Ä‰ΩìÁõÆ
+* @param t_idx „É¢„É≥„Çπ„Çø„ÉºID‰∫å‰ΩìÁõÆ
+* @return „É¢„É≥„Çπ„Çø„Éº2‰Ωì„ÅÆ„Å©„Å°„Çâ„Åã„Åå„Éó„É¨„Ç§„É§„Éº„ÅÆËøë„Åè„Å´Â±Ö„Çå„Å∞TRUE„ÄÅ„Å©„Å°„Çâ„ÇÇÈÅ†„Åë„Çå„Å∞FALSE„ÇíËøî„Åô„ÄÇ
 */
-bool monster_near_player(int m_idx, int t_idx)
+bool monster_near_player(MONSTER_IDX m_idx, IDX t_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_type    *t_ptr = &m_list[t_idx];
-    return (m_ptr->cdis <= MAX_SIGHT) || (t_ptr->cdis <= MAX_SIGHT);
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_type	*t_ptr = &m_list[t_idx];
+	return (m_ptr->cdis <= MAX_SIGHT) || (t_ptr->cdis <= MAX_SIGHT);
 }
 
 /*!
-* @brief •◊•Ï•§•‰°º§¨•‚•Û•π•ø°º§Ú∏´§Î§≥§»§¨§«§≠§Î§´§Œ»ΩƒÍ /
-* @param m_idx •‚•Û•π•ø°ºID
-* @return •◊•Ï•§•‰°º§¨•‚•Û•π•ø°º§Ú∏´§Î§≥§»§¨§«§≠§Î§ §ÈTRUE°¢§Ω§¶§«§ §±§Ï§–FALSE§Ú ÷§π°£
+* @brief „Éó„É¨„Ç§„É§„Éº„Åå„É¢„É≥„Çπ„Çø„Éº„ÇíË¶ã„Çã„Åì„Å®„Åå„Åß„Åç„Çã„Åã„ÅÆÂà§ÂÆö /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID
+* @return „Éó„É¨„Ç§„É§„Éº„Åå„É¢„É≥„Çπ„Çø„Éº„ÇíË¶ã„Çã„Åì„Å®„Åå„Åß„Åç„Çã„Å™„ÇâTRUE„ÄÅ„Åù„ÅÜ„Åß„Å™„Åë„Çå„Å∞FALSE„ÇíËøî„Åô„ÄÇ
 */
-bool see_monster(int m_idx)
+bool see_monster(MONSTER_IDX m_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    return is_seen(m_ptr);
+	monster_type	*m_ptr = &m_list[m_idx];
+	return is_seen(m_ptr);
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§Œæß§®§øºˆ ∏§Ú¿ƒÀ‚À°§«≥ÿΩ¨§«§≠§Î§´»ΩƒÍ§π§Î /
-* @param m_idx •‚•Û•π•ø°ºID
-* @return •◊•Ï•§•‰°º§¨¿ƒÀ‚À°§«≥ÿΩ¨§«§≠§Î§ §ÈTRUE°¢§Ω§¶§«§ §±§Ï§–FALSE§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅÆÂî±„Åà„ÅüÂë™Êñá„ÇíÈùíÈ≠îÊ≥ï„ÅßÂ≠¶Áøí„Åß„Åç„Çã„ÅãÂà§ÂÆö„Åô„Çã /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID
+* @return „Éó„É¨„Ç§„É§„Éº„ÅåÈùíÈ≠îÊ≥ï„ÅßÂ≠¶Áøí„Åß„Åç„Çã„Å™„ÇâTRUE„ÄÅ„Åù„ÅÜ„Åß„Å™„Åë„Çå„Å∞FALSE„ÇíËøî„Åô„ÄÇ
 */
-bool spell_learnable(int m_idx)
+bool spell_learnable(MONSTER_IDX m_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    /* Extract the "see-able-ness" */
-    bool seen = (!p_ptr->blind && m_ptr->ml);
+	monster_type	*m_ptr = &m_list[m_idx];
+	/* Extract the "see-able-ness" */
+	bool seen = (!p_ptr->blind && m_ptr->ml);
 
-    bool maneable = player_has_los_bold(m_ptr->fy, m_ptr->fx);
-    return (seen && maneable && !world_monster);
+	bool maneable = player_has_los_bold(m_ptr->fy, m_ptr->fx);
+	return (seen && maneable && !world_monster);
 }
 
 /*!
-* @brief •‚•Û•π•ø°ºID§´§È•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î§ÚºË∆¿§π§Î /
-* @param m_idx •‚•Û•π•ø°ºID
-* @return •‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
+* @brief „É¢„É≥„Çπ„Çø„ÉºID„Åã„Çâ„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´„ÇíÂèñÂæó„Åô„Çã /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID
+* @return „É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
 */
-int monster_level_idx(int m_idx)
+int monster_level_idx(MONSTER_IDX m_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
-	/*
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
 	int rlev = ((r_ptr->level >= 1) ? r_ptr->level : 1);
-	tanguband•‚•Û•π•ø°º§ŒÀ‚À°§Œ∞“Œœ§Œ§ø§·•Ï•Ÿ•Î —ππ
-	*/
-    int rlev = ((r_ptr->level >= 1) ? r_ptr->level : 1);
-
-    return rlev;
+	return rlev;
 }
 
 /*!
-* @brief •‚•Û•π•ø°ºID§´§ÈPOWERFUL•’•È•∞§ŒÕ≠Ãµ§ÚºË∆¿§π§Î /
-* @param m_idx •‚•Û•π•ø°ºID
-* @return POWERFUL•’•È•∞§¨§¢§Ï§–TRUE°¢§ §±§Ï§–FALSE§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„ÉºID„Åã„ÇâPOWERFUL„Éï„É©„Ç∞„ÅÆÊúâÁÑ°„ÇíÂèñÂæó„Åô„Çã /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID
+* @return POWERFUL„Éï„É©„Ç∞„Åå„ÅÇ„Çå„Å∞TRUE„ÄÅ„Å™„Åë„Çå„Å∞FALSE„ÇíËøî„Åô„ÄÇ
 */
-bool monster_is_powerful(int m_idx)
+bool monster_is_powerful(MONSTER_IDX m_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
-    bool powerful = r_ptr->flags2 & RF2_POWERFUL ? TRUE : FALSE;
-    return powerful;
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
+	bool powerful = r_ptr->flags2 & RF2_POWERFUL ? TRUE : FALSE;
+	return powerful;
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§¨•Ê•À°º•Øæ§¥≠≤ƒ«Ω§«§¢§Î§´§Ú»ΩƒÍ§π§Î /
-* @param m_idx •‚•Û•π•ø°ºID
-* @return æ§¥≠≤ƒ«Ω§«§¢§Ï§–PM_ALLOW_UNIQUE§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„Åå„É¶„Éã„Éº„ÇØÂè¨ÂñöÂèØËÉΩ„Åß„ÅÇ„Çã„Åã„ÇíÂà§ÂÆö„Åô„Çã /
+* @param m_idx „É¢„É≥„Çπ„Çø„ÉºID
+* @return Âè¨ÂñöÂèØËÉΩ„Åß„ÅÇ„Çå„Å∞PM_ALLOW_UNIQUE„ÇíËøî„Åô„ÄÇ
 */
-u32b monster_u_mode(int m_idx)
+u32b monster_u_mode(MONSTER_IDX m_idx)
 {
 	u32b u_mode = 0L;
-    monster_type    *m_ptr = &m_list[m_idx];
+	monster_type	*m_ptr = &m_list[m_idx];
 	bool pet = is_pet(m_ptr);
 	if (!pet) u_mode |= PM_ALLOW_UNIQUE;
 	return u_mode;
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§ÚµØ§≥§π /
-* @param t_idx •‚•Û•π•ø°ºID
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÇíËµ∑„Åì„Åô /
+* @param t_idx „É¢„É≥„Çπ„Çø„ÉºID
 */
-void monster_wakeup(int t_idx)
+void monster_wakeup(IDX t_idx)
 {
-    (void)set_monster_csleep(t_idx, 0);
+	(void)set_monster_csleep(t_idx, 0);
 }
 
 /*!
- * @brief •‚•Û•π•ø°º§¨ºˆ ∏π‘ª»§π§Î∫›§Œ•·•√•ª°º•∏§ÚΩËÕ˝§π§Î»∆Õ—¥ÿøÙ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param msg1 msg_flag§¨TRUE§«°¢•◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
- * @param msg2 msg_flag§¨TRUE§«°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
- * @param msg3 msg_flag§¨FALSE§«°¢•◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
- * @param msg4 msg_flag§¨FALSE§«°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
- * @param msg_flag •·•√•ª°º•∏§Ú ¨¥Ù§π§Î§ø§·§Œ•’•È•∞
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief „É¢„É≥„Çπ„Çø„Éº„ÅåÂë™ÊñáË°å‰Ωø„Åô„ÇãÈöõ„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏„ÇíÂá¶ÁêÜ„Åô„ÇãÊ±éÁî®Èñ¢Êï∞ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param msg1 msg_flag„ÅåTRUE„Åß„ÄÅ„Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+ * @param msg2 msg_flag„ÅåTRUE„Åß„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+ * @param msg3 msg_flag„ÅåFALSE„Åß„ÄÅ„Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+ * @param msg4 msg_flag„ÅåFALSE„Åß„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+ * @param msg_flag_aux „É°„ÉÉ„Çª„Éº„Ç∏„ÇíÂàÜÂ≤ê„Åô„Çã„Åü„ÇÅ„ÅÆ„Éï„É©„Ç∞
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void monspell_message_base(int m_idx, int t_idx, cptr msg1, cptr msg2, cptr msg3, cptr msg4, bool msg_flag, int TARGET_TYPE)
+static void monspell_message_base(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, cptr msg4, bool msg_flag_aux, int TARGET_TYPE)
 {
-    bool known = monster_near_player(m_idx, t_idx);
-    bool see_either = see_monster(m_idx) || see_monster(t_idx);
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	bool known = monster_near_player(m_idx, t_idx);
+	bool see_either = see_monster(m_idx) || see_monster(t_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
-    if (mon_to_player || (mon_to_mon && known && see_either))
-        disturb(1, 1);
+	if (mon_to_player || (mon_to_mon && known && see_either))
+		disturb(1, 1);
 
-    if (msg_flag)
-    {
-        if (mon_to_player)
-            msg_format(msg1, m_name);
-        else if (mon_to_mon && known && see_either)
-            msg_format(msg2, m_name);
-    }
-    else
-    {
-        if (mon_to_player)
-        {
-            msg_format(msg3, m_name);
-        }
-        else if (mon_to_mon && known && see_either)
-        {
-            msg_format(msg4, m_name, t_name);
-        }
-    }
+	if (msg_flag_aux)
+	{
+		if (mon_to_player)
+			msg_format(msg1, m_name);
+		else if (mon_to_mon && known && see_either)
+			msg_format(msg2, m_name);
+	}
+	else
+	{
+		if (mon_to_player)
+		{
+			msg_format(msg3, m_name);
+		}
+		else if (mon_to_mon && known && see_either)
+		{
+			msg_format(msg4, m_name, t_name);
+		}
+	}
 
-    if (mon_to_mon && known && !see_either)
-        mon_fight = TRUE;
+	if (mon_to_mon && known && !see_either)
+		mon_fight = TRUE;
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§¨ºˆ ∏π‘ª»§π§Î∫›§Œ•·•√•ª°º•∏§ÚΩËÕ˝§π§Î»∆Õ—¥ÿøÙ°£Ã’Ã‹ª˛§»ƒÃæÔª˛§Œ•·•√•ª°º•∏§Ú¿⁄§Í¬ÿ§®§Î°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param msg1 •◊•Ï•§•‰°º§¨Ã’Ã‹æı¬÷§Œ•·•√•ª°º•∏
-* @param msg2 •◊•Ï•§•‰°º§¨Ã’Ã‹§«§ §Ø°¢•◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
-* @param msg3 •◊•Ï•§•‰°º§¨Ã’Ã‹§«§ §Ø°¢•‚•Û•π•ø°º¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅåÂë™ÊñáË°å‰Ωø„Åô„ÇãÈöõ„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏„ÇíÂá¶ÁêÜ„Åô„ÇãÊ±éÁî®Èñ¢Êï∞„ÄÇÁõ≤ÁõÆÊôÇ„Å®ÈÄöÂ∏∏ÊôÇ„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏„ÇíÂàá„ÇäÊõø„Åà„Çã„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param msg1 „Éó„É¨„Ç§„É§„Éº„ÅåÁõ≤ÁõÆÁä∂ÊÖã„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param msg2 „Éó„É¨„Ç§„É§„Éº„ÅåÁõ≤ÁõÆ„Åß„Å™„Åè„ÄÅ„Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param msg3 „Éó„É¨„Ç§„É§„Éº„ÅåÁõ≤ÁõÆ„Åß„Å™„Åè„ÄÅ„É¢„É≥„Çπ„Çø„ÉºÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
 */
-void monspell_message(int m_idx, int t_idx, cptr msg1, cptr msg2, cptr msg3, int TARGET_TYPE)
+void monspell_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, int TARGET_TYPE)
 {
-    monspell_message_base(m_idx, t_idx, msg1, msg1, msg2, msg3, p_ptr->blind, TARGET_TYPE);
+	monspell_message_base(m_idx, t_idx, msg1, msg1, msg2, msg3, p_ptr->blind > 0, TARGET_TYPE);
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§¨ºˆ ∏π‘ª»§π§Î∫›§Œ•·•√•ª°º•∏§ÚΩËÕ˝§π§Î»∆Õ—¥ÿøÙ°£¬–•‚•Û•π•ø°º§»¬–•◊•Ï•§•‰°º§Œ•·•√•ª°º•∏§Ú¿⁄§Í¬ÿ§®§Î°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param msg1 •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
-* @param msg2 •‚•Û•π•ø°º¬–æ›§»§π§ÎæÏπÁ§Œ•·•√•ª°º•∏
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅåÂë™ÊñáË°å‰Ωø„Åô„ÇãÈöõ„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏„ÇíÂá¶ÁêÜ„Åô„ÇãÊ±éÁî®Èñ¢Êï∞„ÄÇÂØæ„É¢„É≥„Çπ„Çø„Éº„Å®ÂØæ„Éó„É¨„Ç§„É§„Éº„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏„ÇíÂàá„ÇäÊõø„Åà„Çã„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param msg1 „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param msg2 „É¢„É≥„Çπ„Çø„ÉºÂØæË±°„Å®„Åô„ÇãÂ†¥Âêà„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
 */
-void simple_monspell_message(int m_idx, int t_idx, cptr msg1, cptr msg2, int TARGET_TYPE)
+void simple_monspell_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, int TARGET_TYPE)
 {
-    monspell_message_base(m_idx, t_idx, msg1, msg2, msg1, msg2, p_ptr->blind, TARGET_TYPE);
+	monspell_message_base(m_idx, t_idx, msg1, msg2, msg1, msg2, p_ptr->blind > 0, TARGET_TYPE);
 }
 
 /*!
- * @brief RF4_SHRIEK§ŒΩËÕ˝°£∂´§”°£ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief RF4_SHRIEK„ÅÆÂá¶ÁêÜ„ÄÇÂè´„Å≥„ÄÇ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF4_SHRIEK(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF4_SHRIEK(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    simple_monspell_message(m_idx, t_idx,
-        _("%^s§¨§´§Ûπ‚§§∂‚¿⁄§Í¿º§Ú§¢§≤§ø°£", "%^s makes a high pitched shriek."),
-        _("%^s§¨%s§À∏˛§´§√§∆∂´§Û§¿°£", "%^s shrieks at %s."),
-        TARGET_TYPE);
+	simple_monspell_message(m_idx, t_idx,
+		_("%^s„Åå„Åã„ÇìÈ´ò„ÅÑÈáëÂàá„ÇäÂ£∞„Çí„ÅÇ„Åí„Åü„ÄÇ", "%^s makes a high pitched shriek."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶Âè´„Çì„Å†„ÄÇ", "%^s shrieks at %s."),
+		TARGET_TYPE);
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        aggravate_monsters(m_idx);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        monster_wakeup(t_idx);
-    }
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		aggravate_monsters(m_idx);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		monster_wakeup(t_idx);
+	}
 }
 
 /*!
- * @brief RF4_DISPEL§ŒΩËÕ˝°£À‚Œœæ√µÓ°£ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief RF4_DISPEL„ÅÆÂá¶ÁêÜ„ÄÇÈ≠îÂäõÊ∂àÂéª„ÄÇ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF4_DISPEL(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF4_DISPEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§ÚŒœ∂Ø§Ø§ƒ§÷§‰§§§ø°£", "%^s mumbles powerfully."),
-        _("%^s§¨À‚Œœæ√µÓ§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a dispel magic."),
-        _("%^s§¨%s§À¬–§∑§∆À‚Œœæ√µÓ§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a dispel magic at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„ÇíÂäõÂº∑„Åè„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles powerfully."),
+		_("%^s„ÅåÈ≠îÂäõÊ∂àÂéª„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a dispel magic."),
+		_("%^s„Åå%s„Å´ÂØæ„Åó„Å¶È≠îÂäõÊ∂àÂéª„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a dispel magic at %s."),
+		TARGET_TYPE);
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        dispel_player();
-        if (p_ptr->riding) dispel_monster_status(p_ptr->riding);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		dispel_player();
+		if (p_ptr->riding) dispel_monster_status(p_ptr->riding);
 
-        if ((p_ptr->pseikaku == SEIKAKU_COMBAT) || (inventory[INVEN_BOW].name1 == ART_CRIMSON))
-            msg_print(_("§‰§Í§‰§¨§√§ø§ °™", ""));
+		if ((p_ptr->pseikaku == SEIKAKU_COMBAT) || (inventory[INVEN_BOW].name1 == ART_CRIMSON))
+			msg_print(_("„ÇÑ„Çä„ÇÑ„Åå„Å£„Åü„Å™ÔºÅ", ""));
 
-        learn_spell(MS_DISPEL);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        if (t_idx == p_ptr->riding) dispel_player();
-        dispel_monster_status(t_idx);
-    }
+		learn_spell(MS_DISPEL);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		if (t_idx == p_ptr->riding) dispel_player();
+		dispel_monster_status(t_idx);
+	}
 }
 
 /*!
-* @brief RF4_ROCKET§ŒΩËÕ˝°£•Ì•±•√•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF4_ROCKET„ÅÆÂá¶ÁêÜ„ÄÇ„É≠„Ç±„ÉÉ„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF4_ROCKET(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF4_ROCKET(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§ÚºÕ§√§ø°£", "%^s shoots something."),
-        _("%^s§¨•Ì•±•√•»§Ú»ØºÕ§∑§ø°£", "%^s fires a rocket."),
-        _("%^s§¨%s§À•Ì•±•√•»§Ú»ØºÕ§∑§ø°£", "%^s fires a rocket at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„ÇíÂ∞Ñ„Å£„Åü„ÄÇ", "%^s shoots something."),
+		_("%^s„Åå„É≠„Ç±„ÉÉ„Éà„ÇíÁô∫Â∞Ñ„Åó„Åü„ÄÇ", "%^s fires a rocket."),
+		_("%^s„Åå%s„Å´„É≠„Ç±„ÉÉ„Éà„ÇíÁô∫Â∞Ñ„Åó„Åü„ÄÇ", "%^s fires a rocket at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_ROCKET), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_ROCKET, dam, 2, FALSE, MS_ROCKET, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_SHARD);
-    return dam;
+	dam = monspell_damage((MS_ROCKET), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_ROCKET, dam, 2, FALSE, MS_ROCKET, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_SHARD);
+	return dam;
 }
 
 /*!
-* @brief RF4_SHOOT§ŒΩËÕ˝°£ºÕ∑‚°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF4_SHOOT„ÅÆÂá¶ÁêÜ„ÄÇÂ∞ÑÊíÉ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF4_SHOOT(int y, int x, int m_idx, int t_idx,int TARGET_TYPE)
+HIT_POINT spell_RF4_SHOOT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx,int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨¥ÒÃØ§ ≤ª§Ú»Ø§∑§ø°£", "%^s makes a strange noise."),
-        _("%^s§¨Ã§Ú ¸§√§ø°£", "%^s fires an arrow."),
-        _("%^s§¨%s§ÀÃ§Ú ¸§√§ø°£", "%^s fires an arrow at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„ÅåÂ•áÂ¶ô„Å™Èü≥„ÇíÁô∫„Åó„Åü„ÄÇ", "%^s makes a strange noise."),
+		_("%^s„ÅåÁü¢„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s fires an arrow."),
+		_("%^s„Åå%s„Å´Áü¢„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s fires an arrow at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_SHOOT), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_ARROW, dam, MS_SHOOT, TARGET_TYPE);
-    sound(SOUND_SHOOT);
+	dam = monspell_damage((MS_SHOOT), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_ARROW, dam, MS_SHOOT, TARGET_TYPE);
+	sound(SOUND_SHOOT);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF4_BR_*§ŒΩËÕ˝°£≥∆ºÔ•÷•Ï•π°£ /
-* @param GF_TYPE •÷•Ï•π§Œ¬∞¿≠
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF4_BR_*„ÅÆÂá¶ÁêÜ„ÄÇÂêÑÁ®Æ„Éñ„É¨„Çπ„ÄÇ /
+* @param GF_TYPE „Éñ„É¨„Çπ„ÅÆÂ±ûÊÄß
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF4_BREATH(int GF_TYPE, int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF4_BREATH(int GF_TYPE, POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam, ms_type, drs_type;
-    cptr type_s;
-    bool smart_learn = TRUE;
-    monster_type    *m_ptr = &m_list[m_idx];
-    bool known = monster_near_player(m_idx, t_idx);
-    bool see_either = see_monster(m_idx) || see_monster(t_idx);
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	HIT_POINT dam, ms_type, drs_type = 0;
+	cptr type_s;
+	bool smart_learn_aux = TRUE;
+	monster_type	*m_ptr = &m_list[m_idx];
+	bool known = monster_near_player(m_idx, t_idx);
+	bool see_either = see_monster(m_idx) || see_monster(t_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
-    switch (GF_TYPE)
-    {
-    case GF_ACID:
-        dam = monspell_damage((MS_BR_ACID), m_idx, DAM_ROLL);
-        type_s = _("ª¿", "acid");
-        ms_type = MS_BR_ACID;
-        drs_type = DRS_ACID;
-        break;
-    case GF_ELEC:
-        dam = monspell_damage((MS_BR_ELEC), m_idx, DAM_ROLL);
-        type_s = _("∞∫ ", "lightning");
-        ms_type = MS_BR_ELEC;
-        drs_type = DRS_ELEC;
-        break;
-    case GF_FIRE:
-        dam = monspell_damage((MS_BR_FIRE), m_idx, DAM_ROLL);
-        type_s = _("≤–±Í", "fire");
-        ms_type = MS_BR_FIRE;
-        drs_type = DRS_FIRE;
-        break;
-    case GF_COLD:
-        dam = monspell_damage((MS_BR_COLD), m_idx, DAM_ROLL);
-        type_s = _("Œ‰µ§", "frost");
-        ms_type = MS_BR_COLD;
-        drs_type = DRS_COLD;
-        break;
-    case GF_POIS:
-        dam = monspell_damage((MS_BR_POIS), m_idx, DAM_ROLL);
-        type_s = _("•¨•π", "gas");
-        ms_type = MS_BR_POIS;
-        drs_type = DRS_POIS;
-        break;
-    case GF_NETHER:
-        dam = monspell_damage((MS_BR_NETHER), m_idx, DAM_ROLL);
-        type_s = _("√œπˆ", "nether");
-        ms_type = MS_BR_NETHER;
-        drs_type = DRS_NETH;
-        break;
-    case GF_LITE:
-        dam = monspell_damage((MS_BR_LITE), m_idx, DAM_ROLL);
-        type_s = _("¡Æ∏˜", "light");
-        ms_type = MS_BR_LITE;
-        drs_type = DRS_LITE;
-        break;
-    case GF_DARK:
-        dam = monspell_damage((MS_BR_DARK), m_idx, DAM_ROLL);
-        type_s = _("∞≈πı", "darkness");
-        ms_type = MS_BR_DARK;
-        drs_type = DRS_DARK;
-        break;
-    case GF_CONFUSION:
-        dam = monspell_damage((MS_BR_CONF), m_idx, DAM_ROLL);
-        type_s = _("∫ÆÕ", "confusion");
-        ms_type = MS_BR_CONF;
-        drs_type = DRS_CONF;
-        break;
-    case GF_SOUND:
-        dam = monspell_damage((MS_BR_SOUND), m_idx, DAM_ROLL);
-        type_s = _("πÏ≤ª", "sound");
-        ms_type = MS_BR_SOUND;
-        drs_type = DRS_SOUND;
-        break;
-    case GF_CHAOS:
-        dam = monspell_damage((MS_BR_CHAOS), m_idx, DAM_ROLL);
-        type_s = _("•´•™•π", "chaos");
-        ms_type = MS_BR_CHAOS;
-        drs_type = DRS_CHAOS;
-        break;
-    case GF_DISENCHANT:
-        dam = monspell_damage((MS_BR_DISEN), m_idx, DAM_ROLL);
-        type_s = _("ŒÙ≤Ω", "disenchantment");
-        ms_type = MS_BR_DISEN;
-        drs_type = DRS_DISEN;
-        break;
-    case GF_NEXUS:
-        dam = monspell_damage((MS_BR_NEXUS), m_idx, DAM_ROLL);
-        type_s = _("∞¯≤Ã∫ÆÕ", "nexus");
-        ms_type = MS_BR_NEXUS;
-        drs_type = DRS_NEXUS;
-        break;
-    case GF_TIME:
-        dam = monspell_damage((MS_BR_TIME), m_idx, DAM_ROLL);
-        type_s = _("ª˛¥÷µ’≈æ", "time");
-        ms_type = MS_BR_TIME;
-        smart_learn = FALSE;
-        break;
-    case GF_INERTIAL:
-        dam = monspell_damage((MS_BR_INERTIA), m_idx, DAM_ROLL);
-        type_s = _("√Ÿ∆ﬂ", "inertia");
-        ms_type = MS_BR_INERTIA;
-        smart_learn = FALSE;
-        break;
-    case GF_GRAVITY:
-        dam = monspell_damage((MS_BR_GRAVITY), m_idx, DAM_ROLL);
-        type_s = _("Ω≈Œœ", "gravity");
-        ms_type = MS_BR_GRAVITY;
-        smart_learn = FALSE;
-        break;
-    case GF_SHARDS:
-        dam = monspell_damage((MS_BR_SHARDS), m_idx, DAM_ROLL);
-        type_s = _("«À “", "shards");
-        ms_type = MS_BR_SHARDS;
-        drs_type = DRS_SHARD;
-        break;
-    case GF_PLASMA:
-        dam = monspell_damage((MS_BR_PLASMA), m_idx, DAM_ROLL);
-        type_s = _("•◊•È•∫•ﬁ", "plasma");
-        ms_type = MS_BR_PLASMA;
-        smart_learn = FALSE;
-        break;
-    case GF_FORCE:
-        dam = monspell_damage((MS_BR_FORCE), m_idx, DAM_ROLL);
-        type_s = _("•’•©°º•π", "force");
-        ms_type = MS_BR_FORCE;
-        smart_learn = FALSE;
-        break;
-    case GF_MANA:
-        dam = monspell_damage((MS_BR_MANA), m_idx, DAM_ROLL);
-        type_s = _("À‚Œœ", "mana");
-        ms_type = MS_BR_MANA;
-        smart_learn = FALSE;
-        break;
-    case GF_NUKE:
-        dam = monspell_damage((MS_BR_NUKE), m_idx, DAM_ROLL);
-        type_s = _(" ¸ºÕ¿≠«—¥˛ ™", "toxic waste");
-        ms_type = MS_BR_NUKE;
-        drs_type = DRS_POIS;
-        break;
-    case GF_DISINTEGRATE:
-        dam = monspell_damage((MS_BR_DISI), m_idx, DAM_ROLL);
-        type_s = _(" ¨≤Ú", "disintegration");
-        ms_type = MS_BR_DISI;
-        smart_learn = FALSE;
-        break;
-    default:
-        break;
-    }
+	switch (GF_TYPE)
+	{
+	case GF_ACID:
+		dam = monspell_damage((MS_BR_ACID), m_idx, DAM_ROLL);
+		type_s = _("ÈÖ∏", "acid");
+		ms_type = MS_BR_ACID;
+		drs_type = DRS_ACID;
+		break;
+	case GF_ELEC:
+		dam = monspell_damage((MS_BR_ELEC), m_idx, DAM_ROLL);
+		type_s = _("Á®≤Â¶ª", "lightning");
+		ms_type = MS_BR_ELEC;
+		drs_type = DRS_ELEC;
+		break;
+	case GF_FIRE:
+		dam = monspell_damage((MS_BR_FIRE), m_idx, DAM_ROLL);
+		type_s = _("ÁÅ´ÁÇé", "fire");
+		ms_type = MS_BR_FIRE;
+		drs_type = DRS_FIRE;
+		break;
+	case GF_COLD:
+		dam = monspell_damage((MS_BR_COLD), m_idx, DAM_ROLL);
+		type_s = _("ÂÜ∑Ê∞ó", "frost");
+		ms_type = MS_BR_COLD;
+		drs_type = DRS_COLD;
+		break;
+	case GF_POIS:
+		dam = monspell_damage((MS_BR_POIS), m_idx, DAM_ROLL);
+		type_s = _("„Ç¨„Çπ", "gas");
+		ms_type = MS_BR_POIS;
+		drs_type = DRS_POIS;
+		break;
+	case GF_NETHER:
+		dam = monspell_damage((MS_BR_NETHER), m_idx, DAM_ROLL);
+		type_s = _("Âú∞ÁçÑ", "nether");
+		ms_type = MS_BR_NETHER;
+		drs_type = DRS_NETH;
+		break;
+	case GF_LITE:
+		dam = monspell_damage((MS_BR_LITE), m_idx, DAM_ROLL);
+		type_s = _("ÈñÉÂÖâ", "light");
+		ms_type = MS_BR_LITE;
+		drs_type = DRS_LITE;
+		break;
+	case GF_DARK:
+		dam = monspell_damage((MS_BR_DARK), m_idx, DAM_ROLL);
+		type_s = _("ÊöóÈªí", "darkness");
+		ms_type = MS_BR_DARK;
+		drs_type = DRS_DARK;
+		break;
+	case GF_CONFUSION:
+		dam = monspell_damage((MS_BR_CONF), m_idx, DAM_ROLL);
+		type_s = _("Ê∑∑‰π±", "confusion");
+		ms_type = MS_BR_CONF;
+		drs_type = DRS_CONF;
+		break;
+	case GF_SOUND:
+		dam = monspell_damage((MS_BR_SOUND), m_idx, DAM_ROLL);
+		type_s = _("ËΩüÈü≥", "sound");
+		ms_type = MS_BR_SOUND;
+		drs_type = DRS_SOUND;
+		break;
+	case GF_CHAOS:
+		dam = monspell_damage((MS_BR_CHAOS), m_idx, DAM_ROLL);
+		type_s = _("„Ç´„Ç™„Çπ", "chaos");
+		ms_type = MS_BR_CHAOS;
+		drs_type = DRS_CHAOS;
+		break;
+	case GF_DISENCHANT:
+		dam = monspell_damage((MS_BR_DISEN), m_idx, DAM_ROLL);
+		type_s = _("Âä£Âåñ", "disenchantment");
+		ms_type = MS_BR_DISEN;
+		drs_type = DRS_DISEN;
+		break;
+	case GF_NEXUS:
+		dam = monspell_damage((MS_BR_NEXUS), m_idx, DAM_ROLL);
+		type_s = _("Âõ†ÊûúÊ∑∑‰π±", "nexus");
+		ms_type = MS_BR_NEXUS;
+		drs_type = DRS_NEXUS;
+		break;
+	case GF_TIME:
+		dam = monspell_damage((MS_BR_TIME), m_idx, DAM_ROLL);
+		type_s = _("ÊôÇÈñìÈÄÜËª¢", "time");
+		ms_type = MS_BR_TIME;
+		smart_learn_aux = FALSE;
+		break;
+	case GF_INERTIAL:
+		dam = monspell_damage((MS_BR_INERTIA), m_idx, DAM_ROLL);
+		type_s = _("ÈÅÖÈàç", "inertia");
+		ms_type = MS_BR_INERTIA;
+		smart_learn_aux = FALSE;
+		break;
+	case GF_GRAVITY:
+		dam = monspell_damage((MS_BR_GRAVITY), m_idx, DAM_ROLL);
+		type_s = _("ÈáçÂäõ", "gravity");
+		ms_type = MS_BR_GRAVITY;
+		smart_learn_aux = FALSE;
+		break;
+	case GF_SHARDS:
+		dam = monspell_damage((MS_BR_SHARDS), m_idx, DAM_ROLL);
+		type_s = _("Á†¥Áâá", "shards");
+		ms_type = MS_BR_SHARDS;
+		drs_type = DRS_SHARD;
+		break;
+	case GF_PLASMA:
+		dam = monspell_damage((MS_BR_PLASMA), m_idx, DAM_ROLL);
+		type_s = _("„Éó„É©„Ç∫„Éû", "plasma");
+		ms_type = MS_BR_PLASMA;
+		smart_learn_aux = FALSE;
+		break;
+	case GF_FORCE:
+		dam = monspell_damage((MS_BR_FORCE), m_idx, DAM_ROLL);
+		type_s = _("„Éï„Ç©„Éº„Çπ", "force");
+		ms_type = MS_BR_FORCE;
+		smart_learn_aux = FALSE;
+		break;
+	case GF_MANA:
+		dam = monspell_damage((MS_BR_MANA), m_idx, DAM_ROLL);
+		type_s = _("È≠îÂäõ", "mana");
+		ms_type = MS_BR_MANA;
+		smart_learn_aux = FALSE;
+		break;
+	case GF_NUKE:
+		dam = monspell_damage((MS_BR_NUKE), m_idx, DAM_ROLL);
+		type_s = _("ÊîæÂ∞ÑÊÄßÂªÉÊ£ÑÁâ©", "toxic waste");
+		ms_type = MS_BR_NUKE;
+		drs_type = DRS_POIS;
+		break;
+	case GF_DISINTEGRATE:
+		dam = monspell_damage((MS_BR_DISI), m_idx, DAM_ROLL);
+		type_s = _("ÂàÜËß£", "disintegration");
+		ms_type = MS_BR_DISI;
+		smart_learn_aux = FALSE;
+		break;
+	default:
+		/* Do not reach here */
+		dam = 0;
+		type_s = _("‰∏çÊòé", "Unknown");
+		ms_type = MS_BR_ACID;
+		smart_learn_aux = FALSE;
+		break;
+	}
 
-    if (mon_to_player || (mon_to_mon && known && see_either))
-        disturb(1, 1);
+	if (mon_to_player || (mon_to_mon && known && see_either))
+		disturb(1, 1);
 
-    if (m_ptr->r_idx == MON_JAIAN && GF_TYPE == GF_SOUND)
-    {
-        msg_format(_("°÷•‹•©•®°◊", "'Booooeeeeee'"));
-    }
-    else if (m_ptr->r_idx == MON_BOTEI && GF_TYPE == GF_SHARDS)
-    {
-        msg_format(_("°÷•‹ƒÎ•”•Î•´•√•ø°º°™°™°™°◊", "'Boty-Build cutter!!!'"));
-    }
-    else if (p_ptr->blind)
-    {
-        if (mon_to_player || (mon_to_mon && known && see_either))
-            msg_format(_("%^s§¨≤ø§´§Œ•÷•Ï•π§Ú≈«§§§ø°£", "%^s breathes."), m_name);
-    }
-    else
-    {
-        if (mon_to_player)
-        {
-            msg_format(_("%^s§¨%^s§Œ•÷•Ï•π§Ú≈«§§§ø°£", "%^s breathes %^s."), m_name, type_s);
-        }
-        else if (mon_to_mon && known && see_either)
-        {
-            _(msg_format("%^s§¨%^s§À%^s§Œ•÷•Ï•π§Ú≈«§§§ø°£", m_name, t_name, type_s),
-              msg_format("%^s breathes %^s at %^s.", m_name, type_s, t_name));
-        }
-    }
+	if (m_ptr->r_idx == MON_JAIAN && GF_TYPE == GF_SOUND)
+	{
+		msg_format(_("„Äå„Éú„Ç©„Ç®ÔΩûÔΩûÔΩûÔΩûÔΩûÔΩû„Äç", "'Booooeeeeee'"));
+	}
+	else if (m_ptr->r_idx == MON_BOTEI && GF_TYPE == GF_SHARDS)
+	{
+		msg_format(_("„Äå„ÉúÂ∏ù„Éì„É´„Ç´„ÉÉ„Çø„ÉºÔºÅÔºÅÔºÅ„Äç", "'Boty-Build cutter!!!'"));
+	}
+	else if (p_ptr->blind)
+	{
+		if (mon_to_player || (mon_to_mon && known && see_either))
+			msg_format(_("%^s„Åå‰Ωï„Åã„ÅÆ„Éñ„É¨„Çπ„ÇíÂêê„ÅÑ„Åü„ÄÇ", "%^s breathes."), m_name);
+	}
+	else
+	{
+		if (mon_to_player)
+		{
+			msg_format(_("%^s„Åå%^s„ÅÆ„Éñ„É¨„Çπ„ÇíÂêê„ÅÑ„Åü„ÄÇ", "%^s breathes %^s."), m_name, type_s);
+		}
+		else if (mon_to_mon && known && see_either)
+		{
+			_(msg_format("%^s„Åå%^s„Å´%^s„ÅÆ„Éñ„É¨„Çπ„ÇíÂêê„ÅÑ„Åü„ÄÇ", m_name, t_name, type_s),
+			  msg_format("%^s breathes %^s at %^s.", m_name, type_s, t_name));
+		}
+	}
 
-    if (mon_to_mon && known && !see_either)
-        mon_fight = TRUE;
+	if (mon_to_mon && known && !see_either)
+		mon_fight = TRUE;
 
-    sound(SOUND_BREATH);
-    breath(y, x, m_idx, GF_TYPE, dam, 0, TRUE, ms_type, TARGET_TYPE);
-    if (smart_learn && mon_to_player)
-        update_smart_learn(m_idx, drs_type);
+	sound(SOUND_BREATH);
+	breath(y, x, m_idx, GF_TYPE, dam, 0, TRUE, ms_type, TARGET_TYPE);
+	if (smart_learn_aux && mon_to_player)
+		update_smart_learn(m_idx, drs_type);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF4_BA_NUKE§ŒΩËÕ˝°£ ¸ºÕ«ΩµÂ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF4_BA_NUKE„ÅÆÂá¶ÁêÜ„ÄÇÊîæÂ∞ÑËÉΩÁêÉ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF4_BA_NUKE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF4_BA_NUKE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨ ¸ºÕ«ΩµÂ§Ú ¸§√§ø°£", "%^s casts a ball of radiation."),
-        _("%^s§¨%s§À ¸ºÕ«ΩµÂ§Ú ¸§√§ø°£", "%^s casts a ball of radiation at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÊîæÂ∞ÑËÉΩÁêÉ„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s casts a ball of radiation."),
+		_("%^s„Åå%s„Å´ÊîæÂ∞ÑËÉΩÁêÉ„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s casts a ball of radiation at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BALL_NUKE), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_NUKE, dam, 2, FALSE, MS_BALL_NUKE, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_POIS);
+	dam = monspell_damage((MS_BALL_NUKE), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_NUKE, dam, 2, FALSE, MS_BALL_NUKE, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_POIS);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF4_BA_CHAO§ŒΩËÕ˝°£Ω„•Ì•∞•Î•π°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF4_BA_CHAO„ÅÆÂá¶ÁêÜ„ÄÇÁ¥î„É≠„Ç∞„É´„Çπ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF4_BA_CHAO(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF4_BA_CHAO(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨∂≤§Ì§∑§≤§À§ƒ§÷§‰§§§ø°£", "%^s mumbles frighteningly."),
-        _("%^s§¨Ω„•Ì•∞•Î•π§Ú ¸§√§ø°£", "%^s invokes a raw Logrus."),
-        _("%^s§¨%s§ÀΩ„•Ì•∞•Î•π§Ú ¸§√§ø°£", "%^s invokes raw Logrus upon %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„ÅåÊÅê„Çç„Åó„Åí„Å´„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles frighteningly."),
+		_("%^s„ÅåÁ¥î„É≠„Ç∞„É´„Çπ„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s invokes a raw Logrus."),
+		_("%^s„Åå%s„Å´Á¥î„É≠„Ç∞„É´„Çπ„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s invokes raw Logrus upon %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BALL_CHAOS), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_CHAOS, dam, 4, FALSE, MS_BALL_CHAOS, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_CHAOS);
+	dam = monspell_damage((MS_BALL_CHAOS), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_CHAOS, dam, 4, FALSE, MS_BALL_CHAOS, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_CHAOS);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_ACID§ŒΩËÕ˝°£•¢•∑•√•…°¶•‹°º•Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_ACID„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„Ç∑„ÉÉ„Éâ„Éª„Éú„Éº„É´„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_ACID(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_ACID(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam, rad;
+	HIT_POINT dam, rad;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•¢•∑•√•…°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£", "%^s casts an acid ball."),
-        _("%^s§¨%s§À∏˛§´§√§∆•¢•∑•√•…°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£",
-          "%^s casts an acid ball at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Ç¢„Ç∑„ÉÉ„Éâ„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts an acid ball."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Ç¢„Ç∑„ÉÉ„Éâ„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ",
+		  "%^s casts an acid ball at %s."),
+		TARGET_TYPE);
 
-    rad = monster_is_powerful(m_idx) ? 4 : 2;
-    dam = monspell_damage((MS_BALL_ACID), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_ACID, dam, rad, FALSE, MS_BALL_ACID, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_ACID);
+	rad = monster_is_powerful(m_idx) ? 4 : 2;
+	dam = monspell_damage((MS_BALL_ACID), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_ACID, dam, rad, FALSE, MS_BALL_ACID, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_ACID);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_ELEC§ŒΩËÕ˝°£•µ•Û•¿°º°¶•‹°º•Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_ELEC„ÅÆÂá¶ÁêÜ„ÄÇ„Çµ„É≥„ÉÄ„Éº„Éª„Éú„Éº„É´„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_ELEC(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_ELEC(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam, rad;
+	HIT_POINT dam, rad;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•µ•Û•¿°º°¶°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a lightning ball."),
-        _("%^s§¨%s§À∏˛§´§√§∆•µ•Û•¿°º°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£", 
-          "%^s casts a lightning ball at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Çµ„É≥„ÉÄ„Éº„Éª„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a lightning ball."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Çµ„É≥„ÉÄ„Éº„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", 
+		  "%^s casts a lightning ball at %s."),
+		TARGET_TYPE);
 
-    rad = monster_is_powerful(m_idx) ? 4 : 2;
-    dam = monspell_damage((MS_BALL_ELEC), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_ELEC, dam, rad, FALSE, MS_BALL_ELEC, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_ELEC);
+	rad = monster_is_powerful(m_idx) ? 4 : 2;
+	dam = monspell_damage((MS_BALL_ELEC), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_ELEC, dam, rad, FALSE, MS_BALL_ELEC, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_ELEC);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_FIRE§ŒΩËÕ˝°£•’•°•§•¢°¶•‹°º•Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_FIRE„ÅÆÂá¶ÁêÜ„ÄÇ„Éï„Ç°„Ç§„Ç¢„Éª„Éú„Éº„É´„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_FIRE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam, rad;
-    monster_type    *m_ptr = &m_list[m_idx];
+	HIT_POINT dam, rad;
+	monster_type	*m_ptr = &m_list[m_idx];
 
-    if (m_ptr->r_idx == MON_ROLENTO)
-    {
-        monspell_message(m_idx, t_idx,
-            _("%s§¨≤ø§´§Ú≈Í§≤§ø°£", "%^s throws something."),
-            _("%s§œºÍ‹ÿ√∆§Ú≈Í§≤§ø°£", "%^s throws a hand grenade."),
-            _("%^s§¨%^s§À∏˛§´§√§∆ºÍ‹ÿ√∆§Ú≈Í§≤§ø°£", "%^s throws a hand grenade."),
-            TARGET_TYPE);
-    }
-    else
-    {
-        monspell_message(m_idx, t_idx,
-            _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-            _("%^s§¨•’•°•§•¢°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a fire ball."),
-            _("%^s§¨%s§À∏˛§´§√§∆•’•°•§•¢°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£",
-            "%^s casts a fire ball at %s."),
-            TARGET_TYPE);
-    }
-    rad = monster_is_powerful(m_idx) ? 4 : 2;
-    dam = monspell_damage((MS_BALL_FIRE), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_FIRE, dam, rad, FALSE, MS_BALL_FIRE, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_FIRE);
+	if (m_ptr->r_idx == MON_ROLENTO)
+	{
+		monspell_message(m_idx, t_idx,
+			_("%s„Åå‰Ωï„Åã„ÇíÊäï„Åí„Åü„ÄÇ", "%^s throws something."),
+			_("%s„ÅØÊâãÊ¶¥Âºæ„ÇíÊäï„Åí„Åü„ÄÇ", "%^s throws a hand grenade."),
+			_("%^s„Åå%^s„Å´Âêë„Åã„Å£„Å¶ÊâãÊ¶¥Âºæ„ÇíÊäï„Åí„Åü„ÄÇ", "%^s throws a hand grenade."),
+			TARGET_TYPE);
+	}
+	else
+	{
+		monspell_message(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„Åå„Éï„Ç°„Ç§„Ç¢„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a fire ball."),
+			_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Éï„Ç°„Ç§„Ç¢„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ",
+			"%^s casts a fire ball at %s."),
+			TARGET_TYPE);
+	}
+	rad = monster_is_powerful(m_idx) ? 4 : 2;
+	dam = monspell_damage((MS_BALL_FIRE), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_FIRE, dam, rad, FALSE, MS_BALL_FIRE, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_FIRE);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_COLD§ŒΩËÕ˝°£•¢•§•π°¶•‹°º•Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_COLD„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„Ç§„Çπ„Éª„Éú„Éº„É´„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_COLD(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_COLD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam, rad;
+	HIT_POINT dam, rad;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•¢•§•π°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a frost ball."),
-        _("%^s§¨%s§À∏˛§´§√§∆•¢•§•π°¶•‹°º•Î§Œºˆ ∏§Úæß§®§ø°£",
-        "%^s casts a frost ball at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Ç¢„Ç§„Çπ„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a frost ball."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Ç¢„Ç§„Çπ„Éª„Éú„Éº„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ",
+		"%^s casts a frost ball at %s."),
+		TARGET_TYPE);
 
-    rad = monster_is_powerful(m_idx) ? 4 : 2;
-    dam = monspell_damage((MS_BALL_COLD), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_COLD, dam, rad, FALSE, MS_BALL_COLD, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_COLD);
+	rad = monster_is_powerful(m_idx) ? 4 : 2;
+	dam = monspell_damage((MS_BALL_COLD), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_COLD, dam, rad, FALSE, MS_BALL_COLD, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_COLD);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_POIS§ŒΩËÕ˝°£∞≠Ω≠±¿°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_POIS„ÅÆÂá¶ÁêÜ„ÄÇÊÇ™Ëá≠Èõ≤„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_POIS(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_POIS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨∞≠Ω≠±¿§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a stinking cloud."),
-        _("%^s§¨%s§À∏˛§´§√§∆∞≠Ω≠±¿§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a stinking cloud at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÊÇ™Ëá≠Èõ≤„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a stinking cloud."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶ÊÇ™Ëá≠Èõ≤„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a stinking cloud at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BALL_POIS), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_POIS, dam, 2, FALSE, MS_BALL_POIS, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_POIS);
+	dam = monspell_damage((MS_BALL_POIS), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_POIS, dam, 2, FALSE, MS_BALL_POIS, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_POIS);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_NETH§ŒΩËÕ˝°£√œπˆµÂ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_NETH„ÅÆÂá¶ÁêÜ„ÄÇÂú∞ÁçÑÁêÉ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_NETH(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_NETH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨√œπˆµÂ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a nether ball."),
-        _("%^s§¨%s§À∏˛§´§√§∆√œπˆµÂ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a nether ball at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÂú∞ÁçÑÁêÉ„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a nether ball."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶Âú∞ÁçÑÁêÉ„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a nether ball at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BALL_NETHER), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_NETHER, dam, 2, FALSE, MS_BALL_NETHER, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_NETH);
+	dam = monspell_damage((MS_BALL_NETHER), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_NETHER, dam, 2, FALSE, MS_BALL_NETHER, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_NETH);
 
-    return dam;
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_WATE§ŒΩËÕ˝°£•¶•©°º•ø°º°¶•‹°º•Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_WATE„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¶„Ç©„Éº„Çø„Éº„Éª„Éú„Éº„É´„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_WATE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
-    bool known = monster_near_player(m_idx, t_idx);
-    bool see_either = see_monster(m_idx) || see_monster(t_idx);
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	HIT_POINT dam;
+	bool known = monster_near_player(m_idx, t_idx);
+	bool see_either = see_monster(m_idx) || see_monster(t_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	char t_name[80];
-    monster_name(t_idx, t_name);
-
-
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨ŒÆ§Ï§Î§Ë§¶§ ø»ø∂§Í§Ú§∑§ø°£", "%^s gestures fluidly."),
-        _("%^s§¨%s§À¬–§∑§∆ŒÆ§Ï§Î§Ë§¶§ ø»ø∂§Í§Ú§∑§ø°£", "%^s gestures fluidly at %s."),
-        TARGET_TYPE);
-
-    if (mon_to_player)
-    {
-        msg_format(_("§¢§ §ø§œ±≤¥¨§≠§À∞˚§ﬂπ˛§ﬁ§Ï§ø°£", "You are engulfed in a whirlpool."));
-    }
-    else if (mon_to_mon && known && see_either && !p_ptr->blind)
-    {
-        msg_format(_("%^s§œ±≤¥¨§À∞˚§ﬂπ˛§ﬁ§Ï§ø°£", "%^s is engulfed in a whirlpool."), t_name);
-    }
-
-    dam = monspell_damage((MS_BALL_WATER), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_WATER, dam, 4, FALSE, MS_BALL_WATER, TARGET_TYPE);
-    return dam;
-}
-
-/*!
-* @brief RF5_BA_MANA§ŒΩËÕ˝°£À‚Œœ§ŒÕÚ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
-*/
-int spell_RF5_BA_MANA(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int dam;
-
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§ÚŒœ∂Ø§Ø§ƒ§÷§‰§§§ø°£", "%^s mumbles powerfully."),
-        _("%^s§¨À‚Œœ§ŒÕÚ§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a mana storm."),
-        _("%^s§¨%s§À¬–§∑§∆À‚Œœ§ŒÕÚ§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a mana storm upon %s."),
-        TARGET_TYPE);
-
-    dam = monspell_damage((MS_BALL_MANA), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_MANA, dam, 4, FALSE, MS_BALL_MANA, TARGET_TYPE);
-    return dam;
-}
-
-/*!
-* @brief RF5_BA_DARK§ŒΩËÕ˝°£∞≈πı§ŒÕÚ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
-*/
-int spell_RF5_BA_DARK(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int dam;
-
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§ÚŒœ∂Ø§Ø§ƒ§÷§‰§§§ø°£", "%^s mumbles powerfully."),
-        _("%^s§¨∞≈πı§ŒÕÚ§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a darkness storm."),
-        _("%^s§¨%s§À¬–§∑§∆∞≈πı§ŒÕÚ§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a darkness storm upon %s."),
-        TARGET_TYPE);
-
-    dam = monspell_damage((MS_BALL_DARK), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_DARK, dam, 4, FALSE, MS_BALL_DARK, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_DARK);
-
-    return dam;
-}
-
-/*!
-* @brief RF5_DRAIN_MANA§ŒΩËÕ˝°£À‚Œœµ€º˝°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
-*/
-int spell_RF5_DRAIN_MANA(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int dam;
-	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        disturb(1, 1);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
-    { 
-        /* Basic message */
-        msg_format(_("%^s§œ¿∫ø¿•®•Õ•Î•Æ°º§Ú%s§´§Èµ€§§§»§√§ø°£", "%^s draws psychic energy from %s."), m_name, t_name);
-    }
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÊµÅ„Çå„Çã„Çà„ÅÜ„Å™Ë∫´ÊåØ„Çä„Çí„Åó„Åü„ÄÇ", "%^s gestures fluidly."),
+		_("%^s„Åå%s„Å´ÂØæ„Åó„Å¶ÊµÅ„Çå„Çã„Çà„ÅÜ„Å™Ë∫´ÊåØ„Çä„Çí„Åó„Åü„ÄÇ", "%^s gestures fluidly at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_DRAIN_MANA), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_DRAIN_MANA, dam, 0, FALSE, MS_DRAIN_MANA, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_MANA);
-    
-    return dam;
+	if (mon_to_player)
+	{
+		msg_format(_("„ÅÇ„Å™„Åü„ÅØÊ∏¶Â∑ª„Åç„Å´È£≤„ÅøËæº„Åæ„Çå„Åü„ÄÇ", "You are engulfed in a whirlpool."));
+	}
+	else if (mon_to_mon && known && see_either && !p_ptr->blind)
+	{
+		msg_format(_("%^s„ÅØÊ∏¶Â∑ª„Å´È£≤„ÅøËæº„Åæ„Çå„Åü„ÄÇ", "%^s is engulfed in a whirlpool."), t_name);
+	}
+
+	dam = monspell_damage((MS_BALL_WATER), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_WATER, dam, 4, FALSE, MS_BALL_WATER, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_MIND_BLAST§ŒΩËÕ˝°£¿∫ø¿π∂∑‚°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_MANA„ÅÆÂá¶ÁêÜ„ÄÇÈ≠îÂäõ„ÅÆÂµê„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_MIND_BLAST(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    bool seen = (!p_ptr->blind && m_ptr->ml);
-    int dam;
+	HIT_POINT dam;
+
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„ÇíÂäõÂº∑„Åè„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles powerfully."),
+		_("%^s„ÅåÈ≠îÂäõ„ÅÆÂµê„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a mana storm."),
+		_("%^s„Åå%s„Å´ÂØæ„Åó„Å¶È≠îÂäõ„ÅÆÂµê„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a mana storm upon %s."),
+		TARGET_TYPE);
+
+	dam = monspell_damage((MS_BALL_MANA), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_MANA, dam, 4, FALSE, MS_BALL_MANA, TARGET_TYPE);
+	return dam;
+}
+
+/*!
+* @brief RF5_BA_DARK„ÅÆÂá¶ÁêÜ„ÄÇÊöóÈªí„ÅÆÂµê„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
+*/
+HIT_POINT spell_RF5_BA_DARK(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	HIT_POINT dam;
+
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„ÇíÂäõÂº∑„Åè„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles powerfully."),
+		_("%^s„ÅåÊöóÈªí„ÅÆÂµê„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a darkness storm."),
+		_("%^s„Åå%s„Å´ÂØæ„Åó„Å¶ÊöóÈªí„ÅÆÂµê„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a darkness storm upon %s."),
+		TARGET_TYPE);
+
+	dam = monspell_damage((MS_BALL_DARK), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_DARK, dam, 4, FALSE, MS_BALL_DARK, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_DARK);
+
+	return dam;
+}
+
+/*!
+* @brief RF5_DRAIN_MANA„ÅÆÂá¶ÁêÜ„ÄÇÈ≠îÂäõÂê∏Âèé„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
+*/
+HIT_POINT spell_RF5_DRAIN_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	HIT_POINT dam;
 	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        disturb(1, 1);
-        if (!seen)
-            msg_print(_("≤ø§´§¨§¢§ §ø§Œ¿∫ø¿§À«∞§Ú ¸§√§∆§§§Î§Ë§¶§¿°£", "You feel something focusing on your mind."));
-        else
-            msg_format(_("%^s§¨§¢§ §ø§Œ∆∑§Ú§∏§√§»§À§È§Û§«§§§Î°£", "%^s gazes deep into your eyes."), m_name);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
-    {
-        msg_format(_("%^s§œ%s§Ú§∏§√§»‚À§Û§¿°£", "%^s gazes intently at %s."), m_name, t_name);
-    }
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		disturb(1, 1);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
+	{ 
+		/* Basic message */
+		msg_format(_("%^s„ÅØÁ≤æÁ•û„Ç®„Éç„É´„ÇÆ„Éº„Çí%s„Åã„ÇâÂê∏„ÅÑ„Å®„Å£„Åü„ÄÇ", "%^s draws psychic energy from %s."), m_name, t_name);
+	}
 
-    dam = monspell_damage((MS_MIND_BLAST), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_MIND_BLAST, dam, 0, FALSE, MS_MIND_BLAST, TARGET_TYPE);
-    return dam;
+	dam = monspell_damage((MS_DRAIN_MANA), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_DRAIN_MANA, dam, 0, FALSE, MS_DRAIN_MANA, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_MANA);
+	
+	return dam;
 }
 
 /*!
-* @brief RF5_BRAIN_SMASH§ŒΩËÕ˝°£«æπ∂∑‚°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_MIND_BLAST„ÅÆÂá¶ÁêÜ„ÄÇÁ≤æÁ•ûÊîªÊíÉ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BRAIN_SMASH(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_MIND_BLAST(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    bool seen = (!p_ptr->blind && m_ptr->ml);
-    int dam;
+	monster_type	*m_ptr = &m_list[m_idx];
+	bool seen = (!p_ptr->blind && m_ptr->ml);
+	HIT_POINT dam;
 	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        disturb(1, 1);
-        if (!seen)
-            msg_print(_("≤ø§´§¨§¢§ §ø§Œ¿∫ø¿§À«∞§Ú ¸§√§∆§§§Î§Ë§¶§¿°£", "You feel something focusing on your mind."));
-        else
-            msg_format(_("%^s§¨§¢§ §ø§Œ∆∑§Ú§∏§√§»§À§È§Û§«§§§Î°£", "%^s gazes deep into your eyes."), m_name);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
-    {
-        msg_format(_("%^s§œ%s§Ú§∏§√§»‚À§Û§¿°£", "%^s gazes intently at %s."), m_name, t_name);
-    }
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		disturb(1, 1);
+		if (!seen)
+			msg_print(_("‰Ωï„Åã„Åå„ÅÇ„Å™„Åü„ÅÆÁ≤æÁ•û„Å´Âøµ„ÇíÊîæ„Å£„Å¶„ÅÑ„Çã„Çà„ÅÜ„Å†„ÄÇ", "You feel something focusing on your mind."));
+		else
+			msg_format(_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆÁû≥„Çí„Åò„Å£„Å®„Å´„Çâ„Çì„Åß„ÅÑ„Çã„ÄÇ", "%^s gazes deep into your eyes."), m_name);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
+	{
+		msg_format(_("%^s„ÅØ%s„Çí„Åò„Å£„Å®Áù®„Çì„Å†„ÄÇ", "%^s gazes intently at %s."), m_name, t_name);
+	}
 
-    dam = monspell_damage((MS_BRAIN_SMASH), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_BRAIN_SMASH, dam, 0, FALSE, MS_BRAIN_SMASH, TARGET_TYPE);
-    return dam;
+	dam = monspell_damage((MS_MIND_BLAST), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_MIND_BLAST, dam, 0, FALSE, MS_MIND_BLAST, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_*§Œ•·•√•ª°º•∏ΩËÕ˝¥ÿøÙ /
-* @param GF_TYPE π∂∑‚§Àª»Õ—§π§Î¬∞¿≠
-* @param dam π∂∑‚§Àª»Õ—§π§Î•¿•·°º•∏ŒÃ
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param msg1 ¬–•◊•Ï•§•‰°º°¢Ã’Ã‹ª˛•·•√•ª°º•∏
-* @param msg2 ¬–•◊•Ï•§•‰°º°¢»ÛÃ’Ã‹ª˛•·•√•ª°º•∏
-* @param msg3 ¬–•‚•Û•π•ø°º§Œ•·•√•ª°º•∏
-* @param MS_TYPE ºˆ ∏§Œ»÷πÊ
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BRAIN_SMASH„ÅÆÂá¶ÁêÜ„ÄÇËÑ≥ÊîªÊíÉ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF5_CAUSE(int GF_TYPE, int dam, int y, int x, int m_idx, int t_idx, cptr msg1, cptr msg2, cptr msg3, int MS_TYPE, int TARGET_TYPE)
+HIT_POINT spell_RF5_BRAIN_SMASH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
+	monster_type	*m_ptr = &m_list[m_idx];
+	bool seen = (!p_ptr->blind && m_ptr->ml);
+	HIT_POINT dam;
 	char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        disturb(1, 1);
-        if (p_ptr->blind)
-            msg_format(msg1, m_name);
-        else
-            msg_format(msg2, m_name);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        if (see_monster(m_idx))
-        {
-            msg_format(msg3, m_name, t_name);
-        }
-        else
-        {
-            mon_fight = TRUE;
-        }
-    }
-    breath(y, x, m_idx, GF_TYPE, dam, 0, FALSE, MS_TYPE, TARGET_TYPE);
+
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		disturb(1, 1);
+		if (!seen)
+			msg_print(_("‰Ωï„Åã„Åå„ÅÇ„Å™„Åü„ÅÆÁ≤æÁ•û„Å´Âøµ„ÇíÊîæ„Å£„Å¶„ÅÑ„Çã„Çà„ÅÜ„Å†„ÄÇ", "You feel something focusing on your mind."));
+		else
+			msg_format(_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆÁû≥„Çí„Åò„Å£„Å®„Å´„Çâ„Çì„Åß„ÅÑ„Çã„ÄÇ", "%^s gazes deep into your eyes."), m_name);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER && see_monster(m_idx))
+	{
+		msg_format(_("%^s„ÅØ%s„Çí„Åò„Å£„Å®Áù®„Çì„Å†„ÄÇ", "%^s gazes intently at %s."), m_name, t_name);
+	}
+
+	dam = monspell_damage((MS_BRAIN_SMASH), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_BRAIN_SMASH, dam, 0, FALSE, MS_BRAIN_SMASH, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_1§ŒΩËÕ˝°£∑⁄Ω˝§Œºˆ§§°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_CAUSE_*„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏Âá¶ÁêÜÈñ¢Êï∞ /
+* @param GF_TYPE ÊîªÊíÉ„Å´‰ΩøÁî®„Åô„ÇãÂ±ûÊÄß
+* @param dam ÊîªÊíÉ„Å´‰ΩøÁî®„Åô„Çã„ÉÄ„É°„Éº„Ç∏Èáè
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param msg1 ÂØæ„Éó„É¨„Ç§„É§„Éº„ÄÅÁõ≤ÁõÆÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param msg2 ÂØæ„Éó„É¨„Ç§„É§„Éº„ÄÅÈùûÁõ≤ÁõÆÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param msg3 ÂØæ„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏
+* @param MS_TYPE Âë™Êñá„ÅÆÁï™Âè∑
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_CAUSE_1(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF5_CAUSE(int GF_TYPE, HIT_POINT dam, POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, int MS_TYPE, int TARGET_TYPE)
 {
-    cptr msg1, msg2, msg3;
-    int dam;
-    dam = monspell_damage((MS_CAUSE_1), m_idx, DAM_ROLL);
+	char m_name[80], t_name[80];
+	monster_name(m_idx, m_name);
+	monster_name(t_idx, t_name);
 
-    msg1 = _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles.");
-    msg2 = _("%^s§¨§¢§ §ø§Úªÿ§µ§∑§∆ºˆ§√§ø°£", "%^s points at you and curses.");
-    msg3 = _("%^s§œ%s§Úªÿ§µ§∑§∆ºˆ§§§Ú§´§±§ø°£", "%^s points at %s and curses.");
-    
-    spell_RF5_CAUSE(GF_CAUSE_1, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_1, TARGET_TYPE);
-    return dam;
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		disturb(1, 1);
+		if (p_ptr->blind)
+			msg_format(msg1, m_name);
+		else
+			msg_format(msg2, m_name);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		if (see_monster(m_idx))
+		{
+			msg_format(msg3, m_name, t_name);
+		}
+		else
+		{
+			mon_fight = TRUE;
+		}
+	}
+	breath(y, x, m_idx, GF_TYPE, dam, 0, FALSE, MS_TYPE, TARGET_TYPE);
 }
 
 /*!
-* @brief RF5_CAUSE_2§ŒΩËÕ˝°£Ω≈Ω˝§Œºˆ§§°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_CAUSE_1„ÅÆÂá¶ÁêÜ„ÄÇËªΩÂÇ∑„ÅÆÂë™„ÅÑ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_CAUSE_2(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_CAUSE_1(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    cptr msg1, msg2, msg3;
-    int dam;
-    dam = monspell_damage((MS_CAUSE_2), m_idx, DAM_ROLL);
+	cptr msg1, msg2, msg3;
+	HIT_POINT dam;
+	dam = monspell_damage((MS_CAUSE_1), m_idx, DAM_ROLL);
 
-    msg1 = _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles.");
-    msg2 = _("%^s§¨§¢§ §ø§Úªÿ§µ§∑§∆∂≤§Ì§∑§≤§Àºˆ§√§ø°£", "%^s points at you and curses horribly.");
-    msg3 = _("%^s§œ%s§Úªÿ§µ§∑§∆∂≤§Ì§∑§≤§Àºˆ§§§Ú§´§±§ø°£", "%^s points at %s and curses horribly.");
-
-    spell_RF5_CAUSE(GF_CAUSE_2, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_2, TARGET_TYPE);
-    return dam;
+	msg1 = _("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles.");
+	msg2 = _("%^s„Åå„ÅÇ„Å™„Åü„ÇíÊåá„Åï„Åó„Å¶Âë™„Å£„Åü„ÄÇ", "%^s points at you and curses.");
+	msg3 = _("%^s„ÅØ%s„ÇíÊåá„Åï„Åó„Å¶Âë™„ÅÑ„Çí„Åã„Åë„Åü„ÄÇ", "%^s points at %s and curses.");
+	
+	spell_RF5_CAUSE(GF_CAUSE_1, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_1, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_3§ŒΩËÕ˝°£√◊ÃøΩ˝§Œºˆ§§°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_CAUSE_2„ÅÆÂá¶ÁêÜ„ÄÇÈáçÂÇ∑„ÅÆÂë™„ÅÑ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_CAUSE_3(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_CAUSE_2(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    cptr msg1, msg2, msg3;
-    int dam;
-    dam = monspell_damage((MS_CAUSE_3), m_idx, DAM_ROLL);
+	cptr msg1, msg2, msg3;
+	HIT_POINT dam;
+	dam = monspell_damage((MS_CAUSE_2), m_idx, DAM_ROLL);
 
-    msg1 = _("%^s§¨≤ø§´§Ú¬Á¿º§«∂´§Û§¿°£", "%^s mumbles loudly.");
-    msg2 = _("%^s§¨§¢§ §ø§Úªÿ§µ§∑§∆∂≤§Ì§∑§≤§Àºˆ ∏§Úæß§®§ø°™", "%^s points at you, incanting terribly!");
-    msg3 = _("%^s§œ%s§Úªÿ§µ§∑°¢∂≤§Ì§∑§≤§Àºˆ ∏§Úæß§®§ø°™", "%^s points at %s, incanting terribly!");
+	msg1 = _("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles.");
+	msg2 = _("%^s„Åå„ÅÇ„Å™„Åü„ÇíÊåá„Åï„Åó„Å¶ÊÅê„Çç„Åó„Åí„Å´Âë™„Å£„Åü„ÄÇ", "%^s points at you and curses horribly.");
+	msg3 = _("%^s„ÅØ%s„ÇíÊåá„Åï„Åó„Å¶ÊÅê„Çç„Åó„Åí„Å´Âë™„ÅÑ„Çí„Åã„Åë„Åü„ÄÇ", "%^s points at %s and curses horribly.");
 
-    spell_RF5_CAUSE(GF_CAUSE_3, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_3, TARGET_TYPE);
-    return dam;
+	spell_RF5_CAUSE(GF_CAUSE_2, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_2, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_CAUSE_4§ŒΩËÕ˝°£»Îπ¶§Ú∆Õ§Ø°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_CAUSE_3„ÅÆÂá¶ÁêÜ„ÄÇËá¥ÂëΩÂÇ∑„ÅÆÂë™„ÅÑ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_CAUSE_4(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_CAUSE_3(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    cptr msg1, msg2, msg3;
-    int dam;
-    dam = monspell_damage((MS_CAUSE_4), m_idx, DAM_ROLL);
+	cptr msg1, msg2, msg3;
+	HIT_POINT dam;
+	dam = monspell_damage((MS_CAUSE_3), m_idx, DAM_ROLL);
 
-    msg1 = _("%^s§¨°÷§™¡∞§œ¥˚§Àª‡§Û§«§§§Î°◊§»∂´§Û§¿°£", "%^s screams the word 'DIE!'");
-    msg2 = _("%^s§¨§¢§ §ø§Œ»Îπ¶§Ú∆Õ§§§∆°÷§™¡∞§œ¥˚§Àª‡§Û§«§§§Î°◊§»∂´§Û§¿°£", "%^s points at you, screaming the word DIE!");
-    msg3 = _("%^s§¨%s§Œ»Îπ¶§Ú∆Õ§§§∆°¢°÷§™¡∞§œ¥˚§Àª‡§Û§«§§§Î°◊§»∂´§Û§¿°£", "%^s points at %s, screaming the word, 'DIE!'");
+	msg1 = _("%^s„Åå‰Ωï„Åã„ÇíÂ§ßÂ£∞„ÅßÂè´„Çì„Å†„ÄÇ", "%^s mumbles loudly.");
+	msg2 = _("%^s„Åå„ÅÇ„Å™„Åü„ÇíÊåá„Åï„Åó„Å¶ÊÅê„Çç„Åó„Åí„Å´Âë™Êñá„ÇíÂî±„Åà„ÅüÔºÅ", "%^s points at you, incanting terribly!");
+	msg3 = _("%^s„ÅØ%s„ÇíÊåá„Åï„Åó„ÄÅÊÅê„Çç„Åó„Åí„Å´Âë™Êñá„ÇíÂî±„Åà„ÅüÔºÅ", "%^s points at %s, incanting terribly!");
 
-    spell_RF5_CAUSE(GF_CAUSE_4, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_4, TARGET_TYPE);
-    return dam;
+	spell_RF5_CAUSE(GF_CAUSE_3, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_3, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_ACID§ŒΩËÕ˝°£•¢•∑•√•…°¶•‹•Î•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_CAUSE_4„ÅÆÂá¶ÁêÜ„ÄÇÁßòÂ≠î„ÇíÁ™Å„Åè„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_ACID(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_CAUSE_4(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	cptr msg1, msg2, msg3;
+	HIT_POINT dam;
+	dam = monspell_damage((MS_CAUSE_4), m_idx, DAM_ROLL);
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•¢•∑•√•…°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a acid bolt."),
-        _("%s§¨%s§À∏˛§´§√§∆•¢•∑•√•…°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts an acid bolt at %s."),
-        TARGET_TYPE);
+	msg1 = _("%^s„Åå„Äå„ÅäÂâç„ÅØÊó¢„Å´Ê≠ª„Çì„Åß„ÅÑ„Çã„Äç„Å®Âè´„Çì„Å†„ÄÇ", "%^s screams the word 'DIE!'");
+	msg2 = _("%^s„Åå„ÅÇ„Å™„Åü„ÅÆÁßòÂ≠î„ÇíÁ™Å„ÅÑ„Å¶„Äå„ÅäÂâç„ÅØÊó¢„Å´Ê≠ª„Çì„Åß„ÅÑ„Çã„Äç„Å®Âè´„Çì„Å†„ÄÇ", "%^s points at you, screaming the word DIE!");
+	msg3 = _("%^s„Åå%s„ÅÆÁßòÂ≠î„ÇíÁ™Å„ÅÑ„Å¶„ÄÅ„Äå„ÅäÂâç„ÅØÊó¢„Å´Ê≠ª„Çì„Åß„ÅÑ„Çã„Äç„Å®Âè´„Çì„Å†„ÄÇ", "%^s points at %s, screaming the word, 'DIE!'");
 
-    dam = monspell_damage((MS_BOLT_ACID), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_ACID, dam, MS_BOLT_ACID, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_ACID);
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	spell_RF5_CAUSE(GF_CAUSE_4, dam, y, x, m_idx, t_idx, msg1, msg2, msg3, MS_CAUSE_4, TARGET_TYPE);
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_ELEC§ŒΩËÕ˝°£•µ•Û•¿°º°¶•‹•Î•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_ACID„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„Ç∑„ÉÉ„Éâ„Éª„Éú„É´„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_ELEC(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_ACID(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•µ•Û•¿°º°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a lightning bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆•µ•Û•¿°º°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a lightning bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Ç¢„Ç∑„ÉÉ„Éâ„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a acid bolt."),
+		_("%s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Ç¢„Ç∑„ÉÉ„Éâ„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts an acid bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_ELEC), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_ELEC, dam, MS_BOLT_ELEC, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_ELEC);
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_ACID), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_ACID, dam, MS_BOLT_ACID, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_ACID);
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_FIRE§ŒΩËÕ˝°£•’•°•§•¢°¶•‹•Î•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_ELEC„ÅÆÂá¶ÁêÜ„ÄÇ„Çµ„É≥„ÉÄ„Éº„Éª„Éú„É´„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_FIRE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_ELEC(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•’•°•§•¢°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a fire bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆•’•°•§•¢°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a fire bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Çµ„É≥„ÉÄ„Éº„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a lightning bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Çµ„É≥„ÉÄ„Éº„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a lightning bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_FIRE), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_FIRE, dam, MS_BOLT_FIRE, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_FIRE);
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_ELEC), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_ELEC, dam, MS_BOLT_ELEC, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_ELEC);
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_COLD§ŒΩËÕ˝°£•¢•§•π°¶•‹•Î•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_FIRE„ÅÆÂá¶ÁêÜ„ÄÇ„Éï„Ç°„Ç§„Ç¢„Éª„Éú„É´„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_COLD(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_FIRE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•¢•§•π°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a frost bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆•¢•§•π°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a frost bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Éï„Ç°„Ç§„Ç¢„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a fire bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Éï„Ç°„Ç§„Ç¢„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a fire bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_COLD), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_COLD, dam, MS_BOLT_COLD, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_COLD);
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_FIRE), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_FIRE, dam, MS_BOLT_FIRE, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_FIRE);
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BA_LITE§ŒΩËÕ˝°£•π•ø°º•–°º•π•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_COLD„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„Ç§„Çπ„Éª„Éú„É´„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BA_LITE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_COLD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§ÚŒœ∂Ø§Ø§ƒ§÷§‰§§§ø°£", "%^s mumbles powerfully."),
-        _("%^s§¨•π•ø°º•–°º•π•»§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a starburst."),
-        _("%^s§¨%s§À¬–§∑§∆•π•ø°º•–°º•π•»§Œºˆ ∏§Ú«∞§∏§ø°£", "%^s invokes a starburst upon %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Ç¢„Ç§„Çπ„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a frost bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Ç¢„Ç§„Çπ„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a frost bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_STARBURST), m_idx, DAM_ROLL);
-    breath(y, x, m_idx, GF_LITE, dam, 4, FALSE, MS_STARBURST, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-        update_smart_learn(m_idx, DRS_LITE);
-
-    return dam;
+	dam = monspell_damage((MS_BOLT_COLD), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_COLD, dam, MS_BOLT_COLD, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_COLD);
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_NETH§ŒΩËÕ˝°£√œπˆ§ŒÃ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BA_LITE„ÅÆÂá¶ÁêÜ„ÄÇ„Çπ„Çø„Éº„Éê„Éº„Çπ„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_NETH(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BA_LITE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨√œπˆ§ŒÃ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a nether bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆√œπˆ§ŒÃ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a nether bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„ÇíÂäõÂº∑„Åè„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles powerfully."),
+		_("%^s„Åå„Çπ„Çø„Éº„Éê„Éº„Çπ„Éà„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a starburst."),
+		_("%^s„Åå%s„Å´ÂØæ„Åó„Å¶„Çπ„Çø„Éº„Éê„Éº„Çπ„Éà„ÅÆÂë™Êñá„ÇíÂøµ„Åò„Åü„ÄÇ", "%^s invokes a starburst upon %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_NETHER), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_NETHER, dam, MS_BOLT_NETHER, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_NETH);
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_STARBURST), m_idx, DAM_ROLL);
+	breath(y, x, m_idx, GF_LITE, dam, 4, FALSE, MS_STARBURST, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+		update_smart_learn(m_idx, DRS_LITE);
+
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_WATE§ŒΩËÕ˝°£•¶•©°º•ø°º°¶•‹•Î•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_NETH„ÅÆÂá¶ÁêÜ„ÄÇÂú∞ÁçÑ„ÅÆÁü¢„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_WATE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_NETH(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•¶•©°º•ø°º°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a water bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆•¶•©°º•ø°º°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a water bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÂú∞ÁçÑ„ÅÆÁü¢„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a nether bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶Âú∞ÁçÑ„ÅÆÁü¢„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a nether bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_WATER), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_WATER, dam, MS_BOLT_WATER, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_NETHER), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_NETHER, dam, MS_BOLT_NETHER, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_NETH);
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_MANA§ŒΩËÕ˝°£À‚Œœ§ŒÃ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_WATE„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¶„Ç©„Éº„Çø„Éº„Éª„Éú„É´„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_MANA(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_WATE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨À‚Œœ§ŒÃ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a mana bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆À‚Œœ§ŒÃ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a mana bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Ç¶„Ç©„Éº„Çø„Éº„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a water bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Ç¶„Ç©„Éº„Çø„Éº„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a water bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_MANA), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_MANA, dam, MS_BOLT_MANA, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_WATER), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_WATER, dam, MS_BOLT_WATER, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_PLAS§ŒΩËÕ˝°£•◊•È•∫•ﬁ°¶•‹•Î•»°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_MANA„ÅÆÂá¶ÁêÜ„ÄÇÈ≠îÂäõ„ÅÆÁü¢„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_PLAS(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_MANA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•◊•È•∫•ﬁ°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a plasma bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆•◊•È•∫•ﬁ°¶•‹•Î•»§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a plasma bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÂäõ„ÅÆÁü¢„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a mana bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶È≠îÂäõ„ÅÆÁü¢„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a mana bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_PLASMA), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_PLASMA, dam, MS_BOLT_PLASMA, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_MANA), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_MANA, dam, MS_BOLT_MANA, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_BO_ICEE§ŒΩËÕ˝°£∂À¥®§ŒÃ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_PLAS„ÅÆÂá¶ÁêÜ„ÄÇ„Éó„É©„Ç∫„Éû„Éª„Éú„É´„Éà„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_BO_ICEE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_PLAS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨∂À¥®§ŒÃ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts an ice bolt."),
-        _("%^s§¨%s§À∏˛§´§√§∆∂À¥®§ŒÃ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts an ice bolt at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Éó„É©„Ç∫„Éû„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a plasma bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Éó„É©„Ç∫„Éû„Éª„Éú„É´„Éà„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a plasma bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_BOLT_ICE), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_ICE, dam, MS_BOLT_ICE, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_COLD);
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_PLASMA), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_PLASMA, dam, MS_BOLT_PLASMA, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief RF5_MISSILE§ŒΩËÕ˝°£•ﬁ•∏•√•Ø°¶•ﬂ•µ•§•Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF5_BO_ICEE„ÅÆÂá¶ÁêÜ„ÄÇÊ•µÂØí„ÅÆÁü¢„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF5_MISSILE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF5_BO_ICEE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨•ﬁ•∏•√•Ø°¶•ﬂ•µ•§•Î§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a magic missile."),
-        _("%^s§¨%s§À∏˛§´§√§∆•ﬁ•∏•√•Ø°¶•ﬂ•µ•§•Î§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a magic missile at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÊ•µÂØí„ÅÆÁü¢„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts an ice bolt."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶Ê•µÂØí„ÅÆÁü¢„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts an ice bolt at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_MAGIC_MISSILE), m_idx, DAM_ROLL);
-    bolt(m_idx, y, x, GF_MISSILE, dam, MS_MAGIC_MISSILE, TARGET_TYPE);
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        update_smart_learn(m_idx, DRS_REFLECT);
-    }
-    return dam;
+	dam = monspell_damage((MS_BOLT_ICE), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_ICE, dam, MS_BOLT_ICE, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_COLD);
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
-* @brief æı¬÷∞€æÔºˆ ∏§Œ•·•√•ª°º•∏ΩËÕ˝¥ÿøÙ°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param msg1 ¬–•◊•Ï•§•‰°º§ §ÈÃ’Ã‹ª˛•·•√•ª°º•∏°£¬–•‚•Û•π•ø°º§ §ÈƒÃæÔª˛•·•√•ª°º•∏°£
-* @param msg2 ¬–•◊•Ï•§•‰°º§ §È»ÛÃ’Ã‹ª˛•·•√•ª°º•∏°£¬–•‚•Û•π•ø°º§ §È¬—¿≠Õ≠•·•√•ª°º•∏°£
-* @param msg3 ¬–•◊•Ï•§•‰°º§ §È¬—¿≠Õ≠•·•√•ª°º•∏°£¬–•‚•Û•π•ø°º§ §ÈƒÒπ≥ª˛•·•√•ª°º•∏°£
-* @param msg4 ¬–•◊•Ï•§•‰°º§ §ÈƒÒπ≥ª˛•·•√•ª°º•∏°£¬–•‚•Û•π•ø°º§ §È¿Æ∏˘ª˛•·•√•ª°º•∏°£
-* @param resist ¬—¿≠§ŒÕ≠Ãµ§Ú»Ω Ã§π§Î•’•È•∞
-* @param saving_throw ƒÒπ≥§À¿Æ∏˘§∑§ø§´»Ω Ã§π§Î•’•È•∞
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief RF5_MISSILE„ÅÆÂá¶ÁêÜ„ÄÇ„Éû„Ç∏„ÉÉ„ÇØ„Éª„Éü„Çµ„Ç§„É´„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-void spell_badstatus_message(int m_idx, int t_idx, cptr msg1, cptr msg2, cptr msg3, cptr msg4, bool resist, bool saving_throw, int TARGET_TYPE)
+HIT_POINT spell_RF5_MISSILE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    bool see_either = see_monster(m_idx) || see_monster(t_idx);
-    bool see_t = see_monster(t_idx);
-    bool known = monster_near_player(m_idx, t_idx);
-    char m_name[80], t_name[80];
-    monster_name(m_idx, m_name);
-    monster_name(t_idx, t_name);
+	HIT_POINT dam;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        disturb(1, 1);
-        if (p_ptr->blind)
-            msg_format(msg1, m_name);
-        else
-            msg_format(msg2, m_name);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Éû„Ç∏„ÉÉ„ÇØ„Éª„Éü„Çµ„Ç§„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a magic missile."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶„Éû„Ç∏„ÉÉ„ÇØ„Éª„Éü„Çµ„Ç§„É´„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a magic missile at %s."),
+		TARGET_TYPE);
 
-        if (resist)
-        {
-            msg_print(msg3);
-        }
-        else if (saving_throw)
-        {
-            msg_print(msg4);
-        }
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        if (known)
-        {
-            if (see_either)
-            {
-                msg_format(msg1, m_name, t_name);
-            }
-            else
-            {
-                mon_fight = TRUE;
-            }
-        }
-
-        if (resist)
-        {
-            if (see_t) msg_format(msg2, t_name);
-        }
-        else if (saving_throw)
-        {
-            if (see_t) msg_format(msg3, t_name);
-        }
-        else
-        {
-            if (see_t) msg_format(msg4, t_name);
-        }
-        monster_wakeup(t_idx);
-    }
+	dam = monspell_damage((MS_MAGIC_MISSILE), m_idx, DAM_ROLL);
+	bolt(m_idx, y, x, GF_MISSILE, dam, MS_MAGIC_MISSILE, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		update_smart_learn(m_idx, DRS_REFLECT);
+	}
+	return dam;
 }
 
 /*!
- * @brief RF5_SCARE§ŒΩËÕ˝°£∂≤…›°£ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief Áä∂ÊÖãÁï∞Â∏∏Âë™Êñá„ÅÆ„É°„ÉÉ„Çª„Éº„Ç∏Âá¶ÁêÜÈñ¢Êï∞„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param msg1 ÂØæ„Éó„É¨„Ç§„É§„Éº„Å™„ÇâÁõ≤ÁõÆÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇÂØæ„É¢„É≥„Çπ„Çø„Éº„Å™„ÇâÈÄöÂ∏∏ÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇ
+* @param msg2 ÂØæ„Éó„É¨„Ç§„É§„Éº„Å™„ÇâÈùûÁõ≤ÁõÆÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇÂØæ„É¢„É≥„Çπ„Çø„Éº„Å™„ÇâËÄêÊÄßÊúâ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇ
+* @param msg3 ÂØæ„Éó„É¨„Ç§„É§„Éº„Å™„ÇâËÄêÊÄßÊúâ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇÂØæ„É¢„É≥„Çπ„Çø„Éº„Å™„ÇâÊäµÊäóÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇ
+* @param msg4 ÂØæ„Éó„É¨„Ç§„É§„Éº„Å™„ÇâÊäµÊäóÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇÂØæ„É¢„É≥„Çπ„Çø„Éº„Å™„ÇâÊàêÂäüÊôÇ„É°„ÉÉ„Çª„Éº„Ç∏„ÄÇ
+* @param resist ËÄêÊÄß„ÅÆÊúâÁÑ°„ÇíÂà§Âà•„Åô„Çã„Éï„É©„Ç∞
+* @param saving_throw ÊäµÊäó„Å´ÊàêÂäü„Åó„Åü„ÅãÂà§Âà•„Åô„Çã„Éï„É©„Ç∞
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+*/
+void spell_badstatus_message(MONSTER_IDX m_idx, IDX t_idx, cptr msg1, cptr msg2, cptr msg3, cptr msg4, bool resist, bool saving_throw, int TARGET_TYPE)
+{
+	bool see_either = see_monster(m_idx) || see_monster(t_idx);
+	bool see_t = see_monster(t_idx);
+	bool known = monster_near_player(m_idx, t_idx);
+	char m_name[80], t_name[80];
+	monster_name(m_idx, m_name);
+	monster_name(t_idx, t_name);
+
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		disturb(1, 1);
+		if (p_ptr->blind)
+			msg_format(msg1, m_name);
+		else
+			msg_format(msg2, m_name);
+
+		if (resist)
+		{
+			msg_print(msg3);
+		}
+		else if (saving_throw)
+		{
+			msg_print(msg4);
+		}
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		if (known)
+		{
+			if (see_either)
+			{
+				msg_format(msg1, m_name, t_name);
+			}
+			else
+			{
+				mon_fight = TRUE;
+			}
+		}
+
+		if (resist)
+		{
+			if (see_t) msg_format(msg2, t_name);
+		}
+		else if (saving_throw)
+		{
+			if (see_t) msg_format(msg3, t_name);
+		}
+		else
+		{
+			if (see_t) msg_format(msg4, t_name);
+		}
+		monster_wakeup(t_idx);
+	}
+}
+
+/*!
+ * @brief RF5_SCARE„ÅÆÂá¶ÁêÜ„ÄÇÊÅêÊÄñ„ÄÇ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF5_SCARE(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF5_SCARE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool resist, saving_throw;
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool resist, saving_throw;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        resist = p_ptr->resist_fear;
-        saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§Ø§»°¢∂≤§Ì§∑§≤§ ≤ª§¨ π§≥§®§ø°£", "%^s mumbles, and you hear scary noises."),
-            _("%^s§¨∂≤§Ì§∑§≤§ ∏∏≥–§Ú∫Ó§ÍΩ–§∑§ø°£", "%^s casts a fearful illusion."),
-            _("§∑§´§∑∂≤…›§ÀøØ§µ§Ï§ §´§√§ø°£", "You refuse to be frightened."),
-            _("§∑§´§∑∂≤…›§ÀøØ§µ§Ï§ §´§√§ø°£", "You refuse to be frightened."),
-            resist, saving_throw, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		resist = p_ptr->resist_fear;
+		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„Åè„Å®„ÄÅÊÅê„Çç„Åó„Åí„Å™Èü≥„ÅåËÅû„Åì„Åà„Åü„ÄÇ", "%^s mumbles, and you hear scary noises."),
+			_("%^s„ÅåÊÅê„Çç„Åó„Åí„Å™ÂπªË¶ö„Çí‰Ωú„ÇäÂá∫„Åó„Åü„ÄÇ", "%^s casts a fearful illusion."),
+			_("„Åó„Åã„ÅóÊÅêÊÄñ„Å´‰æµ„Åï„Çå„Å™„Åã„Å£„Åü„ÄÇ", "You refuse to be frightened."),
+			_("„Åó„Åã„ÅóÊÅêÊÄñ„Å´‰æµ„Åï„Çå„Å™„Åã„Å£„Åü„ÄÇ", "You refuse to be frightened."),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_afraid(p_ptr->afraid + randint0(4) + 4);
-        }
-        learn_spell(MS_SCARE);
-        update_smart_learn(m_idx, DRS_FEAR);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        resist = tr_ptr->flags3 & RF3_NO_FEAR;
-        saving_throw = (tr_ptr->level * 4 > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10); /* tr_ptr->level > tr_ptr->level*4 */
+		if (!resist && !saving_throw)
+		{
+			(void)set_afraid(p_ptr->afraid + randint0(4) + 4);
+		}
+		learn_spell(MS_SCARE);
+		update_smart_learn(m_idx, DRS_FEAR);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		resist = tr_ptr->flags3 & RF3_NO_FEAR;
+		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
-        spell_badstatus_message(m_idx, t_idx, 
-            _("%^s§¨∂≤§Ì§∑§≤§ ∏∏≥–§Ú∫Ó§ÍΩ–§∑§ø°£", "%^s casts a fearful illusion in front of %s."),
-            _("%^s§œ∂≤…›§Ú¥∂§∏§ §§°£", "%^s refuses to be frightened."),
-            _("%^s§œ∂≤…›§Ú¥∂§∏§ §§°£", "%^s refuses to be frightened."),
-            _("%^s§œ∂≤…›§∑§∆∆®§≤Ω–§∑§ø°™", "%^s flees in terror!"),
-            resist, saving_throw, TARGET_TYPE);
+		spell_badstatus_message(m_idx, t_idx, 
+			_("%^s„ÅåÊÅê„Çç„Åó„Åí„Å™ÂπªË¶ö„Çí‰Ωú„ÇäÂá∫„Åó„Åü„ÄÇ", "%^s casts a fearful illusion in front of %s."),
+			_("%^s„ÅØÊÅêÊÄñ„ÇíÊÑü„Åò„Å™„ÅÑ„ÄÇ", "%^s refuses to be frightened."),
+			_("%^s„ÅØÊÅêÊÄñ„ÇíÊÑü„Åò„Å™„ÅÑ„ÄÇ", "%^s refuses to be frightened."),
+			_("%^s„ÅØÊÅêÊÄñ„Åó„Å¶ÈÄÉ„ÅíÂá∫„Åó„ÅüÔºÅ", "%^s flees in terror!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            set_monster_monfear(t_idx, MON_MONFEAR(t_ptr) + randint0(4) + 4);
-        }
-    }
+		if (!resist && !saving_throw)
+		{
+			set_monster_monfear(t_idx, MON_MONFEAR(t_ptr) + randint0(4) + 4);
+		}
+	}
 }
 
 /*!
- * @brief RF5_BLIND§ŒΩËÕ˝°£Ã’Ã‹°£ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief RF5_BLIND„ÅÆÂá¶ÁêÜ„ÄÇÁõ≤ÁõÆ„ÄÇ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF5_BLIND(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF5_BLIND(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool resist, saving_throw;
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool resist, saving_throw;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        resist = p_ptr->resist_blind;
-        saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-            _("%^s§¨ºˆ ∏§Úæß§®§∆§¢§ §ø§ŒÃ‹§Ú§Ø§È§ﬁ§∑§ø°™", "%^s casts a spell, burning your eyes!"),
-            _("§∑§´§∑∏˙≤Ã§¨§ §´§√§ø°™", "You are unaffected!"),
-            _("§∑§´§∑∏˙Œœ§Úƒ∑§Õ ÷§∑§ø°™", "You resist the effects!"),
-            resist, saving_throw, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		resist = p_ptr->resist_blind;
+		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„ÅåÂë™Êñá„ÇíÂî±„Åà„Å¶„ÅÇ„Å™„Åü„ÅÆÁõÆ„Çí„Åè„Çâ„Åæ„Åó„ÅüÔºÅ", "%^s casts a spell, burning your eyes!"),
+			_("„Åó„Åã„ÅóÂäπÊûú„Åå„Å™„Åã„Å£„ÅüÔºÅ", "You are unaffected!"),
+			_("„Åó„Åã„ÅóÂäπÂäõ„ÇíË∑≥„Å≠Ëøî„Åó„ÅüÔºÅ", "You resist the effects!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_blind(12 + randint0(4));
-        }
-        learn_spell(MS_BLIND);
-        update_smart_learn(m_idx, DRS_BLIND);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        cptr msg1;
-        char t_name[80];
-        monster_name(t_idx, t_name);
-        
-        if (streq(t_name, "it"))
-        {
-            msg1 = _("%s§œºˆ ∏§Úæß§®§∆%s§ŒÃ‹§Úæ∆§≠…’§´§ª§ø°£", "%^s casts a spell, burning %ss eyes.");
-        }
-        else
-        {
-            msg1 = _("%s§œºˆ ∏§Úæß§®§∆%s§ŒÃ‹§Úæ∆§≠…’§´§ª§ø°£", "%^s casts a spell, burning %s's eyes.");
-        }
+		if (!resist && !saving_throw)
+		{
+			(void)set_blind(12 + randint0(4));
+		}
+		learn_spell(MS_BLIND);
+		update_smart_learn(m_idx, DRS_BLIND);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		cptr msg1;
+		char t_name[80];
+		monster_name(t_idx, t_name);
+		
+		if (streq(t_name, "it"))
+		{
+			msg1 = _("%s„ÅØÂë™Êñá„ÇíÂî±„Åà„Å¶%s„ÅÆÁõÆ„ÇíÁÑº„Åç‰ªò„Åã„Åõ„Åü„ÄÇ", "%^s casts a spell, burning %ss eyes.");
+		}
+		else
+		{
+			msg1 = _("%s„ÅØÂë™Êñá„ÇíÂî±„Åà„Å¶%s„ÅÆÁõÆ„ÇíÁÑº„Åç‰ªò„Åã„Åõ„Åü„ÄÇ", "%^s casts a spell, burning %s's eyes.");
+		}
 
-        resist = tr_ptr->flags3 & RF3_NO_CONF;
-        saving_throw = (tr_ptr->level * 4 > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10); /* tr_ptr->level > tr_ptr->level*4 */
+		resist = tr_ptr->flags3 & RF3_NO_CONF;
+		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
-        spell_badstatus_message(m_idx, t_idx,
-            msg1,
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected."),
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected."),
-            _("%^s§œÃ‹§¨∏´§®§ §Ø§ §√§ø°™ ", "%^s is blinded!"),
-            resist, saving_throw, TARGET_TYPE);
+		spell_badstatus_message(m_idx, t_idx,
+			msg1,
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected."),
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected."),
+			_("%^s„ÅØÁõÆ„ÅåË¶ã„Åà„Å™„Åè„Å™„Å£„ÅüÔºÅ ", "%^s is blinded!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_monster_confused(t_idx, MON_CONFUSED(t_ptr) + 12 + randint0(4));
-        }
-    }
+		if (!resist && !saving_throw)
+		{
+			(void)set_monster_confused(t_idx, MON_CONFUSED(t_ptr) + 12 + randint0(4));
+		}
+	}
 }
 
 /*!
- * @brief RF5_CONF§ŒΩËÕ˝°£∫ÆÕ°£/
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief RF5_CONF„ÅÆÂá¶ÁêÜ„ÄÇÊ∑∑‰π±„ÄÇ/
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF5_CONF(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF5_CONF(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool resist, saving_throw;
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool resist, saving_throw;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        resist = p_ptr->resist_conf;
-        saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§Ø§»°¢∆¨§Ú«∫§ﬁ§π≤ª§¨§∑§ø°£", "%^s mumbles, and you hear puzzling noises."),
-            _("%^s§¨Õ∂œ«≈™§ ∏∏≥–§Ú∫Ó§ÍΩ–§∑§ø°£", "%^s creates a mesmerising illusion."),
-            _("§∑§´§∑∏∏≥–§À§œ§¿§ﬁ§µ§Ï§ §´§√§ø°£", "You disbelieve the feeble spell."),
-            _("§∑§´§∑∏∏≥–§À§œ§¿§ﬁ§µ§Ï§ §´§√§ø°£", "You disbelieve the feeble spell."),
-            resist, saving_throw, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		resist = p_ptr->resist_conf;
+		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„Åè„Å®„ÄÅÈ†≠„ÇíÊÇ©„Åæ„ÅôÈü≥„Åå„Åó„Åü„ÄÇ", "%^s mumbles, and you hear puzzling noises."),
+			_("%^s„ÅåË™òÊÉëÁöÑ„Å™ÂπªË¶ö„Çí‰Ωú„ÇäÂá∫„Åó„Åü„ÄÇ", "%^s creates a mesmerising illusion."),
+			_("„Åó„Åã„ÅóÂπªË¶ö„Å´„ÅØ„Å†„Åæ„Åï„Çå„Å™„Åã„Å£„Åü„ÄÇ", "You disbelieve the feeble spell."),
+			_("„Åó„Åã„ÅóÂπªË¶ö„Å´„ÅØ„Å†„Åæ„Åï„Çå„Å™„Åã„Å£„Åü„ÄÇ", "You disbelieve the feeble spell."),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_confused(p_ptr->confused + randint0(4) + 4);
-        }
-        learn_spell(MS_CONF);
-        update_smart_learn(m_idx, DRS_CONF);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        resist = tr_ptr->flags3 & RF3_NO_CONF;
-        saving_throw = (tr_ptr->level * 4 > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10); /* tr_ptr->level > tr_ptr->level*4 */
+		if (!resist && !saving_throw)
+		{
+			(void)set_confused(p_ptr->confused + randint0(4) + 4);
+		}
+		learn_spell(MS_CONF);
+		update_smart_learn(m_idx, DRS_CONF);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		resist = tr_ptr->flags3 & RF3_NO_CONF;
+		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨%s§Œ¡∞§À∏∏œ«≈™§ ∏∏§Ú§ƒ§Ø§ÍΩ–§∑§ø°£", "%^s casts a mesmerizing illusion in front of %s."),
-            _("%^s§œœ«§Ô§µ§Ï§ §´§√§ø°£", "%^s disbelieves the feeble spell."),
-            _("%^s§œœ«§Ô§µ§Ï§ §´§√§ø°£", "%^s disbelieves the feeble spell."),
-            _("%^s§œ∫ÆÕ§∑§ø§Ë§¶§¿°£", "%^s seems confused."),
-            resist, saving_throw, TARGET_TYPE);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå%s„ÅÆÂâç„Å´ÂπªÊÉëÁöÑ„Å™Âπª„Çí„Å§„Åè„ÇäÂá∫„Åó„Åü„ÄÇ", "%^s casts a mesmerizing illusion in front of %s."),
+			_("%^s„ÅØÊÉë„Çè„Åï„Çå„Å™„Åã„Å£„Åü„ÄÇ", "%^s disbelieves the feeble spell."),
+			_("%^s„ÅØÊÉë„Çè„Åï„Çå„Å™„Åã„Å£„Åü„ÄÇ", "%^s disbelieves the feeble spell."),
+			_("%^s„ÅØÊ∑∑‰π±„Åó„Åü„Çà„ÅÜ„Å†„ÄÇ", "%^s seems confused."),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_monster_confused(t_idx, MON_CONFUSED(t_ptr) + 12 + randint0(4));
-        }
-    }
+		if (!resist && !saving_throw)
+		{
+			(void)set_monster_confused(t_idx, MON_CONFUSED(t_ptr) + 12 + randint0(4));
+		}
+	}
 }
 
 /*!
- * @brief RF5_SLOW§ŒΩËÕ˝°£∏∫¬Æ°£ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief RF5_SLOW„ÅÆÂá¶ÁêÜ„ÄÇÊ∏õÈÄü„ÄÇ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF5_SLOW(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF5_SLOW(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool resist, saving_throw;
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool resist, saving_throw;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        resist = p_ptr->resist_conf;
-        saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨§¢§ §ø§Œ∂⁄Œœ§Úµ€§§ºË§Ì§¶§»§∑§ø°™", "%^s drains power from your muscles!"),
-            _("%^s§¨§¢§ §ø§Œ∂⁄Œœ§Úµ€§§ºË§Ì§¶§»§∑§ø°™", "%^s drains power from your muscles!"),
-            _("§∑§´§∑∏˙≤Ã§¨§ §´§√§ø°™", "You are unaffected!"),
-            _("§∑§´§∑∏˙Œœ§Úƒ∑§Õ ÷§∑§ø°™", "You resist the effects!"),
-            resist, saving_throw, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		resist = p_ptr->resist_conf;
+		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆÁ≠ãÂäõ„ÇíÂê∏„ÅÑÂèñ„Çç„ÅÜ„Å®„Åó„ÅüÔºÅ", "%^s drains power from your muscles!"),
+			_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆÁ≠ãÂäõ„ÇíÂê∏„ÅÑÂèñ„Çç„ÅÜ„Å®„Åó„ÅüÔºÅ", "%^s drains power from your muscles!"),
+			_("„Åó„Åã„ÅóÂäπÊûú„Åå„Å™„Åã„Å£„ÅüÔºÅ", "You are unaffected!"),
+			_("„Åó„Åã„ÅóÂäπÂäõ„ÇíË∑≥„Å≠Ëøî„Åó„ÅüÔºÅ", "You resist the effects!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_slow(p_ptr->slow + randint0(4) + 4, FALSE);
-        }
-        learn_spell(MS_SLOW);
-        update_smart_learn(m_idx, DRS_FREE);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        cptr msg1;
-        char t_name[80];
-        monster_name(t_idx, t_name);
+		if (!resist && !saving_throw)
+		{
+			(void)set_slow(p_ptr->slow + randint0(4) + 4, FALSE);
+		}
+		learn_spell(MS_SLOW);
+		update_smart_learn(m_idx, DRS_FREE);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		cptr msg1;
+		char t_name[80];
+		monster_name(t_idx, t_name);
 
-        if (streq(t_name, "it"))
-        {
-            msg1 = _("%s§¨%s§Œ∂⁄∆˘§´§ÈŒœ§Úµ€§§§»§√§ø°£", "%^s drains power from %ss muscles.");
-        }
-        else
-        {
-            msg1 = _("%s§¨%s§Œ∂⁄∆˘§´§ÈŒœ§Úµ€§§§»§√§ø°£", "%^s drains power from %s's muscles.");
-        }
+		if (streq(t_name, "it"))
+		{
+			msg1 = _("%s„Åå%s„ÅÆÁ≠ãËÇâ„Åã„ÇâÂäõ„ÇíÂê∏„ÅÑ„Å®„Å£„Åü„ÄÇ", "%^s drains power from %ss muscles.");
+		}
+		else
+		{
+			msg1 = _("%s„Åå%s„ÅÆÁ≠ãËÇâ„Åã„ÇâÂäõ„ÇíÂê∏„ÅÑ„Å®„Å£„Åü„ÄÇ", "%^s drains power from %s's muscles.");
+		}
 
-        resist = tr_ptr->flags1 & RF1_UNIQUE;
-        saving_throw = (tr_ptr->level * 4 > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10); /* tr_ptr->level > tr_ptr->level*4 */
+		resist = tr_ptr->flags1 & RF1_UNIQUE;
+		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
-        spell_badstatus_message(m_idx, t_idx,
-            msg1,
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected."),
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected."),
-            _("%s§Œ∆∞§≠§¨√Ÿ§Ø§ §√§ø°£", "%^s starts moving slower."),
-            resist, saving_throw, TARGET_TYPE);
+		spell_badstatus_message(m_idx, t_idx,
+			msg1,
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected."),
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected."),
+			_("%s„ÅÆÂãï„Åç„ÅåÈÅÖ„Åè„Å™„Å£„Åü„ÄÇ", "%^s starts moving slower."),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            set_monster_slow(t_idx, MON_SLOW(t_ptr) + 50);
-        }
-    }
+		if (!resist && !saving_throw)
+		{
+			set_monster_slow(t_idx, MON_SLOW(t_ptr) + 50);
+		}
+	}
 }
 
 /*!
- * @brief RF5_HOLD§ŒΩËÕ˝°£À„·„°£ /
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+ * @brief RF5_HOLD„ÅÆÂá¶ÁêÜ„ÄÇÈ∫ªÁó∫„ÄÇ /
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
  */
-void spell_RF5_HOLD(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF5_HOLD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool resist, saving_throw;
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool resist, saving_throw;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        resist = p_ptr->free_act;
-        saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-            _("%^s§¨§¢§ §ø§ŒÃ‹§Ú§∏§√§»∏´§ƒ§·§ø°™", "%^s stares deep into your eyes!"),
-            _("§∑§´§∑∏˙≤Ã§¨§ §´§√§ø°™", "You are unaffected!"),
-            _("§∑§´§∑∏˙Œœ§Úƒ∑§Õ ÷§∑§ø°™", "You resist the effects!"),
-            resist, saving_throw, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		resist = p_ptr->free_act;
+		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆÁõÆ„Çí„Åò„Å£„Å®Ë¶ã„Å§„ÇÅ„ÅüÔºÅ", "%^s stares deep into your eyes!"),
+			_("„Åó„Åã„ÅóÂäπÊûú„Åå„Å™„Åã„Å£„ÅüÔºÅ", "You are unaffected!"),
+			_("„Åó„Åã„ÅóÂäπÂäõ„ÇíË∑≥„Å≠Ëøî„Åó„ÅüÔºÅ", "You resist the effects!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_paralyzed(p_ptr->paralyzed + randint0(4) + 4);
-        }
-        learn_spell(MS_SLEEP);
-        update_smart_learn(m_idx, DRS_FREE);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        resist = (tr_ptr->flags1 & RF1_UNIQUE) || (tr_ptr->flags3 & RF3_NO_STUN);
-        saving_throw = (tr_ptr->level * 4 > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10); /* tr_ptr->level > tr_ptr->level*4 */
+		if (!resist && !saving_throw)
+		{
+			(void)set_paralyzed(p_ptr->paralyzed + randint0(4) + 4);
+		}
+		learn_spell(MS_SLEEP);
+		update_smart_learn(m_idx, DRS_FREE);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		resist = (tr_ptr->flags1 & RF1_UNIQUE) || (tr_ptr->flags3 & RF3_NO_STUN);
+		saving_throw = (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§œ%s§Ú§∏§√§»∏´§ƒ§·§ø°£", "%^s stares intently at %s."),
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected."),
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected."), 
-            _("%^s§œÀ„·„§∑§ø°™", "%^s is paralyzed!"),
-            resist, saving_throw, TARGET_TYPE);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„ÅØ%s„Çí„Åò„Å£„Å®Ë¶ã„Å§„ÇÅ„Åü„ÄÇ", "%^s stares intently at %s."),
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected."),
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected."), 
+			_("%^s„ÅØÈ∫ªÁó∫„Åó„ÅüÔºÅ", "%^s is paralyzed!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
-            (void)set_monster_stunned(t_idx, MON_STUNNED(t_ptr) + randint1(4) + 4);
-        }
-    }
+		if (!resist && !saving_throw)
+		{
+			(void)set_monster_stunned(t_idx, MON_STUNNED(t_ptr) + randint1(4) + 4);
+		}
+	}
 }
 
 /*!
-* @brief RF6_HASTE§ŒΩËÕ˝°£≤√¬Æ°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief RF6_HASTE„ÅÆÂá¶ÁêÜ„ÄÇÂä†ÈÄü„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
 */
-void spell_RF6_HASTE(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_HASTE(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    bool see_m = see_monster(m_idx);
-    monster_type    *m_ptr = &m_list[m_idx];
+	bool see_m = see_monster(m_idx);
+	monster_type	*m_ptr = &m_list[m_idx];
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 
-    monspell_message_base(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨º´ ¨§Œ¬Œ§À«∞§Ú¡˜§√§ø°£", "%^s concentrates on %s body."),
-        _("%^s§¨º´ ¨§Œ¬Œ§À«∞§Ú¡˜§√§ø°£", "%^s concentrates on %s body."),
-        _("%^s§¨º´ ¨§Œ¬Œ§À«∞§Ú¡˜§√§ø°£", "%^s concentrates on %s body."),
-        p_ptr->blind, TARGET_TYPE);
-
-    /* Allow quick speed increases to base+10 */
-    if (set_monster_fast(m_idx, MON_FAST(m_ptr) + 100))
-    {
-        if (TARGET_TYPE == MONSTER_TO_PLAYER ||
-            (TARGET_TYPE == MONSTER_TO_MONSTER && see_m))
-            msg_format(_("%^s§Œ∆∞§≠§¨¬Æ§Ø§ §√§ø°£", "%^s starts moving faster."), m_name);
-    }
-}
-
-/*!
-* @brief RF6_HAND_DOOM§ŒΩËÕ˝°£«ÀÃ«§ŒºÍ°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
-*/
-int spell_RF6_HAND_DOOM(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int dam = 0;
-
-    simple_monspell_message(m_idx, t_idx,
-        _("%^s§¨<«ÀÃ«§ŒºÍ>§Ú ¸§√§ø°™", "%^s invokes the Hand of Doom!"),
-        _("%^s§¨%s§À<«ÀÃ«§ŒºÍ>§Ú ¸§√§ø°™", "%^s invokes the Hand of Doom upon %s!"),
-        TARGET_TYPE);
-
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        dam = monspell_damage((MS_HAND_DOOM), m_idx, DAM_ROLL);
-        breath(y, x, m_idx, GF_HAND_DOOM, dam, 0, FALSE, MS_HAND_DOOM, MONSTER_TO_PLAYER);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        dam = 20; /* Dummy power */
-        breath(y, x, m_idx, GF_HAND_DOOM, dam, 0, FALSE, MS_HAND_DOOM, MONSTER_TO_MONSTER);
-    }
-    return dam;
-}
-
-/*!
-* @brief RF6_HEAL§ŒΩËÕ˝°£º£Ã˛°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-*/
-void spell_RF6_HEAL(int m_idx, int t_idx, int TARGET_TYPE)
-{
-    monster_type    *m_ptr = &m_list[m_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool seen = (!p_ptr->blind && m_ptr->ml);
-	char m_name[80];
-    monster_name(m_idx, m_name);
-
-    disturb(1, 1);
-
-    /* Message */
-    monspell_message_base(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§œº´ ¨§ŒΩ˝§À«∞§ÚΩ∏√Ê§∑§ø°£", "%^s concentrates on %s wounds."),
-        _("%^s§¨º´ ¨§ŒΩ˝§ÀΩ∏√Ê§∑§ø°£", "%^s concentrates on %s wounds."),
-        _("%^s§œº´ ¨§ŒΩ˝§À«∞§ÚΩ∏√Ê§∑§ø°£", "%^s concentrates on %s wounds."),
-        p_ptr->blind, TARGET_TYPE);
-
-    /* Heal some */
-    m_ptr->hp += (rlev * 6);
-
-    /* Fully healed */
-    if (m_ptr->hp >= m_ptr->maxhp)
-    {
-        /* Fully healed */
-        m_ptr->hp = m_ptr->maxhp;
-
-        /* Message */
-        monspell_message_base(m_idx, t_idx,
-            _("%^s§œ¥∞¡¥§Àº£§√§ø§Ë§¶§¿°™", "%^s sounds completely healed!"),
-            _("%^s§œ¥∞¡¥§Àº£§√§ø§Ë§¶§¿°™", "%^s sounds completely healed!"),
-            _("%^s§œ¥∞¡¥§Àº£§√§ø°™", "%^s looks completely healed!"),
-            _("%^s§œ¥∞¡¥§Àº£§√§ø°™", "%^s looks completely healed!"),
-            !seen, TARGET_TYPE);
-    }
-
-    /* Partially healed */
-    else
-    {
-        /* Message */
-        monspell_message_base(m_idx, t_idx,
-            _("%^s§œ¬ŒŒœ§Ú≤Û…¸§∑§ø§Ë§¶§¿°£", "%^s sounds healthier."),
-            _("%^s§œ¬ŒŒœ§Ú≤Û…¸§∑§ø§Ë§¶§¿°£", "%^s sounds healthier."),
-            _("%^s§œ¬ŒŒœ§Ú≤Û…¸§∑§ø§Ë§¶§¿°£", "%^s looks healthier."),
-            _("%^s§œ¬ŒŒœ§Ú≤Û…¸§∑§ø§Ë§¶§¿°£", "%^s looks healthier."),
-            !seen, TARGET_TYPE);
-    }
-
-    /* Redraw (later) if needed */
-    if (p_ptr->health_who == m_idx) p_ptr->redraw |= (PR_HEALTH);
-    if (p_ptr->riding == m_idx) p_ptr->redraw |= (PR_UHEALTH);
-
-    /* Cancel fear */
-    if (MON_MONFEAR(m_ptr))
-    {
-        /* Cancel fear */
-        (void)set_monster_monfear(m_idx, 0);
-
-        /* Message */
-        if (see_monster(m_idx))
-            msg_format(_("%^s§œÕ¶µ§§ÚºË§ÍÃ·§∑§ø°£", "%^s recovers %s courage."), m_name);
-    }
-}
-
-/*!
-* @brief RF6_INVULNER§ŒΩËÕ˝°£Ãµ≈®°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-*/
-void spell_RF6_INVULNER(int m_idx, int t_idx, int TARGET_TYPE)
-{
-    monster_type    *m_ptr = &m_list[m_idx];
-    bool seen = (!p_ptr->blind && m_ptr->ml);
-
-    /* Message */
 	monspell_message_base(m_idx, t_idx,
-            _("%^s§¨≤ø§´§ÚŒœ∂Ø§Ø§ƒ§÷§‰§§§ø°£", "%^s mumbles powerfully."),
-            _("%^s§¨≤ø§´§ÚŒœ∂Ø§Ø§ƒ§÷§‰§§§ø°£", "%^s mumbles powerfully."),
-            _("%s§œÃµΩ˝§ŒµÂ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a Globe of Invulnerability."),
-            _("%s§œÃµΩ˝§ŒµÂ§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a Globe of Invulnerability."),
-            !seen, TARGET_TYPE);
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåËá™ÂàÜ„ÅÆ‰Ωì„Å´Âøµ„ÇíÈÄÅ„Å£„Åü„ÄÇ", "%^s concentrates on %s body."),
+		_("%^s„ÅåËá™ÂàÜ„ÅÆ‰Ωì„Å´Âøµ„ÇíÈÄÅ„Å£„Åü„ÄÇ", "%^s concentrates on %s body."),
+		_("%^s„ÅåËá™ÂàÜ„ÅÆ‰Ωì„Å´Âøµ„ÇíÈÄÅ„Å£„Åü„ÄÇ", "%^s concentrates on %s body."),
+		p_ptr->blind > 0, TARGET_TYPE);
 
-    if (!MON_INVULNER(m_ptr)) (void)set_monster_invulner(m_idx, randint1(4) + 4, FALSE);
+	/* Allow quick speed increases to base+10 */
+	if (set_monster_fast(m_idx, MON_FAST(m_ptr) + 100))
+	{
+		if (TARGET_TYPE == MONSTER_TO_PLAYER ||
+			(TARGET_TYPE == MONSTER_TO_MONSTER && see_m))
+			msg_format(_("%^s„ÅÆÂãï„Åç„ÅåÈÄü„Åè„Å™„Å£„Åü„ÄÇ", "%^s starts moving faster."), m_name);
+	}
 }
 
 /*!
-* @brief RF6_BLINK§ŒΩËÕ˝°£•∑•Á°º•»°¶•∆•Ï•›°º•»°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief RF6_HAND_DOOM„ÅÆÂá¶ÁêÜ„ÄÇÁ†¥ÊªÖ„ÅÆÊâã„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_BLINK(int m_idx, int TARGET_TYPE)
+HIT_POINT spell_RF6_HAND_DOOM(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	HIT_POINT dam = 0;
+
+	simple_monspell_message(m_idx, t_idx,
+		_("%^s„Åå<Á†¥ÊªÖ„ÅÆÊâã>„ÇíÊîæ„Å£„ÅüÔºÅ", "%^s invokes the Hand of Doom!"),
+		_("%^s„Åå%s„Å´<Á†¥ÊªÖ„ÅÆÊâã>„ÇíÊîæ„Å£„ÅüÔºÅ", "%^s invokes the Hand of Doom upon %s!"),
+		TARGET_TYPE);
+
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		dam = monspell_damage((MS_HAND_DOOM), m_idx, DAM_ROLL);
+		breath(y, x, m_idx, GF_HAND_DOOM, dam, 0, FALSE, MS_HAND_DOOM, MONSTER_TO_PLAYER);
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		dam = 20; /* Dummy power */
+		breath(y, x, m_idx, GF_HAND_DOOM, dam, 0, FALSE, MS_HAND_DOOM, MONSTER_TO_MONSTER);
+	}
+	return dam;
+}
+
+/*!
+* @brief RF6_HEAL„ÅÆÂá¶ÁêÜ„ÄÇÊ≤ªÁôí„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+*/
+void spell_RF6_HEAL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	monster_type	*m_ptr = &m_list[m_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool seen = (!p_ptr->blind && m_ptr->ml);
+	char m_name[80];
+	monster_name(m_idx, m_name);
+
+	disturb(1, 1);
+
+	/* Message */
+	monspell_message_base(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅØËá™ÂàÜ„ÅÆÂÇ∑„Å´Âøµ„ÇíÈõÜ‰∏≠„Åó„Åü„ÄÇ", "%^s concentrates on %s wounds."),
+		_("%^s„ÅåËá™ÂàÜ„ÅÆÂÇ∑„Å´ÈõÜ‰∏≠„Åó„Åü„ÄÇ", "%^s concentrates on %s wounds."),
+		_("%^s„ÅØËá™ÂàÜ„ÅÆÂÇ∑„Å´Âøµ„ÇíÈõÜ‰∏≠„Åó„Åü„ÄÇ", "%^s concentrates on %s wounds."),
+		p_ptr->blind > 0, TARGET_TYPE);
+
+	/* Heal some */
+	m_ptr->hp += (rlev * 6);
+
+	/* Fully healed */
+	if (m_ptr->hp >= m_ptr->maxhp)
+	{
+		/* Fully healed */
+		m_ptr->hp = m_ptr->maxhp;
+
+		/* Message */
+		monspell_message_base(m_idx, t_idx,
+			_("%^s„ÅØÂÆåÂÖ®„Å´Ê≤ª„Å£„Åü„Çà„ÅÜ„Å†ÔºÅ", "%^s sounds completely healed!"),
+			_("%^s„ÅØÂÆåÂÖ®„Å´Ê≤ª„Å£„Åü„Çà„ÅÜ„Å†ÔºÅ", "%^s sounds completely healed!"),
+			_("%^s„ÅØÂÆåÂÖ®„Å´Ê≤ª„Å£„ÅüÔºÅ", "%^s looks completely healed!"),
+			_("%^s„ÅØÂÆåÂÖ®„Å´Ê≤ª„Å£„ÅüÔºÅ", "%^s looks completely healed!"),
+			!seen, TARGET_TYPE);
+	}
+
+	/* Partially healed */
+	else
+	{
+		/* Message */
+		monspell_message_base(m_idx, t_idx,
+			_("%^s„ÅØ‰ΩìÂäõ„ÇíÂõûÂæ©„Åó„Åü„Çà„ÅÜ„Å†„ÄÇ", "%^s sounds healthier."),
+			_("%^s„ÅØ‰ΩìÂäõ„ÇíÂõûÂæ©„Åó„Åü„Çà„ÅÜ„Å†„ÄÇ", "%^s sounds healthier."),
+			_("%^s„ÅØ‰ΩìÂäõ„ÇíÂõûÂæ©„Åó„Åü„Çà„ÅÜ„Å†„ÄÇ", "%^s looks healthier."),
+			_("%^s„ÅØ‰ΩìÂäõ„ÇíÂõûÂæ©„Åó„Åü„Çà„ÅÜ„Å†„ÄÇ", "%^s looks healthier."),
+			!seen, TARGET_TYPE);
+	}
+
+	/* Redraw (later) if needed */
+	if (p_ptr->health_who == m_idx) p_ptr->redraw |= (PR_HEALTH);
+	if (p_ptr->riding == m_idx) p_ptr->redraw |= (PR_UHEALTH);
+
+	/* Cancel fear */
+	if (MON_MONFEAR(m_ptr))
+	{
+		/* Cancel fear */
+		(void)set_monster_monfear(m_idx, 0);
+
+		/* Message */
+		if (see_monster(m_idx))
+			msg_format(_("%^s„ÅØÂãáÊ∞ó„ÇíÂèñ„ÇäÊàª„Åó„Åü„ÄÇ", "%^s recovers %s courage."), m_name);
+	}
+}
+
+/*!
+* @brief RF6_INVULNER„ÅÆÂá¶ÁêÜ„ÄÇÁÑ°Êïµ„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+*/
+void spell_RF6_INVULNER(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	monster_type	*m_ptr = &m_list[m_idx];
+	bool seen = (!p_ptr->blind && m_ptr->ml);
+
+	/* Message */
+	monspell_message_base(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„Åã„ÇíÂäõÂº∑„Åè„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles powerfully."),
+			_("%^s„Åå‰Ωï„Åã„ÇíÂäõÂº∑„Åè„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles powerfully."),
+			_("%s„ÅØÁÑ°ÂÇ∑„ÅÆÁêÉ„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a Globe of Invulnerability."),
+			_("%s„ÅØÁÑ°ÂÇ∑„ÅÆÁêÉ„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a Globe of Invulnerability."),
+			!seen, TARGET_TYPE);
+
+	if (!MON_INVULNER(m_ptr)) (void)set_monster_invulner(m_idx, randint1(4) + 4, FALSE);
+}
+
+/*!
+* @brief RF6_BLINK„ÅÆÂá¶ÁêÜ„ÄÇ„Ç∑„Éß„Éº„Éà„Éª„ÉÜ„É¨„Éù„Éº„Éà„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+*/
+void spell_RF6_BLINK(MONSTER_IDX m_idx, int TARGET_TYPE)
 {
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	
 	if (TARGET_TYPE==MONSTER_TO_PLAYER)
 		disturb(1, 1);
 
-    if (teleport_barrier(m_idx))
-    {
+	if (teleport_barrier(m_idx))
+	{
 		if(see_monster(m_idx))
-	        msg_format(_("À‚À°§Œ•–•Í•¢§¨%^s§Œ•∆•Ï•›°º•»§ÚºŸÀ‚§∑§ø°£",
+			msg_format(_("È≠îÊ≥ï„ÅÆ„Éê„É™„Ç¢„Åå%^s„ÅÆ„ÉÜ„É¨„Éù„Éº„Éà„ÇíÈÇ™È≠î„Åó„Åü„ÄÇ",
 						 "Magic barrier obstructs teleporting of %^s."), m_name);
-    }
-    else
-    {
+	}
+	else
+	{
 		if(see_monster(m_idx))
-	        msg_format(_("%^s§¨Ω÷ª˛§Àæ√§®§ø°£", "%^s blinks away."), m_name);
+			msg_format(_("%^s„ÅåÁû¨ÊôÇ„Å´Ê∂à„Åà„Åü„ÄÇ", "%^s blinks away."), m_name);
 
-        teleport_away(m_idx, 10, 0L);
+		teleport_away(m_idx, 10, 0L);
 
 		if (TARGET_TYPE==MONSTER_TO_PLAYER)
-	        p_ptr->update |= (PU_MONSTERS);
-    }
+			p_ptr->update |= (PU_MONSTERS);
+	}
 }
 
 /*!
-* @brief RF6_TPORT§ŒΩËÕ˝°£•∆•Ï•›°º•»°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief RF6_TPORT„ÅÆÂá¶ÁêÜ„ÄÇ„ÉÜ„É¨„Éù„Éº„Éà„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
 */
-void spell_RF6_TPORT(int m_idx, int TARGET_TYPE)
+void spell_RF6_TPORT(MONSTER_IDX m_idx, int TARGET_TYPE)
 {	
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	
 	if (TARGET_TYPE==MONSTER_TO_PLAYER)
 		disturb(1, 1);
-    if (teleport_barrier(m_idx))
-    {
+	if (teleport_barrier(m_idx))
+	{
 		if(see_monster(m_idx))
-			msg_format(_("À‚À°§Œ•–•Í•¢§¨%^s§Œ•∆•Ï•›°º•»§ÚºŸÀ‚§∑§ø°£",
+			msg_format(_("È≠îÊ≥ï„ÅÆ„Éê„É™„Ç¢„Åå%^s„ÅÆ„ÉÜ„É¨„Éù„Éº„Éà„ÇíÈÇ™È≠î„Åó„Åü„ÄÇ",
 						 "Magic barrier obstructs teleporting of %^s."), m_name);
-    }
-    else
-    {
+	}
+	else
+	{
 		if(see_monster(m_idx))
-			msg_format(_("%^s§¨•∆•Ï•›°º•»§∑§ø°£", "%^s teleports away."), m_name);
+			msg_format(_("%^s„Åå„ÉÜ„É¨„Éù„Éº„Éà„Åó„Åü„ÄÇ", "%^s teleports away."), m_name);
 
-        teleport_away_followable(m_idx);
-    }
+		teleport_away_followable(m_idx);
+	}
 }
 
 /*!
-* @brief RF6_WORLD§ŒΩËÕ˝°£ª˛§Úªﬂ§·§Î°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
+* @brief RF6_WORLD„ÅÆÂá¶ÁêÜ„ÄÇÊôÇ„ÇíÊ≠¢„ÇÅ„Çã„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
 */
-int spell_RF6_WORLD(int m_idx)
+HIT_POINT spell_RF6_WORLD(MONSTER_IDX m_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    int who = 0;
+	monster_type	*m_ptr = &m_list[m_idx];
+	int who = 0;
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 
-    disturb(1, 1);
-    if (m_ptr->r_idx == MON_DIO) who = 1;
-    else if (m_ptr->r_idx == MON_WONG) who = 3;
-    if (!process_the_world(randint1(2) + 2, who, TRUE)) return (FALSE);
-    return who;
+	disturb(1, 1);
+	if (m_ptr->r_idx == MON_DIO) who = 1;
+	else if (m_ptr->r_idx == MON_WONG) who = 3;
+	if (!process_the_world(randint1(2) + 2, who, TRUE)) return (FALSE);
+	return who;
 }
 
 /*!
-* @brief •–°º•Œ°º•Î°¶•Î•—°º•»§ŒRF6_SPECIAL§ŒΩËÕ˝°£ ¨Œˆ°¶πÁ¬Œ°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
+* @brief „Éê„Éº„Éé„Éº„É´„Éª„É´„Éë„Éº„Éà„ÅÆRF6_SPECIAL„ÅÆÂá¶ÁêÜ„ÄÇÂàÜË£Ç„ÉªÂêà‰Ωì„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
 */
-int spell_RF6_SPECIAL_BANORLUPART(int m_idx)
+HIT_POINT spell_RF6_SPECIAL_BANORLUPART(MONSTER_IDX m_idx)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-	int dummy_hp, dummy_maxhp, k;
-	int dummy_y = m_ptr->fy;
-    int dummy_x = m_ptr->fx;
-    u32b mode = 0L;
+	monster_type *m_ptr = &m_list[m_idx];
+	HIT_POINT dummy_hp, dummy_maxhp;
+	MONSTER_IDX k;
+	POSITION dummy_y = m_ptr->fy;
+	POSITION dummy_x = m_ptr->fx;
+	BIT_FLAGS mode = 0L;
 
 	switch(m_ptr->r_idx)
 	{
@@ -1982,61 +1983,61 @@ int spell_RF6_SPECIAL_BANORLUPART(int m_idx)
 			m_list[hack_m_idx_ii].hp = dummy_hp;
 			m_list[hack_m_idx_ii].maxhp = dummy_maxhp;
 
-			msg_print(_("°ÿ•–°º•Œ°º•Î°¶•Î•—°º•»°Ÿ§¨ ¨Œˆ§∑§ø°™","Banor=Rupart splits in two person!"));
+			msg_print(_("„Äé„Éê„Éº„Éé„Éº„É´„Éª„É´„Éë„Éº„Éà„Äè„ÅåÂàÜË£Ç„Åó„ÅüÔºÅ","Banor=Rupart splits in two person!"));
 			break;
 		
-        case MON_BANOR:
-        case MON_LUPART:
-            dummy_hp = 0;
-            dummy_maxhp = 0;
+		case MON_BANOR:
+		case MON_LUPART:
+			dummy_hp = 0;
+			dummy_maxhp = 0;
 
-            if (!r_info[MON_BANOR].cur_num || !r_info[MON_LUPART].cur_num) 
+			if (!r_info[MON_BANOR].cur_num || !r_info[MON_LUPART].cur_num) 
 				return -1;
 
-            for (k = 1; k < m_max; k++)
-            {
-                if (m_list[k].r_idx == MON_BANOR || m_list[k].r_idx == MON_LUPART)
-                {
-                    dummy_hp += m_list[k].hp;
-                    dummy_maxhp += m_list[k].maxhp;
-                    if (m_list[k].r_idx != m_ptr->r_idx)
-                    {
-                        dummy_y = m_list[k].fy;
-                        dummy_x = m_list[k].fx;
-                    }
-                    delete_monster_idx(k);
-                }
-            }
-            summon_named_creature(0, dummy_y, dummy_x, MON_BANORLUPART, mode);
-            m_list[hack_m_idx_ii].hp = dummy_hp;
-            m_list[hack_m_idx_ii].maxhp = dummy_maxhp;
+			for (k = 1; k < m_max; k++)
+			{
+				if (m_list[k].r_idx == MON_BANOR || m_list[k].r_idx == MON_LUPART)
+				{
+					dummy_hp += m_list[k].hp;
+					dummy_maxhp += m_list[k].maxhp;
+					if (m_list[k].r_idx != m_ptr->r_idx)
+					{
+						dummy_y = m_list[k].fy;
+						dummy_x = m_list[k].fx;
+					}
+					delete_monster_idx(k);
+				}
+			}
+			summon_named_creature(0, dummy_y, dummy_x, MON_BANORLUPART, mode);
+			m_list[hack_m_idx_ii].hp = dummy_hp;
+			m_list[hack_m_idx_ii].maxhp = dummy_maxhp;
 
-            msg_print(_("°ÿ•–°º•Œ°º•Î°Ÿ§»°ÿ•Î•—°º•»°Ÿ§¨πÁ¬Œ§∑§ø°™", "Banor and Rupart combine into one!"));
-            break;
+			msg_print(_("„Äé„Éê„Éº„Éé„Éº„É´„Äè„Å®„Äé„É´„Éë„Éº„Éà„Äè„ÅåÂêà‰Ωì„Åó„ÅüÔºÅ", "Banor and Rupart combine into one!"));
+			break;
 	}
 	return 0;
 }
 
 /*!
-* @brief •Ì•Ï•Û•»§ŒRF6_SPECIAL§ŒΩËÕ˝°£ºÍ‹ÿ√∆§Œæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief „É≠„É¨„É≥„Éà„ÅÆRF6_SPECIAL„ÅÆÂá¶ÁêÜ„ÄÇÊâãÊ¶¥Âºæ„ÅÆÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF6_SPECIAL_ROLENTO(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF6_SPECIAL_ROLENTO(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	int count = 0, k;
-    int num = 1 + randint1(3);
-    u32b mode = 0L;
+	int num = 1 + randint1(3);
+	BIT_FLAGS mode = 0L;
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´¬ÁŒÃ§À≈Í§≤§ø°£", "%^s spreads something."),
-		_("%^s§œºÍ‹ÿ√∆§Ú§–§È§ﬁ§§§ø°£", "%^s throws some hand grenades."),
-        _("%^s§œºÍ‹ÿ√∆§Ú§–§È§ﬁ§§§ø°£", "%^s throws some hand grenades."),
-        TARGET_TYPE);
+		_("%^s„Åå‰Ωï„ÅãÂ§ßÈáè„Å´Êäï„Åí„Åü„ÄÇ", "%^s spreads something."),
+		_("%^s„ÅØÊâãÊ¶¥Âºæ„Çí„Å∞„Çâ„Åæ„ÅÑ„Åü„ÄÇ", "%^s throws some hand grenades."),
+		_("%^s„ÅØÊâãÊ¶¥Âºæ„Çí„Å∞„Çâ„Åæ„ÅÑ„Åü„ÄÇ", "%^s throws some hand grenades."),
+		TARGET_TYPE);
 
 	for (k = 0; k < num; k++)
 	{
@@ -2044,38 +2045,38 @@ int spell_RF6_SPECIAL_ROLENTO(int y, int x, int m_idx, int t_idx, int TARGET_TYP
 	}
 	
 	if (p_ptr->blind && count)
-		msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À§–§È§ﬁ§´§Ï§Î≤ª§¨§π§Î°£", "You hear many things are scattered nearby."));
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´„Å∞„Çâ„Åæ„Åã„Çå„ÇãÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things are scattered nearby."));
 	
 	return 0;
 }
 
 /*!
-* @brief B•∑•Û•‹•Î§ŒRF6_SPECIAL§ŒΩËÕ˝°£≈Í§≤ÕÓ§»§ππ∂∑‚°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief B„Ç∑„É≥„Éú„É´„ÅÆRF6_SPECIAL„ÅÆÂá¶ÁêÜ„ÄÇÊäï„ÅíËêΩ„Å®„ÅôÊîªÊíÉ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF6_SPECIAL_B(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF6_SPECIAL_B(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-	int dam;
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
+	HIT_POINT dam = -1;
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
 	bool monster_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	bool monster_to_monster = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool direct = player_bold(y, x);
+	bool direct = player_bold(y, x);
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 
 	disturb(1, 1);
 	if (one_in_(3) || !direct)
 	{		
 		simple_monspell_message(m_idx, t_idx,
-			_("%^s§œ∆Õ¡≥ªÎ≥¶§´§Èæ√§®§ø!", "%^s suddenly go out of your sight!"),
-			_("%^s§œ∆Õ¡≥µﬁæÂæ∫§∑§∆ªÎ≥¶§´§Èæ√§®§ø!", "%^s suddenly go out of your sight!"),
+			_("%^s„ÅØÁ™ÅÁÑ∂Ë¶ñÁïå„Åã„ÇâÊ∂à„Åà„Åü!", "%^s suddenly go out of your sight!"),
+			_("%^s„ÅØÁ™ÅÁÑ∂ÊÄ•‰∏äÊòá„Åó„Å¶Ë¶ñÁïå„Åã„ÇâÊ∂à„Åà„Åü!", "%^s suddenly go out of your sight!"),
 			TARGET_TYPE);
 				
 		teleport_away(m_idx, 10, TELEPORT_NONMAGICAL);
@@ -2087,8 +2088,8 @@ int spell_RF6_SPECIAL_B(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 		bool fear; /* dummy */
 	
 		simple_monspell_message(m_idx, t_idx,
-			_("%^s§¨§¢§ §ø§Úƒœ§Û§«∂ı√Ê§´§È≈Í§≤ÕÓ§»§∑§ø°£", "%^s holds you, and drops from the sky."),
-			_("%^s§¨%s§Úƒœ§Û§«∂ı√Ê§´§È≈Í§≤ÕÓ§»§∑§ø°£", "%^s holds %s, and drops from the sky."),
+			_("%^s„Åå„ÅÇ„Å™„Åü„ÇíÊé¥„Çì„ÅßÁ©∫‰∏≠„Åã„ÇâÊäï„ÅíËêΩ„Å®„Åó„Åü„ÄÇ", "%^s holds you, and drops from the sky."),
+			_("%^s„Åå%s„ÇíÊé¥„Çì„ÅßÁ©∫‰∏≠„Åã„ÇâÊäï„ÅíËêΩ„Å®„Åó„Åü„ÄÇ", "%^s holds %s, and drops from the sky."),
 			TARGET_TYPE);
 
 		dam = damroll(4, 8);
@@ -2104,15 +2105,15 @@ int spell_RF6_SPECIAL_B(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 			(monster_to_monster && (tr_ptr->flags7 & RF7_CAN_FLY)))
 		{
 			simple_monspell_message(m_idx, t_idx,
-				_("§¢§ §ø§œ¿≈§´§À√Â√œ§∑§ø°£", "You float gently down to the ground."),
-				_("%^s§œ¿≈§´§À√Â√œ§∑§ø°£", "%^s floats gently down to the ground."),
+				_("„ÅÇ„Å™„Åü„ÅØÈùô„Åã„Å´ÁùÄÂú∞„Åó„Åü„ÄÇ", "You float gently down to the ground."),
+				_("%^s„ÅØÈùô„Åã„Å´ÁùÄÂú∞„Åó„Åü„ÄÇ", "%^s floats gently down to the ground."),
 				TARGET_TYPE);
 		}
 		else
 		{
 			simple_monspell_message(m_idx, t_idx,
-				_("§¢§ §ø§œ√œÃÃ§À√°§≠§ƒ§±§È§Ï§ø°£", "You crashed into the ground."),
-				_("%^s§œ√œÃÃ§À√°§≠§ƒ§±§È§Ï§ø°£", "%^s crashed into the ground."),
+				_("„ÅÇ„Å™„Åü„ÅØÂú∞Èù¢„Å´Âè©„Åç„Å§„Åë„Çâ„Çå„Åü„ÄÇ", "You crashed into the ground."),
+				_("%^s„ÅØÂú∞Èù¢„Å´Âè©„Åç„Å§„Åë„Çâ„Çå„Åü„ÄÇ", "%^s crashed into the ground."),
 				TARGET_TYPE);
 			dam += damroll(6, 8);
 		}
@@ -2130,7 +2131,7 @@ int spell_RF6_SPECIAL_B(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 				/* hisself */
 				monster_desc(m_name_self, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE | MD_OBJECTIVE);
 
-				msg_format(_("π∂∑‚§¨%sº´ø»§ÚΩ˝§ƒ§±§ø°™", "The attack of %s has wounded %s!"), m_name, m_name_self);
+				msg_format(_("ÊîªÊíÉ„Åå%sËá™Ë∫´„ÇíÂÇ∑„Å§„Åë„ÅüÔºÅ", "The attack of %s has wounded %s!"), m_name, m_name_self);
 
 				project(0, 0, m_ptr->fy, m_ptr->fx, get_damage, GF_MISSILE, PROJECT_KILL, -1);
 				set_tim_eyeeye(p_ptr->tim_eyeeye - 5, TRUE);
@@ -2147,63 +2148,63 @@ int spell_RF6_SPECIAL_B(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_SPECIAL§ŒΩËÕ˝°£•‚•Û•π•ø°º§ŒºÔŒ‡§À§Ë§√§∆º¬ΩËÕ˝§Àø∂§Í ¨§±§Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF6_SPECIAL„ÅÆÂá¶ÁêÜ„ÄÇ„É¢„É≥„Çπ„Çø„Éº„ÅÆÁ®ÆÈ°û„Å´„Çà„Å£„Å¶ÂÆüÂá¶ÁêÜ„Å´ÊåØ„ÇäÂàÜ„Åë„Çã„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF6_SPECIAL(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF6_SPECIAL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
 
-    disturb(1, 1);
-    switch (m_ptr->r_idx)
-    {
-        case MON_OHMU:
-            /* Moved to process_monster(), like multiplication */
-            return -1;
+	disturb(1, 1);
+	switch (m_ptr->r_idx)
+	{
+		case MON_OHMU:
+			/* Moved to process_monster(), like multiplication */
+			return -1;
 
-        case MON_BANORLUPART:
-        case MON_BANOR:
-        case MON_LUPART:
+		case MON_BANORLUPART:
+		case MON_BANOR:
+		case MON_LUPART:
 			return spell_RF6_SPECIAL_BANORLUPART(m_idx);
 
-        case MON_ROLENTO:
+		case MON_ROLENTO:
 			return spell_RF6_SPECIAL_ROLENTO(y, x, m_idx, t_idx, TARGET_TYPE);
-            break;
+			break;
 
-        default:
-        if (r_ptr->d_char == 'B')
-        {
-            return spell_RF6_SPECIAL_B(y, x, m_idx, t_idx, TARGET_TYPE);
-            break;
-        }
+		default:
+		if (r_ptr->d_char == 'B')
+		{
+			return spell_RF6_SPECIAL_B(y, x, m_idx, t_idx, TARGET_TYPE);
+			break;
+		}
 
-        /* Something is wrong */
-        else return -1;
-    }
+		/* Something is wrong */
+		else return -1;
+	}
 }
 
 /*!
-* @brief RF6_TELE_TO§ŒΩËÕ˝°£•∆•Ï•›°º•»°¶•–•√•Ø°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF6_TELE_TO„ÅÆÂá¶ÁêÜ„ÄÇ„ÉÜ„É¨„Éù„Éº„Éà„Éª„Éê„ÉÉ„ÇØ„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_TELE_TO(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_TELE_TO(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
 
 	simple_monspell_message(m_idx, t_idx,
-		_("%^s§¨§¢§ §ø§Ú∞˙§≠Ã·§∑§ø°£", "%^s commands you to return."),
-		_("%^s§¨%s§Ú∞˙§≠Ã·§∑§ø°£", "%^s commands %s to return."),
+		_("%^s„Åå„ÅÇ„Å™„Åü„ÇíÂºï„ÅçÊàª„Åó„Åü„ÄÇ", "%^s commands you to return."),
+		_("%^s„Åå%s„ÇíÂºï„ÅçÊàª„Åó„Åü„ÄÇ", "%^s commands %s to return."),
 		TARGET_TYPE);
 	
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
@@ -2224,7 +2225,7 @@ void spell_RF6_TELE_TO(int m_idx, int t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected!"), t_name);
+					msg_format(_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2233,7 +2234,7 @@ void spell_RF6_TELE_TO(int m_idx, int t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^s§œ¬—¿≠§Úª˝§√§∆§§§Î°™", "%^s resists!"), t_name);
+					msg_format(_("%^s„ÅØËÄêÊÄß„ÇíÊåÅ„Å£„Å¶„ÅÑ„ÇãÔºÅ", "%^s resists!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2246,31 +2247,31 @@ void spell_RF6_TELE_TO(int m_idx, int t_idx, int TARGET_TYPE)
 			else 
 				teleport_monster_to(t_idx, m_ptr->fy, m_ptr->fx, 100, TELEPORT_PASSIVE);
 		}
-        monster_wakeup(t_idx);
+		monster_wakeup(t_idx);
 	}
 }
 
 /*!
-* @brief RF6_TELE_AWAY§ŒΩËÕ˝°£•∆•Ï•›°º•»°¶•¢•¶•ß•§°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF6_TELE_AWAY„ÅÆÂá¶ÁêÜ„ÄÇ„ÉÜ„É¨„Éù„Éº„Éà„Éª„Ç¢„Ç¶„Çß„Ç§„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_TELE_AWAY(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_TELE_AWAY(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
 
 	simple_monspell_message(m_idx, t_idx,
-		_("%^s§À•∆•Ï•›°º•»§µ§ª§È§Ï§ø°£", "%^s teleports you away."),
-		_("%^s§œ%s§Ú•∆•Ï•›°º•»§µ§ª§ø°£", "%^s teleports %s away."),
+		_("%^s„Å´„ÉÜ„É¨„Éù„Éº„Éà„Åï„Åõ„Çâ„Çå„Åü„ÄÇ", "%^s teleports you away."),
+		_("%^s„ÅØ%s„Çí„ÉÜ„É¨„Éù„Éº„Éà„Åï„Åõ„Åü„ÄÇ", "%^s teleports %s away."),
 		TARGET_TYPE);
 	
 	if (TARGET_TYPE == MONSTER_TO_PLAYER)
 	{
 		if ((p_ptr->pseikaku == SEIKAKU_COMBAT) || (inventory[INVEN_BOW].name1 == ART_CRIMSON))
-			msg_print(_("§Ø§√§Ω", ""));
+			msg_print(_("„Åè„Å£„ÅùÔΩû", ""));
 		
 		learn_spell(MS_TELE_AWAY);
 		teleport_player_away(m_idx, 100);
@@ -2288,7 +2289,7 @@ void spell_RF6_TELE_AWAY(int m_idx, int t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected!"), t_name);
+					msg_format(_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2297,7 +2298,7 @@ void spell_RF6_TELE_AWAY(int m_idx, int t_idx, int TARGET_TYPE)
 				if (is_original_ap_and_seen(t_ptr)) tr_ptr->r_flagsr |= RFR_RES_TELE;
 				if (see_monster(t_idx))
 				{
-					msg_format(_("%^s§œ¬—¿≠§Úª˝§√§∆§§§Î°™", "%^s resists!"), t_name);
+					msg_format(_("%^s„ÅØËÄêÊÄß„ÇíÊåÅ„Å£„Å¶„ÅÑ„ÇãÔºÅ", "%^s resists!"), t_name);
 				}
 				resists_tele = TRUE;
 			}
@@ -2310,138 +2311,138 @@ void spell_RF6_TELE_AWAY(int m_idx, int t_idx, int TARGET_TYPE)
 			else 
 				teleport_away(t_idx, MAX_SIGHT * 2 + 5, TELEPORT_PASSIVE);
 		}
-        monster_wakeup(t_idx);
+		monster_wakeup(t_idx);
 	}
 }
 
 /*!
-* @brief RF6_TELE_LEVEL§ŒΩËÕ˝°£•∆•Ï•›°º•»°¶•Ï•Ÿ•Î°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF6_TELE_LEVEL„ÅÆÂá¶ÁêÜ„ÄÇ„ÉÜ„É¨„Éù„Éº„Éà„Éª„É¨„Éô„É´„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_TELE_LEVEL(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_TELE_LEVEL(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *tr_ptr = &r_info[t_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool resist, saving_throw;
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*tr_ptr = &r_info[t_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool resist, saving_throw;
 
-    if (TARGET_TYPE == MONSTER_TO_PLAYER)
-    {
-        resist = p_ptr->resist_nexus;
-        saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
-        spell_badstatus_message(m_idx, t_idx,
-            _("%^s§¨≤ø§´¥ÒÃØ§ ∏¿Õ’§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles strangely."),
-            _("%^s§¨§¢§ §ø§Œ¬≠§Úªÿ§µ§∑§ø°£", "%^s gestures at your feet."),
-            _("§∑§´§∑∏˙≤Ã§¨§ §´§√§ø°™", "You are unaffected!"),
-            _("§∑§´§∑∏˙Œœ§Úƒ∑§Õ ÷§∑§ø°™", "You resist the effects!"),
-            resist, saving_throw, TARGET_TYPE);
+	if (TARGET_TYPE == MONSTER_TO_PLAYER)
+	{
+		resist = p_ptr->resist_nexus;
+		saving_throw = (randint0(100 + rlev / 2) < p_ptr->skill_sav);
+		spell_badstatus_message(m_idx, t_idx,
+			_("%^s„Åå‰Ωï„ÅãÂ•áÂ¶ô„Å™Ë®ÄËëâ„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles strangely."),
+			_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆË∂≥„ÇíÊåá„Åï„Åó„Åü„ÄÇ", "%^s gestures at your feet."),
+			_("„Åó„Åã„ÅóÂäπÊûú„Åå„Å™„Åã„Å£„ÅüÔºÅ", "You are unaffected!"),
+			_("„Åó„Åã„ÅóÂäπÂäõ„ÇíË∑≥„Å≠Ëøî„Åó„ÅüÔºÅ", "You resist the effects!"),
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
+		if (!resist && !saving_throw)
+		{
 			teleport_level(0);
-        }
+		}
 		learn_spell(MS_TELE_LEVEL);
 		update_smart_learn(m_idx, DRS_NEXUS);
-    }
-    else if (TARGET_TYPE == MONSTER_TO_MONSTER)
-    {
-        resist = tr_ptr->flagsr & (RFR_EFF_RES_NEXU_MASK | RFR_RES_TELE);
-        saving_throw = (tr_ptr->flags1 & RF1_QUESTOR) ||
-			           (tr_ptr->level * 4 > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10); /* tr_ptr->level > tr_ptr->level*4 */
+	}
+	else if (TARGET_TYPE == MONSTER_TO_MONSTER)
+	{
+		resist = tr_ptr->flagsr & (RFR_EFF_RES_NEXU_MASK | RFR_RES_TELE);
+		saving_throw = (tr_ptr->flags1 & RF1_QUESTOR) ||
+					   (tr_ptr->level > randint1((rlev - 10) < 1 ? 1 : (rlev - 10)) + 10);
 
-        spell_badstatus_message(m_idx, t_idx, 
-            _("%^s§¨%s§Œ¬≠§Úªÿ§µ§∑§ø°£", "%^s gestures at %s's feet."),
-            _("%^s§À§œ∏˙≤Ã§¨§ §´§√§ø°£", "%^s is unaffected!"),
-            _("%^s§œ∏˙Œœ§Úƒ∑§Õ ÷§∑§ø°™", "%^s resist the effects!"),
-            "",
-            resist, saving_throw, TARGET_TYPE);
+		spell_badstatus_message(m_idx, t_idx, 
+			_("%^s„Åå%s„ÅÆË∂≥„ÇíÊåá„Åï„Åó„Åü„ÄÇ", "%^s gestures at %s's feet."),
+			_("%^s„Å´„ÅØÂäπÊûú„Åå„Å™„Åã„Å£„Åü„ÄÇ", "%^s is unaffected!"),
+			_("%^s„ÅØÂäπÂäõ„ÇíË∑≥„Å≠Ëøî„Åó„ÅüÔºÅ", "%^s resist the effects!"),
+			"",
+			resist, saving_throw, TARGET_TYPE);
 
-        if (!resist && !saving_throw)
-        {
+		if (!resist && !saving_throw)
+		{
 			teleport_level((t_idx == p_ptr->riding) ? 0 : t_idx);
-        }
-    }
+		}
+	}
 }
 
 /*!
-* @brief RF6_PSY_SPEAR§ŒΩËÕ˝°£∏˜§Œ∑ı°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return •¿•·°º•∏ŒÃ§Ú ÷§π°£
+* @brief RF6_PSY_SPEAR„ÅÆÂá¶ÁêÜ„ÄÇÂÖâ„ÅÆÂâ£„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return „ÉÄ„É°„Éº„Ç∏Èáè„ÇíËøî„Åô„ÄÇ
 */
-int spell_RF6_PSY_SPEAR(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+HIT_POINT spell_RF6_PSY_SPEAR(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int dam;
+	HIT_POINT dam;
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨∏˜§Œ∑ı§Ú ¸§√§ø°£", "%^s throw a Psycho-Spear."),
-        _("%^s§¨%s§À∏˛§´§√§∆∏˜§Œ∑ı§Ú ¸§√§ø°£", "%^s throw a Psycho-spear at %s."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÂÖâ„ÅÆÂâ£„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s throw a Psycho-Spear."),
+		_("%^s„Åå%s„Å´Âêë„Åã„Å£„Å¶ÂÖâ„ÅÆÂâ£„ÇíÊîæ„Å£„Åü„ÄÇ", "%^s throw a Psycho-spear at %s."),
+		TARGET_TYPE);
 
-    dam = monspell_damage((MS_PSY_SPEAR), m_idx, DAM_ROLL);
-    beam(m_idx, y, x, GF_PSY_SPEAR, dam, MS_PSY_SPEAR, MONSTER_TO_PLAYER);
-    return dam;
+	dam = monspell_damage((MS_PSY_SPEAR), m_idx, DAM_ROLL);
+	beam(m_idx, y, x, GF_PSY_SPEAR, dam, MS_PSY_SPEAR, MONSTER_TO_PLAYER);
+	return dam;
 }
 
 /*!
-* @brief RF6_DARKNESS§ŒΩËÕ˝°£∞≈∞«or¡Æ∏˜°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief RF6_DARKNESS„ÅÆÂá¶ÁêÜ„ÄÇÊöóÈóáorÈñÉÂÖâ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
 */
-void spell_RF6_DARKNESS(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_DARKNESS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_type    *t_ptr = &m_list[t_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
-    bool can_use_lite_area = FALSE;
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_type	*t_ptr = &m_list[t_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
+	bool can_use_lite_area = FALSE;
 	bool monster_to_monster = TARGET_TYPE == MONSTER_TO_MONSTER;
 	bool monster_to_player = TARGET_TYPE == MONSTER_TO_PLAYER;
 	char t_name[80];
 	monster_name(t_idx, t_name);
 
-    if ((p_ptr->pclass == CLASS_NINJA) &&
-        !(r_ptr->flags3 & (RF3_UNDEAD | RF3_HURT_LITE)) &&
-        !(r_ptr->flags7 & RF7_DARK_MASK))
-        can_use_lite_area = TRUE;
+	if ((p_ptr->pclass == CLASS_NINJA) &&
+		!(r_ptr->flags3 & (RF3_UNDEAD | RF3_HURT_LITE)) &&
+		!(r_ptr->flags7 & RF7_DARK_MASK))
+		can_use_lite_area = TRUE;
 
 	if(monster_to_monster && !is_hostile(t_ptr))
-        can_use_lite_area = FALSE;
+		can_use_lite_area = FALSE;
 
 	
 	if (can_use_lite_area)
 	{
 		monspell_message(m_idx, t_idx,
-			_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-			_("%^s§¨ ’§Í§ÚÃ¿§Î§Øæ»§È§∑§ø°£", "%^s cast a spell to light up."),
-			_("%^s§¨ ’§Í§ÚÃ¿§Î§Øæ»§È§∑§ø°£", "%^s cast a spell to light up."),
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„ÅåËæ∫„Çä„ÇíÊòé„Çã„ÅèÁÖß„Çâ„Åó„Åü„ÄÇ", "%^s cast a spell to light up."),
+			_("%^s„ÅåËæ∫„Çä„ÇíÊòé„Çã„ÅèÁÖß„Çâ„Åó„Åü„ÄÇ", "%^s cast a spell to light up."),
 			TARGET_TYPE);
 
 		if (see_monster(t_idx) && monster_to_monster)
 		{
-			msg_format(_("%^s§œ«Ú§§∏˜§À Ò§ﬁ§Ï§ø°£", "%^s is surrounded by a white light."), t_name);
+			msg_format(_("%^s„ÅØÁôΩ„ÅÑÂÖâ„Å´ÂåÖ„Åæ„Çå„Åü„ÄÇ", "%^s is surrounded by a white light."), t_name);
 		}
 	}
 	else
 	{
 		monspell_message(m_idx, t_idx,
-			_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-			_("%^s§¨∞≈∞«§Œ√Ê§«ºÍ§Úø∂§√§ø°£", "%^s gestures in shadow."),
-			_("%^s§¨∞≈∞«§Œ√Ê§«ºÍ§Úø∂§√§ø°£", "%^s gestures in shadow."),
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„ÅåÊöóÈóá„ÅÆ‰∏≠„ÅßÊâã„ÇíÊåØ„Å£„Åü„ÄÇ", "%^s gestures in shadow."),
+			_("%^s„ÅåÊöóÈóá„ÅÆ‰∏≠„ÅßÊâã„ÇíÊåØ„Å£„Åü„ÄÇ", "%^s gestures in shadow."),
 			TARGET_TYPE);
 
 		if (see_monster(t_idx) && monster_to_monster)
 		{
-			msg_format(_("%^s§œ∞≈∞«§À Ò§ﬁ§Ï§ø°£", "%^s is surrounded by darkness."), t_name);
+			msg_format(_("%^s„ÅØÊöóÈóá„Å´ÂåÖ„Åæ„Çå„Åü„ÄÇ", "%^s is surrounded by darkness."), t_name);
 		}
 	}
 
@@ -2473,84 +2474,84 @@ void spell_RF6_DARKNESS(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 }
 
 /*!
-* @brief RF6_TRAPS§ŒΩËÕ˝°£•»•È•√•◊°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
+* @brief RF6_TRAPS„ÅÆÂá¶ÁêÜ„ÄÇ„Éà„É©„ÉÉ„Éó„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
 */
-void spell_RF6_TRAPS(int y, int x, int m_idx)
+void spell_RF6_TRAPS(POSITION y, POSITION x, MONSTER_IDX m_idx)
 {
 	char m_name[80];
-    monster_name(m_idx, m_name);
-    disturb(1, 1);
+	monster_name(m_idx, m_name);
+	disturb(1, 1);
 
-    if (p_ptr->blind)
-        msg_format(_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§∆ºŸ∞≠§À»˘æ–§Û§¿°£",
-        "%^s mumbles, and then cackles evilly."), m_name);
-    else
-        msg_format(_("%^s§¨ºˆ ∏§Úæß§®§∆ºŸ∞≠§À»˘æ–§Û§¿°£",
-        "%^s casts a spell and cackles evilly."), m_name);
+	if (p_ptr->blind)
+		msg_format(_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Å¶ÈÇ™ÊÇ™„Å´ÂæÆÁ¨ë„Çì„Å†„ÄÇ",
+		"%^s mumbles, and then cackles evilly."), m_name);
+	else
+		msg_format(_("%^s„ÅåÂë™Êñá„ÇíÂî±„Åà„Å¶ÈÇ™ÊÇ™„Å´ÂæÆÁ¨ë„Çì„Å†„ÄÇ",
+		"%^s casts a spell and cackles evilly."), m_name);
 
-    learn_spell(MS_MAKE_TRAP);
-    (void)trap_creation(y, x);
+	learn_spell(MS_MAKE_TRAP);
+	(void)trap_creation(y, x);
 }
 
 /*!
-* @brief RF6_FORGET§ŒΩËÕ˝°£µ≠≤±æ√µÓ°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
+* @brief RF6_FORGET„ÅÆÂá¶ÁêÜ„ÄÇË®òÊÜ∂Ê∂àÂéª„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
 */
-void spell_RF6_FORGET(int m_idx)
+void spell_RF6_FORGET(MONSTER_IDX m_idx)
 {
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
+	int rlev = monster_level_idx(m_idx);
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 
-    disturb(1, 1);
+	disturb(1, 1);
 
-    msg_format(_("%^s§¨§¢§ §ø§Œµ≠≤±§Úæ√µÓ§∑§Ë§¶§»§∑§∆§§§Î°£",
-        "%^s tries to blank your mind."), m_name);
+	msg_format(_("%^s„Åå„ÅÇ„Å™„Åü„ÅÆË®òÊÜ∂„ÇíÊ∂àÂéª„Åó„Çà„ÅÜ„Å®„Åó„Å¶„ÅÑ„Çã„ÄÇ",
+		"%^s tries to blank your mind."), m_name);
 
-    if (randint0(100 + rlev / 2) < p_ptr->skill_sav)
-    {
-        msg_print(_("§∑§´§∑∏˙Œœ§Úƒ∑§Õ ÷§∑§ø°™", "You resist the effects!"));
-    }
-    else if (lose_all_info())
-    {
-        msg_print(_("µ≠≤±§¨«ˆ§Ï§∆§∑§ﬁ§√§ø°£", "Your memories fade away."));
-    }
-    learn_spell(MS_FORGET);
+	if (randint0(100 + rlev / 2) < p_ptr->skill_sav)
+	{
+		msg_print(_("„Åó„Åã„ÅóÂäπÂäõ„ÇíË∑≥„Å≠Ëøî„Åó„ÅüÔºÅ", "You resist the effects!"));
+	}
+	else if (lose_all_info())
+	{
+		msg_print(_("Ë®òÊÜ∂„ÅåËñÑ„Çå„Å¶„Åó„Åæ„Å£„Åü„ÄÇ", "Your memories fade away."));
+	}
+	learn_spell(MS_FORGET);
 }
 
 
 /*!
-* @brief RF6_RAISE_DEAD§ŒΩËÕ˝°£ª‡º‘…¸≥Ë°£ /
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
+* @brief RF6_RAISE_DEAD„ÅÆÂá¶ÁêÜ„ÄÇÊ≠ªËÄÖÂæ©Ê¥ª„ÄÇ /
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
 */
-void spell_RF6_RAISE_DEAD(int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_RAISE_DEAD(MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
+	monster_type	*m_ptr = &m_list[m_idx];
 
-    monspell_message(m_idx, t_idx,
-        _("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-        _("%^s§¨ª‡º‘…¸≥Ë§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a spell to revive corpses."),
-        _("%^s§¨ª‡º‘…¸≥Ë§Œºˆ ∏§Úæß§®§ø°£", "%^s casts a spell to revive corpses."),
-        TARGET_TYPE);
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÊ≠ªËÄÖÂæ©Ê¥ª„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a spell to revive corpses."),
+		_("%^s„ÅåÊ≠ªËÄÖÂæ©Ê¥ª„ÅÆÂë™Êñá„ÇíÂî±„Åà„Åü„ÄÇ", "%^s casts a spell to revive corpses."),
+		TARGET_TYPE);
 
-    animate_dead(m_idx, m_ptr->fy, m_ptr->fx);
+	animate_dead(m_idx, m_ptr->fy, m_ptr->fx);
 }
 
 
 /*!
-* @brief ¬Îæ§¥≠§ŒΩËÕ˝°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief È∑πÂè¨Âñö„ÅÆÂá¶ÁêÜ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-int summon_EAGLE(int y, int x, int rlev, int m_idx)
+MONSTER_NUMBER summon_EAGLE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
 	int k, count = 0;	
 	int num = 4 + randint1(3);
@@ -2562,114 +2563,115 @@ int summon_EAGLE(int y, int x, int rlev, int m_idx)
 }
 
 /*!
- * @brief •§•Û•ø°º•Õ•√•»°¶•®•Ø•π•◊•Ì°º•¿°ºæ§¥≠§ŒΩËÕ˝°£ /
- * @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
- * @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
- * @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+ * @brief „Ç§„É≥„Çø„Éº„Éç„ÉÉ„Éà„Éª„Ç®„ÇØ„Çπ„Éó„É≠„Éº„ÉÄ„ÉºÂè¨Âñö„ÅÆÂá¶ÁêÜ„ÄÇ /
+ * @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+ * @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+ * @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
  */
-int summon_IE(int y, int x, int rlev, int m_idx)
+MONSTER_NUMBER summon_IE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
-    u32b mode = 0L;
+	BIT_FLAGS mode = 0L;
 	int k, count = 0;	
-	int num = 2 + randint1(3);
-    for (k = 0; k < num; k++)
-    {
-        count += summon_named_creature(m_idx, y, x, MON_IE, mode);
-    }
+	int num = 2 + randint1(1 + rlev / 20);
+	for (k = 0; k < num; k++)
+	{
+		count += summon_named_creature(m_idx, y, x, MON_IE, mode);
+	}
 	return count;
 }
 
 /*!
- * @brief •¿•Û•∏•Á•Û°¶•¨°º•«•£•¢•Ûæ§¥≠§ŒΩËÕ˝°£ /
- * @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
- * @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
- * @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
- * @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
- * @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
- * @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
- * @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+ * @brief „ÉÄ„É≥„Ç∏„Éß„É≥„Éª„Ç¨„Éº„Éá„Ç£„Ç¢„É≥Âè¨Âñö„ÅÆÂá¶ÁêÜ„ÄÇ /
+ * @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+ * @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+ * @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+ * @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+ * @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+ * @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+ * @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
  */
-int summon_Guardian(int y, int x, int rlev, int m_idx, int t_idx, int TARGET_TYPE)
+MONSTER_NUMBER summon_Guardian(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	int k, count = 0;	
 	int num = 2 + randint1(3);
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 
-    if (r_info[MON_JORMUNGAND].cur_num < r_info[MON_JORMUNGAND].max_num && one_in_(6))
-    {
+	if (r_info[MON_JORMUNGAND].cur_num < r_info[MON_JORMUNGAND].max_num && one_in_(6))
+	{
 		simple_monspell_message(m_idx, t_idx,
-			_("√œÃÃ§´§ÈøÂ§¨ø·§≠Ω–§∑§ø°™", "Water blew off from the ground!"),
-			_("√œÃÃ§´§ÈøÂ§¨ø·§≠Ω–§∑§ø°™", "Water blew off from the ground!"),
+			_("Âú∞Èù¢„Åã„ÇâÊ∞¥„ÅåÂêπ„ÅçÂá∫„Åó„ÅüÔºÅ", "Water blew off from the ground!"),
+			_("Âú∞Èù¢„Åã„ÇâÊ∞¥„ÅåÂêπ„ÅçÂá∫„Åó„ÅüÔºÅ", "Water blew off from the ground!"),
 			TARGET_TYPE);
 
 		if(mon_to_player)
-	        fire_ball_hide(GF_WATER_FLOW, 0, 3, 8);
+			fire_ball_hide(GF_WATER_FLOW, 0, 3, 8);
 		else if(mon_to_mon)
 			project(t_idx, 8, y, x, 3, GF_WATER_FLOW, PROJECT_GRID | PROJECT_HIDE, -1);
-    }
+	}
 
-    for (k = 0; k < num; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_GUARDIANS, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
-    }
+	for (k = 0; k < num; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_GUARDIANS, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
+	}
 	return count;
 }
 
 /*!
-* @brief •Ì•√•Ø§Œ•Ø•Ì°º•Ûæ§¥≠§ŒΩËÕ˝°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief „É≠„ÉÉ„ÇØ„ÅÆ„ÇØ„É≠„Éº„É≥Âè¨Âñö„ÅÆÂá¶ÁêÜ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-int summon_LOCK_CLONE(int y, int x, int rlev, int m_idx)
+MONSTER_NUMBER summon_LOCK_CLONE(POSITION y, POSITION x, DEPTH rlev, MONSTER_IDX m_idx)
 {
-    u32b mode = 0L;
+	BIT_FLAGS mode = 0L;
 	int k, count = 0;
 	int num = randint1(3);
-    for (k = 0; k < num; k++)
-    {
-        count += summon_named_creature(m_idx, y, x, MON_LOCKE_CLONE, mode);
-    }
+	rlev = rlev;
+	for (k = 0; k < num; k++)
+	{
+		count += summon_named_creature(m_idx, y, x, MON_LOCKE_CLONE, mode);
+	}
 	return count;
 }
 
 /*!
-* @brief •∑•È•ﬂæ§¥≠§ŒΩËÕ˝°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief „Ç∑„É©„ÉüÂè¨Âñö„ÅÆÂá¶ÁêÜ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-int summon_LOUSE(int y, int x, int rlev, int m_idx)
+MONSTER_NUMBER summon_LOUSE(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
 	int k, count = 0;	
 	int num = 2 + randint1(3);
-    for (k = 0; k < num; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_LOUSE, PM_ALLOW_GROUP);
-    }
+	for (k = 0; k < num; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_LOUSE, PM_ALLOW_GROUP);
+	}
 	return count;
 }
 
 /*!
-* @brief µﬂ±Áæ§¥≠§ŒƒÃæÔΩËÕ˝°£∆±•∑•Û•‹•Î§Œ•‚•Û•π•ø°º§Úæ§¥≠§π§Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief ÊïëÊè¥Âè¨Âñö„ÅÆÈÄöÂ∏∏Âá¶ÁêÜ„ÄÇÂêå„Ç∑„É≥„Éú„É´„ÅÆ„É¢„É≥„Çπ„Çø„Éº„ÇíÂè¨Âñö„Åô„Çã„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-int summon_Kin(int y, int x, int rlev, int m_idx)
+MONSTER_NUMBER summon_Kin(POSITION y, POSITION x, int rlev, MONSTER_IDX m_idx)
 {
 	int k, count = 0;
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
 	summon_kin_type = r_ptr->d_char; /* Big hack */
 
 	for (k = 0; k < 4; k++)
@@ -2680,119 +2682,119 @@ int summon_Kin(int y, int x, int rlev, int m_idx)
 }
 
 /*!
-* @brief RF6_S_KIN§ŒΩËÕ˝°£µﬂ±Áæ§¥≠°£ª»Õ—§π§Î•‚•Û•π•ø°º§ŒºÔŒ‡§À§Ë§Í°¢º¬ΩËÕ˝§À ¨¥Ù§µ§ª§Î°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_KIN„ÅÆÂá¶ÁêÜ„ÄÇÊïëÊè¥Âè¨Âñö„ÄÇ‰ΩøÁî®„Åô„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆÁ®ÆÈ°û„Å´„Çà„Çä„ÄÅÂÆüÂá¶ÁêÜ„Å´ÂàÜÂ≤ê„Åï„Åõ„Çã„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_KIN(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_KIN(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
 	bool known = monster_near_player(m_idx, t_idx);
-    bool see_either = see_monster(m_idx) || see_monster(t_idx);
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    int count = 0;
+	bool see_either = see_monster(m_idx) || see_monster(t_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	int count = 0;
 	char m_name[80], t_name[80], m_poss[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 	monster_name(t_idx, t_name);
 	monster_desc(m_poss, m_ptr, MD_PRON_VISIBLE | MD_POSSESSIVE);
 
-    disturb(1, 1);
-    if (m_ptr->r_idx == MON_SERPENT || m_ptr->r_idx == MON_ZOMBI_SERPENT)
-    {
+	disturb(1, 1);
+	if (m_ptr->r_idx == MON_SERPENT || m_ptr->r_idx == MON_ZOMBI_SERPENT)
+	{
 		monspell_message(m_idx, t_idx,
-			_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-			_("%^s§¨•¿•Û•∏•Á•Û§ŒºÁ§Úæ§¥≠§∑§ø°£", "%^s magically summons guardians of dungeons."),
-			_("%^s§¨•¿•Û•∏•Á•Û§ŒºÁ§Úæ§¥≠§∑§ø°£", "%^s magically summons guardians of dungeons."),
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„Åå„ÉÄ„É≥„Ç∏„Éß„É≥„ÅÆ‰∏ª„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons guardians of dungeons."),
+			_("%^s„Åå„ÉÄ„É≥„Ç∏„Éß„É≥„ÅÆ‰∏ª„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons guardians of dungeons."),
 			TARGET_TYPE);
-    }
-    else
-    {
+	}
+	else
+	{
 		if (mon_to_player || (mon_to_mon && known && see_either))
 			disturb(1, 1);
 
 		if (p_ptr->blind)
 		{
 			if (mon_to_player)
-				msg_format(_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."), m_name);
+				msg_format(_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."), m_name);
 		}
 		else
 		{
 			if (mon_to_player || (mon_to_mon && known && see_either))
 			{
-				_(msg_format("%s§¨À‚À°§«%s§Úæ§¥≠§∑§ø°£", m_name, ((r_ptr->flags1 & RF1_UNIQUE) ? "ºÍ≤º" : "√Á¥÷")),
+				_(msg_format("%s„ÅåÈ≠îÊ≥ï„Åß%s„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", m_name, ((r_ptr->flags1 & RF1_UNIQUE) ? "Êâã‰∏ã" : "‰ª≤Èñì")),
 				  msg_format("%^s magically summons %s %s.", m_name, m_poss, ((r_ptr->flags1 & RF1_UNIQUE) ? "minions" : "kin")));
 			}
 		}
 
 		if (mon_to_mon && known && !see_either)
 			mon_fight = TRUE;
-    }
+	}
 
-    switch (m_ptr->r_idx)
-    {
-        case MON_MENELDOR:
-        case MON_GWAIHIR:
-        case MON_THORONDOR:
+	switch (m_ptr->r_idx)
+	{
+		case MON_MENELDOR:
+		case MON_GWAIHIR:
+		case MON_THORONDOR:
 			count += summon_EAGLE(y, x, rlev, m_idx);
 			break;
 
-        case MON_BULLGATES:
+		case MON_BULLGATES:
 			count += summon_IE(y, x, rlev, m_idx);
-	        break;
+			break;
 
-        case MON_SERPENT:
-        case MON_ZOMBI_SERPENT:
+		case MON_SERPENT:
+		case MON_ZOMBI_SERPENT:
 			count += summon_Guardian(y, x, rlev, m_idx, t_idx, TARGET_TYPE);
-	        break;
+			break;
 			
-        case MON_CALDARM:
+		case MON_CALDARM:
 			count += summon_LOCK_CLONE(y, x, rlev, m_idx);
 			break;
 
-        case MON_LOUSY:
+		case MON_LOUSY:
 			count += summon_LOUSE(y, x, rlev, m_idx);
-	        break;
+			break;
 
-        default:
+		default:
 			count += summon_Kin(y, x, rlev, m_idx);
 			break;
-    }
-    
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
+	}
+	
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
 
 	if (known && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_CYBER§ŒΩËÕ˝°£•µ•§•–°º°¶•«°º•‚•Ûæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_CYBER„ÅÆÂá¶ÁêÜ„ÄÇ„Çµ„Ç§„Éê„Éº„Éª„Éá„Éº„É¢„É≥Âè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_CYBER(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_CYBER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0;
-    monster_type    *m_ptr = &m_list[m_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0;
+	monster_type	*m_ptr = &m_list[m_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨•µ•§•–°º•«°º•‚•Û§Úæ§¥≠§∑§ø°™", "%^s magically summons Cyberdemons!"),
-		_("%^s§¨•µ•§•–°º•«°º•‚•Û§Úæ§¥≠§∑§ø°™", "%^s magically summons Cyberdemons!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Çµ„Ç§„Éê„Éº„Éá„Éº„É¢„É≥„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons Cyberdemons!"),
+		_("%^s„Åå„Çµ„Ç§„Éê„Éº„Éá„Éº„É¢„É≥„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons Cyberdemons!"),
 		TARGET_TYPE);
 
 	if (is_friendly(m_ptr) && mon_to_mon)
@@ -2804,607 +2806,607 @@ void spell_RF6_S_CYBER(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 		count += summon_cyber(m_idx, y, x);
 	}
 
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("Ω≈∏¸§ ¬≠≤ª§¨∂·§Ø§« π§≥§®§Î°£", "You hear heavy steps nearby."));
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("ÈáçÂéö„Å™Ë∂≥Èü≥„ÅåËøë„Åè„ÅßËÅû„Åì„Åà„Çã„ÄÇ", "You hear heavy steps nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_MONSTER§ŒΩËÕ˝°£•‚•Û•π•ø°º∞Ï¬Œæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_MONSTER„ÅÆÂá¶ÁêÜ„ÄÇ„É¢„É≥„Çπ„Çø„Éº‰∏Ä‰ΩìÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_MONSTER(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_MONSTER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«√Á¥÷§Úæ§¥≠§∑§ø°™", "%^s magically summons help!"),
-		_("%^s§¨À‚À°§«√Á¥÷§Úæ§¥≠§∑§ø°™", "%^s magically summons help!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß‰ª≤Èñì„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons help!"),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß‰ª≤Èñì„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons help!"),
 		TARGET_TYPE);
 
-    for (k = 0; k < 1; k++)
-    {
+	for (k = 0; k < 1; k++)
+	{
 		if(mon_to_player)
-	        count += summon_specific(m_idx, y, x, rlev, 0, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
+			count += summon_specific(m_idx, y, x, rlev, 0, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
 
 		if(mon_to_mon)
 			count += summon_specific(m_idx, y, x, rlev, 0, (monster_u_mode(m_idx)));
-    }
+	}
 
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("≤ø§´§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear something appear nearby."));
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("‰Ωï„Åã„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear something appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_MONSTERS§ŒΩËÕ˝°£•‚•Û•π•ø°º £øÙæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_MONSTERS„ÅÆÂá¶ÁêÜ„ÄÇ„É¢„É≥„Çπ„Çø„ÉºË§áÊï∞Âè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_MONSTERS(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_MONSTERS(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•‚•Û•π•ø°º§Úæ§¥≠§∑§ø°™", "%^s magically summons monsters!"),
-		_("%^s§¨À‚À°§«•‚•Û•π•ø°º§Úæ§¥≠§∑§ø°™", "%^s magically summons monsters!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„É¢„É≥„Çπ„Çø„Éº„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons monsters!"),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„É¢„É≥„Çπ„Çø„Éº„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons monsters!"),
 		TARGET_TYPE);
 	
-    for (k = 0; k < S_NUM_6; k++)
-    {
+	for (k = 0; k < S_NUM_6; k++)
+	{
 		if(mon_to_player)
 			count += summon_specific(m_idx, y, x, rlev, 0, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
 
 		if(mon_to_mon)
 			count += summon_specific(m_idx, y, x, rlev, 0, (PM_ALLOW_GROUP | monster_u_mode(m_idx)));
-    }
+	}
 
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_ANT§ŒΩËÕ˝°£•¢•Íæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_ANT„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„É™Âè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_ANT(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_ANT(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•¢•Í§Úæ§¥≠§∑§ø°£", "%^s magically summons ants."),
-		_("%^s§¨À‚À°§«•¢•Í§Úæ§¥≠§∑§ø°£", "%^s magically summons ants."),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Ç¢„É™„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons ants."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Ç¢„É™„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons ants."),
 		TARGET_TYPE);
 	
-    for (k = 0; k < S_NUM_6; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_ANT, PM_ALLOW_GROUP);
-    }
+	for (k = 0; k < S_NUM_6; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_ANT, PM_ALLOW_GROUP);
+	}
 
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_SPIDER§ŒΩËÕ˝°£•Ø•‚æ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_SPIDER„ÅÆÂá¶ÁêÜ„ÄÇ„ÇØ„É¢Âè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_SPIDER(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_SPIDER(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
+	int count = 0, k;
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int rlev = monster_level_idx(m_idx);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•Ø•‚§Úæ§¥≠§∑§ø°£", "%^s magically summons spiders."),
-		_("%^s§¨À‚À°§«•Ø•‚§Úæ§¥≠§∑§ø°£", "%^s magically summons spiders."),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„ÇØ„É¢„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons spiders."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„ÇØ„É¢„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons spiders."),
 		TARGET_TYPE);
 	
-    for (k = 0; k < S_NUM_6; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_SPIDER, PM_ALLOW_GROUP);
-    }
+	for (k = 0; k < S_NUM_6; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_SPIDER, PM_ALLOW_GROUP);
+	}
 
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_HOUND§ŒΩËÕ˝°£•œ•¶•Û•…æ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_HOUND„ÅÆÂá¶ÁêÜ„ÄÇ„Éè„Ç¶„É≥„ÉâÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_HOUND(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_HOUND(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•œ•¶•Û•…§Úæ§¥≠§∑§ø°£", "%^s magically summons hounds."),
-		_("%^s§¨À‚À°§«•œ•¶•Û•…§Úæ§¥≠§∑§ø°£", "%^s magically summons hounds."),
-		TARGET_TYPE);
-	
-	for (k = 0; k < S_NUM_4; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_HOUND, PM_ALLOW_GROUP);
-    }
-
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
-	
-	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
-		mon_fight = TRUE;
-}
-
-/*!
-* @brief RF6_S_HYDRA§ŒΩËÕ˝°£•“•…•Èæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
-*/
-void spell_RF6_S_HYDRA(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
-	
-	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•“•…•È§Úæ§¥≠§∑§ø°£", "%^s magically summons hydras."),
-		_("%^s§¨À‚À°§«•“•…•È§Úæ§¥≠§∑§ø°£", "%^s magically summons hydras."),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Éè„Ç¶„É≥„Éâ„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons hounds."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Éè„Ç¶„É≥„Éâ„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons hounds."),
 		TARGET_TYPE);
 	
 	for (k = 0; k < S_NUM_4; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_HYDRA, PM_ALLOW_GROUP);
-    }
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_HOUND, PM_ALLOW_GROUP);
+	}
 
-    if (p_ptr->blind && count && mon_to_player)
-        msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_ANGEL§ŒΩËÕ˝°£≈∑ª»∞Ï¬Œæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_HYDRA„ÅÆÂá¶ÁêÜ„ÄÇ„Éí„Éâ„É©Âè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_ANGEL(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_HYDRA(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int num = 1;
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«≈∑ª»§Úæ§¥≠§∑§ø°™", "%^s magically summons an angel!"),
-		_("%^s§¨À‚À°§«≈∑ª»§Úæ§¥≠§∑§ø°™", "%^s magically summons an angel!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Éí„Éâ„É©„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons hydras."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Éí„Éâ„É©„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons hydras."),
 		TARGET_TYPE);
 	
-    if ((r_ptr->flags1 & RF1_UNIQUE) && !easy_band)
-    {
-        num += r_ptr->level / 40;
-    }
+	for (k = 0; k < S_NUM_4; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_HYDRA, PM_ALLOW_GROUP);
+	}
+
+	if (p_ptr->blind && count && mon_to_player)
+		msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
+	
+	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
+		mon_fight = TRUE;
+}
+
+/*!
+* @brief RF6_S_ANGEL„ÅÆÂá¶ÁêÜ„ÄÇÂ§©‰Ωø‰∏Ä‰ΩìÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
+*/
+void spell_RF6_S_ANGEL(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	int count = 0, k;
+	int num = 1;
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„ÅßÂ§©‰Ωø„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons an angel!"),
+		_("%^s„ÅåÈ≠îÊ≥ï„ÅßÂ§©‰Ωø„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons an angel!"),
+		TARGET_TYPE);
+	
+	if ((r_ptr->flags1 & RF1_UNIQUE) && !easy_band)
+	{
+		num += r_ptr->level / 40;
+	}
 	
 	for (k = 0; k < num; k++)
 	{
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_ANGEL, PM_ALLOW_GROUP);
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_ANGEL, PM_ALLOW_GROUP);
 	}
 	
-    if (count < 2)
-    {
-        if (p_ptr->blind && count)
-            msg_print(_("≤ø§´§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear something appear nearby."));
-    }
-    else
-    {
-        if (p_ptr->blind)
-            msg_print(_("¬ø§Ø§Œ§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear many things appear nearby."));
-    }
-	
-	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
-		mon_fight = TRUE;
-}
-
-/*!
-* @brief RF6_S_DEMON§ŒΩËÕ˝°£•«°º•‚•Û∞Ï¬Œæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
-*/
-void spell_RF6_S_DEMON(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-	
-	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§œÀ‚À°§«∫Æ∆Ÿ§Œµ‹ƒÓ§´§È∞≠À‚§Úæ§¥≠§∑§ø°™", "%^s magically summons a demon from the Courts of Chaos!"),
-		_("%^s§œÀ‚À°§«∫Æ∆Ÿ§Œµ‹ƒÓ§´§È∞≠À‚§Úæ§¥≠§∑§ø°™", "%^s magically summons a demon from the Courts of Chaos!"),
-		TARGET_TYPE);
-	
-	for (k = 0; k < 1; k++)
+	if (count < 2)
 	{
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_DEMON, PM_ALLOW_GROUP);
+		if (p_ptr->blind && count)
+			msg_print(_("‰Ωï„Åã„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear something appear nearby."));
 	}
-	
-    if (p_ptr->blind && count)
-        msg_print(_("≤ø§´§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear something appear nearby."));
-	
-	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
-		mon_fight = TRUE;
-}
-
-/*!
-* @brief RF6_S_UNDEAD§ŒΩËÕ˝°£•¢•Û•«•√•…∞Ï¬Œæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
-*/
-void spell_RF6_S_UNDEAD(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
-{
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-	
-	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•¢•Û•«•√•…§Œ∂Ø≈®§Úæ§¥≠§∑§ø°™", "%^s magically summons an undead adversary!"),
-		_("%s§¨À‚À°§«•¢•Û•«•√•…§Úæ§¥≠§∑§ø°£", "%^s magically summons undead."),
-		TARGET_TYPE);
-	
-	for (k = 0; k < 1; k++)
+	else
 	{
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_UNDEAD, PM_ALLOW_GROUP);
+		if (p_ptr->blind)
+			msg_print(_("Â§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear many things appear nearby."));
 	}
-	
-    if (p_ptr->blind && count)
-        msg_print(_("≤ø§´§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear something appear nearby."));
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_DRAGON§ŒΩËÕ˝°£•…•È•¥•Û∞Ï¬Œæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_DEMON„ÅÆÂá¶ÁêÜ„ÄÇ„Éá„Éº„É¢„É≥‰∏Ä‰ΩìÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_DRAGON(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_DEMON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-	
-	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«•…•È•¥•Û§Úæ§¥≠§∑§ø°™", "%^s magically summons a dragon!"),
-		_("%^s§¨À‚À°§«•…•È•¥•Û§Úæ§¥≠§∑§ø°™", "%^s magically summons a dragon!"),
-		TARGET_TYPE);
-	
-	for (k = 0; k < 1; k++)
-	{
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_DRAGON, PM_ALLOW_GROUP);
-	}
-	
-    if (p_ptr->blind && count)
-        msg_print(_("≤ø§´§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨§π§Î°£", "You hear something appear nearby."));
-	
-	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
-		mon_fight = TRUE;
-}
-
-/*!
-* @brief • •∫•∞•Î¿Ô¬‚æ§¥≠§ŒΩËÕ˝°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
-*/
-int summon_NAZGUL(int y, int x, int m_idx)
-{
-    u32b mode = 0L;
 	int count = 0, k;
-	int cy = y;
-    int cx = x;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅØÈ≠îÊ≥ï„ÅßÊ∑∑Ê≤å„ÅÆÂÆÆÂª∑„Åã„ÇâÊÇ™È≠î„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons a demon from the Courts of Chaos!"),
+		_("%^s„ÅØÈ≠îÊ≥ï„ÅßÊ∑∑Ê≤å„ÅÆÂÆÆÂª∑„Åã„ÇâÊÇ™È≠î„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons a demon from the Courts of Chaos!"),
+		TARGET_TYPE);
+	
+	for (k = 0; k < 1; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_DEMON, PM_ALLOW_GROUP);
+	}
+	
+	if (p_ptr->blind && count)
+		msg_print(_("‰Ωï„Åã„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear something appear nearby."));
+	
+	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
+		mon_fight = TRUE;
+}
+
+/*!
+* @brief RF6_S_UNDEAD„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„É≥„Éá„ÉÉ„Éâ‰∏Ä‰ΩìÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
+*/
+void spell_RF6_S_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Ç¢„É≥„Éá„ÉÉ„Éâ„ÅÆÂº∑Êïµ„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons an undead adversary!"),
+		_("%s„ÅåÈ≠îÊ≥ï„Åß„Ç¢„É≥„Éá„ÉÉ„Éâ„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons undead."),
+		TARGET_TYPE);
+	
+	for (k = 0; k < 1; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_UNDEAD, PM_ALLOW_GROUP);
+	}
+	
+	if (p_ptr->blind && count)
+		msg_print(_("‰Ωï„Åã„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear something appear nearby."));
+	
+	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
+		mon_fight = TRUE;
+}
+
+/*!
+* @brief RF6_S_DRAGON„ÅÆÂá¶ÁêÜ„ÄÇ„Éâ„É©„Ç¥„É≥‰∏Ä‰ΩìÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
+*/
+void spell_RF6_S_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
+{
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	
+	monspell_message(m_idx, t_idx,
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Éâ„É©„Ç¥„É≥„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons a dragon!"),
+		_("%^s„ÅåÈ≠îÊ≥ï„Åß„Éâ„É©„Ç¥„É≥„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons a dragon!"),
+		TARGET_TYPE);
+	
+	for (k = 0; k < 1; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_DRAGON, PM_ALLOW_GROUP);
+	}
+	
+	if (p_ptr->blind && count)
+		msg_print(_("‰Ωï„Åã„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„Åå„Åô„Çã„ÄÇ", "You hear something appear nearby."));
+	
+	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
+		mon_fight = TRUE;
+}
+
+/*!
+* @brief „Éä„Ç∫„Ç∞„É´Êà¶ÈöäÂè¨Âñö„ÅÆÂá¶ÁêÜ„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
+*/
+MONSTER_NUMBER summon_NAZGUL(POSITION y, POSITION x, MONSTER_IDX m_idx)
+{
+	BIT_FLAGS mode = 0L;
+	int count = 0, k;
+	POSITION cy = y;
+	POSITION cx = x;
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 
-    if (p_ptr->blind)
-        msg_format(_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."), m_name);
-    else
-        msg_format(_("%^s§¨À‚À°§«Õ©µ¥¿Ô¬‚§Úæ§¥≠§∑§ø°™", "%^s magically summons rangers of Nazgul!"), m_name);
+	if (p_ptr->blind)
+		msg_format(_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."), m_name);
+	else
+		msg_format(_("%^s„ÅåÈ≠îÊ≥ï„ÅßÂπΩÈ¨ºÊà¶Èöä„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons rangers of Nazgul!"), m_name);
 
-    msg_print(NULL);
+	msg_print(NULL);
 
-    for (k = 0; k < 30; k++)
-    {
-        if (!summon_possible(cy, cx) || !cave_empty_bold(cy, cx))
-        {
-            int j;
-            for (j = 100; j > 0; j--)
-            {
-                scatter(&cy, &cx, y, x, 2, 0);
-                if (cave_empty_bold(cy, cx)) break;
-            }
-            if (!j) break;
-        }
-        if (!cave_empty_bold(cy, cx)) continue;
+	for (k = 0; k < 30; k++)
+	{
+		if (!summon_possible(cy, cx) || !cave_empty_bold(cy, cx))
+		{
+			int j;
+			for (j = 100; j > 0; j--)
+			{
+				scatter(&cy, &cx, y, x, 2, 0);
+				if (cave_empty_bold(cy, cx)) break;
+			}
+			if (!j) break;
+		}
+		if (!cave_empty_bold(cy, cx)) continue;
 
-        if (summon_named_creature(m_idx, cy, cx, MON_NAZGUL, mode))
-        {
-            y = cy;
-            x = cx;
-            count++;
-            if (count == 1)
-                msg_format(_("°÷Õ©µ¥¿Ô¬‚%dπÊ°¢• •∫•∞•Î°¶•÷•È•√•Ø°™°◊",
-                "A Nazgul says 'Nazgul-Rangers Number %d, Nazgul-Black!'"), count);
-            else
-                msg_format(_("°÷∆±§∏§Ø%dπÊ°¢• •∫•∞•Î°¶•÷•È•√•Ø°™°◊",
-                "Another one says 'Number %d, Nazgul-Black!'"), count);
+		if (summon_named_creature(m_idx, cy, cx, MON_NAZGUL, mode))
+		{
+			y = cy;
+			x = cx;
+			count++;
+			if (count == 1)
+				msg_format(_("„ÄåÂπΩÈ¨ºÊà¶Èöä%dÂè∑„ÄÅ„Éä„Ç∫„Ç∞„É´„Éª„Éñ„É©„ÉÉ„ÇØÔºÅ„Äç",
+				"A Nazgul says 'Nazgul-Rangers Number %d, Nazgul-Black!'"), count);
+			else
+				msg_format(_("„ÄåÂêå„Åò„Åè%dÂè∑„ÄÅ„Éä„Ç∫„Ç∞„É´„Éª„Éñ„É©„ÉÉ„ÇØÔºÅ„Äç",
+				"Another one says 'Number %d, Nazgul-Black!'"), count);
 
-            msg_print(NULL);
-        }
-    }
-    msg_format(_("°÷%døÕ§Ω§Ì§√§∆°¢•Í•Û•∞•Ï•Û•∏•„°º°™°◊",
-        "They say 'The %d meets! We are the Ring-Ranger!'."), count);
-    msg_print(NULL);
+			msg_print(NULL);
+		}
+	}
+	msg_format(_("„Äå%d‰∫∫„Åù„Çç„Å£„Å¶„ÄÅ„É™„É≥„Ç∞„É¨„É≥„Ç∏„É£„ÉºÔºÅ„Äç",
+		"They say 'The %d meets! We are the Ring-Ranger!'."), count);
+	msg_print(NULL);
 	return count;
 }
 
 /*!
-* @brief RF6_S_HI_UNDEAD§ŒΩËÕ˝°£∂ØŒœ§ •¢•Û•«•√•…æ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_HI_UNDEAD„ÅÆÂá¶ÁêÜ„ÄÇÂº∑Âäõ„Å™„Ç¢„É≥„Éá„ÉÉ„ÉâÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_HI_UNDEAD(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_HI_UNDEAD(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
-    monster_type    *m_ptr = &m_list[m_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    int k, count = 0;
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	monster_type	*m_ptr = &m_list[m_idx];
+	int rlev = monster_level_idx(m_idx);
+	int k, count = 0;
 	char m_name[80];
-    monster_name(m_idx, m_name);
+	monster_name(m_idx, m_name);
 
-    disturb(1, 1);
+	disturb(1, 1);
 
-    if (((m_ptr->r_idx == MON_MORGOTH) || (m_ptr->r_idx == MON_SAURON) || (m_ptr->r_idx == MON_ANGMAR)) &&
+	if (((m_ptr->r_idx == MON_MORGOTH) || (m_ptr->r_idx == MON_SAURON) || (m_ptr->r_idx == MON_ANGMAR)) &&
 		((r_info[MON_NAZGUL].cur_num + 2) < r_info[MON_NAZGUL].max_num) &&
 		mon_to_player)
-    {
-        count +=  summon_NAZGUL(y, x, m_idx);
-    }
-    else
-    {	
+	{
+		count +=  summon_NAZGUL(y, x, m_idx);
+	}
+	else
+	{	
 		monspell_message(m_idx, t_idx,
-			_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-			_("%^s§¨À‚À°§«∂ØŒœ§ •¢•Û•«•√•…§Úæ§¥≠§∑§ø°™", "%^s magically summons greater undead!"),
-			_("%s§¨À‚À°§«•¢•Û•«•√•…§Úæ§¥≠§∑§ø°£", "%^s magically summons undead."),
+			_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+			_("%^s„ÅåÈ≠îÊ≥ï„ÅßÂº∑Âäõ„Å™„Ç¢„É≥„Éá„ÉÉ„Éâ„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons greater undead!"),
+			_("%s„ÅåÈ≠îÊ≥ï„Åß„Ç¢„É≥„Éá„ÉÉ„Éâ„ÇíÂè¨Âñö„Åó„Åü„ÄÇ", "%^s magically summons undead."),
 			TARGET_TYPE);
 
-        for (k = 0; k < S_NUM_6; k++)
-        {
+		for (k = 0; k < S_NUM_6; k++)
+		{
 			if(mon_to_player)
-	            count += summon_specific(m_idx, y, x, rlev, SUMMON_HI_UNDEAD, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
+				count += summon_specific(m_idx, y, x, rlev, SUMMON_HI_UNDEAD, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
 
 			if(mon_to_mon)
 				count += summon_specific(m_idx, y, x, rlev, SUMMON_HI_UNDEAD, (PM_ALLOW_GROUP | monster_u_mode(m_idx)));
-        }
-    }
-    if (p_ptr->blind && count && mon_to_player)
-    {
-        msg_print(_("¥÷∂·§«≤ø§´¬ø§Ø§Œ§‚§Œ§¨«Á§§≤Û§Î≤ª§¨ π§≥§®§Î°£", "You hear many creepy things appear nearby."));
-    }
+		}
+	}
+	if (p_ptr->blind && count && mon_to_player)
+	{
+		msg_print(_("ÈñìËøë„Åß‰Ωï„ÅãÂ§ö„Åè„ÅÆ„ÇÇ„ÅÆ„ÅåÈÄô„ÅÑÂõû„ÇãÈü≥„ÅåËÅû„Åì„Åà„Çã„ÄÇ", "You hear many creepy things appear nearby."));
+	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_HI_DRAGON§ŒΩËÕ˝°£∏≈¬Â•…•È•¥•Ûæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_HI_DRAGON„ÅÆÂá¶ÁêÜ„ÄÇÂè§‰ª£„Éâ„É©„Ç¥„É≥Âè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_HI_DRAGON(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_HI_DRAGON(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«∏≈¬Â•…•È•¥•Û§Úæ§¥≠§∑§ø°™", "%^s magically summons ancient dragons!"),
-		_("%^s§¨À‚À°§«∏≈¬Â•…•È•¥•Û§Úæ§¥≠§∑§ø°™", "%^s magically summons ancient dragons!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„ÅßÂè§‰ª£„Éâ„É©„Ç¥„É≥„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons ancient dragons!"),
+		_("%^s„ÅåÈ≠îÊ≥ï„ÅßÂè§‰ª£„Éâ„É©„Ç¥„É≥„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons ancient dragons!"),
 		TARGET_TYPE);
 	
-    for (k = 0; k < S_NUM_4; k++)
-    {	
+	for (k = 0; k < S_NUM_4; k++)
+	{	
 		if(mon_to_player)
 			count += summon_specific(m_idx, y, x, rlev, SUMMON_HI_DRAGON, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
 
 		if(mon_to_mon)
 			count += summon_specific(m_idx, y, x, rlev, SUMMON_HI_DRAGON, (PM_ALLOW_GROUP | monster_u_mode(m_idx)));
-    }
+	}
 	
-    if (p_ptr->blind && count && mon_to_player)
-    {
-        msg_print(_("¬ø§Ø§ŒŒœ∂Ø§§§‚§Œ§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨ π§≥§®§Î°£", "You hear many powerful things appear nearby."));
-    }
+	if (p_ptr->blind && count && mon_to_player)
+	{
+		msg_print(_("Â§ö„Åè„ÅÆÂäõÂº∑„ÅÑ„ÇÇ„ÅÆ„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„ÅåËÅû„Åì„Åà„Çã„ÄÇ", "You hear many powerful things appear nearby."));
+	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_AMBERITES§ŒΩËÕ˝°£•¢•Û•–°º§Œ≤¶¬≤æ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_AMBERITES„ÅÆÂá¶ÁêÜ„ÄÇ„Ç¢„É≥„Éê„Éº„ÅÆÁéãÊóèÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_AMBERITES(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_AMBERITES(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	int count = 0, k;
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨•¢•Û•–°º§Œ≤¶¬≤§Úæ§¥≠§∑§ø°™", "%^s magically summons Lords of Amber!"),
-		_("%^s§¨•¢•Û•–°º§Œ≤¶¬≤§Úæ§¥≠§∑§ø°™", "%^s magically summons Lords of Amber!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„Åå„Ç¢„É≥„Éê„Éº„ÅÆÁéãÊóè„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons Lords of Amber!"),
+		_("%^s„Åå„Ç¢„É≥„Éê„Éº„ÅÆÁéãÊóè„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons Lords of Amber!"),
 		TARGET_TYPE);
 	
-    for (k = 0; k < S_NUM_4; k++)
-    {	
+	for (k = 0; k < S_NUM_4; k++)
+	{	
 		count += summon_specific(m_idx, y, x, rlev, SUMMON_AMBERITES, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
-    }
+	}
 	
-    if (p_ptr->blind && count && mon_to_player)
-    {
-        msg_print(_("…‘ª‡§Œº‘§¨∂·§Ø§À∏Ω§Ï§Î§Œ§¨ π§≥§®§ø°£", "You hear immortal beings appear nearby."));
-    }
+	if (p_ptr->blind && count && mon_to_player)
+	{
+		msg_print(_("‰∏çÊ≠ª„ÅÆËÄÖ„ÅåËøë„Åè„Å´Áèæ„Çå„Çã„ÅÆ„ÅåËÅû„Åì„Åà„Åü„ÄÇ", "You hear immortal beings appear nearby."));
+	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
 }
 
 /*!
-* @brief RF6_S_UNIQUE§ŒΩËÕ˝°£•Ê•À°º•Ø°¶•‚•Û•π•ø°ºæ§¥≠°£ /
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @param TARGET_TYPE •◊•Ï•§•‰°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_PLAYER°¢•‚•Û•π•ø°º§Ú¬–æ›§»§π§ÎæÏπÁMONSTER_TO_MONSTER
-* @return æ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£
+* @brief RF6_S_UNIQUE„ÅÆÂá¶ÁêÜ„ÄÇ„É¶„Éã„Éº„ÇØ„Éª„É¢„É≥„Çπ„Çø„ÉºÂè¨Âñö„ÄÇ /
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @param TARGET_TYPE „Éó„É¨„Ç§„É§„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_PLAYER„ÄÅ„É¢„É≥„Çπ„Çø„Éº„ÇíÂØæË±°„Å®„Åô„ÇãÂ†¥ÂêàMONSTER_TO_MONSTER
+* @return Âè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ
 */
-void spell_RF6_S_UNIQUE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
+void spell_RF6_S_UNIQUE(POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx, int TARGET_TYPE)
 {
-    int count = 0, k;
-    monster_type    *m_ptr = &m_list[m_idx];
-    int rlev = monster_level_idx(m_idx) *4 ; /* rlev > rlev*4 */
-    bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
-    bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
-    bool uniques_are_summoned = FALSE;
-    int non_unique_type = SUMMON_HI_UNDEAD;
+	int count = 0, k;
+	monster_type	*m_ptr = &m_list[m_idx];
+	int rlev = monster_level_idx(m_idx);
+	bool mon_to_mon = (TARGET_TYPE == MONSTER_TO_MONSTER);
+	bool mon_to_player = (TARGET_TYPE == MONSTER_TO_PLAYER);
+	bool uniques_are_summoned = FALSE;
+	int non_unique_type = SUMMON_HI_UNDEAD;
 	
 	monspell_message(m_idx, t_idx,
-		_("%^s§¨≤ø§´§Ú§ƒ§÷§‰§§§ø°£", "%^s mumbles."),
-		_("%^s§¨À‚À°§«∆√ Ã§ ∂Ø≈®§Úæ§¥≠§∑§ø°™", "%^s magically summons special opponents!"),
-		_("%^s§¨À‚À°§«∆√ Ã§ ∂Ø≈®§Úæ§¥≠§∑§ø°™", "%^s magically summons special opponents!"),
+		_("%^s„Åå‰Ωï„Åã„Çí„Å§„Å∂„ÇÑ„ÅÑ„Åü„ÄÇ", "%^s mumbles."),
+		_("%^s„ÅåÈ≠îÊ≥ï„ÅßÁâπÂà•„Å™Âº∑Êïµ„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons special opponents!"),
+		_("%^s„ÅåÈ≠îÊ≥ï„ÅßÁâπÂà•„Å™Âº∑Êïµ„ÇíÂè¨Âñö„Åó„ÅüÔºÅ", "%^s magically summons special opponents!"),
 		TARGET_TYPE);
 	
-    for (k = 0; k < S_NUM_4; k++)
-    {	
-        count += summon_specific(m_idx, y, x, rlev, SUMMON_UNIQUE, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
-    }
+	for (k = 0; k < S_NUM_4; k++)
+	{	
+		count += summon_specific(m_idx, y, x, rlev, SUMMON_UNIQUE, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
+	}
 	
-    if (count) uniques_are_summoned = TRUE;
+	if (count) uniques_are_summoned = TRUE;
 
-    if ((m_ptr->sub_align & (SUB_ALIGN_GOOD | SUB_ALIGN_EVIL)) == (SUB_ALIGN_GOOD | SUB_ALIGN_EVIL))
-        non_unique_type = 0;
-    else if (m_ptr->sub_align & SUB_ALIGN_GOOD)
-        non_unique_type = SUMMON_ANGEL;
+	if ((m_ptr->sub_align & (SUB_ALIGN_GOOD | SUB_ALIGN_EVIL)) == (SUB_ALIGN_GOOD | SUB_ALIGN_EVIL))
+		non_unique_type = 0;
+	else if (m_ptr->sub_align & SUB_ALIGN_GOOD)
+		non_unique_type = SUMMON_ANGEL;
 
-    for (k = count; k < S_NUM_4; k++)
-    {
-        count += summon_specific(m_idx, y, x, rlev, non_unique_type, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
-    }
+	for (k = count; k < S_NUM_4; k++)
+	{
+		count += summon_specific(m_idx, y, x, rlev, non_unique_type, (PM_ALLOW_GROUP | PM_ALLOW_UNIQUE));
+	}
 
-    if (p_ptr->blind && count && mon_to_player)
-    {
-        msg_format(_("¬ø§Ø§Œ%s§¨¥÷∂·§À∏Ω§Ï§ø≤ª§¨ π§≥§®§Î°£", "You hear many %s appear nearby."),
-            uniques_are_summoned ? _("Œœ∂Ø§§§‚§Œ", "powerful things") : _("§‚§Œ", "things"));
-    }
+	if (p_ptr->blind && count && mon_to_player)
+	{
+		msg_format(_("Â§ö„Åè„ÅÆ%s„ÅåÈñìËøë„Å´Áèæ„Çå„ÅüÈü≥„ÅåËÅû„Åì„Åà„Çã„ÄÇ", "You hear many %s appear nearby."),
+			uniques_are_summoned ? _("ÂäõÂº∑„ÅÑ„ÇÇ„ÅÆ", "powerful things") : _("„ÇÇ„ÅÆ", "things"));
+	}
 	
 	if (monster_near_player(m_idx, t_idx) && !see_monster(t_idx) && count && mon_to_mon)
 		mon_fight = TRUE;
@@ -3413,746 +3415,746 @@ void spell_RF6_S_UNIQUE(int y, int x, int m_idx, int t_idx, int TARGET_TYPE)
 
 
 /*!
-* @brief •‚•Û•π•ø°º§´§È•◊•Ï•§•‰°º§ÿ§Œºˆ ∏§Œø∂§Í ¨§±¥ÿøÙ°£ /
-* @param SPELL_NUM •‚•Û•π•ø°ºÀ‚À°ID
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏°¢§ﬁ§ø§œæ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£§Ω§Œ¬æ§ŒæÏπÁ0°£∞ πﬂ§ŒΩËÕ˝§Ú√Ê√«§π§Î§ §È-1§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„Åã„Çâ„Éó„É¨„Ç§„É§„Éº„Å∏„ÅÆÂë™Êñá„ÅÆÊåØ„ÇäÂàÜ„ÅëÈñ¢Êï∞„ÄÇ /
+* @param SPELL_NUM „É¢„É≥„Çπ„Çø„ÉºÈ≠îÊ≥ïID
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÄÅ„Åæ„Åü„ÅØÂè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ„Åù„ÅÆ‰ªñ„ÅÆÂ†¥Âêà0„ÄÇ‰ª•Èôç„ÅÆÂá¶ÁêÜ„Çí‰∏≠Êñ≠„Åô„Çã„Å™„Çâ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_to_player(int SPELL_NUM, int y, int x, int m_idx)
+HIT_POINT monspell_to_player(int SPELL_NUM, POSITION y, POSITION x, MONSTER_IDX m_idx)
 {
-    switch (SPELL_NUM)
-    {
-    case RF4_SPELL_START + 0:   spell_RF4_SHRIEK(m_idx, 0, MONSTER_TO_PLAYER); break;    /* RF4_SHRIEK */
-    case RF4_SPELL_START + 1:   break;   /* RF4_XXX1 */
-    case RF4_SPELL_START + 2:   spell_RF4_DISPEL(m_idx, 0, MONSTER_TO_PLAYER); break;    /* RF4_DISPEL */
-    case RF4_SPELL_START + 3:   return spell_RF4_ROCKET(y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF4_ROCKET */
-    case RF4_SPELL_START + 4:   return spell_RF4_SHOOT(y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_SHOOT */
-    case RF4_SPELL_START + 5:   break;   /* RF4_XXX2 */
-    case RF4_SPELL_START + 6:   break;   /* RF4_XXX3 */
-    case RF4_SPELL_START + 7:   break;   /* RF4_XXX4 */
-    case RF4_SPELL_START + 8:   return spell_RF4_BREATH(GF_ACID, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_ACID */
-    case RF4_SPELL_START + 9:   return spell_RF4_BREATH(GF_ELEC, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_ELEC */
-    case RF4_SPELL_START + 10:  return spell_RF4_BREATH(GF_FIRE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_FIRE */
-    case RF4_SPELL_START + 11:  return spell_RF4_BREATH(GF_COLD, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_COLD */
-    case RF4_SPELL_START + 12:  return spell_RF4_BREATH(GF_POIS, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_POIS */
-    case RF4_SPELL_START + 13:  return spell_RF4_BREATH(GF_NETHER, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_NETH */
-    case RF4_SPELL_START + 14:  return spell_RF4_BREATH(GF_LITE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_LITE */
-    case RF4_SPELL_START + 15:  return spell_RF4_BREATH(GF_DARK, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_DARK */
-    case RF4_SPELL_START + 16:  return spell_RF4_BREATH(GF_CONFUSION, y, x, m_idx, 0, MONSTER_TO_PLAYER);    /* RF4_BR_CONF */
-    case RF4_SPELL_START + 17:  return spell_RF4_BREATH(GF_SOUND, y, x, m_idx, 0, MONSTER_TO_PLAYER);    /* RF4_BR_SOUN */
-    case RF4_SPELL_START + 18:  return spell_RF4_BREATH(GF_CHAOS, y, x, m_idx, 0, MONSTER_TO_PLAYER);    /* RF4_BR_CHAO */
-    case RF4_SPELL_START + 19:  return spell_RF4_BREATH(GF_DISENCHANT, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_DISE */
-    case RF4_SPELL_START + 20:  return spell_RF4_BREATH(GF_NEXUS, y, x, m_idx, 0, MONSTER_TO_PLAYER);    /* RF4_BR_NEXU */
-    case RF4_SPELL_START + 21:  return spell_RF4_BREATH(GF_TIME, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_TIME */
-    case RF4_SPELL_START + 22:  return spell_RF4_BREATH(GF_INERTIAL, y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF4_BR_INER */
-    case RF4_SPELL_START + 23:  return spell_RF4_BREATH(GF_GRAVITY, y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF4_BR_GRAV */
-    case RF4_SPELL_START + 24:  return spell_RF4_BREATH(GF_SHARDS, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_SHAR */
-    case RF4_SPELL_START + 25:  return spell_RF4_BREATH(GF_PLASMA, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_PLAS */
-    case RF4_SPELL_START + 26:  return spell_RF4_BREATH(GF_FORCE, y, x, m_idx, 0, MONSTER_TO_PLAYER);    /* RF4_BR_WALL */
-    case RF4_SPELL_START + 27:  return spell_RF4_BREATH(GF_MANA, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_MANA */
-    case RF4_SPELL_START + 28:  return spell_RF4_BA_NUKE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BA_NUKE */
-    case RF4_SPELL_START + 29:  return spell_RF4_BREATH(GF_NUKE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_NUKE */
-    case RF4_SPELL_START + 30:  return spell_RF4_BA_CHAO(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BA_CHAO */
-    case RF4_SPELL_START + 31:  return spell_RF4_BREATH(GF_DISINTEGRATE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_DISI */
-    case RF5_SPELL_START + 0:  return spell_RF5_BA_ACID(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_ACID */
-    case RF5_SPELL_START + 1:  return spell_RF5_BA_ELEC(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_ELEC */
-    case RF5_SPELL_START + 2:  return spell_RF5_BA_FIRE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_FIRE */
-    case RF5_SPELL_START + 3:  return spell_RF5_BA_COLD(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_COLD */
-    case RF5_SPELL_START + 4:  return spell_RF5_BA_POIS(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_POIS */
-    case RF5_SPELL_START + 5:  return spell_RF5_BA_NETH(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_NETH */
-    case RF5_SPELL_START + 6:  return spell_RF5_BA_WATE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_WATE */
-    case RF5_SPELL_START + 7:  return spell_RF5_BA_MANA(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_MANA */
-    case RF5_SPELL_START + 8:  return spell_RF5_BA_DARK(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_DARK */
-    case RF5_SPELL_START + 9:  return spell_RF5_DRAIN_MANA(y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF5_DRAIN_MANA */
-    case RF5_SPELL_START + 10: return spell_RF5_MIND_BLAST(y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF5_MIND_BLAST */
-    case RF5_SPELL_START + 11: return spell_RF5_BRAIN_SMASH(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_MIND_BLAST */
-    case RF5_SPELL_START + 12: return spell_RF5_CAUSE_1(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_1 */
-    case RF5_SPELL_START + 13: return spell_RF5_CAUSE_2(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_2 */
-    case RF5_SPELL_START + 14: return spell_RF5_CAUSE_3(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_3 */
-    case RF5_SPELL_START + 15: return spell_RF5_CAUSE_4(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_4 */
-    case RF5_SPELL_START + 16: return spell_RF5_BO_ACID(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_ACID */
-    case RF5_SPELL_START + 17: return spell_RF5_BO_ELEC(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_ELEC */
-    case RF5_SPELL_START + 18: return spell_RF5_BO_FIRE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_FIRE */
-    case RF5_SPELL_START + 19: return spell_RF5_BO_COLD(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_COLD */
-    case RF5_SPELL_START + 20: return spell_RF5_BA_LITE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_LITE */
-    case RF5_SPELL_START + 21: return spell_RF5_BO_NETH(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_NETH */
-    case RF5_SPELL_START + 22: return spell_RF5_BO_WATE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_WATE */
-    case RF5_SPELL_START + 23: return spell_RF5_BO_MANA(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_MANA */
-    case RF5_SPELL_START + 24: return spell_RF5_BO_PLAS(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_PLAS */
-    case RF5_SPELL_START + 25: return spell_RF5_BO_ICEE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_ICEE */
-    case RF5_SPELL_START + 26: return spell_RF5_MISSILE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_MISSILE */
-    case RF5_SPELL_START + 27: spell_RF5_SCARE(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF5_SCARE */
-    case RF5_SPELL_START + 28: spell_RF5_BLIND(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF5_BLIND */
-    case RF5_SPELL_START + 29: spell_RF5_CONF(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF5_CONF */
-    case RF5_SPELL_START + 30: spell_RF5_SLOW(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF5_SLOW */
-    case RF5_SPELL_START + 31: spell_RF5_HOLD(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF5_HOLD */
-    case RF6_SPELL_START + 0:  spell_RF6_HASTE(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_HASTE */
-    case RF6_SPELL_START + 1:  return spell_RF6_HAND_DOOM(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF6_HAND_DOOM */
-    case RF6_SPELL_START + 2:  spell_RF6_HEAL(m_idx, 0, MONSTER_TO_PLAYER); break;    /* RF6_HEAL */
-    case RF6_SPELL_START + 3:  spell_RF6_INVULNER(m_idx, 0, MONSTER_TO_PLAYER); break;    /* RF6_INVULNER */
-    case RF6_SPELL_START + 4:  spell_RF6_BLINK(m_idx, MONSTER_TO_PLAYER); break;   /* RF6_BLINK */
-    case RF6_SPELL_START + 5:  spell_RF6_TPORT(m_idx, MONSTER_TO_PLAYER); break;   /* RF6_TPORT */
-    case RF6_SPELL_START + 6:  return spell_RF6_WORLD(m_idx); break;    /* RF6_WORLD */
-    case RF6_SPELL_START + 7:  return spell_RF6_SPECIAL(y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF6_SPECIAL */
-    case RF6_SPELL_START + 8:  spell_RF6_TELE_TO(m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_TELE_TO */
-    case RF6_SPELL_START + 9:  spell_RF6_TELE_AWAY(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_TELE_AWAY */
-    case RF6_SPELL_START + 10: spell_RF6_TELE_LEVEL(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_TELE_LEVEL */
-    case RF6_SPELL_START + 11: spell_RF6_PSY_SPEAR(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_PSY_SPEAR */
-    case RF6_SPELL_START + 12: spell_RF6_DARKNESS(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;    /* RF6_DARKNESS */
-    case RF6_SPELL_START + 13: spell_RF6_TRAPS(y, x, m_idx); break; /* RF6_TRAPS */
-    case RF6_SPELL_START + 14: spell_RF6_FORGET(m_idx); break;  /* RF6_FORGET */
-    case RF6_SPELL_START + 15: spell_RF6_RAISE_DEAD(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_RAISE_DEAD */
-    case RF6_SPELL_START + 16: spell_RF6_S_KIN(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_S_KIN */
-    case RF6_SPELL_START + 17: spell_RF6_S_CYBER(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_CYBER */
-    case RF6_SPELL_START + 18: spell_RF6_S_MONSTER(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_S_MONSTER */
-    case RF6_SPELL_START + 19: spell_RF6_S_MONSTERS(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;    /* RF6_S_MONSTER */
-    case RF6_SPELL_START + 20: spell_RF6_S_ANT(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_S_ANT */
-    case RF6_SPELL_START + 21: spell_RF6_S_SPIDER(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_SPIDER */
-    case RF6_SPELL_START + 22: spell_RF6_S_HOUND(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HOUND */
-    case RF6_SPELL_START + 23: spell_RF6_S_HYDRA(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HYDRA */
-    case RF6_SPELL_START + 24: spell_RF6_S_ANGEL(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_ANGEL */
-    case RF6_SPELL_START + 25: spell_RF6_S_DEMON(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_DEMON */
-    case RF6_SPELL_START + 26: spell_RF6_S_UNDEAD(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_UNDEAD */
-    case RF6_SPELL_START + 27: spell_RF6_S_DRAGON(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_DRAGON */
-    case RF6_SPELL_START + 28: spell_RF6_S_HI_UNDEAD(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HI_UNDEAD */
-    case RF6_SPELL_START + 29: spell_RF6_S_HI_DRAGON(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HI_DRAGON */
-    case RF6_SPELL_START + 30: spell_RF6_S_AMBERITES(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_AMBERITES */
-    case RF6_SPELL_START + 31: spell_RF6_S_UNIQUE(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_UNIQUE */
-    }
-    return 0;
+	switch (SPELL_NUM)
+	{
+	case RF4_SPELL_START + 0:   spell_RF4_SHRIEK(m_idx, 0, MONSTER_TO_PLAYER); break;	/* RF4_SHRIEK */
+	case RF4_SPELL_START + 1:   break;   /* RF4_XXX1 */
+	case RF4_SPELL_START + 2:   spell_RF4_DISPEL(m_idx, 0, MONSTER_TO_PLAYER); break;	/* RF4_DISPEL */
+	case RF4_SPELL_START + 3:   return spell_RF4_ROCKET(y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF4_ROCKET */
+	case RF4_SPELL_START + 4:   return spell_RF4_SHOOT(y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_SHOOT */
+	case RF4_SPELL_START + 5:   break;   /* RF4_XXX2 */
+	case RF4_SPELL_START + 6:   break;   /* RF4_XXX3 */
+	case RF4_SPELL_START + 7:   break;   /* RF4_XXX4 */
+	case RF4_SPELL_START + 8:   return spell_RF4_BREATH(GF_ACID, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_ACID */
+	case RF4_SPELL_START + 9:   return spell_RF4_BREATH(GF_ELEC, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_ELEC */
+	case RF4_SPELL_START + 10:  return spell_RF4_BREATH(GF_FIRE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_FIRE */
+	case RF4_SPELL_START + 11:  return spell_RF4_BREATH(GF_COLD, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_COLD */
+	case RF4_SPELL_START + 12:  return spell_RF4_BREATH(GF_POIS, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_POIS */
+	case RF4_SPELL_START + 13:  return spell_RF4_BREATH(GF_NETHER, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_NETH */
+	case RF4_SPELL_START + 14:  return spell_RF4_BREATH(GF_LITE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_LITE */
+	case RF4_SPELL_START + 15:  return spell_RF4_BREATH(GF_DARK, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_DARK */
+	case RF4_SPELL_START + 16:  return spell_RF4_BREATH(GF_CONFUSION, y, x, m_idx, 0, MONSTER_TO_PLAYER);	/* RF4_BR_CONF */
+	case RF4_SPELL_START + 17:  return spell_RF4_BREATH(GF_SOUND, y, x, m_idx, 0, MONSTER_TO_PLAYER);	/* RF4_BR_SOUN */
+	case RF4_SPELL_START + 18:  return spell_RF4_BREATH(GF_CHAOS, y, x, m_idx, 0, MONSTER_TO_PLAYER);	/* RF4_BR_CHAO */
+	case RF4_SPELL_START + 19:  return spell_RF4_BREATH(GF_DISENCHANT, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_DISE */
+	case RF4_SPELL_START + 20:  return spell_RF4_BREATH(GF_NEXUS, y, x, m_idx, 0, MONSTER_TO_PLAYER);	/* RF4_BR_NEXU */
+	case RF4_SPELL_START + 21:  return spell_RF4_BREATH(GF_TIME, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_TIME */
+	case RF4_SPELL_START + 22:  return spell_RF4_BREATH(GF_INERTIAL, y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF4_BR_INER */
+	case RF4_SPELL_START + 23:  return spell_RF4_BREATH(GF_GRAVITY, y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF4_BR_GRAV */
+	case RF4_SPELL_START + 24:  return spell_RF4_BREATH(GF_SHARDS, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_SHAR */
+	case RF4_SPELL_START + 25:  return spell_RF4_BREATH(GF_PLASMA, y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF4_BR_PLAS */
+	case RF4_SPELL_START + 26:  return spell_RF4_BREATH(GF_FORCE, y, x, m_idx, 0, MONSTER_TO_PLAYER);	/* RF4_BR_WALL */
+	case RF4_SPELL_START + 27:  return spell_RF4_BREATH(GF_MANA, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_MANA */
+	case RF4_SPELL_START + 28:  return spell_RF4_BA_NUKE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BA_NUKE */
+	case RF4_SPELL_START + 29:  return spell_RF4_BREATH(GF_NUKE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_NUKE */
+	case RF4_SPELL_START + 30:  return spell_RF4_BA_CHAO(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BA_CHAO */
+	case RF4_SPELL_START + 31:  return spell_RF4_BREATH(GF_DISINTEGRATE, y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF4_BR_DISI */
+	case RF5_SPELL_START + 0:  return spell_RF5_BA_ACID(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_ACID */
+	case RF5_SPELL_START + 1:  return spell_RF5_BA_ELEC(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_ELEC */
+	case RF5_SPELL_START + 2:  return spell_RF5_BA_FIRE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_FIRE */
+	case RF5_SPELL_START + 3:  return spell_RF5_BA_COLD(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_COLD */
+	case RF5_SPELL_START + 4:  return spell_RF5_BA_POIS(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_POIS */
+	case RF5_SPELL_START + 5:  return spell_RF5_BA_NETH(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_NETH */
+	case RF5_SPELL_START + 6:  return spell_RF5_BA_WATE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_WATE */
+	case RF5_SPELL_START + 7:  return spell_RF5_BA_MANA(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_MANA */
+	case RF5_SPELL_START + 8:  return spell_RF5_BA_DARK(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_DARK */
+	case RF5_SPELL_START + 9:  return spell_RF5_DRAIN_MANA(y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF5_DRAIN_MANA */
+	case RF5_SPELL_START + 10: return spell_RF5_MIND_BLAST(y, x, m_idx, 0, MONSTER_TO_PLAYER);  /* RF5_MIND_BLAST */
+	case RF5_SPELL_START + 11: return spell_RF5_BRAIN_SMASH(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_MIND_BLAST */
+	case RF5_SPELL_START + 12: return spell_RF5_CAUSE_1(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_1 */
+	case RF5_SPELL_START + 13: return spell_RF5_CAUSE_2(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_2 */
+	case RF5_SPELL_START + 14: return spell_RF5_CAUSE_3(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_3 */
+	case RF5_SPELL_START + 15: return spell_RF5_CAUSE_4(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_CAUSE_4 */
+	case RF5_SPELL_START + 16: return spell_RF5_BO_ACID(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_ACID */
+	case RF5_SPELL_START + 17: return spell_RF5_BO_ELEC(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_ELEC */
+	case RF5_SPELL_START + 18: return spell_RF5_BO_FIRE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_FIRE */
+	case RF5_SPELL_START + 19: return spell_RF5_BO_COLD(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_COLD */
+	case RF5_SPELL_START + 20: return spell_RF5_BA_LITE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BA_LITE */
+	case RF5_SPELL_START + 21: return spell_RF5_BO_NETH(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_NETH */
+	case RF5_SPELL_START + 22: return spell_RF5_BO_WATE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_WATE */
+	case RF5_SPELL_START + 23: return spell_RF5_BO_MANA(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_MANA */
+	case RF5_SPELL_START + 24: return spell_RF5_BO_PLAS(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_PLAS */
+	case RF5_SPELL_START + 25: return spell_RF5_BO_ICEE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_BO_ICEE */
+	case RF5_SPELL_START + 26: return spell_RF5_MISSILE(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF5_MISSILE */
+	case RF5_SPELL_START + 27: spell_RF5_SCARE(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF5_SCARE */
+	case RF5_SPELL_START + 28: spell_RF5_BLIND(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF5_BLIND */
+	case RF5_SPELL_START + 29: spell_RF5_CONF(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF5_CONF */
+	case RF5_SPELL_START + 30: spell_RF5_SLOW(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF5_SLOW */
+	case RF5_SPELL_START + 31: spell_RF5_HOLD(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF5_HOLD */
+	case RF6_SPELL_START + 0:  spell_RF6_HASTE(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_HASTE */
+	case RF6_SPELL_START + 1:  return spell_RF6_HAND_DOOM(y, x, m_idx, 0, MONSTER_TO_PLAYER); /* RF6_HAND_DOOM */
+	case RF6_SPELL_START + 2:  spell_RF6_HEAL(m_idx, 0, MONSTER_TO_PLAYER); break;	/* RF6_HEAL */
+	case RF6_SPELL_START + 3:  spell_RF6_INVULNER(m_idx, 0, MONSTER_TO_PLAYER); break;	/* RF6_INVULNER */
+	case RF6_SPELL_START + 4:  spell_RF6_BLINK(m_idx, MONSTER_TO_PLAYER); break;   /* RF6_BLINK */
+	case RF6_SPELL_START + 5:  spell_RF6_TPORT(m_idx, MONSTER_TO_PLAYER); break;   /* RF6_TPORT */
+	case RF6_SPELL_START + 6:  return spell_RF6_WORLD(m_idx); break;	/* RF6_WORLD */
+	case RF6_SPELL_START + 7:  return spell_RF6_SPECIAL(y, x, m_idx, 0, MONSTER_TO_PLAYER);   /* RF6_SPECIAL */
+	case RF6_SPELL_START + 8:  spell_RF6_TELE_TO(m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_TELE_TO */
+	case RF6_SPELL_START + 9:  spell_RF6_TELE_AWAY(m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_TELE_AWAY */
+	case RF6_SPELL_START + 10: spell_RF6_TELE_LEVEL(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_TELE_LEVEL */
+	case RF6_SPELL_START + 11: spell_RF6_PSY_SPEAR(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_PSY_SPEAR */
+	case RF6_SPELL_START + 12: spell_RF6_DARKNESS(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;	/* RF6_DARKNESS */
+	case RF6_SPELL_START + 13: spell_RF6_TRAPS(y, x, m_idx); break; /* RF6_TRAPS */
+	case RF6_SPELL_START + 14: spell_RF6_FORGET(m_idx); break;  /* RF6_FORGET */
+	case RF6_SPELL_START + 15: spell_RF6_RAISE_DEAD(m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_RAISE_DEAD */
+	case RF6_SPELL_START + 16: spell_RF6_S_KIN(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_S_KIN */
+	case RF6_SPELL_START + 17: spell_RF6_S_CYBER(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_CYBER */
+	case RF6_SPELL_START + 18: spell_RF6_S_MONSTER(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_S_MONSTER */
+	case RF6_SPELL_START + 19: spell_RF6_S_MONSTERS(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;	/* RF6_S_MONSTER */
+	case RF6_SPELL_START + 20: spell_RF6_S_ANT(y, x, m_idx, 0, MONSTER_TO_PLAYER); break; /* RF6_S_ANT */
+	case RF6_SPELL_START + 21: spell_RF6_S_SPIDER(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_SPIDER */
+	case RF6_SPELL_START + 22: spell_RF6_S_HOUND(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HOUND */
+	case RF6_SPELL_START + 23: spell_RF6_S_HYDRA(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HYDRA */
+	case RF6_SPELL_START + 24: spell_RF6_S_ANGEL(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_ANGEL */
+	case RF6_SPELL_START + 25: spell_RF6_S_DEMON(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_DEMON */
+	case RF6_SPELL_START + 26: spell_RF6_S_UNDEAD(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_UNDEAD */
+	case RF6_SPELL_START + 27: spell_RF6_S_DRAGON(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_DRAGON */
+	case RF6_SPELL_START + 28: spell_RF6_S_HI_UNDEAD(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HI_UNDEAD */
+	case RF6_SPELL_START + 29: spell_RF6_S_HI_DRAGON(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_HI_DRAGON */
+	case RF6_SPELL_START + 30: spell_RF6_S_AMBERITES(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;   /* RF6_S_AMBERITES */
+	case RF6_SPELL_START + 31: spell_RF6_S_UNIQUE(y, x, m_idx, 0, MONSTER_TO_PLAYER); break;  /* RF6_S_UNIQUE */
+	}
+	return 0;
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§´§È•‚•Û•π•ø°º§ÿ§Œºˆ ∏§Œø∂§Í ¨§±¥ÿøÙ°£ /
-* @param SPELL_NUM •‚•Û•π•ø°ºÀ‚À°ID
-* @param y ¬–æ›§Œ√œ≈¿§Œy∫¬…∏
-* @param x ¬–æ›§Œ√œ≈¿§Œx∫¬…∏
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param t_idx ºˆ ∏§Úºı§±§Î•‚•Û•π•ø°ºID°£•◊•Ï•§•‰°º§ŒæÏπÁ§œdummy§«0§»§π§Î°£
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏°¢§ﬁ§ø§œæ§¥≠§∑§ø•‚•Û•π•ø°º§ŒøÙ§Ú ÷§π°£§Ω§Œ¬æ§ŒæÏπÁ0°£∞ πﬂ§ŒΩËÕ˝§Ú√Ê√«§π§Î§ §È-1§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„Åã„Çâ„É¢„É≥„Çπ„Çø„Éº„Å∏„ÅÆÂë™Êñá„ÅÆÊåØ„ÇäÂàÜ„ÅëÈñ¢Êï∞„ÄÇ /
+* @param SPELL_NUM „É¢„É≥„Çπ„Çø„ÉºÈ≠îÊ≥ïID
+* @param y ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆyÂ∫ßÊ®ô
+* @param x ÂØæË±°„ÅÆÂú∞ÁÇπ„ÅÆxÂ∫ßÊ®ô
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param t_idx Âë™Êñá„ÇíÂèó„Åë„Çã„É¢„É≥„Çπ„Çø„ÉºID„ÄÇ„Éó„É¨„Ç§„É§„Éº„ÅÆÂ†¥Âêà„ÅØdummy„Åß0„Å®„Åô„Çã„ÄÇ
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÄÅ„Åæ„Åü„ÅØÂè¨Âñö„Åó„Åü„É¢„É≥„Çπ„Çø„Éº„ÅÆÊï∞„ÇíËøî„Åô„ÄÇ„Åù„ÅÆ‰ªñ„ÅÆÂ†¥Âêà0„ÄÇ‰ª•Èôç„ÅÆÂá¶ÁêÜ„Çí‰∏≠Êñ≠„Åô„Çã„Å™„Çâ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_to_monster(int SPELL_NUM, int y, int x, int m_idx, int t_idx)
+HIT_POINT monspell_to_monster(int SPELL_NUM, POSITION y, POSITION x, MONSTER_IDX m_idx, IDX t_idx)
 {
-    switch (SPELL_NUM)
-    {
-    case RF4_SPELL_START + 0:   spell_RF4_SHRIEK(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF4_SHRIEK */
-    case RF4_SPELL_START + 1:   return -1;   /* RF4_XXX1 */
-    case RF4_SPELL_START + 2:   spell_RF4_DISPEL(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF4_DISPEL */
-    case RF4_SPELL_START + 3:   return spell_RF4_ROCKET(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF4_ROCKET */
-    case RF4_SPELL_START + 4:   return spell_RF4_SHOOT(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_SHOOT */
-    case RF4_SPELL_START + 5:   return -1;   /* RF4_XXX2 */
-    case RF4_SPELL_START + 6:   return -1;   /* RF4_XXX3 */
-    case RF4_SPELL_START + 7:   return -1;   /* RF4_XXX4 */
-    case RF4_SPELL_START + 8:   return spell_RF4_BREATH(GF_ACID, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_ACID */
-    case RF4_SPELL_START + 9:   return spell_RF4_BREATH(GF_ELEC, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_ELEC */
-    case RF4_SPELL_START + 10:  return spell_RF4_BREATH(GF_FIRE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_FIRE */
-    case RF4_SPELL_START + 11:  return spell_RF4_BREATH(GF_COLD, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_COLD */
-    case RF4_SPELL_START + 12:  return spell_RF4_BREATH(GF_POIS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_POIS */
-    case RF4_SPELL_START + 13:  return spell_RF4_BREATH(GF_NETHER, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_NETH */
-    case RF4_SPELL_START + 14:  return spell_RF4_BREATH(GF_LITE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_LITE */
-    case RF4_SPELL_START + 15:  return spell_RF4_BREATH(GF_DARK, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_DARK */
-    case RF4_SPELL_START + 16:  return spell_RF4_BREATH(GF_CONFUSION, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_CONF */
-    case RF4_SPELL_START + 17:  return spell_RF4_BREATH(GF_SOUND, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_SOUN */
-    case RF4_SPELL_START + 18:  return spell_RF4_BREATH(GF_CHAOS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_CHAO */
-    case RF4_SPELL_START + 19:  return spell_RF4_BREATH(GF_DISENCHANT, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_DISE */
-    case RF4_SPELL_START + 20:  return spell_RF4_BREATH(GF_NEXUS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_NEXU */
-    case RF4_SPELL_START + 21:  return spell_RF4_BREATH(GF_TIME, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_TIME */
-    case RF4_SPELL_START + 22:  return spell_RF4_BREATH(GF_INERTIAL, y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF4_BR_INER */
-    case RF4_SPELL_START + 23:  return spell_RF4_BREATH(GF_GRAVITY, y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF4_BR_GRAV */
-    case RF4_SPELL_START + 24:  return spell_RF4_BREATH(GF_SHARDS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_SHAR */
-    case RF4_SPELL_START + 25:  return spell_RF4_BREATH(GF_PLASMA, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_PLAS */
-    case RF4_SPELL_START + 26:  return spell_RF4_BREATH(GF_FORCE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_WALL */
-    case RF4_SPELL_START + 27:  return spell_RF4_BREATH(GF_MANA, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_MANA */
-    case RF4_SPELL_START + 28:  return spell_RF4_BA_NUKE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BA_NUKE */
-    case RF4_SPELL_START + 29:  return spell_RF4_BREATH(GF_NUKE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_NUKE */
-    case RF4_SPELL_START + 30:  return spell_RF4_BA_CHAO(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BA_CHAO */
-    case RF4_SPELL_START + 31:  return spell_RF4_BREATH(GF_DISINTEGRATE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF4_BR_DISI */
-    case RF5_SPELL_START + 0:  return spell_RF5_BA_ACID(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_ACID */
-    case RF5_SPELL_START + 1:  return spell_RF5_BA_ELEC(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_ELEC */
-    case RF5_SPELL_START + 2:  return spell_RF5_BA_FIRE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_FIRE */
-    case RF5_SPELL_START + 3:  return spell_RF5_BA_COLD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_COLD */
-    case RF5_SPELL_START + 4:  return spell_RF5_BA_POIS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_POIS */
-    case RF5_SPELL_START + 5:  return spell_RF5_BA_NETH(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_NETH */
-    case RF5_SPELL_START + 6:  return spell_RF5_BA_WATE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_WATE */
-    case RF5_SPELL_START + 7:  return spell_RF5_BA_MANA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_MANA */
-    case RF5_SPELL_START + 8:  return spell_RF5_BA_DARK(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_DARK */
-    case RF5_SPELL_START + 9:  return spell_RF5_DRAIN_MANA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF5_DRAIN_MANA */
-    case RF5_SPELL_START + 10: return spell_RF5_MIND_BLAST(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF5_MIND_BLAST */
-    case RF5_SPELL_START + 11: return spell_RF5_BRAIN_SMASH(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BRAIN_SMASH */
-    case RF5_SPELL_START + 12: return spell_RF5_CAUSE_1(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_CAUSE_1 */
-    case RF5_SPELL_START + 13: return spell_RF5_CAUSE_2(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_CAUSE_2 */
-    case RF5_SPELL_START + 14: return spell_RF5_CAUSE_3(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_CAUSE_3 */
-    case RF5_SPELL_START + 15: return spell_RF5_CAUSE_4(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_CAUSE_4 */
-    case RF5_SPELL_START + 16: return spell_RF5_BO_ACID(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_ACID */
-    case RF5_SPELL_START + 17: return spell_RF5_BO_ELEC(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_ELEC */
-    case RF5_SPELL_START + 18: return spell_RF5_BO_FIRE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_FIRE */
-    case RF5_SPELL_START + 19: return spell_RF5_BO_COLD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_COLD */
-    case RF5_SPELL_START + 20: return spell_RF5_BA_LITE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BA_LITE */
-    case RF5_SPELL_START + 21: return spell_RF5_BO_NETH(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_NETH */
-    case RF5_SPELL_START + 22: return spell_RF5_BO_WATE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_WATE */
-    case RF5_SPELL_START + 23: return spell_RF5_BO_MANA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_MANA */
-    case RF5_SPELL_START + 24: return spell_RF5_BO_PLAS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_PLAS */
-    case RF5_SPELL_START + 25: return spell_RF5_BO_ICEE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_BO_ICEE */
-    case RF5_SPELL_START + 26: return spell_RF5_MISSILE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);    /* RF5_MISSILE */
-    case RF5_SPELL_START + 27: spell_RF5_SCARE(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF5_SCARE */
-    case RF5_SPELL_START + 28: spell_RF5_BLIND(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF5_BLIND */
-    case RF5_SPELL_START + 29: spell_RF5_CONF(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF5_CONF */
-    case RF5_SPELL_START + 30: spell_RF5_SLOW(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF5_SLOW */
-    case RF5_SPELL_START + 31: spell_RF5_HOLD(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF5_HOLD */
-    case RF6_SPELL_START + 0:  spell_RF6_HASTE(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_HASTE */
-    case RF6_SPELL_START + 1:  return spell_RF6_HAND_DOOM(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF6_HAND_DOOM */
-    case RF6_SPELL_START + 2:  spell_RF6_HEAL(m_idx, t_idx, MONSTER_TO_MONSTER); break;    /* RF6_HEAL */
-    case RF6_SPELL_START + 3:  spell_RF6_INVULNER(m_idx, t_idx, MONSTER_TO_MONSTER); break;    /* RF6_INVULNER */
-    case RF6_SPELL_START + 4:  spell_RF6_BLINK(m_idx, MONSTER_TO_MONSTER); break;   /* RF6_BLINK */
-    case RF6_SPELL_START + 5:  spell_RF6_TPORT(m_idx, MONSTER_TO_MONSTER); break;   /* RF6_TPORT */
-    case RF6_SPELL_START + 6:  return -1; break;    /* RF6_WORLD */
-    case RF6_SPELL_START + 7:  return spell_RF6_SPECIAL(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF6_SPECIAL */
-    case RF6_SPELL_START + 8:  spell_RF6_TELE_TO(m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_TELE_TO */
-    case RF6_SPELL_START + 9:  spell_RF6_TELE_AWAY(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_TELE_AWAY */
-    case RF6_SPELL_START + 10: spell_RF6_TELE_LEVEL(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_TELE_LEVEL */
-    case RF6_SPELL_START + 11: spell_RF6_PSY_SPEAR(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_PSY_SPEAR */
-    case RF6_SPELL_START + 12: spell_RF6_DARKNESS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;    /* RF6_DARKNESS */
-    case RF6_SPELL_START + 13: return -1; /* RF6_TRAPS */
-    case RF6_SPELL_START + 14: return -1;  /* RF6_FORGET */
-    case RF6_SPELL_START + 15: spell_RF6_RAISE_DEAD(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_RAISE_DEAD */
-    case RF6_SPELL_START + 16: spell_RF6_S_KIN(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_S_KIN */
-    case RF6_SPELL_START + 17: spell_RF6_S_CYBER(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_CYBER */
-    case RF6_SPELL_START + 18: spell_RF6_S_MONSTER(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_S_MONSTER */
-    case RF6_SPELL_START + 19: spell_RF6_S_MONSTERS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;    /* RF6_S_MONSTER */
-    case RF6_SPELL_START + 20: spell_RF6_S_ANT(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_S_ANT */
-    case RF6_SPELL_START + 21: spell_RF6_S_SPIDER(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_SPIDER */
-    case RF6_SPELL_START + 22: spell_RF6_S_HOUND(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HOUND */
-    case RF6_SPELL_START + 23: spell_RF6_S_HYDRA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HYDRA */
-    case RF6_SPELL_START + 24: spell_RF6_S_ANGEL(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_ANGEL */
-    case RF6_SPELL_START + 25: spell_RF6_S_DEMON(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_DEMON */
-    case RF6_SPELL_START + 26: spell_RF6_S_UNDEAD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_UNDEAD */
-    case RF6_SPELL_START + 27: spell_RF6_S_DRAGON(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_DRAGON */
-    case RF6_SPELL_START + 28: spell_RF6_S_HI_UNDEAD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HI_UNDEAD */
-    case RF6_SPELL_START + 29: spell_RF6_S_HI_DRAGON(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HI_DRAGON */
-    case RF6_SPELL_START + 30: spell_RF6_S_AMBERITES(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_AMBERITES */
-    case RF6_SPELL_START + 31: spell_RF6_S_UNIQUE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_UNIQUE */
-    }
-    return 0;
+	switch (SPELL_NUM)
+	{
+	case RF4_SPELL_START + 0:   spell_RF4_SHRIEK(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF4_SHRIEK */
+	case RF4_SPELL_START + 1:   return -1;   /* RF4_XXX1 */
+	case RF4_SPELL_START + 2:   spell_RF4_DISPEL(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF4_DISPEL */
+	case RF4_SPELL_START + 3:   return spell_RF4_ROCKET(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF4_ROCKET */
+	case RF4_SPELL_START + 4:   return spell_RF4_SHOOT(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_SHOOT */
+	case RF4_SPELL_START + 5:   return -1;   /* RF4_XXX2 */
+	case RF4_SPELL_START + 6:   return -1;   /* RF4_XXX3 */
+	case RF4_SPELL_START + 7:   return -1;   /* RF4_XXX4 */
+	case RF4_SPELL_START + 8:   return spell_RF4_BREATH(GF_ACID, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_ACID */
+	case RF4_SPELL_START + 9:   return spell_RF4_BREATH(GF_ELEC, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_ELEC */
+	case RF4_SPELL_START + 10:  return spell_RF4_BREATH(GF_FIRE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_FIRE */
+	case RF4_SPELL_START + 11:  return spell_RF4_BREATH(GF_COLD, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_COLD */
+	case RF4_SPELL_START + 12:  return spell_RF4_BREATH(GF_POIS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_POIS */
+	case RF4_SPELL_START + 13:  return spell_RF4_BREATH(GF_NETHER, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_NETH */
+	case RF4_SPELL_START + 14:  return spell_RF4_BREATH(GF_LITE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_LITE */
+	case RF4_SPELL_START + 15:  return spell_RF4_BREATH(GF_DARK, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_DARK */
+	case RF4_SPELL_START + 16:  return spell_RF4_BREATH(GF_CONFUSION, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_CONF */
+	case RF4_SPELL_START + 17:  return spell_RF4_BREATH(GF_SOUND, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_SOUN */
+	case RF4_SPELL_START + 18:  return spell_RF4_BREATH(GF_CHAOS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_CHAO */
+	case RF4_SPELL_START + 19:  return spell_RF4_BREATH(GF_DISENCHANT, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_DISE */
+	case RF4_SPELL_START + 20:  return spell_RF4_BREATH(GF_NEXUS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_NEXU */
+	case RF4_SPELL_START + 21:  return spell_RF4_BREATH(GF_TIME, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_TIME */
+	case RF4_SPELL_START + 22:  return spell_RF4_BREATH(GF_INERTIAL, y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF4_BR_INER */
+	case RF4_SPELL_START + 23:  return spell_RF4_BREATH(GF_GRAVITY, y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF4_BR_GRAV */
+	case RF4_SPELL_START + 24:  return spell_RF4_BREATH(GF_SHARDS, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_SHAR */
+	case RF4_SPELL_START + 25:  return spell_RF4_BREATH(GF_PLASMA, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);  /* RF4_BR_PLAS */
+	case RF4_SPELL_START + 26:  return spell_RF4_BREATH(GF_FORCE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF4_BR_WALL */
+	case RF4_SPELL_START + 27:  return spell_RF4_BREATH(GF_MANA, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_MANA */
+	case RF4_SPELL_START + 28:  return spell_RF4_BA_NUKE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BA_NUKE */
+	case RF4_SPELL_START + 29:  return spell_RF4_BREATH(GF_NUKE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_NUKE */
+	case RF4_SPELL_START + 30:  return spell_RF4_BA_CHAO(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BA_CHAO */
+	case RF4_SPELL_START + 31:  return spell_RF4_BREATH(GF_DISINTEGRATE, y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF4_BR_DISI */
+	case RF5_SPELL_START + 0:  return spell_RF5_BA_ACID(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_ACID */
+	case RF5_SPELL_START + 1:  return spell_RF5_BA_ELEC(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_ELEC */
+	case RF5_SPELL_START + 2:  return spell_RF5_BA_FIRE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_FIRE */
+	case RF5_SPELL_START + 3:  return spell_RF5_BA_COLD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_COLD */
+	case RF5_SPELL_START + 4:  return spell_RF5_BA_POIS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_POIS */
+	case RF5_SPELL_START + 5:  return spell_RF5_BA_NETH(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_NETH */
+	case RF5_SPELL_START + 6:  return spell_RF5_BA_WATE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_WATE */
+	case RF5_SPELL_START + 7:  return spell_RF5_BA_MANA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_MANA */
+	case RF5_SPELL_START + 8:  return spell_RF5_BA_DARK(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_DARK */
+	case RF5_SPELL_START + 9:  return spell_RF5_DRAIN_MANA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF5_DRAIN_MANA */
+	case RF5_SPELL_START + 10: return spell_RF5_MIND_BLAST(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF5_MIND_BLAST */
+	case RF5_SPELL_START + 11: return spell_RF5_BRAIN_SMASH(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BRAIN_SMASH */
+	case RF5_SPELL_START + 12: return spell_RF5_CAUSE_1(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_CAUSE_1 */
+	case RF5_SPELL_START + 13: return spell_RF5_CAUSE_2(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_CAUSE_2 */
+	case RF5_SPELL_START + 14: return spell_RF5_CAUSE_3(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_CAUSE_3 */
+	case RF5_SPELL_START + 15: return spell_RF5_CAUSE_4(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_CAUSE_4 */
+	case RF5_SPELL_START + 16: return spell_RF5_BO_ACID(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_ACID */
+	case RF5_SPELL_START + 17: return spell_RF5_BO_ELEC(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_ELEC */
+	case RF5_SPELL_START + 18: return spell_RF5_BO_FIRE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_FIRE */
+	case RF5_SPELL_START + 19: return spell_RF5_BO_COLD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_COLD */
+	case RF5_SPELL_START + 20: return spell_RF5_BA_LITE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BA_LITE */
+	case RF5_SPELL_START + 21: return spell_RF5_BO_NETH(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_NETH */
+	case RF5_SPELL_START + 22: return spell_RF5_BO_WATE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_WATE */
+	case RF5_SPELL_START + 23: return spell_RF5_BO_MANA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_MANA */
+	case RF5_SPELL_START + 24: return spell_RF5_BO_PLAS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_PLAS */
+	case RF5_SPELL_START + 25: return spell_RF5_BO_ICEE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_BO_ICEE */
+	case RF5_SPELL_START + 26: return spell_RF5_MISSILE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);	/* RF5_MISSILE */
+	case RF5_SPELL_START + 27: spell_RF5_SCARE(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF5_SCARE */
+	case RF5_SPELL_START + 28: spell_RF5_BLIND(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF5_BLIND */
+	case RF5_SPELL_START + 29: spell_RF5_CONF(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF5_CONF */
+	case RF5_SPELL_START + 30: spell_RF5_SLOW(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF5_SLOW */
+	case RF5_SPELL_START + 31: spell_RF5_HOLD(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF5_HOLD */
+	case RF6_SPELL_START + 0:  spell_RF6_HASTE(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_HASTE */
+	case RF6_SPELL_START + 1:  return spell_RF6_HAND_DOOM(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); /* RF6_HAND_DOOM */
+	case RF6_SPELL_START + 2:  spell_RF6_HEAL(m_idx, t_idx, MONSTER_TO_MONSTER); break;	/* RF6_HEAL */
+	case RF6_SPELL_START + 3:  spell_RF6_INVULNER(m_idx, t_idx, MONSTER_TO_MONSTER); break;	/* RF6_INVULNER */
+	case RF6_SPELL_START + 4:  spell_RF6_BLINK(m_idx, MONSTER_TO_MONSTER); break;   /* RF6_BLINK */
+	case RF6_SPELL_START + 5:  spell_RF6_TPORT(m_idx, MONSTER_TO_MONSTER); break;   /* RF6_TPORT */
+	case RF6_SPELL_START + 6:  return -1; break;	/* RF6_WORLD */
+	case RF6_SPELL_START + 7:  return spell_RF6_SPECIAL(y, x, m_idx, t_idx, MONSTER_TO_MONSTER);   /* RF6_SPECIAL */
+	case RF6_SPELL_START + 8:  spell_RF6_TELE_TO(m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_TELE_TO */
+	case RF6_SPELL_START + 9:  spell_RF6_TELE_AWAY(m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_TELE_AWAY */
+	case RF6_SPELL_START + 10: spell_RF6_TELE_LEVEL(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_TELE_LEVEL */
+	case RF6_SPELL_START + 11: spell_RF6_PSY_SPEAR(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_PSY_SPEAR */
+	case RF6_SPELL_START + 12: spell_RF6_DARKNESS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;	/* RF6_DARKNESS */
+	case RF6_SPELL_START + 13: return -1; /* RF6_TRAPS */
+	case RF6_SPELL_START + 14: return -1;  /* RF6_FORGET */
+	case RF6_SPELL_START + 15: spell_RF6_RAISE_DEAD(m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_RAISE_DEAD */
+	case RF6_SPELL_START + 16: spell_RF6_S_KIN(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_S_KIN */
+	case RF6_SPELL_START + 17: spell_RF6_S_CYBER(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_CYBER */
+	case RF6_SPELL_START + 18: spell_RF6_S_MONSTER(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_S_MONSTER */
+	case RF6_SPELL_START + 19: spell_RF6_S_MONSTERS(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;	/* RF6_S_MONSTER */
+	case RF6_SPELL_START + 20: spell_RF6_S_ANT(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break; /* RF6_S_ANT */
+	case RF6_SPELL_START + 21: spell_RF6_S_SPIDER(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_SPIDER */
+	case RF6_SPELL_START + 22: spell_RF6_S_HOUND(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HOUND */
+	case RF6_SPELL_START + 23: spell_RF6_S_HYDRA(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HYDRA */
+	case RF6_SPELL_START + 24: spell_RF6_S_ANGEL(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_ANGEL */
+	case RF6_SPELL_START + 25: spell_RF6_S_DEMON(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_DEMON */
+	case RF6_SPELL_START + 26: spell_RF6_S_UNDEAD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_UNDEAD */
+	case RF6_SPELL_START + 27: spell_RF6_S_DRAGON(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_DRAGON */
+	case RF6_SPELL_START + 28: spell_RF6_S_HI_UNDEAD(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HI_UNDEAD */
+	case RF6_SPELL_START + 29: spell_RF6_S_HI_DRAGON(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_HI_DRAGON */
+	case RF6_SPELL_START + 30: spell_RF6_S_AMBERITES(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;   /* RF6_S_AMBERITES */
+	case RF6_SPELL_START + 31: spell_RF6_S_UNIQUE(y, x, m_idx, t_idx, MONSTER_TO_MONSTER); break;  /* RF6_S_UNIQUE */
+	}
+	return 0;
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§Œª»§¶ºˆ ∏§Œ∞“Œœ§Ú∑ËƒÍ§π§Î /
-* @param dam ƒÍøÙ√Õ
-* @param dice_num •¿•§•πøÙ
-* @param dice_side •¿•§•πÃÃ
-* @param mult •¿•§•π«‹Œ®
-* @param div •¿•§•π«‹Œ®
-* @param TYPE  DAM_MAX§«∫«¬Á√Õ§Ú ÷§∑°¢DAM_MIN§«∫«æÆ√Õ§Ú ÷§π°£DAM_ROLL§œ•¿•§•π§Úø∂§√§∆√Õ§Ú∑ËƒÍ§π§Î°£
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏§Ú ÷§π°£π∂∑‚ºˆ ∏∞ ≥∞§œ-1§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅÆ‰Ωø„ÅÜÂë™Êñá„ÅÆÂ®ÅÂäõ„ÇíÊ±∫ÂÆö„Åô„Çã /
+* @param dam ÂÆöÊï∞ÂÄ§
+* @param dice_num „ÉÄ„Ç§„ÇπÊï∞
+* @param dice_side „ÉÄ„Ç§„ÇπÈù¢
+* @param mult „ÉÄ„Ç§„ÇπÂÄçÁéá
+* @param div „ÉÄ„Ç§„ÇπÂÄçÁéá
+* @param TYPE  DAM_MAX„ÅßÊúÄÂ§ßÂÄ§„ÇíËøî„Åó„ÄÅDAM_MIN„ÅßÊúÄÂ∞èÂÄ§„ÇíËøî„Åô„ÄÇDAM_ROLL„ÅØ„ÉÄ„Ç§„Çπ„ÇíÊåØ„Å£„Å¶ÂÄ§„ÇíÊ±∫ÂÆö„Åô„Çã„ÄÇ
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÇíËøî„Åô„ÄÇÊîªÊíÉÂë™Êñá‰ª•Â§ñ„ÅØ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_damage_roll(int dam, int dice_num, int dice_side, int mult, int div, int TYPE)
+HIT_POINT monspell_damage_roll(HIT_POINT dam, int dice_num, int dice_side, int mult, int div, int TYPE)
 {
-    switch (TYPE)
-    {
-        case DAM_MAX: dam += maxroll(dice_num, dice_side) * mult / div; break;
-        case DAM_MIN: dam += dice_num * 1 * mult / div; break;
-        case DAM_ROLL: dam += damroll(dice_num, dice_side) * mult / div; break;
-        case DICE_NUM: return dice_num;
-        case DICE_SIDE: return dice_side;
-        case DICE_MULT: return mult;
-        case DICE_DIV: return div;
-        case BASE_DAM: return dam;
-    }
-    if (dam < 1) dam = 1;
-    return dam;
+	switch (TYPE)
+	{
+		case DAM_MAX: dam += maxroll(dice_num, dice_side) * mult / div; break;
+		case DAM_MIN: dam += dice_num * 1 * mult / div; break;
+		case DAM_ROLL: dam += damroll(dice_num, dice_side) * mult / div; break;
+		case DICE_NUM: return dice_num;
+		case DICE_SIDE: return dice_side;
+		case DICE_MULT: return mult;
+		case DICE_DIV: return div;
+		case BASE_DAM: return dam;
+	}
+	if (dam < 1) dam = 1;
+	return dam;
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§Œª»§¶ºˆ ∏§Œ∞“Œœ§Ú ÷§π /
-* @param SPELL_NUM ºˆ ∏»÷πÊ
-* @param hp ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ¬ŒŒœ
-* @param rlev ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œ•Ï•Ÿ•Î
-* @param powerful ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§Œpowerful•’•È•∞
-* @param shoot_dd ºÕ∑‚§Œ•¿•§•πøÙ
-* @param shoot_ds ºÕ∑‚§Œ•¿•§•πÃÃ
-* @param shoot_base ºÕ∑‚§Œ∏«ƒÍ∞“Œœ√Õ
-* @param TYPE  DAM_MAX§«∫«¬Á√Õ§Ú ÷§∑°¢DAM_MIN§«∫«æÆ√Õ§Ú ÷§π°£DAM_ROLL§œ•¿•§•π§Úø∂§√§∆√Õ§Ú∑ËƒÍ§π§Î°£
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏§Ú ÷§π°£π∂∑‚ºˆ ∏∞ ≥∞§œ-1§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅÆ‰Ωø„ÅÜÂë™Êñá„ÅÆÂ®ÅÂäõ„ÇíËøî„Åô /
+* @param SPELL_NUM Âë™ÊñáÁï™Âè∑
+* @param hp Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ‰ΩìÂäõ
+* @param rlev Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆ„É¨„Éô„É´
+* @param powerful Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆpowerful„Éï„É©„Ç∞
+* @param shoot_dd Â∞ÑÊíÉ„ÅÆ„ÉÄ„Ç§„ÇπÊï∞
+* @param shoot_ds Â∞ÑÊíÉ„ÅÆ„ÉÄ„Ç§„ÇπÈù¢
+* @param shoot_base Â∞ÑÊíÉ„ÅÆÂõ∫ÂÆöÂ®ÅÂäõÂÄ§
+* @param TYPE  DAM_MAX„ÅßÊúÄÂ§ßÂÄ§„ÇíËøî„Åó„ÄÅDAM_MIN„ÅßÊúÄÂ∞èÂÄ§„ÇíËøî„Åô„ÄÇDAM_ROLL„ÅØ„ÉÄ„Ç§„Çπ„ÇíÊåØ„Å£„Å¶ÂÄ§„ÇíÊ±∫ÂÆö„Åô„Çã„ÄÇ
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÇíËøî„Åô„ÄÇÊîªÊíÉÂë™Êñá‰ª•Â§ñ„ÅØ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_damage_base(int SPELL_NUM, int hp, int rlev, bool powerful, int shoot_dd, int shoot_ds, int shoot_base, int TYPE)
+HIT_POINT monspell_damage_base(int SPELL_NUM, int hp, int rlev, bool powerful, int shoot_dd, int shoot_ds, int shoot_base, int TYPE)
 {
-    int dam = 0, dice_num = 0, dice_side = 0, mult = 1, div = 1;
+	HIT_POINT dam = 0, dice_num = 0, dice_side = 0, mult = 1, div = 1;
 
-    switch (SPELL_NUM)
-    {
-    case MS_SHRIEK:   return -1;   /* RF4_SHRIEK */
-    case MS_XXX1:   return -1;   /* RF4_XXX1 */
-    case MS_DISPEL:   return -1;   /* RF4_DISPEL */
+	switch (SPELL_NUM)
+	{
+	case MS_SHRIEK:   return -1;   /* RF4_SHRIEK */
+	case MS_XXX1:   return -1;   /* RF4_XXX1 */
+	case MS_DISPEL:   return -1;   /* RF4_DISPEL */
 
-        /* RF4_ROCKET */
-    case MS_ROCKET:
-        dam = (hp / 4) > 800 ? 800 : (hp / 4);
-        break;
+		/* RF4_ROCKET */
+	case MS_ROCKET:
+		dam = (hp / 4) > 800 ? 800 : (hp / 4);
+		break;
 
-        /* RF4_SHOOT */
-    case MS_SHOOT:
-        dice_num = shoot_dd;
-        dice_side = shoot_ds;
-        dam = shoot_base;
-        break;
-    case MS_XXX2:   return -1;   /* RF4_XXX2 */
-    case MS_XXX3:   return -1;   /* RF4_XXX3 */
-    case MS_XXX4:   return -1;   /* RF4_XXX4 */
+		/* RF4_SHOOT */
+	case MS_SHOOT:
+		dice_num = shoot_dd;
+		dice_side = shoot_ds;
+		dam = shoot_base;
+		break;
+	case MS_XXX2:   return -1;   /* RF4_XXX2 */
+	case MS_XXX3:   return -1;   /* RF4_XXX3 */
+	case MS_XXX4:   return -1;   /* RF4_XXX4 */
 
-        /* RF4_BR_ACID */
-        /* RF4_BR_ELEC */
-        /* RF4_BR_FIRE */
-        /* RF4_BR_COLD */
-    case MS_BR_ACID:
-    case MS_BR_ELEC:
-    case MS_BR_FIRE:
-    case MS_BR_COLD:
-        dam = ((hp / 3) > 1600 ? 1600 : (hp / 3));
-        break;
+		/* RF4_BR_ACID */
+		/* RF4_BR_ELEC */
+		/* RF4_BR_FIRE */
+		/* RF4_BR_COLD */
+	case MS_BR_ACID:
+	case MS_BR_ELEC:
+	case MS_BR_FIRE:
+	case MS_BR_COLD:
+		dam = ((hp / 3) > 1600 ? 1600 : (hp / 3));
+		break;
 
-        /* RF4_BR_POIS */
-    case MS_BR_POIS:
-        dam = ((hp / 3) > 800 ? 800 : (hp / 3));
-        break;
+		/* RF4_BR_POIS */
+	case MS_BR_POIS:
+		dam = ((hp / 3) > 800 ? 800 : (hp / 3));
+		break;
 
-        /* RF4_BR_NETH */
-    case MS_BR_NETHER:
-        dam = ((hp / 6) > 550 ? 550 : (hp / 6));
-        break;
+		/* RF4_BR_NETH */
+	case MS_BR_NETHER:
+		dam = ((hp / 6) > 550 ? 550 : (hp / 6));
+		break;
 
-        /* RF4_BR_LITE */
-        /* RF4_BR_DARK */
-    case MS_BR_LITE:
-    case MS_BR_DARK:
-        dam = ((hp / 6) > 400 ? 400 : (hp / 6));
-        break;
+		/* RF4_BR_LITE */
+		/* RF4_BR_DARK */
+	case MS_BR_LITE:
+	case MS_BR_DARK:
+		dam = ((hp / 6) > 400 ? 400 : (hp / 6));
+		break;
 
-        /* RF4_BR_CONF */
-        /* RF4_BR_SOUN */
-    case MS_BR_CONF:
-    case MS_BR_SOUND:
-        dam = ((hp / 6) > 450 ? 450 : (hp / 6));
-        break;
+		/* RF4_BR_CONF */
+		/* RF4_BR_SOUN */
+	case MS_BR_CONF:
+	case MS_BR_SOUND:
+		dam = ((hp / 6) > 450 ? 450 : (hp / 6));
+		break;
 
-        /* RF4_BR_CHAO */
-    case MS_BR_CHAOS:
-        dam = ((hp / 6) > 600 ? 600 : (hp / 6));
-        break;
+		/* RF4_BR_CHAO */
+	case MS_BR_CHAOS:
+		dam = ((hp / 6) > 600 ? 600 : (hp / 6));
+		break;
 
-        /* RF4_BR_DISE */
-    case MS_BR_DISEN:
-        dam = ((hp / 6) > 500 ? 500 : (hp / 6));
-        break;
+		/* RF4_BR_DISE */
+	case MS_BR_DISEN:
+		dam = ((hp / 6) > 500 ? 500 : (hp / 6));
+		break;
 
-        /* RF4_BR_NEXU */
-    case MS_BR_NEXUS:
-        dam = ((hp / 3) > 250 ? 250 : (hp / 3));
-        break;
+		/* RF4_BR_NEXU */
+	case MS_BR_NEXUS:
+		dam = ((hp / 3) > 250 ? 250 : (hp / 3));
+		break;
 
-        /* RF4_BR_TIME */
-    case MS_BR_TIME:
-        dam = ((hp / 3) > 150 ? 150 : (hp / 3));
-        break;
+		/* RF4_BR_TIME */
+	case MS_BR_TIME:
+		dam = ((hp / 3) > 150 ? 150 : (hp / 3));
+		break;
 
-        /* RF4_BR_INER */
-        /* RF4_BR_GRAV */
-    case MS_BR_INERTIA:
-    case MS_BR_GRAVITY:
-        dam = ((hp / 6) > 200 ? 200 : (hp / 6));
-        break;
+		/* RF4_BR_INER */
+		/* RF4_BR_GRAV */
+	case MS_BR_INERTIA:
+	case MS_BR_GRAVITY:
+		dam = ((hp / 6) > 200 ? 200 : (hp / 6));
+		break;
 
-        /* RF4_BR_SHAR */
-    case MS_BR_SHARDS:
-        dam = ((hp / 6) > 500 ? 500 : (hp / 6));
-        break;
+		/* RF4_BR_SHAR */
+	case MS_BR_SHARDS:
+		dam = ((hp / 6) > 500 ? 500 : (hp / 6));
+		break;
 
-        /* RF4_BR_PLAS */
-    case MS_BR_PLASMA:
-        dam = ((hp / 6) > 150 ? 150 : (hp / 6));
-        break;
+		/* RF4_BR_PLAS */
+	case MS_BR_PLASMA:
+		dam = ((hp / 6) > 150 ? 150 : (hp / 6));
+		break;
 
-        /* RF4_BR_WALL */
-    case MS_BR_FORCE:
-        dam = ((hp / 6) > 200 ? 200 : (hp / 6));
-        break;
+		/* RF4_BR_WALL */
+	case MS_BR_FORCE:
+		dam = ((hp / 6) > 200 ? 200 : (hp / 6));
+		break;
 
-        /* RF4_BR_MANA */
-    case MS_BR_MANA:
-        dam = ((hp / 3) > 250 ? 250 : (hp / 3));
-        break;
+		/* RF4_BR_MANA */
+	case MS_BR_MANA:
+		dam = ((hp / 3) > 250 ? 250 : (hp / 3));
+		break;
 
-        /* RF4_BA_NUKE */
-    case MS_BALL_NUKE:
-        mult = powerful ? 2 : 1;
-        dam = rlev * 4 * (mult / div); /* rlev > rlev*4 */
-        dice_num = 10;
-        dice_side = 6;
-        break;
+		/* RF4_BA_NUKE */
+	case MS_BALL_NUKE:
+		mult = powerful ? 2 : 1;
+		dam = rlev * (mult / div);
+		dice_num = 10;
+		dice_side = 6;
+		break;
 
-        /* RF4_BR_NUKE */
-    case MS_BR_NUKE:
-        dam = ((hp / 3) > 800 ? 800 : (hp / 3));
-        break;
+		/* RF4_BR_NUKE */
+	case MS_BR_NUKE:
+		dam = ((hp / 3) > 800 ? 800 : (hp / 3));
+		break;
 
-        /* RF4_BA_CHAO */
-    case MS_BALL_CHAOS:
-        dam = (powerful ? (rlev * 12) : (rlev * 8)); /* rlev3,2 > rlev*12,8 */
-        dice_num = 10;
-        dice_side = 10;
-        break;
+		/* RF4_BA_CHAO */
+	case MS_BALL_CHAOS:
+		dam = (powerful ? (rlev * 3) : (rlev * 2));
+		dice_num = 10;
+		dice_side = 10;
+		break;
 
-        /* RF4_BR_DISI */
-    case MS_BR_DISI:
-        dam = ((hp / 6) > 150 ? 150 : (hp / 6));
-        break;
+		/* RF4_BR_DISI */
+	case MS_BR_DISI:
+		dam = ((hp / 6) > 150 ? 150 : (hp / 6));
+		break;
 
-        /* RF5_BA_ACID */
-    case MS_BALL_ACID:
-        if (powerful)
-        {
-            dam = (rlev * 16) + 50; /* rlev4 > rlev*16 */
-            dice_num = 10;
-            dice_side = 10;
-        }
-        else
-        {
-            dam = 15;
-            dice_num = 1;
-            dice_side = rlev * 12; /* rlev3 > rlev*12 */
-        }
-        break;
+		/* RF5_BA_ACID */
+	case MS_BALL_ACID:
+		if (powerful)
+		{
+			dam = (rlev * 4) + 50;
+			dice_num = 10;
+			dice_side = 10;
+		}
+		else
+		{
+			dam = 15;
+			dice_num = 1;
+			dice_side = rlev * 3;
+		}
+		break;
 
-        /* RF5_BA_ELEC */
-    case MS_BALL_ELEC:
-        if (powerful)
-        {
-            dam = (rlev * 16) + 50; /* rlev4 > rlev*16 */
-            dice_num = 10;
-            dice_side = 10;
-        }
-        else
-        {
-            dam = 8;
-            dice_num = 1;
-            dice_side = rlev * 12 / 2; /* rlev3 > rlev*12 */
-        }
-        break;
+		/* RF5_BA_ELEC */
+	case MS_BALL_ELEC:
+		if (powerful)
+		{
+			dam = (rlev * 4) + 50;
+			dice_num = 10;
+			dice_side = 10;
+		}
+		else
+		{
+			dam = 8;
+			dice_num = 1;
+			dice_side = rlev * 3 / 2;
+		}
+		break;
 
-        /* RF5_BA_FIRE */
-    case MS_BALL_FIRE:
-        if (powerful)
-        {
-            dam = (rlev * 16) + 50; /* rlev4 > rlev16 */
-            dice_num = 10;
-            dice_side = 10;
-        }
-        else
-        {
-            dam = 10;
-            dice_num = 1;
-            dice_side = rlev * 28 / 2; /* rlev7 > rlev28 */
-        }
-        break;
+		/* RF5_BA_FIRE */
+	case MS_BALL_FIRE:
+		if (powerful)
+		{
+			dam = (rlev * 4) + 50;
+			dice_num = 10;
+			dice_side = 10;
+		}
+		else
+		{
+			dam = 10;
+			dice_num = 1;
+			dice_side = rlev * 7 / 2;
+		}
+		break;
 
-        /* RF5_BA_COLD */
-    case MS_BALL_COLD:
-        if (powerful)
-        {
-            dam = (rlev * 16) + 50; /* rlev4 > rlev16 */
-            dice_num = 10;
-            dice_side = 10;
-        }
-        else
-        {
-            dam = 10;
-            dice_num = 1;
-            dice_side = rlev * 12 / 2; /* rlev3 > rlev12 */
-        }
-        break;
+		/* RF5_BA_COLD */
+	case MS_BALL_COLD:
+		if (powerful)
+		{
+			dam = (rlev * 4) + 50;
+			dice_num = 10;
+			dice_side = 10;
+		}
+		else
+		{
+			dam = 10;
+			dice_num = 1;
+			dice_side = rlev * 3 / 2;
+		}
+		break;
 
-        /* RF5_BA_POIS */
-    case MS_BALL_POIS:
-        mult = powerful ? 2 : 1;
-        dice_num = 12;
-        dice_side = 2;
-        break;
+		/* RF5_BA_POIS */
+	case MS_BALL_POIS:
+		mult = powerful ? 2 : 1;
+		dice_num = 12;
+		dice_side = 2;
+		break;
 
-        /* RF5_BA_NETH */
-    case MS_BALL_NETHER:
-        dam = 50 + rlev * 4 * (powerful ? 2 : 1); /* rlev > rlev*4 */
-        dice_num = 10;
-        dice_side = 10;
-        break;
+		/* RF5_BA_NETH */
+	case MS_BALL_NETHER:
+		dam = 50 + rlev * (powerful ? 2 : 1);
+		dice_num = 10;
+		dice_side = 10;
+		break;
 
-        /* RF5_BA_WATE */
-    case MS_BALL_WATER:
-        dam = 50;
-        dice_num = 1;
-        dice_side = powerful ? (rlev * 12) : (rlev * 8); /* rlev3,2 > rlev12,8 */
-        break;
+		/* RF5_BA_WATE */
+	case MS_BALL_WATER:
+		dam = 50;
+		dice_num = 1;
+		dice_side = powerful ? (rlev * 3) : (rlev * 2);
+		break;
 
-        /* RF5_BA_MANA */
-        /* RF5_BA_DARK */
-    case MS_BALL_MANA:
-    case MS_BALL_DARK:
-        dam = (rlev * 16) + 50; /* rlev4 > rlev16 */
-        dice_num = 10;
-        dice_side = 10;
-        break;
+		/* RF5_BA_MANA */
+		/* RF5_BA_DARK */
+	case MS_BALL_MANA:
+	case MS_BALL_DARK:
+		dam = (rlev * 4) + 50;
+		dice_num = 10;
+		dice_side = 10;
+		break;
 
-        /* RF5_DRAIN_MANA */
-    case MS_DRAIN_MANA:
-        dam = rlev * 4; /* rlev > rlev*4 */
-        div = 1;
-        dice_num = 1;
-        dice_side = rlev;
-        break;
+		/* RF5_DRAIN_MANA */
+	case MS_DRAIN_MANA:
+		dam = rlev;
+		div = 1;
+		dice_num = 1;
+		dice_side = rlev;
+		break;
 
-        /* RF5_MIND_BLAST */
-    case MS_MIND_BLAST:
-        dice_num = 7;
-        dice_side = 7;
-        break;
+		/* RF5_MIND_BLAST */
+	case MS_MIND_BLAST:
+		dice_num = 7;
+		dice_side = 7;
+		break;
 
-        /* RF5_BRAIN_SMASH */
-    case MS_BRAIN_SMASH:
-        dice_num = 12;
-        dice_side = 12;
-        break;
+		/* RF5_BRAIN_SMASH */
+	case MS_BRAIN_SMASH:
+		dice_num = 12;
+		dice_side = 12;
+		break;
 
-        /* RF5_CAUSE_1 */
-    case MS_CAUSE_1:
-        dice_num = 3;
-        dice_side = 8;
-        break;
+		/* RF5_CAUSE_1 */
+	case MS_CAUSE_1:
+		dice_num = 3;
+		dice_side = 8;
+		break;
 
-        /* RF5_CAUSE_2 */
-    case MS_CAUSE_2:
-        dice_num = 8;
-        dice_side = 8;
-        break;
+		/* RF5_CAUSE_2 */
+	case MS_CAUSE_2:
+		dice_num = 8;
+		dice_side = 8;
+		break;
 
-        /* RF5_CAUSE_3 */
-    case MS_CAUSE_3:
-        dice_num = 10;
-        dice_side = 15;
-        break;
+		/* RF5_CAUSE_3 */
+	case MS_CAUSE_3:
+		dice_num = 10;
+		dice_side = 15;
+		break;
 
-        /* RF5_CAUSE_4 */
-    case MS_CAUSE_4:
-        dice_num = 15;
-        dice_side = 15;
-        break;
+		/* RF5_CAUSE_4 */
+	case MS_CAUSE_4:
+		dice_num = 15;
+		dice_side = 15;
+		break;
 
-        /* RF5_BO_ACID */
-    case MS_BOLT_ACID:
-        mult = powerful ? 2 : 1;
-        dam = rlev * 4 / 3 * (mult / div); /* rlev > rlev*4 */
-        dice_num = 7;
-        dice_side = 8;
-        break;
+		/* RF5_BO_ACID */
+	case MS_BOLT_ACID:
+		mult = powerful ? 2 : 1;
+		dam = rlev / 3 * (mult / div);
+		dice_num = 7;
+		dice_side = 8;
+		break;
 
-        /* RF5_BO_ELEC */
-    case MS_BOLT_ELEC:
-        mult = powerful ? 2 : 1;
-        dam = rlev * 4 / 3 * (mult / div); /* rlev > rlev*4 */
-        dice_num = 4;
-        dice_side = 8;
-        break;
+		/* RF5_BO_ELEC */
+	case MS_BOLT_ELEC:
+		mult = powerful ? 2 : 1;
+		dam = rlev / 3 * (mult / div);
+		dice_num = 4;
+		dice_side = 8;
+		break;
 
-        /* RF5_BO_FIRE */
-    case MS_BOLT_FIRE:
-        mult = powerful ? 2 : 1;
-        dam = rlev * 4 / 3 * (mult / div); /* rlev > rlev*4 */
-        dice_num = 9;
-        dice_side = 8;
-        break;
+		/* RF5_BO_FIRE */
+	case MS_BOLT_FIRE:
+		mult = powerful ? 2 : 1;
+		dam = rlev / 3 * (mult / div);
+		dice_num = 9;
+		dice_side = 8;
+		break;
 
-        /* RF5_BO_COLD */
-    case MS_BOLT_COLD:
-        mult = powerful ? 2 : 1;
-        dam = rlev * 4 / 3 * (mult / div); /* rlev > rlev*4 */
-        dice_num = 6;
-        dice_side = 8;
-        break;
+		/* RF5_BO_COLD */
+	case MS_BOLT_COLD:
+		mult = powerful ? 2 : 1;
+		dam = rlev / 3 * (mult / div);
+		dice_num = 6;
+		dice_side = 8;
+		break;
 
-        /* RF5_BA_LITE */
-    case MS_STARBURST:
-        dam = (rlev * 16) + 50; /* rlev4 > rlev16 */
-        dice_num = 10;
-        dice_side = 10;
-        break;
+		/* RF5_BA_LITE */
+	case MS_STARBURST:
+		dam = (rlev * 4) + 50;
+		dice_num = 10;
+		dice_side = 10;
+		break;
 
-        /* RF5_BO_NETH */
-    case MS_BOLT_NETHER:
-        dam = 30 + (rlev * 16) / (powerful ? 2 : 3); /* rlev4 > rlev16 */
-        dice_num = 5;
-        dice_side = 5;
-        break;
+		/* RF5_BO_NETH */
+	case MS_BOLT_NETHER:
+		dam = 30 + (rlev * 4) / (powerful ? 2 : 3);
+		dice_num = 5;
+		dice_side = 5;
+		break;
 
-        /* RF5_BO_WATE */
-    case MS_BOLT_WATER:
-        dam = (rlev * 12 / (powerful ? 2 : 3)); /* rlev3 > rlev12 */
-        dice_num = 10;
-        dice_side = 10;
-        break;
+		/* RF5_BO_WATE */
+	case MS_BOLT_WATER:
+		dam = (rlev * 3 / (powerful ? 2 : 3));
+		dice_num = 10;
+		dice_side = 10;
+		break;
 
-        /* RF5_BO_MANA */
-    case MS_BOLT_MANA:
-        dam = 50;
-        dice_num = 1;
-        dice_side = rlev * 28 / 2; /* rlev7 > rlev28 */
-        break;
+		/* RF5_BO_MANA */
+	case MS_BOLT_MANA:
+		dam = 50;
+		dice_num = 1;
+		dice_side = rlev * 7 / 2;
+		break;
 
-        /* RF5_BO_PLAS */
-    case MS_BOLT_PLASMA:
-        dam = 10 + (rlev * 12 / (powerful ? 2 : 3)); /* rlev3 > rlev12 */
-        dice_num = 8;
-        dice_side = 7;
-        break;
+		/* RF5_BO_PLAS */
+	case MS_BOLT_PLASMA:
+		dam = 10 + (rlev * 3 / (powerful ? 2 : 3));
+		dice_num = 8;
+		dice_side = 7;
+		break;
 
-        /* RF5_BO_ICEE */
-    case MS_BOLT_ICE:
-        dam = (rlev * 12 / (powerful ? 2 : 3)); /* rlev3 > rlev12 */
-        dice_num = 6;
-        dice_side = 6;
-        break;
+		/* RF5_BO_ICEE */
+	case MS_BOLT_ICE:
+		dam = (rlev * 3 / (powerful ? 2 : 3));
+		dice_num = 6;
+		dice_side = 6;
+		break;
 
-        /* RF5_MISSILE */
-    case MS_MAGIC_MISSILE:
-        dam = (rlev * 4 / 3); /* rlev > rlev*4 */
-        dice_num = 2;
-        dice_side = 6;
-        break;
+		/* RF5_MISSILE */
+	case MS_MAGIC_MISSILE:
+		dam = (rlev / 3);
+		dice_num = 2;
+		dice_side = 6;
+		break;
 
-    case MS_SCARE: return -1;   /* RF5_SCARE */
-    case MS_BLIND: return -1;   /* RF5_BLIND */
-    case MS_CONF: return -1;   /* RF5_CONF */
-    case MS_SLOW: return -1;   /* RF5_SLOW */
-    case MS_SLEEP: return -1;   /* RF5_HOLD */
-    case MS_SPEED:  return -1;   /* RF6_HASTE */
+	case MS_SCARE: return -1;   /* RF5_SCARE */
+	case MS_BLIND: return -1;   /* RF5_BLIND */
+	case MS_CONF: return -1;   /* RF5_CONF */
+	case MS_SLOW: return -1;   /* RF5_SLOW */
+	case MS_SLEEP: return -1;   /* RF5_HOLD */
+	case MS_SPEED:  return -1;   /* RF6_HASTE */
 
-        /* RF6_HAND_DOOM */
-    case MS_HAND_DOOM:
-        mult = p_ptr->chp;
-        div = 100;
-        dam = 40 * (mult / div);
-        dice_num = 1;
-        dice_side = 20;
-        break;
+		/* RF6_HAND_DOOM */
+	case MS_HAND_DOOM:
+		mult = p_ptr->chp;
+		div = 100;
+		dam = 40 * (mult / div);
+		dice_num = 1;
+		dice_side = 20;
+		break;
 
-    case MS_HEAL:  return -1;   /* RF6_HEAL */
-    case MS_INVULNER:  return -1;   /* RF6_INVULNER */
-    case MS_BLINK:  return -1;   /* RF6_BLINK */
-    case MS_TELEPORT:  return -1;   /* RF6_TPORT */
-    case MS_WORLD:  return -1;   /* RF6_WORLD */
-    case MS_SPECIAL:  return -1;   /* RF6_SPECIAL */
-    case MS_TELE_TO:  return -1;   /* RF6_TELE_TO */
-    case MS_TELE_AWAY:  return -1;   /* RF6_TELE_AWAY */
-    case MS_TELE_LEVEL: return -1;   /* RF6_TELE_LEVEL */
+	case MS_HEAL:  return -1;   /* RF6_HEAL */
+	case MS_INVULNER:  return -1;   /* RF6_INVULNER */
+	case MS_BLINK:  return -1;   /* RF6_BLINK */
+	case MS_TELEPORT:  return -1;   /* RF6_TPORT */
+	case MS_WORLD:  return -1;   /* RF6_WORLD */
+	case MS_SPECIAL:  return -1;   /* RF6_SPECIAL */
+	case MS_TELE_TO:  return -1;   /* RF6_TELE_TO */
+	case MS_TELE_AWAY:  return -1;   /* RF6_TELE_AWAY */
+	case MS_TELE_LEVEL: return -1;   /* RF6_TELE_LEVEL */
 
-        /* RF6_PSY_SPEAR */
-    case MS_PSY_SPEAR:
-        dam = powerful ? 150 : 100;
-        dice_num = 1;
-        dice_side = powerful ? (rlev * 4) : (rlev * 6); /* rlev2,3/2 > rlev8,6 */
-        break;
+		/* RF6_PSY_SPEAR */
+	case MS_PSY_SPEAR:
+		dam = powerful ? 150 : 100;
+		dice_num = 1;
+		dice_side = powerful ? (rlev * 2) : (rlev * 3 / 2);
+		break;
 
-    case MS_DARKNESS: return -1;   /* RF6_DARKNESS */
-    case MS_MAKE_TRAP: return -1;   /* RF6_TRAPS */
-    case MS_FORGET: return -1;   /* RF6_FORGET */
-    case MS_RAISE_DEAD: return -1;   /* RF6_RAISE_DEAD */
-    case MS_S_KIN: return -1;   /* RF6_S_KIN */
-    case MS_S_CYBER: return -1;   /* RF6_S_CYBER */
-    case MS_S_MONSTER: return -1;   /* RF6_S_MONSTER */
-    case MS_S_MONSTERS: return -1;   /* RF6_S_MONSTER */
-    case MS_S_ANT: return -1;   /* RF6_S_ANT */
-    case MS_S_SPIDER: return -1;   /* RF6_S_SPIDER */
-    case MS_S_HOUND: return -1;   /* RF6_S_HOUND */
-    case MS_S_HYDRA: return -1;   /* RF6_S_HYDRA */
-    case MS_S_ANGEL: return -1;   /* RF6_S_ANGEL */
-    case MS_S_DEMON: return -1;   /* RF6_S_DEMON */
-    case MS_S_UNDEAD: return -1;   /* RF6_S_UNDEAD */
-    case MS_S_DRAGON: return -1;   /* RF6_S_DRAGON */
-    case MS_S_HI_UNDEAD: return -1;   /* RF6_S_HI_UNDEAD */
-    case MS_S_HI_DRAGON: return -1;   /* RF6_S_HI_DRAGON */
-    case MS_S_AMBERITE: return -1;   /* RF6_S_AMBERITES */
-    case MS_S_UNIQUE: return -1;   /* RF6_S_UNIQUE */
-    }
+	case MS_DARKNESS: return -1;   /* RF6_DARKNESS */
+	case MS_MAKE_TRAP: return -1;   /* RF6_TRAPS */
+	case MS_FORGET: return -1;   /* RF6_FORGET */
+	case MS_RAISE_DEAD: return -1;   /* RF6_RAISE_DEAD */
+	case MS_S_KIN: return -1;   /* RF6_S_KIN */
+	case MS_S_CYBER: return -1;   /* RF6_S_CYBER */
+	case MS_S_MONSTER: return -1;   /* RF6_S_MONSTER */
+	case MS_S_MONSTERS: return -1;   /* RF6_S_MONSTER */
+	case MS_S_ANT: return -1;   /* RF6_S_ANT */
+	case MS_S_SPIDER: return -1;   /* RF6_S_SPIDER */
+	case MS_S_HOUND: return -1;   /* RF6_S_HOUND */
+	case MS_S_HYDRA: return -1;   /* RF6_S_HYDRA */
+	case MS_S_ANGEL: return -1;   /* RF6_S_ANGEL */
+	case MS_S_DEMON: return -1;   /* RF6_S_DEMON */
+	case MS_S_UNDEAD: return -1;   /* RF6_S_UNDEAD */
+	case MS_S_DRAGON: return -1;   /* RF6_S_DRAGON */
+	case MS_S_HI_UNDEAD: return -1;   /* RF6_S_HI_UNDEAD */
+	case MS_S_HI_DRAGON: return -1;   /* RF6_S_HI_DRAGON */
+	case MS_S_AMBERITE: return -1;   /* RF6_S_AMBERITES */
+	case MS_S_UNIQUE: return -1;   /* RF6_S_UNIQUE */
+	}
 
-    return monspell_damage_roll(dam, dice_num, dice_side, mult, div, TYPE);
+	return monspell_damage_roll(dam, dice_num, dice_side, mult, div, TYPE);
 }
 
 
 /*!
-* @brief •‚•Û•π•ø°º§Œª»§¶ºˆ ∏§Œ∞“Œœ§Ú ÷§π /
-* @param SPELL_NUM ºˆ ∏»÷πÊ
-* @param m_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°ºID
-* @param TYPE  DAM_MAX§«∫«¬Á√Õ§Ú ÷§∑°¢DAM_MIN§«∫«æÆ√Õ§Ú ÷§π°£DAM_ROLL§œ•¿•§•π§Úø∂§√§∆√Õ§Ú∑ËƒÍ§π§Î°£
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏§Ú ÷§π°£π∂∑‚ºˆ ∏∞ ≥∞§œ-1§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅÆ‰Ωø„ÅÜÂë™Êñá„ÅÆÂ®ÅÂäõ„ÇíËøî„Åô /
+* @param SPELL_NUM Âë™ÊñáÁï™Âè∑
+* @param m_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„ÉºID
+* @param TYPE  DAM_MAX„ÅßÊúÄÂ§ßÂÄ§„ÇíËøî„Åó„ÄÅDAM_MIN„ÅßÊúÄÂ∞èÂÄ§„ÇíËøî„Åô„ÄÇDAM_ROLL„ÅØ„ÉÄ„Ç§„Çπ„ÇíÊåØ„Å£„Å¶ÂÄ§„ÇíÊ±∫ÂÆö„Åô„Çã„ÄÇ
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÇíËøî„Åô„ÄÇÊîªÊíÉÂë™Êñá‰ª•Â§ñ„ÅØ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_damage(int SPELL_NUM, int m_idx, int TYPE)
+HIT_POINT monspell_damage(int SPELL_NUM, MONSTER_IDX m_idx, int TYPE)
 {
-    monster_type    *m_ptr = &m_list[m_idx];
-    monster_race    *r_ptr = &r_info[m_ptr->r_idx];
-    int hp;
-    int rlev = monster_level_idx(m_idx) ; /* rlev > rlev*4 */
-    int shoot_dd = r_ptr->blow[0].d_dice;
-    int shoot_ds = r_ptr->blow[0].d_side;
+	monster_type	*m_ptr = &m_list[m_idx];
+	monster_race	*r_ptr = &r_info[m_ptr->r_idx];
+	int hp;
+	int rlev = monster_level_idx(m_idx);
+	int shoot_dd = r_ptr->blow[0].d_dice;
+	int shoot_ds = r_ptr->blow[0].d_side;
 
-    if (TYPE == DAM_ROLL)
-    {
-        hp = m_ptr->hp;
-    }
-    else
-    {
-        hp = m_ptr->max_maxhp;
-    } 
-    return monspell_damage_base(SPELL_NUM, hp, rlev, monster_is_powerful(m_idx), shoot_dd, shoot_ds, 0, TYPE);
+	if (TYPE == DAM_ROLL)
+	{
+		hp = m_ptr->hp;
+	}
+	else
+	{
+		hp = m_ptr->max_maxhp;
+	} 
+	return monspell_damage_base(SPELL_NUM, hp, rlev, monster_is_powerful(m_idx), shoot_dd, shoot_ds, 0, TYPE);
 }
 
 /*!
-* @brief •‚•Û•π•ø°º§Œª»§¶ºˆ ∏§Œ∞“Œœ§Ú ÷§π /
-* @param SPELL_NUM ºˆ ∏»÷πÊ
-* @param r_idx ºˆ ∏§Úæß§®§Î•‚•Û•π•ø°º§ŒºÔ¬≤ID
-* @param TYPE  DAM_MAX§«∫«¬Á√Õ§Ú ÷§∑°¢DAM_MIN§«∫«æÆ√Õ§Ú ÷§π°£DAM_ROLL§œ•¿•§•π§Úø∂§√§∆√Õ§Ú∑ËƒÍ§π§Î°£
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏§Ú ÷§π°£π∂∑‚ºˆ ∏∞ ≥∞§œ-1§Ú ÷§π°£
+* @brief „É¢„É≥„Çπ„Çø„Éº„ÅÆ‰Ωø„ÅÜÂë™Êñá„ÅÆÂ®ÅÂäõ„ÇíËøî„Åô /
+* @param SPELL_NUM Âë™ÊñáÁï™Âè∑
+* @param r_idx Âë™Êñá„ÇíÂî±„Åà„Çã„É¢„É≥„Çπ„Çø„Éº„ÅÆÁ®ÆÊóèID
+* @param TYPE  DAM_MAX„ÅßÊúÄÂ§ßÂÄ§„ÇíËøî„Åó„ÄÅDAM_MIN„ÅßÊúÄÂ∞èÂÄ§„ÇíËøî„Åô„ÄÇDAM_ROLL„ÅØ„ÉÄ„Ç§„Çπ„ÇíÊåØ„Å£„Å¶ÂÄ§„ÇíÊ±∫ÂÆö„Åô„Çã„ÄÇ
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÇíËøî„Åô„ÄÇÊîªÊíÉÂë™Êñá‰ª•Â§ñ„ÅØ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_race_damage(int SPELL_NUM, int r_idx, int TYPE)
+HIT_POINT monspell_race_damage(int SPELL_NUM, MONRACE_IDX r_idx, int TYPE)
 {
-    monster_race    *r_ptr = &r_info[r_idx];
-    int rlev = ((r_ptr->level >= 1) ? r_ptr->level : 1) ; /* rlev > rlev*4 */
-    bool powerful = r_ptr->flags2 & RF2_POWERFUL ? TRUE : FALSE;
-    u32b hp = r_ptr->hdice * (ironman_nightmare ? 2 : 1) * r_ptr->hside;
-    int shoot_dd = r_ptr->blow[0].d_dice;
-    int shoot_ds = r_ptr->blow[0].d_side;
+	monster_race	*r_ptr = &r_info[r_idx];
+	int rlev = ((r_ptr->level >= 1) ? r_ptr->level : 1);
+	bool powerful = r_ptr->flags2 & RF2_POWERFUL ? TRUE : FALSE;
+	u32b hp = r_ptr->hdice * (ironman_nightmare ? 2 : 1) * r_ptr->hside;
+	int shoot_dd = r_ptr->blow[0].d_dice;
+	int shoot_ds = r_ptr->blow[0].d_side;
 
-    return monspell_damage_base(SPELL_NUM, MIN(30000, hp), rlev, powerful, shoot_dd, shoot_ds, 0, TYPE);
+	return monspell_damage_base(SPELL_NUM, MIN(30000, hp), rlev, powerful, shoot_dd, shoot_ds, 0, TYPE);
 }
 
 /*!
-* @brief ¿ƒÀ‚∆≥ª’§Œª»§¶ºˆ ∏§Œ∞“Œœ§Ú ÷§π /
-* @param SPELL_NUM ºˆ ∏»÷πÊ
-* @param plev ª»Õ—§π§Î•Ï•Ÿ•Î°£2«‹§∑§∆∞∑§¶°£
-* @param TYPE  DAM_MAX§«∫«¬Á√Õ§Ú ÷§∑°¢DAM_MIN§«∫«æÆ√Õ§Ú ÷§π°£DAM_ROLL§œ•¿•§•π§Úø∂§√§∆√Õ§Ú∑ËƒÍ§π§Î°£
-* @return π∂∑‚ºˆ ∏§Œ•¿•·°º•∏§Ú ÷§π°£π∂∑‚ºˆ ∏∞ ≥∞§œ-1§Ú ÷§π°£
+* @brief ÈùíÈ≠îÂ∞éÂ∏´„ÅÆ‰Ωø„ÅÜÂë™Êñá„ÅÆÂ®ÅÂäõ„ÇíËøî„Åô /
+* @param SPELL_NUM Âë™ÊñáÁï™Âè∑
+* @param plev ‰ΩøÁî®„Åô„Çã„É¨„Éô„É´„ÄÇ2ÂÄç„Åó„Å¶Êâ±„ÅÜ„ÄÇ
+* @param TYPE  DAM_MAX„ÅßÊúÄÂ§ßÂÄ§„ÇíËøî„Åó„ÄÅDAM_MIN„ÅßÊúÄÂ∞èÂÄ§„ÇíËøî„Åô„ÄÇDAM_ROLL„ÅØ„ÉÄ„Ç§„Çπ„ÇíÊåØ„Å£„Å¶ÂÄ§„ÇíÊ±∫ÂÆö„Åô„Çã„ÄÇ
+* @return ÊîªÊíÉÂë™Êñá„ÅÆ„ÉÄ„É°„Éº„Ç∏„ÇíËøî„Åô„ÄÇÊîªÊíÉÂë™Êñá‰ª•Â§ñ„ÅØ-1„ÇíËøî„Åô„ÄÇ
 */
-int monspell_bluemage_damage(int SPELL_NUM, int plev, int TYPE)
+HIT_POINT monspell_bluemage_damage(int SPELL_NUM, int plev, int TYPE)
 {
-    int hp = p_ptr->chp;
-    int shoot_dd = 1, shoot_ds = 1, shoot_base = 0;
-    object_type *o_ptr = NULL;
+	int hp = p_ptr->chp;
+	int shoot_dd = 1, shoot_ds = 1, shoot_base = 0;
+	object_type *o_ptr = NULL;
 
-    if (buki_motteruka(INVEN_RARM)) o_ptr = &inventory[INVEN_RARM];
-    else if (buki_motteruka(INVEN_LARM)) o_ptr = &inventory[INVEN_LARM];
+	if (buki_motteruka(INVEN_RARM)) o_ptr = &inventory[INVEN_RARM];
+	else if (buki_motteruka(INVEN_LARM)) o_ptr = &inventory[INVEN_LARM];
 
-    if (o_ptr)
-    {
-        shoot_dd = o_ptr->dd;
-        shoot_ds = o_ptr->ds;
-        shoot_base = o_ptr->to_d;
-    }
-    return monspell_damage_base(SPELL_NUM, hp, plev / 2, FALSE, shoot_dd, shoot_ds, shoot_base, TYPE); /* #tang *2 -> /2 */
+	if (o_ptr)
+	{
+		shoot_dd = o_ptr->dd;
+		shoot_ds = o_ptr->ds;
+		shoot_base = o_ptr->to_d;
+	}
+	return monspell_damage_base(SPELL_NUM, hp, plev * 2, FALSE, shoot_dd, shoot_ds, shoot_base, TYPE);
 }

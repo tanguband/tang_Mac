@@ -7,8 +7,8 @@ Q:$31:N:Old Man Willow Quest
 Q:31:N:柳じじい
 
 # Definition 
-Q:$31:Q:6:0:0:0:6:0:0:0:6
-Q:31:Q:6:0:0:0:6:0:0:0:6
+Q:$31:Q:6:0:0:0:22:0:0:0:6
+Q:31:Q:6:0:0:0:22:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST31 2]
@@ -58,20 +58,17 @@ F: :FLOOR:8
 # Trees
 F:T:TREE:1
 
-# HEALING potion
-F:!:FLOOR:8:0:242
-
 # Dungeon layout
 D:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-D:XTTTTTTTTTTTTTTTT!           !X
-D:XT!        Y !TTT TTHTTTTTTTT X
+D:XTTTTTTTTTTTTTTTT             X
+D:XT         Y  TTT TTHTTTTTTTT X
 D:XT H    H     TTTY        r T X
 D:XT            TTTTTTTTTTTTT T X
 D:XT     M    H TTT       r T T X
 D:XT  H    H    TTT TTTTTTT T T X
 D:XT            TTT     r T T T X
 D:XT Y    Y  Y  HTTTTTTTT T T T X
-D:XT!   Y      !        T T T T X
+D:XT    Y               T T T T X
 D:XTTTTTTTTTTTTTTTTTTTT T T T T X
 D:XTTTTTTTTTTTTTTTTTTTT   T   T X
 D:XTTTTTTTTTTTTTTTTTTTTTTTTTTTT X

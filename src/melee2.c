@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file melee2.c
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÆÃ¼ìµ»Ç½¤È°ÜÆ°½èÍı/ Monster spells and movement
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç‰¹æ®ŠæŠ€èƒ½ã¨ç§»å‹•å‡¦ç†/ Monster spells and movement
  * @date 2014/01/17
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -20,17 +20,17 @@
 #define CYBERNOISE 20
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬Å¨¤ËÀÜ¶á¤¹¤ë¤¿¤á¤ÎÊı¸ş¤ò·è¤á¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ•µã«æ¥è¿‘ã™ã‚‹ãŸã‚ã®æ–¹å‘ã‚’æ±ºã‚ã‚‹ /
  * Calculate the direction to the next enemy
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param mm °ÜÆ°¤¹¤ë¤Ù¤­Êı³ÑID¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return Êı¸ş¤¬³ÎÄê¤·¤¿¾ì¹çTRUE¡¢ÀÜ¶á¤¹¤ëÅ¨¤¬¤½¤â¤½¤â¤¤¤Ê¤¤¾ì¹çFALSE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param mm ç§»å‹•ã™ã‚‹ã¹ãæ–¹è§’IDã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æ–¹å‘ãŒç¢ºå®šã—ãŸå ´åˆTRUEã€æ¥è¿‘ã™ã‚‹æ•µãŒãã‚‚ãã‚‚ã„ãªã„å ´åˆFALSEã‚’è¿”ã™
  */
-static bool get_enemy_dir(int m_idx, int *mm)
+static bool get_enemy_dir(MONSTER_IDX m_idx, int *mm)
 {
 	int i;
 	int x = 0, y = 0;
-	int t_idx;
+	IDX t_idx;
 	int start;
 	int plus = 1;
 
@@ -61,7 +61,7 @@ static bool get_enemy_dir(int m_idx, int *mm)
 		/* Scan thru all monsters */
 		for (i = start; ((i < start + m_max) && (i > start - m_max)); i+=plus)
 		{
-			int dummy = (i % m_max);
+			IDX dummy = (i % m_max);
 
 			if (!dummy) continue;
 
@@ -185,16 +185,16 @@ static bool get_enemy_dir(int m_idx, int *mm)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬Å¨¥â¥ó¥¹¥¿¡¼¤Ë¹Ô¤¦ÂÇ·â½èÍı /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ•µãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«è¡Œã†æ‰“æ’ƒå‡¦ç† /
  * Hack, based on mon_take_hit... perhaps all monster attacks on other monsters should use this?
- * @param m_idx ÌÜÉ¸¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param dam ¥À¥á¡¼¥¸ÎÌ
- * @param fear ÌÜÉ¸¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¤Î¶²¹²¾õÂÖ¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param note ÌÜÉ¸¥â¥ó¥¹¥¿¡¼¤¬»àË´¤·¤¿¾ì¹ç¤ÎÆÃÊÌ¥á¥Ã¥»¡¼¥¸(NULL¤Ê¤é¤ĞÉ¸½àÉ½¼¨¤ò¹Ô¤¦)
- * @param who ÂÇ·â¤ò¹Ô¤Ã¤¿¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return ¤Ê¤·
+ * @param m_idx ç›®æ¨™ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param dam ãƒ€ãƒ¡ãƒ¼ã‚¸é‡
+ * @param fear ç›®æ¨™ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ææ…ŒçŠ¶æ…‹ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param note ç›®æ¨™ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæ­»äº¡ã—ãŸå ´åˆã®ç‰¹åˆ¥ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸(NULLãªã‚‰ã°æ¨™æº–è¡¨ç¤ºã‚’è¡Œã†)
+ * @param who æ‰“æ’ƒã‚’è¡Œã£ãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return ãªã—
  */
-void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
+void mon_take_hit_mon(MONSTER_IDX m_idx, HIT_POINT dam, bool *fear, cptr note, IDX who)
 {
 	monster_type	*m_ptr = &m_list[m_idx];
 
@@ -226,7 +226,7 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
 	{
 		if (seen)
 		{
-			msg_format(_("%^s¤Ï¥À¥á¡¼¥¸¤ò¼õ¤±¤Ê¤¤¡£", "%^s is unharmed."), m_name);
+			msg_format(_("%^sã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãªã„ã€‚", "%^s is unharmed."), m_name);
 		}
 
 		return;
@@ -243,14 +243,14 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
 		{
 			if (seen)
 			{
-				msg_format(_("%^s¤Ï¥À¥á¡¼¥¸¤ò¼õ¤±¤Ê¤¤¡£", "%^s is unharmed."), m_name);
+				msg_format(_("%^sã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãªã„ã€‚", "%^s is unharmed."), m_name);
 			}
 			return;
 		}
 	}
 
 	/* Hurt it */
-	m_ptr->hp -= dam;
+	m_ptr->hp -= (s16b)dam;
 
 	/* It is dead now... or is it? */
 	if (m_ptr->hp < 0)
@@ -289,12 +289,12 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
 				/* Death by normal attack -- nonliving monster */
 				else if (!monster_living(r_ptr))
 				{
-					msg_format(_("%^s¤ÏÇË²õ¤µ¤ì¤¿¡£", "%^s is destroyed."), m_name);
+					msg_format(_("%^sã¯ç ´å£Šã•ã‚ŒãŸã€‚", "%^s is destroyed."), m_name);
 				}
 				/* Death by normal attack -- living monster */
 				else
 				{
-					msg_format(_("%^s¤Ï»¦¤µ¤ì¤¿¡£", "%^s is killed."), m_name);
+					msg_format(_("%^sã¯æ®ºã•ã‚ŒãŸã€‚", "%^s is killed."), m_name);
 				}
 			}
 
@@ -362,15 +362,13 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
 
 	if (p_ptr->riding && (p_ptr->riding == m_idx) && (dam > 0))
 	{
-		char m_name[80];
-
 		/* Extract monster name */
 		monster_desc(m_name, m_ptr, 0);
 
 		if (m_ptr->hp > m_ptr->maxhp/3) dam = (dam + 1) / 2;
 		if (rakuba((dam > 200) ? 200 : dam, FALSE))
 		{
-			msg_format(_("%^s¤Ë¿¶¤êÍî¤È¤µ¤ì¤¿¡ª", "You have thrown off from %s!"), m_name);
+			msg_format(_("%^sã«æŒ¯ã‚Šè½ã¨ã•ã‚ŒãŸï¼", "You have thrown off from %s!"), m_name);
 		}
 	}
 
@@ -380,10 +378,10 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥×¥ì¥¤¥ä¡¼¤«¤éÆ¨Áö¤¹¤ë¤«¤É¤¦¤«¤òÊÖ¤¹ /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰é€ƒèµ°ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¿”ã™ /
  * Returns whether a given monster will try to run from the player.
- * @param m_idx Æ¨Áö¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return ¥â¥ó¥¹¥¿¡¼¤¬¥×¥ì¥¤¥ä¡¼¤«¤éÆ¨Áö¤¹¤ë¤Ê¤é¤ĞTRUE¤òÊÖ¤¹¡£
+ * @param m_idx é€ƒèµ°ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰é€ƒèµ°ã™ã‚‹ãªã‚‰ã°TRUEã‚’è¿”ã™ã€‚
  * @details
  * Monsters will attempt to avoid very powerful players.  See below.\n
  *\n
@@ -395,7 +393,7 @@ void mon_take_hit_mon(int m_idx, int dam, bool *fear, cptr note, int who)
  * Note that this function is responsible for about one to five percent\n
  * of the processor use in normal conditions...\n
  */
-static int mon_will_run(int m_idx)
+static bool mon_will_run(MONSTER_IDX m_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 
@@ -404,8 +402,8 @@ static int mon_will_run(int m_idx)
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
 
 	u16b p_lev, m_lev;
-	u16b p_chp, p_mhp;
-	u16b m_chp, m_mhp;
+	HIT_POINT p_chp, p_mhp;
+	HIT_POINT m_chp, m_mhp;
 	u32b p_val, m_val;
 
 #endif
@@ -436,9 +434,8 @@ static int mon_will_run(int m_idx)
 	m_lev = r_ptr->level + (m_idx & 0x08) + 25;
 
 	/* Optimize extreme cases below */
-
 	if (m_lev > p_lev + 4) return (FALSE);
-	if (m_lev + 4 <= p_lev) return (FALSE);	/* #tang TRUE > FALSE ¥â¥ó¥¹¥¿¡¼Æ¨¤²¤Ê¤¤¤è¤¦¤ËÊÑ¹¹ */
+	if (m_lev + 4 <= p_lev) return (TRUE);
 
 	/* Examine player health */
 	p_chp = p_ptr->chp;
@@ -453,8 +450,7 @@ static int mon_will_run(int m_idx)
 	m_val = (m_lev * m_mhp) + (m_chp << 2); /* div m_mhp */
 
 	/* Strong players scare strong monsters */
-	if (p_val * m_mhp > m_val * p_mhp) return (FALSE);	/* #tang TRUE > FALSE ¥â¥ó¥¹¥¿¡¼Æ¨¤²¤Ê¤¤¤è¤¦¤ËÊÑ¹¹ */
-
+	if (p_val * m_mhp > m_val * p_mhp) return (TRUE);
 
 #endif
 
@@ -464,14 +460,14 @@ static int mon_will_run(int m_idx)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥×¥ì¥¤¥ä¡¼¤Ë¸ş¤±¤Æ±óµ÷Î¥¹¶·â¤ò¹Ô¤¦¤³¤È¤¬²ÄÇ½¤Ê¥Ş¥¹¤òÁöºº¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‘ã‘ã¦é è·é›¢æ”»æ’ƒã‚’è¡Œã†ã“ã¨ãŒå¯èƒ½ãªãƒã‚¹ã‚’èµ°æŸ»ã™ã‚‹ /
  * Search spell castable grid
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param yp Å¬¤·¤¿¥Ş¥¹¤ÎYºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param xp Å¬¤·¤¿¥Ş¥¹¤ÎXºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return Í­¸ú¤Ê¥Ş¥¹¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param yp é©ã—ãŸãƒã‚¹ã®Yåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param xp é©ã—ãŸãƒã‚¹ã®Xåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æœ‰åŠ¹ãªãƒã‚¹ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
  */
-static bool get_moves_aux2(int m_idx, int *yp, int *xp)
+static bool get_moves_aux2(MONSTER_IDX m_idx, int *yp, int *xp)
 {
 	int i, y, x, y1, x1, best = 999;
 
@@ -549,13 +545,13 @@ static bool get_moves_aux2(int m_idx, int *yp, int *xp)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥×¥ì¥¤¥ä¡¼¤Ë¸ş¤±¤ÆÀÜ¶á¤¹¤ë¤³¤È¤¬²ÄÇ½¤Ê¥Ş¥¹¤òÁöºº¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«å‘ã‘ã¦æ¥è¿‘ã™ã‚‹ã“ã¨ãŒå¯èƒ½ãªãƒã‚¹ã‚’èµ°æŸ»ã™ã‚‹ /
  * Choose the "best" direction for "flowing"
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param yp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎYºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param xp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎXºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param no_flow ¥â¥ó¥¹¥¿¡¼¤ËFLOW¥Õ¥é¥°¤¬·Ğ¤Ã¤Æ¤¤¤Ê¤¤¾õÂÖ¤ÇTRUE
- * @return Í­¸ú¤Ê¥Ş¥¹¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param yp ç§»å‹•å…ˆã®ãƒã‚¹ã®Yåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param xp ç§»å‹•å…ˆã®ãƒã‚¹ã®Xåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param no_flow ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã«FLOWãƒ•ãƒ©ã‚°ãŒçµŒã£ã¦ã„ãªã„çŠ¶æ…‹ã§TRUE
+ * @return æœ‰åŠ¹ãªãƒã‚¹ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
  * @details
  * Note that ghosts and rock-eaters are never allowed to "flow",\n
  * since they should move directly towards the player.\n
@@ -576,7 +572,7 @@ static bool get_moves_aux2(int m_idx, int *yp, int *xp)
  * being close enough to chase directly.  I have no idea what will\n
  * happen if you combine "smell" with low "aaf" values.\n
  */
-static bool get_moves_aux(int m_idx, int *yp, int *xp, bool no_flow)
+static bool get_moves_aux(MONSTER_IDX m_idx, int *yp, int *xp, bool no_flow)
 {
 	int i, y, x, y1, x1, best;
 
@@ -588,8 +584,8 @@ static bool get_moves_aux(int m_idx, int *yp, int *xp, bool no_flow)
 
 	/* Can monster cast attack spell? */
 	if (r_ptr->flags4 & (RF4_ATTACK_MASK) ||
-	    r_ptr->flags5 & (RF5_ATTACK_MASK) ||
-	    r_ptr->flags6 & (RF6_ATTACK_MASK))
+	    r_ptr->a_ability_flags1 & (RF5_ATTACK_MASK) ||
+	    r_ptr->a_ability_flags2 & (RF6_ATTACK_MASK))
 	{
 		/* Can move spell castable grid? */
 		if (get_moves_aux2(m_idx, yp, xp)) return (TRUE);
@@ -684,18 +680,18 @@ static bool get_moves_aux(int m_idx, int *yp, int *xp, bool no_flow)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬¥×¥ì¥¤¥ä¡¼¤«¤éÆ¨Áö¤¹¤ë¤³¤È¤¬²ÄÇ½¤Ê¥Ş¥¹¤òÁöºº¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰é€ƒèµ°ã™ã‚‹ã“ã¨ãŒå¯èƒ½ãªãƒã‚¹ã‚’èµ°æŸ»ã™ã‚‹ /
  * Provide a location to flee to, but give the player a wide berth.
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param yp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎYºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param xp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎXºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return Í­¸ú¤Ê¥Ş¥¹¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param yp ç§»å‹•å…ˆã®ãƒã‚¹ã®Yåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param xp ç§»å‹•å…ˆã®ãƒã‚¹ã®Xåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æœ‰åŠ¹ãªãƒã‚¹ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
  * @details
  * A monster may wish to flee to a location that is behind the player,\n
  * but instead of heading directly for it, the monster should "swerve"\n
  * around the player so that he has a smaller chance of getting hit.\n
  */
-static bool get_fear_moves_aux(int m_idx, int *yp, int *xp)
+static bool get_fear_moves_aux(MONSTER_IDX m_idx, int *yp, int *xp)
 {
 	int y, x, y1, x1, fy, fx, gy = 0, gx = 0;
 	int score = -1;
@@ -893,12 +889,12 @@ static sint *dist_offsets_x[10] =
 };
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬Æ¨¤²¹ş¤á¤ë°ÂÁ´¤ÊÃÏÅÀ¤òÊÖ¤¹ /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒé€ƒã’è¾¼ã‚ã‚‹å®‰å…¨ãªåœ°ç‚¹ã‚’è¿”ã™ /
  * Choose a "safe" location near a monster for it to run toward.
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param yp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎYºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param xp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎXºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return Í­¸ú¤Ê¥Ş¥¹¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param yp ç§»å‹•å…ˆã®ãƒã‚¹ã®Yåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param xp ç§»å‹•å…ˆã®ãƒã‚¹ã®Xåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æœ‰åŠ¹ãªãƒã‚¹ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
  * @details
  * A location is "safe" if it can be reached quickly and the player\n
  * is not able to fire into it (it isn't a "clean shot").  So, this will\n
@@ -910,7 +906,7 @@ static sint *dist_offsets_x[10] =
  *\n
  * Return TRUE if a safe location is available.\n
  */
-static bool find_safety(int m_idx, int *yp, int *xp)
+static bool find_safety(MONSTER_IDX m_idx, int *yp, int *xp)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 
@@ -992,19 +988,19 @@ static bool find_safety(int m_idx, int *yp, int *xp)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤¬±£¤ìÀø¤á¤ëÃÏÅÀ¤òÊÖ¤¹ /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒéš ã‚Œæ½œã‚ã‚‹åœ°ç‚¹ã‚’è¿”ã™ /
  * Choose a good hiding place near a monster for it to run toward.
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param yp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎYºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @param xp °ÜÆ°Àè¤Î¥Ş¥¹¤ÎXºÂÉ¸¤òÊÖ¤¹»²¾È¥İ¥¤¥ó¥¿
- * @return Í­¸ú¤Ê¥Ş¥¹¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param yp ç§»å‹•å…ˆã®ãƒã‚¹ã®Yåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param xp ç§»å‹•å…ˆã®ãƒã‚¹ã®Xåº§æ¨™ã‚’è¿”ã™å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æœ‰åŠ¹ãªãƒã‚¹ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
  * @details
  * Pack monsters will use this to "ambush" the player and lure him out\n
  * of corridors into open space so they can swarm him.\n
  *\n
  * Return TRUE if a good location is available.\n
  */
-static bool find_hiding(int m_idx, int *yp, int *xp)
+static bool find_hiding(MONSTER_IDX m_idx, int *yp, int *xp)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
@@ -1072,13 +1068,13 @@ static bool find_hiding(int m_idx, int *yp, int *xp)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î°ÜÆ°Êı¸ş¤òÊÖ¤¹ /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç§»å‹•æ–¹å‘ã‚’è¿”ã™ /
  * Choose "logical" directions for monster movement
- * @param m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param mm °ÜÆ°Êı¸ş¤òÊÖ¤¹Êı¸şID¤Î»²¾È¥İ¥¤¥ó¥¿
- * @return Í­¸úÊı¸ş¤¬¤¢¤Ã¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param mm ç§»å‹•æ–¹å‘ã‚’è¿”ã™æ–¹å‘IDã®å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @return æœ‰åŠ¹æ–¹å‘ãŒã‚ã£ãŸå ´åˆTRUEã‚’è¿”ã™
  */
-static bool get_moves(int m_idx, int *mm)
+static bool get_moves(MONSTER_IDX m_idx, int *mm)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
@@ -1142,7 +1138,7 @@ static bool get_moves(int m_idx, int *mm)
 				}
 			}
 			if (cave[p_ptr->y][p_ptr->x].info & CAVE_ROOM) room -= 2;
-			if (!r_ptr->flags4 && !r_ptr->flags5 && !r_ptr->flags6) room -= 2;
+			if (!r_ptr->flags4 && !r_ptr->a_ability_flags1 && !r_ptr->a_ability_flags2) room -= 2;
 
 			/* Not in a room and strong player */
 			if (room < (8 * (p_ptr->chp + p_ptr->csp)) /
@@ -1406,12 +1402,12 @@ static bool get_moves(int m_idx, int *mm)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤«¤éÅ¨¥â¥ó¥¹¥¿¡¼¤Ø¤ÎÌ¿ÃæÈ½Äê
- * @param power ÂÇ·âÂ°À­¤Ë¤è¤ë´ğËÜÌ¿ÃæÃÍ
- * @param level ¹¶·âÂ¦¥â¥ó¥¹¥¿¡¼¤Î¥ì¥Ù¥ë
- * @param ac ÌÜÉ¸¥â¥ó¥¹¥¿¡¼¤ÎAC
- * @param stun ¹¶·âÂ¦¥â¥ó¥¹¥¿¡¼¤¬Û¯Û°¾õÂÖ¤Ê¤éTRUE¤òÊÖ¤¹
- * @return Ì¿Ãæ¤Ê¤é¤ĞTRUE¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã‚‰æ•µãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®å‘½ä¸­åˆ¤å®š
+ * @param power æ‰“æ’ƒå±æ€§ã«ã‚ˆã‚‹åŸºæœ¬å‘½ä¸­å€¤
+ * @param level æ”»æ’ƒå´ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ãƒ¬ãƒ™ãƒ«
+ * @param ac ç›®æ¨™ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®AC
+ * @param stun æ”»æ’ƒå´ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ãŒæœ¦æœ§çŠ¶æ…‹ãªã‚‰TRUEã‚’è¿”ã™
+ * @return å‘½ä¸­ãªã‚‰ã°TRUEã‚’è¿”ã™
  */
 static int check_hit2(int power, int level, int ac, int stun)
 {
@@ -1443,12 +1439,12 @@ static int check_hit2(int power, int level, int ac, int stun)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤«¤éÅ¨¥â¥ó¥¹¥¿¡¼¤Ø¤ÎÂÇ·â¹¶·â½èÍı
- * @param m_idx ¹¶·âÂ¦¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param t_idx ÌÜÉ¸Â¦¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return ¼Âºİ¤ËÂÇ·â½èÍı¤¬¹Ô¤ï¤ì¤¿¾ì¹çTRUE¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã‹ã‚‰æ•µãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®æ‰“æ’ƒæ”»æ’ƒå‡¦ç†
+ * @param m_idx æ”»æ’ƒå´ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param t_idx ç›®æ¨™å´ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return å®Ÿéš›ã«æ‰“æ’ƒå‡¦ç†ãŒè¡Œã‚ã‚ŒãŸå ´åˆTRUEã‚’è¿”ã™
  */
-static bool monst_attack_monst(int m_idx, int t_idx)
+static bool monst_attack_monst(MONSTER_IDX m_idx, IDX t_idx)
 {
 	monster_type    *m_ptr = &m_list[m_idx];
 	monster_type    *t_ptr = &m_list[t_idx];
@@ -1509,8 +1505,8 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 	{
 		bool obvious = FALSE;
 
-		int power = 0;
-		int damage = 0;
+		HIT_POINT power = 0;
+		HIT_POINT damage = 0;
 
 		cptr act = NULL;
 
@@ -1552,104 +1548,104 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 			{
 			case RBM_HIT:
 				{
-					act = _("%s¤ò²¥¤Ã¤¿¡£", "hits %s.");
+					act = _("%sã‚’æ®´ã£ãŸã€‚", "hits %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_TOUCH:
 				{
-					act = _("%s¤ò¿¨¤Ã¤¿¡£", "touches %s.");
+					act = _("%sã‚’è§¦ã£ãŸã€‚", "touches %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_PUNCH:
 				{
-					act = _("%s¤ò¥Ñ¥ó¥Á¤·¤¿¡£", "punches %s.");
+					act = _("%sã‚’ãƒ‘ãƒ³ãƒã—ãŸã€‚", "punches %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_KICK:
 				{
-					act = _("%s¤ò½³¤Ã¤¿¡£", "kicks %s.");
+					act = _("%sã‚’è¹´ã£ãŸã€‚", "kicks %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_CLAW:
 				{
-					act = _("%s¤ò¤Ò¤Ã¤«¤¤¤¿¡£", "claws %s.");
+					act = _("%sã‚’ã²ã£ã‹ã„ãŸã€‚", "claws %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_BITE:
 				{
-					act = _("%s¤ò³ú¤ó¤À¡£", "bites %s.");
+					act = _("%sã‚’å™›ã‚“ã ã€‚", "bites %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_STING:
 				{
-					act = _("%s¤ò»É¤·¤¿¡£", "stings %s.");
+					act = _("%sã‚’åˆºã—ãŸã€‚", "stings %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_SLASH:
 				{
-					act = _("%s¤ò»Â¤Ã¤¿¡£", "slashes %s.");
+					act = _("%sã‚’æ–¬ã£ãŸã€‚", "slashes %s.");
 					break;
 				}
 
 			case RBM_BUTT:
 				{
-					act = _("%s¤ò³Ñ¤ÇÆÍ¤¤¤¿¡£", "butts %s.");
+					act = _("%sã‚’è§’ã§çªã„ãŸã€‚", "butts %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_CRUSH:
 				{
-					act = _("%s¤ËÂÎÅö¤ê¤·¤¿¡£", "crushes %s.");
+					act = _("%sã«ä½“å½“ã‚Šã—ãŸã€‚", "crushes %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_ENGULF:
 				{
-					act = _("%s¤ò°û¤ß¹ş¤ó¤À¡£", "engulfs %s.");
+					act = _("%sã‚’é£²ã¿è¾¼ã‚“ã ã€‚", "engulfs %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_CHARGE:
 				{
-					act = _("%s¤ËÀÁµá½ñ¤ò¤è¤³¤·¤¿¡£", "charges %s.");
+					act = _("%sã«è«‹æ±‚æ›¸ã‚’ã‚ˆã“ã—ãŸã€‚", "charges %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_CRAWL:
 				{
-					act = _("%s¤ÎÂÎ¤Î¾å¤òÇç¤¤²ó¤Ã¤¿¡£", "crawls on %s.");
+					act = _("%sã®ä½“ã®ä¸Šã‚’é€™ã„å›ã£ãŸã€‚", "crawls on %s.");
 					touched = TRUE;
 					break;
 				}
 
 			case RBM_DROOL:
 				{
-					act = _("%s¤Ë¤è¤À¤ì¤ò¤¿¤é¤·¤¿¡£", "drools on %s.");
+					act = _("%sã«ã‚ˆã ã‚Œã‚’ãŸã‚‰ã—ãŸã€‚", "drools on %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_SPIT:
 				{
-					act = _("%s¤ËÂÃ¤òÅÇ¤¤¤¿¡£", "spits on %s.");
+					act = _("%sã«å”¾ã‚’åã„ãŸã€‚", "spits on %s.");
 					touched = FALSE;
 					break;
 				}
@@ -1657,7 +1653,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 			case RBM_EXPLODE:
 				{
 					if (see_either) disturb(1, 1);
-					act = _("ÇúÈ¯¤·¤¿¡£", "explodes.");
+					act = _("çˆ†ç™ºã—ãŸã€‚", "explodes.");
 					explode = TRUE;
 					touched = FALSE;
 					break;
@@ -1665,56 +1661,56 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 
 			case RBM_GAZE:
 				{
-					act = _("%s¤ò¤Ë¤é¤ó¤À¡£", "gazes at %s.");
+					act = _("%sã‚’ã«ã‚‰ã‚“ã ã€‚", "gazes at %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_WAIL:
 				{
-					act = _("%s¤Ëµã¤­¤Ä¤¤¤¿¡£", "wails at %s.");
+					act = _("%sã«æ³£ãã¤ã„ãŸã€‚", "wails at %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_SPORE:
 				{
-					act = _("%s¤ËË¦»Ò¤òÈô¤Ğ¤·¤¿¡£", "releases spores at %s.");
+					act = _("%sã«èƒå­ã‚’é£›ã°ã—ãŸã€‚", "releases spores at %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_XXX4:
 				{
-					act = _("%s¤ËXXX4¤òÈô¤Ğ¤·¤¿¡£", "projects XXX4's at %s.");
+					act = _("%sã«XXX4ã‚’é£›ã°ã—ãŸã€‚", "projects XXX4's at %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_BEG:
 				{
-					act = _("%s¤Ë¶â¤ò¤»¤¬¤ó¤À¡£", "begs %s for money.");
+					act = _("%sã«é‡‘ã‚’ã›ãŒã‚“ã ã€‚", "begs %s for money.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_INSULT:
 				{
-					act = _("%s¤òÉî¿«¤·¤¿¡£", "insults %s.");
+					act = _("%sã‚’ä¾®è¾±ã—ãŸã€‚", "insults %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_MOAN:
 				{
-					act = _("%s¤Ë¤à¤«¤Ã¤Æ¤¦¤á¤¤¤¿¡£", "moans at %s.");
+					act = _("%sã«ã‚€ã‹ã£ã¦ã†ã‚ã„ãŸã€‚", "moans at %s.");
 					touched = FALSE;
 					break;
 				}
 
 			case RBM_SHOW:
 				{
-					act = _("%s¤Ë¤à¤«¤Ã¤Æ²Î¤Ã¤¿¡£", "sings to %s.");
+					act = _("%sã«ã‚€ã‹ã£ã¦æ­Œã£ãŸã€‚", "sings to %s.");
 					touched = FALSE;
 					break;
 				}
@@ -1726,7 +1722,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 #ifdef JP
 				if (do_silly_attack) act = silly_attacks2[randint0(MAX_SILLY_ATTACK)];
 				strfmt(temp, act, t_name);
-				msg_format("%^s¤Ï%s", m_name, temp);
+				msg_format("%^sã¯%s", m_name, temp);
 #else
 				if (do_silly_attack)
 				{
@@ -1758,7 +1754,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 				break;
 
 			case RBE_SUPERHURT:
-				if ((randint1(rlev*8+250) > (ac+200)) || one_in_(13)) /* rlev*2 > rlev*8 */
+				if ((randint1(rlev*2+250) > (ac+200)) || one_in_(13))
 				{
 					int tmp_damage = damage - (damage * ((ac < 150) ? ac : 150) / 250);
 					damage = MAX(damage, tmp_damage * 2);
@@ -1843,7 +1839,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 				break;
 
 			case RBE_DR_LIFE:
-				pt = GF_OLD_DRAIN;
+				pt = GF_HYPODYNAMIA;
 				effect_type = BLOW_EFFECT_TYPE_HEAL;
 				break;
 
@@ -1899,7 +1895,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 						/* Special message */
 						if (see_m && did_heal)
 						{
-							msg_format(_("%s¤ÏÂÎÎÏ¤ò²óÉü¤·¤¿¤è¤¦¤À¡£", "%^s appears healthier."), m_name);
+							msg_format(_("%sã¯ä½“åŠ›ã‚’å›å¾©ã—ãŸã‚ˆã†ã ã€‚", "%^s appears healthier."), m_name);
 						}
 					}
 					break;
@@ -1914,7 +1910,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 						{
 							if (see_either)
 							{
-								msg_format(_("%^s¤ÏÆÍÁ³Ç®¤¯¤Ê¤Ã¤¿¡ª", "%^s is suddenly very hot!"), m_name);
+								msg_format(_("%^sã¯çªç„¶ç†±ããªã£ãŸï¼", "%^s is suddenly very hot!"), m_name);
 							}
 							if (m_ptr->ml && is_original_ap_and_seen(t_ptr)) tr_ptr->r_flags2 |= RF2_AURA_FIRE;
 							project(t_idx, 0, m_ptr->fy, m_ptr->fx,
@@ -1935,7 +1931,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 						{
 							if (see_either)
 							{
-								msg_format(_("%^s¤ÏÆÍÁ³´¨¤¯¤Ê¤Ã¤¿¡ª", "%^s is suddenly very cold!"), m_name);
+								msg_format(_("%^sã¯çªç„¶å¯’ããªã£ãŸï¼", "%^s is suddenly very cold!"), m_name);
 							}
 							if (m_ptr->ml && is_original_ap_and_seen(t_ptr)) tr_ptr->r_flags3 |= RF3_AURA_COLD;
 							project(t_idx, 0, m_ptr->fy, m_ptr->fx,
@@ -1956,7 +1952,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 						{
 							if (see_either)
 							{
-								msg_format(_("%^s¤ÏÅÅ·â¤ò¿©¤é¤Ã¤¿¡ª", "%^s gets zapped!"), m_name);
+								msg_format(_("%^sã¯é›»æ’ƒã‚’é£Ÿã‚‰ã£ãŸï¼", "%^s gets zapped!"), m_name);
 							}
 							if (m_ptr->ml && is_original_ap_and_seen(t_ptr)) tr_ptr->r_flags2 |= RF2_AURA_ELEC;
 							project(t_idx, 0, m_ptr->fy, m_ptr->fx,
@@ -2000,7 +1996,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 					{
 						/* Message */
 #ifdef JP
-						msg_format("%s¤Ï%^s¤Î¹¶·â¤ò¤«¤ï¤·¤¿¡£", t_name,m_name);
+						msg_format("%sã¯%^sã®æ”»æ’ƒã‚’ã‹ã‚ã—ãŸã€‚", t_name,m_name);
 #else
 						msg_format("%^s misses %s.", m_name, t_name);
 #endif
@@ -2033,7 +2029,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 
 		/* Cancel Invulnerability */
 		(void)set_monster_invulner(m_idx, 0, FALSE);
-		mon_take_hit_mon(m_idx, m_ptr->hp + 1, &fear, _("¤ÏÇúÈ¯¤·¤ÆÊ´¡¹¤Ë¤Ê¤Ã¤¿¡£", " explodes into tiny shreds."), m_idx);
+		mon_take_hit_mon(m_idx, m_ptr->hp + 1, &fear, _("ã¯çˆ†ç™ºã—ã¦ç²‰ã€…ã«ãªã£ãŸã€‚", " explodes into tiny shreds."), m_idx);
 		blinked = FALSE;
 	}
 
@@ -2044,7 +2040,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 		{
 			if (see_m)
 			{
-				msg_print(_("Å¥ËÀ¤Ï¾Ğ¤Ã¤ÆÆ¨¤²...¤è¤¦¤È¤·¤¿¤¬¥Ğ¥ê¥¢¤ËËÉ¤¬¤ì¤¿¡£", "The thief flees laughing...? But magic barrier obstructs it."));
+				msg_print(_("æ³¥æ£’ã¯ç¬‘ã£ã¦é€ƒã’...ã‚ˆã†ã¨ã—ãŸãŒãƒãƒªã‚¢ã«é˜²ãŒã‚ŒãŸã€‚", "The thief flees laughing...? But magic barrier obstructs it."));
 			}
 			else if (known)
 			{
@@ -2055,7 +2051,7 @@ static bool monst_attack_monst(int m_idx, int t_idx)
 		{
 			if (see_m)
 			{
-				msg_print(_("Å¥ËÀ¤Ï¾Ğ¤Ã¤ÆÆ¨¤²¤¿¡ª", "The thief flees laughing!"));
+				msg_print(_("æ³¥æ£’ã¯ç¬‘ã£ã¦é€ƒã’ãŸï¼", "The thief flees laughing!"));
 			}
 			else if (known)
 			{
@@ -2079,10 +2075,10 @@ static bool check_hp_for_feat_destruction(feature_type *f_ptr, monster_type *m_p
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼Ã±ÂÎ¤Î£±¥¿¡¼¥ó¹ÔÆ°½èÍı¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å˜ä½“ã®ï¼‘ã‚¿ãƒ¼ãƒ³è¡Œå‹•å‡¦ç†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Process a monster
- * @param m_idx ¹ÔÆ°¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return ¤Ê¤·
+ * @param m_idx è¡Œå‹•ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return ãªã—
  * @details
  * The monster is known to be within 100 grids of the player\n
  *\n
@@ -2107,13 +2103,14 @@ static bool check_hp_for_feat_destruction(feature_type *f_ptr, monster_type *m_p
  *\n
  * A "direction" of "5" means "pick a random direction".\n
  */
-static void process_monster(int m_idx)
+static void process_monster(MONSTER_IDX m_idx)
 {
 	monster_type    *m_ptr = &m_list[m_idx];
 	monster_race    *r_ptr = &r_info[m_ptr->r_idx];
 	monster_race    *ap_r_ptr = &r_info[m_ptr->ap_r_idx];
 
-	int             i, d, oy, ox, ny, nx;
+	int             i, d;
+	POSITION	oy, ox, ny, nx;
 
 	int             mm[8];
 
@@ -2149,7 +2146,7 @@ static void process_monster(int m_idx)
 		if (rakuba(0, TRUE))
 		{
 #ifdef JP
-			msg_print("ÃÏÌÌ¤ËÍî¤È¤µ¤ì¤¿¡£");
+			msg_print("åœ°é¢ã«è½ã¨ã•ã‚ŒãŸã€‚");
 #else
 			char m_name[80];
 			monster_desc(m_name, &m_list[p_ptr->riding], 0);
@@ -2186,7 +2183,7 @@ static void process_monster(int m_idx)
 
 			/* Acquire the monster name */
 			monster_desc(m_name, m_ptr, 0);
-			msg_format(_("%s¤Ï¾Ã¤¨µî¤Ã¤¿¡ª", "%^s disappears!"), m_name);
+			msg_format(_("%sã¯æ¶ˆãˆå»ã£ãŸï¼", "%^s disappears!"), m_name);
 		}
 
 		if (record_named_pet && is_pet(m_ptr) && m_ptr->nickname)
@@ -2225,7 +2222,7 @@ static void process_monster(int m_idx)
 				monster_desc(m_name, m_ptr, 0);
 
 				/* Oops */
-				msg_format(_("%s¤Ï¾Ã¤¨µî¤Ã¤¿¡ª", "%^s disappears!"), m_name);
+				msg_format(_("%sã¯æ¶ˆãˆå»ã£ãŸï¼", "%^s disappears!"), m_name);
 			}
 
 			/* Generate treasure, etc */
@@ -2236,7 +2233,7 @@ static void process_monster(int m_idx)
 
 			if (sad)
 			{
-				msg_print(_("¾¯¤·¤Î´ÖÈá¤·¤¤µ¤Ê¬¤Ë¤Ê¤Ã¤¿¡£", "You feel sad for a moment."));
+				msg_print(_("å°‘ã—ã®é–“æ‚²ã—ã„æ°—åˆ†ã«ãªã£ãŸã€‚", "You feel sad for a moment."));
 			}
 
 			return;
@@ -2244,7 +2241,7 @@ static void process_monster(int m_idx)
 	}
 
 	if (m_ptr->r_idx == MON_SHURYUUDAN)
-		mon_take_hit_mon(m_idx, 1, &fear, _("¤ÏÇúÈ¯¤·¤ÆÊ´¡¹¤Ë¤Ê¤Ã¤¿¡£", " explodes into tiny shreds."), m_idx);
+		mon_take_hit_mon(m_idx, 1, &fear, _("ã¯çˆ†ç™ºã—ã¦ç²‰ã€…ã«ãªã£ãŸã€‚", " explodes into tiny shreds."), m_idx);
 
 	if ((is_pet(m_ptr) || is_friendly(m_ptr)) && ((r_ptr->flags1 & RF1_UNIQUE) || (r_ptr->flags7 & RF7_NAZGUL)) && !p_ptr->inside_battle)
 	{
@@ -2257,7 +2254,7 @@ static void process_monster(int m_idx)
 
 			if (is_riding_mon && riding_pinch < 2)
 			{
-				msg_format(_("%s¤Ï½ı¤ÎÄË¤µ¤ÎÍ¾¤ê¤¢¤Ê¤¿¤ÎÂ«Çû¤«¤éÆ¨¤ì¤è¤¦¤È¤·¤Æ¤¤¤ë¡£",
+				msg_format(_("%sã¯å‚·ã®ç—›ã•ã®ä½™ã‚Šã‚ãªãŸã®æŸç¸›ã‹ã‚‰é€ƒã‚Œã‚ˆã†ã¨ã—ã¦ã„ã‚‹ã€‚",
 							 "%^s seems to be in so much pain, and trying to escape from your restriction."), m_name);
 				riding_pinch++;
 				disturb(1, 1);
@@ -2266,10 +2263,10 @@ static void process_monster(int m_idx)
 			{
 				if (is_riding_mon)
 				{
-					msg_format(_("%s¤Ï¤¢¤Ê¤¿¤ÎÂ«Çû¤«¤éÃ¦½Ğ¤·¤¿¡£", "%^s succeeded to escape from your restriction!"), m_name);
+					msg_format(_("%sã¯ã‚ãªãŸã®æŸç¸›ã‹ã‚‰è„±å‡ºã—ãŸã€‚", "%^s succeeded to escape from your restriction!"), m_name);
 					if (rakuba(-1, FALSE))
 					{
-						msg_print(_("ÃÏÌÌ¤ËÍî¤È¤µ¤ì¤¿¡£", "You have fallen from riding pet."));
+						msg_print(_("åœ°é¢ã«è½ã¨ã•ã‚ŒãŸã€‚", "You have fallen from riding pet."));
 					}
 				}
 
@@ -2278,15 +2275,15 @@ static void process_monster(int m_idx)
 					if ((r_ptr->flags2 & RF2_CAN_SPEAK) && (m_ptr->r_idx != MON_GRIP) && (m_ptr->r_idx != MON_WOLF) && (m_ptr->r_idx != MON_FANG) &&
 					    player_has_los_bold(m_ptr->fy, m_ptr->fx) && projectable(m_ptr->fy, m_ptr->fx, p_ptr->y, p_ptr->x))
 					{
-						msg_format(_("%^s¡Ö¥Ô¥ó¥Á¤À¡ªÂàµÑ¤µ¤»¤Æ¤â¤é¤¦¡ª¡×", "%^s says 'It is the pinch! I will retreat'."), m_name);
+						msg_format(_("%^sã€Œãƒ”ãƒ³ãƒã ï¼é€€å´ã•ã›ã¦ã‚‚ã‚‰ã†ï¼ã€", "%^s says 'It is the pinch! I will retreat'."), m_name);
 					}
-					msg_format(_("%^s¤¬¥Æ¥ì¥İ¡¼¥È¡¦¥ì¥Ù¥ë¤Î´¬Êª¤òÆÉ¤ó¤À¡£", "%^s read a scroll of teleport level."), m_name);
-					msg_format(_("%^s¤¬¾Ã¤¨µî¤Ã¤¿¡£", "%^s disappears."), m_name);
+					msg_format(_("%^sãŒãƒ†ãƒ¬ãƒãƒ¼ãƒˆãƒ»ãƒ¬ãƒ™ãƒ«ã®å·»ç‰©ã‚’èª­ã‚“ã ã€‚", "%^s read a scroll of teleport level."), m_name);
+					msg_format(_("%^sãŒæ¶ˆãˆå»ã£ãŸã€‚", "%^s disappears."), m_name);
 				}
 
 				if (is_riding_mon && rakuba(-1, FALSE))
 				{
-					msg_print(_("ÃÏÌÌ¤ËÍî¤È¤µ¤ì¤¿¡£", "You have fallen from riding pet."));
+					msg_print(_("åœ°é¢ã«è½ã¨ã•ã‚ŒãŸã€‚", "You have fallen from riding pet."));
 				}
 
 				/* Check for quest completion */
@@ -2324,7 +2321,7 @@ static void process_monster(int m_idx)
 			monster_desc(m_name, m_ptr, 0);
 
 			/* Dump a message */
-			msg_format(_("%^s¤¬ÌÜ¤ò³Ğ¤Ş¤·¤¿¡£", "%^s wakes up."), m_name);
+			msg_format(_("%^sãŒç›®ã‚’è¦šã¾ã—ãŸã€‚", "%^s wakes up."), m_name);
 		}
 
 		/* Hack -- Count the wakings */
@@ -2367,7 +2364,7 @@ static void process_monster(int m_idx)
 		{
 			char m_name[80];
 			monster_desc(m_name, m_ptr, is_pet(m_ptr) ? MD_ASSUME_VISIBLE : 0);
-			msg_format(_("%^s¤ÏÆÍÁ³Å¨¤Ë¤Ş¤ï¤Ã¤¿¡ª", "%^s suddenly becomes hostile!"), m_name);
+			msg_format(_("%^sã¯çªç„¶æ•µã«ã¾ã‚ã£ãŸï¼", "%^s suddenly becomes hostile!"), m_name);
 		}
 
 		set_hostile(m_ptr);
@@ -2417,7 +2414,7 @@ static void process_monster(int m_idx)
 	}
 
 
-	if (r_ptr->flags6 & RF6_SPECIAL)
+	if (r_ptr->a_ability_flags2 & RF6_SPECIAL)
 	{
 		/* Hack -- Ohmu scatters molds! */
 		if (m_ptr->r_idx == MON_OHMU)
@@ -2453,7 +2450,7 @@ static void process_monster(int m_idx)
 		    !m_ptr->ml && (m_ptr->cdis <= MAX_SIGHT))
 		{
 			if (disturb_minor) disturb(FALSE, FALSE);
-			msg_print(_("½Å¸ü¤ÊÂ­²»¤¬Ê¹¤³¤¨¤¿¡£", "You hear heavy steps."));
+			msg_print(_("é‡åšãªè¶³éŸ³ãŒèã“ãˆãŸã€‚", "You hear heavy steps."));
 		}
 
 		/* Some monsters can speak */
@@ -2470,7 +2467,7 @@ static void process_monster(int m_idx)
 			if (m_ptr->ml)
 				monster_desc(m_name, m_ptr, 0);
 			else
-				strcpy(m_name, _("¤½¤ì", "It"));
+				strcpy(m_name, _("ãã‚Œ", "It"));
 
 			/* Select the file for monster quotes */
 			if (MON_MONFEAR(m_ptr))
@@ -2621,7 +2618,7 @@ static void process_monster(int m_idx)
 				(void)get_moves(m_idx, mm);
 
 				/* Restore the leash */
-				p_ptr->pet_follow_distance = dis;
+				p_ptr->pet_follow_distance = (s16b)dis;
 			}
 		}
 	}
@@ -2775,9 +2772,9 @@ static void process_monster(int m_idx)
 				{
 					/* Message */
 					if (have_flag(f_ptr->flags, FF_GLASS))
-						msg_print(_("¥¬¥é¥¹¤¬ºÕ¤±¤ë²»¤¬¤·¤¿¡ª", "You hear a glass was crashed!"));
+						msg_print(_("ã‚¬ãƒ©ã‚¹ãŒç •ã‘ã‚‹éŸ³ãŒã—ãŸï¼", "You hear a glass was crashed!"));
 					else
-						msg_print(_("¥É¥¢¤òÃ¡¤­³«¤±¤ë²»¤¬¤·¤¿¡ª", "You hear a door burst open!"));
+						msg_print(_("ãƒ‰ã‚¢ã‚’å©ãé–‹ã‘ã‚‹éŸ³ãŒã—ãŸï¼", "You hear a door burst open!"));
 
 					/* Disturb (sometimes) */
 					if (disturb_minor) disturb(0, 0);
@@ -2832,12 +2829,12 @@ static void process_monster(int m_idx)
 			do_move = FALSE;
 
 			/* Break the ward */
-			if (!is_pet(m_ptr) && (randint1(BREAK_GLYPH) < r_ptr->level * 4)) /* #tang r_ptr->level -> r_ptr->level*4 */
+			if (!is_pet(m_ptr) && (randint1(BREAK_GLYPH) < r_ptr->level))
 			{
 				/* Describe observable breakage */
 				if (c_ptr->info & CAVE_MARK)
 				{
-					msg_print(_("¼é¤ê¤Î¥ë¡¼¥ó¤¬²õ¤ì¤¿¡ª", "The rune of protection is broken!"));
+					msg_print(_("å®ˆã‚Šã®ãƒ«ãƒ¼ãƒ³ãŒå£Šã‚ŒãŸï¼", "The rune of protection is broken!"));
 				}
 
 				/* Forget the rune */
@@ -2864,18 +2861,18 @@ static void process_monster(int m_idx)
 			if (!is_pet(m_ptr))
 			{
 				/* Break the ward */
-				if (randint1(BREAK_MINOR_GLYPH) > r_ptr->level *4) /* #tang r_ptr->level -> r_ptr->level*4 */
+				if (randint1(BREAK_MINOR_GLYPH) > r_ptr->level)
 				{
 					/* Describe observable breakage */
 					if (c_ptr->info & CAVE_MARK)
 					{
-						msg_print(_("¥ë¡¼¥ó¤¬ÇúÈ¯¤·¤¿¡ª", "The rune explodes!"));
+						msg_print(_("ãƒ«ãƒ¼ãƒ³ãŒçˆ†ç™ºã—ãŸï¼", "The rune explodes!"));
 						project(0, 2, ny, nx, 2 * (p_ptr->lev + damroll(7, 7)), GF_MANA, (PROJECT_GRID | PROJECT_ITEM | PROJECT_KILL | PROJECT_JUMP | PROJECT_NO_HANGEKI), -1);
 					}
 				}
 				else
 				{
-					msg_print(_("ÇúÈ¯¤Î¥ë¡¼¥ó¤Ï²ò½ü¤µ¤ì¤¿¡£", "An explosive rune was disarmed."));
+					msg_print(_("çˆ†ç™ºã®ãƒ«ãƒ¼ãƒ³ã¯è§£é™¤ã•ã‚ŒãŸã€‚", "An explosive rune was disarmed."));
 				}
 
 				/* Forget the rune */
@@ -3006,9 +3003,9 @@ static void process_monster(int m_idx)
 			if (one_in_(GRINDNOISE))
 			{
 				if (have_flag(f_ptr->flags, FF_GLASS))
-					msg_print(_("²¿¤«¤ÎºÕ¤±¤ë²»¤¬Ê¹¤³¤¨¤ë¡£", "There is a crashing sound."));
+					msg_print(_("ä½•ã‹ã®ç •ã‘ã‚‹éŸ³ãŒèã“ãˆã‚‹ã€‚", "There is a crashing sound."));
 				else
-					msg_print(_("¥®¥·¥®¥·¤¤¤¦²»¤¬Ê¹¤³¤¨¤ë¡£", "There is a grinding sound."));
+					msg_print(_("ã‚®ã‚·ã‚®ã‚·ã„ã†éŸ³ãŒèã“ãˆã‚‹ã€‚", "There is a grinding sound."));
 			}
 
 			cave_alter_feat(ny, nx, FF_HURT_DISI);
@@ -3094,7 +3091,7 @@ static void process_monster(int m_idx)
 				}
 
 				/* Hack -- Update the new location */
-				c_ptr->m_idx = m_idx;
+				c_ptr->m_idx = (s16b)m_idx;
 
 				/* Move the monster */
 				m_ptr->fy = ny;
@@ -3210,7 +3207,7 @@ static void process_monster(int m_idx)
 							if (m_ptr->ml && player_can_see_bold(ny, nx))
 							{
 								/* Dump a message */
-								msg_format(_("%^s¤Ï%s¤ò½¦¤ª¤¦¤È¤·¤¿¤¬¡¢¤À¤á¤À¤Ã¤¿¡£", "%^s tries to pick up %s, but fails."), m_name, o_name);
+								msg_format(_("%^sã¯%sã‚’æ‹¾ãŠã†ã¨ã—ãŸãŒã€ã ã‚ã ã£ãŸã€‚", "%^s tries to pick up %s, but fails."), m_name, o_name);
 							}
 						}
 					}
@@ -3225,7 +3222,7 @@ static void process_monster(int m_idx)
 						if (player_can_see_bold(ny, nx))
 						{
 							/* Dump a message */
-							msg_format(_("%^s¤¬%s¤ò½¦¤Ã¤¿¡£", "%^s picks up %s."), m_name, o_name);
+							msg_format(_("%^sãŒ%sã‚’æ‹¾ã£ãŸã€‚", "%^s picks up %s."), m_name, o_name);
 						}
 
 						/* Excise the object */
@@ -3238,7 +3235,7 @@ static void process_monster(int m_idx)
 						o_ptr->iy = o_ptr->ix = 0;
 
 						/* Memorize monster */
-						o_ptr->held_m_idx = m_idx;
+						o_ptr->held_m_idx = (s16b)m_idx;
 
 						/* Build a stack */
 						o_ptr->next_o_idx = m_ptr->hold_o_idx;
@@ -3257,7 +3254,7 @@ static void process_monster(int m_idx)
 						if (player_has_los_bold(ny, nx))
 						{
 							/* Dump a message */
-							msg_format(_("%^s¤¬%s¤òÇË²õ¤·¤¿¡£", "%^s destroys %s."), m_name, o_name);
+							msg_format(_("%^sãŒ%sã‚’ç ´å£Šã—ãŸã€‚", "%^s destroys %s."), m_name, o_name);
 						}
 
 						/* Delete the object */
@@ -3348,7 +3345,7 @@ static void process_monster(int m_idx)
 			monster_desc(m_name, m_ptr, 0);
 
 			/* Dump a message */
-			msg_format(_("%^s¤ÏÀï¤¤¤ò·è°Õ¤·¤¿¡ª", "%^s turns to fight!"), m_name);
+			msg_format(_("%^sã¯æˆ¦ã„ã‚’æ±ºæ„ã—ãŸï¼", "%^s turns to fight!"), m_name);
 		}
 
 		if (m_ptr->ml) chg_virtue(V_COMPASSION, -1);
@@ -3358,9 +3355,9 @@ static void process_monster(int m_idx)
 }
 
 /*!
- * @brief Á´¥â¥ó¥¹¥¿¡¼¤Î¥¿¡¼¥ó´ÉÍı¥á¥¤¥ó¥ë¡¼¥Á¥ó /
+ * @brief å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ã‚¿ãƒ¼ãƒ³ç®¡ç†ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³ /
  * Process all the "live" monsters, once per game turn.
- * @return ¤Ê¤·
+ * @return ãªã—
  * @details
  * During each game turn, we scan through the list of all the "live" monsters,\n
  * (backwards, so we can excise any "freshly dead" monsters), energizing each\n
@@ -3393,8 +3390,8 @@ static void process_monster(int m_idx)
  */
 void process_monsters(void)
 {
-	int             i;
-	int             fx, fy;
+	IDX i;
+	POSITION fx, fy;
 
 	bool            test;
 
@@ -3602,12 +3599,12 @@ void process_monsters(void)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹¤ò¼èÆÀ¤¹¤ë
- * @return m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return mproc_type ¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹ID
- * @return »Ä¤ê¥¿¡¼¥óÃÍ
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã™ã‚‹
+ * @return m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return mproc_type ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ID
+ * @return æ®‹ã‚Šã‚¿ãƒ¼ãƒ³å€¤
  */
-int get_mproc_idx(int m_idx, int mproc_type)
+int get_mproc_idx(MONSTER_IDX m_idx, int mproc_type)
 {
 	s16b *cur_mproc_list = mproc_list[mproc_type];
 	int i;
@@ -3621,24 +3618,24 @@ int get_mproc_idx(int m_idx, int mproc_type)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹¥ê¥¹¥È¤òÄÉ²Ã¤¹¤ë
- * @return m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return mproc_type ÄÉ²Ã¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹ID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªã‚¹ãƒˆã‚’è¿½åŠ ã™ã‚‹
+ * @return m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return mproc_type è¿½åŠ ã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ID
+ * @return ãªã—
  */
-static void mproc_add(int m_idx, int mproc_type)
+static void mproc_add(MONSTER_IDX m_idx, int mproc_type)
 {
-	if (mproc_max[mproc_type] < max_m_idx) mproc_list[mproc_type][mproc_max[mproc_type]++] = m_idx;
+	if (mproc_max[mproc_type] < max_m_idx) mproc_list[mproc_type][mproc_max[mproc_type]++] = (s16b)m_idx;
 }
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹¥ê¥¹¥È¤òºï½ü
- * @return m_idx ¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return mproc_type ºï½ü¤·¤¿¤¤¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹ID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªã‚¹ãƒˆã‚’å‰Šé™¤
+ * @return m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return mproc_type å‰Šé™¤ã—ãŸã„ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ID
+ * @return ãªã—
  */
-static void mproc_remove(int m_idx, int mproc_type)
+static void mproc_remove(MONSTER_IDX m_idx, int mproc_type)
 {
 	int mproc_idx = get_mproc_idx(m_idx, mproc_type);
 	if (mproc_idx >= 0) mproc_list[mproc_type][mproc_idx] = mproc_list[mproc_type][--mproc_max[mproc_type]];
@@ -3646,13 +3643,14 @@ static void mproc_remove(int m_idx, int mproc_type)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹¥ê¥¹¥È¤ò½é´ü²½¤¹¤ë / Initialize monster process
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒªã‚¹ãƒˆã‚’åˆæœŸåŒ–ã™ã‚‹ / Initialize monster process
+ * @return ãªã—
  */
 void mproc_init(void)
 {
 	monster_type *m_ptr;
-	int          i, cmi;
+	MONSTER_IDX i;
+	int cmi;
 
 	/* Reset "mproc_max[]" */
 	for (cmi = 0; cmi < MAX_MTIMED; cmi++) mproc_max[cmi] = 0;
@@ -3675,13 +3673,13 @@ void mproc_init(void)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î¿çÌ²¾õÂÖÃÍ¤ò¥»¥Ã¥È¤¹¤ë /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç¡çœ çŠ¶æ…‹å€¤ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ /
  * Set "m_ptr->mtimed[MTIMED_CSLEEP]", notice observable changes
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param v ¥»¥Ã¥È¤¹¤ëÃÍ
- * @return ÊÌÅÓ¹¹¿·½èÍı¤¬É¬Í×¤Ê¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param v ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return åˆ¥é€”æ›´æ–°å‡¦ç†ãŒå¿…è¦ãªå ´åˆTRUEã‚’è¿”ã™
  */
-bool set_monster_csleep(int m_idx, int v)
+bool set_monster_csleep(MONSTER_IDX m_idx, int v)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3710,7 +3708,7 @@ bool set_monster_csleep(int m_idx, int v)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_CSLEEP] = v;
+	m_ptr->mtimed[MTIMED_CSLEEP] = (s16b)v;
 
 	if (!notice) return FALSE;
 
@@ -3728,13 +3726,13 @@ bool set_monster_csleep(int m_idx, int v)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î²ÃÂ®¾õÂÖÃÍ¤ò¥»¥Ã¥È /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®åŠ é€ŸçŠ¶æ…‹å€¤ã‚’ã‚»ãƒƒãƒˆ /
  * Set "m_ptr->mtimed[MTIMED_FAST]", notice observable changes
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param v ¥»¥Ã¥È¤¹¤ëÃÍ
- * @return ÊÌÅÓ¹¹¿·½èÍı¤¬É¬Í×¤Ê¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param v ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return åˆ¥é€”æ›´æ–°å‡¦ç†ãŒå¿…è¦ãªå ´åˆTRUEã‚’è¿”ã™
  */
-bool set_monster_fast(int m_idx, int v)
+bool set_monster_fast(MONSTER_IDX m_idx, int v)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3763,7 +3761,7 @@ bool set_monster_fast(int m_idx, int v)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_FAST] = v;
+	m_ptr->mtimed[MTIMED_FAST] = (s16b)v;
 
 	if (!notice) return FALSE;
 
@@ -3776,7 +3774,7 @@ bool set_monster_fast(int m_idx, int v)
 /*
  * Set "m_ptr->mtimed[MTIMED_SLOW]", notice observable changes
  */
-bool set_monster_slow(int m_idx, int v)
+bool set_monster_slow(MONSTER_IDX m_idx, int v)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3805,7 +3803,7 @@ bool set_monster_slow(int m_idx, int v)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_SLOW] = v;
+	m_ptr->mtimed[MTIMED_SLOW] = (s16b)v;
 
 	if (!notice) return FALSE;
 
@@ -3816,13 +3814,13 @@ bool set_monster_slow(int m_idx, int v)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÛ¯Û°¾õÂÖÃÍ¤ò¥»¥Ã¥È /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æœ¦æœ§çŠ¶æ…‹å€¤ã‚’ã‚»ãƒƒãƒˆ /
  * Set "m_ptr->mtimed[MTIMED_STUNNED]", notice observable changes
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param v ¥»¥Ã¥È¤¹¤ëÃÍ
- * @return ÊÌÅÓ¹¹¿·½èÍı¤¬É¬Í×¤Ê¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param v ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return åˆ¥é€”æ›´æ–°å‡¦ç†ãŒå¿…è¦ãªå ´åˆTRUEã‚’è¿”ã™
  */
-bool set_monster_stunned(int m_idx, int v)
+bool set_monster_stunned(MONSTER_IDX m_idx, int v)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3851,20 +3849,20 @@ bool set_monster_stunned(int m_idx, int v)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_STUNNED] = v;
+	m_ptr->mtimed[MTIMED_STUNNED] = (s16b)v;
 
 	return notice;
 }
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Îº®Íğ¾õÂÖÃÍ¤ò¥»¥Ã¥È /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ··ä¹±çŠ¶æ…‹å€¤ã‚’ã‚»ãƒƒãƒˆ /
  * Set "m_ptr->mtimed[MTIMED_CONFUSED]", notice observable changes
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param v ¥»¥Ã¥È¤¹¤ëÃÍ
- * @return ÊÌÅÓ¹¹¿·½èÍı¤¬É¬Í×¤Ê¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param v ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return åˆ¥é€”æ›´æ–°å‡¦ç†ãŒå¿…è¦ãªå ´åˆTRUEã‚’è¿”ã™
  */
-bool set_monster_confused(int m_idx, int v)
+bool set_monster_confused(MONSTER_IDX m_idx, int v)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3893,20 +3891,20 @@ bool set_monster_confused(int m_idx, int v)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_CONFUSED] = v;
+	m_ptr->mtimed[MTIMED_CONFUSED] = (s16b)v;
 
 	return notice;
 }
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î¶²¹²¾õÂÖÃÍ¤ò¥»¥Ã¥È /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ææ…ŒçŠ¶æ…‹å€¤ã‚’ã‚»ãƒƒãƒˆ /
  * Set "m_ptr->mtimed[MTIMED_MONFEAR]", notice observable changes
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param v ¥»¥Ã¥È¤¹¤ëÃÍ
- * @return ÊÌÅÓ¹¹¿·½èÍı¤¬É¬Í×¤Ê¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param v ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @return åˆ¥é€”æ›´æ–°å‡¦ç†ãŒå¿…è¦ãªå ´åˆTRUEã‚’è¿”ã™
  */
-bool set_monster_monfear(int m_idx, int v)
+bool set_monster_monfear(MONSTER_IDX m_idx, int v)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3935,7 +3933,7 @@ bool set_monster_monfear(int m_idx, int v)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_MONFEAR] = v;
+	m_ptr->mtimed[MTIMED_MONFEAR] = (s16b)v;
 
 	if (!notice) return FALSE;
 
@@ -3951,14 +3949,14 @@ bool set_monster_monfear(int m_idx, int v)
 
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤ÎÌµÅ¨¾õÂÖÃÍ¤ò¥»¥Ã¥È /
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®ç„¡æ•µçŠ¶æ…‹å€¤ã‚’ã‚»ãƒƒãƒˆ /
  * Set "m_ptr->mtimed[MTIMED_INVULNER]", notice observable changes
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param v ¥»¥Ã¥È¤¹¤ëÃÍ
- * @param energy_need TRUE¤Ê¤é¤ĞÌµÅ¨²ò½ü»ş¤Ë¹ÔÆ°¥¿¡¼¥ó¾ÃÈñ¤ò¹Ô¤¦
- * @return ÊÌÅÓ¹¹¿·½èÍı¤¬É¬Í×¤Ê¾ì¹çTRUE¤òÊÖ¤¹
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param v ã‚»ãƒƒãƒˆã™ã‚‹å€¤
+ * @param energy_need TRUEãªã‚‰ã°ç„¡æ•µè§£é™¤æ™‚ã«è¡Œå‹•ã‚¿ãƒ¼ãƒ³æ¶ˆè²»ã‚’è¡Œã†
+ * @return åˆ¥é€”æ›´æ–°å‡¦ç†ãŒå¿…è¦ãªå ´åˆTRUEã‚’è¿”ã™
  */
-bool set_monster_invulner(int m_idx, int v, bool energy_need)
+bool set_monster_invulner(MONSTER_IDX m_idx, int v, bool energy_need)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	bool notice = FALSE;
@@ -3988,7 +3986,7 @@ bool set_monster_invulner(int m_idx, int v, bool energy_need)
 	}
 
 	/* Use the value */
-	m_ptr->mtimed[MTIMED_INVULNER] = v;
+	m_ptr->mtimed[MTIMED_INVULNER] = (s16b)v;
 
 	if (!notice) return FALSE;
 
@@ -4006,12 +4004,12 @@ bool set_monster_invulner(int m_idx, int v, bool energy_need)
 static u32b csleep_noise;
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î³Æ¼ï¾õÂÖÃÍ¤ò»ş´Ö·Ğ²á¤Ë¤è¤ê¹¹¿·¤¹¤ë¥µ¥Ö¥ë¡¼¥Á¥ó
- * @param m_idx ¥â¥ó¥¹¥¿¡¼»²¾ÈID
- * @param mtimed_idx ¹¹¿·¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹ID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å„ç¨®çŠ¶æ…‹å€¤ã‚’æ™‚é–“çµŒéã«ã‚ˆã‚Šæ›´æ–°ã™ã‚‹ã‚µãƒ–ãƒ«ãƒ¼ãƒãƒ³
+ * @param m_idx ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼å‚ç…§ID
+ * @param mtimed_idx æ›´æ–°ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ID
+ * @return ãªã—
  */
-static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
+static void process_monsters_mtimed_aux(MONSTER_IDX m_idx, int mtimed_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 
@@ -4085,7 +4083,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 						monster_desc(m_name, m_ptr, 0);
 
 						/* Dump a message */
-						msg_format(_("%^s¤¬ÌÜ¤ò³Ğ¤Ş¤·¤¿¡£", "%^s wakes up."), m_name);
+						msg_format(_("%^sãŒç›®ã‚’è¦šã¾ã—ãŸã€‚", "%^s wakes up."), m_name);
 					}
 
 					if (is_original_ap_and_seen(m_ptr))
@@ -4111,7 +4109,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 				monster_desc(m_name, m_ptr, 0);
 
 				/* Dump a message */
-				msg_format(_("%^s¤Ï¤â¤¦²ÃÂ®¤µ¤ì¤Æ¤¤¤Ê¤¤¡£", "%^s is no longer fast."), m_name);
+				msg_format(_("%^sã¯ã‚‚ã†åŠ é€Ÿã•ã‚Œã¦ã„ãªã„ã€‚", "%^s is no longer fast."), m_name);
 			}
 		}
 		break;
@@ -4128,7 +4126,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 				monster_desc(m_name, m_ptr, 0);
 
 				/* Dump a message */
-				msg_format(_("%^s¤Ï¤â¤¦¸ºÂ®¤µ¤ì¤Æ¤¤¤Ê¤¤¡£", "%^s is no longer slow."), m_name);
+				msg_format(_("%^sã¯ã‚‚ã†æ¸›é€Ÿã•ã‚Œã¦ã„ãªã„ã€‚", "%^s is no longer slow."), m_name);
 			}
 		}
 		break;
@@ -4138,7 +4136,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 		int rlev = r_info[m_ptr->r_idx].level;
 
 		/* Recover from stun */
-		if (set_monster_stunned(m_idx, (randint0(10000) <= rlev * rlev * 16) ? 0 : (MON_STUNNED(m_ptr) - 1))) /* rlev > rlev*4 */
+		if (set_monster_stunned(m_idx, (randint0(10000) <= rlev * rlev) ? 0 : (MON_STUNNED(m_ptr) - 1)))
 		{
 			/* Message if visible */
 			if (is_seen(m_ptr))
@@ -4149,7 +4147,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 				monster_desc(m_name, m_ptr, 0);
 
 				/* Dump a message */
-				msg_format(_("%^s¤ÏÛ¯Û°¾õÂÖ¤«¤éÎ©¤ÁÄ¾¤Ã¤¿¡£", "%^s is no longer stunned."), m_name);
+				msg_format(_("%^sã¯æœ¦æœ§çŠ¶æ…‹ã‹ã‚‰ç«‹ã¡ç›´ã£ãŸã€‚", "%^s is no longer stunned."), m_name);
 			}
 		}
 		break;
@@ -4157,7 +4155,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 
 	case MTIMED_CONFUSED:
 		/* Reduce the confusion */
-		if (set_monster_confused(m_idx, MON_CONFUSED(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 5 + 1))) /* #tang 20 -> 5 */
+		if (set_monster_confused(m_idx, MON_CONFUSED(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 20 + 1)))
 		{
 			/* Message if visible */
 			if (is_seen(m_ptr))
@@ -4168,14 +4166,14 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 				monster_desc(m_name, m_ptr, 0);
 
 				/* Dump a message */
-				msg_format(_("%^s¤Ïº®Íğ¤«¤éÎ©¤ÁÄ¾¤Ã¤¿¡£", "%^s is no longer confused."), m_name);
+				msg_format(_("%^sã¯æ··ä¹±ã‹ã‚‰ç«‹ã¡ç›´ã£ãŸã€‚", "%^s is no longer confused."), m_name);
 			}
 		}
 		break;
 
 	case MTIMED_MONFEAR:
 		/* Reduce the fear */
-		if (set_monster_monfear(m_idx, MON_MONFEAR(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 5 + 1))) /* #tang 20 -> 5 */
+		if (set_monster_monfear(m_idx, MON_MONFEAR(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 20 + 1)))
 		{
 			/* Visual note */
 			if (is_seen(m_ptr))
@@ -4193,7 +4191,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 
 				/* Dump a message */
 #ifdef JP
-				msg_format("%^s¤ÏÍ¦µ¤¤ò¼è¤êÌá¤·¤¿¡£", m_name);
+				msg_format("%^sã¯å‹‡æ°—ã‚’å–ã‚Šæˆ»ã—ãŸã€‚", m_name);
 #else
 				msg_format("%^s recovers %s courage.", m_name, m_poss);
 #endif
@@ -4213,7 +4211,7 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 				monster_desc(m_name, m_ptr, 0);
 
 				/* Dump a message */
-				msg_format(_("%^s¤Ï¤â¤¦ÌµÅ¨¤Ç¤Ê¤¤¡£", "%^s is no longer invulnerable."), m_name);
+				msg_format(_("%^sã¯ã‚‚ã†ç„¡æ•µã§ãªã„ã€‚", "%^s is no longer invulnerable."), m_name);
 			}
 		}
 		break;
@@ -4222,9 +4220,9 @@ static void process_monsters_mtimed_aux(int m_idx, int mtimed_idx)
 
 
 /*!
- * @brief Á´¥â¥ó¥¹¥¿¡¼¤Î³Æ¼ï¾õÂÖÃÍ¤ò»ş´Ö·Ğ²á¤Ë¤è¤ê¹¹¿·¤¹¤ë¥á¥¤¥ó¥ë¡¼¥Á¥ó
- * @param mtimed_idx ¹¹¿·¤¹¤ë¥â¥ó¥¹¥¿¡¼¤Î»ş¸Â¥¹¥Æ¡¼¥¿¥¹ID
- * @return ¤Ê¤·
+ * @brief å…¨ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å„ç¨®çŠ¶æ…‹å€¤ã‚’æ™‚é–“çµŒéã«ã‚ˆã‚Šæ›´æ–°ã™ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
+ * @param mtimed_idx æ›´æ–°ã™ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é™ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ID
+ * @return ãªã—
  * @details
  * Process the counters of monsters (once per 10 game turns)\n
  * These functions are to process monsters' counters same as player's.
@@ -4246,11 +4244,11 @@ void process_monsters_mtimed(int mtimed_idx)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Ø¤ÎËâÎÏ¾Ãµî½èÍı
- * @param m_idx ËâÎÏ¾Ãµî¤ò¼õ¤±¤ë¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã¸ã®é­”åŠ›æ¶ˆå»å‡¦ç†
+ * @param m_idx é­”åŠ›æ¶ˆå»ã‚’å—ã‘ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @return ãªã—
  */
-void dispel_monster_status(int m_idx)
+void dispel_monster_status(MONSTER_IDX m_idx)
 {
 	monster_type *m_ptr = &m_list[m_idx];
 	char         m_name[80];
@@ -4258,24 +4256,24 @@ void dispel_monster_status(int m_idx)
 	monster_desc(m_name, m_ptr, 0);
 	if (set_monster_invulner(m_idx, 0, TRUE))
 	{
-		if (m_ptr->ml) msg_format(_("%s¤Ï¤â¤¦ÌµÅ¨¤Ç¤Ï¤Ê¤¤¡£", "%^s is no longer invulnerable."), m_name);
+		if (m_ptr->ml) msg_format(_("%sã¯ã‚‚ã†ç„¡æ•µã§ã¯ãªã„ã€‚", "%^s is no longer invulnerable."), m_name);
 	}
 	if (set_monster_fast(m_idx, 0))
 	{
-		if (m_ptr->ml) msg_format(_("%s¤Ï¤â¤¦²ÃÂ®¤µ¤ì¤Æ¤¤¤Ê¤¤¡£", "%^s is no longer fast."), m_name);
+		if (m_ptr->ml) msg_format(_("%sã¯ã‚‚ã†åŠ é€Ÿã•ã‚Œã¦ã„ãªã„ã€‚", "%^s is no longer fast."), m_name);
 	}
 	if (set_monster_slow(m_idx, 0))
 	{
-		if (m_ptr->ml) msg_format(_("%s¤Ï¤â¤¦¸ºÂ®¤µ¤ì¤Æ¤¤¤Ê¤¤¡£", "%^s is no longer slow."), m_name);
+		if (m_ptr->ml) msg_format(_("%sã¯ã‚‚ã†æ¸›é€Ÿã•ã‚Œã¦ã„ãªã„ã€‚", "%^s is no longer slow."), m_name);
 	}
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î»ş´ÖÄä»ß½èÍı
- * @param num »ş´ÖÄä»ß¤ò¹Ô¤Ã¤¿Å¨¤¬¹ÔÆ°¤Ç¤­¤ë²ó¿ô
- * @param who »ş´ÖÄä»ß½èÍı¤Î¼çÂÎID
- * @param vs_player TRUE¤Ê¤é¤Ğ»ş´ÖÄä»ß³«»Ï½èÍı¤ò¹Ô¤¦
- * @return »ş´ÖÄä»ß¤¬¹Ô¤ï¤ì¤Æ¤¤¤ë¾õÂÖ¤Ê¤é¤ĞTRUE¤òÊÖ¤¹
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ™‚é–“åœæ­¢å‡¦ç†
+ * @param num æ™‚é–“åœæ­¢ã‚’è¡Œã£ãŸæ•µãŒè¡Œå‹•ã§ãã‚‹å›æ•°
+ * @param who æ™‚é–“åœæ­¢å‡¦ç†ã®ä¸»ä½“ID
+ * @param vs_player TRUEãªã‚‰ã°æ™‚é–“åœæ­¢é–‹å§‹å‡¦ç†ã‚’è¡Œã†
+ * @return æ™‚é–“åœæ­¢ãŒè¡Œã‚ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ãªã‚‰ã°TRUEã‚’è¿”ã™
  */
 bool process_the_world(int num, int who, bool vs_player)
 {
@@ -4289,9 +4287,9 @@ bool process_the_world(int num, int who, bool vs_player)
 		monster_desc(m_name, m_ptr, 0);
 
 		if (who == 1)
-			msg_format(_("¡Ö¡Ø¥¶¡¦¥ï¡¼¥ë¥É¡Ù¡ª»ş¤Ï»ß¤Ş¤Ã¤¿¡ª¡×", "%s yells 'The World! Time has stopped!'"), m_name);
+			msg_format(_("ã€Œã€ã‚¶ãƒ»ãƒ¯ãƒ¼ãƒ«ãƒ‰ã€ï¼æ™‚ã¯æ­¢ã¾ã£ãŸï¼ã€", "%s yells 'The World! Time has stopped!'"), m_name);
 		else if (who == 3)
-			msg_format(_("¡Ö»ş¤è¡ª¡×", "%s yells 'Time!'"), m_name);
+			msg_format(_("ã€Œæ™‚ã‚ˆï¼ã€", "%s yells 'Time!'"), m_name);
 		else msg_print("hek!");
 
 		msg_print(NULL);
@@ -4337,7 +4335,7 @@ bool process_the_world(int num, int who, bool vs_player)
 	world_monster = 0;
 	if (vs_player || (player_has_los_bold(m_ptr->fy, m_ptr->fx) && projectable(p_ptr->y, p_ptr->x, m_ptr->fy, m_ptr->fx)))
 	{
-		msg_print(_("¡Ö»ş¤ÏÆ°¤­¤À¤¹¡Ä¡×", "You feel time flowing around you once more."));
+		msg_print(_("ã€Œæ™‚ã¯å‹•ãã ã™â€¦ã€", "You feel time flowing around you once more."));
 		msg_print(NULL);
 	}
 
@@ -4347,12 +4345,12 @@ bool process_the_world(int num, int who, bool vs_player)
 }
 
 /*!
- * @brief ¥â¥ó¥¹¥¿¡¼¤Î·Ğ¸³ÃÍ¼èÆÀ½èÍı
- * @param m_idx ·Ğ¸³ÃÍ¤òÆÀ¤ë¥â¥ó¥¹¥¿¡¼¤Î»²¾ÈID
- * @param s_idx ·âÇË¤µ¤ì¤¿¥â¥ó¥¹¥¿¡¼¼ïÂ²¤Î»²¾ÈID
- * @return ¤Ê¤·
+ * @brief ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®çµŒé¨“å€¤å–å¾—å‡¦ç†
+ * @param m_idx çµŒé¨“å€¤ã‚’å¾—ã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®å‚ç…§ID
+ * @param s_idx æ’ƒç ´ã•ã‚ŒãŸãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ç¨®æ—ã®å‚ç…§ID
+ * @return ãªã—
  */
-void monster_gain_exp(int m_idx, int s_idx)
+void monster_gain_exp(MONSTER_IDX m_idx, IDX s_idx)
 {
 	monster_type *m_ptr;
 	monster_race *r_ptr;
@@ -4448,11 +4446,11 @@ void monster_gain_exp(int m_idx, int s_idx)
 						hallu_race = &r_info[randint1(max_r_idx - 1)];
 					}
 					while (!hallu_race->name || (hallu_race->flags1 & RF1_UNIQUE));
-					msg_format(_("%s¤Ï%s¤Ë¿Ê²½¤·¤¿¡£", "%^s evolved into %s."), m_name, r_name + hallu_race->name);
+					msg_format(_("%sã¯%sã«é€²åŒ–ã—ãŸã€‚", "%^s evolved into %s."), m_name, r_name + hallu_race->name);
 				}
 				else
 				{
-					msg_format(_("%s¤Ï%s¤Ë¿Ê²½¤·¤¿¡£", "%^s evolved into %s."), m_name, r_name + r_ptr->name);
+					msg_format(_("%sã¯%sã«é€²åŒ–ã—ãŸã€‚", "%^s evolved into %s."), m_name, r_name + r_ptr->name);
 				}
 			}
 

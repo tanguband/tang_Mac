@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file hissatsu.c
- * @brief ·õ½Ñ¤Î¼ÂÁõ / Blade arts
+ * @brief å‰£è¡“ã®å®Ÿè£… / Blade arts
  * @date 2014/01/17
  * @author
  * Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke\n
@@ -16,10 +16,10 @@
 
 
 /*!
- * @brief »ÈÍÑ²ÄÇ½¤Ê·õ½Ñ¤òÁªÂò¤¹¤ë /
+ * @brief ä½¿ç”¨å¯èƒ½ãªå‰£è¡“ã‚’é¸æŠã™ã‚‹ /
  * Allow user to choose a blade arts.
- * @param sn ÁªÂò¤·¤¿ÆÃ¼ìµ»Ç½ID¡¢¥­¥ã¥ó¥»¥ë¤Î¾ì¹ç-1¡¢ÉÔÀµ¤ÊÁªÂò¤Î¾ì¹ç-2¤òÊÖ¤¹
- * @return È¯Æ°²ÄÇ½¤ÊËâË¡¤òÁªÂò¤·¤¿¾ì¹çTRUE¡¢¥­¥ã¥ó¥»¥ë½èÍı¤«ÉÔÀµ¤ÊÁªÂò¤¬¹Ô¤ï¤ì¤¿¾ì¹çFALSE¤òÊÖ¤¹¡£
+ * @param sn é¸æŠã—ãŸç‰¹æ®ŠæŠ€èƒ½IDã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã®å ´åˆ-1ã€ä¸æ­£ãªé¸æŠã®å ´åˆ-2ã‚’è¿”ã™
+ * @return ç™ºå‹•å¯èƒ½ãªé­”æ³•ã‚’é¸æŠã—ãŸå ´åˆTRUEã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«å‡¦ç†ã‹ä¸æ­£ãªé¸æŠãŒè¡Œã‚ã‚ŒãŸå ´åˆFALSEã‚’è¿”ã™ã€‚
  * @details
  * If a valid spell is chosen, saves it in '*sn' and returns TRUE\n
  * If the user hits escape, returns FALSE, and set '*sn' to -1\n
@@ -32,9 +32,10 @@
  * when you run it. It's probably easy to fix but I haven't tried,\n
  * sorry.\n
  */
-static int get_hissatsu_power(int *sn)
+static int get_hissatsu_power(SPELL_IDX *sn)
 {
-	int             i, j = 0;
+	SPELL_IDX i;
+	int j = 0;
 	int             num = 0;
 	int             y = 1;
 	int             x = 15;
@@ -42,9 +43,9 @@ static int get_hissatsu_power(int *sn)
 	int             ask = TRUE;
 	char            choice;
 	char            out_val[160];
-	char sentaku[32];
-	cptr            p = _("É¬»¦·õ", "special attack");
-
+	SPELL_IDX sentaku[32];
+	cptr            p = _("å¿…æ®ºå‰£", "special attack");
+	COMMAND_CODE code;
 	magic_type spell;
 	bool            flag, redraw;
 	int menu_line = (use_menu ? 1 : 0);
@@ -55,8 +56,9 @@ static int get_hissatsu_power(int *sn)
 #ifdef ALLOW_REPEAT /* TNB */
 
 	/* Get the spell, if available */
-	if (repeat_pull(sn))
+	if (repeat_pull(&code))
 	{
+		*sn = (SPELL_IDX)code;
 		/* Verify the spell */
 		if (technic_info[TECHNIC_HISSATSU][*sn].slevel <= plev)
 		{
@@ -84,7 +86,7 @@ static int get_hissatsu_power(int *sn)
 
 	/* Build a prompt (accept all spells) */
 	(void) strnfmt(out_val, 78, 
-		       _("(%^s %c-%c, '*'¤Ç°ìÍ÷, ESC) ¤É¤Î%s¤ò»È¤¤¤Ş¤¹¤«¡©", "(%^ss %c-%c, *=List, ESC=exit) Use which %s? "),
+		       _("(%^s %c-%c, '*'ã§ä¸€è¦§, ESC) ã©ã®%sã‚’ä½¿ã„ã¾ã™ã‹ï¼Ÿ", "(%^ss %c-%c, *=List, ESC=exit) Use which %s? "),
 		       p, I2A(0), "abcdefghijklmnopqrstuvwxyz012345"[num-1], p);
 
 	if (use_menu) screen_save();
@@ -190,7 +192,7 @@ static int get_hissatsu_power(int *sn)
 
 				/* Display a list of spells */
 				prt("", y, x);
-				put_str(_("Ì¾Á°              Lv  MP      Ì¾Á°              Lv  MP ", 
+				put_str(_("åå‰              Lv  MP      åå‰              Lv  MP ", 
 						  "name              Lv  SP      name              Lv  SP "), y, x + 5);
 				prt("", y+1, x);
 				/* Dump the spells */
@@ -208,7 +210,7 @@ static int get_hissatsu_power(int *sn)
 					if (use_menu)
 					{
 						if (i == (menu_line-1))
-							strcpy(psi_desc, _("  ¡Õ", "  > "));
+							strcpy(psi_desc, _("  ã€‹", "  > "));
 						else strcpy(psi_desc, "    ");
 						
 					}
@@ -253,7 +255,7 @@ static int get_hissatsu_power(int *sn)
 				ask = (isupper(choice));
 
 				/* Lowercase */
-				if (ask) choice = tolower(choice);
+				if (ask) choice = (char)tolower(choice);
 
 				/* Extract request */
 				i = (islower(choice) ? A2I(choice) : -1);
@@ -281,7 +283,7 @@ static int get_hissatsu_power(int *sn)
 			char tmp_val[160];
 
 			/* Prompt */
-			(void) strnfmt(tmp_val, 78, _("%s¤ò»È¤¤¤Ş¤¹¤«¡©", "Use %s? "), do_spell(REALM_HISSATSU, j, SPELL_NAME));
+			(void) strnfmt(tmp_val, 78, _("%sã‚’ä½¿ã„ã¾ã™ã‹ï¼Ÿ", "Use %s? "), do_spell(REALM_HISSATSU, j, SPELL_NAME));
 
 			/* Belay that order */
 			if (!get_check(tmp_val)) continue;
@@ -309,7 +311,7 @@ static int get_hissatsu_power(int *sn)
 
 #ifdef ALLOW_REPEAT /* TNB */
 
-	repeat_push(*sn);
+	repeat_push((COMMAND_CODE)j);
 
 #endif /* ALLOW_REPEAT -- TNB */
 
@@ -319,30 +321,30 @@ static int get_hissatsu_power(int *sn)
 
 
 /*!
- * @brief ·õ½Ñ¥³¥Ş¥ó¥É¤Î¥á¥¤¥ó¥ë¡¼¥Á¥ó
- * @return ¤Ê¤·
+ * @brief å‰£è¡“ã‚³ãƒãƒ³ãƒ‰ã®ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
+ * @return ãªã—
  */
 void do_cmd_hissatsu(void)
 {
-	int             n = 0;
+	SPELL_IDX       n = 0;
 	magic_type      spell;
 
 
 	/* not if confused */
 	if (p_ptr->confused)
 	{
-		msg_print(_("º®Íğ¤·¤Æ¤¤¤Æ½¸Ãæ¤Ç¤­¤Ê¤¤¡ª", "You are too confused!"));
+		msg_print(_("æ··ä¹±ã—ã¦ã„ã¦é›†ä¸­ã§ããªã„ï¼", "You are too confused!"));
 		return;
 	}
 	if (!buki_motteruka(INVEN_RARM) && !buki_motteruka(INVEN_LARM))
 	{
 		if (flush_failure) flush();
-		msg_print(_("Éğ´ï¤ò»ı¤¿¤Ê¤¤¤ÈÉ¬»¦µ»¤Ï»È¤¨¤Ê¤¤¡ª", "You need to wield a weapon!"));
+		msg_print(_("æ­¦å™¨ã‚’æŒãŸãªã„ã¨å¿…æ®ºæŠ€ã¯ä½¿ãˆãªã„ï¼", "You need to wield a weapon!"));
 		return;
 	}
 	if (!p_ptr->spell_learned1)
 	{
-		msg_print(_("²¿¤âµ»¤òÃÎ¤é¤Ê¤¤¡£", "You don't know any special attacks."));
+		msg_print(_("ä½•ã‚‚æŠ€ã‚’çŸ¥ã‚‰ãªã„ã€‚", "You don't know any special attacks."));
 		return;
 	}
 
@@ -361,7 +363,7 @@ void do_cmd_hissatsu(void)
 	{
 		if (flush_failure) flush();
 		/* Warning */
-		msg_print(_("£Í£Ğ¤¬Â­¤ê¤Ş¤»¤ó¡£", "You do not have enough mana to use this power."));
+		msg_print(_("ï¼­ï¼°ãŒè¶³ã‚Šã¾ã›ã‚“ã€‚", "You do not have enough mana to use this power."));
 		msg_print(NULL);
 		return;
 	}
@@ -390,12 +392,13 @@ void do_cmd_hissatsu(void)
 
 
 /*!
- * @brief ·õ½Ñ¥³¥Ş¥ó¥É¤Î³Ø½¬
- * @return ¤Ê¤·
+ * @brief å‰£è¡“ã‚³ãƒãƒ³ãƒ‰ã®å­¦ç¿’
+ * @return ãªã—
  */
 void do_cmd_gain_hissatsu(void)
 {
-	int item, i, j;
+	OBJECT_IDX item;
+	int i, j;
 
 	object_type *o_ptr;
 	cptr q, s;
@@ -409,27 +412,27 @@ void do_cmd_gain_hissatsu(void)
 
 	if (p_ptr->blind || no_lite())
 	{
-		msg_print(_("ÌÜ¤¬¸«¤¨¤Ê¤¤¡ª", "You cannot see!"));
+		msg_print(_("ç›®ãŒè¦‹ãˆãªã„ï¼", "You cannot see!"));
 		return;
 	}
 
 	if (p_ptr->confused)
 	{
-		msg_print(_("º®Íğ¤·¤Æ¤¤¤ÆÆÉ¤á¤Ê¤¤¡ª", "You are too confused!"));
+		msg_print(_("æ··ä¹±ã—ã¦ã„ã¦èª­ã‚ãªã„ï¼", "You are too confused!"));
 		return;
 	}
 
 	if (!(p_ptr->new_spells))
 	{
-		msg_print(_("¿·¤·¤¤É¬»¦µ»¤ò³Ğ¤¨¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡ª", "You cannot learn any new special attacks!"));
+		msg_print(_("æ–°ã—ã„å¿…æ®ºæŠ€ã‚’è¦šãˆã‚‹ã“ã¨ã¯ã§ããªã„ï¼", "You cannot learn any new special attacks!"));
 		return;
 	}
 
 #ifdef JP
 	if( p_ptr->new_spells < 10 ){
-		msg_format("¤¢¤È %d ¤Ä¤ÎÉ¬»¦µ»¤ò³Ø¤Ù¤ë¡£", p_ptr->new_spells);
+		msg_format("ã‚ã¨ %d ã¤ã®å¿…æ®ºæŠ€ã‚’å­¦ã¹ã‚‹ã€‚", p_ptr->new_spells);
 	}else{
-		msg_format("¤¢¤È %d ¸Ä¤ÎÉ¬»¦µ»¤ò³Ø¤Ù¤ë¡£", p_ptr->new_spells);
+		msg_format("ã‚ã¨ %d å€‹ã®å¿…æ®ºæŠ€ã‚’å­¦ã¹ã‚‹ã€‚", p_ptr->new_spells);
 	}
 #else
 	msg_format("You can learn %d new special attack%s.", p_ptr->new_spells,
@@ -439,8 +442,8 @@ void do_cmd_gain_hissatsu(void)
 	item_tester_tval = TV_HISSATSU_BOOK;
 
 	/* Get an item */
-	q = _("¤É¤Î½ñ¤«¤é³Ø¤Ó¤Ş¤¹¤«? ", "Study which book? ");
-	s = _("ÆÉ¤á¤ë½ñ¤¬¤Ê¤¤¡£", "You have no books that you can read.");
+	q = _("ã©ã®æ›¸ã‹ã‚‰å­¦ã³ã¾ã™ã‹? ", "Study which book? ");
+	s = _("èª­ã‚ã‚‹æ›¸ãŒãªã„ã€‚", "You have no books that you can read.");
 
 	if (!get_item(&item, q, s, (USE_INVEN | USE_FLOOR))) return;
 
@@ -463,7 +466,7 @@ void do_cmd_gain_hissatsu(void)
 
 		p_ptr->spell_learned1 |= (1L << i);
 		p_ptr->spell_worked1 |= (1L << i);
-		msg_format(_("%s¤Îµ»¤ò³Ğ¤¨¤¿¡£", "You have learned the special attack of %s."), do_spell(REALM_HISSATSU, i, SPELL_NAME));
+		msg_format(_("%sã®æŠ€ã‚’è¦šãˆãŸã€‚", "You have learned the special attack of %s."), do_spell(REALM_HISSATSU, i, SPELL_NAME));
 		for (j = 0; j < 64; j++)
 		{
 			/* Stop at the first empty space */
@@ -475,7 +478,7 @@ void do_cmd_gain_hissatsu(void)
 
 	/* No gain ... */
 	if (!gain)
-		msg_print(_("²¿¤â³Ğ¤¨¤é¤ì¤Ê¤«¤Ã¤¿¡£", "You were not able to learn any special attacks."));
+		msg_print(_("ä½•ã‚‚è¦šãˆã‚‰ã‚Œãªã‹ã£ãŸã€‚", "You were not able to learn any special attacks."));
 
 	/* Take a turn */
 	else
@@ -486,15 +489,15 @@ void do_cmd_gain_hissatsu(void)
 
 
 /*!
- * @brief ·õ½Ñ¤Î¥¹¥ì¥¤ÇÜÎ¨·×»»¤ò¹Ô¤¦ /
+ * @brief å‰£è¡“ã®ã‚¹ãƒ¬ã‚¤å€ç‡è¨ˆç®—ã‚’è¡Œã† /
  * Calcurate magnification of hissatsu technics
- * @param mult ·õ½Ñ¤Î¥¹¥ì¥¤¸ú²Ì°ÊÁ°¤Ë»»½Ğ¤·¤Æ¤¤¤ëÂ¿Í×ÁÇ¤ÎÇÜÎ¨(/10ÇÜ)
- * @param flgs ·õ½Ñ¤Ë»ÈÍÑ¤¹¤ëÉğ´ï¤Î¥¹¥ì¥¤¥Õ¥é¥°ÇÛÎó
- * @param m_ptr ÌÜÉ¸¤È¤Ê¤ë¥â¥ó¥¹¥¿¡¼¤Î¹½Â¤ÂÎ»²¾È¥İ¥¤¥ó¥¿
- * @param mode ·õ½Ñ¤Î¥¹¥ì¥¤·¿ID
- * @return ¥¹¥ì¥¤¤ÎÇÜÎ¨(/10ÇÜ)
+ * @param mult å‰£è¡“ã®ã‚¹ãƒ¬ã‚¤åŠ¹æœä»¥å‰ã«ç®—å‡ºã—ã¦ã„ã‚‹å¤šè¦ç´ ã®å€ç‡(/10å€)
+ * @param flgs å‰£è¡“ã«ä½¿ç”¨ã™ã‚‹æ­¦å™¨ã®ã‚¹ãƒ¬ã‚¤ãƒ•ãƒ©ã‚°é…åˆ—
+ * @param m_ptr ç›®æ¨™ã¨ãªã‚‹ãƒ¢ãƒ³ã‚¹ã‚¿ãƒ¼ã®æ§‹é€ ä½“å‚ç…§ãƒã‚¤ãƒ³ã‚¿
+ * @param mode å‰£è¡“ã®ã‚¹ãƒ¬ã‚¤å‹ID
+ * @return ã‚¹ãƒ¬ã‚¤ã®å€ç‡(/10å€)
  */
-s16b mult_hissatsu(int mult, u32b *flgs, monster_type *m_ptr, int mode)
+MULTIPLY mult_hissatsu(MULTIPLY mult, BIT_FLAGS *flgs, monster_type *m_ptr, BIT_FLAGS mode)
 {
 	monster_race *r_ptr = &r_info[m_ptr->r_idx];
 
@@ -648,7 +651,7 @@ s16b mult_hissatsu(int mult, u32b *flgs, monster_type *m_ptr, int mode)
 	/* Bloody Maelstrom */
 	if ((mode == HISSATSU_SEKIRYUKA) && p_ptr->cut && monster_living(r_ptr))
 	{
-		int tmp = MIN(100, MAX(10, p_ptr->cut / 10));
+		MULTIPLY tmp = MIN(100, MAX(10, p_ptr->cut / 10));
 		if (mult < tmp) mult = tmp;
 	}
 

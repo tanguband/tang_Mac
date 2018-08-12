@@ -2,9 +2,9 @@
 
 AUTOMAKE_OPTIONS = foreign
 
-bin_PROGRAMS = tanguband
+bin_PROGRAMS = hengband
 
-tanguband_SOURCES = \
+hengband_SOURCES = \
 	z-util.c z-virt.c z-form.c z-rand.c z-term.c \
 	variable.c tables.c util.c cave.c \
 	kajitips.h object1.c object2.c monster1.c monster2.c \
@@ -25,7 +25,7 @@ tanguband_SOURCES = \
 	mindtips.h readdib.h rooms.h streams.h init.h \
 	types.h z-config.h z-form.h z-rand.h z-term.h z-util.h z-virt.h
 
-EXTRA_tanguband_SOURCES = \
+EXTRA_hengband_SOURCES = \
 	angband.ico angband.rc ang_eng.rc maid-x11.c main-mac.c main-win.c \
 	main-dos.c main-ibm.c \
 	makefile.bcc makefile.std makefile.dos makefile.ibm \
@@ -36,6 +36,6 @@ COMPILE = ./gcc-wrap $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS
 
 install-exec-hook:
 if SET_GID
-	chgrp "@GAMEGROUP@" "$(DESTDIR)$(bindir)/tanguband"
-	chmod g+s "$(DESTDIR)$(bindir)/tanguband"
+	chgrp "@GAMEGROUP@" "$(DESTDIR)$(bindir)/hengband"
+	chmod g+s "$(DESTDIR)$(bindir)/hengband"
 endif
