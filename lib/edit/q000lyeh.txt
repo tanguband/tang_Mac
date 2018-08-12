@@ -5,8 +5,8 @@ Q:$17:N:The City beneath the Sea
 Q:17:N:海底都市
 
 # type:num_mon:cur_num:max_num:level:r_idx:k_idx
-Q:$17:Q:2:0:0:1:90:857:4:0
-Q:17:Q:2:0:0:1:90:857:4:0
+Q:$17:Q:2:0:0:1:22:857:4:0
+Q:17:Q:2:0:0:1:22:857:4:0
 
 # Description for quest
 ?:[LEQ $QUEST17 2]

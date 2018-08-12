@@ -5,8 +5,8 @@ Q:$24:N:The Rise and Fall of Micro$oft
 Q:24:N:マイクロンフトの興亡
 
 # type:num_mon:cur_num:max_num:level:r_idx:k_idx
-Q:$24:Q:1:0:0:1:50:732:0:0:6
-Q:24:Q:1:0:0:1:50:732:0:0:6
+Q:$24:Q:1:0:0:1:13:732:0:0:6
+Q:24:Q:1:0:0:1:13:732:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST24 2]

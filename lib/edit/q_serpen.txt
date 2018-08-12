@@ -5,8 +5,8 @@ Q:$9:N:Serpent of Chaos
 Q:9:N:混沌のサーペント
 
 # Definition
-Q:$9:Q:1:0:0:1:100:862:0:1
-Q:9:Q:1:0:0:1:100:862:0:1
+Q:$9:Q:1:0:0:1:25:862:0:1
+Q:9:Q:1:0:0:1:25:862:0:1
 
 # Description for quest
 ?:[LEQ $QUEST9 2]

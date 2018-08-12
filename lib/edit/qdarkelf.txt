@@ -7,8 +7,8 @@ Q:$32:N:Dark Elven Lords Quest
 Q:32:N:ダークエルフの王
 
 # Definition 
-Q:$32:Q:6:0:0:0:25:0:0:0:6
-Q:32:Q:6:0:0:0:25:0:0:0:6
+Q:$32:Q:6:0:0:0:6:0:0:0:6
+Q:32:Q:6:0:0:0:6:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST32 2]
@@ -55,8 +55,13 @@ F:h:FLOOR:8:348
 # Normal floor
 F: :FLOOR:8
 
+# HEALING potion
+F:!:FLOOR:8:0:242
+
 # Dungeon layout
 D:XXXXXXXXX
+D:X!!!!!!!X
+D:XXXXDXXXX
 D:X       X
 D:X h h h X
 D:X       X

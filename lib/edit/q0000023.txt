@@ -6,8 +6,8 @@ Q:$23:N:Spawning Pits
 Q:23:N:増殖地獄
 
 # Definition
-Q:$23:Q:6:0:0:0:65:0:0:0:6
-Q:23:Q:6:0:0:0:65:0:0:0:6
+Q:$23:Q:6:0:0:0:16:0:0:0:6
+Q:23:Q:6:0:0:0:16:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST23 2]

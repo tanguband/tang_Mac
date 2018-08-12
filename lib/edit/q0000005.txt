@@ -5,8 +5,8 @@ Q:$5:N:The Tower
 Q:5:N:塔
 
 # Definition
-Q:$5:Q:8:0:0:0:40:0:0:0:10
-Q:5:Q:8:0:0:0:40:0:0:0:10
+Q:$5:Q:8:0:0:0:10:0:0:0:10
+Q:5:Q:8:0:0:0:10:0:0:0:10
 
 # Description for quest
 ?:[LEQ $QUEST5 2] 

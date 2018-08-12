@@ -6,8 +6,8 @@ Q:$20:N:Vapor Quest
 Q:20:N:謎の障気
 
 # Definition
-Q:$20:Q:6:0:0:0:25:0:0:0:6
-Q:20:Q:6:0:0:0:25:0:0:0:6
+Q:$20:Q:6:0:0:0:6:0:0:0:6
+Q:20:Q:6:0:0:0:6:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST20 2]

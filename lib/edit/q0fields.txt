@@ -5,8 +5,8 @@ Q:$26:N:Killing Fields
 Q:26:N:激戦場
 
 # Definition
-Q:$26:Q:1:0:0:1:50:723:0:0:6
-Q:26:Q:1:0:0:1:50:723:0:0:6
+Q:$26:Q:1:0:0:1:13:723:0:0:6
+Q:26:Q:1:0:0:1:13:723:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST26 2]

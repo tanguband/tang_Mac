@@ -8,8 +8,8 @@ Q:$18:N:Water Cave
 Q:18:N:湖の洞窟
 
 # type:num_mon:cur_num:max_num:level:r_index:k_idx
-Q:$18:Q:4:0:0:0:35:0:0:0:6
-Q:18:Q:4:0:0:0:35:0:0:0:6
+Q:$18:Q:4:0:0:0:9:0:0:0:6
+Q:18:Q:4:0:0:0:9:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST18 2]

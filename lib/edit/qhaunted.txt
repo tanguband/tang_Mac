@@ -5,8 +5,8 @@ Q:$25:N:Haunted House
 Q:25:N:幽霊屋敷
 
 # Definition
-Q:$25:Q:6:0:0:0:48:0:0:0:6
-Q:25:Q:6:0:0:0:48:0:0:0:6
+Q:$25:Q:6:0:0:0:12:0:0:0:6
+Q:25:Q:6:0:0:0:12:0:0:0:6
 
 # Description for quest
 ?:[LEQ $QUEST25 2]
