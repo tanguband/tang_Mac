@@ -1802,7 +1802,7 @@ static cptr class_jouhou[MAX_CLASS] =
   
 "ものまね師は戦闘力はそこそこありますが、自分から特殊な能力を使うことは全くできません。しかし、自分の目の前にいる相手が特殊能力を使った場合、その能力と全く同じ能力をそっくりそのまま使うことができます。ものまねに必要な能力は基本的に器用さですが、まねる特殊能力に関係ある他の能力も必要です。",
   
-"魔獣使いは変愚蛮怒世界のダンジョンに住む生物と心を通い合わせられます。彼らは最もうまくモンスターを乗りこなすことができ、召喚したり手なづけたりしたモンスターを自分の手足のように使います。魔法に必要な能力は魅力です。",
+"魔獣使いは短愚蛮怒世界のダンジョンに住む生物と心を通い合わせられます。彼らは最もうまくモンスターを乗りこなすことができ、召喚したり手なづけたりしたモンスターを自分の手足のように使います。魔法に必要な能力は魅力です。",
   
 "スペルマスターは全ての魔法を極める者です。彼らは全分野において非常に優れた魔法使いであり、あらゆる魔法書のすべての呪文を学習の手間なく使いこなすことができます。その反面、彼らは戦士としては最低で、どんな武器も満足に扱えません。魔術師の杖だけは例外ですが、武器としては使い物にならないでしょう。すべての魔法をうまく生かさなければならないため、非常に上級者向けな職業と言えます。魔法に必要な能力は知能です。",
   
@@ -2061,7 +2061,7 @@ static s32b stat_match[6];
 static s32b auto_round;
 
 /*! 
- * @brief プレイヤー作成を中断して変愚蛮怒を終了する
+ * @brief プレイヤー作成を中断して短愚蛮怒を終了する
  * @return なし
  */
 static void birth_quit(void)
@@ -3492,7 +3492,7 @@ void determine_random_questor(quest_type *q_ptr)
 		 * Random monster 5 - 10 levels out of depth
 		 * (depending on level)
 		 */
-		r_idx = get_mon_num(q_ptr->level + 5 + randint1(q_ptr->level / 10));
+		r_idx = get_mon_num(q_ptr->level + 1 + randint1(q_ptr->level / 40)); /*tang 10 -> 40 */
 		r_ptr = &r_info[r_idx];
 
 		if (!(r_ptr->flags1 & RF1_UNIQUE)) continue;
@@ -3513,7 +3513,7 @@ void determine_random_questor(quest_type *q_ptr)
 		 * Accept monsters that are 2 - 6 levels
 		 * out of depth depending on the quest level
 		 */
-		if (r_ptr->level > (q_ptr->level + (q_ptr->level / 20))) break;
+		if (r_ptr->level > (q_ptr->level + (q_ptr->level / 80))) break; /*tang 20 -> 80  */
 	}
 
 	q_ptr->r_idx = (s16b)r_idx;
