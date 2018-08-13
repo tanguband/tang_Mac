@@ -1,6 +1,6 @@
 /*!
  * @file angband.h
- * @brief Angband(変愚蛮怒)メインヘッダファイル
+ * @brief Angband(短愚蛮怒)メインヘッダファイル
  * Main "Angband" header file
  * @date 2014/08/08
  * @author
