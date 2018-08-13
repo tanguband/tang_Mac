@@ -1,6 +1,6 @@
 /*!
  * @file externs.h
- * @brief Angband(変愚蛮怒)基本関数、グローバル変数ヘッダファイル / 
+ * @brief Angband(短愚蛮怒)基本関数、グローバル変数ヘッダファイル / 
  * extern declarations (variables and functions)
  * @date 2014/08/08
  * @author
