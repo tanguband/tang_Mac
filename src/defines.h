@@ -36,7 +36,7 @@
  * You have been warned.\n
  */
 
-#define VERSION_NAME "Hengband" /*!< バリアント名称 / Name of the version/variant */
+#define VERSION_NAME "Tanguband" /*!< バリアント名称 / Name of the version/variant */
 
 /*!
  * @brief ゲームのバージョン番号定義 / "Program Version Number" of the game
@@ -50,10 +50,10 @@
  */
 #define FAKE_VERSION 0
 
-#define FAKE_VER_MAJOR 12 /*!< ゲームのバージョン番号定義(メジャー番号 + 10) */
-#define FAKE_VER_MINOR 2 /*!< ゲームのバージョン番号定義(マイナー番号) */
-#define FAKE_VER_PATCH 1 /*!< ゲームのバージョン番号定義(パッチ番号) */
-#define FAKE_VER_EXTRA 5 /*!< ゲームのバージョン番号定義(エクストラ番号) */
+#define FAKE_VER_MAJOR 28 /*!< ゲームのバージョン番号定義(メジャー番号 + 10) */
+#define FAKE_VER_MINOR 18 /*!< ゲームのバージョン番号定義(マイナー番号) */
+#define FAKE_VER_PATCH 0 /*!< ゲームのバージョン番号定義(パッチ番号) */
+#define FAKE_VER_EXTRA 0 /*!< ゲームのバージョン番号定義(エクストラ番号) */
 
 
  /*!
@@ -597,7 +597,7 @@
  */
 #define NASTY_MON_BASE     25
 #define NASTY_MON_MAX      3	/*!< 深層モンスターが1フロアに生成される最大数  */
-#define NASTY_MON_PLUS_MAX 25	/*!< 深層モンスターの階層加算最大量 */
+#define NASTY_MON_PLUS_MAX 4	/*!< 深層モンスターの階層加算最大量 */ /* #tang 25 -> 4 */
 
 #define PENETRATE_INVULNERABILITY 13 /*!< 無敵化が破られる確率(1/x) / 1/x chance of hurting even if invulnerable! */
 
@@ -1491,6 +1491,14 @@
 
 /* Arrows */
 #define ART_BARD_ARROW          153
+
+/* #tang */
+#define ART_TANG_GLOVES         232 /* #tang */
+#define ART_TANG_BOOTS          237 /* #tang */
+#define ART_TANG_CLOAK          252 /* #tang */
+#define ART_TANG_SWORD          253 /* #tang */
+#define ART_TANG_HELM           254 /* #tang */
+#define ART_TANG_ARMOR          255 /* #tang */
 
 /*** Ego-Item indexes (see "lib/edit/e_info.txt") ***/
 
@@ -4920,10 +4928,15 @@ extern int PlayerUID;
 #define MS_S_AMBERITE     94
 #define MS_S_UNIQUE       95
 
-
-#define MON_BEGGAR        12
-#define MON_LEPER         13
+#define MON_TANG_CLOAK     1 /* #tang */
+#define MON_TANG_SWORD     2 /* #tang */
+#define MON_TANG_HELM      3 /* #tang */
+#define MON_TANG_ARMOR     4 /* #tang */
+#define MON_TANG_GLOVES    5 /* #tang */
+#define MON_TANG_BOOTS     6 /* #tang */
 #define MON_BLACK_MARKET  14
+#define MON_MIMIC_HEALING 15 /* #tang */
+#define MON_MIMIC_MANA    17 /* #tang */
 #define MON_LION_HEART    19
 #define MON_GHB           39
 #define MON_NOV_PRIEST    45
