@@ -4950,10 +4950,10 @@ static void dump_aux_home_museum(FILE *fff)
 errr make_character_dump(FILE *fff)
 {
 #ifdef JP
-	fprintf(fff, "  [変愚蛮怒 %d.%d.%d キャラクタ情報]\n\n",
+	fprintf(fff, "  [短愚蛮怒 %d.%d.%d キャラクタ情報]\n\n",
 		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 #else
-	fprintf(fff, "  [Hengband %d.%d.%d Character Dump]\n\n",
+	fprintf(fff, "  [tanguband %d.%d.%d Character Dump]\n\n",
 		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 #endif
 
@@ -5048,6 +5048,55 @@ errr file_character(cptr name)
 	return (0);
 }
 
+/* #tang 自動ダンプ出力用 */
+/*!
+ * @brief プレイヤーステータスをmorgue.txtにファイルダンプ出力する
+ * Hack -- Dump a character description to mogue.txt
+ * @return エラーコード
+ * @details
+ * XXX XXX XXX Allow the "full" flag to dump additional info,
+ * and trigger its usage from various places in the code.
+ */
+errr auto_file_character()
+{
+	FILE		*fff = NULL;
+	char		buf[1024];
+
+	/* Build the filename */
+	path_build(buf, sizeof(buf), ANGBAND_DIR_USER, "morgue.txt");
+
+	/* File type is "TEXT" */
+	FILE_TYPE(FILE_TYPE_TEXT);
+
+	/* Open the non-existing file */
+	fff = my_fopen(buf, "w");
+
+	/* Invalid file */
+	if (!fff)
+	{
+		/* Message */
+		prt(_("キャラクタ情報のファイルへの書き出しに失敗しました！", "Character dump failed!"), 0, 0);
+
+		(void)inkey();
+
+		/* Error */
+		return (-1);
+	}
+
+	(void)make_character_dump(fff);
+
+	/* Close it */
+	my_fclose(fff);
+
+
+	/* Message */
+	msg_print(_("キャラクタ情報のファイルへの書き出しに成功しました。", "Character dump successful."));
+	msg_print(NULL);
+
+	/* Success */
+	return (0);
+}
+/* #tang */
 
 /*!
  * @brief ファイル内容の一行をコンソールに出力する
@@ -5505,7 +5554,7 @@ bool show_file(bool show_version, cptr name, cptr what, int line, BIT_FLAGS mode
 		/* Show a general "title" */
 		if (show_version)
 		{
-			prt(format(_("[変愚蛮怒 %d.%d.%d, %s, %d/%d]", "[Hengband %d.%d.%d, %s, Line %d/%d]"),
+			prt(format(_("[短愚蛮怒 %d.%d.%d, %s, %d/%d]", "[tanguband %d.%d.%d, %s, Line %d/%d]"),
 			   FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH,
 			   caption, line, size), 0, 0);
 		}
@@ -6601,8 +6650,15 @@ static void show_info(void)
 		/* Default */
 		strcpy(out_val, "");
 
-		/* Ask for filename (or abort) */
-		if (!askfor(out_val, 60)) return;
+		/* #tang ダンプ強制出力 */
+		if (!askfor(out_val, 60))
+		{
+			screen_save();
+			(void)auto_file_character("morgue.txt");
+			screen_load();
+			return;
+		}
+		/* #tang */
 
 		/* Return means "show on screen" */
 		if (!out_val[0]) break;
