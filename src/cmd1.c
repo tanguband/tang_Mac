@@ -1375,7 +1375,7 @@ static void touch_zap_player_aux(monster_type *m_ptr, bool immune, int flags_off
 	if ((atoffset(u32b, r_ptr, flags_offset) & aura_flag) && !immune)
 	{
 		char mon_name[80];
-		int aura_damage = damroll(1 + (r_ptr->level / 26), 1 + (r_ptr->level / 17));
+		int aura_damage = damroll(1 + (r_ptr->level * 4 / 26), 1 + (r_ptr->level * 4 / 17)); /*tang level -> level*4 */
 
 		/* Hack -- Get the "died from" name */
 		monster_desc(mon_name, m_ptr, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
@@ -1628,25 +1628,25 @@ static void py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, BIT
 
 	if (!o_ptr->k_idx) /* Empty hand */
 	{
-		if ((r_ptr->level + 10) > p_ptr->lev)
+		if ((r_ptr->level * 3 + 10) > p_ptr->lev) /* #tang (r_ptr->level + 10) -> (r_ptr->level * 3 + 10) */
 		{
 			if (p_ptr->skill_exp[GINOU_SUDE] < s_info[p_ptr->pclass].s_max[GINOU_SUDE])
 			{
 				if (p_ptr->skill_exp[GINOU_SUDE] < WEAPON_EXP_BEGINNER)
-					p_ptr->skill_exp[GINOU_SUDE] += 40;
+					p_ptr->skill_exp[GINOU_SUDE] += 200; /*tang 40 -> 200 */
 				else if ((p_ptr->skill_exp[GINOU_SUDE] < WEAPON_EXP_SKILLED))
-					p_ptr->skill_exp[GINOU_SUDE] += 5;
+					p_ptr->skill_exp[GINOU_SUDE] += 25; /*tang 5 -> 25 */
 				else if ((p_ptr->skill_exp[GINOU_SUDE] < WEAPON_EXP_EXPERT) && (p_ptr->lev > 19))
-					p_ptr->skill_exp[GINOU_SUDE] += 1;
+					p_ptr->skill_exp[GINOU_SUDE] += 5; /*tang 1 -> 5 */
 				else if ((p_ptr->lev > 34))
-					if (one_in_(3)) p_ptr->skill_exp[GINOU_SUDE] += 1;
+					if (one_in_(3)) p_ptr->skill_exp[GINOU_SUDE] += 5; /*tang 1 -> 5 */
 				p_ptr->update |= (PU_BONUS);
 			}
 		}
 	}
 	else if (object_is_melee_weapon(o_ptr))
 	{
-		if ((r_ptr->level + 10) > p_ptr->lev)
+		if ((r_ptr->level * 3 + 10) > p_ptr->lev) /* #tang (r_ptr->level + 10) -> (r_ptr->level * 3 + 10) */
 		{
 			OBJECT_TYPE_VALUE tval = inventory[INVEN_RARM+hand].tval - TV_WEAPON_BEGIN;
 			OBJECT_SUBTYPE_VALUE sval = inventory[INVEN_RARM+hand].sval;
@@ -1654,10 +1654,10 @@ static void py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, BIT
 			if (now_exp < s_info[p_ptr->pclass].w_max[tval][sval])
 			{
 				SUB_EXP amount = 0;
-				if (now_exp < WEAPON_EXP_BEGINNER) amount = 80;
-				else if (now_exp < WEAPON_EXP_SKILLED) amount = 10;
-				else if ((now_exp < WEAPON_EXP_EXPERT) && (p_ptr->lev > 19)) amount = 1;
-				else if ((p_ptr->lev > 34) && one_in_(2)) amount = 1;
+				if (now_exp < WEAPON_EXP_BEGINNER) amount = 400; /* #tang 80 -> 400 */
+				else if (now_exp < WEAPON_EXP_SKILLED) amount = 50; /* #tang 10 -> 50 */
+				else if ((now_exp < WEAPON_EXP_EXPERT) && (p_ptr->lev > 19)) amount = 5; /* #tang 1 -> 5 */
+				else if ((p_ptr->lev > 34) && one_in_(2)) amount = 5; /* #tang 1 -> 5 */
 				p_ptr->weapon_exp[tval][sval] += amount;
 				p_ptr->update |= (PU_BONUS);
 			}
@@ -2234,7 +2234,7 @@ static void py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, BIT
 					msg_format(_("%^sには効果がなかった。", "%^s is unaffected."), m_name);
 
 				}
-				else if (randint0(100) < r_ptr->level)
+				else if (randint0(25) < r_ptr->level) /* #tang 100 -> 25 */
 				{
 					msg_format(_("%^sには効果がなかった。", "%^s is unaffected."), m_name);
 				}
@@ -2257,7 +2257,7 @@ static void py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, BIT
 						msg_format(_("%^sには効果がなかった。", "%^s is unaffected!"), m_name);
 						resists_tele = TRUE;
 					}
-					else if (r_ptr->level > randint1(100))
+					else if (r_ptr->level > randint1(25)) /* #tang 100 -> 25 */
 					{
 						if (is_original_ap_and_seen(m_ptr)) r_ptr->r_flagsr |= RFR_RES_TELE;
 						msg_format(_("%^sは抵抗力を持っている！", "%^s resists!"), m_name);
@@ -2274,7 +2274,7 @@ static void py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, BIT
 				}
 			}
 
-			else if ((chaos_effect == 5) && (randint1(90) > r_ptr->level))
+			else if ((chaos_effect == 5) && (randint1(22) > r_ptr->level)) /* #tang 90 -> 22 */
 			{
 				if (!(r_ptr->flags1 & (RF1_UNIQUE | RF1_QUESTOR)) &&
 				    !(r_ptr->flagsr & RFR_EFF_RES_CHAO_MASK))
@@ -2576,16 +2576,16 @@ bool py_attack(int y, int x, BIT_FLAGS mode)
 
 	if (p_ptr->migite && p_ptr->hidarite)
 	{
-		if ((p_ptr->skill_exp[GINOU_NITOURYU] < s_info[p_ptr->pclass].s_max[GINOU_NITOURYU]) && ((p_ptr->skill_exp[GINOU_NITOURYU] - 1000) / 200 < r_ptr->level))
+		if ((p_ptr->skill_exp[GINOU_NITOURYU] < s_info[p_ptr->pclass].s_max[GINOU_NITOURYU]) && ((p_ptr->skill_exp[GINOU_NITOURYU] - 1000) / 600 < r_ptr->level)) /* #tang 200 -> 600 */
 		{
 			if (p_ptr->skill_exp[GINOU_NITOURYU] < WEAPON_EXP_BEGINNER)
-				p_ptr->skill_exp[GINOU_NITOURYU] += 80;
+				p_ptr->skill_exp[GINOU_NITOURYU] += 400; /* #tang 80 -> 400 */
 			else if(p_ptr->skill_exp[GINOU_NITOURYU] < WEAPON_EXP_SKILLED)
-				p_ptr->skill_exp[GINOU_NITOURYU] += 4;
+				p_ptr->skill_exp[GINOU_NITOURYU] += 20; /* #tang 4 -> 20 */
 			else if(p_ptr->skill_exp[GINOU_NITOURYU] < WEAPON_EXP_EXPERT)
-				p_ptr->skill_exp[GINOU_NITOURYU] += 1;
+				p_ptr->skill_exp[GINOU_NITOURYU] += 5; /* #tang 1 -> 5 */
 			else if(p_ptr->skill_exp[GINOU_NITOURYU] < WEAPON_EXP_MASTER)
-				if (one_in_(3)) p_ptr->skill_exp[GINOU_NITOURYU] += 1;
+				if (one_in_(3)) p_ptr->skill_exp[GINOU_NITOURYU] += 5; /* #tang 1 -> 5 */
 			p_ptr->update |= (PU_BONUS);
 		}
 	}
@@ -2602,16 +2602,16 @@ bool py_attack(int y, int x, BIT_FLAGS mode)
 			int targetlevel = r_ptr->level;
 			int inc = 0;
 
-			if ((cur / 200 - 5) < targetlevel)
-				inc += 1;
+			if ((cur / 200 - 5) < targetlevel * 3) /* #tang targetlevel -> targetlevel*3 */
+				inc += 10; /* #tang 1 -> 10 */
 
 			/* Extra experience */
-			if ((cur / 100) < ridinglevel)
+			if ((cur / 100) < ridinglevel * 3) /* #tang ridinglevel -> ridinglevel*3 */
 			{
-				if ((cur / 100 + 15) < ridinglevel)
-					inc += 1 + (ridinglevel - (cur / 100 + 15));
+				if ((cur / 100 + 15) < ridinglevel * 3) /* #tang ridinglevel -> ridinglevel*3 */
+					inc += 10 + (ridinglevel * 3 - (cur / 100 + 15)); /* #tang 1 -> 10 , ridinglevel -> ridinglevel*3 */
 				else
-					inc += 1;
+					inc += 10; /* #tang 1 -> 10 */
 			}
 
 			p_ptr->skill_exp[GINOU_RIDING] = MIN(max, cur + inc);
