@@ -17,12 +17,12 @@ static int weakening_artifact(object_type *o_ptr);
 
 
 /* Chance of using syllables to form the name instead of the "template" files */
-#define SINDARIN_NAME   10 /*!< ランダムアーティファクトにシンダリン銘をつける確率 */
-#define TABLE_NAME      20 /*!< ランダムアーティファクトに漢字銘をつける確率(正確には TABLE_NAME - SINDARIN_NAME %)となる */
-#define A_CURSED        13 /*!< 1/nの確率で生成の巻物以外のランダムアーティファクトが呪いつきになる。 */
-#define WEIRD_LUCK      12 /*!< 1/nの確率でrandom_resistance()の処理中バイアス外の耐性がつき、create_artifactで4を超えるpvalが許可される。*/
-#define BIAS_LUCK       20 /*!< 1/nの確率でrandom_resistance()で付加する元素耐性が免疫になる */
-#define IM_LUCK         7 /*!< 1/nの確率でrandom_resistance()で複数免疫の除去処理が免除される */
+#define SINDARIN_NAME   100 /*!< ランダムアーティファクトにシンダリン銘をつける確率 */ /* #tang 10 -> 100*/
+#define TABLE_NAME      100 /*!< ランダムアーティファクトに漢字銘をつける確率(正確には TABLE_NAME - SINDARIN_NAME %)となる */ /* #tang 20 -> 100*/
+#define A_CURSED        99 /*!< 1/nの確率で生成の巻物以外のランダムアーティファクトが呪いつきになる。 */ /* #tang 13 -> 99*/
+#define WEIRD_LUCK      3 /*!< 1/nの確率でrandom_resistance()の処理中バイアス外の耐性がつき、create_artifactで4を超えるpvalが許可される。*/ /* #tang 12 -> 3*/
+#define BIAS_LUCK       10 /*!< 1/nの確率でrandom_resistance()で付加する元素耐性が免疫になる */ /* #tang 20 -> 10*/
+#define IM_LUCK         4 /*!< 1/nの確率でrandom_resistance()で複数免疫の除去処理が免除される */ /* #tang 7 -> 4*/
 
 /*! @note
  * Bias luck needs to be higher than weird luck,
@@ -1873,7 +1873,7 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
 
 	if (a_cursed) powers /= 2;
 
-	max_powers = powers;
+	max_powers = powers * 20; /* #tang powers -> powers * 20 */
 	/* Main loop */
 	while (powers--)
 	{
@@ -1923,7 +1923,7 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
 
 		if (have_flag(o_ptr->art_flags, TR_BLOWS))
 		{
-			o_ptr->pval = randint1(2);
+			o_ptr->pval = randint1(3); /* #tang 2 -> 3 */
 			if ((o_ptr->tval == TV_SWORD) && (o_ptr->sval == SV_HAYABUSA))
 				o_ptr->pval++;
 		}
@@ -1936,8 +1936,8 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
 			while (o_ptr->pval < randint1(5) || one_in_(o_ptr->pval));
 		}
 
-		if ((o_ptr->pval > 4) && !one_in_(WEIRD_LUCK))
-			o_ptr->pval = 4;
+		if ((o_ptr->pval > 5) && !one_in_(WEIRD_LUCK)) /* #tang 4 -> 5 */
+			o_ptr->pval = 5; /* #tang 4 -> 5 */
 	}
 
 
@@ -2014,8 +2014,8 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
 	{
 		/* For armors */
 		if (a_cursed) power_level = 0;
-		else if (total_flags < 15000) power_level = 1;
-		else if (total_flags < 35000) power_level = 2;
+		else if (total_flags < 10000) power_level = 1; /* #tang 15000 -> 10000 */
+		else if (total_flags < 30000) power_level = 2; /* #tang 35000 -> 30000 */
 		else power_level = 3;
 	}
 
@@ -2023,19 +2023,9 @@ bool create_artifact(object_type *o_ptr, bool a_scroll)
 	{
 		/* For weapons */
 		if (a_cursed) power_level = 0;
-		else if (total_flags < 20000) power_level = 1;
-		else if (total_flags < 45000) power_level = 2;
+		else if (total_flags < 15000) power_level = 1; /* #tang 20000 -> 15000 */
+		else if (total_flags < 35000) power_level = 2; /* #tang 45000 -> 35000 */
 		else power_level = 3;
-	}
-
-	/* 平均対邪ダメージが一定以上なら11/12(WEIRD_LUCK)でダメージ抑制処理を行う */
-	if(suppression_evil_dam(o_ptr) && !one_in_(WEIRD_LUCK) && object_is_weapon(o_ptr))
-	{
-		msg_format_wizard(CHEAT_OBJECT, "アーティファクトの抑制処理を行います。");
-		do
-		{
-			if (weakening_artifact(o_ptr) == 0) break;
-		} while (suppression_evil_dam(o_ptr));
 	}
 
 	if (a_scroll)
