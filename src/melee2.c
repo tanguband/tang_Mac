@@ -435,7 +435,7 @@ static bool mon_will_run(MONSTER_IDX m_idx)
 
 	/* Optimize extreme cases below */
 	if (m_lev > p_lev + 4) return (FALSE);
-	if (m_lev + 4 <= p_lev) return (TRUE);
+	if (m_lev + 4 <= p_lev) return (FALSE);	/* #tang TRUE -> FALSE モンスター逃げないように変更 */
 
 	/* Examine player health */
 	p_chp = p_ptr->chp;
@@ -450,7 +450,8 @@ static bool mon_will_run(MONSTER_IDX m_idx)
 	m_val = (m_lev * m_mhp) + (m_chp << 2); /* div m_mhp */
 
 	/* Strong players scare strong monsters */
-	if (p_val * m_mhp > m_val * p_mhp) return (TRUE);
+	if (p_val * m_mhp > m_val * p_mhp) return (FALSE);	/* #tang TRUE -> FALSE モンスター逃げないように変更 */
+
 
 #endif
 
@@ -1754,7 +1755,7 @@ static bool monst_attack_monst(MONSTER_IDX m_idx, IDX t_idx)
 				break;
 
 			case RBE_SUPERHURT:
-				if ((randint1(rlev*2+250) > (ac+200)) || one_in_(13))
+				if ((randint1(rlev*8+250) > (ac+200)) || one_in_(13)) /* #tang rlev*2 -> rlev*8 */
 				{
 					int tmp_damage = damage - (damage * ((ac < 150) ? ac : 150) / 250);
 					damage = MAX(damage, tmp_damage * 2);
@@ -2829,7 +2830,7 @@ static void process_monster(MONSTER_IDX m_idx)
 			do_move = FALSE;
 
 			/* Break the ward */
-			if (!is_pet(m_ptr) && (randint1(BREAK_GLYPH) < r_ptr->level))
+			if (!is_pet(m_ptr) && (randint1(BREAK_GLYPH) < r_ptr->level * 4)) /* #tang r_ptr->level -> r_ptr->level*4 */
 			{
 				/* Describe observable breakage */
 				if (c_ptr->info & CAVE_MARK)
@@ -2861,7 +2862,7 @@ static void process_monster(MONSTER_IDX m_idx)
 			if (!is_pet(m_ptr))
 			{
 				/* Break the ward */
-				if (randint1(BREAK_MINOR_GLYPH) > r_ptr->level)
+				if (randint1(BREAK_MINOR_GLYPH) > r_ptr->level *4) /* #tang r_ptr->level -> r_ptr->level*4 */
 				{
 					/* Describe observable breakage */
 					if (c_ptr->info & CAVE_MARK)
@@ -4136,7 +4137,7 @@ static void process_monsters_mtimed_aux(MONSTER_IDX m_idx, int mtimed_idx)
 		int rlev = r_info[m_ptr->r_idx].level;
 
 		/* Recover from stun */
-		if (set_monster_stunned(m_idx, (randint0(10000) <= rlev * rlev) ? 0 : (MON_STUNNED(m_ptr) - 1)))
+		if (set_monster_stunned(m_idx, (randint0(10000) <= rlev * rlev * 16) ? 0 : (MON_STUNNED(m_ptr) - 1))) /* #tang rlev -> rlev*4 */
 		{
 			/* Message if visible */
 			if (is_seen(m_ptr))
@@ -4155,7 +4156,7 @@ static void process_monsters_mtimed_aux(MONSTER_IDX m_idx, int mtimed_idx)
 
 	case MTIMED_CONFUSED:
 		/* Reduce the confusion */
-		if (set_monster_confused(m_idx, MON_CONFUSED(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 20 + 1)))
+		if (set_monster_confused(m_idx, MON_CONFUSED(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 5 + 1))) /* #tang 20 -> 5 */
 		{
 			/* Message if visible */
 			if (is_seen(m_ptr))
@@ -4173,7 +4174,7 @@ static void process_monsters_mtimed_aux(MONSTER_IDX m_idx, int mtimed_idx)
 
 	case MTIMED_MONFEAR:
 		/* Reduce the fear */
-		if (set_monster_monfear(m_idx, MON_MONFEAR(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 20 + 1)))
+		if (set_monster_monfear(m_idx, MON_MONFEAR(m_ptr) - randint1(r_info[m_ptr->r_idx].level / 5 + 1))) /* #tang 20 -> 5 */
 		{
 			/* Visual note */
 			if (is_seen(m_ptr))
