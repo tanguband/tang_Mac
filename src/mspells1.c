@@ -1612,7 +1612,7 @@ bool make_attack_spell(MONSTER_IDX m_idx)
 	reset_target(m_ptr);
 
 	/* Extract the monster level */
-	rlev = ((r_ptr->level >= 1) ? r_ptr->level : 1);
+	rlev = (((r_ptr->level >= 1) ? r_ptr->level : 1) * 4 ); /* #tang rlev > rlev*4 */
 
 	/* Forbid inate attacks sometimes */
 	if (no_inate)
@@ -1796,7 +1796,7 @@ bool make_attack_spell(MONSTER_IDX m_idx)
 	if (!thrown_spell) return (FALSE);
 
 	/* Calculate spell failure rate */
-	failrate = 25 - (rlev + 3) / 4;
+	failrate = 25 - (rlev * 4 + 3) / 4; /* #tang rlev > rlev*4 */
 
 	/* Hack -- Stupid monsters will never fail (for jellies and such) */
 	if (r_ptr->flags2 & RF2_STUPID) failrate = 0;
