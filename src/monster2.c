@@ -1318,8 +1318,8 @@ MONRACE_IDX get_mon_num(DEPTH level)
 	{
 		pls_kakuritu = MIN(pls_kakuritu / 2, pls_kakuritu - 10);
 		if (pls_kakuritu < 2) pls_kakuritu = 2;
-		pls_level += 2;
-		level += 3;
+		pls_level += 1; /* #tang 2 -> 0 */
+		level += 1; /* #tang 3 -> 0 */
 	}
 
 	/* Boost the level */
@@ -1967,7 +1967,7 @@ void sanity_blast(monster_type *m_ptr, bool necro)
 		char m_name[80];
 		monster_race *r_ptr = &r_info[m_ptr->ap_r_idx];
 
-		power = r_ptr->level / 2;
+		power = r_ptr->level * 2; /* #tang level / 2 -> level * 2 */
 
 		monster_desc(m_name, m_ptr, 0);
 
@@ -4027,7 +4027,7 @@ bool summon_specific(MONSTER_IDX who, POSITION y1, POSITION x1, DEPTH lev, int t
 	get_mon_num_prep(summon_specific_okay, get_monster_hook2(y, x));
 
 	/* Pick a monster, using the level calculation */
-	r_idx = get_mon_num((dun_level + lev) / 2 + 5);
+	r_idx = get_mon_num( dun_level + 1 ); /* #tang (dun_level + lev) / 2 + 5 -> (dun_level + 1) ¾¤´­¥ì¥Ù¥ëÄ´À°*/
 
 	/* Handle failure */
 	if (!r_idx)
