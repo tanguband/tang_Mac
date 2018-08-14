@@ -67,14 +67,14 @@ LIBS = -lpc -lalleg
 # Targets
 #
 
-default: hengband.exe
-	copy hengband.exe ..
-	del hengband.exe
+default: tanguband.exe
+	copy tanguband.exe ..
+	del tanguband.exe
 
-install: hengband.exe
-	copy hengband.exe ..
+install: tanguband.exe
+	copy tanguband.exe ..
 
-all: hengband.exe
+all: tanguband.exe
 	@echo All done.  Use 'make install' to install.
 
 
@@ -82,7 +82,7 @@ all: hengband.exe
 # Link executables
 #
 
-hengband.exe: $(OBJS)
+tanguband.exe: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS)
 
 
