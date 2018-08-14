@@ -3357,7 +3357,7 @@ static void init_windows(void)
 	td = &data[0];
 	WIPE(td, term_data);
 #ifdef JP
-	td->s = "変愚蛮怒";
+	td->s = "短愚蛮怒";
 #else
 	td->s = angband_term_name[0];
 #endif
@@ -5699,7 +5699,7 @@ int FAR PASCAL WinMain(HINSTANCE hInst, HINSTANCE hPrevInst,
 	if (is_already_running())
 	{
 		MessageBox(NULL,
-				_("変愚蛮怒はすでに起動しています。", "Hengband is already running."), 
+				_("短愚蛮怒はすでに起動しています。", "tanguband is already running."), 
 				_("エラー！", "Error") ,
 				MB_ICONEXCLAMATION | MB_OK | MB_ICONSTOP);
 		return FALSE;
