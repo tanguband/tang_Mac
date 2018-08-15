@@ -5633,7 +5633,7 @@ int activate_hi_summon(POSITION y, POSITION x, bool can_pet)
 int summon_cyber(MONSTER_IDX who, POSITION y, POSITION x)
 {
 	int i;
-	int max_cyber = (easy_band ? 1 : (dun_level / 50) + randint1(2));
+	int max_cyber = (easy_band ? 1 : (dun_level / 24) + randint1(2)); /* #tang 50 -> 24 */
 	int count = 0;
 	BIT_FLAGS mode = PM_ALLOW_GROUP;
 
