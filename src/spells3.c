@@ -3873,7 +3873,7 @@ int mod_need_mana(int need_mana, int spell, int realm)
 {
 #define MANA_CONST   2400
 #define MANA_DIV        4
-#define DEC_MANA_DIV    3
+#define DEC_MANA_DIV    2 /* #tang 3 -> 2 */
 
 	/* Realm magic */
 	if ((realm > REALM_NONE) && (realm <= MAX_REALM))
@@ -5419,7 +5419,7 @@ bool eat_magic(int power)
 	}
 
 	k_ptr = &k_info[o_ptr->k_idx];
-	lev = k_info[o_ptr->k_idx].level;
+	lev = k_info[o_ptr->k_idx].level * 7; /* #tang 1 -> *7 */
 
 	if (o_ptr->tval == TV_ROD)
 	{
