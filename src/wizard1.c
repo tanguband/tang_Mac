@@ -1428,7 +1428,7 @@ static void print_header(void)
 {
 	char buf[80];
 
-	sprintf(buf, "Artifact Spoilers for Hengband Version %d.%d.%d",
+	sprintf(buf, "Artifact Spoilers for tanguband Version %d.%d.%d",
 		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 	spoiler_underline(buf);
 }
@@ -1802,7 +1802,7 @@ static void spoil_mon_desc(cptr fname)
 	C_MAKE(who, max_r_idx, s16b);
 
 	/* Dump the header */
-	fprintf(fff, "Monster Spoilers for Hengband Version %d.%d.%d\n",
+	fprintf(fff, "Monster Spoilers for tanguband Version %d.%d.%d\n",
 		FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 	fprintf(fff, "------------------------------------------\n\n");
 
@@ -2141,7 +2141,7 @@ static void spoil_mon_info(cptr fname)
 
 
 	/* Dump the header */
-	sprintf(buf, "Monster Spoilers for Hengband Version %d.%d.%d\n",
+	sprintf(buf, "Monster Spoilers for tanguband Version %d.%d.%d\n",
 	     FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 
 	spoil_out(buf);
@@ -2419,7 +2419,7 @@ static void spoil_mon_evol(cptr fname)
 	}
 
 	/* Dump the header */
-	sprintf(buf, "Monster Spoilers for Hengband Version %d.%d.%d\n",
+	sprintf(buf, "Monster Spoilers for tanguband Version %d.%d.%d\n",
 	     FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 
 	spoil_out(buf);
