@@ -897,7 +897,7 @@ static s32b object_value_base(object_type *o_ptr)
 		/* Figurines, relative to monster level */
 		case TV_FIGURINE:
 		{
-			int level = r_info[o_ptr->pval].level;
+			int level = r_info[o_ptr->pval].level * 4; /* #tang 0 -> *4 */
 			if (level < 20) return level*50L;
 			else if (level < 30) return 1000+(level-20)*150L;
 			else if (level < 40) return 2500+(level-30)*350L;
@@ -3172,7 +3172,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_ATTACKS:
 				{
 					/* Stat bonus */
-					o_ptr->pval = (PARAMETER_VALUE)m_bonus(2, level);
+					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(2, level); /* #tang pval -> pval+1 */
 					if (one_in_(15)) o_ptr->pval++;
 					if (o_ptr->pval < 1) o_ptr->pval = 1;
 
@@ -3186,7 +3186,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 						o_ptr->curse_flags |= TRC_CURSED;
 
 						/* Reverse pval */
-						o_ptr->pval = 0 - (o_ptr->pval);
+						/*o_ptr->pval = 0 - (o_ptr->pval); /* #tang -> del */
 					}
 
 					break;
@@ -3225,7 +3225,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_SPEED:
 				{
 					/* Base speed (1 to 10) */
-					o_ptr->pval = randint1(5) + (PARAMETER_VALUE)m_bonus(5, level);
+					o_ptr->pval = 2 + randint1(5) + (PARAMETER_VALUE)m_bonus(5, level); /* #tang pval -> pval+2 */
 
 					/* Super-charge the ring */
 					while (randint0(100) < 50) o_ptr->pval++;
@@ -3338,7 +3338,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_DAMAGE:
 				{
 					/* Bonus to damage */
-					o_ptr->to_d = 1 + randint1(5) + (HIT_POINT)m_bonus(16, level);
+					o_ptr->to_d = 5 + randint1(9) + (HIT_POINT)m_bonus(16, level); /* #tang 1 + randint1(5) -> 5 + randint1(9) */
 
 					/* Cursed */
 					if (power < 0)
@@ -3360,7 +3360,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_ACCURACY:
 				{
 					/* Bonus to hit */
-					o_ptr->to_h = 1 + randint1(5) + (HIT_PROB)m_bonus(16, level);
+					o_ptr->to_h = 15 + randint1(9) + (HIT_PROB)m_bonus(16, level); /* #tang 1 + randint1(5) -> 15 + randint1(9) */
 
 					/* Cursed */
 					if (power < 0)
@@ -3404,8 +3404,8 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 				case SV_RING_SLAYING:
 				{
 					/* Bonus to damage and to hit */
-					o_ptr->to_d = randint1(5) + (HIT_POINT)m_bonus(12, level);
-					o_ptr->to_h = randint1(5) + (HIT_PROB)m_bonus(12, level);
+					o_ptr->to_d = 4 + randint1(9) + (HIT_POINT)m_bonus(12, level); /* #tang randint1(5) -> 4 + randint1(9) */
+					o_ptr->to_h = 4 + randint1(9) + (HIT_PROB)m_bonus(12, level); /* #tang randint1(5) -> 4 + randint1(9) */
 
 					/* Cursed */
 					if (power < 0)
@@ -3426,7 +3426,7 @@ static void a_m_aux_3(object_type *o_ptr, int level, int power)
 
 				case SV_RING_MUSCLE:
 				{
-					o_ptr->pval = 1 + (PARAMETER_VALUE)m_bonus(3, level);
+					o_ptr->pval = 2 + (PARAMETER_VALUE)m_bonus(3, level); /* #tang 1 -> 2 */
 					if (one_in_(4)) o_ptr->pval++;
 
 					/* Cursed */
@@ -4317,7 +4317,7 @@ void apply_magic(object_type *o_ptr, DEPTH lev, BIT_FLAGS mode)
 		/* Roll for "great" */
 		if ((mode & AM_GREAT) || magik(f2))
 		{
-			power = 2;
+			power = (randint0(100) > 80 ? 3 : 2); /* #tang 2 -> (randint0(100) > 80 ? 3 : 2) */
 
 			/* Roll for "special" */
 			if (mode & AM_SPECIAL) power = 3;
@@ -4608,7 +4608,7 @@ void apply_magic(object_type *o_ptr, DEPTH lev, BIT_FLAGS mode)
 				if ((o_ptr->name2 == EGO_HA) && (have_flag(o_ptr->art_flags, TR_BLOWS)))
 				{
 					o_ptr->pval++;
-					if ((lev > 60) && one_in_(3) && ((o_ptr->dd*(o_ptr->ds+1)) < 15)) o_ptr->pval++;
+					if ((lev > 15) && one_in_(3) && ((o_ptr->dd*(o_ptr->ds+1)) < 15)) o_ptr->pval++; /* #tang 60 -> 15 */
 				}
 				else if (o_ptr->name2 == EGO_DEMON)
 				{
@@ -4623,7 +4623,7 @@ void apply_magic(object_type *o_ptr, DEPTH lev, BIT_FLAGS mode)
 				}
 				else if (o_ptr->name2 == EGO_ATTACKS)
 				{
-					o_ptr->pval = randint1(e_ptr->max_pval*lev/100+1);
+					o_ptr->pval = randint1(e_ptr->max_pval*lev/25+1); /* #tang 100 -> 25 */
 					if (o_ptr->pval > 3) o_ptr->pval = 3;
 					if ((o_ptr->tval == TV_SWORD) && (o_ptr->sval == SV_HAYABUSA))
 						o_ptr->pval += randint1(2);
@@ -4644,7 +4644,7 @@ void apply_magic(object_type *o_ptr, DEPTH lev, BIT_FLAGS mode)
 				
 				
 			}
-			if ((o_ptr->name2 == EGO_SPEED) && (lev < 50))
+			if ((o_ptr->name2 == EGO_SPEED) && (lev < 13)) /* #tang 50 -> 13 */
 			{
 				o_ptr->pval = randint1(o_ptr->pval);
 			}
