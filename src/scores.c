@@ -191,7 +191,7 @@ void display_scores_aux(int from, int to, int note, high_score *score)
 		Term_clear();
 
 		/* Title */
-		put_str(_("                ÊÑ¶òÈÚÅÜ: Í¦¼Ô¤ÎÅÂÆ²", "                Hengband Hall of Fame"), 0, 0);
+		put_str(_("                Ã»¶òÈÚÅÜ: Í¦¼Ô¤ÎÅÂÆ²", "                Tanguband Hall of Fame"), 0, 0);
 
 		/* Indicate non-top scores */
 		if (k > 0)
