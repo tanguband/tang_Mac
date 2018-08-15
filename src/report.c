@@ -37,18 +37,18 @@
 #define HTTP_PROXY ""                   /*!< デフォルトのプロキシURL / Default proxy url */
 #define HTTP_PROXY_PORT 0               /*!< デフォルトのプロキシポート / Default proxy port */
 #define HTTP_TIMEOUT    20              /*!< デフォルトのタイムアウト時間(秒) / Timeout length (second) */
-#define SCORE_SERVER "hengband.osdn.jp" /*!< デフォルトのスコアサーバURL / Default score server url */
+#define SCORE_SERVER ""					/*!< デフォルトのスコアサーバURL / Default score server url */ /* #tang -> del */
 #define SCORE_PORT 80                   /*!< デフォルトのスコアサーバポート / Default score server port */
 
 #ifdef JP
-#define SCORE_PATH "http://hengband.osdn.jp/score/register_score.php" /*!< スコア開示URL */
+#define SCORE_PATH "" /*!< スコア開示URL */ /* #tang -> del */
 #else
-#define SCORE_PATH "http://moon.kmc.gr.jp/hengband/hengscore-en/score.cgi" /*!< スコア開示URL */
+#define SCORE_PATH "" /*!< スコア開示URL */ /* #tang -> del */
 #endif
 
 /* for debug */
 #if 0
-#define SCORE_PATH "http://moon.kmc.gr.jp/hengband/scoretest/score.cgi" /*!< スコア開示URL */
+#define SCORE_PATH "" /*!< スコア開示URL */ /* #tang -> del */
 #endif
 
 /*
@@ -471,10 +471,10 @@ errr report_score(void)
 
 	buf_sprintf(score, "name: %s\n", p_ptr->name);
 #ifdef JP
-	buf_sprintf(score, "version: 変愚蛮怒 %d.%d.%d\n",
+	buf_sprintf(score, "version: 短愚蛮怒 %d.%d.%d\n",
 		    FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 #else
-	buf_sprintf(score, "version: Hengband %d.%d.%d\n",
+	buf_sprintf(score, "version: tanguband %d.%d.%d\n",
 		    FAKE_VER_MAJOR-10, FAKE_VER_MINOR, FAKE_VER_PATCH);
 #endif
 	buf_sprintf(score, "score: %d\n", total_points());
