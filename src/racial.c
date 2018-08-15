@@ -1114,7 +1114,7 @@ static bool cmd_racial_power_aux(s32b command)
 			monster_desc(m_name, m_ptr, 0);
 			msg_format(_("%sに捐った。", "You ride on %s."),m_name);
 			if (is_pet(m_ptr)) break;
-			rlev = r_ptr->level;
+			rlev = r_ptr->level * 3; /* #tang r_ptr->level -> r_ptr->level*3 */
 			if (r_ptr->flags1 & RF1_UNIQUE) rlev = rlev * 3 / 2;
 			if (rlev > 60) rlev = 60+(rlev-60)/2;
 			if ((randint1(p_ptr->skill_exp[GINOU_RIDING] / 120 + p_ptr->lev * 2 / 3) > rlev)
@@ -1919,7 +1919,7 @@ void do_cmd_racial_power(void)
 	}
 	case CLASS_IMITATOR:
 	{
-		strcpy(power_desc[num].name, _("擒手し", "Double Revenge"));
+		strcpy(power_desc[num].name, _("３擒手し", "Double Revenge")); /* #tang 擒手し -> ３擒手し */
 		power_desc[num].level = 30;
 		power_desc[num].cost = 100;
 		power_desc[num].stat = A_DEX;
