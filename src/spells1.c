@@ -2927,13 +2927,13 @@ static bool project_m(MONSTER_IDX who, POSITION r, POSITION y, POSITION x, HIT_P
 				if (r_ptr->flags3 & RF3_ANIMAL)
 					chg_virtue(V_NATURE, 1);
 			}
-
+/* #tang MON_LEPER -> DEL
 			if (m_ptr->r_idx == MON_LEPER)
 			{
 				heal_leper = TRUE;
 				if (!who) chg_virtue(V_COMPASSION, 5);
 			}
-
+*/
 			/* Redraw (later) if needed */
 			if (p_ptr->health_who == c_ptr->m_idx) p_ptr->redraw |= (PR_HEALTH);
 			if (p_ptr->riding == c_ptr->m_idx) p_ptr->redraw |= (PR_UHEALTH);
@@ -6064,7 +6064,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* Mind blast */
 		case GF_MIND_BLAST:
 		{
-			if ((randint0(100 + rlev / 2) < MAX(5, p_ptr->skill_sav)) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < MAX(5, p_ptr->skill_sav)) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
 			{
                 msg_print(_("しかし効力を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
@@ -6102,7 +6102,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* Brain smash */
 		case GF_BRAIN_SMASH:
 		{
-			if ((randint0(100 + rlev / 2) < MAX(5, p_ptr->skill_sav)) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < MAX(5, p_ptr->skill_sav)) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
             {
                 msg_print(_("しかし効力を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
@@ -6139,9 +6139,9 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 					}
 					(void)set_slow(p_ptr->slow + randint0(4) + 4, FALSE);
 
-					while (randint0(100 + rlev / 2) > (MAX(5, p_ptr->skill_sav)))
+					while (randint0(100 + rlev * 2) > (MAX(5, p_ptr->skill_sav))) /* #tang rlev / 2 -> rlev * 2 */
 						(void)do_dec_stat(A_INT);
-					while (randint0(100 + rlev / 2) > (MAX(5, p_ptr->skill_sav)))
+					while (randint0(100 + rlev * 2) > (MAX(5, p_ptr->skill_sav))) /* #tang rlev / 2 -> rlev * 2 */
 						(void)do_dec_stat(A_WIS);
 
 					if (!p_ptr->resist_chaos)
@@ -6156,7 +6156,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* cause 1 */
 		case GF_CAUSE_1:
 		{
-			if ((randint0(100 + rlev / 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
             {
                 msg_print(_("しかし効力を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
@@ -6172,7 +6172,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* cause 2 */
 		case GF_CAUSE_2:
 		{
-			if ((randint0(100 + rlev / 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
             {
                 msg_print(_("しかし効力を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
@@ -6188,7 +6188,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* cause 3 */
 		case GF_CAUSE_3:
 		{
-			if ((randint0(100 + rlev / 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
             {
                 msg_print(_("しかし効力を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
@@ -6204,7 +6204,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* cause 4 */
 		case GF_CAUSE_4:
 		{
-			if ((randint0(100 + rlev / 2) < p_ptr->skill_sav) && !(m_ptr->r_idx == MON_KENSHIROU) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < p_ptr->skill_sav) && !(m_ptr->r_idx == MON_KENSHIROU) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
 			{
                 msg_print(_("しかし秘孔を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
@@ -6220,7 +6220,7 @@ static bool project_p(int who, cptr who_name, int r, POSITION y, POSITION x, HIT
 		/* Hand of Doom */
 		case GF_HAND_DOOM:
 		{
-			if ((randint0(100 + rlev/2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW())
+			if ((randint0(100 + rlev * 2) < p_ptr->skill_sav) && !CHECK_MULTISHADOW()) /* #tang rlev / 2 -> rlev * 2 */
             {
                 msg_print(_("しかし効力を跳ね返した！", "You resist the effects!"));
 				learn_spell(monspell);
