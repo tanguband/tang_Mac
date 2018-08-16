@@ -3492,7 +3492,7 @@ void determine_random_questor(quest_type *q_ptr)
 		 * Random monster 5 - 10 levels out of depth
 		 * (depending on level)
 		 */
-		r_idx = get_mon_num(q_ptr->level + 1 + randint1(q_ptr->level / 40)); /*tang 10 -> 40 */
+		r_idx = get_mon_num(q_ptr->level + 1 + randint1(q_ptr->level / 40)); /* #tang 10 -> 40 */
 		r_ptr = &r_info[r_idx];
 
 		if (!(r_ptr->flags1 & RF1_UNIQUE)) continue;
@@ -3513,7 +3513,7 @@ void determine_random_questor(quest_type *q_ptr)
 		 * Accept monsters that are 2 - 6 levels
 		 * out of depth depending on the quest level
 		 */
-		if (r_ptr->level > (q_ptr->level + (q_ptr->level / 80))) break; /*tang 20 -> 80  */
+		if (r_ptr->level > (q_ptr->level + (q_ptr->level / 80))) break; /* #tang 20 -> 80  */
 	}
 
 	q_ptr->r_idx = (s16b)r_idx;

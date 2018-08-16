@@ -1375,7 +1375,7 @@ static void touch_zap_player_aux(monster_type *m_ptr, bool immune, int flags_off
 	if ((atoffset(u32b, r_ptr, flags_offset) & aura_flag) && !immune)
 	{
 		char mon_name[80];
-		int aura_damage = damroll(1 + (r_ptr->level * 4 / 26), 1 + (r_ptr->level * 4 / 17)); /*tang level -> level*4 */
+		int aura_damage = damroll(1 + (r_ptr->level * 4 / 26), 1 + (r_ptr->level * 4 / 17)); /* #tang level -> level*4 */
 
 		/* Hack -- Get the "died from" name */
 		monster_desc(mon_name, m_ptr, MD_IGNORE_HALLU | MD_ASSUME_VISIBLE | MD_INDEF_VISIBLE);
@@ -1633,13 +1633,13 @@ static void py_attack_aux(int y, int x, bool *fear, bool *mdeath, s16b hand, BIT
 			if (p_ptr->skill_exp[GINOU_SUDE] < s_info[p_ptr->pclass].s_max[GINOU_SUDE])
 			{
 				if (p_ptr->skill_exp[GINOU_SUDE] < WEAPON_EXP_BEGINNER)
-					p_ptr->skill_exp[GINOU_SUDE] += 200; /*tang 40 -> 200 */
+					p_ptr->skill_exp[GINOU_SUDE] += 200; /* #tang 40 -> 200 */
 				else if ((p_ptr->skill_exp[GINOU_SUDE] < WEAPON_EXP_SKILLED))
-					p_ptr->skill_exp[GINOU_SUDE] += 25; /*tang 5 -> 25 */
+					p_ptr->skill_exp[GINOU_SUDE] += 25; /* #tang 5 -> 25 */
 				else if ((p_ptr->skill_exp[GINOU_SUDE] < WEAPON_EXP_EXPERT) && (p_ptr->lev > 19))
-					p_ptr->skill_exp[GINOU_SUDE] += 5; /*tang 1 -> 5 */
+					p_ptr->skill_exp[GINOU_SUDE] += 5; /* #tang 1 -> 5 */
 				else if ((p_ptr->lev > 34))
-					if (one_in_(3)) p_ptr->skill_exp[GINOU_SUDE] += 5; /*tang 1 -> 5 */
+					if (one_in_(3)) p_ptr->skill_exp[GINOU_SUDE] += 5; /* #tang 1 -> 5 */
 				p_ptr->update |= (PU_BONUS);
 			}
 		}
