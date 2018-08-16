@@ -43,7 +43,7 @@ Y:view_perma_grids
 X:view_torch_grids
 X:view_unsafe_grids
 X:view_reduce_view
-Y:fresh_before
+X:fresh_before
 X:fresh_after
 X:fresh_message
 X:hilite_player
