@@ -953,7 +953,7 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 		break;
 
 	case MON_RAAL:
-		if (drop_chosen_item && (dun_level > 9))
+		if (drop_chosen_item && (dun_level > 3)) /* #tang 9 -> 3*/
 		{
 			/* Get local object */
 			q_ptr = &forge;
@@ -962,7 +962,7 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 			object_wipe(q_ptr);
 
 			/* Activate restriction */
-			if ((dun_level > 49) && one_in_(5))
+			if ((dun_level > 14) && one_in_(5)) /* #tang 49 -> 14*/
 				get_obj_num_hook = kind_is_good_book;
 			else
 				get_obj_num_hook = kind_is_book;
@@ -1158,7 +1158,7 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 			break;
 
 		case '/':
-			if (dun_level > 4)
+			if (dun_level > 2) /* #tang 4 -> 2*/
 			{
 				/* Get local object */
 				q_ptr = &forge;
@@ -1178,7 +1178,7 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 			break;
 
 		case '[':
-			if (dun_level > 19)
+			if (dun_level > 6) /* #tang 19 -> 6*/
 			{
 				/* Get local object */
 				q_ptr = &forge;
@@ -1198,7 +1198,7 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 			break;
 
 		case '\\':
-			if (dun_level > 4)
+			if (dun_level > 2) /* #tang 4 -> 2*/
 			{
 				/* Get local object */
 				q_ptr = &forge;
@@ -1246,12 +1246,234 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 		int a_idx = 0;
 		int chance = 0;
 
+		switch (m_ptr->r_idx)
+		{
+		case MON_OBERON:
+			if (one_in_(3))
+			{
+				a_idx = ART_JUDGE;
+				chance = 33;
+			}
+			else
+			{
+				a_idx = ART_AMBER;
+				chance = 50;
+			}
+			break;
+
+		case MON_GHB:
+			a_idx = ART_GHB;
+			chance = 100;
+			break;
+
+		case MON_STORMBRINGER:
+			a_idx = ART_STORMBRINGER;
+			chance = 100;
+			break;
+
+		case MON_ECHIZEN:
+			a_idx = ART_CRIMSON;
+			chance = 50;
+			break;
+
+		case MON_GANDALF:
+			a_idx = ART_ICANUS;
+			chance = 20;
+			break;
+
+		case MON_OROCHI:
+			a_idx = ART_KUSANAGI;
+			chance = 25;
+			break;
+
+		case MON_DWORKIN:
+			a_idx = ART_JUDGE;
+			chance = 20;
+			break;
+
+		case MON_SAURON:
+			if (one_in_(10))
+			{
+				a_idx = ART_POWER;
+				chance = 100;
+			}
+			else
+			{
+				a_idx = ART_AHO;
+				chance = 100;
+			}
+			break;
+
+		case MON_BRAND:
+			if (!one_in_(3))
+			{
+				a_idx = ART_BRAND;
+				chance = 25;
+			}
+			else
+			{
+				a_idx = ART_WEREWINDLE;
+				chance = 33;
+			}
+			break;
+
+		case MON_CORWIN:
+			if (!one_in_(3))
+			{
+				a_idx = ART_GRAYSWANDIR;
+				chance = 33;
+			}
+			else
+			{
+				a_idx = ART_CORWIN;
+				chance = 33;
+			}
+			break;
+
+		case MON_SURTUR:
+			if (!one_in_(3))
+			{
+				a_idx = ART_TWILIGHT;
+				chance = 100;
+			}
+			else
+			{
+				a_idx = ART_ORB_OF_FATE;
+				chance = 100;
+			}
+			break;
+
+		case MON_SARUMAN:
+			a_idx = ART_ELENDIL;
+			chance = 33;
+			break;
+
+		case MON_FIONA:
+			a_idx = ART_FIONA;
+			chance = 50;
+			break;
+
+		case MON_JULIAN:
+			a_idx = ART_JULIAN;
+			chance = 45;
+			break;
+
+		case MON_KLING:
+			a_idx = ART_DESTINY;
+			chance = 40;
+			break;
+
+		case MON_GOEMON:
+			a_idx = ART_ZANTETSU;
+			chance = 100;
+			break;
+
+		case MON_HAGEN:
+			a_idx = ART_HAGEN;
+			chance = 66;
+			break;
+
+		case MON_CAINE:
+			a_idx = ART_CAINE;
+			chance = 50;
+			break;
+
+		case MON_BULLGATES:
+			a_idx = ART_WINBLOWS;
+			chance = 66;
+			break;
+
+		case MON_LUNGORTHIN:
+			a_idx = ART_CALRIS;
+			chance = 50;
+			break;
+
+		case MON_JACK_SHADOWS:
+			a_idx = ART_JACK;
+			chance = 15;
+			break;
+
+		case MON_DIO:
+			a_idx = ART_STONEMASK;
+			chance = 20;
+			break;
+
+		case MON_BELD:
+			a_idx = ART_SOULCRUSH;
+			chance = 10;
+			break;
+
+		case MON_PIP:
+			a_idx = ART_EXCALIBUR_J;
+			chance = 50;
+			break;
+
+		case MON_SHUTEN:
+			a_idx = ART_SHUTEN_DOJI;
+			chance = 33;
+			break;
+
+		case MON_GOTHMOG:
+			a_idx = ART_GOTHMOG;
+			chance = 33;
+			break;
+
+		case MON_FUNDIN:
+			a_idx = ART_FUNDIN;
+			chance = 5;
+			break;
+
+		case MON_ROBIN_HOOD:
+			a_idx = ART_ROBIN_HOOD;
+			chance = 5;
+			break;
+
+		case MON_KOGAN:
+			a_idx = ART_NANACHO;
+			chance = 80;
+			break;
+
+		/* #tang 特定モンスター固定ドロップ */		
+		case MON_TANG_CLOAK:
+			a_idx = ART_TANG_CLOAK;
+			chance = 100;
+			break;
+		
+		case MON_TANG_SWORD:
+			a_idx = ART_TANG_SWORD;
+			chance = 100;
+			break;
+		
+		case MON_TANG_HELM:
+			a_idx = ART_TANG_HELM;
+			chance = 100;
+			break;
+		
+		case MON_TANG_ARMOR:
+			a_idx = ART_TANG_ARMOR;
+			chance = 100;
+			break;
+		
+		case MON_TANG_GLOVES:
+			a_idx = ART_TANG_GLOVES;
+			chance = 100;
+			break;
+		
+		case MON_TANG_BOOTS:
+			a_idx = ART_TANG_BOOTS;
+			chance = 100;
+			break;
+		/* #tang */
+		}
+		
+		/* #tang 
 		for(i = 0; i < 4; i++)
 		{
 			if(!r_ptr->artifact_id[i]) break;
 			a_idx = r_ptr->artifact_id[i];
 			chance = r_ptr->artifact_percent[i];
 		}
+		/* #tang */
 
 		if ((a_idx > 0) && ((randint0(100) < chance) || p_ptr->wizard))
 		{
@@ -1401,7 +1623,7 @@ void monster_death(MONSTER_IDX m_idx, bool drop_item)
 
 		play_music(TERM_XTRA_MUSIC_BASIC, MUSIC_BASIC_FINAL_QUEST_CLEAR);
 
-		do_cmd_write_nikki(NIKKI_BUNSHOU, 0, _("見事に変愚蛮怒の勝利者となった！", "become *WINNER* of Hengband finely!"));
+		do_cmd_write_nikki(NIKKI_BUNSHOU, 0, _("見事に短愚蛮怒の勝利者となった！", "become *WINNER* of tanguband finely!"));
 
 		if ((p_ptr->pclass == CLASS_CHAOS_WARRIOR) || (p_ptr->muta2 & MUT2_CHAOS_GIFT))
 		{
@@ -1736,7 +1958,7 @@ bool mon_take_hit(MONSTER_IDX m_idx, HIT_POINT dam, bool *fear, cptr note)
 			}
 			else if (r_ptr->level > dun_level)
 			{
-				if (randint1(10) <= (r_ptr->level - dun_level))
+				if (randint1(10) <= (r_ptr->level * 4 - dun_level * 4)) /* #tang (r_ptr->level - dun_level) -> (r_ptr->level * 4 - dun_level * 4) */
 					chg_virtue(V_VALOUR, 1);
 			}
 			if (r_ptr->level > 60)
@@ -1759,21 +1981,21 @@ bool mon_take_hit(MONSTER_IDX m_idx, HIT_POINT dam, bool *fear, cptr note)
 
 			if (one_in_(3)) chg_virtue(V_INDIVIDUALISM, -1);
 		}
-
+/* #tang
 		if (m_ptr->r_idx == MON_BEGGAR || m_ptr->r_idx == MON_LEPER)
 		{
 			chg_virtue(V_COMPASSION, -1);
 		}
-
+*/
 		if ((r_ptr->flags3 & RF3_GOOD) &&
-			((r_ptr->level) / 10 + (3 * dun_level) >= randint1(100)))
+			((r_ptr->level) * 4 / 10 + (12 * dun_level) >= randint1(100))) /* #tang (r_ptr->level) / 10 + (3 * dun_level) -> (r_ptr->level)*4 / 10 + (12 * dun_level)*/
 			chg_virtue(V_UNLIFE, 1);
 
 		if (r_ptr->d_char == 'A')
 		{
 			if (r_ptr->flags1 & RF1_UNIQUE)
 				chg_virtue(V_FAITH, -2);
-			else if ((r_ptr->level) / 10 + (3 * dun_level) >= randint1(100))
+			else if ((r_ptr->level) * 4 / 10 + (12 * dun_level) >= randint1(100)) /* #tang (r_ptr->level) / 10 + (3 * dun_level) -> (r_ptr->level)*4 / 10 + (12 * dun_level)*/
 			{
 				if (r_ptr->flags3 & RF3_GOOD) chg_virtue(V_FAITH, -1);
 				else chg_virtue(V_FAITH, 1);
@@ -1783,7 +2005,7 @@ bool mon_take_hit(MONSTER_IDX m_idx, HIT_POINT dam, bool *fear, cptr note)
 		{
 			if (r_ptr->flags1 & RF1_UNIQUE)
 				chg_virtue(V_FAITH, 2);
-			else if ((r_ptr->level) / 10 + (3 * dun_level) >= randint1(100))
+			else if ((r_ptr->level) * 4 / 10 + (12 * dun_level) >= randint1(100)) /* #tang (r_ptr->level) / 10 + (3 * dun_level) -> (r_ptr->level)*4 / 10 + (12 * dun_level)*/
 				chg_virtue(V_FAITH, 1);
 		}
 
@@ -1796,7 +2018,7 @@ bool mon_take_hit(MONSTER_IDX m_idx, HIT_POINT dam, bool *fear, cptr note)
 			{
 				chg_virtue(V_HONOUR, 10);
 			}
-			else if ((r_ptr->level) / 10 + (2 * dun_level) >= randint1(100))
+			else if ((r_ptr->level) * 4 / 10 + (8 * dun_level) >= randint1(100)) /* #tang (r_ptr->level) / 10 + (2 * dun_level) -> (r_ptr->level)*4 / 10 + (8 * dun_level)*/
 			{
 				chg_virtue(V_HONOUR, 1);
 			}
@@ -1823,7 +2045,7 @@ bool mon_take_hit(MONSTER_IDX m_idx, HIT_POINT dam, bool *fear, cptr note)
 		{
 			if (r_ptr->flags1 & RF1_UNIQUE)
 				chg_virtue(V_JUSTICE, 3);
-			else if (1+((r_ptr->level) / 10 + (2 * dun_level))
+			else if (1+((r_ptr->level) * 4 / 10 + (8 * dun_level)) /* #tang (1+((r_ptr->level) / 10 + (2 * dun_level)) -> (1+((r_ptr->level) *4 / 10 + (8 * dun_level))*/
 				>= randint1(100))
 				chg_virtue(V_JUSTICE, 1);
 		}
@@ -4540,7 +4762,7 @@ msg_format("%sの声が響き渡った:",
 			else if (p_ptr->exp < PY_MAX_EXP)
 			{
 				s32b ee = (p_ptr->exp / 2) + 10;
-				if (ee > 100000L) ee = 100000L;
+				if (ee > 300000L) ee = 300000L; /* #tang 100000 -> 300000 */
 				msg_print(_("更に経験を積んだような気がする。", "You feel more experienced."));
 
 				gain_exp(ee);
